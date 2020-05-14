@@ -11,16 +11,11 @@ const routes: Routes = [
       // { 
     	 // path: '', redirectTo: 'patients'
       // },
-      { 
-    	 path: 'patients', 
-    	 loadChildren: () => import('../patients/patients.module').then(m => m.PatientsModule)  
-      },
-      { 
-    	 path: 'therapists', 
-    	 loadChildren: () => import('../therapists/therapists.module').then(m => m.TherapistsModule)  
-      }
+      { path: 'buyers', loadChildren: () => import('../buyers/buyers.module').then(m => m.BuyersModule) },
+      { path: 'retailers', loadChildren: () => import('../retailers/retailers.module').then(m => m.RetailersModule) }
     ]
-  }
+  },
+  
 ];
 
 @NgModule({

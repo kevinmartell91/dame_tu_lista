@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 // Create endpoint handlers for /authenticate
 router.route('/authenticate')
-  .post(authenticationController.postAuthenticate);
+  .post( authenticationController.postAuthenticate);
 
 // Create endpoint handlers for /contacts/:contact_id
 router.route('/contacts/:contact_id')
@@ -43,7 +43,7 @@ router.route('/users/:user_id')
 //Create endpoint handlers for /users
 router.route('/users')
   .post( userController.postUsers)
-  .get( userController.getUsers);
+  .get(  userController.getUsers);
 
 
 // Create endpoint handlers for /pacients/:pacient_id

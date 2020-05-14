@@ -1,0 +1,702 @@
+{
+    "data": [
+        {   
+            "stage": "1 => order_generated",
+            "_id": "1",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 0,
+                    "isPackaged": false
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 0,
+                    "isPackaged": false
+                }
+            ],
+            "total_price" : 0,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+            ],
+
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+        },
+        {   
+            "stage": "2 => seen_by_retailer",
+            "_id": "2",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 0,
+                    "isPackaged": false
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 0,
+                    "isPackaged": false
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 0,
+                    "isPackaged": false
+                }
+            ],
+            "total_price" : 0,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+            ],
+            
+
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "3 => packaged_buy_retailer",
+            "_id": "3",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "4 => received_by_driver",
+            "_id": "4",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "5 => delivering_by_driver",
+            "_id": "5",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+                {"delivering_by_driver" : true, "date" : "2020-02-10T11:50:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "6 => delivered_by_driver",
+            "_id": "6",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+                {"delivering_by_driver" : true, "date" : "2020-02-10T11:50:57.240Z"},
+                {"delivered_by_driver" : true, "date" : "2020-02-10T12:24:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "7.1 => paid_to_driver: true",
+            "_id": "7.1",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+                {"delivering_by_driver" : true, "date" : "2020-02-10T11:50:57.240Z"},
+                {"delivered_by_driver" : true, "date" : "2020-02-10T12:24:57.240Z"},
+                {"paid_to_driver" : true, "date" : "2020-02-10T12:30:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "7.2 => paid_to_driver: false",
+            "_id": "7.2",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+                {"delivering_by_driver" : true, "date" : "2020-02-10T11:50:57.240Z"},
+                {"delivered_by_driver" : true, "date" : "2020-02-10T12:24:57.240Z"},
+                {"paid_to_driver" : false, "date" : "2020-02-10T12:30:57.240Z"},
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        },
+        {
+            "stage": "8 => order_finished",
+            "_id": "8",
+            "order_num": "0001",
+            "order_package_color": "verde",
+            "order_detail" : [
+                {
+                    "thing": "Papaya",
+                    "type": "Tainung",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : 3,
+                    "weight": "",
+                    "price": 8,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Madarina",
+                    "type": "Clementinas",
+                    "size": "Medianas",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "2kg",
+                    "price": 5,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Arándanos",
+                    "type": "-",
+                    "size": "Grande",
+                    "last_for" : "1 semana",
+                    "quantity" : -9999,
+                    "weight": "3kg",
+                    "price": 18,
+                    "isPackaged": true
+                },
+
+                {
+                    "thing": "Palta",
+                    "type": "Fuerte",
+                    "size": "Grandes",
+                    "last_for" : "1 semana",
+                    "quantity" : 7,
+                    "weight": "",
+                    "price": 13,
+                    "isPackaged": true
+                },
+                {
+                    "thing": "Plátanos",
+                    "type": "-",
+                    "size": "Mediano",
+                    "last_for" : "03 días",
+                    "quantity" : -9999,
+                    "weight": "1kg",
+                    "price": 2.5,
+                    "isPackaged": true
+                }
+            ],
+            "total_price" : 46.50,
+            "order_status" : [
+                {"order_generated" : true, "date" : "2020-02-10T10:50:57.240Z"},
+                {"seen_by_retailer" : true, "date" : "2020-02-10T11:00:57.240Z"},
+                {"packaged_buy_retailer" : true, "date" : "2020-02-10T11:30:57.240Z"},
+                {"received_by_driver" : true, "date" : "2020-02-10T11:40:57.240Z"},
+                {"delivering_by_driver" : true, "date" : "2020-02-10T11:50:57.240Z"},
+                {"delivered_by_driver" : true, "date" : "2020-02-10T12:24:57.240Z"},
+                {"paid_to_driver" : true, "date" : "2020-02-10T12:30:57.240Z"},
+                {"order_finished" : true, "date" : "2020-02-10T10:50:57.240Z"}
+            ],
+            
+            
+            "buyer_id" : "001",
+            "buyer_name" : "kevin",
+            "buyer_address": {
+                "street": "Calle Balizario Suarez",
+                "number" : 120,
+                "district": "San Borja"
+            },
+            "buyer_phone" : "996829180"
+            
+        }
+    ]
+}

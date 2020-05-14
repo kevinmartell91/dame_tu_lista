@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './core/services/authentication.service';
-import { LoginUser } from './features/login/models/login-user.model';
+// import { AuthenticationService } from './core/services/authentication.service';
+import { AuthenticationStore } from "./core/login/services/authentication.store";
+// import { LoginUser } from './features/login/models/login-user.model';
+import { LoginUser } from "./core/login/types/user";
 
 @Component({
   selector: 'app-root',
@@ -9,22 +11,22 @@ import { LoginUser } from './features/login/models/login-user.model';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'app';
-  currentUser: LoginUser;
+  title = 'Dame tu lista';
+  loginUser: LoginUser;
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationStore: AuthenticationStore
   ) {
-    this.authenticationService.currentUser.subscribe( 
-        x => { 
-          this.currentUser = x;
-        }
-      );
+    this.authenticationStore.loginUser$.subscribe( 
+      x => { 
+        this.loginUser = x;
+      }
+    );
   }
 
   logout() {
-    this.authenticationService.logout();
+    this.authenticationStore.logout();
     this.router.navigate(['/login']);
   }
 }

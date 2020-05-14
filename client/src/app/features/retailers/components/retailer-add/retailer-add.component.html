@@ -1,0 +1,42 @@
+<p>retailer-add workxs!</p>
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Regístrese</mat-card-title>
+            <br>
+        </mat-card-header>
+
+        <form [formGroup]='registerForm' (ngSubmit)="onSubmit()" 
+            class="example-form">
+        <mat-card-content>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username"
+                            name="username"
+                            type="text"
+                            formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password"
+                            name="password"
+                            type="password"
+                            formControlName="password">
+          </mat-form-field>
+
+        </mat-card-content>
+        
+        <mat-card-actions>
+            <button mat-stroked-button color="accent" 
+                    class="btn-block"
+                    type="submit"
+                    [disabled]="!registerForm.valid">Registrar</button>
+        </mat-card-actions>
+       
+       
+
+        </form>
+    </mat-card>
+</div>
+
+

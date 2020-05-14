@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { FormGroup,
 		 FormControl,
 		 Validators,
@@ -9,13 +9,14 @@ import { trigger,
 		 style,
 		 animate,
 		 transition } from '@angular/animations';
-import { LoginUser } from './models/login-user.model';
-import { AuthenticationService } from '../../core/services/authentication.service';
-import { AuthService } from './services/auth.service';
+import { LoginUser } from '../../core/login/types/user';
+import { AuthenticationStore } from "../../core/login/services/authentication.store";
 import { first } from 'rxjs/operators';
 
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
+
+
 
 @Component({
   animations: [
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
   error = '';
-  Roles: any = ['user','patient', 'therapist', 'medical_center'];
+  Roles: any = ['buyers', 'retailers', 'user','patient', 'therapist', 'medical_center'];
   
   // animations
   isOpen = true;
@@ -71,15 +72,16 @@ export class LoginComponent implements OnInit {
   mode: ProgressBarMode = 'determinate';
   value = 50;
   bufferValue = 75;
-  
+
+
   constructor( 
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private userService: AuthService,
+    private authenticationStore: AuthenticationStore,
     private router: Router,
-    private activatedRoute: ActivatedRoute)  { 
+    private activatedRoute: ActivatedRoute
+  )  { 
 
-    if( this.authenticationService.currentUserValue) {
+    if( this.authenticationStore.loginUser) {
       this.router.navigate(['/']);
     }  
   }
@@ -100,7 +102,7 @@ export class LoginComponent implements OnInit {
   
   toggle() {
     this.isOpen = !this.isOpen;
-    this.authenticationService.logout();
+    this.authenticationStore.logout();
   }
 
   toggleDetails() {
@@ -108,12 +110,12 @@ export class LoginComponent implements OnInit {
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
     this.dynamicColDetail= this.dynamicColDetail === '' ? 'col-md-1' : '';
     
-    this.userService.getUser().pipe(first()).subscribe(
-      users => {
-        this.loading = false;
-        this.value = 100;
-      }
-    );
+    // this.userService.getUser().pipe(first()).subscribe(
+    //   users => {
+    //     this.loading = false;
+    //     this.value = 100;
+    //   }
+    // );
   }
 
   private prepareAuthentication(): LoginUser {
@@ -125,10 +127,11 @@ export class LoginComponent implements OnInit {
     let loginUser = this.prepareAuthentication();
     this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
 
-    this.authenticationService.login(loginUser)
+    this.authenticationStore.login(loginUser)
       .pipe(first())
       .subscribe(
         data => {
+          console.log(this.returnUrl)
           this.router.navigate([this.returnUrl])
         },
         error => {
@@ -141,7 +144,9 @@ export class LoginComponent implements OnInit {
   getloginTypeRedirect(loginUser: LoginUser): string {
     let loginTypeUrl = '';
       switch (loginUser.login_type){
-        case 'user':           loginTypeUrl = '/dashboard-medical-center'; break;
+        case 'buyers':         loginTypeUrl = '/buyers'; break;
+        case 'retailers':      loginTypeUrl = '/retailers'; break;
+        case 'user':           loginTypeUrl = '/users'; break;
         case 'patient':        loginTypeUrl = '/dashboard-attorney'; break;
         case 'therapist':      loginTypeUrl = '/dashboard-therapist'; break;
         case 'medical_center': loginTypeUrl = '/dashboard-medical-center';
@@ -150,7 +155,7 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnDestroy() {
-  	// this.authenticationService.unsubscribe();
+  	// this.authenticationStore.unsubscribe();
   }
 
 }

@@ -8,12 +8,15 @@ const routes: Routes = [
   { 
   	path: '', 
     loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   { 
   	path: 'login', 
   	loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
+  { 
+    path: 'register',
+    loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) },
   { 
 	  path: 'dashboard-medical-center', 
     loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 

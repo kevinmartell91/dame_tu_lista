@@ -8,30 +8,42 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
-import { ErrorInterceptors  } from './core/interceptors/error.interceptor'; 
-import { TokenInterceptor } from './core/interceptors/token.interceptor';
-import { AuthenticationService } from './core/services/authentication.service';
-import { AuthService } from './features/login/services/auth.service';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http'
+// import { ErrorInterceptors  } from './core/interceptors/error.interceptor'; 
+// import { TokenInterceptor } from './core/interceptors/token.interceptor';
+// import { AuthenticationService } from './core/services/authentication.service';
+// import { AuthService } from './features/login/services/auth.service';
+import { CoreModule } from "./core/core.module";
 
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
+    //Angular Modules
     AppComponent,
+
     PageNotFoundComponent,
   ],
   imports: [
+    // Angular Modules
     BrowserModule,
-    SharedModule,
+    HttpClientModule,
+
+    // App Inizialization Module
+
+    // Core Modules
+    CoreModule,
+
+    // Feature modules
+
+    
+    // SharedModule,
     BrowserAnimationsModule,    
+
+    // App routing - should be the last import
     AppRoutingModule
   ],
-  providers: [
-    AuthenticationService,
-    AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptors, multi: true }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -45,7 +57,7 @@ export class AppModule { }
 
 /* Feature modules 
      Components that work together to implement an app's
-     feature. Their only concern should be their their 
+     feature. Their only concern should be their 
      own features and they should care as little as 
      possible about other parts of the app. Connection 
      to the "outside world" are made from feature's 
@@ -57,7 +69,10 @@ export class AppModule { }
 
 /* SharedModule 
      think about SharedModule as a private node_modules,
-     where no componenets, directives or anything
+     where no components, directives or anything
      else from SharedModule should depend on any
      other module, component, provider, etc.
 */
+
+
+// https://angular.io/guide/lazy-loading-ngmodules

@@ -60,7 +60,7 @@ import { MatTreeModule } from '@angular/material/tree';
 
 import 'hammerjs';
 
-const listMatModules = [
+const EXPORTED_MAT_MODULES = [
   	// ClipboardModule,
   	// CdkStepperModule,
   	// CdkTableModule,
@@ -113,10 +113,10 @@ const listMatModules = [
     FlexLayoutModule,
     ReactiveFormsModule, 
     FormsModule,
-    ...listMatModules
+    ...EXPORTED_MAT_MODULES
   ],
   exports: [
-    listMatModules,
+    ...EXPORTED_MAT_MODULES,
     FlexLayoutModule,
     ReactiveFormsModule, 
     FormsModule,

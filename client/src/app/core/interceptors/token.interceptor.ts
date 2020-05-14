@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor,
          HttpHandler,
          HttpEvent,
-         HttpRequest } from '@angular/common/http';
-import { AuthenticationService } from '../services/authentication.service';
+		 HttpRequest } from '@angular/common/http';
+import { AuthenticationStore } from '../login/services/authentication.store';
+		 
 import { Observable } from 'rxjs'
 
 @Injectable({providedIn : 'root'})
 export class TokenInterceptor implements HttpInterceptor {
   
-  constructor( private authenticationService: AuthenticationService) { }
+  constructor( private authenticationStore: AuthenticationStore) { }
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 	/*
@@ -19,7 +20,8 @@ export class TokenInterceptor implements HttpInterceptor {
 		authentication.service.ts, but subscribing is not 
 		necessary because of the getter method.		
 	*/
-	let currentUser = this.authenticationService.currentUserValue;
+	let currentUser = this.authenticationStore.loginUser;
+	console.log("TokenInterceptor get loginUser")
 	 
  	if(currentUser && currentUser.token){
 		request = request.clone({

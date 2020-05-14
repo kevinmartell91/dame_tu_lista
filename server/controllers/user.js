@@ -47,16 +47,16 @@ exports.getUser = function(req, res) {
   });
 };
 
-exports.getUser_JWTVerification = function(user_id) {
-  return new Promise(function(resolve, reject) {
-    User.findById(user_id, function(err, user) {
-      if (err)
-        reject(err);
+// exports.getUser_JWTVerification = function(user_id) {
+//   return new Promise(function(resolve, reject) {
+//     User.findById(user_id, function(err, user) {
+//       if (err)
+//         reject(err);
       
-      resolve(user);
-    });
-  });
-};
+//       resolve(user);
+//     });
+//   });
+// };
 
 // Create endpoint /api/users/:user_id for PUT
 exports.putUser = function(req, res) {
