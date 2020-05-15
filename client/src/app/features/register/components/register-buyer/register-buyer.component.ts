@@ -3,7 +3,8 @@ import { FormGroup,
   Validators,
   FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$');
+import { VALIDATORS_PATTERNS } from '../../../../core/constants/validators-patterns';
+
 
 @Component({
   selector: 'app-register-buyer',
@@ -20,7 +21,7 @@ export class RegisterBuyerComponent implements OnInit {
     this.registerBuyerForm = this.fb.group({
       username: ['', Validators.required],
       password: ['',Validators.required],
-      email: ['',emailValidator],
+      email: ['', Validators.pattern(VALIDATORS_PATTERNS.email)],
       phone_number: ['', Validators.required],
       login_type: ['', Validators.required]
     }) 
