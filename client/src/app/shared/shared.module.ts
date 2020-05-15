@@ -59,8 +59,9 @@ import { MatTreeModule } from '@angular/material/tree';
 
 
 import 'hammerjs';
+import { ModalComponent } from './components/modal/modal.component';
 
-const EXPORTED_MAT_MODULES = [
+const EXPORTED_DECLARATIONS = [
   	// ClipboardModule,
   	// CdkStepperModule,
   	// CdkTableModule,
@@ -107,16 +108,17 @@ const EXPORTED_MAT_MODULES = [
 
 @NgModule({
   declarations: [
-  ],
+  ModalComponent],
   imports: [
   	CommonModule,
     FlexLayoutModule,
     ReactiveFormsModule, 
     FormsModule,
-    ...EXPORTED_MAT_MODULES
+    ...EXPORTED_DECLARATIONS
   ],
   exports: [
-    ...EXPORTED_MAT_MODULES,
+	...EXPORTED_DECLARATIONS,
+	ModalComponent,
     FlexLayoutModule,
     ReactiveFormsModule, 
     FormsModule,

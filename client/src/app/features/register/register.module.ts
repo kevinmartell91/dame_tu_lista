@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
-import { BuyerAddComponent } from "../buyers/components/buyer-add/buyer-add.component";
-import { RetailerAddComponent } from "../retailers/components/retailer-add/retailer-add.component";
+import { SharedModule } from "../../shared/shared.module";
+import { RegisterRetailerComponent } from './components/register-retailer/register-retailer.component';
+import { RegisterBuyerComponent } from './components/register-buyer/register-buyer.component';
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    // BuyerAddComponent,
-    // RetailerAddComponent
+    RegisterRetailerComponent,
+    RegisterBuyerComponent,
   ],
   imports: [
     CommonModule,
     RegisterRoutingModule,
+    SharedModule
   
   ],
   exports: [

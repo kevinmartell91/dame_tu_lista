@@ -1,0 +1,45 @@
+<p>register-retailer works!</p>
+
+<div class="registerRetailer-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Nuevo vendedor</mat-card-title>
+            <br>
+        </mat-card-header>
+
+        <form [formGroup]='registerRetailerForm' (ngSubmit)="onSubmit()" 
+            class="form">
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                 <input matInput placeholder="Username"
+                            name="username"
+                            type="text"
+                            formControlName="username">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Corre electroónico"
+                           name="email"
+                           type="text"
+                           formControlName="email"
+                           error-msg="fdsafdsa">
+           </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Password"
+                            name="password"
+                            type="password"
+                            formControlName="password">
+            </mat-form-field>
+
+        </mat-card-content>
+        <button mat-stroked-button color="accent" 
+                class="btn-block"
+                type="submit"
+                [disabled]="!registerRetailerForm.valid">Registrar</button>
+      
+
+        </form>
+    </mat-card>
+</div>

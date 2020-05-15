@@ -1,0 +1,44 @@
+<p>register-buyer works!</p>
+
+<div class="registerBuyer-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Nuevo comprador</mat-card-title>
+            <br>
+        </mat-card-header>
+
+        <form [formGroup]='registerBuyerForm' (ngSubmit)="onSubmit()" 
+            class="form">
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                 <input matInput placeholder="Username"
+                            name="username"
+                            type="text"
+                            formControlName="username">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Teléfono"
+                           name="phone_number"
+                           type="number"
+                           formControlName="phone_number">
+           </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Password"
+                            name="password"
+                            type="password"
+                            formControlName="password">
+            </mat-form-field>
+
+        </mat-card-content>
+        <button mat-stroked-button color="accent" 
+                class="btn-block"
+                type="submit"
+                [disabled]="!registerBuyerForm.valid">Registrar</button>
+      
+
+        </form>
+    </mat-card>
+</div>

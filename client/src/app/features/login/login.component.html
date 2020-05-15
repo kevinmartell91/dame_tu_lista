@@ -8,7 +8,7 @@
 
     <mat-card class="box">
       <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
+        <mat-card-title>Ingresa</mat-card-title>
       </mat-card-header>
 
       <form [formGroup]='loginForm' (ngSubmit)="onSubmit()" 
@@ -65,55 +65,3 @@
 
 </div>
 
-
-
-<!-- 
-
-<div class="container wow fadeInUp" style="visibility: hidden; animation-name: none;">
-  <div class="login_container_style">
-    <form [formGroup]="form" class="form-signin">
-      <div class="mdl-color-text--primary login_title_style">Gaitcome</div>
-
-      
-
-      <div>
-        <mdl-textfield label="Usuario" name="username"
-          type="text" formControlName="username"
-          floating-label></mdl-textfield>
-      </div>
-
-      <div>
-        <mdl-textfield  label="Contraseña" 
-                        name="password"
-          type="password" formControlName="password"
-          floating-label></mdl-textfield>
-      </div>
-
-      <h6 class="login_type_rol_style">Ingrese como: </h6>
-
-      <div>
-        <mdl-radio  *ngFor="let login_type of login_types"  
-                    name="login_type" value={{login_type.value}}
-                    formControlName="login_type"
-                    mdl-ripple
-                    class="radio_button_roles_style">{{login_type.display}}</mdl-radio>
-      </div>
-
-      <div class="login_process_style">
-        <mdl-spinner single-color [active]="processingLogin"></mdl-spinner>
-        <h6>{{statusMessage}}</h6>
-      </div>
-
-      <div>
-        <h5>{{demoMessage}}</h5>
-      </div>
-
-      <div class="login_submit_style">
-        <button  mdl-button (click)="login()" [disabled]="!form.valid"
-          mdl-button-type="raised" mdl-ripple
-          mdl-colored="primary">Ingresar</button>
-      </div>
-    </form>
-  </div>
-</div>
- -->

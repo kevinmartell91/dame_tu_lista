@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalComponent } from "../../shared/components/modal/modal.component";
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -6,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
+
+  loading = false;
+  loginForm: FormGroup;
 
   constructor() { }
 
