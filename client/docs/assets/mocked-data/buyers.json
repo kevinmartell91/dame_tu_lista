@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "_id": "1",
+            "username": "kevinmartell91",
+            "password": "demo",
+            "names": "kevin Brian",
+            "lastname": "Martell Luya",
+            "gender" : "Male",
+            "id_document_type" : "DNI",
+            "id_document_num": 72768258,
+            "birth": "1991-11-04",
+            "created_at": "2020-01-10T10:50:57.240Z",
+            "updated_at": "2020-02-10T08:50:57.240Z",
+            "is_active": true, 
+          
+            "address": {
+                "street": "Calle Belisario Suarez",
+                "number": "167",
+                "city": "San Borja",
+                "state": "Lima",
+                "zip": 15036,
+                "country": "Peru"
+            }
+        }
+    ]
+}
