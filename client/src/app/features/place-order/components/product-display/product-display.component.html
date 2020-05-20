@@ -1,0 +1,79 @@
+<!-- <p>product-display works!</p> -->
+<div class="container_fixed" [ngStyle]="{'background-image': url_img } ">
+    
+    <div fxLayout="row" fxLayoutAlign="space-between start" >
+        <div class="display-detail-fields-style" 
+        [@slideInOut_IsKilograsmOrUnits]="kilogramsOrUnits_animation"
+        fxLayout="column" fxLayoutAlign="space-between start" >
+            
+            
+            <mat-button-toggle-group [@slideInOut_IsKilograsmOrUnits]="kilogramsOrUnits_animation" >
+                <mat-button-toggle value="Kilos"  ngDefaultControl>Kilo</mat-button-toggle>
+                <mat-button-toggle value="Unidades"  ngDefaultControl> Unidades</mat-button-toggle>
+            </mat-button-toggle-group>
+            
+            <mat-button-toggle-group [@slideInOut_quantity]="kilogramsOrUnits_animation" >
+                <mat-button-toggle value="4"  ngDefaultControl>4</mat-button-toggle>
+                <mat-button-toggle value="5"  ngDefaultControl> 5</mat-button-toggle>
+            </mat-button-toggle-group>
+           
+            <mat-button-toggle-group [@slideInOut_IsKilograsmOrUnits]="kilogramsOrUnits_animation" >
+                <mat-button-toggle value="Kilos"  ngDefaultControl>Peq</mat-button-toggle>
+                <mat-button-toggle value="Kilos"  ngDefaultControl>Med</mat-button-toggle>
+                <mat-button-toggle value="Unidades"  ngDefaultControl>Gra</mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <button [@slideInOut_quantity]="kilogramsOrUnits_animation"
+                mat-button [matMenuTriggerFor]="afterMenu">Que me dure</button>
+                <mat-menu #afterMenu="matMenu" xPosition="after">
+                <button mat-menu-item>4 días</button>
+                <button mat-menu-item>1 semanas</button>
+                <button mat-menu-item>1.2 semanas</button>
+                <button mat-menu-item>2 semanas</button>
+            </mat-menu>
+
+
+
+
+            <!-- //////  Child parent comunication implementation ////// -->
+            <!-- <app-display-detail [@slideInOut_IsKilograsmOrUnits]="kilogramsOrUnits_animation"
+                                (displayDetailEmmit)="getDisplayDetail($event)"></app-display-detail> -->
+            <!-- //////  Child parent comunication implementation //////  -->
+
+        </div>
+       
+
+        <button mat-mini-fab color="accent" 
+            (click)="toggleIsKiligramsOrUnits()">
+            +
+        </button>
+    </div>
+    <!-- <button class="button" 
+            [ngStyle]="{'background-image': url_img}"
+            matBadge="KG" matBadgePosition="before" matBadgeColor="accent"
+            (click)="openDisplayDetail()">
+    {{product_name}} 
+    </button>    -->
+    
+</div>
+
+
+
+<!--    
+<button class="product_display_button" (click)="openDisplayDetail()">
+{{product_name}} ></button> -->
+
+<!-- 
+<button [ngStyle]="{'background-imagePP': url_img,
+                    'width': '10px',
+                    'height': '100px',
+                    'position': 'relative' }"
+    mdl-button mdl-button-type="raised" 
+    mdl-colored="primary" mdl-ripple
+    (click)="openDisplayDetail()">
+    {{product_name}} 
+</button> -->
+<!--    
+<button class="product_display_button" (click)="openDisplayDetail()">
+    {{product_name}} ></button> -->
+

@@ -57,7 +57,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
+
+
 import { MdlModule } from "@angular-mdl/core";
+
+
+
 
 import 'hammerjs';
 import { ModalComponent } from './components/modal/modal.component';
@@ -112,7 +117,8 @@ const EXPORTED_DECLARATIONS = [
 
 @NgModule({
   declarations: [
-  ModalComponent],
+  ModalComponent,
+],
   imports: [
   	CommonModule,
     FlexLayoutModule,
@@ -121,13 +127,15 @@ const EXPORTED_DECLARATIONS = [
     ...EXPORTED_DECLARATIONS
   ],
   exports: [
-	...EXPORTED_DECLARATIONS,
+	CommonModule,
 	ModalComponent,
     FlexLayoutModule,
     ReactiveFormsModule, 
     FormsModule,
-    HttpClientModule
-  ],
-  providers: []
+    HttpClientModule,
+	...EXPORTED_DECLARATIONS,
+],
+  providers: [
+  ]
 })
 export class SharedModule { }

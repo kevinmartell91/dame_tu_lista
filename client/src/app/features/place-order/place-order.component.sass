@@ -1,0 +1,125 @@
+$product-order-size: 60px
+$product_display_size: 200px
+$panel_title_grid_size: 20px
+
+* 
+  box-sizing: border-box 
+
+
+// ========================================
+// ========================================
+//  Place order
+// ========================================
+// ========================================
+.product_display_grid
+  display: grid
+  margin: 0
+  padding: 0px 0px 0px 0px
+  grid-template-columns: repeat(auto-fill, minmax($product_display_size  ,1fr))
+  grid-gap: 5px
+  grid-template-row: $product_display_size  
+
+  div 
+    border: 0px solid #45B02A 
+    border-radius: 10px
+    background-color: #fafafa
+    padding: 0.2em
+    color: green
+
+
+// ========================================
+// ========================================
+// Order List
+// ========================================
+// ========================================
+h1
+  font-size: 40px
+  color: #7c7c7c
+
+
+
+// Product-list grid
+// ========================================
+.product_list_grid
+  display: grid
+  margin: 0
+  padding: 0px 0px 0px 0px
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr))
+  grid-gap: 10px
+
+  div 
+    border: 0px solid #45B02A 
+    border-radius: 0px
+    background-color: #ffffff
+    padding: 0.2em
+    color: green
+
+// Product grid
+// ========================================
+.product_grid
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(500, $product-order-size 1fr 1fr))
+  grid-template-rows: $product-order-size 1fr
+  grid-template-areas: "name quan type" "name quan last"
+  grid-gap: 3px
+
+  div 
+    border: 0px solid rgb(0,95,107)
+    border-radius: 0px
+    background-color: #fafafa
+    padding: 0.2em
+    color: #43b02a
+
+.product_image
+  grid-area: name
+  height: 100%
+  div
+    overflow: hidden
+    background-size: cover
+    background-position: center
+    height: inherit
+
+.product_quantity
+  grid-area: quan
+  font-size: 64px
+
+.product_type
+  grid-area: type
+
+.product_last_for
+  grid-area: last
+
+
+// Panel-titel grid
+// ========================================
+.panel_title_grid
+  display: grid
+  grid-template-columns: 80px 150px
+
+  div 
+   font-size: $panel_title_grid_size
+   text-aling: center
+// Panel-titel grid
+// ========================================
+.panel_address_grid
+  display: grid
+  grid-template-columns: 1fr
+
+  div 
+   font-size: $panel_title_grid_size
+   text-aling :right
+
+.mat-expansion-panel-body
+  padding: 0 0px 0px 18px
+  
+.mat-expansion-panel-header-title 
+  color: #43b02a
+
+
+.mat-expansion-panel-header 
+    font-family: inherit
+
+.mat-expansion-panel-header-description
+    display: flex
+    flex-grow: 1
+    margin: 4px 0px 7px 0px

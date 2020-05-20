@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'place-order',
+    loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
+    // canActivate: [AuthGuard]
+  },
   {
   	path: '**',
     component: PageNotFoundComponent
