@@ -8,7 +8,7 @@ const routes: Routes = [
   { 
   	path: '', 
     loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { 
   	path: 'login', 
@@ -26,6 +26,11 @@ const routes: Routes = [
     path: 'place-order',
     loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
     // canActivate: [AuthGuard]
+  },
+  { 
+    path: 'buyer-account',
+    loadChildren: () => import('./features/buyer-accounts/buyer-accounts.module').then(m => m.BuyerAccountsModule),
+    canActivate: [AuthGuard]
   },
   {
   	path: '**',

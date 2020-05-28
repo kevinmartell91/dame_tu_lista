@@ -1,63 +1,59 @@
-<div>
+<!-- <div>
   <button (click)="toggle()">Logout</button>  
   <button (click)="toggleDetails()">Get Users</button>  
-</div>
-
+</div> -->
 <div [@slideInOutDetails]="menuState"> 
-  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    
+        <div class="login-brand">
+          <h1> 🍒 Dame tu lista</h1>
+        </div>
 
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Ingresa</mat-card-title>
-      </mat-card-header>
+        <div class="login-wellcome-message">
+          <h2>Bienvenido de vuelta</h2>
+        </div>
 
-      <form [formGroup]='loginForm' (ngSubmit)="onSubmit()" 
-            class="example-form">
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username"
-                            name="username"
-                            type="text"
-                            formControlName="username">
-          </mat-form-field>
+        <form class="example-form" [formGroup]='loginForm' (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username"
+                              name="username"
+                              type="text"
+                              formControlName="username">
+            </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password"
-                            name="password"
-                            type="password"
-                            formControlName="password">
-          </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password"
+                              name="password"
+                              type="password"
+                              formControlName="password">
+            </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-                    <mat-label>Choose a role...</mat-label>
-                    <mat-select formControlName="login_type">
-                      <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
-                      </mat-option>
-                    </mat-select>
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" 
-                class="btn-block"
-                type="submit"
-                [disabled]="!loginForm.valid">Log in</button>
-        <mat-card>
-          <mat-card-content>
-            <h2 class="example-h2">Result</h2>
+            <mat-form-field class="example-full-width">
+                      <mat-label>Choose a role...</mat-label>
+                      <mat-select formControlName="login_type">
+                        <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
+                        </mat-option>
+                      </mat-select>
+            </mat-form-field>
+            <br>
+            <br>
+            <button mat-stroked-button  
+                    class="btn-block"
+                    type="submit"
+                    [disabled]="!loginForm.valid">Log in</button>
+            <br>
+            <br>
+            <div class="sing-up-section" fxLayout="column" fxLayoutAlign="center center">
+                Aun no tiene una cuenta: 
+                <a href="http://localhost:3003/register">Registrate ya!</a>
+            </div>
+
+        </form>
+
         
-            <section class="example-section">
-              <mat-progress-bar
-                  class="example-margin"
-                  [color]="color"
-                  [mode]="mode"
-                  [value]="value"
-                  [bufferValue]="bufferValue">
-              </mat-progress-bar>
-            </section>
-          </mat-card-content>
-        </mat-card>        
+      
 
-      </form>
-    </mat-card>
+    <!-- </div> -->
   </div>
    <!-- <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
     <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
@@ -66,5 +62,7 @@
 </div>
 
 
+
+<!-- 
 <iframe height="350px" width="100%" allowfullscreen="true" 
-src="https://momento360.com/e/u/5f925bb6967248b7988068c0a209a2fc?utm_campaign=embed&utm_source=other&heading=-236.59988440711828&pitch=19.90231762209796&field-of-view=75"> </iframe>
+src="https://momento360.com/e/u/5f925bb6967248b7988068c0a209a2fc?utm_campaign=embed&utm_source=other&heading=-236.59988440711828&pitch=19.90231762209796&field-of-view=75"> </iframe> -->

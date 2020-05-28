@@ -5,14 +5,14 @@
 
 @import "custom";
 
-$theme:   mat-light-theme(
+$custom-theme:   mat-light-theme(
 	$primary,
 	$accent,
 	$warn
 );
 
 // Include theme styles for Angular Material components.
-@include angular-material-theme($theme);
+@include angular-material-theme($custom-theme);
 
 
 
