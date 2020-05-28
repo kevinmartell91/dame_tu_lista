@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormGroup,
 		 FormControl,
 		 Validators,
@@ -52,7 +52,8 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
   ],	
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.sass'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 

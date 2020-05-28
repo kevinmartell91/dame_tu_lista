@@ -8,7 +8,7 @@ const routes: Routes = [
   { 
   	path: '', 
     loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { 
   	path: 'login', 
