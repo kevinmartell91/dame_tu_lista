@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
     // canActivate: [AuthGuard]
   },
+  { 
+    path: 'buyer-account',
+    loadChildren: () => import('./features/buyer-accounts/buyer-accounts.module').then(m => m.BuyerAccountsModule),
+    canActivate: [AuthGuard]
+  },
   {
   	path: '**',
     component: PageNotFoundComponent

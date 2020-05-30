@@ -1,7 +1,29 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="loginUser">
+<div *ngIf="loginUser">
+    <div class="buyer_account_grid">
+        <div class="buyer_name_area">
+
+            <div fxLayout="row" fxLayoutAlign="space-around center" >
+
+                <img class="buyer_icon" src="../assets/icons/person-black-36dp.svg" alt="">
+                <span class="material-icons"> Kevin </span>
+
+                </div>
+            </div>
+        <div class="buyer_cart_area">
+            <div fxLayout="row" fxLayoutAlign="end center" >
+
+                <img src="../assets/icons/shopping_cart-black-36dp.svg" alt="">
+                <span>3</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="loginUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
-</nav> 
+</nav>  -->
 <router-outlet></router-outlet>
