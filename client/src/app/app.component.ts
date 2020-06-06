@@ -25,6 +25,14 @@ export class AppComponent {
     );
   }
 
+  viewBuyerCart(): void {
+    this.router.navigate(['/buyer-cart']);
+  }
+
+  viewBuyerDetails():void {
+    this.router.navigate(['/buyer-details']);
+  }
+
   logout() {
     this.authenticationStore.logout();
     this.router.navigate(['/login']);

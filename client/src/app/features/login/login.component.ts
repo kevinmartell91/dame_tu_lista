@@ -16,6 +16,9 @@ import { first } from 'rxjs/operators';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 
+// test
+import { Requests } from "../../core/login/types/requests";
+
 
 
 @Component({
@@ -60,8 +63,9 @@ export class LoginComponent implements OnInit {
   loading = false;
   loginForm: FormGroup;
   returnUrl: string;
-  error = '';
-  Roles: any = ['buyers', 'retailers', 'user','patient', 'therapist', 'medical_center'];
+  errorMessage = '';
+  // Roles: any = ['buyers', 'retailers', 'user','patient', 'therapist', 'medical_center'];
+  Roles: any = ['comprador', 'vendedor'];
   
   // animations
   isOpen = true;
@@ -74,7 +78,8 @@ export class LoginComponent implements OnInit {
   value = 50;
   bufferValue = 75;
 
-
+  request: Requests;
+  
   constructor( 
     private fb: FormBuilder,
     private authenticationStore: AuthenticationStore,
@@ -83,8 +88,8 @@ export class LoginComponent implements OnInit {
   )  { 
 
     if( this.authenticationStore.loginUser) {
-      this.router.navigate(['/']);
-    }  
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit(): void {
@@ -126,31 +131,48 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     let loginUser = this.prepareAuthentication();
+
+    //hard code => just to make a quick demo to keyla
+    loginUser.login_type = "medical_center";
+    loginUser.username = "ortikids7";
+    loginUser.password = "demo";
+
+
     this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
 
     this.authenticationStore.login(loginUser)
       .pipe(first())
       .subscribe(
-        data => {
-          console.log(this.returnUrl)
-          this.router.navigate([this.returnUrl])
+        loginUser => {
+          if(loginUser.token) {
+            this.router.navigate([this.returnUrl])
+          } else {
+            this.loading = false;
+            this.errorMessage = "Usuario o contraseña incorrecta.";
+            // this.router.navigate(['/login']);
+          }
         },
-        error => {
-          this.error = error;
+        errorMessage => {
+          // this.errorMessage = errorMessage;
+          this.errorMessage = "En estos momentos tenemos problemas técnicos. Intente más tarde";
           this.loading = false;
         },
       )
+    // How to access to storeStates  
+    // console.log("this.authenticationStore.state.requests.postAuthentication.inProgress",this.authenticationStore.state.requests.postAuthentication.inProgress);
+
   }
 
   getloginTypeRedirect(loginUser: LoginUser): string {
     let loginTypeUrl = '';
+    
       switch (loginUser.login_type){
-        case 'buyers':         loginTypeUrl = '/buyers'; break;
+        case 'buyers':         loginTypeUrl = '/buyer-account'; break;
         case 'retailers':      loginTypeUrl = '/retailers'; break;
         case 'user':           loginTypeUrl = '/users'; break;
         case 'patient':        loginTypeUrl = '/dashboard-attorney'; break;
         case 'therapist':      loginTypeUrl = '/dashboard-therapist'; break;
-        case 'medical_center': loginTypeUrl = '/dashboard-medical-center';
+        case 'medical_center': loginTypeUrl = '/buyer-account';
       }
     return loginTypeUrl;  
   }

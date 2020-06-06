@@ -1,7 +1,7 @@
-<!-- <div>
-  <button (click)="toggle()">Logout</button>  
-  <button (click)="toggleDetails()">Get Users</button>  
-</div> -->
+<div>
+  <!-- <button (click)="toggle()">Logout</button>   -->
+  <button (click)="onSubmit()">Quicklogin</button>  
+</div> 
 <div [@slideInOutDetails]="menuState"> 
   <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
     
@@ -13,34 +13,35 @@
           <h2>Bienvenido de vuelta</h2>
         </div>
 
-        <form class="example-form" [formGroup]='loginForm' (ngSubmit)="onSubmit()">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username"
+        <form class="login-form" [formGroup]='loginForm' (ngSubmit)="onSubmit()">
+            <mat-form-field class="login-full-width">
+              <input matInput placeholder="Usuarion"
                               name="username"
                               type="text"
                               formControlName="username">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password"
+            <mat-form-field class="login-full-width">
+              <input matInput placeholder="Contraseña"
                               name="password"
                               type="password"
                               formControlName="password">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                      <mat-label>Choose a role...</mat-label>
+            <mat-form-field class="login-full-width">
+                      <mat-label>Usted es ...</mat-label>
                       <mat-select formControlName="login_type">
                         <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
                         </mat-option>
                       </mat-select>
             </mat-form-field>
             <br>
+            <div class="style_error_message">{{errorMessage}}</div>
             <br>
             <button mat-stroked-button  
                     class="btn-block"
                     type="submit"
-                    [disabled]="!loginForm.valid">Log in</button>
+                    [disabled]="!loginForm.valid">Ingrese</button>
             <br>
             <br>
             <div class="sing-up-section" fxLayout="column" fxLayoutAlign="center center">
@@ -48,10 +49,12 @@
                 <a href="http://localhost:3003/register">Registrate ya!</a>
             </div>
 
-        </form>
+            <div *ngIf="loading">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
 
-        
-      
+        </form>
+        <!-- <div *ngIf="authenticationStore.state.requests.postAuthentication.inProgress">Loading WORKS!</div>       -->
 
     <!-- </div> -->
   </div>

@@ -1,0 +1,152 @@
+
+{
+    "products" : [
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_seda.png",
+            "category_name": "Platano",
+            
+            "type_name": "Seda",
+            "currency": "PEN",
+            "price": 2.5,
+            "isSmallSize": true,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": true,
+            "isUnit": false,
+            "isOrganic": true,
+            "isSeason": true,
+    
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_inmature.png",
+            "maturityName": "Inmaduro",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "7 días",
+            "maturityLastFor" : "+10 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_seda.png",
+            "category_name": "Platano",
+            
+            "type_name": "Seda",
+            "currency": "PEN",
+            "price": 2.6,
+            "isSmallSize": true,
+            "isMediumSize": true,
+            "isBigSize": true,
+            "isKilo": true,
+            "isUnit": true,
+            "isOrganic": true,
+            "isSeason": true,
+            
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_semi_inmature.png",
+            "maturityName": "Semi maduro",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "6 días",
+            "maturityLastFor" : "+7 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_seda.png",
+            "category_name": "Platano",
+            
+            "type_name": "Seda",
+            "currency": "PEN",
+            "price": 2.7,
+            "isSmallSize": false,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": false,
+            "isUnit": false,
+            "isOrganic": false,
+            "isSeason": true,
+            
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_mature.png",
+            "maturityName": "Maduro",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "3 días",
+            "maturityLastFor" : "+5 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_seda.png",
+            "category_name": "Platano",
+            
+            "type_name": "Seda",
+            "currency": "PEN",
+            "price": 2.8,
+            "isSmallSize": false,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": false,
+            "isUnit": false,
+            "isOrganic": false,
+            "isSeason": true,
+            
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_comer_ya.png",
+            "maturityName": "Comer ya",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "1 día",
+            "maturityLastFor" : "+4 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_isla.png",
+            "category_name": "Platano",
+            
+            "type_name": "Isla",
+            "currency": "PEN",
+            "price": 3.5,
+            "isSmallSize": true,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": true,
+            "isUnit": false,
+            "isOrganic": true,
+            "isSeason": false,
+    
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_mature.png",
+            "maturityName": "Maduro",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "3 días",
+            "maturityLastFor" : "+4 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_isla.png",
+            "category_name": "Platano",
+            
+            "type_name": "Isla",
+            "currency": "PEN",
+            "price": 3.6,
+            "isSmallSize": false,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": false,
+            "isUnit": false,
+            "isOrganic": false,
+            "isSeason": false,
+            
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_comer_ya.png",
+            "maturityName": "Comer ya",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "1 día",
+            "maturityLastFor" : "+4 dias"
+        },
+        {
+            "categoryImageUrl": "url(../../../assets/category-images/banana_bizcocho.png",
+            "category_name": "Platano",
+            
+            "type_name": "Bizcocho",
+            "currency": "PEN",
+            "price": 4.5,
+            "isSmallSize": true,
+            "isMediumSize": true,
+            "isBigSize": false,
+            "isKilo": true,
+            "isUnit": false,
+            "isOrganic": true,
+            "isSeason": true,
+    
+            "maturityImageUrl": "url(../../../assets/maturity-images/banana_comer_ya.png",
+            "maturityName": "Comer ya",
+            "maturityInfo": "blah blah",
+            "maturityEatIn": "1 días",
+            "maturityLastFor" : "+2 dias"
+        }
+    ]
+}

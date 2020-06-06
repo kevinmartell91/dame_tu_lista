@@ -1,0 +1,130 @@
+$product_contianer_size: 160px
+$store_banner_options_text_size: 1.5em
+$store_name_text_size: 2.5em
+$store_delivery_info_text_size: 1.5em
+$store_pick_up_info_text_size: 1.5em
+$store_options_text_size: 1.3em
+
+$primary_filed_color: #565656
+$primary_button_color: #43b02b
+
+$background_banner: #00000063
+
+* 
+  box-sizing: border-box 
+
+
+.store_grid
+  display: grid
+  margin: 0
+  padding: 0
+  grid-template-columns: 1fr
+  grid-template-rows: 250px 90px 1fr
+  grid-gap: 0em
+  grid-template-areas: "banner" "options" "strPrd" 
+  transform: translateY(-78px)
+  
+
+  .store_banner_area
+    grid-area: banner
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: 1fr 1fr 1fr 1fr 
+    grid-template-areas: "back_cart" "storeName" "delivery" "pickUp"
+    grid-gap: 0em
+        
+    .store_back_cart_area
+      grid-area: back_cart
+      display: grid
+      margin: 0em
+      padding 3em
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: 1fr
+      grid-template-areas: "back cart"
+      background-color: $background_banner
+      
+      .back_button_area
+        grid-area: back
+        padding: 0em 0em 0em 1em
+        font-weight: 500
+        font-size: $store_banner_options_text_size
+        color: white
+        align-self: center
+        justify-self: left
+        
+
+      .cart_icon_area
+        grid-area: cart
+        padding: 0em 1em 0em 0em
+        font-weight: 600
+        font-size: $store_banner_options_text_size
+        color: white
+        align-self: center
+        justify-self: right
+        
+    .store_name_area
+      grid-area: storeName
+      font-weight: 800
+      font-size: $store_name_text_size
+      color: white
+      background-color: $background_banner
+      .style_store_name
+        text-align: center
+        margin: 0em
+        padding: .5em 0em 0em 0em
+
+    .store_delivery_area
+      grid-area: delivery
+      font-weight: 700
+      font-size: $store_delivery_info_text_size
+      color: white
+      background-color: $background_banner
+      .style_delivery_info
+        text-align: center
+        margin: 0em
+        padding: 1.3em 0em 0em 0em
+
+    .store_pick_up_area
+      grid-area: pickUp  
+      font-weight: 700
+      font-size: $store_pick_up_info_text_size
+      color: white
+      background-color: $background_banner
+      .style_pick_up_info
+        text-align: center
+        margin: 0em
+
+  .store_options_area
+    grid-area: options    
+    display: grid
+    margin: 0em
+    padding: .2em
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr
+    grid-template-areas: "season categories"
+    grid-gap: 0px
+
+    .season_title_area
+      grid-area: season
+      font-size: $store_options_text_size
+      color: $primary_filed_color
+      padding: 0px 0px 0px 12px
+      align-self: center
+      
+    .category_title_area
+      grid-area: categories
+      font-size: $store_options_text_size
+      color: $primary_button_color
+      justify-self: center
+      align-self: center
+
+  .store_products_area
+    grid-area: strPrd
+    display: grid
+    margin: 0em
+    padding: 1px
+    grid-template-columns: repeat(auto-fit, minmax($product_contianer_size, 1fr))
+    grid-gap: 1px
+    background-color:  #bee4b6
+
+    

@@ -6,28 +6,57 @@
   $background: map-get($theme, background)
   $foreground: map-get($theme, foreground)
 
-  
+$buyer_name_font_size: 2em
+$buyer_view_account_font_size: 1em
+$buyer_cart_number_font_size: 2em
+
+* 
+  box-sizing: border-box 
 
 
 .buyer_icon
 //   height: 40px;
 
-.buyer_account_grid
+.buyer_account_cart_area
+  gird-area: account_cart
   display: grid
-  margin: .4em
-  padding: 10px 10px 10px 10px
-  grid-template-columns: 3fr 1fr
+  margin: .3em
+  padding: .3em .3em 0em .3em 
+  grid-template-columns: 1fr 1fr 1fr
   grid-template-rows: 1fr
   grid-gap: 10px
-  grid-template-areas: "name cart"
+  grid-template-areas: "account account cart"
   border: 1px
   border-radius: 10px
   background-color: #f5f5f5
 
-.buyer_name_area
-  grid-area: name
+  .buyer_account_area
+    grid-area: account
+    display: grid
+    margin: .5em
+    grid-template-columns: .1fr 1fr
+    grid-template-rows: 1fr 1fr
+    grid-template-areas: "icon name" "icon accountDetail"
+    
+  .buyer_personal_icon_area
+    grid-area: icon
+    font-size: 100px
 
-.buyer_cart_area
-  grid-area: cart
-  font-size: 30px
-  color: mat-color($primary, darker, 1)
+  .buyer_name_area
+    grid-area: name
+    font-size: $buyer_name_font_size
+
+  .buyer_view_account_area
+    grid-area: accountDetail
+    font-size: $buyer_view_account_font_size
+    .a
+      color: mat-color($primary, darker, 0.5)
+
+  .buyer_cart_area
+    grid-area: cart
+    margin: .5em
+    justify-self: end
+    align-self: center
+    font-size: $buyer_cart_number_font_size
+    color: mat-color($primary, darker, 1)  
+
