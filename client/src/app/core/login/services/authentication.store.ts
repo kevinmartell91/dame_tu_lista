@@ -35,8 +35,10 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
     }
 
     login(user: LoginUser): Observable<LoginUser> {
+
         return this.endPoint.postAuthentication(this.storeRequestStateUpdater, user).pipe(
             tap((loginUser: LoginUser) => {
+                console.log("this.endPoint.postAuthentication", loginUser);
                 // store user ditails and jwttoken in localStorage to keep user
                 // logged in between pages
                 localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
@@ -57,9 +59,10 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         // calls this.currentUserSubject.next(user);
         this.setState({  
             ...this.state,
-            loginUser: loginUser,
+            loginUser: loginUser
         });
-        console.log("handleGetUserLoginResponse",this.state.loginUser);
+        console.log("handleGetUserLoginResponse - this.state", this.state);
+        console.log("handleGetUserLoginResponse - this.state.loginUser",this.state.loginUser);
     }
 }
 

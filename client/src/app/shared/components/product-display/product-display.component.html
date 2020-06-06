@@ -1,0 +1,73 @@
+ <div  [class]="getGridView(viewType)">
+    
+    <div class="product_image_area">
+        <img *ngIf="viewType === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
+        <img *ngIf="viewType === 'seasonView'" class="image_style" src={{product.typeImageUrl}} alt="">
+        <img *ngIf="viewType === 'typeView'" class="image_style" src={{product.typeImageUrl}} alt="">
+        <img *ngIf="viewType === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
+    </div>
+
+    <div *ngIf="viewType === 'categoryView'" 
+         class="product_category_area">
+        {{product.categoryName}}</div>
+
+    <div *ngIf="viewType === 'typeView' || viewType === 'seasonView'" 
+        class="product_price_area">
+        S/.{{product.price}}
+        <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
+        <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
+    </div>
+
+    <div *ngIf="viewType === 'typeView' || viewType === 'seasonView'" 
+        class="product_type_area">
+        {{product.typeName}} - 
+        <span *ngIf="product.isOrganic">Orgánico</span>
+        <span *ngIf="product.isOrganic === false">Normal</span>
+    </div>
+
+    <!-- <div *ngIf="viewType === 'typeView' || viewType === 'seasonView' " 
+        class="product_organic_area">
+        <span *ngIf="product.isOrganic">Org</span>
+        <span *ngIf="product.isOrganic === false">Nor</span>
+    </div> -->
+    
+    <div *ngIf="viewType === 'maturityView' || viewType === 'seasonView'" 
+        class="product_add_area"
+        (click)="increment()">+</div>
+
+
+    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+            && product.isMaturityDetails" 
+        class="product_maturity_area">
+        {{product.maturityName}}</div>
+    
+    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+            && product.isMaturityDetails" 
+        class="product_info_area">
+        {{product.maturityInfo}}</div>
+    
+    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+            && product.isMaturityDetails" 
+        class="product_eatIn_area">
+        <span class="style_maturity_field">
+             Comerlo en:
+        </span>
+        <span class="style_maturity_details">
+            {{product.maturityEatIn}}
+        </span> 
+    </div>
+    
+    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') && product.isMaturityDetails" 
+        class="product_lastFor_area">
+        <span class="style_maturity_field">
+             Y te durá: 
+        </span>
+        <span class="style_maturity_details">
+            {{product.maturityLastFor}}
+        </span> 
+    </div>
+    
+    <div class="product_empty_top_area"></div>
+    <div class="product_empty_bottom_area"></div>
+
+</div>      

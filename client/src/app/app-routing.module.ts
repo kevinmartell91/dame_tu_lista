@@ -6,7 +6,7 @@ import { AuthGuard } from './core/guard/auth.guards';
 
 const routes: Routes = [
   { 
-  	path: '', 
+  	path: 'fd', 
     loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
     // canActivate: [AuthGuard]
   },
@@ -30,6 +30,12 @@ const routes: Routes = [
   { 
     path: 'buyer-account',
     loadChildren: () => import('./features/buyer-accounts/buyer-accounts.module').then(m => m.BuyerAccountsModule),
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'retailer-store',
+    // path: '',
+    loadChildren: () => import('./features/retailer-stores/retailer-stores.module').then(m => m.RetailerStoresModule),
     canActivate: [AuthGuard]
   },
   {

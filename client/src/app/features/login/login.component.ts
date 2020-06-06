@@ -61,7 +61,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
   error = '';
-  Roles: any = ['buyers', 'retailers', 'user','patient', 'therapist', 'medical_center'];
+  // Roles: any = ['buyers', 'retailers', 'user','patient', 'therapist', 'medical_center'];
+  Roles: any = ['comprador', 'vendedor'];
   
   // animations
   isOpen = true;
@@ -144,13 +145,18 @@ export class LoginComponent implements OnInit {
 
   getloginTypeRedirect(loginUser: LoginUser): string {
     let loginTypeUrl = '';
+    //hard code => just to make a quick demo to keyla
+    loginUser.login_type = "medical_center";
+    loginUser.username = "ortikids7";
+    loginUser.password = "demo";
+
       switch (loginUser.login_type){
-        case 'buyers':         loginTypeUrl = '/buyers'; break;
+        case 'buyers':         loginTypeUrl = '/buyer-account'; break;
         case 'retailers':      loginTypeUrl = '/retailers'; break;
         case 'user':           loginTypeUrl = '/users'; break;
         case 'patient':        loginTypeUrl = '/dashboard-attorney'; break;
         case 'therapist':      loginTypeUrl = '/dashboard-therapist'; break;
-        case 'medical_center': loginTypeUrl = '/dashboard-medical-center';
+        case 'medical_center': loginTypeUrl = '/buyer-account';
       }
     return loginTypeUrl;  
   }

@@ -1,0 +1,36 @@
+<div class="store_grid">
+
+    <!-- <div class="store_banner_area">
+        <img src="{{retailer.store.imgUrl}}" alt="">
+    </div> -->
+    <div class="store_banner_area" [ngStyle]="{'background-image': retailer.getBannerUrl()}">
+        <div class="store_back_cart_area">
+            <div class="back_button_area">volver </div>
+            <div class="cart_icon_area">cart</div>
+        </div>
+        <div class="store_name_area">
+            <div class="style_store_name">{{retailer.store.name}}</div>
+        </div>
+        <div *ngIf="retailer.store.isDeliveryService" 
+            class="store_delivery_area">
+            <div class="style_delivery_info">Delivery: {{retailer.store.deliveryInfo}}</div>
+        </div>
+        <div *ngIf="retailer.store.isDeliveryService"  
+            class="store_pick_up_area">
+            <div class="style_pick_up_info">Recojo: {{retailer.store.pickUpInfo}}</div>
+        </div>
+    </div>
+    <div class="store_options_area">
+        <div class="season_title_area">Productos de temporada</div>
+        <div class="category_title_area">Categorias</div>
+    </div>
+    <div class="store_products_area">
+        <div *ngFor='let product of retailer.storeProducts'>
+            <app-product-display-shared viewType="seasonView" [product]="product"></app-product-display-shared>
+            <!-- <app-product-display-shared viewType="categoryView" [product]="product"></app-product-display-shared> -->
+            <!-- <app-product-display-shared viewType="typeView" [product]="product"></app-product-display-shared> -->
+            <!-- <app-product-display-shared viewType="maturityView" [product]="product"></app-product-display-shared> -->
+        </div>
+    </div>
+
+</div>
