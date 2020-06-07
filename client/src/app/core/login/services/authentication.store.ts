@@ -23,7 +23,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         this.storeRequestStateUpdater = endpointHelpers.getStoreRequestStateUpdater(
             this
         );
-
+        // console.log("KEVIN - this.storeRequestStateUpdater",this.storeRequestStateUpdater)
         let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
         this.handleGetUserLoginResponse( loginUserLocalStorage as LoginUser );
     }

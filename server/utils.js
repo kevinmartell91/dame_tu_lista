@@ -29,7 +29,7 @@ module.exports = {
   getEntityType(login_type) {
     
     let entity_type;
-    console.log("login_type => ", login_type);
+    console.log("KEVIN =>login_type => ", login_type);
     switch (login_type){
       case 'user':           entity_type = (User); break;
       case 'patient':        entity_type = (Pacient); break;

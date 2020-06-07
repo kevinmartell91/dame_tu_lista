@@ -1,102 +1,116 @@
-<div class="container-grid">
-    <!-- <div class="buyer-name">name</div>
-    <div class="buyer-cart">cart</div> -->
-    <div class="buyer-title-section">
-        <span>Tus caseros</span>
-    </div>
-    <div class="buyer-stores-section">
-        <div class="stores_grid">
-
-            <div onclick="location.href='/retailer-store'" class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 4 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">Tus frutas Premium</div>
-                <div class="store_visit_area">los visitaste hace 1 días</div>
-                <div class="store_service_area">
-                    <!-- <span> Delivery </span> -->
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">Fruteria Estela</div>
-                <div class="store_visit_area">los visitaste hace 7 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <!-- <span> Recojo </span> -->
-                </div>
-            </div>
-            <!-- <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 8 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 8 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 8 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 8 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div>
-            <div class="store_grid">
-                <div class="store_image_area">
-                    <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
-                </div>
-                <div class="store_name_area">La tienda de Keyla</div>
-                <div class="store_visit_area">los visitaste hace 8 días</div>
-                <div class="store_service_area">
-                    <span> Delivery </span>
-                    <span> Recojo </span>
-                </div>
-            </div> -->
-           
-           
+<div *ngIf="loginUser">
+    <div class="container-grid">
+        <!-- 
+            Login account section coming from App.component.html
+         -->
+       
+         <!-- 
+            Title Seccion
+         -->
+        <div class="buyer-title-section">
+            <span>Tus caseros</span>
         </div>
+        
+         <!-- 
+            Favorite stores section
+         -->
+        <div class="buyer-stores-section">
+            <div class="stores_grid">
+    
+                <div onclick="location.href='/retailer-store'" class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 4 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div>
+
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">Tus frutas Premium</div>
+                    <div class="store_visit_area">los visitaste hace 1 días</div>
+                    <div class="store_service_area">
+                        <!-- <span> Delivery </span> -->
+                        <span> Recojo </span>
+                    </div>
+                </div>
+
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">Fruteria Estela</div>
+                    <div class="store_visit_area">los visitaste hace 7 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <!-- <span> Recojo </span> -->
+                    </div>
+                </div>
+                <!-- <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 8 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div>
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 8 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div>
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 8 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div>
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 8 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div>
+                <div class="store_grid">
+                    <div class="store_image_area">
+                        <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt="">
+                    </div>
+                    <div class="store_name_area">La tienda de Keyla</div>
+                    <div class="store_visit_area">los visitaste hace 8 días</div>
+                    <div class="store_service_area">
+                        <span> Delivery </span>
+                        <span> Recojo </span>
+                    </div>
+                </div> -->
+               
+               
+            </div>
+        </div>
+        
     </div>
 </div>

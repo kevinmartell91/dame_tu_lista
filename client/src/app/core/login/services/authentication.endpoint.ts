@@ -35,8 +35,8 @@ export class AuthenticationEndPoint {
   // }
 
   postAuthentication( requestStateUpdater: StoreRequestStateUpdater,  loginUser: LoginUser) {
+    
     const request = LOGIN_CONFIG.request.postAuthentication;
-    console.log("AuthenticationEndPoint - requestStateUpdater", requestStateUpdater);
     requestStateUpdater(request.name, {
       inProgress : true
     });

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/shared/types/product';
 import { Retailer } from "../../core/retailer/types/retailer";
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-retailer-stores',
@@ -334,9 +336,21 @@ export class RetailerStoresComponent implements OnInit {
 
   public retailer: Retailer = new Retailer().deserialize(this.DATA); 
 
-  constructor() { }
+  constructor( 
+    private router: Router,
+    private location: Location ) { 
+
+  }
 
   ngOnInit(): void {
+  }
+
+  viewBuyerCart(): void {
+    this.router.navigate(['/buyer-cart']);
+  }
+
+  goBackToBuyerAccount(): void {
+    this.location.back();
   }
 
 
