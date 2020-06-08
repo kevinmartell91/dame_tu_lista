@@ -3,6 +3,9 @@ import { Product } from 'src/app/shared/types/product';
 import { Retailer } from "../../core/retailer/types/retailer";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 
 @Component({
   selector: 'app-retailer-stores',
@@ -10,6 +13,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./retailer-stores.component.sass']
 })
 export class RetailerStoresComponent implements OnInit {
+
 
   retailerstoreProducts: any[] = [
     {
@@ -338,9 +342,8 @@ export class RetailerStoresComponent implements OnInit {
 
   constructor( 
     private router: Router,
-    private location: Location ) { 
-
-  }
+    private location: Location,
+    private buyerNavegationStore: BuyerNavegationStore ) { }
 
   ngOnInit(): void {
   }
@@ -353,5 +356,11 @@ export class RetailerStoresComponent implements OnInit {
     this.location.back();
   }
 
+  goToRetailerCategoryView(): void {
+    let buyerNavegation = this.buyerNavegationStore.state.buyerNavegation;
+    buyerNavegation.typeView = BUYER_CONFIG.navegation.categoryView;
+    this.buyerNavegationStore.setNewState(buyerNavegation);
+    this.router.navigate(['/category-view']);
+  }
 
 }

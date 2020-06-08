@@ -1,53 +1,53 @@
- <div  [class]="getGridView(viewType)">
+ <div  [class]="getGridView(typeView)">
     
     <div class="product_image_area">
-        <img *ngIf="viewType === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
-        <img *ngIf="viewType === 'seasonView'" class="image_style" src={{product.typeImageUrl}} alt="">
-        <img *ngIf="viewType === 'typeView'" class="image_style" src={{product.typeImageUrl}} alt="">
-        <img *ngIf="viewType === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
+        <img *ngIf="typeView === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
+        <img *ngIf="typeView === 'seasonalView'" class="image_style" src={{product.typeImageUrl}} alt="">
+        <img *ngIf="typeView === 'typeView'" class="image_style" src={{product.typeImageUrl}} alt="">
+        <img *ngIf="typeView === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
     </div>
 
-    <div *ngIf="viewType === 'categoryView'" 
+    <div *ngIf="typeView === 'categoryView'" 
          class="product_category_area">
         {{product.categoryName}}</div>
 
-    <div *ngIf="viewType === 'typeView' || viewType === 'seasonView'" 
+    <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView'" 
         class="product_price_area">
         S/.{{product.price}}
         <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
         <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
     </div>
 
-    <div *ngIf="viewType === 'typeView' || viewType === 'seasonView'" 
+    <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView'" 
         class="product_type_area">
         {{product.typeName}} - 
         <span *ngIf="product.isOrganic">Orgánico</span>
         <span *ngIf="product.isOrganic === false">Normal</span>
     </div>
 
-    <!-- <div *ngIf="viewType === 'typeView' || viewType === 'seasonView' " 
+    <!-- <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView' " 
         class="product_organic_area">
         <span *ngIf="product.isOrganic">Org</span>
         <span *ngIf="product.isOrganic === false">Nor</span>
     </div> -->
     
-    <div *ngIf="viewType === 'maturityView' || viewType === 'seasonView'" 
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
         class="product_add_area"
         (click)="increment()">+</div>
 
 
-    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
             && product.isMaturityDetails" 
         class="product_maturity_area">
         {{product.maturityName}}</div>
     
-    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
             && product.isMaturityDetails" 
         class="product_info_area">
         <img src="../../../../assets/icons/icons8-información.svg" alt="">
     </div>
     
-    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') 
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
             && product.isMaturityDetails" 
         class="product_eatIn_area">
         <span class="style_maturity_field">
@@ -58,7 +58,7 @@
         </span> 
     </div>
     
-    <div *ngIf="(viewType === 'maturityView' || viewType === 'seasonView') && product.isMaturityDetails" 
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') && product.isMaturityDetails" 
         class="product_lastFor_area">
         <span class="style_maturity_field">
              Y te durá: 

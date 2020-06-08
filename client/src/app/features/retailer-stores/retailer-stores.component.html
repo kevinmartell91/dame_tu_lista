@@ -23,15 +23,10 @@
     </div>
     <div class="store_options_area">
         <div class="season_title_area">Productos de temporada</div>
-        <div class="category_title_area">Categorias</div>
+        <div (click)="goToRetailerCategoryView()" class="category_title_area">Categorias</div>
     </div>
     <div class="store_products_area">
-        <div *ngFor='let product of retailer.storeProducts'>
-            <app-product-display-shared viewType="seasonView" [product]="product"></app-product-display-shared>
-            <!-- <app-product-display-shared viewType="categoryView" [product]="product"></app-product-display-shared> -->
-            <!-- <app-product-display-shared viewType="typeView" [product]="product"></app-product-display-shared> -->
-            <!-- <app-product-display-shared viewType="maturityView" [product]="product"></app-product-display-shared> -->
-        </div>
+        <app-seasonal-products [storeProducts]="retailer.storeProducts"></app-seasonal-products>
     </div>
 
 </div>

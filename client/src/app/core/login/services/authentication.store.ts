@@ -23,7 +23,6 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         this.storeRequestStateUpdater = endpointHelpers.getStoreRequestStateUpdater(
             this
         );
-        // console.log("KEVIN - this.storeRequestStateUpdater",this.storeRequestStateUpdater)
         let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
         this.handleGetUserLoginResponse( loginUserLocalStorage as LoginUser );
     }
@@ -38,11 +37,11 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
 
         return this.endPoint.postAuthentication(this.storeRequestStateUpdater, user).pipe(
             tap((loginUser: LoginUser) => {
-                console.log("this.endPoint.postAuthentication", loginUser);
                 // store user ditails and jwttoken in localStorage to keep user
                 // logged in between pages
                 localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
                 this.handleGetUserLoginResponse(loginUser);
+                this.testAuthenticationStoreState();
             })
         );
     }
@@ -51,7 +50,14 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         console.log("AuthenticationStore - logout()")
         localStorage.removeItem(LOGIN_CONFIG.loginUserStorage);
         this.handleGetUserLoginResponse(null);
-        console.log("AuthenticationStore - logout() - this.state:", this.state)
+    }
+
+    testAuthenticationStoreState(): void {
+        let userTest = new LoginUser();
+        userTest.login_type = "comprador";
+        userTest.password = "*******";
+        userTest.username = "kevin";
+        this.handleGetUserLoginResponse(userTest);
     }
 
     private handleGetUserLoginResponse (loginUser: LoginUser): void {
@@ -61,8 +67,8 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             ...this.state,
             loginUser: loginUser
         });
-        console.log("handleGetUserLoginResponse - this.state", this.state);
-        console.log("handleGetUserLoginResponse - this.state.loginUser",this.state.loginUser);
+        console.log("KEVIN => handleGetUserLoginResponse - this.setState", this.state);
+        
     }
 }
 

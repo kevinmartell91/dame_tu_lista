@@ -8,8 +8,8 @@ import { Product } from '../../../core/retailer/types/product';
 })
 export class ProductDisplaySharedComponent implements OnInit {
 
-  // getting the list of product and render depending on the viewType
-  @Input() viewType: string;
+  // getting the list of product and render depending on the typeView
+  @Input() typeView: string;
   @Input() product: Product;
   
 
@@ -24,7 +24,7 @@ export class ProductDisplaySharedComponent implements OnInit {
     return 99;
   }  
   getProductAttributesByViewType(){
-    switch (this.viewType) {
+    switch (this.typeView) {
       case "value":
         
         break;
@@ -36,9 +36,9 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   
   
-  getGridView(viewType: String): string {
-    console.log("getGridView(viewType) = > ",viewType);
-    switch (this.viewType) {
+  getGridView(typeView: String): string {
+    console.log("getGridView(typeView) = > ",typeView);
+    switch (this.typeView) {
       case "maturityView":
         return "product_display_grid_maturity_view";
         break;
