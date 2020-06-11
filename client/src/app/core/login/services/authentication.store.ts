@@ -39,9 +39,11 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             tap((loginUser: LoginUser) => {
                 // store user ditails and jwttoken in localStorage to keep user
                 // logged in between pages
+                loginUser.username = user.username;
+                loginUser.login_type = user.login_type;
+                console.log("KEVIN = >",loginUser);
                 localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
                 this.handleGetUserLoginResponse(loginUser);
-                this.testAuthenticationStoreState();
             })
         );
     }

@@ -6,20 +6,23 @@ export class Buyer implements Deserializable {
 
     public username?: string;
     public password?: string;
+    public name?: String;
+    public lastname?: String;
     public email?: string;
     public address?: Address;
     public phoneNumber?: number;
     public myFavoriteRetailers?: FavoriteReatailers[];
-    public numOrders?: number;
     // what else ?
+    public signUpDate?: Date;
+    public lastLoginDate?: Date;
+    public user_type?: string;
+    public total_spent?: number;
+    public total_orders?: number;
+    public last_order?: Date;
   
 
     deserialize(input: any) {
         Object.assign(this, input);
-
-        // this.address = input.address.map(
-        //     address => new Address().deserialize(address)
-        // );
 
         this.myFavoriteRetailers = input.myFavoriteRetailers.map(
             myFavoriteRetailers => new FavoriteReatailers().deserialize(myFavoriteRetailers)

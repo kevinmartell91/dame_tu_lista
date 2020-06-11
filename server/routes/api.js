@@ -3,13 +3,10 @@ var router = express.Router();
 var path = require('path');
 var app = express();
 
-var userController = require('../controllers/user');
-var pacientController = require('../controllers/pacients');
-var therapistController = require('../controllers/therapists');
-var medicalCenterController = require('../controllers/medicalCenters');
-var kinematicsAnalysisController = require('../controllers/kinematicsAnalysis');
 var authenticationController = require('../controllers/authentication');
-var contactController = require('../controllers/contact.js');
+var retailerController = require('../controllers/retailers');
+var buyerController = require('../controllers/buyers.js');
+var orderController = require('../controllers/orders.js');
 
 
 // used to create, sign, and verify tokens
@@ -22,82 +19,54 @@ router.get('/', (req, res) => {
   res.send('api works');
 });
 
+// Routes porotected by JWT verification if add the authorizationMiddleware 
 // Create endpoint handlers for /authenticate
 router.route('/authenticate')
-  .post( authenticationController.postAuthenticate);
+  .post(authenticationController.postAuthenticate);
 
-// Create endpoint handlers for /contacts/:contact_id
-router.route('/contacts/:contact_id')
-  .get(contactController.getContact)
+// Create endpoint handlers for /buyers/:buyer_id
+router.route('/buyers/:buyer_id')
+  .get(authorizationMiddleware, buyerController.getBuyer)
+  .put(buyerController.putBuyer)
+  .delete(buyerController.deleteBuyer);
+  
+  router.route('/buyers')
+  .post(buyerController.postBuyers)
+  .get(buyerController.getBuyers);
 
-router.route('/contacts')
-  .post(contactController.postContact)
-  .get(contactController.getContacts);
+router.route('/buyers-favorite-retailers/:buyer_id')
+  .put(buyerController.updateBuyerFavoriteRetailers);
 
-// Routes porotected by JWT verification
-// Create endpoint handlers for /users/:user_id
-router.route('/users/:user_id')
-  .get( userController.getUser)
-  .put( userController.putUser)
-  .delete( userController.deleteUser);
-//Create endpoint handlers for /users
-router.route('/users')
-  .post( userController.postUsers)
-  .get(  userController.getUsers);
+router.route('/buyers-address/:buyer_id')
+  .put(buyerController.updateBuyerAddress);
 
 
-// Create endpoint handlers for /pacients/:pacient_id
-router.route('/pacients/:pacient_id')
-  .get( pacientController.getPacient)
-  .put( pacientController.putPacient)
-  .delete( pacientController.deletePacient);
-// Create endpoint handlers for /pacients
-router.route('/pacients')
-  .post( pacientController.postPacients)
-  .get( pacientController.getPacients);
+// Create endpoint handlers for /retailers/:retailer_id
+router.route('/retailers/:retailer_id')
+  .get(retailerController.getRetailer)
+  .put(retailerController.putRetailer)
+  .delete(retailerController.deleteRetailer);
+  
+router.route('/retailers')
+  .post(retailerController.postRetailers)
+  .get(retailerController.getRetailers);
+
+router.route('/retailer-store/:retailer_id')
+  .put(retailerController.putRetailerStore);
+  
+router.route('/retailer-product-list/:retailer_id')
+  .post(retailerController.postRetailerProductList)
+  .put(retailerController.putRetailerProductList);
 
 
-
-// Create endpoint handlers for /therapists/:therapist_id
-router.route('/therapists/:therapist_id')
-  .get( therapistController.getTherapist)
-  .put( therapistController.putTherapist)
-  .delete( therapistController.deleteTherapist);
-// Create endpoint handlers for /therapists
-router.route('/therapists')
-  .post( therapistController.postTherapists)
-  .get( therapistController.getTherapists);
-
-
-
-  // Create endpoint handlers for /medical_centers/:medical_center_id
-router.route('/medical_centers/:medical_center_id')
-  .get( medicalCenterController.getMedicalCenter)
-  .put( medicalCenterController.putMedicalCenter)
-  .delete( medicalCenterController.deleteMedicalCenter);
-// Create endpoint handlers for /medical_centers
-router.route('/medical_centers')
-  .post( medicalCenterController.postMedicalCenters)
-  .get( medicalCenterController.getMedicalCenters);
-
-
-
-// Create endpoint handlers for /kinematics_analysis/:kinematics_analysis_id
-router.route('/kinematics_analysis/:kinematics_analysis_id')
-  .get( kinematicsAnalysisController.getKinematicsAnalysis)
-  .put( kinematicsAnalysisController.putKinematicsAnalysis)
-  .delete( kinematicsAnalysisController.deleteKinematicsAnalysis);
-
-// Create endpoint handlers for /kinematics_analysis/
-router.route('/kinematics_analysis')
-  .post( kinematicsAnalysisController.postKinematicsAnalysiss)
-  .get( kinematicsAnalysisController.getKinematicsAnalysiss);
-
-
-// Create endpoint handlers for /kinematics_analysis_matlab/:kinematics_analysis_id
-router.route('/kinematics_analysis_matlab/:kinematics_analysis_id')
-  .put( kinematicsAnalysisController.putKinematicsAnalysisMatlabRawPositions)
-  .post( kinematicsAnalysisController.postKinematicsAnalysisMatlabGaitAngles);
-
+// Create endpoint handlers for /orders/:order_id
+router.route('/orders/:order_id')
+  .get(orderController.getOrder)
+  .put(orderController.putOrder)
+  .delete(orderController.deleteOrder);
+  
+router.route('/orders')
+  .post(orderController.postOrders)
+  .get(orderController.getOrders);
 
 module.exports = router;

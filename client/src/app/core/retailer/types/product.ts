@@ -4,8 +4,8 @@ export class Product implements Deserializable {
 
     public categoryImageUrl?: string;
     public categoryName?: string;
-    public typeImageUrl?: string;
-    public typeName?: string;
+    public varietyImageUrl?: string;
+    public varietyName?: string;
     public currency?: number;
     public price?: number;
     public isSmallSize?: boolean;
@@ -21,7 +21,8 @@ export class Product implements Deserializable {
     public maturityInfo?: string;
     public maturityEatIn?: string;
     public maturityLastFor?: string;
-
+    public isInStock?: string;
+    
     deserialize(input: any) {
         Object.assign(this, input);
         return this;

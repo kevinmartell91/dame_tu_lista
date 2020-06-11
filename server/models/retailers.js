@@ -1,99 +1,89 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+const environment = process.env.NODE_ENV; // development
+const stage = require('../CONFIG')[environment];
 
 var retailerSchema = new Schema({
   // Will be send by email TO THE ATTORNEY
   username: String,
-  password: String,     
-  names: String,
-  lastname: String,
-  gender: String,
-  id_document_type: String,
-  id_document_num: Number,
-  birth:  String,
-
-  created_at: { type: Date, default: Date.now },
-  updated_at: String,
-  is_active: Boolean, 
-
-  address: {
-  	street: String,
-  	city: String,
-  	state: String,
-  	zip: Number,
-  	country: String
+  password: String,
+  name: { type: String, lowercase: true, trim: true },
+  lastname: { type: String, lowercase: true, trim: true },
+  email: { type: String, unique: true, lowercase: true },
+  phoneNumber: String,
+  store: {
+    name: String,
+    imgUrl: String,
+    isDeliveryService: Boolean,
+    isPickUpService: Boolean,
+    deliveryInfo: String,
+    pickUpInfo: String,
+    address: {
+      streetName: String,
+      streetnumber: String,
+      district: String,
+      city: String,
+      department: String,
+      country: String,
+      reference: String,
+      details: String   
+    },
+    productsList: [{
+      categoryImageUrl: String,
+      categoryName: String,
+      varietyImageUrl: String,
+      varietyName: String,
+      currency: String,
+      price: String,
+      isSmallSize: Boolean,
+      isMediumSize: Boolean,
+      isBigSize: Boolean,
+      isKilo: Boolean,
+      isUnit: Boolean,
+      isOrganic: Boolean,
+      isSeasonal: Boolean,
+      isMaturityDetails: Boolean,
+      maturityImageUrl: String,
+      maturityName: String,
+      maturityInfo: String,
+      maturityEatIn: String,
+      maturityLastFor: String, 
+      isInStock: Boolean   
+    }]
   },
+  singUpDate: {type: Date, default: Date.now() },
+  lastLoginDate: Date,
+  user_type: { type: String, default: "retailer" },
 
-//   medic_diagostic: [{
-//     name: String,
-//     level: String,
-//     percentage: String,
-//     created_at: { type: Date, default: Date.now }
-//   }],
-
-//   attorney: {
-//   	names: String,
-//   	lastname: String,
-//   	relationship : String,
-//   	email: String,
-//   	phone: String,
-//   	cellphone: String
-//    },
-
-
-
-
-
-//   medicalCenters : {
-//     _id: String,
-//     name: String,
-//     status_request: String, // pending(0 day to more), accepted 
-//     requested_at: { type: Date, default: Date.now },
-//     accepted_at: Date
-//   }
-
+  total_sells: { type: Number, default: 0 },
+  total_orders: { type: Number, default: 0 },
 
 });
 
-// UserSchema.pre('save', function (next) {
-//   email(this.email, 'Your record has changed');
-//   next();
-// });
+// productsList: [{
+//   type: Schema.Types.ObjectId,
+//   ref: "Products"
+// }]
 
 // on every save, add the date
 retailerSchema.pre('save', function(next) {
-    let retailer = this;
-    retailer.role = 'retailer';
-    var hash ;
-    // Do not rehash if it's an old retailer
-    if(!retailer.isModified || !retailer.isNew) {
-      next();
+  let retailer = this;
+
+  // Do not rehash if it's an old retailer
+  if(!retailer.isModified('password')) return next(err);
+
+  bcrypt.hash(retailer.password, stage.saltingRounds, function(err, hash) {
+    if(err) {
+      console.log("Error hashing password for Retailer");
+      return next(err);
     } else {
-      bcrypt.hash(retailer.password, stage.saltingRounds, function(err, hash) {
-        if(err) {
-          console.log("Error hashing password for Retailer");
-          next();
-        } else {
-          this.hash = hash;
-          console.log ("Retailer password hashed", hash);
-          retailer.password = hash;
-          next();
-        }
-      })
+      console.log ("Retailer password hashed", hash);
+      retailer.password = hash;
+      next();
     }
-    this.password = this.hash;
-  
-    // get the current date
-  //   var currentDate = new Date();
-    // change the updated_at field to current date
-  //   this.updated_at = currentDate;
-  
-    // if created_at doesn't exist, add to that field
-    if (!this.created_at)
-      this.created_at = currentDate;
-  
-    next();
   });
+});
 
 var Retailer = mongoose.model('Retailer',retailerSchema);
 

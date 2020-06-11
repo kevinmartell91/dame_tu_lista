@@ -2,8 +2,8 @@
     
     <div class="product_image_area">
         <img *ngIf="typeView === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
-        <img *ngIf="typeView === 'seasonalView'" class="image_style" src={{product.typeImageUrl}} alt="">
-        <img *ngIf="typeView === 'typeView'" class="image_style" src={{product.typeImageUrl}} alt="">
+        <img *ngIf="typeView === 'seasonalView'" class="image_style" src={{product.varietyImageUrl}} alt="">
+        <img *ngIf="typeView === 'typeView'" class="image_style" src={{product.varietyImageUrl}} alt="">
         <img *ngIf="typeView === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
     </div>
 
@@ -20,7 +20,7 @@
 
     <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView'" 
         class="product_type_area">
-        {{product.typeName}} - 
+        {{product.varietyName}} - 
         <span *ngIf="product.isOrganic">Orgánico</span>
         <span *ngIf="product.isOrganic === false">Normal</span>
     </div>

@@ -5,6 +5,7 @@ export class LoginUser implements Deserializable{
   password: string;
   login_type: string;
   token?: string;
+  entity?: String;
 
   deserialize(input: any) {
   	Object.assign(this, input);

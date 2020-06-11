@@ -18,6 +18,7 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
 
 // test
 import { Requests } from "../../core/login/types/requests";
+import { LOGIN_CONFIG } from "../../core/login/login.config";
 
 
 
@@ -132,11 +133,12 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     let loginUser = this.prepareAuthentication();
 
-    //hard code => just to make a quick demo to keyla
-    loginUser.login_type = "medical_center";
-    loginUser.username = "ortikids7";
-    loginUser.password = "demo";
-
+    if(loginUser.login_type == LOGIN_CONFIG.loginUserBuyerType){
+      loginUser.login_type = LOGIN_CONFIG.loginUserBuyerType;
+    } else {
+      loginUser.login_type = LOGIN_CONFIG.loginUserRetailerType;
+    }
+    
 
     this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
 
@@ -164,15 +166,17 @@ export class LoginComponent implements OnInit {
   }
 
   getloginTypeRedirect(loginUser: LoginUser): string {
+
+    // hard coded, quick login purposes
+    loginUser.login_type = "buyer";
+    loginUser.username = "demo34@gmail.com";
+    loginUser.password = "demo";
+
     let loginTypeUrl = '';
     
       switch (loginUser.login_type){
-        case 'buyers':         loginTypeUrl = '/buyer-account'; break;
-        case 'retailers':      loginTypeUrl = '/retailers'; break;
-        case 'user':           loginTypeUrl = '/users'; break;
-        case 'patient':        loginTypeUrl = '/dashboard-attorney'; break;
-        case 'therapist':      loginTypeUrl = '/dashboard-therapist'; break;
-        case 'medical_center': loginTypeUrl = '/buyer-account';
+        case 'buyer':         loginTypeUrl = '/buyer-account'; break;
+        case 'retailer':      loginTypeUrl = '/retailers'; break;
       }
     return loginTypeUrl;  
   }

@@ -1,21 +1,28 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
 import { Address } from "./address";
+import { Product } from './product';
 
 export class Store implements Deserializable {
 
     public name?: string;
-    public address?: Address;    
     public imgUrl?: string;
-    public isDeliveryService?: string;
-    public isPickUpService?: string;
+    public isDeliveryService?: Boolean;
+    public isPickUpService?: Boolean;
     public deliveryInfo?: string;
     public pickUpInfo?: string;
+    public address?: Address;    
+    public productsList?: Product[];
+
 
     deserialize(input: any) {
         Object.assign(this, input);
 
-        this.address = input.address.map(
-            address => new Address().deserialize(address)
+        // this.address = input.address.map(
+        //     address => new Address().deserialize(address)
+        // );
+
+        this.productsList = input.productsList.map(
+            product => new Product().deserialize(product)
         );
 
         return this;

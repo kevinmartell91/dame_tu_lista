@@ -3,66 +3,64 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const environment = process.env.NODE_ENV; // development
-const stage = require('../config/config')[environment];
+const stage = require('../CONFIG')[environment];
 
 
 // create a schema
 var buyerSchema = new Schema({
   username: String,
   password: String,
-  type: String, 
+  name: { type: String, lowercase: true, trim: true },
+  lastname: { type: String, lowercase: true, trim: true },
+  email: { type: String, unique: true, lowercase: true },
+  address: {
+    streetName: String,
+    streetnumber: String,
+    district: String,
+    city: String,
+    department: String,
+    country: String,
+    reference: String,
+    details: String   
+  }, 
+  phoneNumber: String,
+  myFavoriteRetailers: [{
+    _id: String,
+    storeName: String,
+    isDeliveryService: Boolean,
+    isPickUpService: Boolean,
+    storeImgUrl: String,    
+  }],
+ 
+// what else  
 
-//   total_spent: Number,
-//   total_orders: Number,
-//   last_order_is: String,
-
-  quantity: Number,
-//   userId: String,
-  created_at : Date,
-  role: String
+  singUpDate: {type: Date, default: Date.now() },
+  lastLoginDate: Date,
+  user_type: { type: String, default: "buyer" }, 
+  total_spent: { type: Number, default: 0 },
+  total_orders: { type: Number, default: 0 },
+  last_order: Date,
   
 });
 
-// on every save, add the date
+// before every save, add the date
 buyerSchema.pre('save', function(next) {
-  let buyer = this;
-  buyer.role = 'buyer';
-  buyer.quantity = 0
-  
-  var hash ;
+  var buyer = this;
+
   // Do not rehash if it's an old buyer
-  if(!buyer.isModified || !buyer.isNew) {
+  if(!buyer.isModified('password')) return next();
+
+  bcrypt.hash(buyer.password, stage.saltingRounds, function(err, hash) {
+    if(err) {
+      console.log("Error hashing password for Buyer");
+      return next(err);
+    }
+    buyer.password = hash;
+    console.log ("Buyer password hashed", buyer.password);
     next();
-  } else {
-    bcrypt.hash(buyer.password, stage.saltingRounds, function(err, hash) {
-      if(err) {
-        console.log("Error hashing password for Buyer");
-        next();
-      } else {
-        this.hash = hash;
-        console.log ("Buyer password hashed", hash);
-        buyer.password = hash;
-        next();
-      }
-    })
-  }
-  this.password = this.hash;
-
-  // get the current date
-//   var currentDate = new Date();
-  // change the updated_at field to current date
-//   this.updated_at = currentDate;
-
-  // if created_at doesn't exist, add to that field
-  if (!this.created_at)
-    this.created_at = currentDate;
-
-  next();
+  });
 });
 
-// the schema is useless so far
-// we need to create a model using it
 var Buyer = mongoose.model('Buyer', buyerSchema);
 
-// make this available to our buyers in our Node applications
 module.exports = Buyer;

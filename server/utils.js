@@ -5,10 +5,8 @@ const crypto = require ('crypto');
 const configJWT = require('./config/jwt');
 // const getUserDB = require('../controllers/user').getUserBD;
 
-const User = require('./models/users');
-const Pacient = require('./models/pacients');
-const Therapist = require('./models/therapists');
-const MedicalCenter = require('./models/medicalCenters');
+const Buyer = require('./models/buyers');
+const Retailer = require('./models/retailers');
 
 
 const JWT_SECRET_KEY = 'ilovescotchyscotch';
@@ -31,10 +29,8 @@ module.exports = {
     let entity_type;
     console.log("KEVIN =>login_type => ", login_type);
     switch (login_type){
-      case 'user':           entity_type = (User); break;
-      case 'patient':        entity_type = (Pacient); break;
-      case 'therapist':      entity_type = (Therapist); break;
-      case 'medical_center': entity_type = (MedicalCenter);
+      case 'buyer':           entity_type = (Buyer); break;
+      case 'retailer':        entity_type = (Retailer); break;
     }
     return entity_type;
   },
@@ -53,6 +49,6 @@ module.exports = {
     })
     // .then(() => {console.log('THEN IS HERE') })
     // .catch("ERROR ERROR")
-  }
+  },
 
 };

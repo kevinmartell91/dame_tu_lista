@@ -2,26 +2,38 @@
 // Load required packages
 var Buyer = require('../models/buyers');
 
-// Create endpoint /api/buyers for POST
+// creating endpoint /api/buyers POST
 exports.postBuyers = function(req, res) {
-  // Create a new instance of the Buyer model
+	// creating a new instance of the Buyers model
+	var buyer = new Buyer();
 
-  var buyer = new Buyer();
-  console.log(req.body);
-  //Set the buyer properties that came from the POST data
-  buyer.type = req.body.type;
-  buyer.quantity = req.body.quantity;
-  buyer.userId = req.body.userId;
-  buyer.username = req.body.username;
-  buyer.password = req.body.password;
+	// setting buyer properties that come from POST
+	buyer.username = req.body.username; 
+	buyer.password = req.body.password; 
+	buyer.name = req.body.name; 
+	buyer.lastname = req.body.lastname; 
+	buyer.email = req.body.email; 
+	buyer.phoneNumber = req.body.phoneNumber; 
 
-  // Save the buyer and check for errors
-  buyer.save(function(err) {
-    if (err)
-      return res.send(err);
+	// buyer.lastLoginDate = req.body.lastLoginDate; 
+	// buyer.last_order = req.body.last_order; 
 
-    res.json({ message: 'Buyer added', data: buyer });
-  });
+	// var len = req.body.myFavoriteRetailers.length;
+	// for (var i=0 ; i<len ; i++) {
+	// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers[i]);
+	// }
+	
+	buyer.save(function(err){
+		if (err)
+			return res.status(500).send(err);
+
+		res.json({ 
+			success: true,
+			status: 200,
+			message: 'buyer added', 
+			data: buyer
+		});
+	});
 };
 
 // Create endpoint /api/buyers for GET
@@ -29,21 +41,31 @@ exports.getBuyers = function(req, res) {
 
   Buyer.find(function(err, buyers) {
     if (err)
-      return res.send(err);
+      return res.status(500).send(err);
 
-    res.json(buyers);
+		res.json({ 
+			success: true,
+			status: 200,
+			message: 'buyers list', 
+			data: buyers
+		});
   });
 };
 
 // Create endpoint /api/buyers/:user_id for GET
 exports.getBuyer = function(req, res) {
 
-  Buyer.findById(req.params.user_id, function(err, buyer) {
+  Buyer.findById(req.params.buyer_id, function(err, buyer) {
   
     if (err)
-      return res.send(err);
+      return res.status(500).send(err);
 
-    res.json(buyer);
+	res.json({ 
+		success: true,
+		status: 200,
+		message: 'buyers list', 
+		data: buyer
+	});
   });
 };
 
@@ -61,17 +83,26 @@ exports.getBuyer_JWTVerification = function(user_id) {
 // Create endpoint /api/buyers/:user_id for PUT
 exports.putBuyer = function(req, res) {
 
-  Buyer.findById(req.params.user_id, function(err, buyer) {
+  Buyer.findById(req.params.buyer_id, function(err, buyer) {
     if (err)
-      return res.send(err);
+      return res.status(500).send(err);
 
-    buyer.quantity = req.body.quantity;
+	// buyer = req.body; 
+	// var len = req.body.myFavoriteRetailers.length;
+	// for (var i=0 ; i<len ; i++) {
+	// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers[i]);
+	// }  
 
     buyer.save(function(err){
       if(err) 
-        return res.send(err);
+        return res.status(500).send(err);
 
-      res.json({ message: 'Buyer updated' });
+      res.json({ 
+        success: true,
+        status: 200,
+        message: 'buyer updated', 
+        data: buyer
+      });
 
     });
   });
@@ -80,12 +111,64 @@ exports.putBuyer = function(req, res) {
 // Create endpoint /api/buyers/:beer_id for DELETE
 exports.deleteBuyer = function(req, res) {
 
-  Buyer.findByIdAndRemove(req.params.user_id, function(err) {
+  Buyer.findByIdAndRemove(req.params.buyer_id, function(err) {
     if (err)
-      return res.send(err);
+      return res.status(500).send(err);
 
-    res.json({ message: 'Buyer removed' });
+	res.json({ 
+		success: true,
+		status: 200,
+		message: 'buyer removed', 
+	});
 
   });
 };
 
+exports.updateBuyerFavoriteRetailers = function(req, res) {
+  Buyer.findById(req.params.buyer_id, function(err, buyer){
+	if(err) 
+	  return res.sender(err);
+	
+	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers);
+
+	buyer.save(function(err) {
+	  if (err)
+		return res.status(500).send(err);
+	  
+	  res.json({
+		  success: true,
+		  status: 200,
+		  message: "favorite retailer updated",
+	  });
+	});
+  });
+}
+
+exports.updateBuyerAddress = function(req, res) {
+	Buyer.findById(req.params.buyer_id, function(err, buyer){
+	  if(err) 
+		return res.sender(err);
+	  
+	  buyer.address = { 
+		streetName: req.body.address.streetName,
+		streetnumber: req.body.address.streetnumber,
+		district: req.body.address.district,
+		city: req.body.address.city,
+		department: req.body.address.department,
+		country: req.body.address.country,
+		reference: req.body.address.reference,
+		details: req.body.address.details
+	  },
+  
+	  buyer.save(function(err) {
+		if (err)
+		  return res.status(500).send(err);
+		
+		res.json({
+			success: true,
+			status: 200,
+			message: "favorite retailer updated",
+		});
+	  });
+	});
+  }

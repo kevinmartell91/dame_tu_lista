@@ -4,6 +4,7 @@ export class Address implements Deserializable {
 
     public streetName?: string;
     public streetnumber?: string;
+    public district?: string;
     public city?: string;
     public department?: string;
     public country?: string;

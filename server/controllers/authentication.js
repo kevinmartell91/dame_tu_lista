@@ -28,22 +28,31 @@ exports.postAuthenticate = function(req, res) {
   if(!entityType) {
     res.json( {success: false, message: 'Authentication fail. Entity not found.'})
   }
+  console.log("email", username);
+  console.log("password", password);
 
   entityType.findOne({
-    username: username
+    email: username
   }, function(err, entity) {
-    if (err) throw err;
-
+    if (err) {
+      console.log("ERROR = >",err);
+      throw err;
+    }
+    
     if (!entity) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (entity) {
-      // check if password matches
+      console.log(" entity", entity);
+      // check if passwords matche
       bcrypt.compare(password, entity.password).then(math => {
-        console.log(`Match this ${password} con este ${entity.password}`);
         if (math) {
+          console.log(`Match this ${password} con este ${entity.password}`);
           // genreate a token
           const token = genAccessToken2(entity.toJSON());
+          console.log(" token", token);
           res.json({
+            username: "kevin",
+            password: "******",
             success: true,
             message: 'Enjoy your token!',
             token: token,

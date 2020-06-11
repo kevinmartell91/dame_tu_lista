@@ -1,15 +1,24 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
 import { Product } from "./product";
 import { Store } from './store';
+import { Address } from './address';
 
 export class Retailer implements Deserializable {
 
     public username?: string;
     public password?: string;
+    public name?: String;
+    public lastname?: String;
     public email?: string;
     public phoneNumber?: string;
     public store?: Store;
-    public storeProducts?: Product[];
+  
+    public signUpDate?: Date;
+    public lastLoginDate?: Date;
+    public user_type?: string;
+    public total_sells?: number;
+    public total_orders?: number;
+  
 
     deserialize(input: any) {
         Object.assign(this, input);
@@ -17,16 +26,11 @@ export class Retailer implements Deserializable {
         // this.store = input.store.map(
         //     storee =>  new Store().deserialize(storee)
         // );
-        
-        this.storeProducts = input.storeProducts.map(
-            product => new Product().deserialize(product)
-        );
-
         return this;
     }
 
     public getNumberOfProducts() {
-        return this.storeProducts.length;
+        return this.store.productsList.length;
     }
     public getBannerUrl(): string{
         return `url(${this.store.imgUrl})`;

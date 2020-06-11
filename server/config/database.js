@@ -1,11 +1,12 @@
 module.exports = function(mongoose) {
 
+    
     const dbName = 'dame_tu_lista_db'
     const dbUser = 'admin'
     const dbPass = encodeURIComponent('Dtl@km91o0I9u8Y7')
 
-    var dbURI = 'mongodb://admin:admin@ds023495.mlab.com:23495/gaitcome_db';
-    // var dbURI = `mongodb://${dbUser}:${dbPass}@ds163301.mlab.com:63301/${dbName}`;
+    // var dbURI = 'mongodb://admin:admin@ds023495.mlab.com:23495/gaitcome_db';
+    var dbURI = `mongodb://${dbUser}:${dbPass}@ds163301.mlab.com:63301/${dbName}`;
     // admin|Dtl@km91o0I9u8Y7
     // {
     //     "_id": "dame_tu_lista_db.admin",

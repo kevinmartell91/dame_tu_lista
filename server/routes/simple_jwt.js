@@ -2,8 +2,8 @@ var jwt = require ('jsonwebtoken');
 const crypto = require ('crypto');
 const getUserIdByLoginTypeFromDB = require('../utils').getUserIdByLoginType;
 // const getEntityType = require ('../utils').getEntityType;
-
 const JWT_SECRET_KEY = 'ilovescotchyscotch';
+// const JWT_SECRET_KEY = process.env.JWT_SECRET;
 
 const options = {
   expiresIn: '2d',
@@ -30,12 +30,12 @@ module.exports = {
   
   genAccessToken(user) {
     const userId = user._id;
-    const role = user.role;
+    const userType = user.user_type;
     const password = user.password;
-    const key = genKey(userId,password);
-    const tokenPayLoad = { userId, role, key };
+    const key = genKey(userId, password);
+    const tokenPayLoad = { userId, userType, key };
     const accessToken = jwt.sign(tokenPayLoad, JWT_SECRET_KEY);    
-    console.log("accessToken GEN", accessToken);
+    // console.log("accessToken GEN", accessToken);
     return accessToken;
   },
 
@@ -45,8 +45,8 @@ module.exports = {
 
     try {
         tokenPayload = jwt.verify(accessToken, JWT_SECRET_KEY);
-        const { userId, role } = tokenPayload;
-        let userInDB = await getUserIdByLoginTypeFromDB(role, userId);
+        const { userId, userType } = tokenPayload;
+        let userInDB = await getUserIdByLoginTypeFromDB(userType, userId);
         const passwordInDB = userInDB.password;
         const keyToCompare = genKey(userId, passwordInDB);
         if (keyToCompare !== tokenPayload.key) {
@@ -55,7 +55,7 @@ module.exports = {
         req.decoded  = tokenPayload;
         next();
     } catch (error) {
-      console.log("error",error);
+        console.log("error",error);
         res.status(401).send(error.message);
     }
   },
