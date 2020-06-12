@@ -9,6 +9,7 @@ import { CategoryProductsComponent } from './views/category-products/category-pr
 import { MaturityProductsComponent } from './views/maturity-products/maturity-products.component';
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
 import { SeasonalProductsComponent } from './componentes/seasonal-products/seasonal-products.component';
+import { StoreComponent } from './views/store/store.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import { SeasonalProductsComponent } from './componentes/seasonal-products/seaso
     SeasonalProductsComponent,
     MaturityProductsComponent,
     VarietyProductsComponent,
-    ProductDisplaySharedComponent
+    ProductDisplaySharedComponent,
+    StoreComponent
   ],
   imports: [
     CommonModule,
-    RetailerStoresRoutingModule,
-    SharedModule
+    SharedModule,
+    RetailerStoresRoutingModule
   ]
 })
 export class RetailerStoresModule { }

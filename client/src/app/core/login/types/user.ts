@@ -1,9 +1,10 @@
 import { Deserializable } from '../../../shared/models/deserializable.model';
 
 export class LoginUser implements Deserializable{
-  username: string;
-  password: string;
-  login_type: string;
+  name?: string;
+  email?: string;
+  password?: string;
+  login_type?: string;
   token?: string;
   entity?: String;
 

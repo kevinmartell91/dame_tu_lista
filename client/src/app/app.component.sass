@@ -14,9 +14,6 @@ $buyer_cart_number_font_size: 2em
   box-sizing: border-box 
 
 
-.buyer_icon
-//   height: 40px;
-
 .buyer_account_cart_area
   gird-area: account_cart
   display: grid
@@ -28,7 +25,6 @@ $buyer_cart_number_font_size: 2em
   grid-template-areas: "account account cart"
   border: 1px
   border-radius: 10px
-  background-color: #f5f5f5
 
   .buyer_account_area
     grid-area: account
@@ -60,3 +56,19 @@ $buyer_cart_number_font_size: 2em
     font-size: $buyer_cart_number_font_size
     color: mat-color($primary, darker, 1)  
 
+  .navegation_grid
+    display: grid
+    margin: 0 
+    padding: 1em 0em 1em 0em
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr
+    grid-template-areas: "img text"
+
+    .navegation_image_area
+      grid-area: img
+      align-self: center
+
+    .navegation_title_area
+      grid-area: text
+      font-size: $buyer_cart_number_font_size
+      align-self: center

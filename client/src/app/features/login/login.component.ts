@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['',Validators.required],
       login_type: ['', Validators.required]
     }) 
@@ -132,45 +132,43 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     let loginUser = this.prepareAuthentication();
+    
+    // hard coded, quick login purposes
+    loginUser.login_type= "comprador";
+    loginUser.email = "wendy01@gmail.com";
+    loginUser.password = "demo";
 
-    if(loginUser.login_type == LOGIN_CONFIG.loginUserBuyerType){
+    // converting ESP login type to ENG
+    if(loginUser.login_type === LOGIN_CONFIG.loginUserCompradorType){
       loginUser.login_type = LOGIN_CONFIG.loginUserBuyerType;
     } else {
       loginUser.login_type = LOGIN_CONFIG.loginUserRetailerType;
     }
-    
 
     this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
 
     this.authenticationStore.login(loginUser)
-      .pipe(first())
-      .subscribe(
-        loginUser => {
-          if(loginUser.token) {
-            this.router.navigate([this.returnUrl])
-          } else {
-            this.loading = false;
-            this.errorMessage = "Usuario o contraseña incorrecta.";
-            // this.router.navigate(['/login']);
-          }
-        },
-        errorMessage => {
-          // this.errorMessage = errorMessage;
-          this.errorMessage = "En estos momentos tenemos problemas técnicos. Intente más tarde";
+    .pipe(first())
+    .subscribe(
+      loginUser => {
+        if(loginUser.token) {
+          this.router.navigate([this.returnUrl])
+        } else {
           this.loading = false;
-        },
-      )
+          this.errorMessage = "Usuario o contraseña incorrecta.";
+        }
+      },
+      errorMessage => {
+        this.errorMessage = "En estos momentos tenemos problemas técnicos. Intente más tarde";
+        this.loading = false;
+      },
+    )
     // How to access to storeStates  
     // console.log("this.authenticationStore.state.requests.postAuthentication.inProgress",this.authenticationStore.state.requests.postAuthentication.inProgress);
 
   }
 
   getloginTypeRedirect(loginUser: LoginUser): string {
-
-    // hard coded, quick login purposes
-    loginUser.login_type = "buyer";
-    loginUser.username = "demo34@gmail.com";
-    loginUser.password = "demo";
 
     let loginTypeUrl = '';
     

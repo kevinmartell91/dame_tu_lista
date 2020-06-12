@@ -1,45 +1,89 @@
+
 <div *ngIf="loginUser">
-    <div class="buyer_account_cart_area">
-        
-        <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
+    
+    <ng-container [ngSwitch]="loginUser.login_type" >
+        <div *ngSwitchCase="loginType.buyer">
             <!-- Becuase no logic is implemented, It used a as proxy to pass the state here -->
-        <div [ngSwitch]="(buyerNavegationStore.state$ | async).buyerNavegation.typeView">
+            <ng-container *ngIf="(buyerNavegationStore.state$ | async) as subs">
+                <!-- {{subs.buyerNavegation.typeView}} -->
+                <div class="buyer_account_cart_area">
+                    
+                    <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
+                    <div [ngSwitch]="subs.buyerNavegation.typeView">
+                
+                        <div *ngSwitchCase="navegation.accountView" class="buyer_account_area">
+                            <div class="buyer_personal_icon_area" 
+                                (click)="viewBuyerDetails()">
+                                <img class="buyer_icon" src="../assets/icons/person-black-36dp.svg" alt="">
+                            </div>
+                
+                            <div class="buyer_name_area" >
+                                <span> {{loginUser.name}} </span>
+                            </div>
+                            <button (click)="logout()">logout</button>
+                            <div class="buyer_view_account_area" >
+                                <span (click)="viewBuyerDetails()">Ver cuenta</span>
+                            </div>
+                        </div>
+                
+                        <div *ngSwitchCase="navegation.categoryView" 
+                            class="navegation_grid">
+                            <div class="navegation_image_area">
+                                <img (click)="goBackLocation()"
+                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                            </div>
+                            <div class="navegation_title_area">
+                                <div>Categoría</div>
+                            </div>
+                         </div>
+                        
+                        <div *ngSwitchCase="navegation.varietyView" 
+                            class="navegation_grid">
+                            <div class="navegation_image_area">
+                                <img (click)="goBackLocation()"
+                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                            </div>
+                            <div class="navegation_title_area">
+                                <div>Variedad</div>
+                            </div>
+                         </div>
 
-            <div *ngSwitchCase="navegation.categoryView" 
-                (click)="goBackLocation()"> <div>Categories</div> </div>
+                        <div *ngSwitchCase="navegation.maturityView" 
+                            class="navegation_grid">
+                            <div class="navegation_image_area">
+                                <img (click)="goBackLocation()"
+                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                            </div>
+                            <div class="navegation_title_area">
+                                <div>Madurez</div>
+                            </div>
+                         </div>
+                
+                        <!-- nothing to render when StoreView is selected -->
+                        <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
+                    
+                    </div>
+                    
+                    <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView" class="buyer_cart_area">
+                    <!-- <div  class="buyer_cart_area"> -->
+                        <div (click)="viewBuyerCart()">
+                            <img src="../assets/icons/shopping_cart-black-36dp.svg" alt="">
+                            <span>3</span>
+                        </div>
+                    </div>
+                </div>
             
-            <div *ngSwitchCase="navegation.maturityView" 
-                (click)="goBackLocation()"> <div>Maturity</div> </div>
+            </ng-container>
 
-            <div *ngSwitchCase="navegation.accountView" class="buyer_account_area">
-                <div class="buyer_personal_icon_area" 
-                    (click)="viewBuyerDetails()">
-                    <img class="buyer_icon" src="../assets/icons/person-black-36dp.svg" alt="">
-                </div>
-    
-                <div class="buyer_name_area" >
-                    <span> Kevin </span>
-                </div>
-                <button (click)="logout()">logout</button>
-                <div class="buyer_view_account_area" >
-                    <span (click)="viewBuyerDetails()">Ver cuenta</span>
-                </div>
-            </div>
-    
-            <!-- nothing to render when StoreView is selected -->
-            <!-- <div *ngSwitchCase="navegation.storeView" (click)="goBackLocation()"> <div></div> </div> -->
-        
         </div>
-        
-        <div *ngIf="navegation.storeView === false" class="buyer_cart_area">
-            <div (click)="viewBuyerCart()">
-                <img src="../assets/icons/shopping_cart-black-36dp.svg" alt="">
-                <span>3</span>
-            </div>
+        <div *ngSwitchCase="loginType.retailer">
+            retailer
         </div>
-    </div>
+    </ng-container>
+
 </div>
 <router-outlet></router-outlet>
+
 
 <!-- <div *ngIf="loginUser">
     <div class="buyer_account_cart_area">

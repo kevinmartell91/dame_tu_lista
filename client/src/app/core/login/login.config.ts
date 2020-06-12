@@ -7,7 +7,12 @@ export const LOGIN_CONFIG = {
             url: `${APP_CONFIG.apiBaseUrl}/authenticate`
         }
     },
+    loginType: {
+        buyer: "buyer",
+        retailer: "retailer"
+    },
     loginUserStorage: "currentUser1",
     loginUserBuyerType: "buyer",
+    loginUserCompradorType: "comprador",
     loginUserRetailerType: "retailer"
 }

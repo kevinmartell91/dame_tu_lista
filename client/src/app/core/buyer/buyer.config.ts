@@ -11,6 +11,7 @@ export const BUYER_CONFIG = {
         accountView: "buyer_account_view",
         storeView: "buyer_store_view",
         categoryView: "buyer_category_view",
+        varietyView: "buyer_variety_view",
         maturityView: "buyer_maturity_view"
     }
 }

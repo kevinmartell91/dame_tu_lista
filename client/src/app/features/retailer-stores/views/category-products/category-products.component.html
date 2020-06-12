@@ -1,3 +1,6 @@
+<hr>
+<div (click)="goToRetailerVarietyView()" >Variedad</div>
+
 <div class="display_products_grid">
     <ng-container *ngFor='let product of storeProducts'>
         <app-product-display-shared typeView="categoryView" [product]="product"></app-product-display-shared>

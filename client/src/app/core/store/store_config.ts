@@ -15,10 +15,10 @@ export const STORE_CONFIG = {
         maturityView: "maturityView"
     },
     question_view_type: {
-        storeView: "-",
-        seasonalView: "-",
+        storeView: "Promociones 2 x 1",
+        seasonalView: "Frutas de temporada",
         categoryView: "-",
-        typeView: "¿Qué tipo deseas?",
+        varietyView: "¿Qué tipo deseas?",
         maturityView: "¿Cuándo lo quieres comer?"
     }
 }

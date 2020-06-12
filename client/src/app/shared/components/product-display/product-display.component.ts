@@ -16,7 +16,7 @@ export class ProductDisplaySharedComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("product", (this.product));
+    // console.log("product", (this.product));
   }
 
   increment(): number {
@@ -37,7 +37,7 @@ export class ProductDisplaySharedComponent implements OnInit {
   
   
   getGridView(typeView: String): string {
-    console.log("getGridView(typeView) = > ",typeView);
+    // console.log("getGridView(typeView) = > ",typeView);
     switch (this.typeView) {
       case "maturityView":
         return "product_display_grid_maturity_view";

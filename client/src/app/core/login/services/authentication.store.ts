@@ -29,27 +29,30 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
 
     get loginUser(): any {
         // avoid other components to subscribe to currentUser to be notified/
-        console.log("AuthenticationStore - get loginUser() => ", this.state);
         return this.state.loginUser;
     }
 
     login(user: LoginUser): Observable<LoginUser> {
 
         return this.endPoint.postAuthentication(this.storeRequestStateUpdater, user).pipe(
-            tap((loginUser: LoginUser) => {
-                // store user ditails and jwttoken in localStorage to keep user
-                // logged in between pages
-                loginUser.username = user.username;
-                loginUser.login_type = user.login_type;
-                console.log("KEVIN = >",loginUser);
-                localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
-                this.handleGetUserLoginResponse(loginUser);
+            tap((loginUser: any) => {
+                if(loginUser.success) {
+                    // store user ditails and jwttoken in localStorage to keep user
+                    // logged in between pages
+                    loginUser.name = loginUser.entity.name; 
+                    loginUser.email = loginUser.entity.email; 
+                    loginUser.password = loginUser.entity.password; 
+                    loginUser.login_type = loginUser.entity.user_type; 
+                    // console.log("KEVIN as any = >",loginUser);
+                    // console.log("KEVIN as LoginUser = >",loginUser as LoginUser);
+                    localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
+                    this.handleGetUserLoginResponse(loginUser);                    
+                } 
             })
         );
     }
 
     logout() {
-        console.log("AuthenticationStore - logout()")
         localStorage.removeItem(LOGIN_CONFIG.loginUserStorage);
         this.handleGetUserLoginResponse(null);
     }
@@ -58,7 +61,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         let userTest = new LoginUser();
         userTest.login_type = "comprador";
         userTest.password = "*******";
-        userTest.username = "kevin";
+        userTest.name = "kevin";
         this.handleGetUserLoginResponse(userTest);
     }
 
@@ -69,8 +72,6 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             ...this.state,
             loginUser: loginUser
         });
-        console.log("KEVIN => handleGetUserLoginResponse - this.setState", this.state);
-        
     }
 }
 

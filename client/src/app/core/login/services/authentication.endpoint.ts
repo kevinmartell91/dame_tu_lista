@@ -41,7 +41,6 @@ export class AuthenticationEndPoint {
       inProgress : true
     });
 
-    // console.log("requestStateUpdater",requestStateUpdater)
   	return this.httpClient.post<LoginUser>(request.url, loginUser, this.getHeaders()).pipe(
       map(user => {
         
@@ -53,6 +52,7 @@ export class AuthenticationEndPoint {
         // localStorage.setItem('currentUser',JSON.stringify(user));
         // The user object is then published to all subscribers by calling
         // this.currentUserSubject.next(user);
+        // console.log("EndPoint:",user);
         return user;
       }),
       catchError((error: HttpErrorResponse) => {
@@ -67,12 +67,8 @@ export class AuthenticationEndPoint {
   postAuthenticationSimple( loginUser: LoginUser) {
     const request = LOGIN_CONFIG.request.postAuthentication;
 
-   
-
   	return this.httpClient.post<LoginUser>(request.url, loginUser, this.getHeaders()).pipe(
       map(user => {
-        
-      
         // store user ditails and jwttoken in localStorage to keep user
         // logged in between pages
         // localStorage.setItem('currentUser',JSON.stringify(user));

@@ -6,7 +6,7 @@ import { AuthGuard } from './core/guard/auth.guards';
 
 const routes: Routes = [
   { 
-  	path: 'fd', 
+  	path: 'landingpage', 
     loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
     // canActivate: [AuthGuard]
   },

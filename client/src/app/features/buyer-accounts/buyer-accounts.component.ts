@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { kStringMaxLength } from 'buffer';
 
 @Component({
   selector: 'app-buyer-accounts',

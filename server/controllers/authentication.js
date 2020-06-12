@@ -20,29 +20,30 @@ app.set('superSecret', configJWT.secret);
 
 exports.postAuthenticate = function(req, res) {
 
-  const { username, password, login_type } = req.body;
+  const { email, password, login_type } = req.body;
 
   
   const entityType = getEntityType(login_type);
-
+  
   if(!entityType) {
     res.json( {success: false, message: 'Authentication fail. Entity not found.'})
   }
-  console.log("email", username);
-  console.log("password", password);
+  console.log("KEVIN - entityType", entityType);
+  console.log("KEVIN - email", email);
+  console.log("KEVIN - password", password);
 
   entityType.findOne({
-    email: username
+    email: email
   }, function(err, entity) {
     if (err) {
       console.log("ERROR = >",err);
       throw err;
     }
+    console.log("KEVIN-  entity", entity);
     
-    if (!entity) {
+    if (entity === null) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (entity) {
-      console.log(" entity", entity);
       // check if passwords matche
       bcrypt.compare(password, entity.password).then(math => {
         if (math) {
@@ -51,8 +52,6 @@ exports.postAuthenticate = function(req, res) {
           const token = genAccessToken2(entity.toJSON());
           console.log(" token", token);
           res.json({
-            username: "kevin",
-            password: "******",
             success: true,
             message: 'Enjoy your token!',
             token: token,
