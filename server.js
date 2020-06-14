@@ -22,7 +22,7 @@ const api = require('./server/routes/api');
 
 const app = express();
 
-
+// midelwares
 // Parsers for POST data
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));

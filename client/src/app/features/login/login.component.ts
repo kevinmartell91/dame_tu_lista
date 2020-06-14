@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
     
     // hard coded, quick login purposes
     loginUser.login_type= "comprador";
-    loginUser.email = "wendy01@gmail.com";
+    loginUser.email = "demo34@gmail.com";
     loginUser.password = "demo";
 
     // converting ESP login type to ENG

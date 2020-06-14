@@ -35,7 +35,7 @@ router.route('/buyers/:buyer_id')
   .get(buyerController.getBuyers);
 
 router.route('/buyers-favorite-retailers/:buyer_id')
-  .put(buyerController.updateBuyerFavoriteRetailers);
+  .patch(buyerController.updateBuyerFavoriteRetailers);
 
 router.route('/buyers-address/:buyer_id')
   .put(buyerController.updateBuyerAddress);

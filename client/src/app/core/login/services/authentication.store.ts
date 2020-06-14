@@ -16,7 +16,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
     loginUser$ : Observable<LoginUser>;
     private storeRequestStateUpdater : StoreRequestStateUpdater;
 
-    constructor ( private endPoint: AuthenticationEndPoint ) {
+    constructor( private endPoint: AuthenticationEndPoint ) {
         super(new AuthenticationStoreState())
 
         this.loginUser$ = this.state$.pipe(map(state => state.loginUser));

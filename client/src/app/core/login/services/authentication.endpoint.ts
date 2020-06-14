@@ -11,7 +11,6 @@ import { ApiResponse } from "../../../shared/types/api-response";
 import { StoreRequestStateUpdater } from "../../../shared/types/store-request-state-updater";
 import { LOGIN_CONFIG } from "../login.config";
 import { LoginUser } from '../types/user';
-import { CdkObserveContent } from '@angular/cdk/observers';
 
 
 @Injectable({providedIn: 'root'})
@@ -34,7 +33,9 @@ export class AuthenticationEndPoint {
     // return this.currentUserSubject.value;
   // }
 
-  postAuthentication( requestStateUpdater: StoreRequestStateUpdater,  loginUser: LoginUser) {
+  postAuthentication( 
+    requestStateUpdater: StoreRequestStateUpdater,
+    loginUser: LoginUser) {
     
     const request = LOGIN_CONFIG.request.postAuthentication;
     requestStateUpdater(request.name, {

@@ -1,6 +1,7 @@
 
 // Load required packages
 var Buyer = require('../models/buyers');
+const Retailer = require('../models/retailers');
 
 // creating endpoint /api/buyers POST
 exports.postBuyers = function(req, res) {
@@ -37,20 +38,31 @@ exports.postBuyers = function(req, res) {
 };
 
 // Create endpoint /api/buyers for GET
-exports.getBuyers = function(req, res) {
+exports.getBuyers = async function(req, res, next) {
 
-  Buyer.find(function(err, buyers) {
-    if (err)
-      return res.status(500).send(err);
-
-		res.json({ 
-			success: true,
-			status: 200,
-			message: 'buyers list', 
-			data: buyers
-		});
-  });
+  const buyers = await Buyer.find();
+  res.json({ 
+		success: true,
+		status: 200,
+		message: 'buyers list', 
+		data: buyers
+	});
 };
+// // Create endpoint /api/buyers for GET
+// exports.getBuyers = function(req, res) {
+
+//   Buyer.find(function(err, buyers) {
+//     if (err)
+//       return res.status(500).send(err);
+
+// 		res.json({ 
+// 			success: true,
+// 			status: 200,
+// 			message: 'buyers list', 
+// 			data: buyers
+// 		});
+//   });
+// };
 
 // Create endpoint /api/buyers/:user_id for GET
 exports.getBuyer = function(req, res) {
@@ -124,25 +136,60 @@ exports.deleteBuyer = function(req, res) {
   });
 };
 
-exports.updateBuyerFavoriteRetailers = function(req, res) {
-  Buyer.findById(req.params.buyer_id, function(err, buyer){
-	if(err) 
-	  return res.sender(err);
-	
-	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers);
+exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 
-	buyer.save(function(err) {
-	  if (err)
-		return res.status(500).send(err);
-	  
-	  res.json({
-		  success: true,
-		  status: 200,
-		  message: "favorite retailer updated",
-	  });
-	});
-  });
+	try {
+		const { buyer_id } =  req.params;
+		const { retailer_email } = req.body;
+		console.log("req.params",req.params);
+		console.log("req.body",req.body);
+		
+		const retailer = await Retailer.findOne({email: retailer_email});
+		let newFavoriteRetailer = {
+			_id: retailer._id,
+			storeName: retailer.store.name,
+			isDeliveryService: retailer.store.isDeliveryService,
+			isPickUpService: retailer.store.isPickUpService,
+			storeImgUrl: retailer.store.imgUrl
+		}
+	
+		console.log("KEVIN => ", newFavoriteRetailer);
+		const buyer = await Buyer.findById(buyer_id);
+		
+		buyer.myFavoriteRetailers.push(newFavoriteRetailer);
+		const oldBuyer = await buyer.save();
+		
+		res.json({
+			success: true,
+			status: 200,
+			message: "favorite retailer updated",
+			entity: oldBuyer
+		  });
+	} catch (error) {
+		res.status(500).send(error);
+		console.log(error);
+	}
+
 }
+// exports.updateBuyerFavoriteRetailers = function(req, res) {
+//   Buyer.findById(req.params.buyer_id, function(err, buyer){
+// 	if(err) 
+// 	  return res.sender(err);
+	
+// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers);
+
+// 	buyer.save(function(err) {
+// 	  if (err)
+// 		return res.status(500).send(err);
+	  
+// 	  res.json({
+// 		  success: true,
+// 		  status: 200,
+// 		  message: "favorite retailer updated",
+// 	  });
+// 	});
+//   });
+// }
 
 exports.updateBuyerAddress = function(req, res) {
 	Buyer.findById(req.params.buyer_id, function(err, buyer){

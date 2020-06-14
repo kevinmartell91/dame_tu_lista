@@ -71,7 +71,7 @@ retailerSchema.pre('save', function(next) {
   let retailer = this;
 
   // Do not rehash if it's an old retailer
-  if(!retailer.isModified('password')) return next(err);
+  if(!retailer.isModified('password')) return next();
 
   bcrypt.hash(retailer.password, stage.saltingRounds, function(err, hash) {
     if(err) {
