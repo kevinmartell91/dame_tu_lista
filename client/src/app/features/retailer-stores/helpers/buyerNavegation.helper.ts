@@ -3,7 +3,8 @@ import { BuyerNavegationStore } from "../../../core/buyer/services/buyer-navegat
 
 export function  updateBuyerNavagation(
     buyerNavegationStore: BuyerNavegationStore,
-    newBuyerNavegationView: string): void {
+    newBuyerNavegationView: string
+): void {
 
     let buyerNavegation = buyerNavegationStore.state.buyerNavegation;
     buyerNavegation.typeView = newBuyerNavegationView,

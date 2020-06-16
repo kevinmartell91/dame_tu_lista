@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/types/product';
+import { Component, OnInit, Input } from '@angular/core';
+import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from "../../../../core/retailer/types/retailer";
 import { Router } from '@angular/router';
 import { Location, PlatformLocation } from '@angular/common';
@@ -7,6 +7,7 @@ import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegati
 import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
+import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({
   selector: 'app-store',
@@ -33,7 +34,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_inmature.png",
         "maturityName": "Inmaduro",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "7 días",
         "maturityLastFor": "+10 dias",
         "isInStock": true
@@ -55,7 +56,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_semi_inmature.png",
         "maturityName": "Semi maduro",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "6 días",
         "maturityLastFor": "+7 dias",
         "isInStock": true
@@ -77,7 +78,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_mature.png",
         "maturityName": "Maduro",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "3 días",
         "maturityLastFor": "+5 dias",
         "isInStock": true
@@ -99,7 +100,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
         "maturityName": "Comer ya",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "1 día",
         "maturityLastFor": "+4 dias",
         "isInStock": true
@@ -121,7 +122,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_mature.png",
         "maturityName": "Maduro",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "3 días",
         "maturityLastFor": "+4 dias",
         "isInStock": true
@@ -143,7 +144,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
         "maturityName": "Comer ya",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "1 día",
         "maturityLastFor": "+4 dias",
         "isInStock": true
@@ -165,7 +166,7 @@ export class StoreComponent implements OnInit {
         "isMaturityDetails": true,
         "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
         "maturityName": "Comer ya",
-        "maturityInfo": "🍏",
+        "maturityInfo": "../../../../assets/icons/icons8-información.svg",
         "maturityEatIn": "1 días",
         "maturityLastFor": "+2 dias",
         "isInStock": true
@@ -214,7 +215,7 @@ export class StoreComponent implements OnInit {
             "isMaturityDetails": true,
             "maturityImageUrl": "../../../assets/maturity-images/banana_inmature.png",
             "maturityName": "Inmaduro",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "7 días",
             "maturityLastFor": "+10 dias",
             "isInStock": true
@@ -236,7 +237,7 @@ export class StoreComponent implements OnInit {
             "isMaturityDetails": true,
             "maturityImageUrl": "../../../assets/maturity-images/banana_semi_inmature.png",
             "maturityName": "Semi maduro",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "6 días",
             "maturityLastFor": "+7 dias",
             "isInStock": true
@@ -258,7 +259,7 @@ export class StoreComponent implements OnInit {
             "isMaturityDetails": true,
             "maturityImageUrl": "../../../assets/maturity-images/banana_mature.png",
             "maturityName": "Maduro",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "3 días",
             "maturityLastFor": "+5 dias",
             "isInStock": true
@@ -280,7 +281,7 @@ export class StoreComponent implements OnInit {
             "isMaturityDetails": true,
             "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
             "maturityName": "Comer ya",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "1 día",
             "maturityLastFor": "+4 dias",
             "isInStock": true
@@ -299,10 +300,10 @@ export class StoreComponent implements OnInit {
             "isUnit": false,
             "isOrganic": true,
             "isSeasonal": false,
-            "isMaturityDetails": true,
+            "isMaturityDetails": false,
             "maturityImageUrl": "../../../assets/maturity-images/banana_mature.png",
             "maturityName": "Maduro",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "3 días",
             "maturityLastFor": "+4 dias",
             "isInStock": true
@@ -324,7 +325,7 @@ export class StoreComponent implements OnInit {
             "isMaturityDetails": true,
             "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
             "maturityName": "Comer ya",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "1 día",
             "maturityLastFor": "+4 dias",
             "isInStock": true
@@ -343,10 +344,10 @@ export class StoreComponent implements OnInit {
             "isUnit": false,
             "isOrganic": true,
             "isSeasonal": true,
-            "isMaturityDetails": true,
+            "isMaturityDetails": false,
             "maturityImageUrl": "../../../assets/maturity-images/banana_comer_ya.png",
             "maturityName": "Comer ya",
-            "maturityInfo": "🍏",
+            "maturityInfo": "../../../../assets/icons/icons8-información.svg",
             "maturityEatIn": "1 días",
             "maturityLastFor": "+2 dias",
             "isInStock": true
@@ -355,19 +356,33 @@ export class StoreComponent implements OnInit {
     }
   }
 
-  public retailer: Retailer = new Retailer().deserialize(this.DATA); 
+
+  // public retailer: Retailer = new Retailer().deserialize(this.DATA); 
+  public retailer: Retailer;
+  public productsList: Product[];
 
   constructor( 
     private router: Router,
     private location: Location,
     private platformLocation: PlatformLocation,
-    private buyerNavegationStore: BuyerNavegationStore 
+    private buyerNavegationStore: BuyerNavegationStore,
+    private retailerStoreStore: RetailerStoreStore
+
   ) { 
+
+    this.retailerStoreStore.retailer$.subscribe(
+      x => {
+        this.retailer = x;
+        this.productsList = x.store.productsList;
+        console.log("StoreComponent => retailer$.subscribe");
+        
+      }
+    )
+
     this.blockBrowserBackButton();    
   }
 
   ngOnInit(): void {
-    console.log("KEVIN => retailer", this.retailer.store.productsList );
   }
 
   viewBuyerCart(): void {
@@ -387,7 +402,7 @@ export class StoreComponent implements OnInit {
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.categoryView
     );
-    this.router.navigate(['/retailer-store/category-view']);
+    this.router.navigate(['/retailer-store',this.retailer._id,'category-view']);
   }
 
   blockBrowserBackButton():void {

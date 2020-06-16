@@ -30,9 +30,8 @@ export class BuyerAccountsComponent implements OnInit {
 
     this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
-        console.log("UPDATED - authenticationStore");
         this.loginUser = data;
-        console.log("data.entity",data.entity);
+        console.log("subscribe - authenticationStore - login.data.entity",data.entity);
         let favorites = data.entity.myFavoriteRetailers;
         favorites.forEach(element => {
           this.favoriteRetailers.push(new FavoriteReatailers().deserialize(element));
@@ -42,9 +41,8 @@ export class BuyerAccountsComponent implements OnInit {
 
     this.buyerAccountStore.buyerAccount$.subscribe(
       (data : any) => { 
-        console.log("UPDATED - buyerAccountStore");
         if(data != null) {
-          console.log("buyerAccountStore => data.entity",data);
+          console.log("subscribe - buyerAccountStore => data.entity",data);
           this.favoriteRetailers = [];
           let favorites = data.myFavoriteRetailers;
           favorites.forEach(element => {
@@ -59,9 +57,9 @@ export class BuyerAccountsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToRetailerStoreView(_id: string): void {
+  goToRetailerStoreView(retailer_id: string): void {
     this.updateBuyerNavagationToStoreView();
-    this.router.navigate(['/retailers/',_id]);
+    this.router.navigate(['/retailer-store/',retailer_id]);
   }
   viewBuyerCart(): void {
     this.router.navigate(['/buyer-cart']);
@@ -80,7 +78,7 @@ export class BuyerAccountsComponent implements OnInit {
     // this.buyerAccountStore.init();
     let buyer_id = ((this.loginUser.entity) as any )._id;
     // let buyer_id = "5edeecfc09ff9d6770b10344";
-    let retailer_email = "keyla18@gmail.com";
+    let retailer_email = "irene03@gmail.com";
     console.log("addFavoriteRetailer");
     this.buyerAccountStore.addFavoriteReatailer(buyer_id, retailer_email);
    

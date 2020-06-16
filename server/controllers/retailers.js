@@ -66,46 +66,43 @@ exports.getRetailer = function(req, res) {
 
 // Create endpoint /api/retailers/:reatiler_id for PUT
 exports.putRetailer = function(req, res) {
+  
+  // retailer.username = req.body.username;
+  // retailer.password = req.body.password;
+  // retailer.name = req.body.name;
+  // retailer.lastname = req.body.lastname;
+  // // retailer.email = req.body.email;
+  // retailer.phoneNumber = req.body.phoneNumber;
+  // retailer.store = {
+  //   name: req.body.store.name,
+  //   imgUrl: req.body.store.imgUrl,
+  //   isDeliveryService: req.body.store.isDeliveryService,
+  //   isPickUpService: req.body.store.isPickUpService,
+  //   deliveryInfo: req.body.store.deliveryInfo,
+  //   pickUpInfo: req.body.store.pickUpInfo,
+  //   address: {
+  //     streetName: req.body.store.address.streetName,
+  //     streetnumber: req.body.store.address.streetnumber,
+  //     district: req.body.store.address.district,
+  //     city: req.body.store.address.city,
+  //     department: req.body.store.address.department,
+  //     country: req.body.store.address.country,
+  //     reference: req.body.store.address.reference,
+  //     details: req.body.store.address.details
+  //   }
+  // };
 
-  Retailer.findById(req.params.retailer_id, function(err, retailer) {
-    if (err)
+  let update = req.body;
+  Retailer.findByIdAndUpdate(req.params.retailer_id, update, function(err, retailer) {
+    
+    if(err) 
       return res.send(err);
 
-    retailer.username = req.body.username;
-    retailer.password = req.body.password;
-    retailer.name = req.body.name;
-    retailer.lastname = req.body.lastname;
-    // retailer.email = req.body.email;
-    retailer.phoneNumber = req.body.phoneNumber;
-    retailer.store = {
-      name: req.body.store.name,
-      imgUrl: req.body.store.imgUrl,
-      isDeliveryService: req.body.store.isDeliveryService,
-      isPickUpService: req.body.store.isPickUpService,
-      deliveryInfo: req.body.store.deliveryInfo,
-      pickUpInfo: req.body.store.pickUpInfo,
-      address: {
-        streetName: req.body.store.address.streetName,
-        streetnumber: req.body.store.address.streetnumber,
-        district: req.body.store.address.district,
-        city: req.body.store.address.city,
-        department: req.body.store.address.department,
-        country: req.body.store.address.country,
-        reference: req.body.store.address.reference,
-        details: req.body.store.address.details
-      }
-    };
-
-    retailer.save(function(err){
-      if(err) 
-        return res.send(err);
-
-      res.json({ 
-        success: true,
-        status: 200,
-        message: 'retailer updated', 
-        data: retailer
-      });
+    res.json({ 
+      success: true,
+      status: 200,
+      message: 'retailer updated', 
+      data: retailer
     });
   });
 };
@@ -125,42 +122,40 @@ exports.deleteRetailer = function(req, res) {
   });
 };
 
+//ok
 exports.putRetailerStore = function(req, res) {
   
-  Retailer.findById(req.params.retailer_id, function(err, retailer) {
+  // retailer.store = {
+  //   name: req.body.store.name,
+  //   imgUrl: req.body.store.imgUrl,
+  //   isDeliveryService: req.body.store.isDeliveryService,
+  //   isPickUpService: req.body.store.isPickUpService,
+  //   deliveryInfo: req.body.store.deliveryInfo,
+  //   pickUpInfo: req.body.store.pickUpInfo,
+  //   address: {
+  //     streetName: req.body.store.address.streetName,
+  //     streetnumber: req.body.store.address.streetnumber,
+  //     district: req.body.store.address.district,
+  //     city: req.body.store.address.city,
+  //     department: req.body.store.address.department,
+  //     country: req.body.store.address.country,
+  //     reference: req.body.store.address.reference,
+  //     details: req.body.store.address.details
+  //   }
+  // };
+
+  let update = req.body;
+
+  Retailer.findByIdAndUpdate(req.params.retailer_id, update, function(err, retailer) {
     if (err)
-      return res.send(err);
+      return res.status(500).send(err);
 
-    retailer.store = {
-      name: req.body.store.name,
-      imgUrl: req.body.store.imgUrl,
-      isDeliveryService: req.body.store.isDeliveryService,
-      isPickUpService: req.body.store.isPickUpService,
-      deliveryInfo: req.body.store.deliveryInfo,
-      pickUpInfo: req.body.store.pickUpInfo,
-      address: {
-        streetName: req.body.store.address.streetName,
-        streetnumber: req.body.store.address.streetnumber,
-        district: req.body.store.address.district,
-        city: req.body.store.address.city,
-        department: req.body.store.address.department,
-        country: req.body.store.address.country,
-        reference: req.body.store.address.reference,
-        details: req.body.store.address.details
-      }
-    };
-    
-    retailer.save(function(err){
-      if(err)
-        return res.status(500).send(err);
-
-      res.json({
-        success: true,
-        status: 200,
-        message: "retailer's address updated",
-        data: retailer
-      });  
-    });
+    res.json({
+      success: true,
+      status: 200,
+      message: "retailer's address updated",
+      data: retailer
+    });  
   });
 };
 

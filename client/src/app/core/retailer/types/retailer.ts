@@ -5,6 +5,7 @@ import { Address } from './address';
 
 export class Retailer implements Deserializable {
 
+    public _id: string;
     public username?: string;
     public password?: string;
     public name?: String;

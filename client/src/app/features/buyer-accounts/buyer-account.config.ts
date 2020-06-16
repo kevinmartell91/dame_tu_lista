@@ -1,7 +1,7 @@
 import { APP_CONFIG } from 'src/app/app.config';
 
 export const BUYER_ACCOUNT_CONFIG = {
-    request : {
+    request: {
         getBuyer: {
             name: "getBuyer",
             url: `${APP_CONFIG.apiBaseUrl}/buyer`

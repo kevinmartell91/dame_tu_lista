@@ -3,7 +3,7 @@
     {{question}}
 </h1>
 <div class="display_products_grid">
-    <ng-container *ngFor='let product of storeProducts'>
+    <ng-container *ngFor='let product of productsList'>
         <app-product-display-shared typeView="maturityView" [product]="product"></app-product-display-shared>
     </ng-container>
 

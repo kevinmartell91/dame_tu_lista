@@ -16,7 +16,6 @@ export function getUrlWithParams(
 export function getStoreRequestStateUpdater(
     store: any,
 ): StoreRequestStateUpdater {
-    console.log("KEVIN => getStoreRequestStateUpdater - store",store);
     return (requestName, requestState) => {
         store.setState({
             ...store.state,

@@ -45,7 +45,7 @@ export class ProductDisplaySharedComponent implements OnInit {
       case "categoryView":
         return "product_display_grid_category_view";
         break;
-      case "typeView":
+      case "varietyView":
         return "product_display_grid_type_view";
         break;
       default: // "SeasonView"

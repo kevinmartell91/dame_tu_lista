@@ -3,7 +3,7 @@
     <div class="product_image_area">
         <img *ngIf="typeView === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
         <img *ngIf="typeView === 'seasonalView'" class="image_style" src={{product.varietyImageUrl}} alt="">
-        <img *ngIf="typeView === 'typeView'" class="image_style" src={{product.varietyImageUrl}} alt="">
+        <img *ngIf="typeView === 'varietyView'" class="image_style" src={{product.varietyImageUrl}} alt="">
         <img *ngIf="typeView === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
     </div>
 
@@ -11,21 +11,21 @@
          class="product_category_area">
         {{product.categoryName}}</div>
 
-    <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView'" 
+    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
         class="product_price_area">
         S/.{{product.price}}
         <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
         <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
     </div>
 
-    <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView'" 
+    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
         class="product_type_area">
         {{product.varietyName}} - 
         <span *ngIf="product.isOrganic">Orgánico</span>
         <span *ngIf="product.isOrganic === false">Normal</span>
     </div>
 
-    <!-- <div *ngIf="typeView === 'typeView' || typeView === 'seasonalView' " 
+    <!-- <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView' " 
         class="product_organic_area">
         <span *ngIf="product.isOrganic">Org</span>
         <span *ngIf="product.isOrganic === false">Nor</span>

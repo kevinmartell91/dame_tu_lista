@@ -10,6 +10,8 @@ import { MaturityProductsComponent } from './views/maturity-products/maturity-pr
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
 import { SeasonalProductsComponent } from './componentes/seasonal-products/seasonal-products.component';
 import { StoreComponent } from './views/store/store.component';
+import { RetailerEndpoint } from "./services/retailer.endpoint";
+import { RetailerStoreStore } from "./services/retailer.store";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,10 @@ import { StoreComponent } from './views/store/store.component';
     CommonModule,
     SharedModule,
     RetailerStoresRoutingModule
+  ],
+  providers: [
+    RetailerEndpoint,
+    RetailerStoreStore
   ]
 })
 export class RetailerStoresModule { }

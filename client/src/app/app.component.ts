@@ -8,6 +8,9 @@ import { BuyerNavegationStore } from "./core/buyer/services/buyer-navegation.sto
 import { Location } from '@angular/common';
 import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
 import { PlatformLocation } from "@angular/common";
+import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
+import { map } from 'rxjs/operators';
+import { ProductsList } from './features/retailer-stores/types/products-list';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +20,7 @@ import { PlatformLocation } from "@angular/common";
 export class AppComponent {
   title = 'Dame tu lista';
   loginUser: LoginUser;
+  // productsList: ProductsList;
 
   loginType: {
     buyer,
@@ -36,16 +40,24 @@ export class AppComponent {
     private authenticationStore: AuthenticationStore,
     public buyerNavegationStore: BuyerNavegationStore,
     private location: Location,
-    private platformLocation: PlatformLocation
+    private platformLocation: PlatformLocation,
+    private retailerStoreStore: RetailerStoreStore
   ) {
 
     this.initializeNavegationValues();
     this.initializeLoginTypeValues();
 
     this.authenticationStore.loginUser$.subscribe( 
-      x => { this.loginUser = x;
-      console.log("loginUser$.subscribe", this.loginUser); }
+      x => { 
+        this.loginUser = x;
+        console.log("APP COMPONENT - subscribe - loginUser$", this.loginUser); 
+      }
     );
+
+    // this.retailerStoreStore.state$.pipe( map ( state => {
+    //   this.productsList = state.productsList;
+    //   console.log("FROM APP COMPONENET", this.productsList);
+    // }))
 
     // this.platformLocation.onPopState(() => {
     //   console.log("press back in add in APP COMPONENT!!!");

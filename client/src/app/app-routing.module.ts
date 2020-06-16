@@ -33,7 +33,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
-    path: 'retailer-store',
+    path: 'retailer-store/:retailer_id',
     // path: '',
     loadChildren: () => import('./features/retailer-stores/retailer-stores.module').then(m => m.RetailerStoresModule),
     canActivate: [AuthGuard]
