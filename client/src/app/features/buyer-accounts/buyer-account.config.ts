@@ -7,7 +7,7 @@ export const BUYER_ACCOUNT_CONFIG = {
             url: `${APP_CONFIG.apiBaseUrl}/buyer`
         },
         getBuyers: {
-            name: "getBuyer",
+            name: "getBuyers",
             url: `${APP_CONFIG.apiBaseUrl}/buyers/`
         },
         patchFavoriteRetailer: {

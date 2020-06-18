@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from "../../../../core/retailer/types/retailer";
 import { Router } from '@angular/router';
@@ -6,15 +6,16 @@ import { Location, PlatformLocation } from '@angular/common';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
+import { updateBuyerNavagation, getBuyerNavegationFromLocalStorage } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.sass']
 })
-export class StoreComponent implements OnInit {
+export class StoreComponent implements OnDestroy{
 
   retailerstoreProducts: any[] = [
     {
@@ -366,23 +367,35 @@ export class StoreComponent implements OnInit {
     private location: Location,
     private platformLocation: PlatformLocation,
     private buyerNavegationStore: BuyerNavegationStore,
-    private retailerStoreStore: RetailerStoreStore
+    public retailerStoreStore: RetailerStoreStore
 
-  ) { 
+  ){
 
-    this.retailerStoreStore.retailer$.subscribe(
-      x => {
-        this.retailer = x;
-        this.productsList = x.store.productsList;
-        console.log("StoreComponent => retailer$.subscribe");
+    this.init();
+    
+    // this.retailerStoreStore.state.retailer.store.name
+    // this.subscribe = this.retailerStoreStore.retailer$.subscribe(
+    //   x => {
+    //     console.log("StoreComponent subscribe => ",x);
+    //     this.retailer = x;
+    //     this.productsList = x.store.productsList;
+    //     console.log("StoreComponent => retailer$.subscribe");
         
-      }
-    )
+    //   }
+    // )
 
-    this.blockBrowserBackButton();    
   }
 
-  ngOnInit(): void {
+  init(): void {
+
+    updateBuyerNavagation(
+      this.buyerNavegationStore,
+      BUYER_CONFIG.navegation.storeView
+    );
+  
+  }
+
+  ngOnDestroy():void {
   }
 
   viewBuyerCart(): void {
@@ -390,28 +403,18 @@ export class StoreComponent implements OnInit {
   }
 
   goBackToBuyerAccount(): void {
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.accountView
-    );
     this.location.back();
   }
 
   goToRetailerCategoryView(): void {
+
     updateBuyerNavagation(
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.categoryView
     );
-    this.router.navigate(['/retailer-store',this.retailer._id,'category-view']);
-  }
 
-  blockBrowserBackButton():void {
-    this.platformLocation.onPopState(() => {
-      updateBuyerNavagation(
-        this.buyerNavegationStore,
-        BUYER_CONFIG.navegation.accountView
-      );
-    })
+    this.router.navigate(['/retailer-store',
+      this.retailerStoreStore.state.retailer._id,
+      'category-view']);
   }
-
 }

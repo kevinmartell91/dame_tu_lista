@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../core/retailer/types/product';
 
 @Component({
@@ -11,31 +11,28 @@ export class ProductDisplaySharedComponent implements OnInit {
   // getting the list of product and render depending on the typeView
   @Input() typeView: string;
   @Input() product: Product;
-  
+  @Output() selected = new EventEmitter<Product>();
 
-  constructor() { }
+  constructor() { 
+    console.log("ProductDisplaySharedComponent - constructor", (this.product));
+
+  }
 
   ngOnInit(): void {
-    // console.log("product", (this.product));
+    console.log("ProductDisplaySharedComponent - product", (this.product));
   }
 
   increment(): number {
     console.log("increment()",this.product.price);
+    // TODO: add to CartStore
     return 99;
   }  
-  getProductAttributesByViewType(){
-    switch (this.typeView) {
-      case "value":
-        
-        break;
-    
-      default:
-        break;
-    }
+
+  select(){ 
+    console.log("select()");
+    this.selected.emit(this.product);
   }
 
-  
-  
   getGridView(typeView: String): string {
     // console.log("getGridView(typeView) = > ",typeView);
     switch (this.typeView) {

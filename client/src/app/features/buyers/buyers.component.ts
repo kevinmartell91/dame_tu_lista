@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyersComponent implements OnInit {
 
+  userName: string = 'John Doe';
+
   constructor() { }
 
   ngOnInit(): void {

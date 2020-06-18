@@ -1,13 +1,12 @@
 <hr>
+
 <h1 class="style_question">
     {{question}}
 </h1>
 
-<br>
-<div (click)="goToRetailerMaturityView()" >Maturity</div>
-
 <div class="display_products_grid">
     <ng-container *ngFor='let product of productsList'>
-        <app-product-display-shared typeView="varietyView" [product]="product"></app-product-display-shared>
+        <app-product-display-shared typeView="varietyView" [product]="product"
+            (selected)="onSelected($event)"></app-product-display-shared>
     </ng-container>
 </div>

@@ -2,11 +2,12 @@ import { Deserializable } from "../../../shared/models/deserializable.model";
 
 export class Product implements Deserializable {
 
+    public _id?: string;
     public categoryImageUrl?: string;
     public categoryName?: string;
     public varietyImageUrl?: string;
     public varietyName?: string;
-    public currency?: number;
+    public currency?: string;
     public price?: number;
     public isSmallSize?: boolean;
     public isMediumSize?: boolean;
@@ -21,7 +22,7 @@ export class Product implements Deserializable {
     public maturityInfo?: string;
     public maturityEatIn?: string;
     public maturityLastFor?: string;
-    public isInStock?: string;
+    public isInStock?: boolean;
     
     deserialize(input: any) {
         Object.assign(this, input);

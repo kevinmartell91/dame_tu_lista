@@ -29,4 +29,27 @@ export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {
             buyerNavegation: buyerNavegation
         });
     }
+    setNewCategoryProductState(newCategoryProduct: string):void {
+        this.setState({
+            ...this.state,
+            categoryProduct: newCategoryProduct
+        });
+        console.log("setNewCategoryProductState", this.state.categoryProduct);
+    }
+
+    setNewVarietyProductState(newVarietyProduct: string):void {
+        this.setState({
+            ...this.state,
+            varietyProduct: newVarietyProduct
+        });
+        console.log("setNewVarietyProductState", this.state.varietyProduct);
+    }
+    
+    setNewMaturityProductState(newMaturityProduct: string):void {
+        this.setState({
+            ...this.state,
+            maturityProduct: newMaturityProduct
+        });
+        console.log("setNewMaturityProductState", this.state.maturityProduct);
+    }
 }

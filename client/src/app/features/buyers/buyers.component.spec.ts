@@ -22,4 +22,10 @@ describe('BuyersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should have a userName 'John Doe'`, async(() => {
+    fixture = TestBed.createComponent(BuyersComponent);
+    component = fixture.debugElement.componentInstance; 
+    expect(component.userName).toEqual('John Doe');
+  }));
 });

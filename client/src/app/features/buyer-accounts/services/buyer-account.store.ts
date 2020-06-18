@@ -10,6 +10,7 @@ import { Buyer } from 'src/app/core/buyer/types/buyer';
 import * as endpointHelpers from "../../../shared/helpers/endpoint.helpers";
 import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
 import { OnDestroy, Inject, Injectable } from '@angular/core';
+import { Product } from 'src/app/core/retailer/types/product';
 
 @Injectable()
 export class BuyerAccountStore extends Store<BuyerAccountStoreState>
@@ -24,9 +25,8 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         super(new BuyerAccountStoreState())
 
         this.buyerAccount$ = this.state$.pipe(map( state => state.buyerAccount));
-        this.storeRequestUpdater = endpointHelpers.getStoreRequestStateUpdater(
-            this
-        );
+        this.storeRequestUpdater = 
+            endpointHelpers.getStoreRequestStateUpdater(this);
     }
     
     ngOnDestroy():void {
@@ -34,8 +34,10 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         this.ngUnsubscribe$.complete();
     }
     
-    init(): void {
-        this.initReloadBuyer$();
+    init(buyer_id: string): void {
+        console.log("ON INIT =>>>>>>");
+
+        this.initReloadBuyer$(buyer_id);
         this.reloadBuyer();
         
     }
@@ -44,17 +46,18 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         this.reloadBuyer$.next();
     }
 
-    private initReloadBuyer$(): void {
+    private initReloadBuyer$(buyer_id: string): void {
         this.reloadBuyer$
             .pipe(
                 switchMap( () => {
-                    return this.endPoint.getBuyerAccount(this.storeRequestUpdater,"id");
+                    console.log("SWITCH MAP");
+                    return this.endPoint.getBuyerAccount(this.storeRequestUpdater,buyer_id);
                 }),
-                tap( (buyer: any) => {
-                    console.log("BuyerAccount Store - initReloadBuyer()", buyer);
+                tap( (data: any) => {
+                    console.log("BuyerAccount Store - initReloadBuyer()", data);
                     this.setState({
                         ...this.state,
-                        buyerAccount: new Buyer().deserialize(buyer.data[0]),
+                        buyerAccount: new Buyer().deserialize(data.data),
                     })
                 }),
                 retry(),
@@ -63,7 +66,7 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
             .subscribe();
     }
 
-    addFavoriteReatailer(
+    public addFavoriteReatailer(
         buyer_id: string, 
         retailer_email: string
     ) {
@@ -89,4 +92,7 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
                 }
             );      
     }
+
+ 
+   
 }

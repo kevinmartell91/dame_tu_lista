@@ -11,7 +11,7 @@ export const STORE_CONFIG = {
         storeView: "storeView",
         seasonalView: "seasonalView",
         categoryView: "categoryView",
-        varietyView: "typeView",
+        varietyView: "varietyView",
         maturityView: "maturityView"
     },
     question_view_type: {

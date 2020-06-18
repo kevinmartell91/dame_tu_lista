@@ -23,10 +23,4 @@ describe('RetailerStoresComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-  it(`should have a userName 'John Doe'`, async(() => {
-    fixture = TestBed.createComponent(RetailerStoresComponent);
-    component = fixture.debugElement.componentInstance; 
-    expect(component.userName).toEqual('John Doe');
-  }));
 });

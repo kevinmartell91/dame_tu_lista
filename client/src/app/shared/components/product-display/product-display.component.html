@@ -1,10 +1,10 @@
  <div  [class]="getGridView(typeView)">
     
     <div class="product_image_area">
-        <img *ngIf="typeView === 'categoryView'" class="image_style" src={{product.categoryImageUrl}} alt="">
-        <img *ngIf="typeView === 'seasonalView'" class="image_style" src={{product.varietyImageUrl}} alt="">
-        <img *ngIf="typeView === 'varietyView'" class="image_style" src={{product.varietyImageUrl}} alt="">
-        <img *ngIf="typeView === 'maturityView'" class="image_style" src={{product.maturityImageUrl}} alt="">
+        <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}} alt="">
+        <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
+        <img *ngIf="typeView === 'varietyView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
+        <img *ngIf="typeView === 'maturityView'" class="image_style" (click)="select()" src={{product.maturityImageUrl}} alt="">
     </div>
 
     <div *ngIf="typeView === 'categoryView'" 

@@ -3,7 +3,7 @@ import { BUYER_ACCOUNT_CONFIG } from '../buyer-account.config';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, delay } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
 import { Injectable } from '@angular/core';
@@ -23,7 +23,7 @@ export class BuyerAccountEndPoint {
         const options = getHeadersForGet();
         requestStateUpdater(request.name, {inProgress: true});
         
-        return this.http.get<any>(request.url, options).pipe(
+        return this.http.get<any>(request.url + buyer_id, options).pipe(
             map( response => {
                 requestStateUpdater(request.name, {inProgress: false});
                 return response;

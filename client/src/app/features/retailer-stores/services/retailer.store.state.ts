@@ -12,6 +12,7 @@ export class RetailerStoreStoreState {
             order: RETAILER_STORES_CONFIG.defaultSortOrder
         }
     };
+    
     request: Request = {
         getRetailer: {}
     }

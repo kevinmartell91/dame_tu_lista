@@ -39,9 +39,7 @@ export class AppComponent {
     private router: Router,
     private authenticationStore: AuthenticationStore,
     public buyerNavegationStore: BuyerNavegationStore,
-    private location: Location,
-    private platformLocation: PlatformLocation,
-    private retailerStoreStore: RetailerStoreStore
+    private location: Location
   ) {
 
     this.initializeNavegationValues();
@@ -53,20 +51,12 @@ export class AppComponent {
         console.log("APP COMPONENT - subscribe - loginUser$", this.loginUser); 
       }
     );
-
-    // this.retailerStoreStore.state$.pipe( map ( state => {
-    //   this.productsList = state.productsList;
-    //   console.log("FROM APP COMPONENET", this.productsList);
-    // }))
-
-    // this.platformLocation.onPopState(() => {
-    //   console.log("press back in add in APP COMPONENT!!!");
-    // })
   }
   
   initializeNavegationValues(): void {
     this.navegation = BUYER_CONFIG.navegation; 
   }
+
   initializeLoginTypeValues(): void {
     this.loginType = LOGIN_CONFIG.loginType; 
   }
@@ -85,34 +75,6 @@ export class AppComponent {
   }
   
   goBackLocation(): void {
-
-    let newBuyerNavegationView ;
-
-    switch (this.buyerNavegationStore.state.buyerNavegation.typeView) {
-
-      case this.navegation.categoryView:
-        newBuyerNavegationView = this.navegation.storeView;
-        break;
-
-      case this.navegation.varietyView:
-        newBuyerNavegationView = this.navegation.categoryView;
-        break;
-    
-      case this.navegation.maturityView:
-        newBuyerNavegationView = this.navegation.varietyView;
-        break;
-    
-      default: // this.navegation.StoreView:
-        newBuyerNavegationView = this.navegation.accountView;
-        break;
-    }
-
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      newBuyerNavegationView
-    );
-
     this.location.back();
   }
-
 }

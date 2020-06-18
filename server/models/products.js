@@ -8,7 +8,7 @@ var productShema = new Schema({
     varietyImageUrl: String,
     varietyName: String,
     currency: String,
-    price: String,
+    price: Number,
     isSmallSize: Boolean,
     isMediumSize: Boolean,
     isBigSize: Boolean,

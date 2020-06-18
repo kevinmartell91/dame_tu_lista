@@ -7,6 +7,8 @@ import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegati
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerAccountStore } from './services/buyer-account.store';
 import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
+import { deserialize } from './helpers/buyer-accounts.helper';
+import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 
 @Component({
   selector: 'app-buyer-accounts',
@@ -17,50 +19,55 @@ export class BuyerAccountsComponent implements OnInit {
 
   loginUser: LoginUser;
   favoriteRetailers:  FavoriteReatailers[] = [];
+  buyer_id: string;
 
   constructor(
-    private router: Router ,
+    private router: Router,
     private authenticationStore: AuthenticationStore,
-    private buyerNavagationStore: BuyerNavegationStore,
+    private buyerNavegationStore: BuyerNavegationStore,
     public buyerAccountStore: BuyerAccountStore) { 
-
-    // this.authenticationStore.loginUser$.subscribe(
-    //   x => { this.loginUser = x; console.log("UPDATED - authenticationStore") }
-    // );
 
     this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
+        this.buyer_id = data.entity._id;
         this.loginUser = data;
-        console.log("subscribe - authenticationStore - login.data.entity",data.entity);
-        let favorites = data.entity.myFavoriteRetailers;
-        favorites.forEach(element => {
-          this.favoriteRetailers.push(new FavoriteReatailers().deserialize(element));
-        });
+        // console.log("KEVIN AuthenticationStore SUBSCRIPTION- login.data.entity",data.entity);
       }
     );
 
     this.buyerAccountStore.buyerAccount$.subscribe(
       (data : any) => { 
         if(data != null) {
-          console.log("subscribe - buyerAccountStore => data.entity",data);
-          this.favoriteRetailers = [];
-          let favorites = data.myFavoriteRetailers;
-          favorites.forEach(element => {
-            this.favoriteRetailers.push(new FavoriteReatailers().deserialize(element));
-          });  
+          this.favoriteRetailers = deserialize(data.myFavoriteRetailers);
         }
       }
     )
 
   }
-
+  
+  /**
+   * when reloadig the web page, this method
+   * retrieve updated data from DB
+   * then pupulate using a subs object is created
+   * whose role is to store subscriptions to different
+   *  observables stores. This is an optimization so 
+   * that only one subscription per store is created 
+   * in a template by storing a conditional result 
+   * in a variable.
+   */
   ngOnInit(): void {
+    
+    updateBuyerNavagation(
+      this.buyerNavegationStore,
+      BUYER_CONFIG.navegation.accountView
+    );
+    this.buyerAccountStore.init(this.buyer_id);
   }
 
   goToRetailerStoreView(retailer_id: string): void {
-    this.updateBuyerNavagationToStoreView();
     this.router.navigate(['/retailer-store/',retailer_id]);
   }
+
   viewBuyerCart(): void {
     this.router.navigate(['/buyer-cart']);
   }
@@ -76,18 +83,11 @@ export class BuyerAccountsComponent implements OnInit {
 
   addFavoriteRetailer(): void {
     // this.buyerAccountStore.init();
-    let buyer_id = ((this.loginUser.entity) as any )._id;
     // let buyer_id = "5edeecfc09ff9d6770b10344";
     let retailer_email = "irene03@gmail.com";
     console.log("addFavoriteRetailer");
-    this.buyerAccountStore.addFavoriteReatailer(buyer_id, retailer_email);
+    this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
    
-  }
-  
-  updateBuyerNavagationToStoreView():void {
-    let buyerNavegationUpdate = this.buyerNavagationStore.state.buyerNavegation;
-    buyerNavegationUpdate.typeView = BUYER_CONFIG.navegation.storeView;
-    this.buyerNavagationStore.setNewState(buyerNavegationUpdate)
   }
 
 }

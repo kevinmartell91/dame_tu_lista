@@ -9,11 +9,12 @@ import { map, switchMap, tap, retry, takeUntil } from 'rxjs/operators';
 import * as endpointHelpers from "../../../shared/helpers/endpoint.helpers";
 import { Product } from 'src/app/core/retailer/types/product';
 import { APP_CONFIG } from 'src/app/app.config';
-import { getProductVector } from "../helpers/product.helper";
+import { getProductDeserialized } from "../helpers/product.helper";
 
 
 
 @Injectable({ providedIn: 'root'})
+// @Injectable()
 export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     implements OnDestroy {
 
@@ -23,9 +24,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     private storeRequestUpdater: StoreRequestStateUpdater;
 
 
-    constructor(
-        private endPoint: RetailerEndpoint
-    ){
+    constructor( private endPoint: RetailerEndpoint){
         super(new RetailerStoreStoreState())
 
         this.retailer$ = this.state$.pipe(map(state => state.retailer));
@@ -38,8 +37,8 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
         this.ngUnsubscribe$.complete();
     }
     
-    init(): void {
-        this.initReloadRetailer$();
+    init(retailer_id: string): void {
+        this.initReloadRetailer$(retailer_id);
         this.reloadRetailer();
         
     }
@@ -48,17 +47,27 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
         this.reloadRetailer$.next();
     }
 
-    private initReloadRetailer$(): void {
+
+    private initReloadRetailer$(retailer_id: string): void {
+        console.log("initReloadRetailer");
         this.retailer$
             .pipe(
                 switchMap( () => {
-                    return this.endPoint.getRetailer("fdsf", this.storeRequestUpdater);
+                    console.log("SWITCH MAP");
+                    return this.endPoint.getRetailer(retailer_id, this.storeRequestUpdater);
                 }),
-                tap( (retailer: any) => {
-                    console.log("BuyerAccount Store - initReloadretailer()", retailer);
+                tap( (response: any) => {
+                    console.log(" retailerStore - initReloadretailer()", response);
                     this.setState({
                         ...this.state,
-                        retailer: new Retailer().deserialize(retailer.data[0]),
+                        retailer: new Retailer().deserialize(response.data),
+                    }),
+                    this.setState({
+                        ...this.state,
+                        productsList: {
+                            ...this.state.productsList,
+                            products:  getProductDeserialized(response.data.store.productsList)
+                        }
                     })
                 }),
                 retry(),
@@ -67,7 +76,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             .subscribe();
     }
 
-    getRetailer(
+    public getRetailer(
         retailer_id: string 
     ) {
         return this.endPoint.getRetailer(retailer_id, this.storeRequestUpdater)
@@ -82,7 +91,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
                         ...this.state,
                         productsList: {
                             ...this.state.productsList,
-                            products:  getProductVector(response.data.store.productsList)
+                            products:  getProductDeserialized(response.data.store.productsList)
                         }
                     })
                 })
@@ -100,5 +109,15 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             );      
     }
 
-
+    // setNewProductState(newProductsList: Product[]): void {
+    //     this.setState({
+    //         ...this.state,
+    //         productsList: {
+    //             ...this.state.productsList,
+    //             products: newProductsList
+    //         }
+    //     });
+    // }
+    
+    
 }

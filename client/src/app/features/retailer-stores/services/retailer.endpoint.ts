@@ -19,24 +19,24 @@ export class RetailerEndpoint {
     ) {
         const request = RETAILER_STORES_CONFIG.request.getRetailer
         const options = getHeadersForGet();
-
+        
         requesStateUpdater(request.name, {inProgress: true } );
+        
+        console.log("APIIII");
+        return this.http.get<any>(request.url + retailer_id, options ).pipe(
+            map( response => {
+                requesStateUpdater(request.name, { inProgress: false });
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                requesStateUpdater(request.name,{ 
+                    inProgress: false,
+                    error: true
+                });
+                return throwError(error);
+            })
+        
 
-        return this.http.get<any>(request.url + retailer_id, options )
-            .pipe(
-                map( response => {
-                    requesStateUpdater(request.name, { inProgress: false });
-                    return response;
-                }),
-                catchError((error: HttpErrorResponse) => {
-                    requesStateUpdater(request.name,{ 
-                        inProgress: false,
-                        error: true
-                    });
-                    return throwError(error);
-                })
-            
-
-            );
+        );
     }
 }
