@@ -6,7 +6,7 @@ import { Location, PlatformLocation } from '@angular/common';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { updateBuyerNavagation, getBuyerNavegationFromLocalStorage } from "../../helpers/buyerNavegation.helper";
+import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { Subscription } from 'rxjs';
 
@@ -361,6 +361,7 @@ export class StoreComponent implements OnDestroy{
   // public retailer: Retailer = new Retailer().deserialize(this.DATA); 
   public retailer: Retailer;
   public productsList: Product[];
+  public loading: boolean;
 
   constructor( 
     private router: Router,
@@ -370,22 +371,23 @@ export class StoreComponent implements OnDestroy{
     public retailerStoreStore: RetailerStoreStore
 
   ){
-
     this.init();
-    
+
     // this.retailerStoreStore.state.retailer.store.name
-    // this.subscribe = this.retailerStoreStore.retailer$.subscribe(
-    //   x => {
+    // this.retailerStoreStore.retailer$.subscribe(
+      // x => {
     //     console.log("StoreComponent subscribe => ",x);
     //     this.retailer = x;
     //     this.productsList = x.store.productsList;
-    //     console.log("StoreComponent => retailer$.subscribe");
+        // this.loading = this.retailerStoreStore.state.request.getRetailer.inProgress;
+        // console.log("StoreComponent =>", this.loading);
         
-    //   }
+      // }
     // )
-
+    
+    
   }
-
+ 
   init(): void {
 
     updateBuyerNavagation(

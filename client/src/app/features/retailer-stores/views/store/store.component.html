@@ -1,5 +1,7 @@
 <ng-container *ngIf="(retailerStoreStore.state$ | async) as subs">
-    <div *ngIf="subs.request.getRetailer.inProgress">Loading...</div>
+
+    <div *ngIf="(subs.request.getRetailer.inProgress)">Loading...</div>
+    
     <div *ngIf="!subs.request.getRetailer.inProgress">
         <div class="store_grid">
             <div class="store_banner_area" [ngStyle]="{'background-image': subs.retailer.getBannerUrl()}">
@@ -30,4 +32,5 @@
         
         </div>
     </div>
+    
 </ng-container>

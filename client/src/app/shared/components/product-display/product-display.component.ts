@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../core/retailer/types/product';
 
 @Component({
@@ -6,35 +6,31 @@ import { Product } from '../../../core/retailer/types/product';
   templateUrl: './product-display.component.html',
   styleUrls: ['./product-display.component.sass']
 })
-export class ProductDisplaySharedComponent implements OnInit {
+export class ProductDisplaySharedComponent {
 
   // getting the list of product and render depending on the typeView
   @Input() typeView: string;
   @Input() product: Product;
   @Output() selected = new EventEmitter<Product>();
+  
+  
+  isQuantityMode: boolean = false;
+  isKiloUnitAvailable: boolean = true;
+  isSizeAvailable: boolean = true;
+  
+  quantity: number = 0;
+  quantityStr : string = "+";
+  kiloOrUnit: string;
+  size: string = "";
 
-  constructor() { 
-    console.log("ProductDisplaySharedComponent - constructor", (this.product));
-
-  }
-
-  ngOnInit(): void {
-    console.log("ProductDisplaySharedComponent - product", (this.product));
-  }
-
-  increment(): number {
-    console.log("increment()",this.product.price);
-    // TODO: add to CartStore
-    return 99;
-  }  
+  constructor() { }
 
   select(){ 
-    console.log("select()");
+    console.log("select()",this.quantity);
     this.selected.emit(this.product);
   }
 
-  getGridView(typeView: String): string {
-    // console.log("getGridView(typeView) = > ",typeView);
+  getGridView(): string {
     switch (this.typeView) {
       case "maturityView":
         return "product_display_grid_maturity_view";
@@ -50,4 +46,38 @@ export class ProductDisplaySharedComponent implements OnInit {
         break;
     }
   }
+
+  /**
+   * listen to quantityUpdated from add-button-component.ts
+   * @param newQuantity 
+   */
+  onQuantityUpdated(quantityUpdated: number){ 
+    
+    this.quantity = quantityUpdated;
+    
+    if(quantityUpdated == 0) {
+      this.quantityStr = "+";
+    } else {
+      this.quantityStr = quantityUpdated.toString();
+    }
+  }
+  onMassUpdated(kiloOrUnitUpdated: string) {
+    this.kiloOrUnit = kiloOrUnitUpdated;
+  }
+  
+  onSizeUpdated(sizeUpdated: string){
+    this.switchQuantityMode();
+    this.size = sizeUpdated;
+    console.log("onSizeUpdated", this.size);
+  }
+
+  enableQuantityMode():void {
+    this.isQuantityMode = true;
+  }
+  
+  switchQuantityMode(): void {
+    this.isQuantityMode ? this.isQuantityMode = false : this.isQuantityMode = true;
+  }
+  
+
 }

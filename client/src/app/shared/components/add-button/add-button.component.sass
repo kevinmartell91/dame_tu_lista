@@ -1,0 +1,141 @@
+$text-font-size: 1.5em
+$sign-font-size: 2.5em
+$quantity-font-size: 2em
+$quantity-color: #5f5f5f
+$optionsColor: #43b02a
+$border-radius: 7px
+$box-size: 40px
+* 
+  box-sizing: border-box
+
+.container
+  display: grid
+  margin: 0
+  padding: 0em
+  grid-template-columns: 60px 60px 60px
+  grid-template-rows: $box-size 1px $box-size 1px $box-size
+  grid-template-areas: "decre number incre" "div1 div1 div1" "kiloUnit kiloUnit kiloUnit" "div2 div2 div2" "small medium big" 
+  background-color: white
+  border-radius: $border-radius
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px
+  user-select: none
+  transform: translate(-52px, 15px)
+  div:empty 
+    display: none 
+
+  .decrease_area
+    grid-area: decre  
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $sign-font-size
+    color: $optionsColor
+    text-align: center
+    font-weight: normal
+    
+  .number_area
+    grid-area: number
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $quantity-font-size
+    color: gray
+    text-align: center
+    font-weight: normal
+    
+  .increase_area
+    grid-area: incre
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $sign-font-size
+    color: $optionsColor
+    text-align: center
+    font-weight: normal
+ 
+
+  .kilo_or_Unit_area
+    grid-area: kiloUnit
+    display: grid 
+    grid-template-columns: initial
+    grid-template-areas: "kilo unit"
+    z-index: 10px
+
+    .kilo_area
+      grid-area: kilo  
+      padding: 7px
+      width: 100%
+      height: $box-size
+      font-size: $text-font-size
+      color: $optionsColor
+      text-align: center
+      font-weight: normal
+
+    .unit_area
+      grid-area: unit  
+      padding: 7px
+      width: 100%
+      height: $box-size
+      font-size: $text-font-size
+      color: $optionsColor
+      text-align: center
+      font-weight: normal
+    
+  .small_area
+    grid-area: small  
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $text-font-size
+    color: $optionsColor
+    text-align: center
+    font-weight: normal
+    
+  .medium_area
+    grid-area: medium
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $text-font-size
+    color: $optionsColor
+    text-align: center
+    font-weight: normal
+    
+  .big_area
+    grid-area: big
+    padding: 7px
+    width: 100%
+    height: $box-size
+    font-size: $text-font-size
+    color: $optionsColor
+    text-align: center
+    font-weight: normal
+
+
+  .devider_one_area
+    grid-area: div1
+    transform: translateY(-12px)
+    color: $optionsColor
+
+  .devider_two_area
+    grid-area: div2
+    transform: translateY(-12px)
+    color: $optionsColor
+
+
+div.increase_area, 
+div.decrease_area, 
+div.small_area, 
+div.medium_area, 
+div.big_area,
+div.unit_area,
+div.kilo_area
+  &:hover
+    border-radius: 3px
+    background: #eaeaea  
+
+.selected
+  border: 1px solid #43b02a
+  border-radius: $border-radius
+  z-index: 1
+

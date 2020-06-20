@@ -16,24 +16,24 @@ export function  updateBuyerNavagation(
 }
 
 
-export function  storeBuyerNavegationInLocalStorage(
-    buyerNavegationStore: BuyerNavegationStore,
-    newBuyerNavegationView: string
-): void {
-     // store in local storage in case the page is reloaded
-     localStorage.setItem('buyerNavegation',JSON.stringify(newBuyerNavegationView));
-     console.log("newBuyerNavegationView => ", JSON.parse(localStorage.getItem('buyerNavegation')));
-}
+// export function  storeBuyerNavegationInLocalStorage(
+//     buyerNavegationStore: BuyerNavegationStore,
+//     newBuyerNavegationView: string
+// ): void {
+//      // store in local storage in case the page is reloaded
+//      localStorage.setItem('buyerNavegation',JSON.stringify(newBuyerNavegationView));
+//      console.log("newBuyerNavegationView => ", JSON.parse(localStorage.getItem('buyerNavegation')));
+// }
 
-// export function setBuyerNavegationFromLocalStorage( buyerNavegation: string ):void {
-export function getBuyerNavegationFromLocalStorage(  ):void {
-    let buyerNavegationLocalStorage = 
-      localStorage.getItem('buyerNavegation');
+// // export function setBuyerNavegationFromLocalStorage( buyerNavegation: string ):void {
+// export function getBuyerNavegationFromLocalStorage(  ):void {
+//     let buyerNavegationLocalStorage = 
+//       localStorage.getItem('buyerNavegation');
 
-    if (buyerNavegationLocalStorage === BUYER_CONFIG.navegation.storeView) {
-      updateBuyerNavagation(
-        this.buyerNavegationStore,
-        buyerNavegationLocalStorage
-      );
-    } 
-  }
+//     if (buyerNavegationLocalStorage === BUYER_CONFIG.navegation.storeView) {
+//       updateBuyerNavagation(
+//         this.buyerNavegationStore,
+//         buyerNavegationLocalStorage
+//       );
+//     } 
+//   }

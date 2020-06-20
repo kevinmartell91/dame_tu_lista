@@ -67,6 +67,7 @@ import { MdlModule } from "@angular-mdl/core";
 import 'hammerjs';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductDisplaySharedComponent } from './components/product-display/product-display.component';
+import { AddButtonComponent } from './components/add-button/add-button.component';
 
 const EXPORTED_DECLARATIONS = [
   	// ClipboardModule,
@@ -119,6 +120,7 @@ const EXPORTED_DECLARATIONS = [
 @NgModule({
   declarations: [
   ModalComponent,
+//   AddButtonComponent,
 //   ProductDisplaySharedComponent,
 ],
   imports: [

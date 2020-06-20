@@ -5,6 +5,7 @@ import { RetailerStoresRoutingModule } from './retailer-stores-routing.module';
 import { RetailerStoresComponent } from './retailer-stores.component';
 import { SharedModule } from "../../shared/shared.module";
 import { ProductDisplaySharedComponent } from "../../shared/components/product-display/product-display.component";
+import { AddButtonComponent } from "../../shared/components/add-button/add-button.component";
 import { CategoryProductsComponent } from './views/category-products/category-products.component';
 import { MaturityProductsComponent } from './views/maturity-products/maturity-products.component';
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
@@ -21,6 +22,7 @@ import { RetailerStoreStore } from "./services/retailer.store";
     MaturityProductsComponent,
     VarietyProductsComponent,
     ProductDisplaySharedComponent,
+    AddButtonComponent,
     StoreComponent
   ],
   imports: [

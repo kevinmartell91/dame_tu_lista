@@ -7,7 +7,9 @@
 <div class="display_products_grid">
     <ng-container *ngFor='let product of productsList'>
         <app-product-display-shared typeView="maturityView" [product]="product"
-            (selected)="onSelected($event)"></app-product-display-shared>
+        (selected)="onSelected($event)">
+        </app-product-display-shared>
+    
     </ng-container>
 
 </div>
