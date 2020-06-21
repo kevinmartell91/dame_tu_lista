@@ -22,7 +22,6 @@ export class RetailerEndpoint {
         
         requesStateUpdater(request.name, {inProgress: true } );
         
-        console.log("APIIII");
         return this.http.get<any>(request.url + retailer_id, options ).pipe(
             map( response => {
                 requesStateUpdater(request.name, { inProgress: false });

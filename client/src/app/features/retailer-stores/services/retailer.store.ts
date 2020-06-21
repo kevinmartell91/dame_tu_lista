@@ -79,10 +79,11 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     public getRetailer(
         retailer_id: string 
     ) {
+        let res;
         return this.endPoint.getRetailer(retailer_id, this.storeRequestUpdater)
             .pipe(
                 map( (response: any) => {
-                    console.log("resultresultresult", response);
+                    res = response;
                     this.setState({
                         ...this.state,
                         retailer: new Retailer().deserialize(response.data)
@@ -98,13 +99,13 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             )
             .subscribe(
                 (val) => {
-                    console.log("val", val);
+                    // console.log("val", val);
                 },
                 (err) => {
                     console.log("err",err);
                 },
                 () => {
-                    console.log("completed");
+                    console.log("Completed - endPoint.getRetailer ",res);
                 }
             );      
     }

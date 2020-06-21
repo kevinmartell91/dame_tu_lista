@@ -25,11 +25,11 @@ const routes: Routes = [
             component: CategoryProductsComponent
           },
           {
-            path: 'variety-view',
+            path: 'variety-view/:categoryName',
             component: VarietyProductsComponent
           },
           {
-            path: 'maturity-view',
+            path: 'maturity-view/:categoryName/:varietyName',
             component: MaturityProductsComponent
           }
         ]

@@ -24,7 +24,6 @@ export class RetailerStoresComponent implements OnDestroy {
 
   constructor( 
     private readonly route: ActivatedRoute,
-    private location: Location,
     private retailerStoreStore: RetailerStoreStore 
   ) { 
     this.init();
@@ -36,7 +35,7 @@ export class RetailerStoresComponent implements OnDestroy {
       this.subscribedParamRetailerId = params.get("retailer_id");
       console.log("RetailerStoresComponent - retailer_id",this.subscribedParamRetailerId);
     });
-   this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
+    this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
   }
 
   ngOnDestroy():void {

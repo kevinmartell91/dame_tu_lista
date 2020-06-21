@@ -10,9 +10,7 @@ export function  updateBuyerNavagation(
     let buyerNavegation = buyerNavegationStore.state.buyerNavegation;
     buyerNavegation.typeView = newBuyerNavegationView,
     buyerNavegationStore.setNewState(buyerNavegation);
-    console.log(" HELPER => buyerNavegation.typeView => ", buyerNavegationStore.state.buyerNavegation.typeView)
-
-    // storeBuyerNavegationInLocalStorage(buyerNavegationStore,newBuyerNavegationView);
+    
 }
 
 

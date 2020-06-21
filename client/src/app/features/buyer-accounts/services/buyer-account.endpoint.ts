@@ -23,9 +23,12 @@ export class BuyerAccountEndPoint {
         const options = getHeadersForGet();
         requestStateUpdater(request.name, {inProgress: true});
         
+        console.log("requestStateUpdater",requestStateUpdater); 
         return this.http.get<any>(request.url + buyer_id, options).pipe(
             map( response => {
                 requestStateUpdater(request.name, {inProgress: false});
+                console.log("requestStateUpdater",requestStateUpdater);   
+                
                 return response;
             }),
             catchError((error: HttpErrorResponse) => {

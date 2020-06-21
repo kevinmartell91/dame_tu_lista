@@ -1,8 +1,28 @@
 <h1 class="style_question">
     {{question}}
 </h1>
-<div class="display_products_grid">
-    <ng-container *ngFor='let product of storeProducts'>
-        <app-product-display-shared typeView="seasonalView" [product]="product"></app-product-display-shared>
+
+<ng-container 
+    *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+    
+    <ng-container
+        *ngIf = "subs.state$.requests.getRetailer.inProgress ;
+        then showLoading ; 
+        else showSeasonalList">
     </ng-container>
-</div>
+
+    <ng-template #showLoading>
+       loading..
+    </ng-template>
+
+    <ng-template #showSeasonalList>
+        <div class="display_products_grid">
+            <ng-container  
+                *ngFor='let product of subs.state$.productsList.products'>
+                <app-product-display-shared typeView="seasonalView" [product]="product"
+                    (selected)=onSelected($event)></app-product-display-shared>
+            </ng-container>
+        </div>
+    </ng-template>
+
+</ng-container>

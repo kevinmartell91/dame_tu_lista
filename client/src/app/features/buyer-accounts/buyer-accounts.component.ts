@@ -31,17 +31,19 @@ export class BuyerAccountsComponent implements OnInit {
       (data : any) => { 
         this.buyer_id = data.entity._id;
         this.loginUser = data;
-        // console.log("KEVIN AuthenticationStore SUBSCRIPTION- login.data.entity",data.entity);
+        console.log("SUBSCRIBED to BuyerAccountsComponent - authenticationStore -  Listened");
+        
       }
     );
-
-    this.buyerAccountStore.buyerAccount$.subscribe(
-      (data : any) => { 
-        if(data != null) {
-          this.favoriteRetailers = deserialize(data.myFavoriteRetailers);
-        }
-      }
-    )
+      
+    // this.buyerAccountStore.buyerAccount$.subscribe(
+    //   (data : any) => { 
+    //     console.log("SUBSCRIBED to BuyerAccountsComponent - buyerAccountStore - Listened");
+    //     if(data != null) {
+    //       this.favoriteRetailers = deserialize(data.myFavoriteRetailers);
+    //     }
+    //   }
+    // )
 
   }
   
@@ -89,5 +91,6 @@ export class BuyerAccountsComponent implements OnInit {
     this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
    
   }
+
 
 }

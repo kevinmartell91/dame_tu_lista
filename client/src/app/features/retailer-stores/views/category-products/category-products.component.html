@@ -1,8 +1,24 @@
 <hr>
 
-<div class="display_products_grid">
-    <ng-container *ngFor='let product of productsList'>
-        <app-product-display-shared typeView="categoryView" [product]="product"
-            (selected)=onSelected($event)></app-product-display-shared>
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+    
+    <ng-container
+        *ngIf = "subs.state$.requests.getRetailer.inProgress ;
+        then showLoading ; 
+        else showCategoryList">
     </ng-container>
-</div>
+
+    <ng-template #showLoading>
+       loading..
+    </ng-template>
+
+    <ng-template #showCategoryList>
+        <div class="display_products_grid">
+            <ng-container *ngFor='let product of _filterAllProductsByCategory(subs.state$.productsList.products)'>
+                <app-product-display-shared typeView="categoryView" [product]="product"
+                    (selected)=onSelected($event)></app-product-display-shared>
+            </ng-container>
+        </div>
+    </ng-template>
+
+</ng-container>

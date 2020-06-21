@@ -1,60 +1,71 @@
 import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import { STORE_CONFIG } from "../../../../core/store/store_config";
 import { Product } from "../../../../core/retailer/types/product";
-import { PlatformLocation, Location } from '@angular/common';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
-import {filterProductsByMaturity} from '../../helpers/product.helper';
+import {filterProductsByMaturity, getProductDeserialized} from '../../helpers/product.helper';
 import { Subscription } from 'rxjs';
+import { 
+  TemporaryStorageFacet, 
+  TemporaryStorageService 
+} from 'src/app/core/session-storage/services/temporary-storage.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-maturity-products',
   templateUrl: './maturity-products.component.html',
   styleUrls: ['./maturity-products.component.sass']
 })
-export class MaturityProductsComponent implements OnDestroy {
+export class MaturityProductsComponent implements OnInit, OnDestroy {
 
-  // @Input() storeProducts: Product; 
   public maturityView: string;
   public question: string;
 
   public retailer: Retailer;
   public productsList: Product[];
   public productSelected: Product;
+  public categoryProduct: string;
+  public varietyProduct: string;
+
+  // url params attributes
+  public category: string;
+  public variety: string;
+  public retailer_id: string;
 
   public subscription: Subscription;
 
   constructor( 
     private buyerNavegationStore: BuyerNavegationStore,
-    private platformLocation: PlatformLocation,
-    private retailerStoreStore: RetailerStoreStore,
-    private location: Location
+    private readonly activatedRoute: ActivatedRoute,
+    public retailerStoreStore: RetailerStoreStore
   ) {
 
-    this.init();
+    this.initializeViewSettings();
+    
+   }
+    
+  ngOnInit(): void {
 
-    this.subscription = this.retailerStoreStore.retailer$.subscribe(
-      x => {
-        console.log("MaturityProductsComponent - SUBCRIBE");
-        console.log("buyerNavegationStore.state.categoryProduct ==>", buyerNavegationStore.state.categoryProduct);
-        this.retailer = x;
-        this.productsList = filterProductsByMaturity(
-          buyerNavegationStore.state.categoryProduct,
-          buyerNavegationStore.state.varietyProduct, 
-          x.store.productsList);
-          
-        
-        console.log("VARIETY SELECTED = > ",buyerNavegationStore.state.varietyProduct);
-        console.log("MaturityProductsComponent - products", this.productsList);
-      }
-    )
+    this.subscription = this.activatedRoute.paramMap.subscribe( params => {
+      this.retailer_id = params.get('retailer_id');
+      this.category = params.get('categoryName');
+      this.variety = params.get('varietyName');
+    })
+
   }
-    
-  init(): void {
-    
+
+  /**
+   *  By unsubscribing, It prevents memory leak
+   */
+  ngOnDestroy():void {
+    this.subscription.unsubscribe();
+  }
+
+  private initializeViewSettings(): void {
+
     updateBuyerNavagation(
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.maturityView
@@ -62,17 +73,15 @@ export class MaturityProductsComponent implements OnDestroy {
     
     this.maturityView = STORE_CONFIG.view_type.maturityView;
     this.question = STORE_CONFIG.question_view_type.maturityView;
+
   }
 
-  // goBackToCategoryView(): void {
-  //   this.location.back();
-  // }
-
-  ngOnDestroy():void {
-    this.subscription.unsubscribe();
-  }
-
-  public onSelected(product: Product){
+  public onSelected(product: Product) {
     this.productSelected = product;
   }
+
+  _filterProductsByMaturity(category: string, variety: string, products: Product[]): Product[] {
+    return filterProductsByMaturity(category, variety, products);
+  }
+
 }

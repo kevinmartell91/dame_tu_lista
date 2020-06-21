@@ -17,15 +17,18 @@ export class SeasonalProductsComponent implements OnInit {
   @Input() storeProducts: Product[]; 
   public seasonalView: string;
   public question: string;
+  public productSelected: Product;
 
   public retailer: Retailer;
   public productsList: Product[];
 
   constructor(
-    private retailerStoreStore: RetailerStoreStore
+    public retailerStoreStore: RetailerStoreStore
   ) { 
     this.retailerStoreStore.retailer$.subscribe(
       x => {
+        console.log("SUBSCRIBED to SeasonalProductsComponent Listened");
+
         this.retailer = x;
         // this.productsList = filterProducts(STORE_CONFIG.view_type.seasonalView)
       }
@@ -33,9 +36,20 @@ export class SeasonalProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("kevin=> products", this.storeProducts);
+    console.log("SeasonalProductsComponent => products", this.storeProducts);
     this.seasonalView = STORE_CONFIG.view_type.seasonalView;
     this.question = STORE_CONFIG.question_view_type.seasonalView;
   }
 
+  /**
+   * Listen to childre component(product-displaycomponent)
+   * @param product product selected on children 
+   * component
+   */
+  public onSelected(product: Product){
+    this.productSelected = product;
+    console.log("productSelected", this.productSelected);
+    // this.buyerNavegationStore.setNewCategoryProductState(product.categoryName);
+    // this.goToRetailerVarietyView();
+  } 
 }

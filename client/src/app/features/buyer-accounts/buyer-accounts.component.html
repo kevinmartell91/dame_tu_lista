@@ -20,12 +20,19 @@
         <div class="buyer-stores-section">
             <div class="stores_grid">
     
-                <ng-container *ngIf="(buyerAccountStore.state$ | async) as subs">
-                    <div *ngIf="subs.requests.getBuyer.inProgress">CargandoCargandoCargandoCargandoCargandoCargando...</div>
+                <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
+                    
+                    <ng-container 
+                        *ngIf = "subs.state$.requests.getBuyers.inProgress ;
+                        then showLoading ;
+                        else showFavoriteRetailers">
+                    </ng-container>
 
-                    <ng-container *ngIf="!subs.requests.getBuyer.inProgress">
+                    <ng-template #showLoading> Loading.... </ng-template>
+                    
+                    <ng-template #showFavoriteRetailers>
                         
-                        <ng-container *ngFor='let favoriteRetailer of subs.buyerAccount.myFavoriteRetailers'>
+                        <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
 
                             <div (click)="goToRetailerStoreView(favoriteRetailer._id)" class="store_grid">
                                 <div class="store_image_area">
@@ -41,12 +48,18 @@
     
                         </ng-container>
 
-                    </ng-container>
+                    </ng-template>
                     
                 </ng-container>
                 
             </div>
         </div>
+
+        <!-- <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
+            <ng-container *ngIf="subs.state$.requests.getBuyers.inProgress ; then showLoading; else show"></ng-container>
+                <ng-template #showLoading> LOADDING</ng-template>
+                <ng-template #show> DONE</ng-template>
+        </ng-container> -->
         
     </div>
 </div>

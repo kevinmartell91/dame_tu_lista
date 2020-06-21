@@ -4,9 +4,26 @@
     {{question}}
 </h1>
 
-<div class="display_products_grid">
-    <ng-container *ngFor='let product of productsList'>
-        <app-product-display-shared typeView="varietyView" [product]="product"
-            (selected)="onSelected($event)"></app-product-display-shared>
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+    
+    <ng-container
+        *ngIf = "subs.state$.requests.getRetailer.inProgress ;
+        then showLoading ; 
+        else showVarietyList">
     </ng-container>
-</div>
+
+    <ng-template #showLoading>
+        loading...
+    </ng-template>
+
+    <ng-template #showVarietyList>
+        <div class="display_products_grid">
+            <ng-container *ngFor='let product of _filterAllProductsByCategory(category, subs.state$.productsList.products)'>
+                <app-product-display-shared typeView="varietyView" [product]="product"
+                    (selected)="onSelected($event)"></app-product-display-shared>
+            </ng-container>
+        </div>
+    </ng-template>
+
+</ng-container>
+
