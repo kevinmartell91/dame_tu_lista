@@ -13,6 +13,8 @@ import { BuyerNavegationStore } from "../core/buyer/services/buyer-navegation.st
 
 import { TemporaryStorageService } from "../core/session-storage/services/temporary-storage.service";
 
+import { CartStore } from "../core/cart/services/cart.store";
+
 @NgModule({
     declarations: [],
     imports: [],
@@ -21,6 +23,7 @@ import { TemporaryStorageService } from "../core/session-storage/services/tempor
       AuthenticationEndPoint,
       BuyerNavegationStore,
       TemporaryStorageService,
+      CartStore,
       { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptors, multi: true }
     ],

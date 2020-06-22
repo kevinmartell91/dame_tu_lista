@@ -13,6 +13,8 @@ import {
   TemporaryStorageService 
 } from 'src/app/core/session-storage/services/temporary-storage.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
 
 @Component({
   selector: 'app-maturity-products',
@@ -26,6 +28,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
 
   public retailer: Retailer;
   public productsList: Product[];
+  public cartProductSelected: CartProduct;
   public productSelected: Product;
   public categoryProduct: string;
   public varietyProduct: string;
@@ -40,7 +43,8 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
   constructor( 
     private buyerNavegationStore: BuyerNavegationStore,
     private readonly activatedRoute: ActivatedRoute,
-    public retailerStoreStore: RetailerStoreStore
+    public retailerStoreStore: RetailerStoreStore,
+    private cartStore: CartStore
   ) {
 
     this.initializeViewSettings();
@@ -76,12 +80,31 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Listening to selected product as CartProduct
+   * @param cartProduct instance ready to be added
+   * to CartStore
+   */
   public onSelected(product: Product) {
-    this.productSelected = product;
-  }
 
-  _filterProductsByMaturity(category: string, variety: string, products: Product[]): Product[] {
+    this.productSelected =  product;
+    console.log("onSelected");
+  }
+  
+  public onSelectedCartProduct( cartProduct: CartProduct): void {
+  
+    this.cartStore.updateCart(cartProduct);
+  
+  }
+  
+  _filterProductsByMaturity(
+    category: string, 
+    variety: string, 
+    products: Product[]
+  ): Product[] {
+    
     return filterProductsByMaturity(category, variety, products);
-  }
 
+  }
+  
 }

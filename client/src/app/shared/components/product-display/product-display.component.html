@@ -1,6 +1,7 @@
- <div  [class]="getGridView()">
+
+<div  [class]="getGridView()">
     
-    <div class="product_image_area">
+    <div class="product_image_area"  (click)="disableQuantityMode()">
         <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}} alt="">
         <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
         <img *ngIf="typeView === 'varietyView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
@@ -32,16 +33,13 @@
     </div> -->
     
     <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
-        class="product_add_area">
+        [ngClass]="{product_add_area: true , quantity_increased: isQuantityIncreased}">
 
         <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showAddButton"></ng-container>
         
         <ng-template #showAddButton>
             <div (click)="enableQuantityMode()">
-                
                 {{quantityStr}}
-                {{size}}
-                {{kiloOrUnit}}
             </div>
         </ng-template>
 

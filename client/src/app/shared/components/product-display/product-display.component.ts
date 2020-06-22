@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../core/retailer/types/product';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { getCartProductFromProduct } from 'src/app/core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-product-display-shared',
@@ -12,25 +14,33 @@ export class ProductDisplaySharedComponent {
   @Input() typeView: string;
   @Input() product: Product;
   @Output() selected = new EventEmitter<Product>();
+  @Output() selectedCartProduct = new EventEmitter<CartProduct>();
   
   
   isQuantityMode: boolean = false;
   isKiloUnitAvailable: boolean = true;
   isSizeAvailable: boolean = true;
   
-  quantity: number = 0;
   quantityStr : string = "+";
-  kiloOrUnit: string;
+  quantity: number = 0;
+  kiloOrUnit: string = "";
   size: string = "";
+
+  isQuantityIncreased: boolean = false;
 
   constructor() { }
 
   select(){ 
-    console.log("select()",this.quantity);
-    this.selected.emit(this.product);
+
+    console.log("select()",this.quantity,this.size, this.kiloOrUnit);
+    this.selected.emit(this.product)
+    this.selectedCartProduct.emit(this.getCartProduct());
+
   }
 
+
   getGridView(): string {
+
     switch (this.typeView) {
       case "maturityView":
         return "product_display_grid_maturity_view";
@@ -45,6 +55,7 @@ export class ProductDisplaySharedComponent {
         return "product_display_grid_seasonal_view";
         break;
     }
+ 
   }
 
   /**
@@ -57,27 +68,50 @@ export class ProductDisplaySharedComponent {
     
     if(quantityUpdated == 0) {
       this.quantityStr = "+";
+      this.isQuantityIncreased = false;
     } else {
       this.quantityStr = quantityUpdated.toString();
+      this.isQuantityIncreased = true;
     }
+  
   }
+  
   onMassUpdated(kiloOrUnitUpdated: string) {
+  
     this.kiloOrUnit = kiloOrUnitUpdated;
+  
   }
   
   onSizeUpdated(sizeUpdated: string){
-    this.switchQuantityMode();
+   
+    // this.switchQuantityMode();
     this.size = sizeUpdated;
     console.log("onSizeUpdated", this.size);
+  
   }
 
   enableQuantityMode():void {
+    
     this.isQuantityMode = true;
+ 
+  }
+
+  disableQuantityMode(): void {
+   
+    this.isQuantityMode = false;
+  
   }
   
   switchQuantityMode(): void {
+    
     this.isQuantityMode ? this.isQuantityMode = false : this.isQuantityMode = true;
+  
   }
   
+  private getCartProduct(): CartProduct {
+
+    return getCartProductFromProduct(this.product, this.quantity, this.size);
+    
+  }
 
 }

@@ -4,6 +4,8 @@ import { STORE_CONFIG } from 'src/app/core/store/store_config';
 import { Product } from 'src/app/core/retailer/types/product';
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
 // import { filterProducts } from '../../helpers/product.helper';
 // import { ProductDisplaySharedComponent } from "../../../../shared/components/product-display/product-display.component";
 
@@ -23,7 +25,8 @@ export class SeasonalProductsComponent implements OnInit {
   public productsList: Product[];
 
   constructor(
-    public retailerStoreStore: RetailerStoreStore
+    public retailerStoreStore: RetailerStoreStore,
+    private cartStore: CartStore
   ) { 
     this.retailerStoreStore.retailer$.subscribe(
       x => {
@@ -52,4 +55,11 @@ export class SeasonalProductsComponent implements OnInit {
     // this.buyerNavegationStore.setNewCategoryProductState(product.categoryName);
     // this.goToRetailerVarietyView();
   } 
+
+
+  public onSelectedCartProduct(cartProduct: CartProduct) { 
+
+    this.cartStore.updateCart(cartProduct);
+
+  }
 }

@@ -381,8 +381,6 @@ export class StoreComponent implements OnDestroy{
         
       // }
     // )
-    
-    
   }
  
   init(): void {
@@ -391,14 +389,13 @@ export class StoreComponent implements OnDestroy{
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.storeView
     );
-  
   }
 
   ngOnDestroy():void {
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/buyer-cart']);
+    this.router.navigate(['/personal-cart']);
   }
 
   goBackToBuyerAccount(): void {

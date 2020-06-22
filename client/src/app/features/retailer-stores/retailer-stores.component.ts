@@ -26,6 +26,7 @@ export class RetailerStoresComponent implements OnDestroy {
     private readonly route: ActivatedRoute,
     private retailerStoreStore: RetailerStoreStore 
   ) { 
+
     this.init();
   }
     
@@ -33,7 +34,6 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.subscribe = this.route.paramMap.subscribe( params => {
       this.subscribedParamRetailerId = params.get("retailer_id");
-      console.log("RetailerStoresComponent - retailer_id",this.subscribedParamRetailerId);
     });
     this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
   }

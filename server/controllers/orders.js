@@ -8,7 +8,7 @@ exports.postOrders = function(req, res) {
   var order = new Order();
   order.shipping = req.body.shipping;
   order.payment = req.body.payment;
-  order.products = req.body.products;
+  order.cart = req.body.cart;
   
   order.save(function(err){
         
@@ -61,6 +61,7 @@ exports.getOrder = function(req, res) {
 // Create endpoint /api/orders/:user_id for PUT
 exports.putOrder = function(req, res) {
 
+  let update = req.body;
   Order.findById(req.params.order_id, function(err, order) {
     if (err)
       return res.status(500).send(err);

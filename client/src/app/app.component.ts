@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BUYER_CONFIG } from "./core/buyer/buyer.config";
 import { LOGIN_CONFIG } from "./core/login/login.config";
@@ -11,15 +11,24 @@ import { PlatformLocation } from "@angular/common";
 import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
 import { map } from 'rxjs/operators';
 import { ProductsList } from './features/retailer-stores/types/products-list';
+import { CartStore } from './core/cart/services/cart.store';
+import { Subscription } from 'rxjs';
+import { ShoppingCart } from './core/cart/types/shopping-cart';
+import { CartProduct } from './core/cart/types/cart-product';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy{
   title = 'Dame tu lista';
   loginUser: LoginUser;
+  cartProductsQuantity: number = 0;
+  cartProducts: CartProduct[];
+
+  authenticationSubcription: Subscription;
+  cartStoreSubcription: Subscription;
   // productsList: ProductsList;
 
   loginType: {
@@ -39,18 +48,31 @@ export class AppComponent {
     private router: Router,
     private authenticationStore: AuthenticationStore,
     public buyerNavegationStore: BuyerNavegationStore,
-    private location: Location
+    private location: Location,
+    public cartStore: CartStore
   ) {
 
     this.initializeNavegationValues();
     this.initializeLoginTypeValues();
 
-    this.authenticationStore.loginUser$.subscribe( 
+    this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
       x => { 
         this.loginUser = x;
         console.log("APP COMPONENT - subscribe - loginUser$", this.loginUser); 
       }
     );
+
+    this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe(
+      y => {
+        this.cartProducts = y.products;
+        this.cartProductsQuantity = y.products.length;
+      }
+    )
+  }
+
+  ngOnDestroy() {
+    this.authenticationSubcription.unsubscribe();
+    this.cartStoreSubcription.unsubscribe();
   }
   
   initializeNavegationValues(): void {

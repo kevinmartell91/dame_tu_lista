@@ -65,7 +65,7 @@ export class AddButtonComponent implements OnInit {
 
   async sizeUpdate (size: string) {
     this.updateSizesSelection(size);
-    await this.delay(4000);
+    // await this.delay(1000);
     this.sizeUpdated.emit(size);
   }
 

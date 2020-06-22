@@ -38,6 +38,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/retailer-stores/retailer-stores.module').then(m => m.RetailerStoresModule),
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'personal-cart', 
+    loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule)
+  },
   {
   	path: '**',
     component: PageNotFoundComponent

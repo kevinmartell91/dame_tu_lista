@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
   createdOn: { type: Date, default: Date.now() },  
+  retailer_id: String,
   shipping: {
     buyer: {
       _id: String,
@@ -22,6 +23,7 @@ var orderSchema = new Schema({
       details: String   
     },
     tracking: {
+      driver_name: String,
       company: String,
       trackingNumber: String,
       orderStatus: [[String, Date]],
@@ -30,18 +32,20 @@ var orderSchema = new Schema({
   },
   payment: {
     amount: Number,
-    method: String,
+    method: { 
+      type: String,
+      enum: ['upon_delivery', 'card', 'deposit' ]
+    },
     transaction_id: String
   },
-
-  products: [{
+  cart: [{
     _id: String,
     categoryImageUrl: String,
     categoryName: String,
     varietyImageUrl: String,
     varietyName: String,
     currency: String,
-    price: String,
+    price: Number,
     isSmallSize: Boolean,
     isMediumSize: Boolean,
     isBigSize: Boolean,
@@ -55,7 +59,12 @@ var orderSchema = new Schema({
     maturityInfo: String,
     maturityEatIn: String,
     maturityLastFor: String, 
-    isInStock: Boolean       
+    isInStock: Boolean,
+
+    quantity: Number,
+    details: String,
+    size: String,
+    totalPrice: Number  
   }]
 
 });

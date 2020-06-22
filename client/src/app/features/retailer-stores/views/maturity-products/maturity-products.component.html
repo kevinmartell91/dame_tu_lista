@@ -21,8 +21,11 @@
             
             <ng-container 
                 *ngFor='let product of _filterProductsByMaturity(category, variety, subs.state$.productsList.products)'>
-                <app-product-display-shared typeView="maturityView" [product]="product"
-                (selected)="onSelected($event)">
+                <app-product-display-shared 
+                    typeView="maturityView" 
+                    [product]="product"
+                    (selected)="onSelected($event)"
+                    (selectedCartProduct)="onSelectedCartProduct($event)">
                 </app-product-display-shared>
             
             </ng-container>

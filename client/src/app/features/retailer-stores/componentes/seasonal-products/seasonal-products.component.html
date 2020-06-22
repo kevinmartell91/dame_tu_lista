@@ -19,8 +19,11 @@
         <div class="display_products_grid">
             <ng-container  
                 *ngFor='let product of subs.state$.productsList.products'>
-                <app-product-display-shared typeView="seasonalView" [product]="product"
-                    (selected)=onSelected($event)></app-product-display-shared>
+                <app-product-display-shared 
+                    typeView="seasonalView" 
+                    [product]="product"
+                    (selected)="onSelected($event)"
+                    (selectedCartProduct)="onSelectedCartProduct($event)"></app-product-display-shared>
             </ng-container>
         </div>
     </ng-template>

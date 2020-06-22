@@ -88,7 +88,7 @@ export function filterProductsByMaturity(
     variety: string,
     productsList: Product[]
   ): Product[]{
-    console.log("filterProductsByMaturity => ", category, variety, productsList.length);
+    // console.log("filterProductsByMaturity => ", category, variety, productsList.length);
 
   let maturityList: Product[] = [];
 
