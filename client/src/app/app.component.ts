@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BUYER_CONFIG } from "./core/buyer/buyer.config";
 import { LOGIN_CONFIG } from "./core/login/login.config";
@@ -15,13 +15,15 @@ import { CartStore } from './core/cart/services/cart.store';
 import { Subscription } from 'rxjs';
 import { ShoppingCart } from './core/cart/types/shopping-cart';
 import { CartProduct } from './core/cart/types/cart-product';
+import { TemporaryStorageService, TemporaryStorageFacet } from './core/session-storage/services/temporary-storage.service';
+import { Product } from './core/retailer/types/product';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'Dame tu lista';
   loginUser: LoginUser;
   cartProductsQuantity: number = 0;
@@ -29,7 +31,8 @@ export class AppComponent implements OnDestroy{
 
   authenticationSubcription: Subscription;
   cartStoreSubcription: Subscription;
-  // productsList: ProductsList;
+
+  temporaryStorage: TemporaryStorageFacet; 
 
   loginType: {
     buyer,
@@ -50,10 +53,16 @@ export class AppComponent implements OnDestroy{
     private authenticationStore: AuthenticationStore,
     public buyerNavegationStore: BuyerNavegationStore,
     private location: Location,
-    public cartStore: CartStore
+    public cartStore: CartStore,
+    private temporaryStorageService: TemporaryStorageService
   ) {
 
+
+    this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
+    console.log("temporaryStorage",this.temporaryStorage);
+
     this.initializeNavegationValues();
+
     this.initializeLoginTypeValues();
 
     this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
@@ -67,11 +76,23 @@ export class AppComponent implements OnDestroy{
       y => {
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
+        console.log("y.products",y.products);
+       
+        if(this.cartProducts.length !== 0) { 
+          this.saveToTemporaryStorage(this.cartProducts);
+        }
+       
       }
     )
   }
 
-  ngOnDestroy() {
+  ngOnInit(): void {
+    
+    this.restoreFromTemporaryStorage();
+    
+  }
+
+  ngOnDestroy():void {
     this.authenticationSubcription.unsubscribe();
     this.cartStoreSubcription.unsubscribe();
   }
@@ -99,5 +120,47 @@ export class AppComponent implements OnDestroy{
   
   goBackLocation(): void {
     this.location.back();
+  }
+
+  public async restoreFromTemporaryStorage(): Promise<void> {
+
+      let cachedData = await this.temporaryStorage.get<any[]>();
+  
+      let cartProducts: CartProduct[] = [];
+  
+      if ( cachedData ) { 
+  
+        cachedData.forEach(elem => {
+          cartProducts.push(new CartProduct().deserialize(elem));
+        });
+      }   
+      
+      // update cartStore with date from temporary storage
+      this.cartStore.setCart(cartProducts);
+
+      // remove data from temporary storage
+      this.temporaryStorage.remove();
+   
+  }
+
+  public async restoreFromTemporaryStorageDEMO() : Promise<void> {
+
+		var cachedFormData = await this.temporaryStorage.get<any>();
+
+		if ( cachedFormData ) {
+
+      console.log("cachedData", cachedFormData);
+      Object.assign( this.cartProducts, cachedFormData );
+      
+
+		}
+
+	}
+
+  public saveToTemporaryStorage(
+    cartProducts: CartProduct[]
+  ): void {
+    console.log("saveToTemporaryStorage");
+    this.temporaryStorage.set((cartProducts));
   }
 }
