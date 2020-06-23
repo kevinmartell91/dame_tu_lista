@@ -7,6 +7,9 @@ import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegati
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { Subscription } from 'rxjs';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
 
 @Component({
   selector: 'app-store',
@@ -361,12 +364,16 @@ export class StoreComponent implements OnDestroy{
   public productsList: Product[];
   public loading: boolean;
 
+  cartProducts: CartProduct[];
+  cartProductsQuantity: number;
+  subscription: Subscription;
+
   constructor( 
     private router: Router,
     private location: Location,
     private buyerNavegationStore: BuyerNavegationStore,
-    public retailerStoreStore: RetailerStoreStore
-
+    public retailerStoreStore: RetailerStoreStore,
+    private cartStore: CartStore
   ){
     this.init();
 
@@ -384,6 +391,13 @@ export class StoreComponent implements OnDestroy{
   }
  
   init(): void {
+
+    this.subscription = this.cartStore.shoppingCart$.subscribe(
+      x => {
+        this.cartProducts = x.products;
+        this.cartProductsQuantity = x.products.length;
+      }
+    )
 
     updateBuyerNavagation(
       this.buyerNavegationStore,

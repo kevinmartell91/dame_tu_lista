@@ -1,1 +1,22 @@
-<p>carts works!</p>
+<hr>
+
+<h1 class="style_question">
+    {{question}}
+</h1>
+
+<ng-container *ngFor='let cartProduct of cartProducts'>
+
+    <div class="cart_product_grid">
+
+        <app-cart-product [cartProduct]="cartProduct"></app-cart-product>
+    
+    </div>
+
+</ng-container>
+
+<div class="style_empty_space"></div>
+
+<button class="style_checkout_button">
+    Ordenar
+    <button class="style_total_price_button">S/. 134.67</button>
+</button>

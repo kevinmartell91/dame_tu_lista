@@ -42,6 +42,7 @@ export class AppComponent implements OnDestroy{
     categoryView,
     varietyView,
     maturityView
+    cartView
   };
 
   constructor(
@@ -84,7 +85,7 @@ export class AppComponent implements OnDestroy{
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/buyer-cart']);
+    this.router.navigate(['/personal-cart']);
   }
 
   viewBuyerDetails():void {

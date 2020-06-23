@@ -19,10 +19,10 @@ $buyer_cart_number_font_size: 2em
   display: grid
   margin: .3em
   padding: .3em .3em 0em .3em 
-  grid-template-columns: 1fr 1fr 1fr
+  grid-template-columns: 3fr 1fr
   grid-template-rows: 1fr
   grid-gap: 10px
-  grid-template-areas: "account account cart"
+  grid-template-areas: "account  cart"
   border: 1px
   border-radius: 10px
 
@@ -50,17 +50,17 @@ $buyer_cart_number_font_size: 2em
 
   .buyer_cart_area
     grid-area: cart
-    margin: .5em
+    margin: 0em
     justify-self: end
     align-self: center
     font-size: $buyer_cart_number_font_size
-    color: mat-color($primary, darker, 1)  
+    color: #43b02b  
 
   .navegation_grid
     display: grid
     margin: 0 
     padding: 1em 0em 1em 0em
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 42px 1fr
     grid-template-rows: 1fr
     grid-template-areas: "img text"
 
@@ -71,4 +71,6 @@ $buyer_cart_number_font_size: 2em
     .navegation_title_area
       grid-area: text
       font-size: $buyer_cart_number_font_size
+      justify-self: start
       align-self: center
+      color: #737373

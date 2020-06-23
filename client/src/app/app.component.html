@@ -3,7 +3,7 @@
     
     <ng-container [ngSwitch]="loginUser.login_type" >
         <div *ngSwitchCase="loginType.buyer">
-            <!-- Becuase no logic is implemented, It used a as proxy to pass the state here -->
+            <!-- Because no logic is implemented, It used a as proxy to pass the state here -->
             <ng-container *ngIf="(buyerNavegationStore.state$ | async) as subs">
                 <!-- {{subs.buyerNavegation.typeView}} -->
                 <div class="buyer_account_cart_area">
@@ -31,32 +31,43 @@
                             class="navegation_grid">
                             <div class="navegation_image_area">
                                 <img (click)="goBackLocation()"
-                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
                             </div>
                             <div class="navegation_title_area">
-                                <div>Categoría</div>
+                                <div>Categorías</div>
                             </div>
-                         </div>
+                        </div>
                         
                         <div *ngSwitchCase="navegation.varietyView" 
                             class="navegation_grid">
                             <div class="navegation_image_area">
                                 <img (click)="goBackLocation()"
-                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
                             </div>
                             <div class="navegation_title_area">
-                                <div>Variedad</div>
+                                <div>Variedades</div>
                             </div>
-                         </div>
+                        </div>
 
                         <div *ngSwitchCase="navegation.maturityView" 
                             class="navegation_grid">
                             <div class="navegation_image_area">
                                 <img (click)="goBackLocation()"
-                                src="../assets/icons/icons8-back-36.png" alt=""> 
+                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
                             </div>
                             <div class="navegation_title_area">
                                 <div>Madurez</div>
+                            </div>
+                        </div>
+
+                        <div *ngSwitchCase="navegation.cartView" 
+                            class="navegation_grid">
+                            <div class="navegation_image_area">
+                                <img (click)="goBackLocation()"
+                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
+                            </div>
+                            <div class="navegation_title_area">
+                                <div>Dame tu lista </div>
                             </div>
                          </div>
                 
@@ -68,7 +79,7 @@
                     <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView" class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
                         <div (click)="viewBuyerCart()">
-                            <img src="../assets/icons/shopping_cart-black-36dp.svg" alt="">
+                            <img src="../assets/icons/shopping_cart-green-36dp.svg" alt="">
                             <span>{{cartProductsQuantity}}</span>
                         </div>
                     </div>

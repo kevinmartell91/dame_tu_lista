@@ -1,0 +1,54 @@
+<div class="continer_grid">
+    <div class="product_area">
+        
+        <div class="img_area">
+            <img src="{{cartProduct.categoryImageUrl}}" alt="">
+        </div>
+
+        <div class="product_name_area">
+            {{cartProduct.varietyName}} - 
+            <span *ngIf="cartProduct.isOrganic">Orgánico</span>
+            <span *ngIf="cartProduct.isOrganic === false">Normal</span>
+        </div>
+
+        <div class="product_kilo_Unit_area">
+            S/.{{cartProduct.price}}
+            <span *ngIf="cartProduct.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
+            <span *ngIf="cartProduct.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
+        </div>
+        
+        <div class="product_detail_area">
+
+            <span class="style_maturity_field">
+                Comer en:
+            </span>
+            <span class="style_maturity_details">
+                {{cartProduct.maturityEatIn}}
+            </span> 
+            
+            <span class="style_maturity_field">
+                 Y te durá: 
+            </span>
+            <span class="style_maturity_details">
+                {{cartProduct.maturityLastFor}}
+            </span> 
+
+        </div>
+
+
+        
+        <div class="quatity_area">{{cartProduct.quantity}}</div>
+        
+        <div class="total_price_area">S/.{{cartProduct.totalPrice}}</div>
+    </div>
+    <div class="options_area">
+        <div class="add_detail_area">
+            <img src="../../../../../assets/icons/edit-15dp.svg" alt=""> 
+            Comentarios
+        </div>
+        <div class="remove_area">
+            <img src="../../../../../assets/icons/delete-15dp.svg" alt=""> 
+            Eliminar
+        </div>
+    </div>
+</div>

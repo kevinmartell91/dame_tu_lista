@@ -12,14 +12,16 @@ export const STORE_CONFIG = {
         seasonalView: "seasonalView",
         categoryView: "categoryView",
         varietyView: "varietyView",
-        maturityView: "maturityView"
+        maturityView: "maturityView",
+        cartView: "cartView"
     },
     question_view_type: {
         storeView: "Promociones 2 x 1",
         seasonalView: "Frutas de temporada",
         categoryView: "-",
         varietyView: "¿Qué tipo deseas?",
-        maturityView: "¿Cuándo lo quieres comer?"
+        maturityView: "¿Cuándo lo quieres comer?",
+        cartView: "Tu carrito de compras"
     }
 }
 
