@@ -41,11 +41,18 @@ export function getCartProductFromProduct(
     return newCartProduct;
 }
 
-export function calculateCartTotalPrice(products: CartProduct[]): Number {
+export function calculateCartTotalPrice(products: CartProduct[]): number {
 
     let totalCartPrice: number = 0;
     products.forEach(product => {
         totalCartPrice += ( product.price * product.quantity );
     });
-    return totalCartPrice;
+    return round(totalCartPrice,2);
+}
+
+export function round(value: number, precision: number): number {
+    
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+
 }

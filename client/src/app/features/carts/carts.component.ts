@@ -6,6 +6,7 @@ import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegati
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-carts',
@@ -17,7 +18,10 @@ export class CartsComponent implements OnDestroy {
   cartProducts: CartProduct[] = null ;
   subscription: Subscription;
   maturityView: string;
-  question: string;  
+  question: string;
+
+  totalCartPrice: number = 0;
+  totalCartPriceStr: string = "0.00";
 
   constructor(
     private buyerNavegationStore: BuyerNavegationStore,
@@ -34,6 +38,9 @@ export class CartsComponent implements OnDestroy {
     this.subscription = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
+        this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
+        // formating to two decimals and as a string
+        this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
       }
     )
     
@@ -45,7 +52,6 @@ export class CartsComponent implements OnDestroy {
 
   }
 
-
   private initializeViewSettings(): void {
 
     updateBuyerNavagation(
@@ -55,6 +61,31 @@ export class CartsComponent implements OnDestroy {
     
     this.maturityView = STORE_CONFIG.view_type.cartView;
     this.question = STORE_CONFIG.question_view_type.cartView;
+
+  }
+
+  onCartProductUpdate(cartProductUpdate: CartProduct): void {
+
+ 
+    this.cartProducts.filter( cp => {
+      if(cp._id == cartProductUpdate._id) {
+        cp = cartProductUpdate;
+      }
+    });
+
+    // if cartProduct quatity is 0, 
+    // then remove from cartProducts.
+    // hadledby this updateCart method
+    this.cartStore.updateCart(cartProductUpdate);
+
+    // then update shopping-cart-total price, this is
+    // done by the subscriber on the constructor of 
+    // this file, then the subscriber in app.component.ts
+    // will save in sessionStorage thanks to 
+    // saveToTemporaryStorage. This method is called
+    // when cartProducts is grather than 0, whic is the
+    // case. So this will do the job. Update the 
+    // shopping-cart total price and save in SessionStorage.
 
   }
 

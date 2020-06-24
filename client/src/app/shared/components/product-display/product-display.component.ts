@@ -1,18 +1,19 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Product } from '../../../core/retailer/types/product';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { getCartProductFromProduct } from 'src/app/core/cart/helpers/cart-helper';
+import { getCartProductFromProduct, round } from 'src/app/core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-product-display-shared',
   templateUrl: './product-display.component.html',
   styleUrls: ['./product-display.component.sass']
 })
-export class ProductDisplaySharedComponent {
+export class ProductDisplaySharedComponent implements OnInit {
 
   // getting the list of product and render depending on the typeView
   @Input() typeView: string;
   @Input() product: Product;
+
   @Output() selected = new EventEmitter<Product>();
   @Output() selectedCartProduct = new EventEmitter<CartProduct>();
   
@@ -25,16 +26,22 @@ export class ProductDisplaySharedComponent {
   quantity: number = 0;
   kiloOrUnit: string = "";
   size: string = "";
+  productPriceStr: string;
 
   isQuantityIncreased: boolean = false;
 
-  constructor() { }
+  constructor( ) { }
+  
+  ngOnInit():void {
+    // formating to two decimals and as a string
+    this.productPriceStr = round(this.product.price,2).toFixed(2);
+
+  }
 
   select(){ 
 
     console.log("select()",this.quantity,this.size, this.kiloOrUnit);
     this.selected.emit(this.product)
-    this.selectedCartProduct.emit(this.getCartProduct());
 
   }
 
@@ -64,6 +71,13 @@ export class ProductDisplaySharedComponent {
    */
   onQuantityUpdated(quantityUpdated: number){ 
     
+    // if cartProduct quatity is 0, 
+    // then disableQuantityMode
+    if(quantityUpdated == 0) {
+      this.disableQuantityMode();
+    }
+
+
     this.quantity = quantityUpdated;
     
     if(quantityUpdated == 0) {
@@ -73,6 +87,10 @@ export class ProductDisplaySharedComponent {
       this.quantityStr = quantityUpdated.toString();
       this.isQuantityIncreased = true;
     }
+
+    // then send it to to listener to be updated in
+    // Cart stores
+    this.selectedCartProduct.emit(this.getCartProduct());
   
   }
   

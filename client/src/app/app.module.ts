@@ -1,5 +1,5 @@
 //https://georgebyte.com/scalable-angular-app-architecture/#22-core-module
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +30,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
 
     // App Inizialization Module
+    HammerModule,
 
     // Core Modules
     CoreModule,

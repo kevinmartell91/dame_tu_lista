@@ -1,4 +1,5 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
+import { round } from '../helpers/cart-helper';
 
 export class CartProduct implements Deserializable {
 
@@ -35,6 +36,6 @@ export class CartProduct implements Deserializable {
     }
 
     public updateTotalProductPrice(): void {
-        this.totalPrice = this.quantity * this.price;
+        this.totalPrice = round(this.quantity * this.price,2);
     }
 }

@@ -15,6 +15,7 @@ export class AddButtonComponent implements OnInit {
   @Input() isSizeAvailable: boolean;
   @Input() quantity: number;
   @Input() size: string;
+  @Input() isCartProductButtonType: boolean = false;
 
   // hadles the increased or decreased quantity
   // which then is passed to its parent.
@@ -31,10 +32,10 @@ export class AddButtonComponent implements OnInit {
   isClickedBig: boolean = false;
   
   constructor() { 
+    this.setbuttonTypeToRender(this.isCartProductButtonType);
   }
   ngOnInit():void  {
 
-    console.log("isKiloUnitAvailable",this.isKiloUnitAvailable);
     this.count = this.quantity;
     
     if(this.count == 0)
@@ -42,10 +43,23 @@ export class AddButtonComponent implements OnInit {
 
   }
 
+  setbuttonTypeToRender(isCartProductButtonType: boolean): void {
+
+    if( isCartProductButtonType ) {
+
+      this.isCartProductButtonType = true;
+
+    } else {
+      
+      this.isCartProductButtonType = false;
+    }
+        
+  }
+
   quantityUpdate(operator:string){
     if(operator === "+") {
       this.count++;
-    } else {
+    } else { // discount quantity
       if(this.count > 0 ){
         this.count--;
       } else {
@@ -53,6 +67,7 @@ export class AddButtonComponent implements OnInit {
         // or show a wasebasket
       }
     }
+    console.log("this.quantityUpdated.emit(this.count)");
     this.quantityUpdated.emit(this.count)
   }
 

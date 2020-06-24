@@ -14,7 +14,7 @@
 
     <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
         class="product_price_area">
-        S/.{{product.price}}
+        S/.{{productPriceStr}}
         <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
         <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
     </div>
@@ -48,10 +48,12 @@
                 [isSizeAvailable]="isSizeAvailable" 
                 [isKiloUnitAvailable]="isKiloUnitAvailable"
                 [size]="size"
+                [isCartProductButtonType]="false"
                 [quantity]="quantity"
                 (quantityUpdated)="onQuantityUpdated($event)"
                 (kiloOrUnitUpdated)="onMassUpdated($event)"
-                (sizeUpdated)="onSizeUpdated($event)"></app-add-button>
+                (sizeUpdated)="onSizeUpdated($event)">
+            </app-add-button>
 
         </ng-template>
     </div>

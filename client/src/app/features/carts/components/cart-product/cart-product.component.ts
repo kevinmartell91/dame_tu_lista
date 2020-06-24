@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { CartStore } from 'src/app/core/cart/services/cart.store';
+
 
 @Component({
   selector: 'app-cart-product',
@@ -11,42 +11,65 @@ export class CartProductComponent implements OnInit {
 
 
   @Input() cartProduct: CartProduct;
+  @Output() cartProductUpdated = new EventEmitter<CartProduct>();
+  cartProductPriceStr: string;
 
-  // constructor() { let cp = {
-  //     categoryImageUrl: "../../../../../../assets/category-images/banana_seda.png",
-  //     categoryName: "Platano",
-  //     currency: "PEN",
-  //     details: "",
-  //     isBigSize: true,
-  //     isInStock: true,
-  //     isKilo: true,
-  //     isMaturityDetails: true,
-  //     isMediumSize: true,
-  //     isOrganic: true,
-  //     isSeasonal: true,
-  //     isSmallSize: true,
-  //     isUnit: true,
-  //     maturityEatIn: "6 días",
-  //     maturityImageUrl: "../../../../../../assets/maturity-images/banana_semi_inmature.png",
-  //     maturityInfo: "../../../../../../assets/icons/icons8-información.svg",
-  //     maturityLastFor: "+7 dias",
-  //     maturityName: "Semi maduro",
-  //     price: 2.6,
-  //     quantity: 1,
-  //     size: "",
-  //     totalPrice: 2.6,
-  //     varietyImageUrl: "../../../../../../assets/category-images/banana_seda.png",
-  //     varietyName: "Seda",
-  //     _id: "5ee7cd0f5c1a82faf689d6c6"
-  //   };
 
-  //   this.cartProduct = new CartProduct().deserialize(cp);
-  
-  // }
+  isQuantityMode: boolean = false;
+
+  constructor( ) { }
 
   ngOnInit(): void {
-     
+
+    this.transformCartProductTotalPriceToStr();
+  }
+
+   /**
+   * listen to quantityUpdated from add-button-component.ts
+   * @param newQuantity 
+   */
+  onQuantityUpdated(quantityUpdated: number){ 
     
+    // if cartProduct quatity is 0, 
+    // then disableQuantityMode
+    if(quantityUpdated == 0){
+      this.disableQuantityMode() 
+    }
+
+
+    this.cartProduct.quantity = quantityUpdated;
+    this.cartProduct.updateTotalProductPrice();
+    
+    // formating to two decimals and as a string
+    this.transformCartProductTotalPriceToStr();
+
+    this.cartProductUpdated.emit(this.cartProduct);
+
+ 
+    
+    // if(quantityUpdated == 0) {
+    //   this.quantityStr = "+";
+    //   this.isQuantityIncreased = false;
+    // } else {
+    //   this.quantityStr = quantityUpdated.toString();
+    //   this.isQuantityIncreased = true;
+    // }
+  
+  }
+  enableQuantityMode(): void {
+    console.log("enableQuantityMode");
+    this.isQuantityMode = true;
+  }
+
+  disableQuantityMode(): void {
+    console.log("disableQuantityMode");
+    this.isQuantityMode = false;
+  }
+
+  transformCartProductTotalPriceToStr(): void {
+    this.cartProductPriceStr = this.cartProduct.totalPrice.toFixed(2);
+
+    console.log("transformCartProductTotalPriceToStr", this.cartProductPriceStr);
   }
 
 }

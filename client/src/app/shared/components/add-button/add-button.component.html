@@ -1,26 +1,36 @@
 
-<div class="container">
+<div [ngClass]="[isCartProductButtonType ? 'container_cart_product' : 'container_display_product' ]">
     
-    <div class="decrease_area" (click)="quantityUpdate('-')">-</div>
+    <div class="decrease_area" (click)="quantityUpdate('-')">
+        <ng-container *ngIf="count > 1; then showMinusSignal; else showWastebasket"></ng-container>
+        <ng-template #showMinusSignal>-</ng-template>
+        <ng-template #showWastebasket>
+            <img src="../../../../assets/icons/wastebasket-button-36dp.svg" alt="">
+        </ng-template>
+    </div>
     <div class="number_area">{{count}}</div>
     <div class="increase_area" (click)="quantityUpdate('+')">+</div>
 
-    <div class="devider_one_area"> <hr></div>
-
-    <ng-container *ngIf="isKiloUnitAvailable">
-        <div class="kilo_or_Unit_area">
-            <div [ngClass]="{'kilo_area': true, 'selected': isClickedKg}" (click)="kiloOrUnitUpdate('K')">kg/.</div>
-            <div [ngClass]="{'unit_area': true, 'selected': isClickedUni}" (click)="kiloOrUnitUpdate('U')">Uni.</div>
-        </div>
-    </ng-container>
-
-    <div class="devider_two_area"> <hr></div>
-
-    <ng-container *ngIf="isSizeAvailable">
-        <div [ngClass]="{'small_area': true, 'selected': isClickedSmall}" (click)="sizeUpdate('S')">Peq.</div>
-        <div [ngClass]="{'medium_area': true, 'selected': isClickedMedium}" (click)="sizeUpdate('M')">Med.</div>
-        <div [ngClass]="{'big_area': true, 'selected': isClickedBig}" (click)="sizeUpdate('B')">Gra.</div>
-    </ng-container>
     
+    <ng-container *ngIf="!isCartProductButtonType">
+        
+        <div class="devider_one_area"> <hr></div>
+        
+        <ng-container *ngIf="isKiloUnitAvailable">
+            <div class="kilo_or_Unit_area">
+                <div [ngClass]="{'kilo_area': true, 'selected': isClickedKg}" (click)="kiloOrUnitUpdate('K')">kg/.</div>
+                <div [ngClass]="{'unit_area': true, 'selected': isClickedUni}" (click)="kiloOrUnitUpdate('U')">Uni.</div>
+            </div>
+        </ng-container>
+    
+        <div class="devider_two_area"> <hr></div>
+    
+        <ng-container *ngIf="isSizeAvailable">
+            <div [ngClass]="{'small_area': true, 'selected': isClickedSmall}" (click)="sizeUpdate('S')">Peq.</div>
+            <div [ngClass]="{'medium_area': true, 'selected': isClickedMedium}" (click)="sizeUpdate('M')">Med.</div>
+            <div [ngClass]="{'big_area': true, 'selected': isClickedBig}" (click)="sizeUpdate('B')">Gra.</div>
+        </ng-container>
+        
+    </ng-container>
 
 </div>

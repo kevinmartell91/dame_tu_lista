@@ -2,23 +2,32 @@
     <div class="product_area">
         
         <div class="img_area">
-            <!-- <img src="{{cartProduct.categoryImageUrl}}" alt=""> -->
-            <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt="">
+            <img src="{{cartProduct.categoryImageUrl}}" alt="">
+            <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
         </div>
 
-        <div class="product_name_area">
+        <div class="product_name_area" 
+            (click)="disableQuantityMode()">
             {{cartProduct.varietyName}} - 
             <span *ngIf="cartProduct.isOrganic">Orgánico</span>
             <span *ngIf="cartProduct.isOrganic === false">Normal</span>
         </div>
 
-        <div class="product_kilo_Unit_area">
+        <div class="product_kilo_Unit_area" 
+            (click)="disableQuantityMode()">
             S/.{{cartProduct.price}}
-            <span *ngIf="cartProduct.isKilo" class="style_price_per_unit_or_kg">/ Kg</span>
-            <span *ngIf="cartProduct.isUnit" class="style_price_per_unit_or_kg">/ Unit</span>
+            <span *ngIf="cartProduct.isKilo" 
+                class="style_price_per_unit_or_kg">
+                / Kg
+            </span>
+            <span *ngIf="cartProduct.isUnit" 
+                class="style_price_per_unit_or_kg">
+                / Unit
+            </span>
         </div>
         
-        <div class="product_detail_area">
+        <div class="product_detail_area" 
+            (click)="disableQuantityMode()">
 
             <span class="style_maturity_field">
                 Comer en:
@@ -38,9 +47,31 @@
 
 
         
-        <div class="quatity_area">{{cartProduct.quantity}}</div>
+        <div class="quatity_area">
+            
+            <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showUpdateButton"></ng-container>
+            
+            <ng-template #showUpdateButton>
+                <div (click)="enableQuantityMode()">
+                    {{cartProduct.quantity}}
+                </div>
+            </ng-template>
+            
+            <ng-template #showAddOptions >
+                <app-add-button 
+                    [quantity]="cartProduct.quantity"
+                    [isCartProductButtonType]="true"
+                    (quantityUpdated)="onQuantityUpdated($event)">
+                </app-add-button>
+            
+            </ng-template>
+        </div>
         
-        <div class="total_price_area">S/.{{cartProduct.totalPrice}}</div>
+        <div class="total_price_area" 
+            (click)="disableQuantityMode()">
+            S/.{{cartProductPriceStr}}
+        </div>
+
     </div>
     <div class="options_area">
         <div class="add_detail_area">
