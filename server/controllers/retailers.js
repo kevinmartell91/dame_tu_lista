@@ -8,19 +8,23 @@ exports.postRetailers = function(req, res) {
   // Create a new instance of the Retailer model
   var retailer = new Retailer();
 
-  retailer.username = req.body.username;
+  // retailer.username = req.body.username;
   retailer.password = req.body.password;
   retailer.name = req.body.name;
-  retailer.lastname = req.body.lastname;
+  // retailer.lastname = req.body.lastname;
   retailer.email = req.body.email;
-  retailer.phoneNumber = req.body.phoneNumber;
+  // retailer.phoneNumber = req.body.phoneNumber;
   
   retailer.save(function(err) {
-    if (err){
-
-      console.log(err);
-      return res.status(500).send(err);
-    }
+    if (err) {
+			return  res.json({ 
+					success: false,
+					status: 500,
+					message: 'buyer not added', 
+					data: err
+				}
+			);
+		}
 
     res.json({ 
 			success: true,

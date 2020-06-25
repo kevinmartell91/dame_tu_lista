@@ -1,25 +1,24 @@
 <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
    
-    <div class="login-wellcome-message">
-      <h2>Registrate como comprador</h2>
-    </div>
+    <img src="../../../assets/icons/store.svg" alt="">
 
-    <form class="login-form" [formGroup]='registerRetailerForm' (ngSubmit)="onSubmit()">
-        <mat-form-field class="login-full-width">
+    <form class="style_register_form" [formGroup]='registerRetailerForm' (ngSubmit)="onSubmit()">
+       
+        <mat-form-field class="style_login_full_width">
+            <input matInput placeholder="Primer nombre"
+                            name="name"
+                            type="text"
+                            formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="style_login_full_width">
           <input matInput placeholder="Correo electrónico"
                           name="email"
                           type="text"
                           formControlName="email">
         </mat-form-field>
 
-        <!-- <mat-form-field class="login-full-width">
-            <input matInput placeholder="Numero Telefónico"
-                            name="number"
-                            type="text"
-                            formControlName="email">
-          </mat-form-field> -->
-
-        <mat-form-field class="login-full-width">
+        <mat-form-field class="style_login_full_width">
           <input matInput placeholder="Contraseña"
                           name="password"
                           type="password"
@@ -30,13 +29,13 @@
         <div class="style_error_message">{{errorMessage}}</div>
         <br>
         <button mat-stroked-button  
-                class="btn-block"
+                class="style_btn_block"
                 type="submit"
                 [disabled]="!registerRetailerForm.valid">Crear cuenta</button>
         <br>
         <br>
         
-        <div *ngIf="true">
+        <div *ngIf="loading">
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
 

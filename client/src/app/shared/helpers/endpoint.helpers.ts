@@ -37,3 +37,12 @@ export function  getHeadersForGet(): any {
     let options = { headers: headers }
   return options;
 }
+
+export function  getHeadersForNewUsers(): any {
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    let options = { headers: headers }
+    
+  return options;
+}

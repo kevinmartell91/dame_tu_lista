@@ -9,12 +9,12 @@ exports.postBuyers = function(req, res) {
 	var buyer = new Buyer();
 
 	// setting buyer properties that come from POST
-	buyer.username = req.body.username; 
+	// buyer.username = req.body.username; 
 	buyer.password = req.body.password; 
-	buyer.name = req.body.name; 
-	buyer.lastname = req.body.lastname; 
+	// buyer.name = req.body.name; 
+	// buyer.lastname = req.body.lastname; 
 	buyer.email = req.body.email; 
-	buyer.phoneNumber = req.body.phoneNumber; 
+	// buyer.phoneNumber = req.body.phoneNumber; 
 
 	// buyer.lastLoginDate = req.body.lastLoginDate; 
 	// buyer.last_order = req.body.last_order; 
@@ -25,8 +25,15 @@ exports.postBuyers = function(req, res) {
 	// }
 	
 	buyer.save(function(err){
-		if (err)
-			return res.status(500).send(err);
+		if (err) {
+			return  res.json({ 
+					success: false,
+					status: 500,
+					message: 'buyer not added', 
+					data: err
+				}
+			);
+		}
 
 		res.json({ 
 			success: true,

@@ -30,7 +30,7 @@ router.route('/buyers/:buyer_id')
   .put(buyerController.putBuyer)
   .delete(buyerController.deleteBuyer);
   
-  router.route('/buyers')
+router.route('/buyers')
   .post(buyerController.postBuyers)
   .get(buyerController.getBuyers);
 

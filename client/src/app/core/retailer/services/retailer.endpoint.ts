@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { Buyer } from '../types/buyer';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BUYER_CONFIG } from '../buyer.config';
 import { getHeadersForNewUsers } from 'src/app/shared/helpers/endpoint.helpers';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { Retailer } from '../types/retailer';
+import { RETAILER_CONFIG } from "../retailer.config";
 @Injectable({ providedIn: "root"})
-export class BuyerEndPoint {
+export class RetailerEndPoint {
 
 
     constructor(
@@ -18,16 +17,16 @@ export class BuyerEndPoint {
 
     postBuyer(
         requestStoreUpdater: StoreRequestStateUpdater,
-        newBuyer: Buyer
+        newRetailer: Retailer
     ) {
-        const request = BUYER_CONFIG.request.postBuyers;
+        const request = RETAILER_CONFIG.request.postRetailers;
         requestStoreUpdater(request.name, {
             inProgress: true
         })
         
         const options = getHeadersForNewUsers();
         
-        return this.http.post<Buyer>(request.url, newBuyer, options).pipe(
+        return this.http.post<Retailer>(request.url, newRetailer, options).pipe(
             map( response => {
                 requestStoreUpdater(request.name, {
                     inProgress: false

@@ -1,6 +1,7 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
 import { Address } from "./address";
 import { FavoriteReatailers } from "../../retailer/types/favorite-retailers";
+import { map } from 'rxjs/operators';
 
 export class Buyer implements Deserializable {
 
@@ -24,9 +25,12 @@ export class Buyer implements Deserializable {
     deserialize(input: any) {
         Object.assign(this, input);
 
-        this.myFavoriteRetailers = input.myFavoriteRetailers.map(
-            myFavoriteRetailers => new FavoriteReatailers().deserialize(myFavoriteRetailers)
-        );
+        if(this.myFavoriteRetailers) {
+            
+            this.myFavoriteRetailers = input.myFavoriteRetailers.map(
+                myFavoriteRetailers => new FavoriteReatailers().deserialize(myFavoriteRetailers)
+            );
+        }
 
         return this;
     }
