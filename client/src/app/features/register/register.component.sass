@@ -1,2 +1,18 @@
-.body 
-  background-color: #333  
+@import "../../../app//styles/scss/variables"
+
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+.register_wrapper
+  transform: translateY(10%)
+
+  .style_brand
+    transform: translateY(8%)
+    text-align: center
+    color: mat-color($primary, default, 1)
+
+

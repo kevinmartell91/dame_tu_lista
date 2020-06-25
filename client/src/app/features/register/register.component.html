@@ -1,12 +1,29 @@
-<p>register works! https://tburleson-layouts-demos.firebaseapp.com/#/responsive</p>
+<div class="register_wrapper">
 
-<div fxLayout="row" fxLayoutAlign="space-around center" >
-    <mat-tab-group>
-        <mat-tab label="Comprador">
-            <app-register-buyer></app-register-buyer>
-        </mat-tab>
-        <mat-tab label="Vendedor">
-            <app-register-retailer></app-register-retailer>
-        </mat-tab>
-    </mat-tab-group>
+    <div class="style_brand">
+        <h3> 🍒 Dame tu lista</h3>
+    </div>
+    
+    <br>
+
+    <div fxLayoutAlign="space-around center" >
+        <mat-tab-group>
+            <mat-tab label="Comprador">
+                <app-register-buyer></app-register-buyer>
+            </mat-tab>
+            <mat-tab label="Vendedor">
+                <app-register-retailer></app-register-retailer>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <br>
+
+    <div class="sing-up-section" fxLayout="column" fxLayoutAlign="center center">
+        Cuentas ya con una cuenta: 
+        <a href="http://localhost:3003/login">Ingrese ya!</a>
+    </div>
+
+
 </div>
+ 

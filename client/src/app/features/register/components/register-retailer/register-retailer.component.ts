@@ -13,7 +13,10 @@ import { VALIDATORS_PATTERNS } from '../../../../core/constants/validators-patte
 })
 export class RegisterRetailerComponent implements OnInit {
 
+  loading = false;
   registerRetailerForm: FormGroup;
+  returnUrl: string;
+  errorMessage = '';
 
   constructor(  private fb: FormBuilder ) { }
 
