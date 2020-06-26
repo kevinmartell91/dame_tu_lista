@@ -4,111 +4,108 @@ var Retailer = require('../models/retailers');
 var Product = require('../models/products');
 
 // Create endpoint /api/retailers for POST
-exports.postRetailers = function(req, res) {
-  // Create a new instance of the Retailer model
-  var retailer = new Retailer();
+exports.postRetailers = async function(req, res, next) {
 
-  // retailer.username = req.body.username;
-  retailer.password = req.body.password;
-  retailer.name = req.body.name;
-  // retailer.lastname = req.body.lastname;
-  retailer.email = req.body.email;
-  // retailer.phoneNumber = req.body.phoneNumber;
-  
-  retailer.save(function(err) {
+  let buyerData = req.body;
+  // Create a new instance of the Retailer model
+  const retailerData =  new Retailer(buyerData);
+
+  retailerData.save( function(err) {
+
     if (err) {
 			return  res.json({ 
 					success: false,
 					status: 500,
-					message: 'buyer not added', 
+					message: 'retailer not added', 
 					data: err
 				}
 			);
 		}
 
-    res.json({ 
+		res.json({ 
 			success: true,
 			status: 200,
 			message: 'retailer added', 
-			data: retailer
+			data: retailerData
 		});
-  });
+  })
+
 };
 
 // Create endpoint /api/retailers for GET
-exports.getRetailers = function(req, res) {
+exports.getRetailers = async function(req, res, next) {
 
-  Retailer.find(function(err, retailers) {
-    if (err)
-      return res.send(err);
+  const retailerData = await Retailer.find();
 
-    res.json({ 
-			success: true,
-			status: 200,
-			message: 'retailer list', 
-			data: retailers
-		});
-  });
-};
-
-// Create endpoint /api/retailers/:reatiler_id for GET
-exports.getRetailer = function(req, res) {
-
-  Retailer.findById(req.params.retailer_id, function(err, retailer) {
+  if(retailerData) {
   
-    if (err)
-      return res.send(err);
-
     res.json({ 
       success: true,
       status: 200,
-      message: 'retailer retrived', 
-      data: retailer
+      message: 'retailer added', 
+      data: retailerData
     });
-  });
+    
+  } else {
+    res.json({ 
+      success: false,
+      status: 500,
+      message: 'retailer not added', 
+      data: retailerData
+    });
+  }
+};
+
+// Create endpoint /api/retailers/:reatiler_id for GET
+exports.getRetailer = async function(req, res, next) {
+
+  let id = req.params.retailer_id;
+  const retailerData = await Retailer.findById(id);
+  
+  if(retailerData) {
+  
+    res.json({ 
+      success: true,
+      status: 200,
+      message: 'retailer added', 
+      data: retailerData
+    });
+    
+  } else {
+    res.json({ 
+      success: false,
+      status: 500,
+      message: 'retailer not added', 
+      data: retailerData
+    });
+  }
 };
 
 // Create endpoint /api/retailers/:reatiler_id for PUT
-exports.putRetailer = function(req, res) {
+exports.putRetailer = async function(req, res) {
+
+  let id = req.params.retailer_id;
+  let retailerData = req.body;
+  const retailerUpdated = 
+    await  Retailer.findByIdAndUpdate(id, retailerData, {new :true});
   
-  // retailer.username = req.body.username;
-  // retailer.password = req.body.password;
-  // retailer.name = req.body.name;
-  // retailer.lastname = req.body.lastname;
-  // // retailer.email = req.body.email;
-  // retailer.phoneNumber = req.body.phoneNumber;
-  // retailer.store = {
-  //   name: req.body.store.name,
-  //   imgUrl: req.body.store.imgUrl,
-  //   isDeliveryService: req.body.store.isDeliveryService,
-  //   isPickUpService: req.body.store.isPickUpService,
-  //   deliveryInfo: req.body.store.deliveryInfo,
-  //   pickUpInfo: req.body.store.pickUpInfo,
-  //   address: {
-  //     streetName: req.body.store.address.streetName,
-  //     streetnumber: req.body.store.address.streetnumber,
-  //     district: req.body.store.address.district,
-  //     city: req.body.store.address.city,
-  //     department: req.body.store.address.department,
-  //     country: req.body.store.address.country,
-  //     reference: req.body.store.address.reference,
-  //     details: req.body.store.address.details
-  //   }
-  // };
-
-  let update = req.body;
-  Retailer.findByIdAndUpdate(req.params.retailer_id, update, function(err, retailer) {
-    
-    if(err) 
-      return res.send(err);
-
+  if(retailerUpdated){
     res.json({ 
       success: true,
       status: 200,
       message: 'retailer updated', 
-      data: retailer
+      data: retailerUpdated
     });
-  });
+  } else {
+    res.json({ 
+      success: false,
+      status: 500,
+      message: 'retailer not updated', 
+      data: retailerUpdated
+    });
+  }
+
+
 };
 
 // Create endpoint /api/retailers/:retailer_id for DELETE
@@ -128,54 +125,65 @@ exports.deleteRetailer = function(req, res) {
 
 //ok
 exports.putRetailerStore = function(req, res) {
-  
-  // retailer.store = {
-  //   name: req.body.store.name,
-  //   imgUrl: req.body.store.imgUrl,
-  //   isDeliveryService: req.body.store.isDeliveryService,
-  //   isPickUpService: req.body.store.isPickUpService,
-  //   deliveryInfo: req.body.store.deliveryInfo,
-  //   pickUpInfo: req.body.store.pickUpInfo,
-  //   address: {
-  //     streetName: req.body.store.address.streetName,
-  //     streetnumber: req.body.store.address.streetnumber,
-  //     district: req.body.store.address.district,
-  //     city: req.body.store.address.city,
-  //     department: req.body.store.address.department,
-  //     country: req.body.store.address.country,
-  //     reference: req.body.store.address.reference,
-  //     details: req.body.store.address.details
-  //   }
-  // };
 
-  let update = req.body;
+  let id = req.params.retailer_id;
 
-  Retailer.findByIdAndUpdate(req.params.retailer_id, update, function(err, retailer) {
+  Retailer.findById(id, function(err, retailer) {
     if (err)
       return res.status(500).send(err);
 
-    res.json({
-      success: true,
-      status: 200,
-      message: "retailer's address updated",
-      data: retailer
-    });  
+    retailer.store.name = req.body.store.name;
+    retailer.store.imgUrl = req.body.store.imgUrl;
+    retailer.store.isDeliveryService = req.body.store.isDeliveryService;
+    retailer.store.isPickUpService = req.body.store.isPickUpService;
+    retailer.store.deliveryInfo = req.body.store.deliveryInfo;
+    retailer.store.pickUpInf = req.body.store.pickUpInf;
+    retailer.store.productsList = retailer.store.productsList;
+ 
+    retailer.store.address.streetName = req.body.store.address.streetName;
+    retailer.store.address.streetnumber = req.body.store.address.streetnumber;
+    retailer.store.address.district = req.body.store.address.district;
+    retailer.store.address.city = req.body.store.address.city;
+    retailer.store.address.department = req.body.store.address.department;
+    retailer.store.address.country = req.body.store.address.country;
+    retailer.store.address.reference = req.body.store.address.reference;
+    retailer.store.address.details = req.body.store.address.detail;
+
+    retailer.save(function(err) {
+
+      if (err) 
+        return res.status(500).send(err);
+      
+        res.json({
+        success: true,
+        status: 200,
+        message: "retailer's address updated",
+        data: retailer
+      });  
+    });
+
+    
   });
 };
 
 exports.postRetailerProductList = function(req, res) {
   
-  Retailer.findById(req.params.retailer_id, function(err, retailer) {
+  let id = req.params.retailer_id;
+  let productsList = req.body.productsList;  
+
+  Retailer.findById(id, function(err, retailer) {
 
     if(err) 
       return res.status(500).send(err);
     
-    let productsList = req.body.productsList;  
 
     for(var i = 0; i < productsList.length; i++ ){
       retailer.store.productsList.push(productsList[i]);
     }  
-    retailer.save(function(err){
+    
+    // let prodcutListUpdated = { productsList : retailer.store.productsList};
+    // Retailer.findByIdAndUpdate(id, prodcutListUpdated, {new: true},function(err){
+    retailer.save(function(err){  
       if(err)
         return res.status(500).send(err);
 
@@ -191,7 +199,8 @@ exports.postRetailerProductList = function(req, res) {
 
 exports.putRetailerProductList = function(req, res) {
   
-  Retailer.findById(req.params.retailer_id, function(err, retailer) {
+  let id = req.params.retailer_id;
+  Retailer.findById(id, function(err, retailer) {
     
     if(err) 
       return res.status(500).send(err);
@@ -215,28 +224,31 @@ exports.putRetailerProductList = function(req, res) {
           // varietyImageUrl
           // varietyName
           // currency
-          db_productsList[j].price = updatedProduct.price;
-          db_productsList[j].isSmallSize = updatedProduct.isSmallSize;
-          db_productsList[j].isMediumSize = updatedProduct.isMediumSize;
-          db_productsList[j].isBigSize = updatedProduct.isBigSize;
-          db_productsList[j].isKilo = updatedProduct.isKilo;
-          db_productsList[j].isUnit = updatedProduct.isUnit;
-          db_productsList[j].isOrganic = updatedProduct.isOrganic;
-          db_productsList[j].isSeasonal = updatedProduct.isSeasonal;
-          db_productsList[j].isMaturityDetails = updatedProduct.isMaturityDetails;
-          db_productsList[j].maturityImageUrl = updatedProduct.maturityImageUrl;
-          db_productsList[j].maturityName = updatedProduct.maturityName;
-          db_productsList[j].maturityInfo = updatedProduct.maturityInfo;
-          db_productsList[j].maturityEatIn = updatedProduct.maturityEatIn;
-          db_productsList[j].maturityLastFor = updatedProduct.maturityLastFor;
-          db_productsList[j].isInStock = updatedProduct.isInStock;
+          // db_productsList[j].price = updatedProduct.price;
+          // db_productsList[j].isSmallSize = updatedProduct.isSmallSize;
+          // db_productsList[j].isMediumSize = updatedProduct.isMediumSize;
+          // db_productsList[j].isBigSize = updatedProduct.isBigSize;
+          // db_productsList[j].isKilo = updatedProduct.isKilo;
+          // db_productsList[j].isUnit = updatedProduct.isUnit;
+          // db_productsList[j].isOrganic = updatedProduct.isOrganic;
+          // db_productsList[j].isSeasonal = updatedProduct.isSeasonal;
+          // db_productsList[j].isMaturityDetails = updatedProduct.isMaturityDetails;
+          // db_productsList[j].maturityImageUrl = updatedProduct.maturityImageUrl;
+          // db_productsList[j].maturityName = updatedProduct.maturityName;
+          // db_productsList[j].maturityInfo = updatedProduct.maturityInfo;
+          // db_productsList[j].maturityEatIn = updatedProduct.maturityEatIn;
+          // db_productsList[j].maturityLastFor = updatedProduct.maturityLastFor;
+          // db_productsList[j].isInStock = updatedProduct.isInStock;
 
-          retailer.store.productsList[j] = db_productsList[j];
+          // retailer.store.productsList[j] = db_productsList[j];
+          retailer.store.productsList[j] = updatedProduct;
         }
       }
     }  
-    
-    retailer.save(function(err){
+
+    // let prodcutListUpdated = { productsList : retailer.store.productsList};
+    // Retailer.findByIdAndUpdate(id, prodcutListUpdated, {new: true},function(err,retailer ){
+    retailer.save(function(err){  
       if(err)
         return res.status(500).send(err);
 

@@ -55,21 +55,7 @@ exports.getBuyers = async function(req, res, next) {
 		data: buyers
 	});
 };
-// // Create endpoint /api/buyers for GET
-// exports.getBuyers = function(req, res) {
 
-//   Buyer.find(function(err, buyers) {
-//     if (err)
-//       return res.status(500).send(err);
-
-// 		res.json({ 
-// 			success: true,
-// 			status: 200,
-// 			message: 'buyers list', 
-// 			data: buyers
-// 		});
-//   });
-// };
 
 // Create endpoint /api/buyers/:user_id for GET
 exports.getBuyer = function(req, res) {
@@ -99,35 +85,36 @@ exports.getBuyer_JWTVerification = function(user_id) {
   });
 };
 
-// Create endpoint /api/buyers/:user_id for PUT
-exports.putBuyer = function(req, res) {
+// Create endpoint /api/buyers/:buyer_id for PUT
+exports.putBuyer = async function(req, res, next) {
 
-  Buyer.findById(req.params.buyer_id, function(err, buyer) {
-    if (err)
-      return res.status(500).send(err);
 
-	// buyer = req.body; 
-	// var len = req.body.myFavoriteRetailers.length;
-	// for (var i=0 ; i<len ; i++) {
-	// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers[i]);
-	// }  
+	// use this put method to update buyer data only
+	let id = req.params.buyer_id;
+	let buyerData = req.body;
 
-    buyer.save(function(err){
-      if(err) 
-        return res.status(500).send(err);
+	const buyerUpdated = 
+		await Buyer.findByIdAndUpdate(id, buyerData, { new: true});
 
-      res.json({ 
-        success: true,
-        status: 200,
-        message: 'buyer updated', 
-        data: buyer
-      });
-
-    });
-  });
+	if(buyerUpdated) {
+		console.log("updateBuyerAddress - PATCH");
+		res.json({
+			success: true,
+			status: 200,
+			message: "favorite retailer updated",
+			entity: buyerUpdated
+		});
+	} else {
+		res.json({
+			success: false,
+			status: 500,
+			message: "favorite not retailer updated",
+			entity: buyerUpdated
+		});
+	}
 };
 
-// Create endpoint /api/buyers/:beer_id for DELETE
+// Create endpoint /api/buyers-favorite-retailers/:buyer_id for PATCH
 exports.deleteBuyer = function(req, res) {
 
   Buyer.findByIdAndRemove(req.params.buyer_id, function(err) {
@@ -178,51 +165,31 @@ exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 	}
 
 }
-// exports.updateBuyerFavoriteRetailers = function(req, res) {
-//   Buyer.findById(req.params.buyer_id, function(err, buyer){
-// 	if(err) 
-// 	  return res.sender(err);
+
+// Create endpoint /api/buyers-address/:buyer_id for PATCH
+exports.updateBuyerAddress = async function(req, res, next) {
+
 	
-// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers);
-
-// 	buyer.save(function(err) {
-// 	  if (err)
-// 		return res.status(500).send(err);
-	  
-// 	  res.json({
-// 		  success: true,
-// 		  status: 200,
-// 		  message: "favorite retailer updated",
-// 	  });
-// 	});
-//   });
-// }
-
-exports.updateBuyerAddress = function(req, res) {
-	Buyer.findById(req.params.buyer_id, function(err, buyer){
-	  if(err) 
-		return res.sender(err);
-	  
-	  buyer.address = { 
-		streetName: req.body.address.streetName,
-		streetnumber: req.body.address.streetnumber,
-		district: req.body.address.district,
-		city: req.body.address.city,
-		department: req.body.address.department,
-		country: req.body.address.country,
-		reference: req.body.address.reference,
-		details: req.body.address.details
-	  },
-  
-	  buyer.save(function(err) {
-		if (err)
-		  return res.status(500).send(err);
-		
+	let addressData = req.body;
+	let id = req.params.buyer_id;
+	const buyerUpdated = 
+		await Buyer.findByIdAndUpdate(id, addressData, {new: true});
+	
+	if(buyerUpdated) {
+		console.log("updateBuyerAddress - PATCH");
 		res.json({
 			success: true,
 			status: 200,
 			message: "favorite retailer updated",
+			entity: buyerUpdated
 		});
-	  });
-	});
+	} else {
+		res.json({
+			success: false,
+			status: 500,
+			message: "favorite not retailer updated",
+			entity: buyerUpdated
+		});
+	}
+
   }

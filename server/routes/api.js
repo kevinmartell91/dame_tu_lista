@@ -38,7 +38,7 @@ router.route('/buyers-favorite-retailers/:buyer_id')
   .patch(buyerController.updateBuyerFavoriteRetailers);
 
 router.route('/buyers-address/:buyer_id')
-  .put(buyerController.updateBuyerAddress);
+  .patch(buyerController.updateBuyerAddress);
 
 
 // Create endpoint handlers for /retailers/:retailer_id

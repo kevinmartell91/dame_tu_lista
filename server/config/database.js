@@ -21,6 +21,7 @@ module.exports = function(mongoose) {
     // }
    
     mongoose.set('useUnifiedTopology', true);
+    mongoose.set('useFindAndModify', false);
     // var connection = mongoose.createConnection(dbURI, { server: { poolSize: 5 } });
     var connection = null;
    (async function (){
