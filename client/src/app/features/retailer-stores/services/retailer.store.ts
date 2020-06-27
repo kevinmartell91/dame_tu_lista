@@ -11,6 +11,7 @@ import { Product } from 'src/app/core/retailer/types/product';
 import { APP_CONFIG } from 'src/app/app.config';
 import { getProductDeserialized } from "../helpers/product.helper";
 
+import * as airtable from "../types/airtable";
 
 
 @Injectable({ providedIn: 'root'})
@@ -119,6 +120,17 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     //         }
     //     });
     // }
+
+
+    public getAirTabeDATA():any {
+        // return this.endPoint.getAirTabeData().pipe(
+        //     map(response => {
+        //         console.log("getAirTabeDATA",response);
+        //     })
+        // )
+
+        return airtable.manuallyRetrievedAritableData();
+    }
     
     
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
+import { getHeadersForGet, getHeadersForNewUsers } from 'src/app/shared/helpers/endpoint.helpers';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Injectable, Inject } from '@angular/core';
@@ -34,8 +34,22 @@ export class RetailerEndpoint {
                 });
                 return throwError(error);
             })
-        
 
         );
     }
+
+    public getAirTabeData(){
+        
+        let url = `https://api.airtable.com/v0/app90UT0ZXO2CSQwS/test%20cases`;
+        let api_key = "keyNqSR6NoYacM8nC";
+        let headers = { headers: { Authorization : "Bearer "+ api_key}}
+
+        console.log("url", url);
+
+       return this.http.get(url,
+            { headers: { Authorization: "Bearer " + api_key }});
+    
+    }
+
+   
 }

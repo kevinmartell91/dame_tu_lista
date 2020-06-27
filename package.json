@@ -1,5 +1,5 @@
 {
-  "name": "gaitcome-web-server",
+  "name": "dame-tu-lista-web-server",
   "version": "0.2.0",
   "scripts": {
     "start": "node server.js",

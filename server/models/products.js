@@ -2,27 +2,26 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var productShema = new Schema({
-    _id: String,
-    categoryImageUrl: String,
-    categoryName: String,
-    varietyImageUrl: String,
-    varietyName: String,
-    currency: String,
-    price: Number,
-    isSmallSize: Boolean,
-    isMediumSize: Boolean,
-    isBigSize: Boolean,
-    isKilo: Boolean,
-    isUnit: Boolean,
-    isOrganic: Boolean,
-    isSeasonal: Boolean,
-    isMaturityDetails: Boolean,
-    maturityImageUrl: String,
-    maturityName: String,
-    maturityInfo: String,
-    maturityEatIn: String,
-    maturityLastFor: String, 
-    isInStock: Boolean   
+    categoryImageUrl: { type : String, default: '' },
+    categoryName: { type : String, default: '' },
+    varietyImageUrl: { type : String, default: '' },
+    varietyName: { type : String, default: '' },
+    currency: { type : String, default: '' },
+    price: { type : Number, default: false },
+    isSmallSize: { type : Boolean, default: false },
+    isMediumSize: { type : Boolean, default: false },
+    isBigSize: { type : Boolean, default: false },
+    isKilo: { type : Boolean, default: false },
+    isUnit: { type : Boolean, default: false },
+    isOrganic: { type : Boolean, default: false },
+    isSeasonal: { type : Boolean, default: false },
+    isMaturityDetails: { type : Boolean, default: false },
+    maturityImageUrl: { type : String, default: '' },
+    maturityName: { type : String, default: '' },
+    maturityInfo: { type : String, default: '' },
+    maturityEatIn: { type : String, default: '' },
+    maturityLastFor: { type : String, default: ''}, 
+    isInStock: { type : Boolean, default: false }   
 });
 
 var Products = mongoose.model('Products',productShema);

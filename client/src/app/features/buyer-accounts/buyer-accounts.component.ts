@@ -86,10 +86,9 @@ export class BuyerAccountsComponent implements OnInit {
   addFavoriteRetailer(): void {
     // this.buyerAccountStore.init();
     // let buyer_id = "5edeecfc09ff9d6770b10344";
-    let retailer_email = "irene03@gmail.com";
+    let retailer_email = "keyla@gmail.com";
     console.log("addFavoriteRetailer");
     this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
-   
   }
 
 

@@ -11,7 +11,7 @@ exports.postBuyers = function(req, res) {
 	// setting buyer properties that come from POST
 	// buyer.username = req.body.username; 
 	buyer.password = req.body.password; 
-	// buyer.name = req.body.name; 
+	buyer.name = req.body.name; 
 	// buyer.lastname = req.body.lastname; 
 	buyer.email = req.body.email; 
 	// buyer.phoneNumber = req.body.phoneNumber; 

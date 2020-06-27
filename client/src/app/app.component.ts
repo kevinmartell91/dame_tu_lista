@@ -54,9 +54,12 @@ export class AppComponent implements OnInit, OnDestroy{
     public buyerNavegationStore: BuyerNavegationStore,
     private location: Location,
     public cartStore: CartStore,
-    private temporaryStorageService: TemporaryStorageService
+    private temporaryStorageService: TemporaryStorageService,
+    private retailerStoreStore: RetailerStoreStore
   ) {
 
+    // this.retailerStoreStore.getAirTabeDATA();
+    
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
     console.log("temporaryStorage",this.temporaryStorage);
@@ -81,7 +84,6 @@ export class AppComponent implements OnInit, OnDestroy{
         if(this.cartProducts.length !== 0) { 
           this.saveToTemporaryStorage(this.cartProducts);
         }
-       
       }
     )
   }

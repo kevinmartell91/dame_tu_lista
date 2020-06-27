@@ -134,9 +134,9 @@ export class LoginComponent implements OnInit {
     let loginUser = this.prepareAuthentication();
     
     // hard coded, quick login purposes
-    loginUser.login_type= "comprador";
-    loginUser.email = "demo34@gmail.com";
-    loginUser.password = "demo";
+    // loginUser.login_type= "comprador";
+    // loginUser.email = "lucia@gmail.com";
+    // loginUser.password = "demo";
 
     // converting ESP login type to ENG
     if(loginUser.login_type === LOGIN_CONFIG.loginUserCompradorType){

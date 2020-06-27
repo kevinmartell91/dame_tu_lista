@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const environment = process.env.NODE_ENV; // development
 const stage = require('./server/CONFIG')[environment]
 
-
 const path = require('path');
 const http = require('http');
 const cors = require('cors');
