@@ -6848,7 +6848,9 @@ export function manuallyRetrievedAritableData():any {
         product.varietyImageUrl = assetPath + ele.fields.varietyImageUrl;
         product.categoryImageUrl = assetPath + ele.fields.categoryImageUrl;
         product.categoryName = ele.fields.categoryName;
-        product.varietyName = ele.fields.varietyName;
+
+        product.varietyName = ele.fields.varietyName == "-" ? "normal" : ele.fields.varietyName
+
         product.currency = ele.fields.currency;
         product.price = ele.fields.price;
         product.isMediumSize = ele.fields.isMediumSize;

@@ -48,7 +48,7 @@ $third_text_color: #8bce7d
   grid-template-columns: 1fr
   grid-gap: 0px
   grid-template-rows: 0fr 3fr 20px 15px 0fr
-  grid-template-areas: "emptyTop emptyTop" "image image" "price price" "type orgnc" "emptyBottom emptyBottom"
+  grid-template-areas: "emptyTop emptyTop" "image image" "price price" "type ." "emptyBottom emptyBottom"
   background-color: white
 
   div:empty 
@@ -102,14 +102,6 @@ $third_text_color: #8bce7d
   font-size: $secondary_display_font_size
   color: $secondary_filed_color
   // background-color: green
-
-.product_organic_area
-  grid-area: orgnc
-  margin: 0px
-  padding: 0px 4px 0px 4px
-  font-size: $secondary_display_font_size
-  color: $secondary_filed_color
-  // background-color: cyan
   
 // add button area  
 .product_add_area
@@ -120,7 +112,7 @@ $third_text_color: #8bce7d
   touch-action: manipulation
   border: 1px solid rgb(67, 176, 42)
   border-radius: 12px
-  font-weight: 600
+  font-weight: 100
   white-space: nowrap
   user-select: none
   -webkit-font-smoothing: antialiased
@@ -136,6 +128,62 @@ $third_text_color: #8bce7d
   top: 8px
   right: 8px
   justify-content: center
+  z-index: 1
+
+// taking advantage of "add" grid-area
+// to add organic and size area
+.product_organic_add_area
+  grid-area: add
+  justify-self: center
+  align-self: start
+  font-weight: bold
+  touch-action: manipulation
+  border: 1px solid $third_text_color
+  border-radius: 6px
+  font-weight: 100
+  white-space: nowrap
+  user-select: none
+  -webkit-font-smoothing: antialiased
+  background-image: none
+  display: inline-flex
+  align-items: center
+  padding: 0px
+  font-size: 12px
+  height: 20px
+  background-color: $third_text_color
+  color: white
+  min-width: 24px
+  top: 8px
+  right: 8px
+  justify-content: center
+  transform: translate3d(-15px, 106px, 10px)
+
+
+.product_size_add_area
+  grid-area: add
+  justify-self: center
+  align-self: start
+  font-weight: bold
+  touch-action: manipulation
+  border-radius: 6px
+  font-weight: 100
+  white-space: nowrap
+  user-select: none
+  -webkit-font-smoothing: antialiased
+  background-image: none
+  display: inline-flex
+  align-items: center
+  padding: 0px
+  font-size: 10px
+  height: 20px
+  background-color: $third_filed_color
+  color: white
+  min-width: 24px
+  top: 8px
+  right: 8px
+  justify-content: center
+  transform: translate3d(0px, 83px, 10px)
+  // background-color: cyan
 
 //  Maturiy areas 
 .product_maturity_area
@@ -179,6 +227,16 @@ $third_text_color: #8bce7d
 
 .style_maturity_details
   color: $third_text_color
+
+
+.style_organic
+  color: $third_text_color
+  transform: translate3d(101px, 2px, 0px)
+  
+
+.style_size
+  color: $third_text_color
+  transform: translate3d(98px, -1px, 0px)
 
 .quantity_increased
   background-color: rgb(67, 176, 42)

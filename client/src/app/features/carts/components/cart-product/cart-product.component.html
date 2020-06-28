@@ -18,11 +18,11 @@
             S/.{{cartProduct.price}}
             <span *ngIf="cartProduct.isKilo" 
                 class="style_price_per_unit_or_kg">
-                / Kg
+                 Kg.
             </span>
             <span *ngIf="cartProduct.isUnit" 
                 class="style_price_per_unit_or_kg">
-                / Unit
+                 Uni.
             </span>
         </div>
         
@@ -33,14 +33,14 @@
                 Comer en:
             </span>
             <span class="style_maturity_details">
-                {{cartProduct.maturityEatIn}}
+                {{cartProduct.maturityEatIn}} días
             </span> 
             
             <span class="style_maturity_field">
                  Y te durá: 
             </span>
             <span class="style_maturity_details">
-                {{cartProduct.maturityLastFor}}
+                {{cartProduct.maturityLastFor}} días
             </span> 
 
         </div>
