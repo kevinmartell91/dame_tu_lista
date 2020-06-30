@@ -425,6 +425,6 @@ export class StoreComponent implements OnDestroy{
 
     this.router.navigate(['/retailer-store',
       this.retailerStoreStore.state.retailer._id,
-      'category-view']);
+      'categoria']);
   }
 }

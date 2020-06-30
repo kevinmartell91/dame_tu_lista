@@ -24,7 +24,7 @@
 
 <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
 class="product_type_area">
-{{product.varietyName}} - 
+{{product.varietyName}}
 <!-- <span *ngIf="product.isOrganic === false">Normal</span> -->
 </div>
 
@@ -94,13 +94,14 @@ class="product_type_area">
 -->
 <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' " 
     class="product_size_add_area">
-    <span *ngIf="product.isSmallSize">Peq.</span>
-    <span *ngIf="product.isMediumSize">Med.</span>
-    <span *ngIf="product.isBigSize">Gra.</span>       
+    <span *ngIf="product.isSmallSize">Pequeño</span>
+    <span *ngIf="product.isMediumSize">Mediano</span>
+    <span *ngIf="product.isBigSize">Grande</span>       
 </div>
-<div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' " 
+
+<div *ngIf="typeView === 'maturityView' || typeView === 'varietyView' || typeView === 'seasonalView' " 
     class="product_organic_add_area">
-    <span *ngIf="product.isOrganic">Orgánico</span>
+    <span *ngIf="product.isOrganic">Org.</span>
 </div>
 
     

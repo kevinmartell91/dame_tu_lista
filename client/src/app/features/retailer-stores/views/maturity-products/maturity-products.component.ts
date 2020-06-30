@@ -37,6 +37,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
   public category: string;
   public variety: string;
   public retailer_id: string;
+  public isOrganic: string;
 
   public subscription: Subscription;
 
@@ -57,6 +58,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
       this.retailer_id = params.get('retailer_id');
       this.category = params.get('categoryName');
       this.variety = params.get('varietyName');
+      this.isOrganic = params.get('isOrganic');
     })
 
   }
@@ -103,7 +105,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     products: Product[]
   ): Product[] {
     
-    return filterProductsByMaturity(category, variety, products);
+    return filterProductsByMaturity(category, variety, this.isOrganic, products);
 
   }
   

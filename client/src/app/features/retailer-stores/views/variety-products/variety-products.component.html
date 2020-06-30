@@ -18,7 +18,7 @@
 
     <ng-template #showVarietyList>
         <div class="display_products_grid">
-            <ng-container *ngFor='let product of _filterAllProductsByCategory(category, subs.state$.productsList.products)'>
+            <ng-container *ngFor='let product of _filterAllProductsByVariety(category, subs.state$.productsList.products)'>
                 <app-product-display-shared typeView="varietyView" [product]="product"
                     (selected)="onSelected($event)"></app-product-display-shared>
             </ng-container>

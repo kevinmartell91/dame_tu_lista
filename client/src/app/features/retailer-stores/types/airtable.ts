@@ -191,169 +191,7 @@ export function manuallyRetrievedAritableData():any {
 
     let data = {
         "records": [{
-            "id": "rec1BtZ4vnqio2BKj",
-            "fields": {
-                "_id": "platano",
-                "varietyImageUrl": "platano_seda.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
-                "currency": "PEN",
-                "price": 0.5,
-                "isMediumSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_inmaduro.jpg",
-                "maturityName": "Inmaduro",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attnLGMLA8XEVvpee",
-                    "url": "https://dl.airtable.com/.attachments/50bd60c5d970a31071bb3a1bb16cf5b1/62fedcde/platano_seda.jpg",
-                    "filename": "platano_seda.jpg",
-                    "size": 105916,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/20ef0688e27eeb4e67a39c5147a62964/fedf8cdd",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f568d76ffdcad8165041f8796f03be2/2704d6a8",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/169f8f86a180e8dfd55c769a8d3c7791/c01b97a0",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "att0yQHky2jxvI9lc",
-                    "url": "https://dl.airtable.com/.attachments/479fa8a856470d8c22048df1668e325c/7818cfe0/platano_seda_inmaduro.jpg",
-                    "filename": "platano_seda_inmaduro.jpg",
-                    "size": 1393,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/55e7c3d8c75ce45e474c13de476c9e45/d9f68dfd",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/1701c4da77f855591cf892d678af0ec1/2b182ff3",
-                            "width": 90,
-                            "height": 90
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/93c0a84f62964aceb7c2d6fde87f882f/562ee7e8",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }]
-            },
-            "createdTime": "2020-06-24T23:09:30.000Z"
-        }, {
-            "id": "rec2xnB27fl2QCW7P",
-            "fields": {
-                "_id": "fresas copy copy copy",
-                "varietyImageUrl": "fresa_especial_organica.jpg",
-                "Category_Img": [{
-                    "id": "attVzjQCS5ZtnLkvv",
-                    "url": "https://dl.airtable.com/.attachments/88672583ebdcbc41f115ec2183a5b155/dd017ede/categoria_fresa.jpg",
-                    "filename": "categoria_fresa.jpg",
-                    "size": 75774,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8f4744b7acc259254b3b10637240c9c/39db988e",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d78461a55ebae0cbbaba2ff507927831/3e90f60a",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b2b51d0627d8d4631bc8e159e9a603d2/f5781568",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_fresa.jpg",
-                "categoryName": "fresa",
-                "varietyName": "especial",
-                "currency": "PEN",
-                "price": 14,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attSVOrNSvxnKAuFm",
-                    "url": "https://dl.airtable.com/.attachments/1d5b9182d287fcd3f8a562067921776c/a47c1b25/fresa_especial_organica.jpg",
-                    "filename": "fresa_especial_organica.jpg",
-                    "size": 100959,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d87b58b8bd243c9b46ea8ae53eaad659/d187da6a",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5329195b11ed3ad51e8f17940ff56e1b/46d70445",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/0fee94f1c4d884ce4ac95c118ef90e6c/edd33bea",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "isOrganic": true
-            },
-            "createdTime": "2020-06-26T00:12:23.000Z"
-        }, {
-            "id": "rec6lwIq2XcgDKKzx",
+            "id": "rec3LWBDkJuAH0cD3",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_selecta.jpg",
@@ -382,8 +220,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
                 "price": 0.8,
                 "isBigSize": true,
@@ -448,7 +286,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:12:35.000Z"
         }, {
-            "id": "rec8FuUySR38Iob3K",
+            "id": "rec55UNLaDlsMED7g",
             "fields": {
                 "_id": "nectarine",
                 "varietyImageUrl": "nectarine.jpg",
@@ -515,7 +353,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T03:00:55.000Z"
         }, {
-            "id": "rec8aKKBHGBzPMaU6",
+            "id": "rec5AaDOZsTTT2CYC",
             "fields": {
                 "_id": "uva copy",
                 "varietyImageUrl": "uva_italia_selecta.jpg",
@@ -583,7 +421,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:49:09.000Z"
         }, {
-            "id": "rec8fseOg4vaWD29x",
+            "id": "rec5FS71yQNu0Tud3",
             "fields": {
                 "_id": "platano copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_granel.jpg",
@@ -612,8 +450,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.7,
                 "isBigSize": true,
@@ -678,7 +516,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:21:43.000Z"
         }, {
-            "id": "rec8l1rbm6ACeyq1z",
+            "id": "rec5LrkoESSWiOS55",
             "fields": {
                 "_id": "yacon",
                 "varietyImageUrl": "yacon.jpg",
@@ -707,7 +545,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_yacon.jpg",
-                "categoryName": "yacon",
+                "categoryName": "yacón",
                 "varietyName": "-",
                 "currency": "PEN",
                 "price": 3.5,
@@ -745,10 +583,10 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:42:38.000Z"
         }, {
-            "id": "recA0nnREaMBCIR0y",
+            "id": "rec7WvxgLuyqZjk73",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_isla_selecta.jpg",
+                "varietyImageUrl": "platano_seda_organico_granel.jpg",
                 "Category_Img": [{
                     "id": "atthZs3mQCeW7uUzF",
                     "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
@@ -774,224 +612,36 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "isla",
-                "currency": "PEN",
-                "price": 0.6,
-                "isMediumSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityImageUrl": "platano_isla_selecta_semi_maduro.jpg",
-                "maturityName": "Semi-maduro",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attx3QoCwVmACaffi",
-                    "url": "https://dl.airtable.com/.attachments/1386de935c1aa5e66b7d99ab96e30a51/9ab1d323/platano_isla_selecta.jpg",
-                    "filename": "platano_isla_selecta.jpg",
-                    "size": 17866,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/425668f49c8e7da11acb1bc834b69674/463125e6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2c07b23abeb135c9fb1eccabf76b0277/92261880",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/107ee1d38faecd6c45ffed27af832636/a57c30d4",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attgIYo9LZ4jXoUsq",
-                    "url": "https://dl.airtable.com/.attachments/b020540817805c275c2e2e01931f6d68/fadfe6ae/platano_isla_selecta_semi_maduro.jpg",
-                    "filename": "platano_isla_selecta_semi_maduro.jpg",
-                    "size": 1443,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b0e2078f33cbdefd52ce44d5edcd9c6a/d20909dd",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/8c81aa001669e5e0d6499f99509b52c8/08c6d2e0",
-                            "width": 97,
-                            "height": 97
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/40d989e77e4c40dd31cd961e1af91bfa/0ef75ea0",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }]
-            },
-            "createdTime": "2020-06-25T00:33:33.000Z"
-        }, {
-            "id": "recADHigZxZnTTTp1",
-            "fields": {
-                "_id": "platano copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_isla_selecta.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "isla",
-                "currency": "PEN",
-                "price": 0.6,
-                "isMediumSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityImageUrl": "platano_isla_selecta_inmaduro.jpg",
-                "maturityName": "Inmaduro",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attx3QoCwVmACaffi",
-                    "url": "https://dl.airtable.com/.attachments/1386de935c1aa5e66b7d99ab96e30a51/9ab1d323/platano_isla_selecta.jpg",
-                    "filename": "platano_isla_selecta.jpg",
-                    "size": 17866,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/425668f49c8e7da11acb1bc834b69674/463125e6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2c07b23abeb135c9fb1eccabf76b0277/92261880",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/107ee1d38faecd6c45ffed27af832636/a57c30d4",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attLFROMycXVK1COq",
-                    "url": "https://dl.airtable.com/.attachments/a59231d3792da8d6b1de6dba24888f0e/53d34382/platano_isla_selecta_inmaduro.jpg",
-                    "filename": "platano_isla_selecta_inmaduro.jpg",
-                    "size": 1393,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c5ebd15df318a1cdd2ff3a7eb61d9cd3/531bd009",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/4d4824baca10fe2caf528fc8bbc2f7e7/26ca5862",
-                            "width": 90,
-                            "height": 90
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3cfac92cdb4509738e92f2ebf31938c9/74f8276d",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }]
-            },
-            "createdTime": "2020-06-25T00:22:24.000Z"
-        }, {
-            "id": "recAGKE6mcxKn09Zm",
-            "fields": {
-                "_id": "platano copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.7,
-                "isMediumSize": true,
+                "isBigSize": true,
                 "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_organico_selecta_comer_ya.jpg",
+                "maturityImageUrl": "platano_seda_organico_granel_comer_ya.jpg",
                 "maturityName": "Comer ya",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attHvnCAJTpFStFxT",
-                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
-                    "filename": "platano_seda_organico_selecta.jpg",
+                    "id": "attmgK2LUkQmIsUF6",
+                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
+                    "filename": "platano_seda_organico_granel.jpg",
                     "size": 106319,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
                             "width": 3000,
                             "height": 3000
                         }
@@ -1001,24 +651,24 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true,
                 "Maturity_Img": [{
-                    "id": "attPzSuFGO5UNpjc4",
-                    "url": "https://dl.airtable.com/.attachments/ef4d8673af8ed7a5bdd9203e16d4c0eb/373c0f0b/platano_seda_organico_selecta_comer_ya.jpg",
-                    "filename": "platano_seda_organico_selecta_comer_ya.jpg",
+                    "id": "atth02tngyQQwqPb4",
+                    "url": "https://dl.airtable.com/.attachments/4046b8c2bda1e4f3e1b60600b7880976/8a81c9b4/platano_seda_organico_granel_comer_ya.jpg",
+                    "filename": "platano_seda_organico_granel_comer_ya.jpg",
                     "size": 1580,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5db65811151fb81444fdef91ea50ca3/f9c51dcb",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/0cf8acb0592eca9793688e1cb7573c74/859af66c",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/06825fe0ccf14a10f02da8b2011cefda/af4aab27",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c931a376fb299ac50bd4252b4d533bec/9d063300",
                             "width": 96,
                             "height": 96
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/034f17020809e35bff1a63160ce9b8fd/755a51dc",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/96f2061442d58afd467bb1e8e7206bf4/25ba5df3",
                             "width": 3000,
                             "height": 3000
                         }
@@ -1026,64 +676,67 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "isOrganic": true
             },
-            "createdTime": "2020-06-25T00:10:41.000Z"
+            "createdTime": "2020-06-25T00:21:46.000Z"
         }, {
-            "id": "recAZ4kVbJllr37TP",
+            "id": "rec7iD1LtxW29jQR4",
             "fields": {
-                "_id": "manzana copy",
-                "varietyImageUrl": "manzana_israel.jpg",
+                "_id": "platano copy copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_bellaco.jpg",
                 "Category_Img": [{
-                    "id": "attc0EM3oZVVpcVLk",
-                    "url": "https://dl.airtable.com/.attachments/951c2225795fdbe8eaec28949bd9a152/10c83bbd/categoria_manzana.jpg",
-                    "filename": "categoria_manzana.jpg",
-                    "size": 59069,
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/fea070e9f2c059f3d621982300420962/a8bd5237",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e8c4564400e6dde40c7e5641bc532f5/7de26d43",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9d8850e0b4ac1d162bfa5f511a7518c/979f9004",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_manzana.jpg",
-                "categoryName": "manzana",
-                "varietyName": "israel",
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "bellaco",
                 "currency": "PEN",
-                "price": 3,
-                "isKilo": true,
+                "price": 1,
+                "isMediumSize": true,
+                "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
+                "maturityImageUrl": "platano_bellaco_maduro.jpg",
+                "maturityName": "Maduro",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attJhhjZgLDKvHR0R",
-                    "url": "https://dl.airtable.com/.attachments/203760ba19bbeffb7ad3c6e427b3e2c7/d2513663/manzana_israel.jpg",
-                    "filename": "manzana_israel.jpg",
-                    "size": 44443,
+                    "id": "att5bDFTxNgI8L4ST",
+                    "url": "https://dl.airtable.com/.attachments/2b924634c116ff49131aa088213d3d6e/e20fc12b/platano_bellaco.jpg",
+                    "filename": "platano_bellaco.jpg",
+                    "size": 35666,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/9824d837a539e0027cf029ef28e51257/3ff291eb",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3a1304d534c4441e3e26f38e8dd31211/ad2a142a",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7bed4fb81d00a1be86b4d46de308539a/6eaec43a",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/097e9ebee98c23789eaee0eebb6cf20d/0f4325d2",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d22698648f45497ae87128bbe2213049/52627493",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/648bfc34f742ce69a9c595d10b6ecdde/e1593e85",
                             "width": 3000,
                             "height": 3000
                         }
@@ -1091,134 +744,91 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "maturityEatIn": 4,
                 "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T01:55:08.000Z"
-        }, {
-            "id": "recCngBotrgr0Cvqh",
-            "fields": {
-                "_id": "ciruela",
-                "varietyImageUrl": "ciruela_criolla.jpg",
-                "Category_Img": [{
-                    "id": "attXsZ2fSXhiB46kp",
-                    "url": "https://dl.airtable.com/.attachments/a8acc480a1cf224631ff6d1bc2a2c766/ef9aa701/categoria_ciruela.jpg",
-                    "filename": "categoria_ciruela.jpg",
-                    "size": 84976,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attPgxfG77PsZlYhB",
+                    "url": "https://dl.airtable.com/.attachments/a4f70d5b7b9eeee0b9522cea672dc60f/17fb5909/platano_bellaco_maduro.jpg",
+                    "filename": "platano_bellaco_maduro.jpg",
+                    "size": 1443,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/730530fe4a9072fcd5ae13dd9b4c95e1/71a10db6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7f81f3dddb82a4f8e4914c1b71861086/f46311ed",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c21433e7cee9e4e4990c872f00891506/a2086edb",
-                            "width": 512,
-                            "height": 512
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c0aee7bf629e31ea51579f4f75ab7008/023ac143",
+                            "width": 97,
+                            "height": 97
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/298a1a5acff27f887f6c7f8a2c52111d/1bda7359",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/a78d742c8317416b96bd30b32090ad72/18c859bd",
                             "width": 3000,
                             "height": 3000
                         }
                     }
-                }],
-                "categoryImageUrl": "categoria_ciruela.jpg",
-                "categoryName": "ciruela",
-                "varietyName": "criolla",
-                "currency": "PEN",
-                "price": 3.5,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attkipsCK4rvrOTE8",
-                    "url": "https://dl.airtable.com/.attachments/37f689a48ed10cf22d916a456a2786dc/fabe2f33/ciruela_criolla.jpg",
-                    "filename": "ciruela_criolla.jpg",
-                    "size": 79261,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/848f2efc08ee41655688747129f095fb/9ff3efb7",
-                            "width": 49,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/68bf38f6ccb676262014ae0c7ae557c1/66a0ab27",
-                            "width": 697,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/1a520b1ed420a950a4f22274a2cf8a3a/717cd348",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
+                }]
             },
-            "createdTime": "2020-06-25T22:03:00.000Z"
+            "createdTime": "2020-06-25T00:49:02.000Z"
         }, {
-            "id": "recD8ioqm6a9e40Ic",
+            "id": "rec8oyzyE2OYXNNK8",
             "fields": {
-                "_id": "mandarina copy",
-                "varietyImageUrl": "mandarina_sp.jpg",
+                "_id": "platano copy copy copy copy copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_manzano.jpg",
                 "Category_Img": [{
-                    "id": "attMUerjm2ZtKG6iM",
-                    "url": "https://dl.airtable.com/.attachments/a871d52d18bf1dadf3f29ba8fbdbb264/49847aa1/categoria_mandarina.jpg",
-                    "filename": "categoria_mandarina.jpg",
-                    "size": 91332,
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c15c0699848e8994ce820877daca0fe/44aadf28",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/95debd6e68ac0f071bec3caed5e71f57/df166ff7",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/55c505385516b7ef780769b7bbb33af8/4b2e56ab",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_mandarina.jpg",
-                "categoryName": "mandarina",
-                "varietyName": "s/p",
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "manzano",
                 "currency": "PEN",
-                "price": 5,
+                "price": 0.8,
                 "isBigSize": true,
-                "isKilo": true,
+                "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attpPfQ6ZU4fk1vNP",
-                    "url": "https://dl.airtable.com/.attachments/f23042bb5ee8ae33d8386f32f6041def/67039027/mandarina_sp.jpg",
-                    "filename": "mandarina_sp.jpg",
-                    "size": 74307,
+                    "id": "att7fmUfNoxXbXPhs",
+                    "url": "https://dl.airtable.com/.attachments/6b2680843bffc72e6907ba39a4f211ee/2fee19e0/platano_manzano.jpg",
+                    "filename": "platano_manzano.jpg",
+                    "size": 28294,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e0360ae8a6ec3d232b62c69dbd784c79/25dcb4d9",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/43dbd791a074e4f6f1e58d5686e10d7b/5e1f3fb3",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c30d30ad3cdaa65070406e7390986d5b/ea201b06",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/32689e7cec4a8c48cb93566707f97c7e/4ee26d80",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/0e253899454f36897c845755268431ed/8c71dd1b",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c32004868f45522a0913640c649959c/cc9ab12c",
                             "width": 3000,
                             "height": 3000
                         }
@@ -1228,77 +838,9 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true
             },
-            "createdTime": "2020-06-25T02:35:52.000Z"
+            "createdTime": "2020-06-25T01:03:28.000Z"
         }, {
-            "id": "recDTt1yWmDa9cr9F",
-            "fields": {
-                "_id": "fresas",
-                "varietyImageUrl": "fresa.jpg",
-                "Category_Img": [{
-                    "id": "attVzjQCS5ZtnLkvv",
-                    "url": "https://dl.airtable.com/.attachments/88672583ebdcbc41f115ec2183a5b155/dd017ede/categoria_fresa.jpg",
-                    "filename": "categoria_fresa.jpg",
-                    "size": 75774,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8f4744b7acc259254b3b10637240c9c/39db988e",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d78461a55ebae0cbbaba2ff507927831/3e90f60a",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b2b51d0627d8d4631bc8e159e9a603d2/f5781568",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_fresa.jpg",
-                "categoryName": "fresa",
-                "varietyName": "-",
-                "currency": "PEN",
-                "price": 6,
-                "isSmallSize": true,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "att4CjjR5xYNdmwJx",
-                    "url": "https://dl.airtable.com/.attachments/972220519cf44a74c55e2d5bf6adaf12/fa5e7add/fresa.jpg",
-                    "filename": "fresa.jpg",
-                    "size": 294008,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3cdd438bc2d17b72b7473621cf15c2f1/706a9ae1",
-                            "width": 64,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e58ce5057362d2f64d48ccf8a54c2651/405a12af",
-                            "width": 910,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2726761b6e770e54af7344b69af1856a/a6e29bfa",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-26T00:08:34.000Z"
-        }, {
-            "id": "recDfLKnWA1xwKEpo",
+            "id": "recAFbDAemjRA06tU",
             "fields": {
                 "_id": "fresas copy",
                 "varietyImageUrl": "fresa.jpg",
@@ -1366,7 +908,238 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:11:49.000Z"
         }, {
-            "id": "recEKNayXwLUQUr3m",
+            "id": "recAjTULe8VudsTdb",
+            "fields": {
+                "_id": "fresas",
+                "varietyImageUrl": "fresa.jpg",
+                "Category_Img": [{
+                    "id": "attVzjQCS5ZtnLkvv",
+                    "url": "https://dl.airtable.com/.attachments/88672583ebdcbc41f115ec2183a5b155/dd017ede/categoria_fresa.jpg",
+                    "filename": "categoria_fresa.jpg",
+                    "size": 75774,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8f4744b7acc259254b3b10637240c9c/39db988e",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d78461a55ebae0cbbaba2ff507927831/3e90f60a",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b2b51d0627d8d4631bc8e159e9a603d2/f5781568",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_fresa.jpg",
+                "categoryName": "fresa",
+                "varietyName": "-",
+                "currency": "PEN",
+                "price": 6,
+                "isSmallSize": true,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "att4CjjR5xYNdmwJx",
+                    "url": "https://dl.airtable.com/.attachments/972220519cf44a74c55e2d5bf6adaf12/fa5e7add/fresa.jpg",
+                    "filename": "fresa.jpg",
+                    "size": 294008,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3cdd438bc2d17b72b7473621cf15c2f1/706a9ae1",
+                            "width": 64,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e58ce5057362d2f64d48ccf8a54c2651/405a12af",
+                            "width": 910,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2726761b6e770e54af7344b69af1856a/a6e29bfa",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-26T00:08:34.000Z"
+        }, {
+            "id": "recAyIhDESstiksMI",
+            "fields": {
+                "_id": "mandarina copy",
+                "varietyImageUrl": "mandarina_sp.jpg",
+                "Category_Img": [{
+                    "id": "attMUerjm2ZtKG6iM",
+                    "url": "https://dl.airtable.com/.attachments/a871d52d18bf1dadf3f29ba8fbdbb264/49847aa1/categoria_mandarina.jpg",
+                    "filename": "categoria_mandarina.jpg",
+                    "size": 91332,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c15c0699848e8994ce820877daca0fe/44aadf28",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/95debd6e68ac0f071bec3caed5e71f57/df166ff7",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/55c505385516b7ef780769b7bbb33af8/4b2e56ab",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_mandarina.jpg",
+                "categoryName": "mandarina",
+                "varietyName": "normal s/p",
+                "currency": "PEN",
+                "price": 5,
+                "isBigSize": true,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attpPfQ6ZU4fk1vNP",
+                    "url": "https://dl.airtable.com/.attachments/f23042bb5ee8ae33d8386f32f6041def/67039027/mandarina_sp.jpg",
+                    "filename": "mandarina_sp.jpg",
+                    "size": 74307,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e0360ae8a6ec3d232b62c69dbd784c79/25dcb4d9",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c30d30ad3cdaa65070406e7390986d5b/ea201b06",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/0e253899454f36897c845755268431ed/8c71dd1b",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T02:35:52.000Z"
+        }, {
+            "id": "recBLZ2zIkdwJeFzg",
+            "fields": {
+                "_id": "platano copy copy copy copy",
+                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
+                "currency": "PEN",
+                "price": 0.7,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_seda_organico_selecta_semi_maduro.jpg",
+                "maturityName": "Semi-maduro",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attHvnCAJTpFStFxT",
+                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
+                    "filename": "platano_seda_organico_selecta.jpg",
+                    "size": 106319,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attevtUuXkPo1XzGD",
+                    "url": "https://dl.airtable.com/.attachments/9727a3fab1af02d682d06c39beb27d2b/bc62aa59/platano_seda_organico_selecta_semi_maduro.jpg",
+                    "filename": "platano_seda_organico_selecta_semi_maduro.jpg",
+                    "size": 1443,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b55d5884fb51ec7c2369397d029602a8/bb32d679",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/704b8ce987ac42d72d57a56a6d58788f/dc3d831a",
+                            "width": 97,
+                            "height": 97
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/934a15a46fea14f2c9a7c9831919bc14/3cca87be",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "isOrganic": true
+            },
+            "createdTime": "2020-06-25T00:09:08.000Z"
+        }, {
+            "id": "recBad3Lfi3eUaT7S",
             "fields": {
                 "_id": "mango copy",
                 "varietyImageUrl": "mango_edward_selecta.jpg",
@@ -1434,102 +1207,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:26:23.000Z"
         }, {
-            "id": "recElz9mqyVcFYdvK",
-            "fields": {
-                "_id": "platano copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
-                "currency": "PEN",
-                "price": 0.7,
-                "isMediumSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "maturityImageUrl": "platano_seda_organico_selecta_semi_maduro.jpg",
-                "maturityName": "Semi-maduro",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attHvnCAJTpFStFxT",
-                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
-                    "filename": "platano_seda_organico_selecta.jpg",
-                    "size": 106319,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attevtUuXkPo1XzGD",
-                    "url": "https://dl.airtable.com/.attachments/9727a3fab1af02d682d06c39beb27d2b/bc62aa59/platano_seda_organico_selecta_semi_maduro.jpg",
-                    "filename": "platano_seda_organico_selecta_semi_maduro.jpg",
-                    "size": 1443,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b55d5884fb51ec7c2369397d029602a8/bb32d679",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/704b8ce987ac42d72d57a56a6d58788f/dc3d831a",
-                            "width": 97,
-                            "height": 97
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/934a15a46fea14f2c9a7c9831919bc14/3cca87be",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "isOrganic": true,
-                "isMaturityDetails": true
-            },
-            "createdTime": "2020-06-25T00:09:08.000Z"
-        }, {
-            "id": "recFDCozZiqJNbJ8O",
+            "id": "recC32hMh4I3Rrbck",
             "fields": {
                 "_id": "sandia",
                 "varietyImageUrl": "melon_coquito.jpg",
@@ -1558,7 +1236,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_melon.jpg",
-                "categoryName": "melon",
+                "categoryName": "melón",
                 "varietyName": "coquito",
                 "currency": "PEN",
                 "price": 3,
@@ -1596,7 +1274,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T21:49:03.000Z"
         }, {
-            "id": "recFTbDCPzFKSQp55",
+            "id": "recCjBwP7lX4W6R9B",
             "fields": {
                 "_id": "uva",
                 "varietyImageUrl": "uva_red_globe.jpg",
@@ -1663,102 +1341,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:45:56.000Z"
         }, {
-            "id": "recGN8ptcGakufICD",
-            "fields": {
-                "_id": "platano copy copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_granel.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
-                "currency": "PEN",
-                "price": 0.7,
-                "isBigSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_organico_granel_maduro.jpg",
-                "maturityName": "Maduro",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attmgK2LUkQmIsUF6",
-                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
-                    "filename": "platano_seda_organico_granel.jpg",
-                    "size": 106319,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attOqIvhMgOM7435o",
-                    "url": "https://dl.airtable.com/.attachments/6cc2175d5a94ccec7345965ceda1b776/b37e66af/platano_seda_organico_granel_maduro.jpg",
-                    "filename": "platano_seda_organico_granel_maduro.jpg",
-                    "size": 1443,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/24aaea628e8a4d61728d5dd7b9efe609/df3a164f",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/a4a12cdf98deda425bca2a271c441828/1f730de7",
-                            "width": 97,
-                            "height": 97
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/44a9e3382bdcba1b92f5291443e5da83/65b3fda1",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "isOrganic": true
-            },
-            "createdTime": "2020-06-25T00:21:46.000Z"
-        }, {
-            "id": "recGc421pl2qD0EIK",
+            "id": "recDCuVeH7kKHg6Mg",
             "fields": {
                 "_id": "mango copy copy copy",
                 "varietyImageUrl": "mango_criollo.jpg",
@@ -1825,7 +1408,102 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:28:02.000Z"
         }, {
-            "id": "recHIVC4mAE4ZA6fn",
+            "id": "recDdyiGussEyvaG9",
+            "fields": {
+                "_id": "platano copy copy copy copy copy",
+                "varietyImageUrl": "platano_seda_organico_granel.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
+                "currency": "PEN",
+                "price": 0.7,
+                "isBigSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_seda_organico_granel_maduro.jpg",
+                "maturityName": "Maduro",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attmgK2LUkQmIsUF6",
+                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
+                    "filename": "platano_seda_organico_granel.jpg",
+                    "size": 106319,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attOqIvhMgOM7435o",
+                    "url": "https://dl.airtable.com/.attachments/6cc2175d5a94ccec7345965ceda1b776/b37e66af/platano_seda_organico_granel_maduro.jpg",
+                    "filename": "platano_seda_organico_granel_maduro.jpg",
+                    "size": 1443,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/24aaea628e8a4d61728d5dd7b9efe609/df3a164f",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/a4a12cdf98deda425bca2a271c441828/1f730de7",
+                            "width": 97,
+                            "height": 97
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/44a9e3382bdcba1b92f5291443e5da83/65b3fda1",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "isOrganic": true
+            },
+            "createdTime": "2020-06-25T00:21:46.000Z"
+        }, {
+            "id": "recE8lvhEmWo3QyjT",
             "fields": {
                 "_id": "platano copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_selecta.jpg",
@@ -1854,8 +1532,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
                 "price": 0.8,
                 "isBigSize": true,
@@ -1920,7 +1598,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:12:35.000Z"
         }, {
-            "id": "recHxhCPDUCj2qyiO",
+            "id": "recEXHv2VGUD6G0mk",
             "fields": {
                 "_id": "uva copy",
                 "varietyImageUrl": "uva_verde.jpg",
@@ -1987,7 +1665,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:47:26.000Z"
         }, {
-            "id": "recJuV0U4LpdugcEx",
+            "id": "recGUlT7mxHxywEI3",
             "fields": {
                 "_id": "manzana",
                 "varietyImageUrl": "manzana_verde_americana.jpg",
@@ -2054,7 +1732,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:21:42.000Z"
         }, {
-            "id": "recJyG95LaY0dkV8B",
+            "id": "recGY62i3WgkhAnc7",
             "fields": {
                 "_id": "pera",
                 "varietyImageUrl": "pera.jpg",
@@ -2122,7 +1800,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T21:57:57.000Z"
         }, {
-            "id": "recKq8w6AyvN9Robe",
+            "id": "recHQypjSkN7d7QfK",
             "fields": {
                 "_id": "papaya",
                 "varietyImageUrl": "papaya_selecta_amarilla.jpg",
@@ -2190,7 +1868,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:30:12.000Z"
         }, {
-            "id": "recMMbBJvHporGMBM",
+            "id": "recJcBuWNtHIvWeFi",
             "fields": {
                 "_id": "aguaymanto",
                 "varietyImageUrl": "aguaymanto_rubias.jpg",
@@ -2257,7 +1935,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:03:06.000Z"
         }, {
-            "id": "recMTkZl6V80M37oY",
+            "id": "recJjKSyoHqkQjzsu",
             "fields": {
                 "_id": "mandarina",
                 "varietyImageUrl": "mandarina_niños_sp.jpg",
@@ -2325,7 +2003,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:33:11.000Z"
         }, {
-            "id": "recMXOxaupQO51ELg",
+            "id": "recJneqnMb889h6PM",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_bizcocho.jpg",
@@ -2354,7 +2032,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
+                "categoryName": "plátano",
                 "varietyName": "bizcocho",
                 "currency": "PEN",
                 "price": 0.8,
@@ -2393,75 +2071,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:59:48.000Z"
         }, {
-            "id": "recNYGGfPqrGMfDma",
-            "fields": {
-                "_id": "mango",
-                "varietyImageUrl": "mango_edward_selecta.jpg",
-                "Category_Img": [{
-                    "id": "attY4RwwFJHEiKBEJ",
-                    "url": "https://dl.airtable.com/.attachments/1905afb9dd09e61a9376a5ba5f7de25b/43ffa8c3/categoria_mango.jpg",
-                    "filename": "categoria_mango.jpg",
-                    "size": 72184,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3c4b28f2f3518343bc466329df099d5a/7c06534f",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e21a1c5758ed7b7e6201a2e51244901a/e6ab5672",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/accbed648154353508bc7b398cb9e526/ab97b263",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_mango.jpg",
-                "categoryName": "mango",
-                "varietyName": "edward selecta",
-                "currency": "PEN",
-                "price": 7,
-                "isMediumSize": true,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attPzMHjG1WHWAQjf",
-                    "url": "https://dl.airtable.com/.attachments/7aadbc38be5186f7b729a121fbe90a5f/eb72a121/mango_edward_selecta.jpg",
-                    "filename": "mango_edward_selecta.jpg",
-                    "size": 81149,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/13fdbe418408dde4fd79447a90161b56/b2e5786f",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c87cccca75faf24437ae2d573c5ef8b/ed31d227",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5e59f5f63b2c1283df61c3b453fe0dc9/89142e63",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T22:24:51.000Z"
-        }, {
-            "id": "recNdRXKgoz3TfFAq",
+            "id": "recKDhQXyaRnXv7EW",
             "fields": {
                 "_id": "durazno",
                 "varietyImageUrl": "durazno.jpg",
@@ -2529,7 +2139,75 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:57:57.000Z"
         }, {
-            "id": "recP2GX7KnAxpEE7x",
+            "id": "recKo6zs7cJ0Qv5qG",
+            "fields": {
+                "_id": "mango",
+                "varietyImageUrl": "mango_edward_selecta.jpg",
+                "Category_Img": [{
+                    "id": "attY4RwwFJHEiKBEJ",
+                    "url": "https://dl.airtable.com/.attachments/1905afb9dd09e61a9376a5ba5f7de25b/43ffa8c3/categoria_mango.jpg",
+                    "filename": "categoria_mango.jpg",
+                    "size": 72184,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3c4b28f2f3518343bc466329df099d5a/7c06534f",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e21a1c5758ed7b7e6201a2e51244901a/e6ab5672",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/accbed648154353508bc7b398cb9e526/ab97b263",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_mango.jpg",
+                "categoryName": "mango",
+                "varietyName": "edward selecta",
+                "currency": "PEN",
+                "price": 7,
+                "isMediumSize": true,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attPzMHjG1WHWAQjf",
+                    "url": "https://dl.airtable.com/.attachments/7aadbc38be5186f7b729a121fbe90a5f/eb72a121/mango_edward_selecta.jpg",
+                    "filename": "mango_edward_selecta.jpg",
+                    "size": 81149,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/13fdbe418408dde4fd79447a90161b56/b2e5786f",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c87cccca75faf24437ae2d573c5ef8b/ed31d227",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5e59f5f63b2c1283df61c3b453fe0dc9/89142e63",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T22:24:51.000Z"
+        }, {
+            "id": "recMs6Qk29SRtU6b3",
             "fields": {
                 "_id": "aceituna",
                 "varietyImageUrl": "aceituna_botija.jpg",
@@ -2596,7 +2274,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T01:17:35.000Z"
         }, {
-            "id": "recQ2nd5KMk7vKETp",
+            "id": "recNsN6i2yCrz06XV",
             "fields": {
                 "_id": "piña copy",
                 "varietyImageUrl": "piña_golden.jpeg",
@@ -2664,7 +2342,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:37:19.000Z"
         }, {
-            "id": "recSse0LHA8FO75Zz",
+            "id": "recPSETYZmqZSnx35",
             "fields": {
                 "_id": "mango copy copy",
                 "varietyImageUrl": "mango_kent.jpg",
@@ -2731,7 +2409,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:26:46.000Z"
         }, {
-            "id": "recTF6nWkWfw62PIe",
+            "id": "recQ5wg9CIxQaihMK",
             "fields": {
                 "_id": "platano copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_selecta.jpg",
@@ -2760,8 +2438,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
                 "price": 0.8,
                 "isBigSize": true,
@@ -2826,7 +2504,168 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-24T23:37:51.000Z"
         }, {
-            "id": "recU1JwGuvoUU6kbb",
+            "id": "recRDjvAYxrJkdYPY",
+            "fields": {
+                "_id": "palta",
+                "varietyImageUrl": "palta_de_primera_cremosa.jpg",
+                "Category_Img": [{
+                    "id": "att3SlQYCZDGwIyK8",
+                    "url": "https://dl.airtable.com/.attachments/5d08d1e1b579b21926424762e925c415/4b1d49b5/categoria_palta.jpg",
+                    "filename": "categoria_palta.jpg",
+                    "size": 122960,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/590a0b5060e419188c877d2066995436/171d09d6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c6d7bfd38061cabdeadf721bfed3e936/8f5f704b",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/a6515a585e18f086cc6ac2a33fa92d45/fc7ef287",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_palta.jpg",
+                "categoryName": "palta",
+                "varietyName": "de primera cremosa",
+                "currency": "PEN",
+                "price": 12,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attq3FemMgnfDQIrc",
+                    "url": "https://dl.airtable.com/.attachments/6b33f44c9e991c224865d48e4c4fac06/e18ac537/palta_de_primera_cremosa.jpg",
+                    "filename": "palta_de_primera_cremosa.jpg",
+                    "size": 47221,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/9ae42174f4c046fc7b0d3f4e9daf7e20/5ea9dcef",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d30ede046bdf1b555b6a9eed81be4cf5/202405f5",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/bfbe3b4589bac25c4c636504b320e0d7/32a543e0",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-26T00:58:16.000Z"
+        }, {
+            "id": "recRQt92lYE2f5LTL",
+            "fields": {
+                "_id": "platano copy copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_bellaco.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "bellaco",
+                "currency": "PEN",
+                "price": 1,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_bellaco_inmaduro.jpg",
+                "maturityName": "Inmaduro",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "att5bDFTxNgI8L4ST",
+                    "url": "https://dl.airtable.com/.attachments/2b924634c116ff49131aa088213d3d6e/e20fc12b/platano_bellaco.jpg",
+                    "filename": "platano_bellaco.jpg",
+                    "size": 35666,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3a1304d534c4441e3e26f38e8dd31211/ad2a142a",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/097e9ebee98c23789eaee0eebb6cf20d/0f4325d2",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/648bfc34f742ce69a9c595d10b6ecdde/e1593e85",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attYWShm7d5WQOjEd",
+                    "url": "https://dl.airtable.com/.attachments/232e791da4e6df4473690c51b28a4f39/581bc347/platano_bellaco_inmaduro.jpg",
+                    "filename": "platano_bellaco_inmaduro.jpg",
+                    "size": 1393,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5f1ff0389418471bb95ad3bdb50d9530/80a3d2bc",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/ba3f1becff34dd5ecd41882da373fede/31df9154",
+                            "width": 90,
+                            "height": 90
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7dc878a3a2d4f70a7bc370538cd1b895/7e7d97b8",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }]
+            },
+            "createdTime": "2020-06-25T00:47:43.000Z"
+        }, {
+            "id": "recRr9pTMhGeYmMfH",
             "fields": {
                 "_id": "pera",
                 "varietyImageUrl": "pera.jpg",
@@ -2894,62 +2733,62 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T21:55:57.000Z"
         }, {
-            "id": "recUdTCnGL9pgXwLs",
+            "id": "recSVNJ1YeSPqwCoy",
             "fields": {
-                "_id": "palta",
-                "varietyImageUrl": "palta_de_primera_cremosa.jpg",
+                "_id": "piña copy copy",
+                "varietyImageUrl": "piña_kawaii_jugo.jpg",
                 "Category_Img": [{
-                    "id": "att3SlQYCZDGwIyK8",
-                    "url": "https://dl.airtable.com/.attachments/5d08d1e1b579b21926424762e925c415/4b1d49b5/categoria_palta.jpg",
-                    "filename": "categoria_palta.jpg",
-                    "size": 122960,
+                    "id": "attc35MNHgp67Il3B",
+                    "url": "https://dl.airtable.com/.attachments/50fbef03fc82e24446bcf8695a7dbabd/5f3b4a57/categoria_pia.jpg",
+                    "filename": "categoria_piña.jpg",
+                    "size": 89318,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/590a0b5060e419188c877d2066995436/171d09d6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8c93dd7a104264ca1adecd818420163/aab3dfe8",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c6d7bfd38061cabdeadf721bfed3e936/8f5f704b",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/a433ef4b4dcf329f6df71464451fac3e/98828a68",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/a6515a585e18f086cc6ac2a33fa92d45/fc7ef287",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/a324f7baca38ba0b5369847979bf27e4/89e253ba",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_palta.jpg",
-                "categoryName": "palta",
-                "varietyName": "de primera cremosa",
+                "categoryImageUrl": "categoria_piña.jpg",
+                "categoryName": "piña",
+                "varietyName": "kawaii jugo",
                 "currency": "PEN",
-                "price": 12,
+                "price": 2.5,
                 "isKilo": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attq3FemMgnfDQIrc",
-                    "url": "https://dl.airtable.com/.attachments/6b33f44c9e991c224865d48e4c4fac06/e18ac537/palta_de_primera_cremosa.jpg",
-                    "filename": "palta_de_primera_cremosa.jpg",
-                    "size": 47221,
+                    "id": "attnJ29HdYoWVcBZi",
+                    "url": "https://dl.airtable.com/.attachments/bdaeba69881f9af15568434b4264b5e5/2a739839/pia_kawaii_jugo.jpg",
+                    "filename": "piña_kawaii_jugo.jpg",
+                    "size": 52082,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/9ae42174f4c046fc7b0d3f4e9daf7e20/5ea9dcef",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/03b157e5f29ad9a48c199067844bdb37/71c7a9f4",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d30ede046bdf1b555b6a9eed81be4cf5/202405f5",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/9ce7d6f2ff1e77b5693be335d96176aa/daaa1844",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/bfbe3b4589bac25c4c636504b320e0d7/32a543e0",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/656a57176db8bb4576dfca52248501c9/24a0e7b6",
                             "width": 3000,
                             "height": 3000
                         }
@@ -2959,67 +2798,64 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true
             },
-            "createdTime": "2020-06-26T00:58:16.000Z"
+            "createdTime": "2020-06-26T00:37:38.000Z"
         }, {
-            "id": "recUq3gP3cmIbPjPf",
+            "id": "recSVW3JmUMNOrO8u",
             "fields": {
-                "_id": "platano copy copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_bellaco.jpg",
+                "_id": "naranja",
+                "varietyImageUrl": "naranja_de_mesa_importada.jpg",
                 "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
+                    "id": "attkw6UmTt8R5oHjv",
+                    "url": "https://dl.airtable.com/.attachments/5d41341e9af4bc756af8b72cc2dafa6a/7c8ca4b4/categoria_naranja.jpg",
+                    "filename": "categoria_naranja.jpg",
+                    "size": 124947,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/6a4bdbcac4bfcedb522f292cade68455/a40b60bf",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3156f4eec4e21c7832ae1da99bc09ff1/6debaa9f",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5dec30fba5613e00f014c1a23f69ac9/d31bb662",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "bellaco",
+                "categoryImageUrl": "categoria_naranja.jpg",
+                "categoryName": "naranja",
+                "varietyName": "de mesa importada",
                 "currency": "PEN",
-                "price": 1,
-                "isMediumSize": true,
-                "isUnit": true,
+                "price": 12,
+                "isKilo": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_bellaco_inmaduro.jpg",
-                "maturityName": "Inmaduro",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "att5bDFTxNgI8L4ST",
-                    "url": "https://dl.airtable.com/.attachments/2b924634c116ff49131aa088213d3d6e/e20fc12b/platano_bellaco.jpg",
-                    "filename": "platano_bellaco.jpg",
-                    "size": 35666,
+                    "id": "attnlDUeasmhrebaa",
+                    "url": "https://dl.airtable.com/.attachments/9f1dad3535378dcaa8fa2223a10e1229/417baeaa/naranja_de_mesa_importada.jpg",
+                    "filename": "naranja_de_mesa_importada.jpg",
+                    "size": 72171,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3a1304d534c4441e3e26f38e8dd31211/ad2a142a",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/59d26d7b9fc561c14f0eba5ef7c98711/018b32fb",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/097e9ebee98c23789eaee0eebb6cf20d/0f4325d2",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/02dfdf33b879c25fd1f8859c7dc9ed9f/9be0e15e",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/648bfc34f742ce69a9c595d10b6ecdde/e1593e85",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/4f57e1343e66791ed3bfc8dfeb4e3147/cf9cc3f1",
                             "width": 3000,
                             "height": 3000
                         }
@@ -3027,35 +2863,11 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "maturityEatIn": 4,
                 "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attYWShm7d5WQOjEd",
-                    "url": "https://dl.airtable.com/.attachments/232e791da4e6df4473690c51b28a4f39/581bc347/platano_bellaco_inmaduro.jpg",
-                    "filename": "platano_bellaco_inmaduro.jpg",
-                    "size": 1393,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5f1ff0389418471bb95ad3bdb50d9530/80a3d2bc",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/ba3f1becff34dd5ecd41882da373fede/31df9154",
-                            "width": 90,
-                            "height": 90
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7dc878a3a2d4f70a7bc370538cd1b895/7e7d97b8",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }]
+                "isInStock": true
             },
-            "createdTime": "2020-06-25T00:47:43.000Z"
+            "createdTime": "2020-06-25T03:13:58.000Z"
         }, {
-            "id": "recV2YGCrWfLJgK8s",
+            "id": "recSsozPJIx5NwccY",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_isla_selecta.jpg",
@@ -3084,8 +2896,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "isla",
+                "categoryName": "plátano",
+                "varietyName": "isla selecta",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -3149,7 +2961,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:33:41.000Z"
         }, {
-            "id": "recV6kX7ueHgB26Qe",
+            "id": "recSwKQkM0ZAFiyUK",
             "fields": {
                 "_id": "granadilla",
                 "varietyImageUrl": "granadilla_selecta.jpeg",
@@ -3217,62 +3029,63 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:10:54.000Z"
         }, {
-            "id": "recVvnQOGsAvmgak2",
+            "id": "recToksWcTXn3g7Ju",
             "fields": {
-                "_id": "piña copy copy",
-                "varietyImageUrl": "piña_kawaii_jugo.jpg",
+                "_id": "platano copy copy copy copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_manzano.jpg",
                 "Category_Img": [{
-                    "id": "attc35MNHgp67Il3B",
-                    "url": "https://dl.airtable.com/.attachments/50fbef03fc82e24446bcf8695a7dbabd/5f3b4a57/categoria_pia.jpg",
-                    "filename": "categoria_piña.jpg",
-                    "size": 89318,
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8c93dd7a104264ca1adecd818420163/aab3dfe8",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/a433ef4b4dcf329f6df71464451fac3e/98828a68",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/a324f7baca38ba0b5369847979bf27e4/89e253ba",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_piña.jpg",
-                "categoryName": "piña",
-                "varietyName": "kawaii jugo",
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "manzano",
                 "currency": "PEN",
-                "price": 2.5,
-                "isKilo": true,
+                "price": 0.7,
+                "isMediumSize": true,
+                "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attnJ29HdYoWVcBZi",
-                    "url": "https://dl.airtable.com/.attachments/bdaeba69881f9af15568434b4264b5e5/2a739839/pia_kawaii_jugo.jpg",
-                    "filename": "piña_kawaii_jugo.jpg",
-                    "size": 52082,
+                    "id": "att7fmUfNoxXbXPhs",
+                    "url": "https://dl.airtable.com/.attachments/6b2680843bffc72e6907ba39a4f211ee/2fee19e0/platano_manzano.jpg",
+                    "filename": "platano_manzano.jpg",
+                    "size": 28294,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/03b157e5f29ad9a48c199067844bdb37/71c7a9f4",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/43dbd791a074e4f6f1e58d5686e10d7b/5e1f3fb3",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/9ce7d6f2ff1e77b5693be335d96176aa/daaa1844",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/32689e7cec4a8c48cb93566707f97c7e/4ee26d80",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/656a57176db8bb4576dfca52248501c9/24a0e7b6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c32004868f45522a0913640c649959c/cc9ab12c",
                             "width": 3000,
                             "height": 3000
                         }
@@ -3282,76 +3095,9 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true
             },
-            "createdTime": "2020-06-26T00:37:38.000Z"
+            "createdTime": "2020-06-25T00:54:54.000Z"
         }, {
-            "id": "recVvwaw48utKbm4Y",
-            "fields": {
-                "_id": "naranja",
-                "varietyImageUrl": "naranja_de_mesa_importada.jpg",
-                "Category_Img": [{
-                    "id": "attkw6UmTt8R5oHjv",
-                    "url": "https://dl.airtable.com/.attachments/5d41341e9af4bc756af8b72cc2dafa6a/7c8ca4b4/categoria_naranja.jpg",
-                    "filename": "categoria_naranja.jpg",
-                    "size": 124947,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/6a4bdbcac4bfcedb522f292cade68455/a40b60bf",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3156f4eec4e21c7832ae1da99bc09ff1/6debaa9f",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5dec30fba5613e00f014c1a23f69ac9/d31bb662",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_naranja.jpg",
-                "categoryName": "naranja",
-                "varietyName": "de mesa importada",
-                "currency": "PEN",
-                "price": 12,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attnlDUeasmhrebaa",
-                    "url": "https://dl.airtable.com/.attachments/9f1dad3535378dcaa8fa2223a10e1229/417baeaa/naranja_de_mesa_importada.jpg",
-                    "filename": "naranja_de_mesa_importada.jpg",
-                    "size": 72171,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/59d26d7b9fc561c14f0eba5ef7c98711/018b32fb",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/02dfdf33b879c25fd1f8859c7dc9ed9f/9be0e15e",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/4f57e1343e66791ed3bfc8dfeb4e3147/cf9cc3f1",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T03:13:58.000Z"
-        }, {
-            "id": "recW9GwvSSDFOHP45",
+            "id": "recTz6pIaEVZSXh8B",
             "fields": {
                 "_id": "papaya",
                 "varietyImageUrl": "papaya_selecta_amarilla.jpg",
@@ -3419,10 +3165,10 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:28:23.000Z"
         }, {
-            "id": "recWYUzJU7F3Z0FFY",
+            "id": "recURI91H7LnlPmRT",
             "fields": {
-                "_id": "platano copy copy copy copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_manzano.jpg",
+                "_id": "platano copy copy",
+                "varietyImageUrl": "platano_seda.jpg",
                 "Category_Img": [{
                     "id": "atthZs3mQCeW7uUzF",
                     "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
@@ -3448,34 +3194,127 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "manzano",
+                "categoryName": "plátano",
+                "varietyName": "seda",
                 "currency": "PEN",
-                "price": 0.7,
+                "price": 0.5,
                 "isMediumSize": true,
                 "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
+                "maturityImageUrl": "platano_seda_comer_ya.jpg",
+                "maturityName": "Comer ya",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "att7fmUfNoxXbXPhs",
-                    "url": "https://dl.airtable.com/.attachments/6b2680843bffc72e6907ba39a4f211ee/2fee19e0/platano_manzano.jpg",
-                    "filename": "platano_manzano.jpg",
-                    "size": 28294,
+                    "id": "attnLGMLA8XEVvpee",
+                    "url": "https://dl.airtable.com/.attachments/50bd60c5d970a31071bb3a1bb16cf5b1/62fedcde/platano_seda.jpg",
+                    "filename": "platano_seda.jpg",
+                    "size": 105916,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/43dbd791a074e4f6f1e58d5686e10d7b/5e1f3fb3",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/20ef0688e27eeb4e67a39c5147a62964/fedf8cdd",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/32689e7cec4a8c48cb93566707f97c7e/4ee26d80",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f568d76ffdcad8165041f8796f03be2/2704d6a8",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c32004868f45522a0913640c649959c/cc9ab12c",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/169f8f86a180e8dfd55c769a8d3c7791/c01b97a0",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attQVR8eOlQMazCkv",
+                    "url": "https://dl.airtable.com/.attachments/17d260ff7f390ad3eadbb88a3b309849/fe89995b/platano_seda_comer_ya.jpg",
+                    "filename": "platano_seda_comer_ya.jpg",
+                    "size": 1580,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/355249f56d0c99bd3174255193b1bf08/891069d5",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b4acb1d191f340a0b3b4a295d861b151/f77db071",
+                            "width": 96,
+                            "height": 96
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/21c325c98a172e332c25bbc7989139f6/9662f44e",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }]
+            },
+            "createdTime": "2020-06-24T23:38:22.000Z"
+        }, {
+            "id": "recUlmTSDWUnbtx7F",
+            "fields": {
+                "_id": "sandia",
+                "varietyImageUrl": "sandia_sullana.jpg",
+                "Category_Img": [{
+                    "id": "attHW8ggwVgnb5AVm",
+                    "url": "https://dl.airtable.com/.attachments/9df516743166c0981532ef85adaff134/9a104897/categoria_sandia.jpeg",
+                    "filename": "categoria_sandia.jpeg",
+                    "size": 133236,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/23d032388ed58538852a3f11104deb87/eeaf41d1",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/152f5aa9086f3683f0dd347255af2faa/d137ed4b",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/f85bd98ed207c46735d2bdddf3b636f7/bbfa9362",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_sandia.jpeg",
+                "categoryName": "sandia",
+                "varietyName": "sullana",
+                "currency": "PEN",
+                "price": 2,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attTgUzK4FT5dIq7o",
+                    "url": "https://dl.airtable.com/.attachments/0114ebbdcd5954dcbb878bb9d28cd650/e20719ce/sandia_sullana.jpg",
+                    "filename": "sandia_sullana.jpg",
+                    "size": 68887,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d2705b42210feb00ccaa156701f226a6/3d2b28f2",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/28670918c3d35cfb18143facfd44aae6/a4643e52",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7d2facbdfd3a7d3222763630ffcc649c/bc130a32",
                             "width": 3000,
                             "height": 3000
                         }
@@ -3485,9 +3324,9 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true
             },
-            "createdTime": "2020-06-25T00:54:54.000Z"
+            "createdTime": "2020-06-25T03:16:10.000Z"
         }, {
-            "id": "recX6DUX89aJOQI1g",
+            "id": "recUw3NaqVs3S6a5M",
             "fields": {
                 "_id": "fresas copy copy",
                 "varietyImageUrl": "fresa.jpg",
@@ -3555,168 +3394,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:12:10.000Z"
         }, {
-            "id": "recXVW0FlaC37d539",
-            "fields": {
-                "_id": "sandia",
-                "varietyImageUrl": "sandia_sullana.jpg",
-                "Category_Img": [{
-                    "id": "attHW8ggwVgnb5AVm",
-                    "url": "https://dl.airtable.com/.attachments/9df516743166c0981532ef85adaff134/9a104897/categoria_sandia.jpeg",
-                    "filename": "categoria_sandia.jpeg",
-                    "size": 133236,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/23d032388ed58538852a3f11104deb87/eeaf41d1",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/152f5aa9086f3683f0dd347255af2faa/d137ed4b",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/f85bd98ed207c46735d2bdddf3b636f7/bbfa9362",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_sandia.jpeg",
-                "categoryName": "sandia",
-                "varietyName": "sullana",
-                "currency": "PEN",
-                "price": 2,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attTgUzK4FT5dIq7o",
-                    "url": "https://dl.airtable.com/.attachments/0114ebbdcd5954dcbb878bb9d28cd650/e20719ce/sandia_sullana.jpg",
-                    "filename": "sandia_sullana.jpg",
-                    "size": 68887,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d2705b42210feb00ccaa156701f226a6/3d2b28f2",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/28670918c3d35cfb18143facfd44aae6/a4643e52",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7d2facbdfd3a7d3222763630ffcc649c/bc130a32",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T03:16:10.000Z"
-        }, {
-            "id": "recXrigOplt3hzUNn",
-            "fields": {
-                "_id": "platano copy copy",
-                "varietyImageUrl": "platano_seda.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
-                "currency": "PEN",
-                "price": 0.5,
-                "isMediumSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_comer_ya.jpg",
-                "maturityName": "Comer ya",
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attnLGMLA8XEVvpee",
-                    "url": "https://dl.airtable.com/.attachments/50bd60c5d970a31071bb3a1bb16cf5b1/62fedcde/platano_seda.jpg",
-                    "filename": "platano_seda.jpg",
-                    "size": 105916,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/20ef0688e27eeb4e67a39c5147a62964/fedf8cdd",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f568d76ffdcad8165041f8796f03be2/2704d6a8",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/169f8f86a180e8dfd55c769a8d3c7791/c01b97a0",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "attQVR8eOlQMazCkv",
-                    "url": "https://dl.airtable.com/.attachments/17d260ff7f390ad3eadbb88a3b309849/fe89995b/platano_seda_comer_ya.jpg",
-                    "filename": "platano_seda_comer_ya.jpg",
-                    "size": 1580,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/355249f56d0c99bd3174255193b1bf08/891069d5",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b4acb1d191f340a0b3b4a295d861b151/f77db071",
-                            "width": 96,
-                            "height": 96
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/21c325c98a172e332c25bbc7989139f6/9662f44e",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }]
-            },
-            "createdTime": "2020-06-24T23:38:22.000Z"
-        }, {
-            "id": "recYWZbk5aqxVZCBV",
+            "id": "recVmp4xnWIRZf4Fr",
             "fields": {
                 "_id": "manzana",
                 "varietyImageUrl": "manzana_roja_americana.jpg",
@@ -3784,10 +3462,10 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:22:10.000Z"
         }, {
-            "id": "recaSd8ybLEI53oNy",
+            "id": "recY1TShN9ICsi3OP",
             "fields": {
-                "_id": "platano copy copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_bellaco.jpg",
+                "_id": "platano",
+                "varietyImageUrl": "platano_seda.jpg",
                 "Category_Img": [{
                     "id": "atthZs3mQCeW7uUzF",
                     "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
@@ -3813,36 +3491,36 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "bellaco",
+                "categoryName": "plátano",
+                "varietyName": "seda",
                 "currency": "PEN",
-                "price": 1,
+                "price": 0.5,
                 "isMediumSize": true,
                 "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_bellaco_maduro.jpg",
-                "maturityName": "Maduro",
+                "maturityImageUrl": "platano_seda_inmaduro.jpg",
+                "maturityName": "Inmaduro",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "att5bDFTxNgI8L4ST",
-                    "url": "https://dl.airtable.com/.attachments/2b924634c116ff49131aa088213d3d6e/e20fc12b/platano_bellaco.jpg",
-                    "filename": "platano_bellaco.jpg",
-                    "size": 35666,
+                    "id": "attnLGMLA8XEVvpee",
+                    "url": "https://dl.airtable.com/.attachments/50bd60c5d970a31071bb3a1bb16cf5b1/62fedcde/platano_seda.jpg",
+                    "filename": "platano_seda.jpg",
+                    "size": 105916,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3a1304d534c4441e3e26f38e8dd31211/ad2a142a",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/20ef0688e27eeb4e67a39c5147a62964/fedf8cdd",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/097e9ebee98c23789eaee0eebb6cf20d/0f4325d2",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f568d76ffdcad8165041f8796f03be2/2704d6a8",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/648bfc34f742ce69a9c595d10b6ecdde/e1593e85",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/169f8f86a180e8dfd55c769a8d3c7791/c01b97a0",
                             "width": 3000,
                             "height": 3000
                         }
@@ -3852,91 +3530,88 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true,
                 "Maturity_Img": [{
-                    "id": "attPgxfG77PsZlYhB",
-                    "url": "https://dl.airtable.com/.attachments/a4f70d5b7b9eeee0b9522cea672dc60f/17fb5909/platano_bellaco_maduro.jpg",
-                    "filename": "platano_bellaco_maduro.jpg",
-                    "size": 1443,
+                    "id": "att0yQHky2jxvI9lc",
+                    "url": "https://dl.airtable.com/.attachments/479fa8a856470d8c22048df1668e325c/7818cfe0/platano_seda_inmaduro.jpg",
+                    "filename": "platano_seda_inmaduro.jpg",
+                    "size": 1393,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7f81f3dddb82a4f8e4914c1b71861086/f46311ed",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/55e7c3d8c75ce45e474c13de476c9e45/d9f68dfd",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c0aee7bf629e31ea51579f4f75ab7008/023ac143",
-                            "width": 97,
-                            "height": 97
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/1701c4da77f855591cf892d678af0ec1/2b182ff3",
+                            "width": 90,
+                            "height": 90
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/a78d742c8317416b96bd30b32090ad72/18c859bd",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/93c0a84f62964aceb7c2d6fde87f882f/562ee7e8",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }]
             },
-            "createdTime": "2020-06-25T00:49:02.000Z"
+            "createdTime": "2020-06-24T23:09:30.000Z"
         }, {
-            "id": "recaw5E3tIg6V3S3x",
+            "id": "recZXNufp1DmUSobl",
             "fields": {
-                "_id": "platano copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_granel.jpg",
+                "_id": "fresas copy copy copy",
+                "varietyImageUrl": "fresa_especial_organica.jpg",
                 "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
+                    "id": "attVzjQCS5ZtnLkvv",
+                    "url": "https://dl.airtable.com/.attachments/88672583ebdcbc41f115ec2183a5b155/dd017ede/categoria_fresa.jpg",
+                    "filename": "categoria_fresa.jpg",
+                    "size": 75774,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b8f4744b7acc259254b3b10637240c9c/39db988e",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d78461a55ebae0cbbaba2ff507927831/3e90f60a",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b2b51d0627d8d4631bc8e159e9a603d2/f5781568",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryImageUrl": "categoria_fresa.jpg",
+                "categoryName": "fresa",
+                "varietyName": "especial",
                 "currency": "PEN",
-                "price": 0.7,
-                "isBigSize": true,
-                "isUnit": true,
+                "price": 14,
+                "isKilo": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_organico_granel_comer_ya.jpg",
-                "maturityName": "Comer ya",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attmgK2LUkQmIsUF6",
-                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
-                    "filename": "platano_seda_organico_granel.jpg",
-                    "size": 106319,
+                    "id": "attSVOrNSvxnKAuFm",
+                    "url": "https://dl.airtable.com/.attachments/1d5b9182d287fcd3f8a562067921776c/a47c1b25/fresa_especial_organica.jpg",
+                    "filename": "fresa_especial_organica.jpg",
+                    "size": 100959,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d87b58b8bd243c9b46ea8ae53eaad659/d187da6a",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5329195b11ed3ad51e8f17940ff56e1b/46d70445",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/0fee94f1c4d884ce4ac95c118ef90e6c/edd33bea",
                             "width": 3000,
                             "height": 3000
                         }
@@ -3945,103 +3620,11 @@ export function manuallyRetrievedAritableData():any {
                 "maturityEatIn": 4,
                 "maturityLastFor": 6,
                 "isInStock": true,
-                "Maturity_Img": [{
-                    "id": "atth02tngyQQwqPb4",
-                    "url": "https://dl.airtable.com/.attachments/4046b8c2bda1e4f3e1b60600b7880976/8a81c9b4/platano_seda_organico_granel_comer_ya.jpg",
-                    "filename": "platano_seda_organico_granel_comer_ya.jpg",
-                    "size": 1580,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/0cf8acb0592eca9793688e1cb7573c74/859af66c",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/c931a376fb299ac50bd4252b4d533bec/9d063300",
-                            "width": 96,
-                            "height": 96
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/96f2061442d58afd467bb1e8e7206bf4/25ba5df3",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
                 "isOrganic": true
             },
-            "createdTime": "2020-06-25T00:21:46.000Z"
+            "createdTime": "2020-06-26T00:12:23.000Z"
         }, {
-            "id": "recbY8GlmgwETxlGC",
-            "fields": {
-                "_id": "platano copy copy copy copy copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_manzano.jpg",
-                "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "manzano",
-                "currency": "PEN",
-                "price": 0.8,
-                "isBigSize": true,
-                "isUnit": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "att7fmUfNoxXbXPhs",
-                    "url": "https://dl.airtable.com/.attachments/6b2680843bffc72e6907ba39a4f211ee/2fee19e0/platano_manzano.jpg",
-                    "filename": "platano_manzano.jpg",
-                    "size": 28294,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/43dbd791a074e4f6f1e58d5686e10d7b/5e1f3fb3",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/32689e7cec4a8c48cb93566707f97c7e/4ee26d80",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5c32004868f45522a0913640c649959c/cc9ab12c",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T01:03:28.000Z"
-        }, {
-            "id": "recd0yrLKd5YX6gBG",
+            "id": "recaqYkY2Zni1mIFc",
             "fields": {
                 "_id": "uva copy",
                 "varietyImageUrl": "uva_negra.jpg",
@@ -4108,75 +3691,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:55:04.000Z"
         }, {
-            "id": "rece0PgXIcRwapSn4",
-            "fields": {
-                "_id": "naranja",
-                "varietyImageUrl": "naranja_de_jugo.jpg",
-                "Category_Img": [{
-                    "id": "attkw6UmTt8R5oHjv",
-                    "url": "https://dl.airtable.com/.attachments/5d41341e9af4bc756af8b72cc2dafa6a/7c8ca4b4/categoria_naranja.jpg",
-                    "filename": "categoria_naranja.jpg",
-                    "size": 124947,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/6a4bdbcac4bfcedb522f292cade68455/a40b60bf",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3156f4eec4e21c7832ae1da99bc09ff1/6debaa9f",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5dec30fba5613e00f014c1a23f69ac9/d31bb662",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_naranja.jpg",
-                "categoryName": "naranja",
-                "varietyName": "de jugo",
-                "currency": "PEN",
-                "price": 4,
-                "isMediumSize": true,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attPNwFVFU4EGQfpG",
-                    "url": "https://dl.airtable.com/.attachments/2a5d1d77b036c8f1b8c9408227330fba/4c6254f1/naranja_de_jugo.jpg",
-                    "filename": "naranja_de_jugo.jpg",
-                    "size": 101089,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/0cb3171715c2814cfccbdf7ea14ee92f/2b870d56",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/ef20d5a21fd003e6d588b3a4d9aebec3/af50afdc",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/5968968ce437dd1bee4dfdc7ac6aa6c4/ddde3a57",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T03:12:27.000Z"
-        }, {
-            "id": "recen6GRodD7bdVSO",
+            "id": "recbNwz4GZVrftnWk",
             "fields": {
                 "_id": "mango copy copy copy copy copy",
                 "varietyImageUrl": "tuna_verde.jpg",
@@ -4244,7 +3759,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T23:01:30.000Z"
         }, {
-            "id": "recev6vOThwROWJfI",
+            "id": "recbVwo1b3ObScbje",
             "fields": {
                 "_id": "naranja copy",
                 "varietyImageUrl": "naranja_tangelo.jpg",
@@ -4311,10 +3826,78 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T21:47:54.000Z"
         }, {
-            "id": "recg414xQijGZbQ5e",
+            "id": "recbqf9a0Y9QeFkrA",
             "fields": {
-                "_id": "platano copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_granel.jpg",
+                "_id": "naranja",
+                "varietyImageUrl": "naranja_de_jugo.jpg",
+                "Category_Img": [{
+                    "id": "attkw6UmTt8R5oHjv",
+                    "url": "https://dl.airtable.com/.attachments/5d41341e9af4bc756af8b72cc2dafa6a/7c8ca4b4/categoria_naranja.jpg",
+                    "filename": "categoria_naranja.jpg",
+                    "size": 124947,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/6a4bdbcac4bfcedb522f292cade68455/a40b60bf",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3156f4eec4e21c7832ae1da99bc09ff1/6debaa9f",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5dec30fba5613e00f014c1a23f69ac9/d31bb662",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_naranja.jpg",
+                "categoryName": "naranja",
+                "varietyName": "de jugo",
+                "currency": "PEN",
+                "price": 4,
+                "isMediumSize": true,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attPNwFVFU4EGQfpG",
+                    "url": "https://dl.airtable.com/.attachments/2a5d1d77b036c8f1b8c9408227330fba/4c6254f1/naranja_de_jugo.jpg",
+                    "filename": "naranja_de_jugo.jpg",
+                    "size": 101089,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/0cb3171715c2814cfccbdf7ea14ee92f/2b870d56",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/ef20d5a21fd003e6d588b3a4d9aebec3/af50afdc",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/5968968ce437dd1bee4dfdc7ac6aa6c4/ddde3a57",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T03:12:27.000Z"
+        }, {
+            "id": "recdEyHMVbqcpvjm3",
+            "fields": {
+                "_id": "platano copy copy copy copy copy",
+                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
                 "Category_Img": [{
                     "id": "atthZs3mQCeW7uUzF",
                     "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
@@ -4340,36 +3923,36 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
-                "price": 0.7,
+                "price": 0.8,
                 "isBigSize": true,
                 "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_organico_granel_semi_maduro.jpg",
-                "maturityName": "Semi-maduro",
+                "maturityImageUrl": "platano_seda_organico_selecta_maduro.jpg",
+                "maturityName": "Maduro",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attmgK2LUkQmIsUF6",
-                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
-                    "filename": "platano_seda_organico_granel.jpg",
+                    "id": "attHvnCAJTpFStFxT",
+                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
+                    "filename": "platano_seda_organico_selecta.jpg",
                     "size": 106319,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
                             "width": 3000,
                             "height": 3000
                         }
@@ -4379,24 +3962,24 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true,
                 "Maturity_Img": [{
-                    "id": "attkLoj6xrXHveuod",
-                    "url": "https://dl.airtable.com/.attachments/925a34e70f6fe2626e334b4260a21e36/886b8c4d/platano_seda_organico_granel_semi_maduro.jpg",
-                    "filename": "platano_seda_organico_granel_semi_maduro.jpg",
+                    "id": "att3T8HQJKbUplk2t",
+                    "url": "https://dl.airtable.com/.attachments/8dab0056bc266b45dad615402f6979a6/24bd16f7/platano_seda_organico_selecta_maduro.jpg",
+                    "filename": "platano_seda_organico_selecta_maduro.jpg",
                     "size": 1443,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/22a909d449c4a3494539a48c3d71f5b1/b82084c9",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/6f93cd0e9b028fe667293da5d2cc2fa9/86578a2a",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/6f0d80715c945ac28dc7ead702481fd4/84943412",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b85c260a78d197da32a5a6685613f951/9d8b8bff",
                             "width": 97,
                             "height": 97
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/183a4f7f863d2dd2790053d4afc858b6/0acf7ffd",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/caa95e8a1d749df5e049edbafdff0c42/2f166219",
                             "width": 3000,
                             "height": 3000
                         }
@@ -4404,9 +3987,9 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "isOrganic": true
             },
-            "createdTime": "2020-06-25T00:21:46.000Z"
+            "createdTime": "2020-06-25T00:12:35.000Z"
         }, {
-            "id": "recgQAv25BbZDqzHX",
+            "id": "recdg0ofnntjHG1Lt",
             "fields": {
                 "_id": "platano copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_selecta.jpg",
@@ -4435,8 +4018,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
                 "price": 0.7,
                 "isMediumSize": true,
@@ -4501,7 +4084,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-24T23:49:54.000Z"
         }, {
-            "id": "recgUZh0jQJmXPV4R",
+            "id": "recdkpadBC1G15n8n",
             "fields": {
                 "_id": "naranja",
                 "varietyImageUrl": "naranja_de_mesa_nacional.jpg",
@@ -4568,10 +4151,10 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T03:14:46.000Z"
         }, {
-            "id": "recge8OzDp8SlfRix",
+            "id": "recdurXK84B03ri9K",
             "fields": {
-                "_id": "platano copy copy copy copy copy",
-                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
+                "_id": "platano copy copy copy copy",
+                "varietyImageUrl": "platano_seda_organico_granel.jpg",
                 "Category_Img": [{
                     "id": "atthZs3mQCeW7uUzF",
                     "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
@@ -4597,36 +4180,36 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
-                "price": 0.8,
+                "price": 0.7,
                 "isBigSize": true,
                 "isUnit": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
-                "maturityImageUrl": "platano_seda_organico_selecta_maduro.jpg",
-                "maturityName": "Maduro",
+                "maturityImageUrl": "platano_seda_organico_granel_semi_maduro.jpg",
+                "maturityName": "Semi-maduro",
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attHvnCAJTpFStFxT",
-                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
-                    "filename": "platano_seda_organico_selecta.jpg",
+                    "id": "attmgK2LUkQmIsUF6",
+                    "url": "https://dl.airtable.com/.attachments/362941012f908561e7cf10f70a9e4623/41a9e344/platano_seda_organico_granel.jpg",
+                    "filename": "platano_seda_organico_granel.jpg",
                     "size": 106319,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/29a3a1a65097ff02fc29383e85b23320/df17441e",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d47f3afbf0d35c94621755dd0806ab88/a5ecacfb",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b23d0ebd8db1e271ed72d694e48567c6/6e736cff",
                             "width": 3000,
                             "height": 3000
                         }
@@ -4636,24 +4219,24 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true,
                 "Maturity_Img": [{
-                    "id": "att3T8HQJKbUplk2t",
-                    "url": "https://dl.airtable.com/.attachments/8dab0056bc266b45dad615402f6979a6/24bd16f7/platano_seda_organico_selecta_maduro.jpg",
-                    "filename": "platano_seda_organico_selecta_maduro.jpg",
+                    "id": "attkLoj6xrXHveuod",
+                    "url": "https://dl.airtable.com/.attachments/925a34e70f6fe2626e334b4260a21e36/886b8c4d/platano_seda_organico_granel_semi_maduro.jpg",
+                    "filename": "platano_seda_organico_granel_semi_maduro.jpg",
                     "size": 1443,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/6f93cd0e9b028fe667293da5d2cc2fa9/86578a2a",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/22a909d449c4a3494539a48c3d71f5b1/b82084c9",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b85c260a78d197da32a5a6685613f951/9d8b8bff",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/6f0d80715c945ac28dc7ead702481fd4/84943412",
                             "width": 97,
                             "height": 97
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/caa95e8a1d749df5e049edbafdff0c42/2f166219",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/183a4f7f863d2dd2790053d4afc858b6/0acf7ffd",
                             "width": 3000,
                             "height": 3000
                         }
@@ -4661,9 +4244,76 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "isOrganic": true
             },
-            "createdTime": "2020-06-25T00:12:35.000Z"
+            "createdTime": "2020-06-25T00:21:46.000Z"
         }, {
-            "id": "rechQ5eGnZeEyY5A6",
+            "id": "receHtdEOtgHbSCK2",
+            "fields": {
+                "_id": "manzana copy copy",
+                "varietyImageUrl": "manzana_de_agua.jpg",
+                "Category_Img": [{
+                    "id": "attc0EM3oZVVpcVLk",
+                    "url": "https://dl.airtable.com/.attachments/951c2225795fdbe8eaec28949bd9a152/10c83bbd/categoria_manzana.jpg",
+                    "filename": "categoria_manzana.jpg",
+                    "size": 59069,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/fea070e9f2c059f3d621982300420962/a8bd5237",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e8c4564400e6dde40c7e5641bc532f5/7de26d43",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9d8850e0b4ac1d162bfa5f511a7518c/979f9004",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_manzana.jpg",
+                "categoryName": "manzana",
+                "varietyName": "de agua",
+                "currency": "PEN",
+                "price": 3.5,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "atto4NVTWabHvwYEY",
+                    "url": "https://dl.airtable.com/.attachments/19878d686a1ffe92ea57ddb6baf545cd/77fa9fe4/manzana_de_agua.jpg",
+                    "filename": "manzana_de_agua.jpg",
+                    "size": 25162,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2aae22d6aab7f4ee7092dff5e3c35e60/d24d3cb1",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/8c1a6f93c77ec8e1e6e2b629fb81946c/b24331b6",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/65b04a50b3a0eda70df53c747764102e/882a9c33",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T02:03:05.000Z"
+        }, {
+            "id": "recegv7TFLwYCexEC",
             "fields": {
                 "_id": "durazno",
                 "varietyImageUrl": "durazno.jpg",
@@ -4731,74 +4381,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:59:53.000Z"
         }, {
-            "id": "rechh3krwHYn7CaGw",
-            "fields": {
-                "_id": "manzana copy copy",
-                "varietyImageUrl": "manzana_de_agua.jpg",
-                "Category_Img": [{
-                    "id": "attc0EM3oZVVpcVLk",
-                    "url": "https://dl.airtable.com/.attachments/951c2225795fdbe8eaec28949bd9a152/10c83bbd/categoria_manzana.jpg",
-                    "filename": "categoria_manzana.jpg",
-                    "size": 59069,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/fea070e9f2c059f3d621982300420962/a8bd5237",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e8c4564400e6dde40c7e5641bc532f5/7de26d43",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9d8850e0b4ac1d162bfa5f511a7518c/979f9004",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_manzana.jpg",
-                "categoryName": "manzana",
-                "varietyName": "de agua",
-                "currency": "PEN",
-                "price": 3.5,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "atto4NVTWabHvwYEY",
-                    "url": "https://dl.airtable.com/.attachments/19878d686a1ffe92ea57ddb6baf545cd/77fa9fe4/manzana_de_agua.jpg",
-                    "filename": "manzana_de_agua.jpg",
-                    "size": 25162,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2aae22d6aab7f4ee7092dff5e3c35e60/d24d3cb1",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/8c1a6f93c77ec8e1e6e2b629fb81946c/b24331b6",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/65b04a50b3a0eda70df53c747764102e/882a9c33",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T02:03:05.000Z"
-        }, {
-            "id": "recixps5g6jyuBsgv",
+            "id": "recfXPliySBSyRUk1",
             "fields": {
                 "_id": "mango copy copy copy",
                 "varietyImageUrl": "membrillo_serrano.jpg",
@@ -4865,7 +4448,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:46:01.000Z"
         }, {
-            "id": "recjJY0YoLit8P5Yp",
+            "id": "recg9oTbGxANc5x2V",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_bizcocho.jpg",
@@ -4894,7 +4477,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
+                "categoryName": "plátano",
                 "varietyName": "bizcocho",
                 "currency": "PEN",
                 "price": 0.7,
@@ -4933,7 +4516,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:58:52.000Z"
         }, {
-            "id": "recjh3tKEqO00JPgc",
+            "id": "recgHtmXWc6k4ZhkI",
             "fields": {
                 "_id": "manzana",
                 "varietyImageUrl": "manzana_royal_americana.jpg",
@@ -5000,7 +4583,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:18:13.000Z"
         }, {
-            "id": "recjiI8uI5S2jYvKV",
+            "id": "recgI81H0RamneXOr",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_palillo.jpg",
@@ -5029,7 +4612,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
+                "categoryName": "plátano",
                 "varietyName": "palillo",
                 "currency": "PEN",
                 "price": 0.8,
@@ -5068,74 +4651,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:54:31.000Z"
         }, {
-            "id": "reckRyOnfqgS5vS2U",
-            "fields": {
-                "_id": "mango copy copy copy",
-                "varietyImageUrl": "mango_criollo.jpg",
-                "Category_Img": [{
-                    "id": "attY4RwwFJHEiKBEJ",
-                    "url": "https://dl.airtable.com/.attachments/1905afb9dd09e61a9376a5ba5f7de25b/43ffa8c3/categoria_mango.jpg",
-                    "filename": "categoria_mango.jpg",
-                    "size": 72184,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/3c4b28f2f3518343bc466329df099d5a/7c06534f",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e21a1c5758ed7b7e6201a2e51244901a/e6ab5672",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/accbed648154353508bc7b398cb9e526/ab97b263",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_mango.jpg",
-                "categoryName": "mango",
-                "varietyName": "criollo",
-                "currency": "PEN",
-                "price": 6,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "att45ceFVd9uxKqkN",
-                    "url": "https://dl.airtable.com/.attachments/dc57e37d0f025ed593854f4226670f87/8399ecbd/mango_criollo.jpg",
-                    "filename": "mango_criollo.jpg",
-                    "size": 64131,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/9676ca87e860aa55cb8da2d22098133d/7f0013f1",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/baff2ecd405f9f28226ddfee7c74c428/cdddaf3b",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/f8d6d2e86715849e65924a42922d2701/85f08136",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T22:28:56.000Z"
-        }, {
-            "id": "reckxt2k8eiw57YbR",
+            "id": "rechXTVxq0AQ9nqfn",
             "fields": {
                 "_id": "mango copy copy copy copy",
                 "varietyImageUrl": "tuna_roja.jpg",
@@ -5203,7 +4719,74 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T23:01:14.000Z"
         }, {
-            "id": "recldfsSMtMsaA1NU",
+            "id": "rechhYHAxcyc9Lk6q",
+            "fields": {
+                "_id": "mango copy copy copy",
+                "varietyImageUrl": "mango_criollo.jpg",
+                "Category_Img": [{
+                    "id": "attY4RwwFJHEiKBEJ",
+                    "url": "https://dl.airtable.com/.attachments/1905afb9dd09e61a9376a5ba5f7de25b/43ffa8c3/categoria_mango.jpg",
+                    "filename": "categoria_mango.jpg",
+                    "size": 72184,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3c4b28f2f3518343bc466329df099d5a/7c06534f",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e21a1c5758ed7b7e6201a2e51244901a/e6ab5672",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/accbed648154353508bc7b398cb9e526/ab97b263",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_mango.jpg",
+                "categoryName": "mango",
+                "varietyName": "criollo",
+                "currency": "PEN",
+                "price": 6,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "att45ceFVd9uxKqkN",
+                    "url": "https://dl.airtable.com/.attachments/dc57e37d0f025ed593854f4226670f87/8399ecbd/mango_criollo.jpg",
+                    "filename": "mango_criollo.jpg",
+                    "size": 64131,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/9676ca87e860aa55cb8da2d22098133d/7f0013f1",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/baff2ecd405f9f28226ddfee7c74c428/cdddaf3b",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/f8d6d2e86715849e65924a42922d2701/85f08136",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T22:28:56.000Z"
+        }, {
+            "id": "reciDFl54f4MeQtRq",
             "fields": {
                 "_id": "platano copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_granel.jpg",
@@ -5232,8 +4815,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -5298,7 +4881,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:17:07.000Z"
         }, {
-            "id": "reclkhByPWApoayfm",
+            "id": "reciKHuL7ISJsq0jS",
             "fields": {
                 "_id": "platano copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_granel.jpg",
@@ -5327,8 +4910,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -5393,7 +4976,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:16:22.000Z"
         }, {
-            "id": "recnELp2YVetMGfVT",
+            "id": "reck4bifgHwNQWHZp",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_granel.jpg",
@@ -5422,8 +5005,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -5488,7 +5071,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:17:07.000Z"
         }, {
-            "id": "recouZxWaLuQm3azM",
+            "id": "reclUpq9sxMaqjCDi",
             "fields": {
                 "_id": "granadilla copy",
                 "varietyImageUrl": "granadilla_selecta.jpeg",
@@ -5556,7 +5139,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T02:29:31.000Z"
         }, {
-            "id": "recqAPjOKPqqGsOPA",
+            "id": "recn0fc12BIKKIgT6",
             "fields": {
                 "_id": "papaya",
                 "varietyImageUrl": "papaya_roja.jpg",
@@ -5623,7 +5206,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:30:33.000Z"
         }, {
-            "id": "recsDwFZbwDAmgtAS",
+            "id": "recp3WyctiVUqwVEo",
             "fields": {
                 "_id": "chirimoya",
                 "varietyImageUrl": "chirimoya_cumbe.jpg",
@@ -5690,10 +5273,10 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T01:02:29.000Z"
         }, {
-            "id": "recsMb4yDWiIJ3xHC",
+            "id": "recpcBXLVIA2NjZL8",
             "fields": {
                 "_id": "manzana",
-                "varietyImageUrl": "manzana_fuji.jpg",
+                "varietyImageUrl": "manzana_fuji_americana.jpg",
                 "Category_Img": [{
                     "id": "attc0EM3oZVVpcVLk",
                     "url": "https://dl.airtable.com/.attachments/951c2225795fdbe8eaec28949bd9a152/10c83bbd/categoria_manzana.jpg",
@@ -5720,7 +5303,7 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "categoryImageUrl": "categoria_manzana.jpg",
                 "categoryName": "manzana",
-                "varietyName": "fuji",
+                "varietyName": "fuji americana",
                 "currency": "PEN",
                 "price": 9,
                 "isKilo": true,
@@ -5730,7 +5313,7 @@ export function manuallyRetrievedAritableData():any {
                 "Variety_Img": [{
                     "id": "att19jhb3Y8XiE0tz",
                     "url": "https://dl.airtable.com/.attachments/ea89c2652ee28531b4625c8661010496/ef551a8d/manaza_fuji.jpg",
-                    "filename": "manaza_fuji.jpg",
+                    "filename": "manzana_fuji_americana.jpg",
                     "size": 113498,
                     "type": "image/jpeg",
                     "thumbnails": {
@@ -5757,7 +5340,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:18:16.000Z"
         }, {
-            "id": "recsPWO3uCl55Xh8T",
+            "id": "recpfmHgMoDp9dJcp",
             "fields": {
                 "_id": "platano",
                 "varietyImageUrl": "platano_seda.jpg",
@@ -5786,7 +5369,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
+                "categoryName": "plátano",
                 "varietyName": "seda",
                 "currency": "PEN",
                 "price": 0.5,
@@ -5851,75 +5434,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-24T23:36:48.000Z"
         }, {
-            "id": "rect0iJMmMQfkWdjV",
-            "fields": {
-                "_id": "uva copy copy",
-                "varietyImageUrl": "uva_italia_selecta.jpg",
-                "Category_Img": [{
-                    "id": "attJWthOGhfBYOQo2",
-                    "url": "https://dl.airtable.com/.attachments/49783e3bc7549cd714bb525556f68a62/185fe85b/categoria_uva.jpg",
-                    "filename": "categoria_uva.jpg",
-                    "size": 51995,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/43f44c9732de1b4130b62e9d5c4ddc44/851816c4",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f1e497b2568344d3f017a7d66f0fd2d/f96998c9",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/48b6d99e065eec40eac4a44d543dfec0/50a1849a",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_uva.jpg",
-                "categoryName": "uva",
-                "varietyName": "italiana selecta c/p",
-                "currency": "PEN",
-                "price": 5,
-                "isBigSize": true,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "attViz6bxufFIk3dR",
-                    "url": "https://dl.airtable.com/.attachments/6a530db3d27819c2e0f2707e4cba8936/1b95f310/uva_italia_selecta.jpg",
-                    "filename": "uva_italia_selecta.jpg",
-                    "size": 89584,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b5da5ca93a78c4ea53a708206ac5e15b/d4c5cf41",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/9bd9027ca2e44b4b3ab0eb2fa3c1fe3f/a55217c6",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/26bb799ebef57ec122c65947c9e62aeb/17aacf92",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-25T03:03:48.000Z"
-        }, {
-            "id": "rectAPNnMX3c9jpUb",
+            "id": "recq0fGA4JlwdzRYH",
             "fields": {
                 "_id": "naranja",
                 "varietyImageUrl": "naranja_de_jugo.jpg",
@@ -5987,7 +5502,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T03:07:21.000Z"
         }, {
-            "id": "rectefnA0wVWo3H88",
+            "id": "recqEFgNiidgsj9cE",
             "fields": {
                 "_id": "mango copy copy copy",
                 "varietyImageUrl": "tuna_roja.jpg",
@@ -6055,7 +5570,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T22:46:36.000Z"
         }, {
-            "id": "rectgm2UT2pwFP3nL",
+            "id": "recqGMV7bOHQJ5vrh",
             "fields": {
                 "_id": "platano copy copy copy copy copy copy",
                 "varietyImageUrl": "platano_isla_selecta.jpg",
@@ -6084,8 +5599,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "isla",
+                "categoryName": "plátano",
+                "varietyName": "isla selecta",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -6149,7 +5664,75 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:33:39.000Z"
         }, {
-            "id": "recuen5Fux8fl1Cli",
+            "id": "recqqICZEy8zocFnr",
+            "fields": {
+                "_id": "uva copy copy",
+                "varietyImageUrl": "uva_italia_selecta.jpg",
+                "Category_Img": [{
+                    "id": "attJWthOGhfBYOQo2",
+                    "url": "https://dl.airtable.com/.attachments/49783e3bc7549cd714bb525556f68a62/185fe85b/categoria_uva.jpg",
+                    "filename": "categoria_uva.jpg",
+                    "size": 51995,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/43f44c9732de1b4130b62e9d5c4ddc44/851816c4",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2f1e497b2568344d3f017a7d66f0fd2d/f96998c9",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/48b6d99e065eec40eac4a44d543dfec0/50a1849a",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_uva.jpg",
+                "categoryName": "uva",
+                "varietyName": "italiana selecta c/p",
+                "currency": "PEN",
+                "price": 5,
+                "isBigSize": true,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attViz6bxufFIk3dR",
+                    "url": "https://dl.airtable.com/.attachments/6a530db3d27819c2e0f2707e4cba8936/1b95f310/uva_italia_selecta.jpg",
+                    "filename": "uva_italia_selecta.jpg",
+                    "size": 89584,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b5da5ca93a78c4ea53a708206ac5e15b/d4c5cf41",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/9bd9027ca2e44b4b3ab0eb2fa3c1fe3f/a55217c6",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/26bb799ebef57ec122c65947c9e62aeb/17aacf92",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T03:03:48.000Z"
+        }, {
+            "id": "recrENYSMjqzph4pO",
             "fields": {
                 "_id": "maracuya",
                 "varietyImageUrl": "maracuya.jpeg",
@@ -6179,7 +5762,7 @@ export function manuallyRetrievedAritableData():any {
                 }],
                 "categoryImageUrl": "categoria_maracuya.jpg",
                 "categoryName": "maracuya",
-                "varietyName": "-",
+                "varietyName": "norteño",
                 "currency": "PEN",
                 "price": 3,
                 "isKilo": true,
@@ -6216,7 +5799,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-26T00:52:30.000Z"
         }, {
-            "id": "reculJffECSEhlom2",
+            "id": "recrL98sWoaYlBQqy",
             "fields": {
                 "_id": "platano copy copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_granel.jpg",
@@ -6245,8 +5828,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda granel",
                 "currency": "PEN",
                 "price": 0.6,
                 "isMediumSize": true,
@@ -6311,7 +5894,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:17:07.000Z"
         }, {
-            "id": "recvegG8oTF8Z7GkA",
+            "id": "recsEGzlGFXs3n8o6",
             "fields": {
                 "_id": "platano copy copy copy copy copy",
                 "varietyImageUrl": "platano_seda_organico_selecta.jpg",
@@ -6340,8 +5923,8 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "seda",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
                 "currency": "PEN",
                 "price": 0.7,
                 "isMediumSize": true,
@@ -6406,7 +5989,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T00:10:05.000Z"
         }, {
-            "id": "recvt4Q7jWAMHDdH8",
+            "id": "recsTuJkBIS6LTFLE",
             "fields": {
                 "_id": "manzana",
                 "varietyImageUrl": "manzana_delicia.jpg",
@@ -6473,7 +6056,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:53:37.000Z"
         }, {
-            "id": "recwdTpXaBy3UvgCC",
+            "id": "rectDjiasnQnYLIG8",
             "fields": {
                 "_id": "platano copy",
                 "varietyImageUrl": "platano_seda.jpg",
@@ -6502,7 +6085,7 @@ export function manuallyRetrievedAritableData():any {
                     }
                 }],
                 "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
+                "categoryName": "plátano",
                 "varietyName": "seda",
                 "currency": "PEN",
                 "price": 0.5,
@@ -6567,74 +6150,7 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-24T23:37:57.000Z"
         }, {
-            "id": "recxWXCXD14ApY28S",
-            "fields": {
-                "_id": "carambola",
-                "varietyImageUrl": "carambola.jpeg",
-                "Category_Img": [{
-                    "id": "attQG0qqam5h7j6XJ",
-                    "url": "https://dl.airtable.com/.attachments/b28196947cdd7b81d6a84f790ce19e87/cbbbfa82/categoria_carambola.jpg",
-                    "filename": "categoria_carambola.jpg",
-                    "size": 138673,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9fbd6a3e05f438aa1a5166e6a799295/2f339f3c",
-                            "width": 63,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/1b88002b684a074b377ea9a41159a917/086fd75d",
-                            "width": 899,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/fc2334e2c0ae8a39cedd865a43030449/5ba76d8a",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "categoryImageUrl": "categoria_carambola.jpg",
-                "categoryName": "carambola",
-                "varietyName": "-",
-                "currency": "PEN",
-                "price": 4,
-                "isKilo": true,
-                "isSeasonal": true,
-                "isMaturityDetails": true,
-                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
-                "Variety_Img": [{
-                    "id": "att3YEdmKQ9h5bDkq",
-                    "url": "https://dl.airtable.com/.attachments/a5529c57155e41cb2c5917da78cdb6d9/05384d3c/carambola.jpeg",
-                    "filename": "carambola.jpeg",
-                    "size": 32726,
-                    "type": "image/jpeg",
-                    "thumbnails": {
-                        "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/07bc35f347f558a9898b765ad21b02e6/8eea2ed4",
-                            "width": 36,
-                            "height": 36
-                        },
-                        "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7c69504a64e07cfefac9a4c8bacd9647/bfde5886",
-                            "width": 512,
-                            "height": 512
-                        },
-                        "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e04b57f1a906b8963b3e82269852391/84ebfeb7",
-                            "width": 3000,
-                            "height": 3000
-                        }
-                    }
-                }],
-                "maturityEatIn": 4,
-                "maturityLastFor": 6,
-                "isInStock": true
-            },
-            "createdTime": "2020-06-26T00:48:25.000Z"
-        }, {
-            "id": "recxzQXyG7eyWI43p",
+            "id": "recuZgQLYTwS0Yw7V",
             "fields": {
                 "_id": "manzana",
                 "varietyImageUrl": "manzana_roja_americana.jpg",
@@ -6702,63 +6218,62 @@ export function manuallyRetrievedAritableData():any {
             },
             "createdTime": "2020-06-25T01:36:21.000Z"
         }, {
-            "id": "recz9wo9bUFZsgo9e",
+            "id": "recumnvaVNmUteuco",
             "fields": {
-                "_id": "platano copy copy copy copy copy copy copy",
-                "varietyImageUrl": "platano_palillo.jpg",
+                "_id": "carambola",
+                "varietyImageUrl": "carambola.jpeg",
                 "Category_Img": [{
-                    "id": "atthZs3mQCeW7uUzF",
-                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
-                    "filename": "categoria_platano.jpg",
-                    "size": 29116,
+                    "id": "attQG0qqam5h7j6XJ",
+                    "url": "https://dl.airtable.com/.attachments/b28196947cdd7b81d6a84f790ce19e87/cbbbfa82/categoria_carambola.jpg",
+                    "filename": "categoria_carambola.jpg",
+                    "size": 138673,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
-                            "width": 36,
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9fbd6a3e05f438aa1a5166e6a799295/2f339f3c",
+                            "width": 63,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
-                            "width": 512,
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/1b88002b684a074b377ea9a41159a917/086fd75d",
+                            "width": 899,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/fc2334e2c0ae8a39cedd865a43030449/5ba76d8a",
                             "width": 3000,
                             "height": 3000
                         }
                     }
                 }],
-                "categoryImageUrl": "categoria_platano.jpg",
-                "categoryName": "platano",
-                "varietyName": "palillo",
+                "categoryImageUrl": "categoria_carambola.jpg",
+                "categoryName": "carambola",
+                "varietyName": "norteño",
                 "currency": "PEN",
-                "price": 0.7,
-                "isMediumSize": true,
-                "isUnit": true,
+                "price": 4,
+                "isKilo": true,
                 "isSeasonal": true,
                 "isMaturityDetails": true,
                 "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
                 "Variety_Img": [{
-                    "id": "attaI80BjllsauNnd",
-                    "url": "https://dl.airtable.com/.attachments/5e759591bbd0e9a7dd645c898f4a469e/8ff5d44b/platano_palillo.jpg",
-                    "filename": "platano_palillo.jpg",
-                    "size": 35572,
+                    "id": "att3YEdmKQ9h5bDkq",
+                    "url": "https://dl.airtable.com/.attachments/a5529c57155e41cb2c5917da78cdb6d9/05384d3c/carambola.jpeg",
+                    "filename": "carambola.jpeg",
+                    "size": 32726,
                     "type": "image/jpeg",
                     "thumbnails": {
                         "small": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/19d7e0a30c7cc5f7a238ec0b79b1a5fd/aee9713c",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/07bc35f347f558a9898b765ad21b02e6/8eea2ed4",
                             "width": 36,
                             "height": 36
                         },
                         "large": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/abb3c49c4bbd15dbc7ffe60ad65455c7/79613e2e",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7c69504a64e07cfefac9a4c8bacd9647/bfde5886",
                             "width": 512,
                             "height": 512
                         },
                         "full": {
-                            "url": "https://dl.airtable.com/.attachmentThumbnails/7ef001af251141d29857202501285029/39e2e0ba",
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e04b57f1a906b8963b3e82269852391/84ebfeb7",
                             "width": 3000,
                             "height": 3000
                         }
@@ -6768,9 +6283,9 @@ export function manuallyRetrievedAritableData():any {
                 "maturityLastFor": 6,
                 "isInStock": true
             },
-            "createdTime": "2020-06-25T00:52:37.000Z"
+            "createdTime": "2020-06-26T00:48:25.000Z"
         }, {
-            "id": "reczsG63QJZdW9b0I",
+            "id": "recwS6Zg8vhx0pD4e",
             "fields": {
                 "_id": "piña",
                 "varietyImageUrl": "piña_golden.jpeg",
@@ -6837,6 +6352,491 @@ export function manuallyRetrievedAritableData():any {
                 "isInStock": true
             },
             "createdTime": "2020-06-26T00:31:33.000Z"
+        }, {
+            "id": "recwzWhmtGXjwwQdK",
+            "fields": {
+                "_id": "platano copy copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_palillo.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "palillo",
+                "currency": "PEN",
+                "price": 0.7,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attaI80BjllsauNnd",
+                    "url": "https://dl.airtable.com/.attachments/5e759591bbd0e9a7dd645c898f4a469e/8ff5d44b/platano_palillo.jpg",
+                    "filename": "platano_palillo.jpg",
+                    "size": 35572,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/19d7e0a30c7cc5f7a238ec0b79b1a5fd/aee9713c",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/abb3c49c4bbd15dbc7ffe60ad65455c7/79613e2e",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7ef001af251141d29857202501285029/39e2e0ba",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T00:52:37.000Z"
+        }, {
+            "id": "recx37bthjhHX9ltx",
+            "fields": {
+                "_id": "platano copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_isla_selecta.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "isla selecta",
+                "currency": "PEN",
+                "price": 0.6,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_isla_selecta_inmaduro.jpg",
+                "maturityName": "Inmaduro",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attx3QoCwVmACaffi",
+                    "url": "https://dl.airtable.com/.attachments/1386de935c1aa5e66b7d99ab96e30a51/9ab1d323/platano_isla_selecta.jpg",
+                    "filename": "platano_isla_selecta.jpg",
+                    "size": 17866,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/425668f49c8e7da11acb1bc834b69674/463125e6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2c07b23abeb135c9fb1eccabf76b0277/92261880",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/107ee1d38faecd6c45ffed27af832636/a57c30d4",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attLFROMycXVK1COq",
+                    "url": "https://dl.airtable.com/.attachments/a59231d3792da8d6b1de6dba24888f0e/53d34382/platano_isla_selecta_inmaduro.jpg",
+                    "filename": "platano_isla_selecta_inmaduro.jpg",
+                    "size": 1393,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c5ebd15df318a1cdd2ff3a7eb61d9cd3/531bd009",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/4d4824baca10fe2caf528fc8bbc2f7e7/26ca5862",
+                            "width": 90,
+                            "height": 90
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/3cfac92cdb4509738e92f2ebf31938c9/74f8276d",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }]
+            },
+            "createdTime": "2020-06-25T00:22:24.000Z"
+        }, {
+            "id": "recx6axjEYP4rgB3S",
+            "fields": {
+                "_id": "platano copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_seda_organico_selecta.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "seda selecta",
+                "currency": "PEN",
+                "price": 0.7,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_seda_organico_selecta_comer_ya.jpg",
+                "maturityName": "Comer ya",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attHvnCAJTpFStFxT",
+                    "url": "https://dl.airtable.com/.attachments/d3b83425f9af989819998858a8ceb3fa/52de86dd/platano_seda_organico_selecta.jpg",
+                    "filename": "platano_seda_organico_selecta.jpg",
+                    "size": 106319,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d341476e2eac2072ff9c058feac166be/d59e4fb6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/edaf5c15f2b5f3b905fccee4b3d0ec11/f396cf32",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e61e669b9bde5a18b338685867e9104b/c11d2471",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attPzSuFGO5UNpjc4",
+                    "url": "https://dl.airtable.com/.attachments/ef4d8673af8ed7a5bdd9203e16d4c0eb/373c0f0b/platano_seda_organico_selecta_comer_ya.jpg",
+                    "filename": "platano_seda_organico_selecta_comer_ya.jpg",
+                    "size": 1580,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/f5db65811151fb81444fdef91ea50ca3/f9c51dcb",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/06825fe0ccf14a10f02da8b2011cefda/af4aab27",
+                            "width": 96,
+                            "height": 96
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/034f17020809e35bff1a63160ce9b8fd/755a51dc",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "isOrganic": true
+            },
+            "createdTime": "2020-06-25T00:10:41.000Z"
+        }, {
+            "id": "recxpud8tvDFvjzXl",
+            "fields": {
+                "_id": "manzana copy",
+                "varietyImageUrl": "manzana_israel.jpg",
+                "Category_Img": [{
+                    "id": "attc0EM3oZVVpcVLk",
+                    "url": "https://dl.airtable.com/.attachments/951c2225795fdbe8eaec28949bd9a152/10c83bbd/categoria_manzana.jpg",
+                    "filename": "categoria_manzana.jpg",
+                    "size": 59069,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/fea070e9f2c059f3d621982300420962/a8bd5237",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2e8c4564400e6dde40c7e5641bc532f5/7de26d43",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/e9d8850e0b4ac1d162bfa5f511a7518c/979f9004",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_manzana.jpg",
+                "categoryName": "manzana",
+                "varietyName": "israel",
+                "currency": "PEN",
+                "price": 3,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attJhhjZgLDKvHR0R",
+                    "url": "https://dl.airtable.com/.attachments/203760ba19bbeffb7ad3c6e427b3e2c7/d2513663/manzana_israel.jpg",
+                    "filename": "manzana_israel.jpg",
+                    "size": 44443,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/9824d837a539e0027cf029ef28e51257/3ff291eb",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/7bed4fb81d00a1be86b4d46de308539a/6eaec43a",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/d22698648f45497ae87128bbe2213049/52627493",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T01:55:08.000Z"
+        }, {
+            "id": "recxqNg4WW4VGYj44",
+            "fields": {
+                "_id": "platano copy copy copy copy copy copy",
+                "varietyImageUrl": "platano_isla_selecta.jpg",
+                "Category_Img": [{
+                    "id": "atthZs3mQCeW7uUzF",
+                    "url": "https://dl.airtable.com/.attachments/887c9df08707c7be7f00593a083f52b5/d3cf81b4/categoria_platano.jpg",
+                    "filename": "categoria_platano.jpg",
+                    "size": 29116,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b901c92b26af26b7c03cc3627d7c6680/181eefc6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/63433fb19d3cce20e6e7850ff2ac58d7/e78c1d49",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/27028fd6e376471659345aaac092c1ef/27d3e7ef",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_platano.jpg",
+                "categoryName": "plátano",
+                "varietyName": "isla selecta",
+                "currency": "PEN",
+                "price": 0.6,
+                "isMediumSize": true,
+                "isUnit": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityImageUrl": "platano_isla_selecta_semi_maduro.jpg",
+                "maturityName": "Semi-maduro",
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attx3QoCwVmACaffi",
+                    "url": "https://dl.airtable.com/.attachments/1386de935c1aa5e66b7d99ab96e30a51/9ab1d323/platano_isla_selecta.jpg",
+                    "filename": "platano_isla_selecta.jpg",
+                    "size": 17866,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/425668f49c8e7da11acb1bc834b69674/463125e6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/2c07b23abeb135c9fb1eccabf76b0277/92261880",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/107ee1d38faecd6c45ffed27af832636/a57c30d4",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true,
+                "Maturity_Img": [{
+                    "id": "attgIYo9LZ4jXoUsq",
+                    "url": "https://dl.airtable.com/.attachments/b020540817805c275c2e2e01931f6d68/fadfe6ae/platano_isla_selecta_semi_maduro.jpg",
+                    "filename": "platano_isla_selecta_semi_maduro.jpg",
+                    "size": 1443,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/b0e2078f33cbdefd52ce44d5edcd9c6a/d20909dd",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/8c81aa001669e5e0d6499f99509b52c8/08c6d2e0",
+                            "width": 97,
+                            "height": 97
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/40d989e77e4c40dd31cd961e1af91bfa/0ef75ea0",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }]
+            },
+            "createdTime": "2020-06-25T00:33:33.000Z"
+        }, {
+            "id": "reczNGuBLdyL4SXuN",
+            "fields": {
+                "_id": "ciruela",
+                "varietyImageUrl": "ciruela_criolla.jpg",
+                "Category_Img": [{
+                    "id": "attXsZ2fSXhiB46kp",
+                    "url": "https://dl.airtable.com/.attachments/a8acc480a1cf224631ff6d1bc2a2c766/ef9aa701/categoria_ciruela.jpg",
+                    "filename": "categoria_ciruela.jpg",
+                    "size": 84976,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/730530fe4a9072fcd5ae13dd9b4c95e1/71a10db6",
+                            "width": 36,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/c21433e7cee9e4e4990c872f00891506/a2086edb",
+                            "width": 512,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/298a1a5acff27f887f6c7f8a2c52111d/1bda7359",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "categoryImageUrl": "categoria_ciruela.jpg",
+                "categoryName": "ciruela",
+                "varietyName": "criolla",
+                "currency": "PEN",
+                "price": 3.5,
+                "isKilo": true,
+                "isSeasonal": true,
+                "isMaturityDetails": true,
+                "maturityInfo": "Imagen referencial del nivel de madurez de la fruta seleccionada. De la misma manera, las imágenes de categorías y variedades son referenciales.",
+                "Variety_Img": [{
+                    "id": "attkipsCK4rvrOTE8",
+                    "url": "https://dl.airtable.com/.attachments/37f689a48ed10cf22d916a456a2786dc/fabe2f33/ciruela_criolla.jpg",
+                    "filename": "ciruela_criolla.jpg",
+                    "size": 79261,
+                    "type": "image/jpeg",
+                    "thumbnails": {
+                        "small": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/848f2efc08ee41655688747129f095fb/9ff3efb7",
+                            "width": 49,
+                            "height": 36
+                        },
+                        "large": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/68bf38f6ccb676262014ae0c7ae557c1/66a0ab27",
+                            "width": 697,
+                            "height": 512
+                        },
+                        "full": {
+                            "url": "https://dl.airtable.com/.attachmentThumbnails/1a520b1ed420a950a4f22274a2cf8a3a/717cd348",
+                            "width": 3000,
+                            "height": 3000
+                        }
+                    }
+                }],
+                "maturityEatIn": 4,
+                "maturityLastFor": 6,
+                "isInStock": true
+            },
+            "createdTime": "2020-06-25T22:03:00.000Z"
         }]
     };
     let deserializedData  = new RootObject().deserialize(data);
@@ -6853,20 +6853,20 @@ export function manuallyRetrievedAritableData():any {
 
         product.currency = ele.fields.currency;
         product.price = ele.fields.price;
-        product.isMediumSize = ele.fields.isMediumSize;
-        product.isUnit = ele.fields.isUnit;
-        product.isSeasonal = ele.fields.isSeasonal;
-        product.isMaturityDetails = ele.fields.isMaturityDetails;
+        product.isMediumSize = (ele.fields.isMediumSize) ? product.isMediumSize = true : product.isMediumSize = false;
+        product.isUnit = (ele.fields.isUnit) ? product.isUnit = true : product.isUnit = false;
+        product.isSeasonal = (ele.fields.isSeasonal) ? product.isSeasonal = true : product.isSeasonal = false;
+        product.isMaturityDetails = (ele.fields.isMaturityDetails) ? product.isMaturityDetails = true : product.isMaturityDetails = false;
         product.maturityImageUrl = assetPath + ele.fields.maturityImageUrl;
         product.maturityName = ele.fields.maturityName;
         product.maturityInfo = ele.fields.maturityInfo;
         product.maturityEatIn = ele.fields.maturityEatIn.toString();
         product.maturityLastFor = ele.fields.maturityLastFor.toString();
-        product.isInStock = ele.fields.isInStock;
-        product.isSmallSize = ele.fields.isSmallSize;
-        product.isKilo = ele.fields.isKilo;
-        product.isOrganic = ele.fields.isOrganic;
-        product.isBigSize = ele.fields.isBigSize;
+        product.isInStock = (ele.fields.isInStock) ? product.isInStock = true : product.isInStock = false;
+        product.isSmallSize = (ele.fields.isSmallSize) ? product.isSmallSize = true : product.isSmallSize = false;
+        product.isKilo = (ele.fields.isKilo) ? product.isKilo = true : product.isKilo = false;
+        product.isOrganic = (ele.fields.isOrganic) ? product.isOrganic = true : product.isOrganic = false;
+        product.isBigSize = (ele.fields.isBigSize) ? product.isBigSize = true : product.isBigSize = false;
 
         productsList.push(product);
         

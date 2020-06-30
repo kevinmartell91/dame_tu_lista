@@ -9,8 +9,8 @@
         <div class="product_name_area" 
             (click)="disableQuantityMode()">
             {{cartProduct.categoryName}} - {{cartProduct.varietyName}}
-            <span *ngIf="cartProduct.isOrganic">Orgánico</span>
-            <span *ngIf="cartProduct.isOrganic === false">Normal</span>
+            <!-- <span *ngIf="cartProduct.isOrganic">Orgánico</span>
+            <span *ngIf="cartProduct.isOrganic === false">Normal</span> -->
         </div>
 
         <div class="product_kilo_Unit_area" 
@@ -47,6 +47,9 @@
 
 
         
+
+
+        
         <div class="quatity_area">
             
             <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showUpdateButton"></ng-container>
@@ -74,6 +77,8 @@
 
     </div>
     <div class="options_area">
+        <div *ngIf="cartProduct.isOrganic" class="isOrganic_area">Org.</div>
+
         <div class="add_detail_area">
             <img src="../../../../../assets/icons/edit-15dp.svg" alt=""> 
             Comentarios

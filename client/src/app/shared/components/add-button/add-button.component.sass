@@ -14,6 +14,9 @@ $box-size: 40px
 //    styles for display Product Button
 //   the styles are the same, but the 
 //     template areas are different
+//
+//  grid-template-areas: "decre number incre" "div1 div1 div1" "kiloUnit kiloUnit kiloUnit" "div2 div2 div2" "small medium big" 
+//  grid-template-rows: $box-size 1px $box-size 1px $box-size
 // ======================================
 
 .container_display_product
@@ -21,13 +24,13 @@ $box-size: 40px
   margin: 0
   padding: 0em
   grid-template-columns: 60px 60px 60px
-  grid-template-rows: $box-size 1px $box-size 1px $box-size
-  grid-template-areas: "decre number incre" "div1 div1 div1" "kiloUnit kiloUnit kiloUnit" "div2 div2 div2" "small medium big" 
+  grid-template-rows: $box-size 
+  grid-template-areas: "decre number incre"
   background-color: white
   border-radius: $border-radius
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px
   user-select: none
-  transform: translate(-52px, 15px)
+  transform: translate(-62px, -4px)
   div:empty 
     display: none 
 

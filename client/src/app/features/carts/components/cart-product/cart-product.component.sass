@@ -48,6 +48,7 @@ $third_text_color: #8bce7d
       grid-area: img
       img
         width: 100%
+        padding: 7px
     
     .product_name_area
       grid-area: name
@@ -92,6 +93,7 @@ $third_text_color: #8bce7d
       text-align: center
       transform: translateY(-10px)
       z-index: -1
+    
 
 
   .options_area
@@ -99,7 +101,7 @@ $third_text_color: #8bce7d
     display: grid
     grid-template-columns: $img_witdh 2fr 2fr 1fr
     grid-template-rows: 1fr
-    grid-template-areas: ". add_det rmv_det ."
+    grid-template-areas: "org add_det rmv_det ."
     grid-gap: 2px
 
     .add_detail_area
@@ -111,9 +113,38 @@ $third_text_color: #8bce7d
       grid-area: rmv_det
       font-size: $third_display_font_size
       color: $third_filed_color
+ 
+
+    .isOrganic_area
+      grid-area: org
+      justify-self: center
+      align-self: start
+      font-weight: bold
+      touch-action: manipulation
+      border-radius: 6px
+      font-weight: 100
+      white-space: nowrap
+      user-select: none
+      -webkit-font-smoothing: antialiased
+      background-image: none
+      display: inline-flex
+      align-items: center
+      padding: 0px
+      font-size: 11px
+      height: 15px
+      background-color: $third_text_color
+      color: white
+      min-width: 31px
+      top: 8px
+      right: 8px
+      justify-content: center
+      transform: translateY(-2px)
 
 .style_maturity_field
   color: $third_filed_color
 
 .style_maturity_details
   color: $third_text_color
+
+
+  

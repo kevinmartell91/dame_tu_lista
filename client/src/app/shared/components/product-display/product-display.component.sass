@@ -31,7 +31,7 @@ $third_text_color: #8bce7d
 .product_display_grid_category_view
   display: grid
   margin: 0
-  padding: 4px
+  padding: 14px
   grid-template-columns: 1fr
   grid-gap: 0px
   grid-template-rows: 0fr 1fr 20px 0fr
@@ -44,13 +44,12 @@ $third_text_color: #8bce7d
 .product_display_grid_type_view
   display: grid
   margin: 0
-  padding: 1em
-  grid-template-columns: 1fr
+  padding: 20px
+  grid-template-columns: 5fr 1fr
   grid-gap: 0px
   grid-template-rows: 0fr 3fr 20px 15px 0fr
-  grid-template-areas: "emptyTop emptyTop" "image image" "price price" "type ." "emptyBottom emptyBottom"
+  grid-template-areas: "emptyTop emptyTop" "image add" "price price" "type type" "emptyBottom emptyBottom"
   background-color: white
-
   div:empty 
     display: none
 
@@ -71,7 +70,7 @@ $third_text_color: #8bce7d
   grid-area: image
   .image_style
     width: 100%
-    height: 100%
+
 
 // Catergoy area for Category view 
 .product_category_area
@@ -81,6 +80,7 @@ $third_text_color: #8bce7d
   justify-self: center
   font-size: $primary_display_font_size
   color: $primary_filed_color
+  justify-self: center
   // -color: gray
 
 // Type of product for selecting the variety of bananas  
@@ -91,6 +91,7 @@ $third_text_color: #8bce7d
   font-size: $primary_display_font_size
   color: $primary_filed_dark_color
   font-weight: bold
+  justify-self: center
   // background-color: cyan
   .style_price_per_unit_or_kg
     color: $primary_filed_color
@@ -101,6 +102,7 @@ $third_text_color: #8bce7d
   padding: 0px 4px 0px 4px
   font-size: $secondary_display_font_size
   color: $secondary_filed_color
+  justify-self: center
   // background-color: green
   
 // add button area  
@@ -128,7 +130,6 @@ $third_text_color: #8bce7d
   top: 8px
   right: 8px
   justify-content: center
-  z-index: 1
 
 // taking advantage of "add" grid-area
 // to add organic and size area
@@ -138,7 +139,6 @@ $third_text_color: #8bce7d
   align-self: start
   font-weight: bold
   touch-action: manipulation
-  border: 1px solid $third_text_color
   border-radius: 6px
   font-weight: 100
   white-space: nowrap
@@ -148,15 +148,15 @@ $third_text_color: #8bce7d
   display: inline-flex
   align-items: center
   padding: 0px
-  font-size: 12px
+  font-size: 20px
   height: 20px
-  background-color: $third_text_color
-  color: white
+  background-color: #ffffff75
+  color: $third_text_color
   min-width: 24px
   top: 8px
   right: 8px
   justify-content: center
-  transform: translate3d(-15px, 106px, 10px)
+  transform: translate3d(-6px, 91px, 10px)
 
 
 .product_size_add_area
@@ -174,15 +174,15 @@ $third_text_color: #8bce7d
   display: inline-flex
   align-items: center
   padding: 0px
-  font-size: 10px
+  font-size: 14px
   height: 20px
-  background-color: $third_filed_color
-  color: white
+  background-color: #ffffff75
+  color: $third_filed_color
   min-width: 24px
   top: 8px
   right: 8px
   justify-content: center
-  transform: translate3d(0px, 83px, 10px)
+  transform: translate3d(-16px, 113px, 10px)
   // background-color: cyan
 
 //  Maturiy areas 
@@ -193,6 +193,7 @@ $third_text_color: #8bce7d
   font-size: $primary_display_font_size
   justify-self: start
   color: $primary_filed_color
+  justify-self: center
   // background-color: orange
 
 .product_info_area
@@ -208,6 +209,7 @@ $third_text_color: #8bce7d
   padding: 0px 4px 0px 4px
   font-size: $third_display_font_size
   color: $third_filed_color
+  justify-self: center
 
 .product_lastFor_area
   grid-area: last
@@ -215,6 +217,7 @@ $third_text_color: #8bce7d
   padding: 0px 4px 0px 4px
   font-size: $third_display_font_size
   color: $third_filed_color
+  justify-self: center
 
 .product_empty_top_area
   grid-area: emptyTop

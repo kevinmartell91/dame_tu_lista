@@ -21,15 +21,15 @@ const routes: Routes = [
             component: StoreComponent  
           },
           {
-            path: 'category-view',
+            path: 'categoria',
             component: CategoryProductsComponent
           },
           {
-            path: 'variety-view/:categoryName',
+            path: 'variedad/:categoryName',
             component: VarietyProductsComponent
           },
           {
-            path: 'maturity-view/:categoryName/:varietyName',
+            path: 'madurez/:categoryName/:varietyName/:isOrganic',
             component: MaturityProductsComponent
           }
         ]
