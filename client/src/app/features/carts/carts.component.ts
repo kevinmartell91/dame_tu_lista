@@ -21,6 +21,8 @@ import { ShippingOrder } from "../../core/order/types/shipping-order";
 import { AddressOrder } from "../../core/order/types/address-order";
 import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
 import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
+import { Router } from '@angular/router';
+import { CartProductDetailModalComponent  } from "./components/cart-product-detail-modal/cart-product-detail-modal.component";
 
 @Component({
   selector: 'app-carts',
@@ -66,7 +68,8 @@ export class CartsComponent implements OnDestroy {
     private buyerStore: BuyerStore,
     private authenticationStore: AuthenticationStore,
     private orderStore: OrderStore,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private router: Router
   ) { 
 
     this.init();
@@ -79,7 +82,7 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
-        console.log("listening shoppingCart changes");
+        console.log("listening shoppingCart changes poloooo", this.cartProducts);
         this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
         // formating to two decimals and as a string
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
@@ -124,6 +127,14 @@ export class CartsComponent implements OnDestroy {
 
   }
 
+  onCartProducDeleted(carProductDeleted: CartProduct):void {
+    
+    // set quantity to cero to be removed from cartProdcuts
+    // a shortcut to romeve cartPrduct
+    carProductDeleted.quantity = 0;
+    this.cartStore.updateCart(carProductDeleted);
+  }
+
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
 
  
@@ -155,6 +166,8 @@ export class CartsComponent implements OnDestroy {
       this.openAddAddressModal();
     }
   }
+
+
   
   openAddAddressModal():void {
     this.dialogRef = this.matDialog.open(FillShippingAddressComponent, {
@@ -260,10 +273,16 @@ export class CartsComponent implements OnDestroy {
 
     // place order DB
     this.orderStore.genereteOrder(order).subscribe( x => {
-      console.log(x);
-      //reditect to a new view 
+      this.clearCart();
+      this.router.navigate(['/personal-cart/thanks-for-your-order']);
     });
 
+  }
+
+  clearCart():void {
+    this.cartStore.state.shoppingCart.products = [];
+    let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
+    this.cartStore.setCart(cartProductsEmpty);
   }
 
   updatePlaceOrderMessage(message: string): void {

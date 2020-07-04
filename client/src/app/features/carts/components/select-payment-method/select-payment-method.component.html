@@ -39,6 +39,7 @@
             <div class="phone_number_area">
 
                 <mat-form-field >
+                    <mat-label>Número de celular: </mat-label>
                     <input matInput placeholder="Celular"
                         name="phoneNumber"
                         type="tel"
@@ -49,24 +50,12 @@
         </div>
 
 
-
-        
-        <br>
-        <div class="style_error_message">{{errorMessage}}</div>
-        <br>
-        
-        <button mat-button [mat-dialog-close]="paymenytForm.value"  
-                class="btn_block"
-                [disabled]="!paymenytForm.valid">Siguiente</button>
-        <br>
-
-        <div *ngIf="loading">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
-        <!-- <div mat-dialog-actions>
+        <div mat-dialog-actions>
             <button mat-button (click)="onNoClick()">Cancelar</button>
-            <button mat-button [mat-dialog-close]="paymenytForm.value" cdkFocusInitial>Agregar</button>
-        </div> -->
+            <button mat-button [mat-dialog-close]="paymenytForm.value" 
+                    [disabled]="!paymenytForm.valid" cdkFocusInitial>Agregar</button>
+        </div> 
+       
     </form>
 
 </div>

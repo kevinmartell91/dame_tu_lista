@@ -75,9 +75,10 @@ export class CartStore extends Store<CartStoreState> {
             } else { // update quantity
                  cartProducts.filter( elem => {
                     if (elem._id == cartProduct._id )  {
-                        console.log("Updating quantoty", cartProduct.quantity);
+                        console.log("Updating details", cartProduct.details);
                         elem.quantity = cartProduct.quantity;
                         elem.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
+                        elem.details = cartProduct.details;
                     }
                 })
             }

@@ -1,0 +1,62 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+$border-radius: 7px
+$continer-size: 330px
+
+* 
+  box-sizing: border-box
+  
+
+.container_grid
+  display: grid
+  margin: 0
+  padding: 0em
+  grid-template-columns: 1fr $continer-size 1fr
+  grid-template-rows: 200px 150px
+  grid-template-areas: ". brand ." ". thanksForm ."
+  background-color: white
+  user-select: none
+
+
+  .brand_area
+    grid-area: brand
+    justify-self: center
+    align-self: center
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 40px
+
+
+
+  .container_display_thanks
+    grid-area: thanksForm
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: 3fr 3fr
+    grid-template-areas: "message" "button"
+    border-radius: $border-radius
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px
+
+
+    .message_area
+      grid-area: message
+      font-size: 20px
+      justify-self: center
+      align-self: center
+
+
+    .button_area
+      grid-area: button
+      justify-self: center
+      align-self: center
+
+      .btn_activated
+        width: 100%
+        background: mat-color($primary, lighter, 1)
+        border: none

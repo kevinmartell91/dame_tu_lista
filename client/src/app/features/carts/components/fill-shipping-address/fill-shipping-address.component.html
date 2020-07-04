@@ -57,19 +57,11 @@
         </mat-form-field>
 
         
-
-        
-        <br>
-        <div class="style_error_message">{{errorMessage}}</div>
-        <br>
-        <button mat-button [mat-dialog-close]="addressForm.value"  
-                class="btn_block"
-                [disabled]="!addressForm.valid">Siguiente</button>
-        <br>
-
-        <div *ngIf="loading">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+            <button mat-button [mat-dialog-close]="addressForm.value" 
+                    [disabled]="!addressForm.valid" cdkFocusInitial>Agregar</button>
+        </div>   
 
     </form>
 

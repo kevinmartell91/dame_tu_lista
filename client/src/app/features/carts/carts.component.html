@@ -10,6 +10,7 @@
 
         <app-cart-product 
             [cartProduct]="cartProduct"
+            (cartProducDeleted)="onCartProducDeleted($event)" 
             (cartProductUpdated)="onCartProductUpdate($event)">
         </app-cart-product>
     
@@ -20,7 +21,7 @@
 <div class="style_empty_space"></div>
 
 <button class="style_checkout_button"
- (click)="submitOrder()">
-    {{place_order_message}}
+        (click)="submitOrder()">
+            {{place_order_message}}
     <button class="style_total_price_button">{{totalCartPriceStr}}</button>
 </button>

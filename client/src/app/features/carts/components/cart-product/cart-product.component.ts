@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
+import { MatDialog } from '@angular/material/dialog';
+import { CartProductDetailModalComponent } from "../cart-product-detail-modal/cart-product-detail-modal.component";
 
 
 @Component({
@@ -13,13 +15,18 @@ export class CartProductComponent implements OnInit {
 
   @Input() cartProduct: CartProduct;
   @Output() cartProductUpdated = new EventEmitter<CartProduct>();
+  @Output() cartProducDeleted = new EventEmitter<CartProduct>();
+
   cartProductTotalPriceStr: string;
   cartProductPriceStr: string;
 
 
   isQuantityMode: boolean = false;
 
+  dialogRef: any;
+
   constructor(
+    private matDialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +67,11 @@ export class CartProductComponent implements OnInit {
     // }
   
   }
+
+  deleteCartProduct():void {
+    this.cartProducDeleted.emit(this.cartProduct);
+  }
+
   enableQuantityMode(): void {
     console.log("enableQuantityMode");
     this.isQuantityMode = true;
@@ -74,6 +86,25 @@ export class CartProductComponent implements OnInit {
     this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
 
     console.log("transformCartProductTotalPriceToStr", this.cartProductTotalPriceStr);
+  }
+
+  openAddCartProductDetailModal(): void {
+    this.dialogRef = this.matDialog.open(CartProductDetailModalComponent, {
+      width: '320px',
+      data: {
+        cartProductDetail: this.cartProduct.details
+      }
+    });
+    
+    this.dialogRef.afterClosed().subscribe( result => {
+
+      console.log("RESUTL => ",result);
+      this.cartProduct.details = result.productCartDetail;
+      this.cartProductUpdated.emit(this.cartProduct);
+
+
+    });
+
   }
 
 }
