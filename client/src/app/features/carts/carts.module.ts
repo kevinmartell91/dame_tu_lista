@@ -10,6 +10,7 @@ import { FillShippingAddressComponent } from './components/fill-shipping-address
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { ThanksOrderComponent } from './components/thanks-order/thanks-order.component';
+import { CartProductDetailModalComponent } from './components/cart-product-detail-modal/cart-product-detail-modal.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ThanksOrderComponent } from './components/thanks-order/thanks-order.com
     CartQuantityButtonComponent, 
     FillShippingAddressComponent, 
     SelectPaymentMethodComponent,
-    ThanksOrderComponent 
+    ThanksOrderComponent,
+    CartProductDetailModalComponent 
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,6 @@
     h1
       font-size: 25px
 
-
   .btn_block
     width: 100%
     background-color: mat-color($primary, lighter, 1)
@@ -31,29 +30,31 @@
 
 .payment_form_grid
   display: grid
-  width: 320px
-  grid-template-columns: 1fr 1fr  
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr
-  grid-template-areas: "img_pos img_dep" "pos dep" "img_cash ." "cash ." " phone phone"
-  grid-gap: 5px
+  grid-template-columns: 1fr 1fr
+  grid-template-rows: .5fr 1fr 1fr 1fr 1.5fr
+  grid-template-areas: ". .""img_pos pos""img_dep dep""img_cash cash" " phone phone"
+  grid-gap: 0px
 
 
   .pos_method_area
-    text-align: center
     grid-area: pos
+    align-self: center
+    text-align: center
 
 
   .deposit_method_area
-    text-align: center
     grid-area: dep
+    align-self: center
+    text-align: center
 
   .cash_method_area
-    text-align: center
     grid-area: cash
+    align-self: center
+    text-align: center
 
   .phone_number_area
-    text-align: center
     grid-area: phone
+    align-self: center
     width: 100%
 
 
