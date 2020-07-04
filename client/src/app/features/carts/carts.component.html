@@ -19,7 +19,8 @@
 
 <div class="style_empty_space"></div>
 
-<button class="style_checkout_button">
-    Ordenar
+<button class="style_checkout_button"
+ (click)="submitOrder()">
+    {{place_order_message}}
     <button class="style_total_price_button">{{totalCartPriceStr}}</button>
 </button>

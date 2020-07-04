@@ -15,7 +15,7 @@
 
         <div class="product_kilo_Unit_area" 
             (click)="disableQuantityMode()">
-            S/.{{cartProduct.price}}
+            S/.{{cartProductPriceStr}}
             <span *ngIf="cartProduct.isKilo" 
                 class="style_price_per_unit_or_kg">
                  Kg.
@@ -72,7 +72,7 @@
         
         <div class="total_price_area" 
             (click)="disableQuantityMode()">
-            S/.{{cartProductPriceStr}}
+            S/.{{cartProductTotalPriceStr}}
         </div>
 
     </div>

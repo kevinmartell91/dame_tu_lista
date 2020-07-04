@@ -32,6 +32,8 @@ export class AppComponent implements OnInit, OnDestroy{
   authenticationSubcription: Subscription;
   cartStoreSubcription: Subscription;
 
+  favoriteRetailerIdSelected: string = "";
+
   temporaryStorage: TemporaryStorageFacet; 
 
   loginType: {

@@ -14,6 +14,8 @@ import { BuyerNavegationStore } from "../core/buyer/services/buyer-navegation.st
 import { TemporaryStorageService } from "../core/session-storage/services/temporary-storage.service";
 
 import { CartStore } from "../core/cart/services/cart.store";
+import { OrderStore } from "../core/order/sevices/order.store";
+import { OrderEndPoint } from "../core/order/sevices/order.endpoint";
 
 @NgModule({
     declarations: [],
@@ -21,6 +23,8 @@ import { CartStore } from "../core/cart/services/cart.store";
     providers: [
       AuthenticationStore,
       AuthenticationEndPoint,
+      OrderStore,
+      OrderEndPoint,
       BuyerNavegationStore,
       TemporaryStorageService,
       CartStore,

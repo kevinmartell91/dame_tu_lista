@@ -35,7 +35,5 @@ export class CartProduct implements Deserializable {
         return this;
     }
 
-    public updateTotalProductPrice(): void {
-        this.totalPrice = round(this.quantity * this.price,2);
-    }
+    
 }

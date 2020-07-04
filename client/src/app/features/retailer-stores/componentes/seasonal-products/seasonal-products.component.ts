@@ -6,6 +6,7 @@ import { RetailerStoreStore } from '../../services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 // import { filterProducts } from '../../helpers/product.helper';
 // import { ProductDisplaySharedComponent } from "../../../../shared/components/product-display/product-display.component";
 
@@ -58,7 +59,8 @@ export class SeasonalProductsComponent implements OnInit {
 
 
   public onSelectedCartProduct(cartProduct: CartProduct) { 
-
+    
+    cartProduct.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
     this.cartStore.updateCart(cartProduct);
 
   }

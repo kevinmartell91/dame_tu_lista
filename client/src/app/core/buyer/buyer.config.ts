@@ -26,8 +26,8 @@ export const BUYER_CONFIG = {
             name: 'updateBuyerFavoriteRetailers',
             url: `${APP_CONFIG.apiBaseUrl}/updateBuyerFavoriteRetailers/`
         },
-        updateBuyerAddress: {
-            name: 'updateBuyerAddress',
+        pathBuyerAddress: {
+            name: 'pathBuyerAddress',
             url: `${APP_CONFIG.apiBaseUrl}/buyers-address/`
         }
     },

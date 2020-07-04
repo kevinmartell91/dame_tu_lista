@@ -21,7 +21,7 @@ export class DisplayDetailComponent  {
   last_for_List = [ 
     '4 días',
     '1 semana',
-    '1.5 semanas',
+    '1.3335 semanas',
     '2 semanas'
   ]
 
@@ -35,14 +35,14 @@ export class DisplayDetailComponent  {
   }
 
   ChangeAction (last_for_selected){
-    console.log("ChangeAction", last_for_selected);
+    console.log("ChangeAction KEVNI", last_for_selected);
   }
 
 
   //////  Child parent comunication implementation //////
   sendProductDetailToProductDisplay(displayDetail: ProductDetail) {
     // change PRODUCT NAME to productToEmmit
-    this.displayDetailEmmit.emit(displayDetail);
     console.log("displayDetail => ", displayDetail);
+    this.displayDetailEmmit.emit(displayDetail);
   }
 }

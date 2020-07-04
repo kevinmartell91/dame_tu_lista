@@ -172,6 +172,8 @@ exports.updateBuyerAddress = async function(req, res, next) {
 	
 	let addressData = req.body;
 	let id = req.params.buyer_id;
+
+	console.log("body - id => ",addressData, id);
 	const buyerUpdated = 
 		await Buyer.findByIdAndUpdate(id, addressData, {new: true});
 	
@@ -180,14 +182,14 @@ exports.updateBuyerAddress = async function(req, res, next) {
 		res.json({
 			success: true,
 			status: 200,
-			message: "favorite retailer updated",
+			message: "buyer address updated",
 			entity: buyerUpdated
 		});
 	} else {
 		res.json({
 			success: false,
 			status: 500,
-			message: "favorite not retailer updated",
+			message: "buyer adderess updated",
 			entity: buyerUpdated
 		});
 	}

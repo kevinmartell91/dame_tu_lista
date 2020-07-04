@@ -5,13 +5,14 @@ import { map } from 'rxjs/operators';
 
 export class Buyer implements Deserializable {
 
+    public _id: string;
     public username?: string;
     public password?: string;
-    public name?: String;
+    public name?: string;
     public lastname?: String;
     public email?: string;
     public address?: Address;
-    public phoneNumber?: number;
+    public phoneNumber?: string;
     public myFavoriteRetailers?: FavoriteReatailers[];
     // what else ?
     public signUpDate?: Date;

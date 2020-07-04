@@ -5,16 +5,21 @@ import { Observable } from 'rxjs';
 import { ShoppingCart } from '../types/shopping-cart';
 import { CartProduct } from '../types/cart-product';
 import { ignoreElements, map } from 'rxjs/operators';
+import { updateTotalProductPrice } from '../helpers/cart-helper';
+import { Retailer } from '../../retailer/types/retailer';
 
 @Injectable({ providedIn: 'root'})
 export class CartStore extends Store<CartStoreState> {
     
     shoppingCart$: Observable<ShoppingCart>;
 
+    favariteRetailerSelected$: Observable<Retailer>;
+
 
     constructor() {
         super(new CartStoreState()) 
         this.shoppingCart$ = this.state$.pipe( map ( state => state.shoppingCart));
+        this.favariteRetailerSelected$ = this.state$.pipe( map ( state => state.favoriteRetailerSelected));
     }
 
     setCart(newCart: CartProduct[]): void {
@@ -26,6 +31,13 @@ export class CartStore extends Store<CartStoreState> {
             }
         })
 
+    }
+
+    setFavoriteRetalerSelected(retailer: Retailer): void {
+        this.setState({
+            ...this.state,
+            favoriteRetailerSelected: retailer
+        })
     }
 
     // updateCartProduct(
@@ -58,12 +70,14 @@ export class CartStore extends Store<CartStoreState> {
             if( cartProduct.quantity === 0) {
                 console.log("CERO =>>>>");
                 cartProducts = 
-                    cartProducts.filter( ele => ele._id != cartProduct._id )
-           
+                cartProducts.filter( ele => ele._id != cartProduct._id )
+                
             } else { // update quantity
-                cartProducts.filter( elem => {
+                 cartProducts.filter( elem => {
                     if (elem._id == cartProduct._id )  {
+                        console.log("Updating quantoty", cartProduct.quantity);
                         elem.quantity = cartProduct.quantity;
+                        elem.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
                     }
                 })
             }

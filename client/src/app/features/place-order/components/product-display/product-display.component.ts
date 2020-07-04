@@ -93,7 +93,7 @@ export class ProductDisplayComponent {
 
     this.dialogRef.afterClosed().subscribe( result => {
       this.productDetail = result;
-      console.log("ProductDetail from Modal", this.productDetail);
+      console.log("ProductDetail KEVIN from Modal", this.productDetail);
     });
   }
 

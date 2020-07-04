@@ -1,8 +1,11 @@
 import { Component, OnInit, HostBinding, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormGroup,
 		 FormControl,
-		 Validators,
+     Validators, 
+     FormGroupDirective,
+     NgForm,
      FormBuilder } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { trigger,
 		 state,
@@ -20,6 +23,12 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
 import { Requests } from "../../core/login/types/requests";
 import { LOGIN_CONFIG } from "../../core/login/login.config";
 
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     const isSubmitted = form && form.submitted;
+//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+//   }
+// }
 
 
 @Component({
@@ -132,6 +141,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     let loginUser = this.prepareAuthentication();
+    console.log("KEVINSSSSSSSSSSSS",loginUser);
     
     // hard coded, quick login purposes
     loginUser.login_type= "comprador";

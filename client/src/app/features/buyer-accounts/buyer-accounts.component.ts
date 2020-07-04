@@ -9,6 +9,8 @@ import { BuyerAccountStore } from './services/buyer-account.store';
 import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
 import { deserialize } from './helpers/buyer-accounts.helper';
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
 
 @Component({
   selector: 'app-buyer-accounts',
@@ -25,7 +27,8 @@ export class BuyerAccountsComponent implements OnInit {
     private router: Router,
     private authenticationStore: AuthenticationStore,
     private buyerNavegationStore: BuyerNavegationStore,
-    public buyerAccountStore: BuyerAccountStore) { 
+    public buyerAccountStore: BuyerAccountStore,
+    private cartStore: CartStore) { 
 
     this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
@@ -66,8 +69,16 @@ export class BuyerAccountsComponent implements OnInit {
     this.buyerAccountStore.init(this.buyer_id);
   }
 
-  goToRetailerStoreView(retailer_id: string): void {
-    this.router.navigate(['/retailer-store/',retailer_id]);
+  goToRetailerStoreView(retailer: Retailer): void {
+
+    // In order to keep the selected favorite retailer _id,
+    // we store it in cartStore. So its subscribers will
+    // about which one was selecetd from other components
+    // such as this one and cart component to generate a
+    // new order which requieres favorite reatiler _id.
+    this.cartStore.setFavoriteRetalerSelected(retailer);
+
+    this.router.navigate(['/retailer-store/',retailer._id]);
   }
 
   viewBuyerCart(): void {

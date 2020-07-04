@@ -5,14 +5,17 @@ var Order  = require('../models/orders');
 // creating endpoint /api/orders POST
 exports.postOrders = function(req, res) {
     // creating a new instance of the Orders model
-  var order = new Order();
-  order.shipping = req.body.shipping;
-  order.payment = req.body.payment;
-  order.cart = req.body.cart;
-  
+  let orderData = req.body;
+  var order = new Order(orderData);
+  // order.shipping = req.body.shipping;
+  // order.payment = req.body.payment;
+  // order.cart = req.body.cart;
+
+  console.log("postOrders");
   order.save(function(err){
         
     if (err){
+      console.log("ERROR ", err);
         return res.status(500).send(err);
     }
      

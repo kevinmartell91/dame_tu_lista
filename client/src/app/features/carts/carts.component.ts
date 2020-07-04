@@ -7,6 +7,20 @@ import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegatio
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
 import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
+import { MatDialog } from '@angular/material/dialog';
+import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
+import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
+import { Buyer } from 'src/app/core/buyer/types/buyer';
+import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
+import { OrderStore } from 'src/app/core/order/sevices/order.store';
+import { Order } from 'src/app/core/order/types/order';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { BuyerOrder } from "../../core/order/types/buyer-order";
+import { PaymentOrder } from "../../core/order/types/payment-order";
+import { ShippingOrder } from "../../core/order/types/shipping-order";
+import { AddressOrder } from "../../core/order/types/address-order";
+import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
+import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
 
 @Component({
   selector: 'app-carts',
@@ -16,16 +30,43 @@ import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
 export class CartsComponent implements OnDestroy {
 
   cartProducts: CartProduct[] = null ;
-  subscription: Subscription;
+  favoriteRetilerSelected: Retailer;
+
+  subscriptionCart: Subscription;
+  subscriptionBuyer: Subscription;
+  subscriptionFavoriteRetailerSelected: Subscription;
+
   maturityView: string;
   question: string;
 
   totalCartPrice: number = 0;
   totalCartPriceStr: string = "0.00";
 
+
+
+  private dialogRef: any;
+
+  buyer: Buyer;
+  
+  // variable for paymet method coming from payment method modal
+  paymentMethodOrder: string = "";
+  phoneNumberOrder: string = "";
+  // variable for addressOrde method coming from  Address modal
+  addressOrder: AddressOrder;
+
+  isSetAddress: boolean = false;
+  isSetPayMethod: boolean = false;
+
+  place_order_message: string = "Ordenar";
+
+
   constructor(
     private buyerNavegationStore: BuyerNavegationStore,
-    private cartStore: CartStore
+    private cartStore: CartStore,
+    private buyerStore: BuyerStore,
+    private authenticationStore: AuthenticationStore,
+    private orderStore: OrderStore,
+    private matDialog: MatDialog
   ) { 
 
     this.init();
@@ -35,20 +76,39 @@ export class CartsComponent implements OnDestroy {
   
   init(): void {
 
-    this.subscription = this.cartStore.shoppingCart$.subscribe(
+    this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
+        console.log("listening shoppingCart changes");
         this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
         // formating to two decimals and as a string
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
       }
     )
+
+    this.subscriptionFavoriteRetailerSelected = this.cartStore.favariteRetailerSelected$.subscribe(
+      x => {
+        this.favoriteRetilerSelected = x;
+        console.log("listening favoriteRetilerSelected changes",this.favoriteRetilerSelected);
+      }
+    )
+
+
+    this.subscriptionBuyer = this.authenticationStore.loginUser$.subscribe(
+      y => {
+         if( y.login_type == 'buyer') {
+           this.buyer = new Buyer().deserialize(y.entity);
+         }
+      }
+    )
+
     
   }
 
   ngOnDestroy(): void {
 
-    this.subscription.unsubscribe();
+    this.subscriptionCart.unsubscribe();
+    this.subscriptionBuyer.unsubscribe();
 
   }
 
@@ -87,6 +147,137 @@ export class CartsComponent implements OnDestroy {
     // case. So this will do the job. Update the 
     // shopping-cart total price and save in SessionStorage.
 
+}
+
+  submitOrder(): void {
+
+    if( ! this.isSetAddress ) {
+      this.openAddAddressModal();
+    }
   }
+  
+  openAddAddressModal():void {
+    this.dialogRef = this.matDialog.open(FillShippingAddressComponent, {
+      width: '420px',
+      data: {
+        buyer: this.buyer
+      }
+    });
+
+    this.dialogRef.afterClosed().subscribe( result => {
+
+      if(result != undefined){
+        
+        this.addressOrder = new AddressOrder().deserialize(result);
+        console.log("Address KEVIN from Modal", this.addressOrder);
+        this.openAddPayMethodModal();
+      }
+
+    });
+  }
+
+
+  openAddPayMethodModal():void {
+    this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
+      width: '420px'
+    });
+
+    this.dialogRef.afterClosed().subscribe( result => {
+      
+      if(result != undefined) {
+
+        console.log("pay method from Modal", result);
+        this.paymentMethodOrder = result.paymentMethod;
+        this.phoneNumberOrder = result.phoneNumber;
+  
+        this.updatePlaceOrderMessage("Ahora ya puede ordenar");
+        
+        // show another view to say thanks for ordering
+        // then catch this as a convetion in google analytics
+        this.createOrderFromShoppingCart();
+        
+        console.log("this.buyer updated", this.buyer);
+  
+        this.updatePlaceOrderMessage("Su orden ya fue enviada");        
+      }
+    });
+  }
+
+
+  createOrderFromShoppingCart():void {
+
+    /**
+     * Populating the buyerOrder from this.buyer
+     */
+    let buyerOrder = new BuyerOrder();
+    buyerOrder._id = this.buyer._id;
+    buyerOrder.name = this.buyer.name;
+    buyerOrder.email = this.buyer.email;
+    buyerOrder.phoneNumber = this.phoneNumberOrder; 
+    
+    
+    /**
+     * Populating the addressOrder from this.buyer.address
+     */
+    let addressOrder = new AddressOrder().deserialize(this.addressOrder);
+    
+    /**
+     * Populating the trackingOrder
+     */
+    let trackingOrder =  new TrackingOrder();
+    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.driver_name= "";
+    trackingOrder.trackingNumber = "";
+    trackingOrder.estimatedDelivery= "Se entregaraá su delivery en las próimas tres horas";
+    
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let shippingOrder = new ShippingOrder();
+    shippingOrder.buyer = buyerOrder;
+    shippingOrder.deliveryNotes = "";
+    shippingOrder.address = addressOrder;
+    shippingOrder.tracking = trackingOrder;
+    
+    
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let paymentMethodOrder = new PaymentOrder();
+    paymentMethodOrder.method = this.paymentMethodOrder;
+    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+    
+    
+    // populate the order;
+    let order = new Order();
+    order.retailer_id = this.favoriteRetilerSelected._id;
+    order.shipping = shippingOrder;
+    order.payment = paymentMethodOrder;
+    order.cart = this.cartProducts;
+
+
+    console.log("genereteOrder ", typeof(order), JSON.stringify(order) );
+
+    // place order DB
+    this.orderStore.genereteOrder(order).subscribe( x => {
+      console.log(x);
+      //reditect to a new view 
+    });
+
+  }
+
+  updatePlaceOrderMessage(message: string): void {
+    this.place_order_message = message;
+  }
+
+  saveAddressInBuyerAccount():void {
+
+    this.buyerStore.updateBuyerAddress(this.buyer._id, this.addressOrder).subscribe(
+      response => {
+        console.log("Se guardó su direccion como frecuente.");        
+      }
+    )    
+  }
+
 
 }

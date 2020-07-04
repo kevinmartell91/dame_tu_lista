@@ -15,7 +15,7 @@ var buyerSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   address: {
     streetName: String,
-    streetnumber: String,
+    streetNumber: String,
     district: String,
     city: String,
     department: String,

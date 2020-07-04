@@ -65,7 +65,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         this.handleGetUserLoginResponse(userTest);
     }
 
-    private handleGetUserLoginResponse (loginUser: LoginUser): void {
+    public handleGetUserLoginResponse (loginUser: LoginUser): void {
         // The user object is then published to all subscribers with the call to
         // calls this.currentUserSubject.next(user);
         this.setState({  
@@ -73,6 +73,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             loginUser: loginUser
         });
     }
+   
 }
 
 // import {Observable, BehaviorSubject} from 'rxjs';

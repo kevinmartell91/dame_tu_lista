@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 
 
 @Component({
@@ -12,15 +13,18 @@ export class CartProductComponent implements OnInit {
 
   @Input() cartProduct: CartProduct;
   @Output() cartProductUpdated = new EventEmitter<CartProduct>();
+  cartProductTotalPriceStr: string;
   cartProductPriceStr: string;
 
 
   isQuantityMode: boolean = false;
 
-  constructor( ) { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
 
+    this.cartProductPriceStr = this.cartProduct.price.toFixed(2);
     this.transformCartProductTotalPriceToStr();
   }
 
@@ -38,8 +42,8 @@ export class CartProductComponent implements OnInit {
 
 
     this.cartProduct.quantity = quantityUpdated;
-    this.cartProduct.updateTotalProductPrice();
-    
+    this.cartProduct.totalPrice = updateTotalProductPrice(this.cartProduct.quantity, this.cartProduct.price);
+
     // formating to two decimals and as a string
     this.transformCartProductTotalPriceToStr();
 
@@ -67,9 +71,9 @@ export class CartProductComponent implements OnInit {
   }
 
   transformCartProductTotalPriceToStr(): void {
-    this.cartProductPriceStr = this.cartProduct.totalPrice.toFixed(2);
+    this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
 
-    console.log("transformCartProductTotalPriceToStr", this.cartProductPriceStr);
+    console.log("transformCartProductTotalPriceToStr", this.cartProductTotalPriceStr);
   }
 
 }

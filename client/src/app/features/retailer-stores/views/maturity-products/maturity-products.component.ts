@@ -15,6 +15,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-maturity-products',
@@ -94,7 +95,10 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
   }
   
   public onSelectedCartProduct( cartProduct: CartProduct): void {
-  
+    
+    cartProduct.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
+    console.log("this.cartProduct.totalPrice ",cartProduct.totalPrice );
+
     this.cartStore.updateCart(cartProduct);
   
   }

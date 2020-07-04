@@ -1,0 +1,78 @@
+
+
+<div class="address_wrapper" fxLayout="column" fxLayoutAlign="center center">
+    
+    <div class="style_brand">
+        <h1> 
+            <img src="../../../../../assets/icons/location.svg" alt="">
+            Entregar en:
+        </h1>
+    </div>
+
+    <form class="address_form" [formGroup]='addressForm'>
+        
+        <mat-form-field class="address_address_name_width">
+            <input matInput placeholder="Dirección"
+            name="streeName"
+            type="text"
+            formControlName="streetName">
+        </mat-form-field>
+        
+        <mat-form-field class="address_street_number_width">
+            <input matInput placeholder="Número"
+            name="streetNumber"
+            type="tel"
+            formControlName="streetNumber">
+        </mat-form-field>
+    
+        <mat-form-field class="address_district_width">
+            <mat-label>Distrito</mat-label>
+            <mat-select formControlName="district">
+                <mat-option [value]="district" *ngFor="let district of districts" >{{district}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="address_city_width">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="city">
+                <mat-option [value]="city" *ngFor="let city of cities" >{{city}}
+                </mat-option>
+                </mat-select>
+        </mat-form-field>           
+
+        <mat-form-field class="address_full_width">
+            <textarea matInput placeholder="Referencia"
+                name="reference"
+                type="text"
+                formControlName="reference"></textarea>
+        
+        </mat-form-field>
+
+        <mat-form-field class="address_full_width">
+            <textarea matInput placeholder="Detalles adicionales"
+                name="details"
+                type="text"
+                formControlName="details"></textarea>
+        </mat-form-field>
+
+        
+
+        
+        <br>
+        <div class="style_error_message">{{errorMessage}}</div>
+        <br>
+        <button mat-button [mat-dialog-close]="addressForm.value"  
+                class="btn_block"
+                [disabled]="!addressForm.valid">Siguiente</button>
+        <br>
+
+        <div *ngIf="loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+
+    </form>
+
+</div>
+
+

@@ -34,11 +34,13 @@ export function getCartProductFromProduct(
     newCartProduct.quantity = quantitySelected;
     newCartProduct.size = sizeSelected;
     newCartProduct.details = "";
-    newCartProduct.totalPrice = 0;
-
-    newCartProduct.updateTotalProductPrice();
+    newCartProduct.totalPrice = updateTotalProductPrice(newCartProduct.quantity, newCartProduct.price);
 
     return newCartProduct;
+}
+
+export function updateTotalProductPrice(quantity: number, price: number): number {
+    return round(quantity * price, 2);
 }
 
 export function calculateCartTotalPrice(products: CartProduct[]): number {
