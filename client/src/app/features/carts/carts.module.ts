@@ -9,6 +9,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
+import { ThanksOrderComponent } from './components/thanks-order/thanks-order.component';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
     CartsComponent, 
     CartProductComponent, 
     CartQuantityButtonComponent, 
-    FillShippingAddressComponent, SelectPaymentMethodComponent 
+    FillShippingAddressComponent, 
+    SelectPaymentMethodComponent,
+    ThanksOrderComponent 
   ],
   imports: [
     CommonModule,

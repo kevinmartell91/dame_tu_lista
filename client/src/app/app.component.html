@@ -76,7 +76,8 @@
                     
                     </div>
                     
-                    <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView" class="buyer_cart_area">
+                    <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView &&
+                                subs.buyerNavegation.typeView !== navegation.thanksView" class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
                         <div (click)="viewBuyerCart()">
                             <img src="../assets/icons/shopping_cart-green-36dp.svg" alt="">

@@ -41,13 +41,15 @@ export class AppComponent implements OnInit, OnDestroy{
     retailer
   }; 
 
+
   navegation: {
     accountView,
     storeView,
     categoryView,
     varietyView,
     maturityView
-    cartView
+    cartView,
+    thanksView
   };
 
   constructor(
@@ -60,7 +62,7 @@ export class AppComponent implements OnInit, OnDestroy{
     private retailerStoreStore: RetailerStoreStore
   ) {
 
-    this.retailerStoreStore.getAirTabeDATA();
+    // this.retailerStoreStore.getAirTabeDATA();
     
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");

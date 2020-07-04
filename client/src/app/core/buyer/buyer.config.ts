@@ -37,6 +37,7 @@ export const BUYER_CONFIG = {
         categoryView: "buyer_category_view",
         varietyView: "buyer_variety_view",
         maturityView: "buyer_maturity_view",
-        cartView: "buyer_cart_view"
+        cartView: "buyer_cart_view",
+        thanksView: "thanks_order_view"
     }
 }

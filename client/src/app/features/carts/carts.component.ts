@@ -21,6 +21,7 @@ import { ShippingOrder } from "../../core/order/types/shipping-order";
 import { AddressOrder } from "../../core/order/types/address-order";
 import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
 import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carts',
@@ -66,7 +67,8 @@ export class CartsComponent implements OnDestroy {
     private buyerStore: BuyerStore,
     private authenticationStore: AuthenticationStore,
     private orderStore: OrderStore,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private router: Router
   ) { 
 
     this.init();
@@ -260,10 +262,16 @@ export class CartsComponent implements OnDestroy {
 
     // place order DB
     this.orderStore.genereteOrder(order).subscribe( x => {
-      console.log(x);
-      //reditect to a new view 
+      this.clearCart();
+      this.router.navigate(['/personal-cart/thanks-for-your-order']);
     });
 
+  }
+
+  clearCart():void {
+    this.cartStore.state.shoppingCart.products = [];
+    let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
+    this.cartStore.setCart(cartProductsEmpty);
   }
 
   updatePlaceOrderMessage(message: string): void {

@@ -30,6 +30,11 @@ export class OrderStore extends Store<OrderStoreState>{
 
     }
 
+    get order(): Order {
+        return this.state.order;
+    }
+
+
     genereteOrder( order: Order): Observable<any>{
         console.log("genereteOrder", order);
         return this.http.postOrder(this.storeRequestStateUpdater, order).pipe(
