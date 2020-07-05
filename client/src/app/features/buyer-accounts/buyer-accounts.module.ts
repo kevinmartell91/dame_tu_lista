@@ -8,11 +8,17 @@ import { BuyerAccountStore } from "./services/buyer-account.store";
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { AuthenticationStore } from "../../core/login/services/authentication.store";
 
+// import { SharedModule } from "../../shared/shared.module";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import {  } from "module";
+
 
 @NgModule({
   declarations: [BuyerAccountsComponent],
   imports: [
     CommonModule,
+    MatProgressSpinnerModule,
     BuyerAccountsRoutingModule
   ],
   providers: [

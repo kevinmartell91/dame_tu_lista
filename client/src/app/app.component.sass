@@ -6,9 +6,9 @@
   $background: map-get($theme, background)
   $foreground: map-get($theme, foreground)
 
-$buyer_name_font_size: 2em
-$buyer_view_account_font_size: 1em
-$buyer_cart_number_font_size: 2em
+$buyer_name_font_size: 1.5em
+$buyer_view_account_font_size: .8em
+$buyer_cart_number_font_size: 1.7em
 
 * 
   box-sizing: border-box 
@@ -29,14 +29,18 @@ $buyer_cart_number_font_size: 2em
   .buyer_account_area
     grid-area: account
     display: grid
-    margin: .5em
+    margin: .2em
     grid-template-columns: .1fr 1fr
-    grid-template-rows: 1fr 1fr
-    grid-template-areas: "icon name" "icon accountDetail"
+    grid-template-rows: .1fr 1fr 1fr
+    grid-template-areas: "icon ." "icon name" "icon accountDetail"
+    grid-gap: 5px
     
   .buyer_personal_icon_area
     grid-area: icon
     font-size: 100px
+    padding: 5px
+    border-radius: 10px
+    background-color: #f7f7f7
 
   .buyer_name_area
     grid-area: name
@@ -45,16 +49,21 @@ $buyer_cart_number_font_size: 2em
   .buyer_view_account_area
     grid-area: accountDetail
     font-size: $buyer_view_account_font_size
+    cursor: pointer
     .a
       color: mat-color($primary, darker, 0.5)
 
   .buyer_cart_area
     grid-area: cart
-    margin: 0em
+    margin: 0px
+    padding: 3px 5px 3px 5px
     justify-self: end
     align-self: center
+    border-radius: 15px
+    background-color: #43b02b
     font-size: $buyer_cart_number_font_size
-    color: #43b02b  
+    color: white
+    cursor: pointer
 
   .navegation_grid
     display: grid
@@ -67,6 +76,7 @@ $buyer_cart_number_font_size: 2em
     .navegation_image_area
       grid-area: img
       align-self: center
+      cursor: pointer
 
     .navegation_title_area
       grid-area: text

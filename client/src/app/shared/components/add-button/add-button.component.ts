@@ -16,6 +16,10 @@ export class AddButtonComponent implements OnInit {
   @Input() quantity: number;
   @Input() size: string;
   @Input() isCartProductButtonType: boolean = false;
+  // valiable that let the app know how increment 
+  // by kilograms or units
+  @Input() isKilo: boolean;
+
 
   // hadles the increased or decreased quantity
   // which then is passed to its parent.
@@ -30,19 +34,40 @@ export class AddButtonComponent implements OnInit {
   isClickedSmall: boolean = false;
   isClickedMedium: boolean = false;
   isClickedBig: boolean = false;
+
+  // increment each 0.25 kg
+  surgeQuantity: number;
+
+  countStr: string = "";
+
   
   constructor() { 
-    this.setbuttonTypeToRender(this.isCartProductButtonType);
   }
   ngOnInit():void  {
 
+    this.setbuttonTypeToRender(this.isCartProductButtonType);
+
+    this.setSurgeQuantity();
+
     this.count = this.quantity;
+    
+    this.convertQuantiyToString();
+
     
     if(this.count == 0)
       this.quantityUpdate('+');
 
   }
 
+  setSurgeQuantity():void {
+    // choosing the sugerUni
+    if( this.isKilo) {
+      this.surgeQuantity = 0.25;
+    } else {
+      this.surgeQuantity = 1;
+    }
+    console.log("setSurgeQuantity", this.isKilo, this.surgeQuantity);
+  }
   setbuttonTypeToRender(isCartProductButtonType: boolean): void {
 
     if( isCartProductButtonType ) {
@@ -58,18 +83,32 @@ export class AddButtonComponent implements OnInit {
 
   quantityUpdate(operator:string){
     if(operator === "+") {
-      this.count++;
+      this.count += this.surgeQuantity;
     } else { // discount quantity
       if(this.count > 0 ){
-        this.count--;
+        this.count -= this.surgeQuantity;
       } else {
         // disable button 
         // or show a wasebasket
       }
     }
+
+    this.convertQuantiyToString();
+    
     console.log("this.quantityUpdated.emit(this.count)");
     this.quantityUpdated.emit(this.count)
   }
+  
+  convertQuantiyToString(): void {
+        // here I can set how to increment or decrement quantity
+    // depending on MANO, (UNITS || KG)
+    if(this.isKilo) { 
+      this.countStr = this.count.toFixed(2) + " kg.";
+    } else {
+      this.countStr = this.count.toString() + " Uni.";
+    }
+  }
+
 
   kiloOrUnitUpdate(mass: string) {
     this.updateKiliOrUnitSelection(mass);

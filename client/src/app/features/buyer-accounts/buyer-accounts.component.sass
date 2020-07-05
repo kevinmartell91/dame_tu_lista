@@ -13,6 +13,8 @@ $buyer_cart_number_font_size: 2em
 $store_display_width: 340px
 $image_width: 110px
 
+$box_container_size: 320px
+
 * 
   box-sizing: border-box 
 
@@ -82,6 +84,27 @@ $image_width: 110px
 
 .buyer-stores-section
   grid-area: strs
+
+
+  .grid_loading_display
+    display: grid
+    grid-template-columns: 1fr $box_container_size 1fr
+    grid-template-rows: 1fr 1fr
+    grid-template-areas: ". brand ." ". loading ."
+    transform: translateY(20%)
+    
+    .login_brand_area
+      grid-area: brand
+      color: mat-color($primary, default, 1)
+      h1
+        font-size: 20px
+        text-align: center
+      
+    .loading_symbol_area
+      grid-area: loading
+      justify-self: center
+      align-self: center
+
 
 // ============================================
 .stores_grid

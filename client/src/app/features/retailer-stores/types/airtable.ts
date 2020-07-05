@@ -141,6 +141,7 @@ export class Fields implements Deserializable{
     isKilo?: boolean;
     isOrganic?: boolean;
     isBigSize?: boolean;
+    isProduction?: boolean;
     
     deserialize(input: any) {
         Object.assign(this, input);
@@ -6847,9 +6848,9 @@ export function manuallyRetrievedAritableData():any {
 
         product.varietyImageUrl = assetPath + ele.fields.varietyImageUrl;
         product.categoryImageUrl = assetPath + ele.fields.categoryImageUrl;
-        product.categoryName = ele.fields.categoryName;
+        product.categoryName = CapFirstChar(ele.fields.categoryName);
 
-        product.varietyName = ele.fields.varietyName == "-" ? "normal" : ele.fields.varietyName
+        product.varietyName = ele.fields.varietyName == "-" ? "normal" : CapFirstChar(ele.fields.varietyName);
 
         product.currency = ele.fields.currency;
         product.price = ele.fields.price;
@@ -6858,7 +6859,7 @@ export function manuallyRetrievedAritableData():any {
         product.isSeasonal = (ele.fields.isSeasonal) ? product.isSeasonal = true : product.isSeasonal = false;
         product.isMaturityDetails = (ele.fields.isMaturityDetails) ? product.isMaturityDetails = true : product.isMaturityDetails = false;
         product.maturityImageUrl = assetPath + ele.fields.maturityImageUrl;
-        product.maturityName = ele.fields.maturityName;
+        product.maturityName = CapFirstChar(ele.fields.maturityName);
         product.maturityInfo = ele.fields.maturityInfo;
         product.maturityEatIn = ele.fields.maturityEatIn.toString();
         product.maturityLastFor = ele.fields.maturityLastFor.toString();
@@ -6875,6 +6876,11 @@ export function manuallyRetrievedAritableData():any {
     let json = JSON.stringify({ productsList: productsList });
     console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", deserializedData);
     console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", json);
+
+
     
 }
 
+export function CapFirstChar(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}

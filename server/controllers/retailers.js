@@ -137,7 +137,7 @@ exports.putRetailerStore = function(req, res) {
     retailer.store.isDeliveryService = req.body.store.isDeliveryService;
     retailer.store.isPickUpService = req.body.store.isPickUpService;
     retailer.store.deliveryInfo = req.body.store.deliveryInfo;
-    retailer.store.pickUpInf = req.body.store.pickUpInf;
+    retailer.store.pickUpInfo = req.body.store.pickUpInfo;
     retailer.store.productsList = retailer.store.productsList;
  
     retailer.store.address.streetName = req.body.store.address.streetName;

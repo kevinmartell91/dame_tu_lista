@@ -1,13 +1,43 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+
 $product_contianer_size: 170px
+$box_container_size: 320px
 
 * 
   box-sizing: border-box
+
+.grid_loading_display
+  display: grid
+  grid-template-columns: 1fr $box_container_size 1fr
+  grid-template-rows: 1fr 1fr
+  grid-template-areas: ". brand ." ". loading ."
+  transform: translateY(20%)
+  
+  .login_brand_area
+    grid-area: brand
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 20px
+      text-align: center
+
+    
+  .loading_symbol_area
+    grid-area: loading
+    justify-self: center
+    align-self: center
 
 .style_question
   text-align: center
   font-weight: 100
   color: #737373 
-
+  font-size: 25px
   
 .display_products_grid
   grid-area: strPrd

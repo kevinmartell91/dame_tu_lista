@@ -1,10 +1,27 @@
-<ng-container *ngIf="(retailerStoreStore.state$ | async) as subs">
+<ng-container *ngIf="{state$: retailerStoreStore.state$ | async} as subs">
 
-    <div *ngIf="(subs.request.getRetailer.inProgress)">Loading...</div>
+    <ng-container 
+    *ngIf="subs.state$.requests.getRetailer.inProgress ;
+        then showLoading ;
+        else showStore ">
+    </ng-container>
+
+    <ng-template #showLoading> 
+         <div class="grid_loading_display">
+            <div class="login_brand_area">
+                <h1> 🍒 Dame tu lista</h1>
+            </div>
+            <div class="loading_symbol_area">
+
+                <mat-spinner >  </mat-spinner>
+            </div>
+         </div>
+          
+    </ng-template>
     
-    <div *ngIf="!subs.request.getRetailer.inProgress">
+    <ng-template #showStore>
         <div class="store_grid">
-            <div class="store_banner_area" [ngStyle]="{'background-image': subs.retailer.getBannerUrl()}">
+            <div class="store_banner_area" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}">
                 <div class="store_back_cart_area">
                     <div class="back_button_area" 
                         (click)="goBackToBuyerAccount()">
@@ -14,20 +31,20 @@
                     
                     <div class="cart_icon_area"
                         (click)="viewBuyerCart()">
-                        <img src="../../../../../assets/icons/shopping_cart-white-36dp.svg" alt="">
+                        <img src="../../../../../assets/icons/shopping_cart-green-28dp.svg" alt="">
                         {{cartProductsQuantity}}
                     </div>
                 </div>
                 <div class="store_name_area">
-                    <div class="style_store_name">{{subs.retailer.store.name}}</div>
+                    <div class="style_store_name">{{subs.state$.retailer.store.name}}</div>
                 </div>
-                <div *ngIf="subs.retailer.store.isDeliveryService" 
+                <div *ngIf="subs.state$.retailer.store.isDeliveryService" 
                     class="store_delivery_area">
-                    <div class="style_delivery_info">Delivery: {{subs.retailer.store.deliveryInfo}}</div>
+                    <div class="style_delivery_info">Delivery: {{subs.state$.retailer.store.deliveryInfo}}</div>
                 </div>
-                <div *ngIf="subs.retailer.store.isDeliveryService"  
+                <div *ngIf="subs.state$.retailer.store.isPickUpService"  
                     class="store_pick_up_area">
-                    <div class="style_pick_up_info">Recojo: {{subs.retailer.store.pickUpInfo}}</div>
+                    <div class="style_pick_up_info">Recojo: {{subs.state$.retailer.store.pickUpInfo}}</div>
                 </div>
             </div>
             <div class="store_options_area">
@@ -36,11 +53,11 @@
             </div>
             <div class="store_products_area">
                 <app-seasonal-products 
-                    [storeProducts]="subs.retailer.store.productsList">
+                    [storeProducts]="subs.state$.retailer.store.productsList">
                 </app-seasonal-products>
             </div>
         
         </div>
-    </div>
+    </ng-template>
     
 </ng-container>

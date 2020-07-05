@@ -30,7 +30,8 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   isQuantityIncreased: boolean = false;
 
-  constructor( ) { }
+  constructor( ) { 
+  }
   
   ngOnInit():void {
     // formating to two decimals and as a string
@@ -38,9 +39,13 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   }
 
+  isKilo(): boolean {
+    return this.product.isKilo;
+  }
+
   select(){ 
 
-    console.log("select()",this.quantity,this.size, this.kiloOrUnit);
+    console.log("select()",this.product,this.size, this.kiloOrUnit);
     this.selected.emit(this.product)
 
   }
@@ -56,7 +61,7 @@ export class ProductDisplaySharedComponent implements OnInit {
         return "product_display_grid_category_view";
         break;
       case "varietyView":
-        return "product_display_grid_type_view";
+        return "product_display_grid_variety_view";
         break;
       default: // "SeasonView"
         return "product_display_grid_seasonal_view";

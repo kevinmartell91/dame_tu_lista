@@ -1,5 +1,10 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+
 $store_banner_options_text_size: 1.5em
-$store_name_text_size: 2.5em
+$store_name_text_size: 2.3em
 $store_delivery_info_text_size: 1.5em
 $store_pick_up_info_text_size: 1.5em
 $store_options_text_size: 1.3em
@@ -9,9 +14,30 @@ $primary_button_color: #43b02b
 
 $background_banner: #00000063
 
+$box_container_size: 320px
+
 * 
   box-sizing: border-box 
 
+
+.grid_loading_display
+  display: grid
+  grid-template-columns: 1fr $box_container_size 1fr
+  grid-template-rows: 1fr 1fr
+  grid-template-areas: ". brand ." ". loading ."
+  transform: translateY(100%)
+  
+  .login_brand_area
+    grid-area: brand
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 30px
+      text-align: center
+    
+  .loading_symbol_area
+    grid-area: loading
+    justify-self: center
+    align-self: center
 
 .store_grid
   display: grid
@@ -50,16 +76,20 @@ $background_banner: #00000063
         color: white
         align-self: center
         justify-self: left
-        
+        cursor: pointer
 
       .cart_icon_area
         grid-area: cart
-        padding: 0em 1em 0em 0em
-        font-weight: 600
+        margin: 13px
+        padding: 3px 5px 3px 5px
+        font-weight: 100
         font-size: $store_banner_options_text_size
-        color: white
+        color: #43b02b
         align-self: center
         justify-self: right
+        border-radius: 10px
+        background: #ffffff
+        cursor: pointer
         
     .store_name_area
       grid-area: storeName
@@ -117,6 +147,7 @@ $background_banner: #00000063
       color: $primary_button_color
       justify-self: center
       align-self: center
+      cursor: pointer
 
   .store_products_area
     grid-area: strPrd

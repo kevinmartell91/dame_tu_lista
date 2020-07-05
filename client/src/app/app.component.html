@@ -1,4 +1,3 @@
-
 <div *ngIf="loginUser">
     
     <ng-container [ngSwitch]="loginUser.login_type" >
@@ -21,9 +20,14 @@
                             <div class="buyer_name_area" >
                                 <span> {{loginUser.name}} </span>
                             </div>
-                            <button (click)="logout()">logout</button>
+                            <!-- <button (click)="logout()">logout</button> -->
+                            
+                            <!-- <button (click)="logout()">logout</button> -->
+
+
                             <div class="buyer_view_account_area" >
-                                <span (click)="viewBuyerDetails()">Ver cuenta</span>
+                                <!-- <span (click)="viewBuyerDetails()">Ver cuenta</span> -->
+                                <span (click)="logout()">Cerrar sesión</span>
                             </div>
                         </div>
                 
@@ -80,7 +84,7 @@
                                 subs.buyerNavegation.typeView !== navegation.thanksView" class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
                         <div (click)="viewBuyerCart()">
-                            <img src="../assets/icons/shopping_cart-green-36dp.svg" alt="">
+                            <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
                             <span>{{cartProductsQuantity}}</span>
                         </div>
                     </div>

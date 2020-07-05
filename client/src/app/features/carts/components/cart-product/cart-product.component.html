@@ -13,7 +13,7 @@
             <span *ngIf="cartProduct.isOrganic === false">Normal</span> -->
         </div>
 
-        <div class="product_kilo_Unit_area" 
+        <div class="product_kilo_unit_size_area" 
             (click)="disableQuantityMode()">
             S/.{{cartProductPriceStr}}
             <span *ngIf="cartProduct.isKilo" 
@@ -23,6 +23,18 @@
             <span *ngIf="cartProduct.isUnit" 
                 class="style_price_per_unit_or_kg">
                  Uni.
+            </span>
+            <span *ngIf="cartProduct.isSmallSize" 
+                class="style_price_per_unit_or_kg">
+                 / Pequeño
+            </span>
+            <span *ngIf="cartProduct.isMediumSize" 
+                class="style_price_per_unit_or_kg">
+                 / Mediano
+            </span>
+            <span *ngIf="cartProduct.isBigSize" 
+                class="style_price_per_unit_or_kg">
+                 / Grande
             </span>
         </div>
         
@@ -63,6 +75,7 @@
             <ng-template #showAddOptions >
                 <app-add-button 
                     [quantity]="cartProduct.quantity"
+                    [isKilo]="cartProduct.isKilo"
                     [isCartProductButtonType]="true"
                     (quantityUpdated)="onQuantityUpdated($event)">
                 </app-add-button>

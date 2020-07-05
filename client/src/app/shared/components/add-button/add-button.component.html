@@ -2,13 +2,13 @@
 <div [ngClass]="[isCartProductButtonType ? 'container_cart_product' : 'container_display_product' ]">
     
     <div class="decrease_area" (click)="quantityUpdate('-')">
-        <ng-container *ngIf="count > 1; then showMinusSignal; else showWastebasket"></ng-container>
+        <ng-container *ngIf="isKilo ? (count > 0.25) : (count > 1) ; then showMinusSignal; else showWastebasket"></ng-container>
         <ng-template #showMinusSignal>-</ng-template>
         <ng-template #showWastebasket>
             <img src="../../../../assets/icons/wastebasket-button-36dp.svg" alt="">
         </ng-template>
     </div>
-    <div class="number_area">{{count}}</div>
+    <div class="number_area">{{countStr}}</div>
     <div class="increase_area" (click)="quantityUpdate('+')">+</div>
 
     

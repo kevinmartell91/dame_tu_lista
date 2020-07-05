@@ -10,7 +10,7 @@
          -->
         <div class="buyer-title-section">
             <span>Tus caseros</span>
-            <button (click)="addFavoriteRetailer()">add</button>
+            <!-- <button (click)="addFavoriteRetailer()">add</button> -->
 
         </div>
         
@@ -18,42 +18,51 @@
             Favorite stores section
          -->
         <div class="buyer-stores-section">
-            <div class="stores_grid">
+           
     
                 <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
                     
                     <ng-container 
-                        *ngIf = "subs.state$.requests.getBuyers.inProgress ;
+                    *ngIf = "subs.state$.requests.getBuyers.inProgress ;
                         then showLoading ;
                         else showFavoriteRetailers">
                     </ng-container>
 
-                    <ng-template #showLoading> Loading.... </ng-template>
+                    <ng-template #showLoading> 
+                        <div class="grid_loading_display">
+                           <div class="login_brand_area">
+                               <h1> Cargando ...</h1>
+                           </div>
+                           <div class="loading_symbol_area">
+                               <mat-spinner >  </mat-spinner>
+                           </div>
+                        </div>
+                         
+                   </ng-template>
                     
                     <ng-template #showFavoriteRetailers>
-                        
-                        <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
+                         <div class="stores_grid">
+                            <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
 
-                            <div (click)="goToRetailerStoreView(favoriteRetailer)" class="store_grid">
-                                <div class="store_image_area">
-                                    <!-- <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt=""> -->
-                                    <img src="assets/fruit-images/fruits_portal_img.jpg" alt="">
+                                <div (click)="goToRetailerStoreView(favoriteRetailer)" class="store_grid">
+                                    <div class="store_image_area">
+                                        <!-- <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt=""> -->
+                                        <img src="assets/fruit-images/fruits_portal_img.jpg" alt="">
+                                    </div>
+                                    <div class="store_name_area">{{favoriteRetailer.storeName}}</div>
+                                    <!-- <div class="store_visit_area">los visitaste hace 4 días</div> -->
+                                    <div class="store_service_area">
+                                        <span *ngIf="(favoriteRetailer.isDeliveryService)"> Delivery </span>
+                                        <span *ngIf="(favoriteRetailer.isPickUpService)"> Recojo </span>
+                                    </div>
                                 </div>
-                                <div class="store_name_area">{{favoriteRetailer.storeName}}</div>
-                                <div class="store_visit_area">los visitaste hace 4 días</div>
-                                <div class="store_service_area">
-                                    <span *ngIf="(favoriteRetailer.isDeliveryService)"> Delivery </span>
-                                    <span *ngIf="(favoriteRetailer.isPickUpService)"> Recojo </span>
-                                </div>
-                            </div>
-    
-                        </ng-container>
-
+        
+                            </ng-container>
+                        </div>
                     </ng-template>
                     
                 </ng-container>
-                
-            </div>
+           
         </div>
 
         <!-- <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">

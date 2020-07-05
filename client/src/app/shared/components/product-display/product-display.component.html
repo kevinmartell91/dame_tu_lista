@@ -15,7 +15,7 @@
     class="product_category_area">
     {{product.categoryName}}</div>
     
-    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
     class="product_price_area">
     S/.{{productPriceStr}}
     <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
@@ -46,6 +46,7 @@ class="product_type_area">
                 [isKiloUnitAvailable]="isKiloUnitAvailable"
                 [size]="size"
                 [isCartProductButtonType]="false"
+                [isKilo]="product.isKilo"
                 [quantity]="quantity"
                 (quantityUpdated)="onQuantityUpdated($event)"
                 (kiloOrUnitUpdated)="onMassUpdated($event)"

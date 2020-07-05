@@ -38,7 +38,7 @@ import { HttpClientModule } from "@angular/common/http";
     // Feature modules
 
     
-    // SharedModule,
+    SharedModule,
     BrowserAnimationsModule,    
 
     // App routing - should be the last import
