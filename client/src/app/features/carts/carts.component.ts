@@ -23,6 +23,7 @@ import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
 import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
 import { Router } from '@angular/router';
 import { CartProductDetailModalComponent  } from "./components/cart-product-detail-modal/cart-product-detail-modal.component";
+import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 
 @Component({
   selector: 'app-carts',
@@ -260,13 +261,20 @@ export class CartsComponent implements OnDestroy {
     paymentMethodOrder.method = this.paymentMethodOrder;
     paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
     
+    /**
+     * Populating the cartProductOrder from this.cartProduct
+     */
+    let cartProductOrder: CartProductOrder[] = [];
+    this.cartProducts.forEach(cp => {
+      cartProductOrder.push( new CartProductOrder().deserialize(cp));
+    });
     
     // populate the order;
     let order = new Order();
     order.retailer_id = this.favoriteRetilerSelected._id;
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
-    order.cart = this.cartProducts;
+    order.cart = cartProductOrder;
 
 
     console.log("genereteOrder ", typeof(order), JSON.stringify(order) );

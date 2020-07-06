@@ -1,6 +1,6 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
 
-export class CartProduct implements Deserializable {
+export class CartProductOrder implements Deserializable {
 
     public _id?: string;
     public categoryImageUrl?: string;
@@ -27,7 +27,8 @@ export class CartProduct implements Deserializable {
     public quantity?: number;
     public details?: string;
     public size?: string;
-    public totalPrice: number;
+    public totalPrice?: number;
+    public isCheckedDone?: boolean = false;
     
     deserialize(input: any) {
         Object.assign(this, input);

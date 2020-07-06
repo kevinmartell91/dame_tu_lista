@@ -60,6 +60,7 @@ var orderSchema = new Schema({
     maturityEatIn: String,
     maturityLastFor: String, 
     isInStock: Boolean,
+    isCheckedDone: Boolean,
 
     quantity: Number,
     details: String,

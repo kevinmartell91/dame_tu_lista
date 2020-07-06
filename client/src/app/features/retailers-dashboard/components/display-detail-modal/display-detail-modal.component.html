@@ -1,0 +1,21 @@
+<form class="address_form" [formGroup]='cartPoductOrderDetailForm'>
+
+    <mat-form-field class="full_width">
+        <mat-label>comentarios del comprador acerca de este producto: </mat-label>
+        <textarea   name="productCartDetail"
+                    type="text"
+                    formControlName="cartProductOrderDetail"
+                    matInput placeholder="Etiquetarlos por orden de madurez..."></textarea>
+    </mat-form-field>
+    
+    <!-- <button mat-button [mat-dialog-close]="detailForm.value"  
+        class="btn_block"
+        [disabled]="!detailForm.valid">Siguiente</button>
+ -->
+
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+            <button mat-button [mat-dialog-close]="cartPoductOrderDetailForm.value" cdkFocusInitial>Agregar</button>
+        </div>        
+
+</form>

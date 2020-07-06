@@ -11,20 +11,21 @@ exports.postOrders = function(req, res) {
   // order.payment = req.body.payment;
   // order.cart = req.body.cart;
 
-  console.log("postOrders");
+ 
   order.save(function(err){
         
     if (err){
       console.log("ERROR ", err);
         return res.status(500).send(err);
     }
-     
+    console.log("postOrders", order); 
     res.json({ 
       success: true,
       status: 200,
       message: 'order added', 
       data: order
     });
+    
   });
 };
 

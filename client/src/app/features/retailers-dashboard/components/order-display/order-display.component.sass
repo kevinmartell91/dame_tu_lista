@@ -1,0 +1,151 @@
+$img_witdh: 60px
+$details_width: 180px
+$quant_width: 60px
+$isChecked_width: 30px
+
+$primary_display_font_size: 14px
+$secondary_display_font_size: 13px
+$third_display_font_size: 12px
+
+$quant_text_size: 16px
+$quant_color: #747474
+
+$price_text_size: 14px
+$price_color: #545454
+
+$primary_filed_dark_color: #323232
+$primary_filed_color: #444444
+$secondary_filed_color: #7b7b7b
+$third_filed_color: #898a89
+$days_color: #8bce7d
+
+$primary_button_color: #43b02b 
+$secondary_text_color: #808080
+$third_text_color: #8bce7d
+
+
+* 
+  box-sizing: border-box 
+
+.continer_grid
+  display: grid
+  margin: 0
+  padding:  0px 0px 16px 0px
+  grid-template-columns: 1fr
+  grid-template-rows: 1fr 20px
+  grid-template-areas: "product" "options"
+  grid-gap: 0px
+
+  
+  .product_area
+    grid-area: product
+    display: grid
+    grid-template-columns: $img_witdh $details_width $quant_width $isChecked_width
+    grid-template-rows: .1fr .1fr .1fr
+    grid-template-areas: "img name quant chkd" "img kg_Uni quant chkd"  "img pro_det quant chkd"
+    grid-gap: 0em
+
+    .img_area
+      grid-area: img
+      img
+        width: 100%
+        padding: 7px
+    
+    .product_name_area
+      grid-area: name
+      margin: 0px
+      padding: 0px
+      align-self: center
+      font-size: $primary_display_font_size
+      color: $primary_filed_color
+
+    .product_kilo_unit_size_area
+      grid-area: kg_Uni
+      margin: 0px
+      padding: 0px 0px 0px 2px
+      align-self: center
+      font-size: $secondary_display_font_size
+      color: $secondary_filed_color
+      .style_price_per_unit_or_kg
+        color: $days_color
+
+    .product_detail_area
+      grid-area: pro_det
+      padding: 0px 0px 0px 2px
+      font-size: $third_display_font_size
+      color: $third_filed_color
+    
+    .quatity_area
+      grid-area: quant
+      font-size: $quant_text_size
+      padding: 9px
+      color: $quant_color
+      border: 1px solid #e6e6e6
+      border-radius: 5px
+      text-align: center
+      transform: translateY(-2px)
+
+    .isChecked_area
+      grid-area: chkd
+      padding: 2px    
+      color: $price_color
+      text-align: center
+      transform: translateY(0px)
+    
+
+
+  .options_area
+    grid-area: options
+    display: grid
+    grid-template-columns: $img_witdh 2fr 2fr 1fr
+    grid-template-rows: 1fr
+    grid-template-areas: "org add_det rmv_det ."
+    grid-gap: 2px
+
+    .add_detail_area
+      grid-area: add_det
+      font-size: $third_display_font_size
+      color: $third_filed_color
+    
+    .remove_area
+      grid-area: rmv_det
+      font-size: $third_display_font_size
+      color: $third_filed_color
+ 
+
+    .isOrganic_area
+      grid-area: org
+      justify-self: center
+      align-self: start
+      font-weight: bold
+      touch-action: manipulation
+      border-radius: 6px
+      font-weight: 100
+      white-space: nowrap
+      user-select: none
+      -webkit-font-smoothing: antialiased
+      background-image: none
+      display: inline-flex
+      align-items: center
+      padding: 0px
+      font-size: 11px
+      height: 15px
+      background-color: $third_text_color
+      color: white
+      min-width: 31px
+      top: 8px
+      right: 8px
+      justify-content: center
+      transform: translateY(-2px)
+
+.style_maturity_field
+  color: $third_filed_color
+
+.style_maturity_details
+  color: $third_text_color
+
+mat-expansion-panel-body 
+  padding: 0px 0px 25px 21px
+
+
+  

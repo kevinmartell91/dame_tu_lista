@@ -42,6 +42,9 @@ const routes: Routes = [
     path: 'personal-cart', 
     loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule)
   },
+  { 
+    path: 'vendedores-dashboard', 
+    loadChildren: () => import('./features/retailers-dashboard/retailers-dashboard.module').then(m => m.RetailersDashboardModule) },
   {
   	path: '**',
     component: PageNotFoundComponent
