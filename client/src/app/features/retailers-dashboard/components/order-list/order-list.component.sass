@@ -1,4 +1,4 @@
-$panel_title_grid_size: 20px
+$panel_title_grid_size: 12px
 
 * 
   box-sizing: border-box 
@@ -13,21 +13,35 @@ h1
 // ========================================
 .panel_title_grid
   display: grid
-  grid-template-columns: 100px 100px
-  
+  grid-template-columns: 100px 100px 20px
+  grid-template-areas: "dstrct name wimg"
+  grid-gap: 1px
 
-  div 
-   font-size: $panel_title_grid_size
-   text-aling: center
+  .district_area
+    grid-area: dstrct
+
+  .buyer_name_area
+    grid-area: name
+
+  .whatapp_img_area
+    grid-area: wimg
+
+
 // Panel-titel grid
 // ========================================
-.panel_address_grid
+.status_grid
   display: grid
-  grid-template-columns: 1fr
+  grid-template-columns: 35px 20px
+  grid-template-areas: "cart stat"
+  grid-gap: 1px
+  
+  .cart_area
+    grid-area: cart
+  
+  .status_area
+    grid-area: stat
 
-  div 
-   font-size: $panel_title_grid_size
-   text-aling :right
+
 
 .mat-expansion-panel-body
   padding: 0 0px 0px 18px

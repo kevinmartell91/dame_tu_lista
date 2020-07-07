@@ -1,15 +1,20 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="example-toolbar">
+      
       <button mat-icon-button (click)="snav.toggle()"><img src="../../../assets/icons/menu_25dp.svg" alt=""></button>
+      
       <h1 class="example-app-name">Dashboard</h1>
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
-        </mat-menu>        
-      </div>
-      <button mat-icon-button (click)="snav.toggle()"><img src="../../../assets/icons/menu_50dp.svg" alt=""></button>
+      
+      <!-- <div class="options_continer"> 
+        <div class="option_area">
+          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Cerrar sessión</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>               
+        </div>   
+      </div> -->
+
     </mat-toolbar>
   
     <mat-sidenav-container class="example-sidenav-container"
@@ -21,6 +26,7 @@
           <a mat-list-item [routerLink]="['./']">Dashboard</a>
           <a mat-list-item [routerLink]="['ordenes']">Órdenes</a>
           <a mat-list-item [routerLink]="['productos']">Productos</a>
+          <a mat-list-item (click)="logout()">Cerrar sessión</a>
         </mat-nav-list>
       </mat-sidenav>
   

@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from "@angular/cdk/layout";
+import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-retailers-dashboard',
@@ -20,7 +22,12 @@ export class RetailersDashboardComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
+    public authenticationStore: AuthenticationStore,
+    private router: Router
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -28,6 +35,11 @@ export class RetailersDashboardComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  logout(){
+    this.authenticationStore.logout();
+    this.router.navigate(['/login']);
   }
 
 }

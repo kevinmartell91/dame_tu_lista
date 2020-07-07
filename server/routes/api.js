@@ -64,7 +64,11 @@ router.route('/orders/:order_id')
   .get(orderController.getOrder)
   .put(orderController.putOrder)
   .delete(orderController.deleteOrder);
-  
+
+// Create endpoint handlers for /orders/:retailer_id
+router.route('/orders-by-retailer-id/:retailer_id')
+  .get(orderController.getOrdersByRetailerId);
+
 router.route('/orders')
   .post(orderController.postOrders)
   .get(orderController.getOrders);

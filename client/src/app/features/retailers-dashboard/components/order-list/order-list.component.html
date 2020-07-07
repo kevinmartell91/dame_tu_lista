@@ -1,50 +1,88 @@
 
 <br>
 <div fxLayout="row" fxLayoutAlign="center stretch" >
-    <h1> Órdenes de compra para Keyla</h1>
+    <h1> Órdenes </h1>
 </div>
 <br>
+<ng-container *ngIf="{state$: orderStore.state$ | async} as subs">
 
 
-<mat-accordion *ngFor="let order of orders">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            
-            <mat-panel-title class="panel_title_grid">
-                <div>{{order.shipping.address.district}}</div>
-                <div>{{order.shipping.buyer.name}}</div>
-                <!-- <div>#️⃣ {{order.order_num}}</div÷> -->
-                <!-- <div>📞{{order.buyer_phone}}</div> -->
-                <!-- {{order.stage}} -  Ordenó: {{order.product_list.length}} productos -  ✆ {{order.buyer_phone}} -->
-            </mat-panel-title>
-            
-            <mat-panel-description class="panel_address_grid">
-                
-                <div>🛒{{order.cart.length}} </div>
-            </mat-panel-description>
+    <ng-container 
+        *ngIf="subs.state$.request.orderListByRetailerId.inProgress ;
+        then showLoading ;
+        else showOrders ">
+    </ng-container>
 
-        </mat-expansion-panel-header>
-      
-      <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
-    <div class="product_list_grid_mobile">
-        <ng-container *ngFor="let productOrder of order.cart">
-          
-            <app-order-display
-                [order_id]="order._id"
-                [cartProductOrder]="productOrder"
-                (isProductOrderCompleted)="onIsProductOrderCompleted($event)">
-            </app-order-display>
+    <ng-template #showLoading>
+        Loading...
+    </ng-template>
+    
+    <ng-template #showOrders>
+        <mat-accordion *ngFor="let order of subs.state$.orderListByRetailerId ; let i = index">
+            <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i, order)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="panel_title_grid">
+                        <div class="district_area">{{order.shipping.address.district}}</div>
+                        
+                        <div class="buyer_name_area">{{order.shipping.buyer.name}}</div>
+                        <img  class="whatapp_img_area" 
+                            src="../../../../../assets/icons/whatsapp.svg" alt=""
+                            (click)="openWhatsApp(order)">
 
-        </ng-container>
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                        <div class="status_grid">
 
-    </div>
+                            <div class="cart_area">🛒{{order.cart.length}} </div>
+    
+                            <div [ngSwitch]="getLastStatus(order.shipping.tracking.orderStatus)" class="status_area">
+    
+                                <div *ngSwitchCase="'generated_by_buyer'"  >
+                                    <img src="../../../../../assets/icons/double-tick-indicator-not-seen.svg" alt="">
+                                </div>
+                                
+                                <div *ngSwitchCase="'seen_by_retailer'" > 
+                                    <img src="../../../../../assets/icons/double-tick-indicator-seen.svg" alt="">
+                                </div>
+    
+                                <div *ngSwitchCase="'packaged_by_retailer'">
+                                    <img src="../../../../../assets/icons/package-color-20dp.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="style_order_complete">
-        <button mat-button color="primary"
-            (click)="setNextOrderStatus(order._id)"
-            [disabled]="!isOrderCompleted">Orden atendida</button>
-
-    </div>
-      
+                    </mat-panel-description>
         
-</mat-expansion-panel>
+                </mat-expansion-panel-header>
+              
+              <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
+                <div class="product_list_grid_mobile">
+                    <ng-container *ngFor="let productOrder of order.cart">
+                    
+                        <app-order-display
+                            [order_id]="order._id"
+                            [cartProductOrder]="productOrder"
+                            (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)">
+                        </app-order-display>
+            
+                    </ng-container>
+        
+                </div>
+
+                <mat-action-row>
+                    <button mat-button color="accent" (click)="prevStep()">Anterior</button>
+                    <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+                    <button id="{{i}}"
+                        mat-button color="primary" 
+                        (click)="setOrderPackagedStatusCompleted(order)"
+                        [disabled]="!isOrderCompleted">Atendido</button>
+                </mat-action-row>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+
+    </ng-template>
+</ng-container>
+  

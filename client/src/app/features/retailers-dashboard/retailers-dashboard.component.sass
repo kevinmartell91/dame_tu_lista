@@ -19,3 +19,14 @@ h1.example-app-name
 
 .example-is-mobile .example-sidenav-container
   flex: 1 0 auto
+
+
+.options_continer
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 
+  grid-template-rows: 1fr
+  grid-template-areas: ". . . . opt"
+
+  .option_area
+    grid-area: opt
+    background: green

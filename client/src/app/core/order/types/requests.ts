@@ -6,4 +6,5 @@ export interface Requests {
     deleteOrder: RequestState;
     postOrders: RequestState;
     getOrders: RequestState;
+    orderListByRetailerId: RequestState;
 }

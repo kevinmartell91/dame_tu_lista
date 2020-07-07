@@ -144,9 +144,14 @@ export class LoginComponent implements OnInit {
     console.log("KEVINSSSSSSSSSSSS",loginUser);
     
     // hard coded, quick login purposes
-    loginUser.login_type= "comprador";
-    loginUser.email = "fabrizio@gmail.com";
+    loginUser.login_type= "vendedor";
+    loginUser.email = "keyla@gmail.com";
     loginUser.password = "demo";
+
+    // // hard coded, quick login purposes
+    // loginUser.login_type= "comprador";
+    // loginUser.email = "fabrizio@gmail.com";
+    // loginUser.password = "demo";
 
     // converting ESP login type to ENG
     if(loginUser.login_type === LOGIN_CONFIG.loginUserCompradorType){
@@ -184,7 +189,7 @@ export class LoginComponent implements OnInit {
     
       switch (loginUser.login_type){
         case 'buyer':         loginTypeUrl = '/buyer-account'; break;
-        case 'retailer':      loginTypeUrl = '/retailers'; break;
+        case 'retailer':      loginTypeUrl = '/retailer-dashboard'; break;
       }
     return loginTypeUrl;  
   }

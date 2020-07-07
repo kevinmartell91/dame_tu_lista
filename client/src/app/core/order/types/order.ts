@@ -20,4 +20,26 @@ export class Order implements Deserializable {
 
         return this;
     }
+
+    isOrderStatusPushed(orderStatus: string): boolean {
+        
+        let exist = false;
+        this.shipping.tracking.orderStatus.forEach( ele => {
+            if( ele[0] === orderStatus )
+                exist = true;
+        });
+        return exist;
+    }
+
+
+    updateOrderStatus(newOrderStatus: string, order: Order): Order {
+
+        let orderUpdate = order;
+        let existOrderStatus = this.isOrderStatusPushed(newOrderStatus);
+        if ( !existOrderStatus ) {
+          orderUpdate.shipping.tracking.orderStatus.push([newOrderStatus, new Date]);
+        }
+        console.log("updateOrderStatus => new  => ",newOrderStatus, orderUpdate.shipping.tracking.orderStatus);
+        return orderUpdate;
+    }
 }

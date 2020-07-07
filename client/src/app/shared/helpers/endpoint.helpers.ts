@@ -66,3 +66,14 @@ export function  getHeadersForPatch(): any {
     let options = { headers: headers }
   return options;
 }
+
+export function  getHeadersForPut(): any {
+
+    let headers = new HttpHeaders();
+    let localStorageToken = 
+        JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage)).token;
+    headers.append('Content-Type', 'application/json');
+    headers.append('x-access-token',localStorageToken )
+    let options = { headers: headers }
+  return options;
+}

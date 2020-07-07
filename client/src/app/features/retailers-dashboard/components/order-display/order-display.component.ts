@@ -32,6 +32,7 @@ export class OrderDisplayComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.isChecked = this.cartProductOrder.isCheckedDone;
     this.cartProductOrderPriceStr = this.cartProductOrder.price.toFixed(2);
     this.transformcartProductOrderTotalPriceToStr();
   }

@@ -21,6 +21,21 @@ export const ORDER_CONFIG = {
         getOrders: {
             name: "getOrders",
             url: `${APP_CONFIG.apiBaseUrl}/orders`
+        },  
+        getOrdersByRetailerId: {
+            name: "getOrdersByRetailerId",
+            url: `${APP_CONFIG.apiBaseUrl}/orders-by-retailer-id/`
         }  
+    },
+    orderStatus: {
+        generated_by_buyer: "generated_by_buyer",
+        seen_by_retailer: "seen_by_retailer",
+        packaged_by_retailer: "packaged_by_retailer",
+        received_by_driver: "received_by_driver",
+        ontrack_by_driver: "ontrack_by_driver",
+        delivered_by_driver: "delivered_by_driver",
+        order_finished: "order_finished",
+
     }
+
 }

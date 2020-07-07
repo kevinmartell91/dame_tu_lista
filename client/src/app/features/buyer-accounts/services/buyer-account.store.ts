@@ -21,7 +21,9 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
     private reloadBuyer$: Subject<undefined> = new Subject();
     private storeRequestUpdater: StoreRequestStateUpdater;
 
-    constructor( private endPoint: BuyerAccountEndPoint) {
+    constructor( 
+        private endPoint: BuyerAccountEndPoint
+    ) {
         super(new BuyerAccountStoreState())
 
         this.buyerAccount$ = this.state$.pipe(map( state => state.buyerAccount));

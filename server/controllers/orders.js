@@ -18,7 +18,6 @@ exports.postOrders = function(req, res) {
       console.log("ERROR ", err);
         return res.status(500).send(err);
     }
-    console.log("postOrders", order); 
     res.json({ 
       success: true,
       status: 200,
@@ -63,32 +62,34 @@ exports.getOrder = function(req, res) {
 };
 
 // Create endpoint /api/orders/:user_id for PUT
-exports.putOrder = function(req, res) {
+exports.putOrder = async function(req, res, next) {
 
-  let update = req.body;
-  Order.findById(req.params.order_id, function(err, order) {
-    if (err)
-      return res.status(500).send(err);
 
-    // just updating the order status
-	order.shipping.tracking.orderStatus.push(req.body);
+  console.log("KEVIN => ");
+  // use this put method to update buyer data only
+	let id = req.params.order_id;
+	let orderData = req.body;
+  console.log("KEVIN => ",id,  orderData);
 
-    order.save(function(err){
-      if(err) {
-        console.log("ERROR",err)
-        return res.status(500).send(err);
+	const orderUpdated = 
+		await Order.findByIdAndUpdate(id, orderData, { new: true});
 
-      }
-
-      res.json({ 
-        success: true,
-        status: 200,
-        message: 'order updated', 
-        data: order
-      });
-
-    });
-  });
+	if(orderUpdated) {
+		console.log("updateBuyerAddress - PUT ");
+		res.json({
+			success: true,
+			status: 200,
+			message: "order updated",
+			entity: orderUpdated
+		});
+	} else {
+		res.json({
+			success: false,
+			status: 500,
+			message: "order updated",
+			entity: orderUpdated
+		});
+	}
 };
 
 // Create endpoint /api/orders/:beer_id for DELETE
@@ -104,6 +105,29 @@ exports.deleteOrder = function(req, res) {
 		message: 'order removed', 
 	});
 
+  });
+};
+
+// Create endpoint /api/orders for GET
+exports.getOrdersByRetailerId = function(req, res) {
+
+
+  
+  let retailer_id = req.params.retailer_id; 
+  console.log("orders ================ >>", retailer_id);
+
+
+  Order.find({retailer_id: retailer_id},function(err, orders) {
+    if (err)
+      return res.status(500).send(err);
+
+    console.log("orders ================ >>", orders);
+    res.json({ 
+        success: true,
+        status: 200,
+        message: 'orders list', 
+        data: orders
+    });
   });
 };
 
@@ -125,7 +149,7 @@ exports.updateOrderFavoriteRetailers = function(req, res) {
 	  });
 	});
   });
-}
+};
 
 exports.updateOrderAddress = function(req, res) {
 	Order.findById(req.params.order_id, function(err, order){
@@ -154,4 +178,4 @@ exports.updateOrderAddress = function(req, res) {
 		});
 	  });
 	});
-}
+};
