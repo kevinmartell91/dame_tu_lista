@@ -3,7 +3,8 @@
   "version": "0.2.0",
   "scripts": {
     "start": "node server.js",
-    "dev": "cross-env NODE_ENV=development nodemon server.js"
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "deploy": "cross-env NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",

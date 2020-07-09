@@ -32,7 +32,7 @@ if(environment !== 'production') {
 }
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist/app')));
 
 //set the cors;
 // http://restlet.com/company/blog/2015/12/15/understanding-and-using-cors/
@@ -43,7 +43,7 @@ app.use('/api', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+  res.sendFile(path.join(__dirname, 'client/dist/app/index.html'));
 });
 
 /**
