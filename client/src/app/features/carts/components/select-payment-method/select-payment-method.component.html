@@ -40,11 +40,21 @@
 
                 <mat-form-field >
                     <mat-label>Número de celular: </mat-label>
-                    <input matInput placeholder="Celular"
+                    <span matPrefix>+51 &nbsp;</span>
+                    <input matInput placeholder="999-999-999"
                         name="phoneNumber"
                         type="tel"
                         formControlName="phoneNumber">
                 </mat-form-field>
+
+
+
+                <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Telephone</mat-label>
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" matInput placeholder="555-555-1234">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                  </mat-form-field> -->
             </div>
 
         </div>
@@ -53,7 +63,7 @@
         <div mat-dialog-actions>
             <button mat-button (click)="onNoClick()">Cancelar</button>
             <button mat-button [mat-dialog-close]="paymenytForm.value" 
-                    [disabled]="!paymenytForm.valid" cdkFocusInitial>Agregar</button>
+                    [disabled]="!paymenytForm.valid" cdkFocusInitial>Continuar</button>
         </div> 
        
     </form>

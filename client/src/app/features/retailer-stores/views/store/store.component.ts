@@ -413,7 +413,8 @@ export class StoreComponent implements OnDestroy{
   }
 
   goBackToBuyerAccount(): void {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate(['/buyer-account']);
   }
 
   goToRetailerCategoryView(): void {

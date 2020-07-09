@@ -144,9 +144,9 @@ export class LoginComponent implements OnInit {
     console.log("KEVINSSSSSSSSSSSS",loginUser);
     
     // hard coded, quick login purposes
-    loginUser.login_type= "vendedor";
-    loginUser.email = "keyla@gmail.com";
-    loginUser.password = "demo";
+    // loginUser.login_type= "vendedor";
+    // loginUser.email = "keyla@gmail.com";
+    // loginUser.password = "demo";
 
     // // hard coded, quick login purposes
     // loginUser.login_type= "comprador";

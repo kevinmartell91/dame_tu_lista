@@ -25,7 +25,7 @@ export class ThanksOrderComponent implements OnInit {
     
     this.initializeViewSettings();
 
-    this.subscription = this.cartStore.favariteRetailerSelected$.subscribe( 
+    this.subscription = this.cartStore.favoriteRetailerSelected$.subscribe( 
       x => {
         this.retailer_id = x._id;
       }

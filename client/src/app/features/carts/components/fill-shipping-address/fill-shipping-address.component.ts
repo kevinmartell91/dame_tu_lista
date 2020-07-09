@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { Address } from 'src/app/core/buyer/types/address';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
 import { LoginUser } from 'src/app/core/login/types/user';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-fill-shipping-address',
@@ -26,7 +27,11 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
 
   subscription : Subscription;
   buyer: Buyer;
-  address: Address;
+  address: Address =null;
+  // isCheckedSaveAddress: boolean = false;
+
+  isPickUp: boolean = true;
+  pickUpMessage: string = "";
 
   @Output() addressFilled = new EventEmitter<any>();  
   
@@ -42,7 +47,8 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
     this.loadDistricts();
     this.loadCities();
 
-    this.address = data.address;
+     this.address = data.address;
+  
     this.subscription = this.authenticationStore.loginUser$.subscribe(
       x => {
           if( x.login_type == 'buyer') {
@@ -56,16 +62,36 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.addressForm = this.fb.group({
-      streetName: [this.buyer.address.streetName, Validators.required],
-      streetNumber: [this.buyer.address.streetNumber, Validators.required],
-      district: [this.buyer.address.district, Validators.required],
-      city: [this.buyer.address.city, Validators.required],
-      department: ['LIM', Validators.required],
-      country: ['PE', Validators.required],
-      reference: [this.buyer.address.reference],
-      details: [this.buyer.address.details ]
-    });
+    if(this.address == undefined ){
+
+      this.addressForm = this.fb.group({
+        streetName: ['', Validators.required],
+        streetNumber: ['', Validators.required],
+        district: ['', Validators.required],
+        city: ['', Validators.required],
+        // isSaveAsFrequentAddress: [false],
+        department: ['LIM', Validators.required],
+        country: ['PE', Validators.required],
+        reference: [''],
+        details: ['']
+      });
+
+    } else {
+      this.addressForm = this.fb.group({
+        streetName: [this.buyer.address.streetName, Validators.required],
+        streetNumber: [this.buyer.address.streetNumber, Validators.required],
+        district: [this.buyer.address.district, Validators.required],
+        city: [this.buyer.address.city, Validators.required],
+        // isSaveAsFrequentAddress: [false],
+        department: ['LIM', Validators.required],
+        country: ['PE', Validators.required],
+        reference: [this.buyer.address.reference],
+        details: [this.buyer.address.details ]
+      });
+
+    }
+    
+
 
     // this.phoneNumberForm = this.fb.group({
     //   phoneNumber: ['', Validators.required]
@@ -139,5 +165,34 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
     this.cities = ['LIM'];
 
   }
+  updateSlide():void {
+    // this.isPickUp = value;
+  }
+
+  updateValue(value: boolean): void {
+    this.isPickUp = value;
+
+    if( this.isPickUp ) {
+       
+      this,this.pickUpMessage = " Usted podrá recoger su orden en el horario de atención establecido por el vendedor.";
+       this.addressForm.patchValue({
+        streetName: "Recojo en tienda",
+        streetNumber: "Recojo en tienda",
+        district: "SURQUILLO",
+        city: "LIM",
+       });
+      console.log(this.addressForm.value);
+    } else {
+      this.addressForm.patchValue({
+        streetName: "",
+        streetNumber: "",
+        district: "",
+        city: "",
+       });
+    }
+
+  }
+
+
 
 }

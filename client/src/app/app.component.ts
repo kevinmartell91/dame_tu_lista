@@ -17,6 +17,7 @@ import { ShoppingCart } from './core/cart/types/shopping-cart';
 import { CartProduct } from './core/cart/types/cart-product';
 import { TemporaryStorageService, TemporaryStorageFacet } from './core/session-storage/services/temporary-storage.service';
 import { Product } from './core/retailer/types/product';
+import { Retailer } from './core/retailer/types/retailer';
 
 @Component({
   selector: 'app-root',
@@ -31,8 +32,10 @@ export class AppComponent implements OnInit, OnDestroy{
 
   authenticationSubcription: Subscription;
   cartStoreSubcription: Subscription;
+  
+  favoriteRetailerIdSelected: Retailer;
+  favoriteRetailerSubcription: Subscription;
 
-  favoriteRetailerIdSelected: string = "";
 
   temporaryStorage: TemporaryStorageFacet; 
 
@@ -84,23 +87,34 @@ export class AppComponent implements OnInit, OnDestroy{
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
         console.log("y.products",y.products);
-       
-        if(this.cartProducts.length !== 0) { 
-          this.saveToTemporaryStorage(this.cartProducts);
-        }
+       this.handleSaveTemporaryStorage();
+        
+      }
+    )
+
+    this.favoriteRetailerSubcription = this.cartStore.favoriteRetailerSelected$.subscribe(
+      z => {
+        this.favoriteRetailerIdSelected = z;
+        this.handleSaveTemporaryStorage();
+        // console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
       }
     )
   }
 
   ngOnInit(): void {
     
+    // console.log("AppComponent - ngOnInit() 0709");
     this.restoreFromTemporaryStorage();
     
   }
 
+
   ngOnDestroy():void {
     this.authenticationSubcription.unsubscribe();
     this.cartStoreSubcription.unsubscribe();
+    this.favoriteRetailerSubcription.unsubscribe();
+
+    this.temporaryStorage.remove();
   }
   
   initializeNavegationValues(): void {
@@ -130,13 +144,13 @@ export class AppComponent implements OnInit, OnDestroy{
 
   public async restoreFromTemporaryStorage(): Promise<void> {
 
-      let cachedData = await this.temporaryStorage.get<any[]>();
+      let cachedData = await this.temporaryStorage.get<any>();
   
       let cartProducts: CartProduct[] = [];
   
       if ( cachedData ) { 
   
-        cachedData.forEach(elem => {
+        cachedData.cartProducts.forEach(elem => {
           cartProducts.push(new CartProduct().deserialize(elem));
         });
       }   
@@ -144,8 +158,13 @@ export class AppComponent implements OnInit, OnDestroy{
       // update cartStore with date from temporary storage
       this.cartStore.setCart(cartProducts);
 
+      // retrieve favoriteRetailer
+      this.favoriteRetailerIdSelected = cachedData.favoriteRetailer;
+      this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
+      
+
       // remove data from temporary storage
-      this.temporaryStorage.remove();
+      // this.temporaryStorage.remove();
    
   }
 
@@ -163,10 +182,25 @@ export class AppComponent implements OnInit, OnDestroy{
 
 	}
 
+  handleSaveTemporaryStorage():void {
+   
+    let dataToStore;
+
+    if(this.cartProducts.length !== 0 && this.favoriteRetailerIdSelected != null) { 
+      dataToStore = {
+        cartProducts: this.cartProducts,
+        favoriteRetailer: this.favoriteRetailerIdSelected
+      }
+      // console.log("saveToTemporaryStorage 0709");
+      this.saveToTemporaryStorage(dataToStore);
+    } 
+
+  }
+  
+  
   public saveToTemporaryStorage(
-    cartProducts: CartProduct[]
+    data: any
   ): void {
-    console.log("saveToTemporaryStorage");
-    this.temporaryStorage.set((cartProducts));
+    this.temporaryStorage.set(data);
   }
 }

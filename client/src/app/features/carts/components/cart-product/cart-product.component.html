@@ -40,10 +40,16 @@
         
         <div class="product_detail_area" 
             (click)="disableQuantityMode()">
+            
 
+            <span class="style_maturity_details">
+                {{cartProduct.maturityName}}. 
+            </span> 
+            
             <span class="style_maturity_field">
                 Comer en:
             </span>
+            
             <span class="style_maturity_details">
                 {{cartProduct.maturityEatIn}} días
             </span> 
@@ -51,6 +57,7 @@
             <span class="style_maturity_field">
                  Y te durá: 
             </span>
+            
             <span class="style_maturity_details">
                 {{cartProduct.maturityLastFor}} días
             </span> 

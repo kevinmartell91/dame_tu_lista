@@ -7,8 +7,8 @@ const routes: Routes = [
   { 
     path: '', component: RetailersDashboardComponent ,
     children : [
-      { path: '', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-      { path: 'ordenes', loadChildren: () => import('./components/order-list/order-list.module').then(m => m.OrderListModule) },
+      { path: '', loadChildren: () => import('./components/order-list/order-list.module').then(m => m.OrderListModule) },
+      { path: 'dashboard', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'productos', loadChildren: () => import('./components/product-list/product-list.module').then(m => m.ProductListModule) },
     ]
   },

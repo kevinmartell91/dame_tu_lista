@@ -13,13 +13,13 @@ export class CartStore extends Store<CartStoreState> {
     
     shoppingCart$: Observable<ShoppingCart>;
 
-    favariteRetailerSelected$: Observable<Retailer>;
+    favoriteRetailerSelected$: Observable<Retailer>;
 
 
     constructor() {
         super(new CartStoreState()) 
         this.shoppingCart$ = this.state$.pipe( map ( state => state.shoppingCart));
-        this.favariteRetailerSelected$ = this.state$.pipe( map ( state => state.favoriteRetailerSelected));
+        this.favoriteRetailerSelected$ = this.state$.pipe( map ( state => state.favoriteRetailerSelected));
     }
 
     setCart(newCart: CartProduct[]): void {

@@ -90,10 +90,10 @@ export class CartsComponent implements OnDestroy {
       }
     )
 
-    this.subscriptionFavoriteRetailerSelected = this.cartStore.favariteRetailerSelected$.subscribe(
+    this.subscriptionFavoriteRetailerSelected = this.cartStore.favoriteRetailerSelected$.subscribe(
       x => {
         this.favoriteRetilerSelected = x;
-        console.log("listening favoriteRetilerSelected changes",this.favoriteRetilerSelected);
+        console.log("listening favoriteRetilerSelected changes poloooo",this.favoriteRetilerSelected);
       }
     )
 
@@ -242,7 +242,7 @@ export class CartsComponent implements OnDestroy {
     // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
     trackingOrder.driver_name= "";
     trackingOrder.trackingNumber = "";
-    trackingOrder.estimatedDelivery= "Se entregaraá su delivery en las próimas tres horas";
+    trackingOrder.estimatedDelivery= "Se entregará su delivery en las próximas tres horas";
     
     /**
      * Populating the shippingOrder from this.buyer
