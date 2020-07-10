@@ -41,6 +41,7 @@ module.exports = {
 
   async authorizationMiddleware(req, res, next) {
     const accessToken = getAccessTokenFromHeader(req);
+    console.log("accessToken => BRIAN", accessToken); 
     let tokenPayLoad;
 
     try {

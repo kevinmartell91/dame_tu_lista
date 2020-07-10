@@ -282,7 +282,7 @@ export class CartsComponent implements OnDestroy {
     // place order DB
     this.orderStore.genereteOrder(order).subscribe( x => {
       this.clearCart();
-      this.router.navigate(['/personal-cart/thanks-for-your-order']);
+      this.router.navigate(['/carrito-personal/thanks-for-your-order']);
     });
 
   }

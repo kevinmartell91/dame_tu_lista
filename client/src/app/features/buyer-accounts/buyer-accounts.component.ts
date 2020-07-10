@@ -78,7 +78,7 @@ export class BuyerAccountsComponent implements OnInit {
     // new order which requieres favorite reatiler _id.
     this.cartStore.setFavoriteRetalerSelected(retailer);
 
-    this.router.navigate(['/retailer-store/',retailer._id]);
+    this.router.navigate(['/tienda-vendedor/',retailer._id]);
   }
 
   viewBuyerCart(): void {

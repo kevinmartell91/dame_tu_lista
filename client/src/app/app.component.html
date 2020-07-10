@@ -27,7 +27,7 @@
 
                             <div class="buyer_view_account_area" >
                                 <!-- <span (click)="viewBuyerDetails()">Ver cuenta</span> -->
-                                <span (click)="logout()">Cerrar sesión</span>
+                                <span class="style_logout" (click)="logout()">Cerrar sesión</span>
                             </div>
                         </div>
                 
@@ -101,36 +101,3 @@
 </div>
 <router-outlet></router-outlet>
 
-
-<!-- <div *ngIf="loginUser">
-    <div class="buyer_account_cart_area">
-        
-        <div *ngIf="buyerNavegation.typeView === accountView" class="buyer_account_area">
-
-            <div class="buyer_personal_icon_area" 
-                (click)="viewBuyerDetails()">
-                <img class="buyer_icon" src="../assets/icons/person-black-36dp.svg" alt="">
-            </div>
-
-            <div class="buyer_name_area" >
-                <span> Kevin </span>
-            </div>
-            <button (click)="logout()">logout</button>
-            <div class="buyer_view_account_area" >
-                <span (click)="viewBuyerDetails()">Ver cuenta</span>
-            </div>
-        </div>
-
-        <div *ngIf="buyerNavegation.typeView === categoryView" (click)="goBackLocation()"> <div>Categories</div> </div>
-        <div *ngIf="buyerNavegation.typeView === maturityView" (click)="goBackLocation()"> <div>Maturity</div> </div>
-        <div *ngIf="buyerNavegation.typeView === storeView" (click)="goBackLocation()"> <div>Store</div> </div>
-        
-        <div class="buyer_cart_area">
-            <div (click)="viewBuyerCart()">
-                <img src="../assets/icons/shopping_cart-black-36dp.svg" alt="">
-                <span>3</span>
-            </div>
-        </div>
-    </div>
-</div>
-<router-outlet></router-outlet> -->

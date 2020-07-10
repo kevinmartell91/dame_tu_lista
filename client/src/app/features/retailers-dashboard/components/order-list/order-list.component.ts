@@ -35,6 +35,7 @@ export class OrderListComponent implements OnDestroy {
     this.temporaryStorage = this.temporaryStorageService.forKey("orders_by_retailer");
 
 
+
     this.authenticationSubscription = this.authenticationStore.loginUser$.subscribe(
       x => {
         this.retailer = new Retailer().deserialize(x.entity);

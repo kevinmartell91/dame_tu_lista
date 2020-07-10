@@ -22,6 +22,7 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
 // test
 import { Requests } from "../../core/login/types/requests";
 import { LOGIN_CONFIG } from "../../core/login/login.config";
+import { APP_CONFIG } from 'src/app/app.config';
 
 // export class MyErrorStateMatcher implements ErrorStateMatcher {
 //   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -70,6 +71,7 @@ import { LOGIN_CONFIG } from "../../core/login/login.config";
 })
 export class LoginComponent implements OnInit {
 
+  registerUrl: string;
   loading = false;
   loginForm: FormGroup;
   returnUrl: string;
@@ -103,6 +105,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.registerUrl = APP_CONFIG.appBaseUrl + "/registrate";
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['',Validators.required],
@@ -188,8 +192,8 @@ export class LoginComponent implements OnInit {
     let loginTypeUrl = '';
     
       switch (loginUser.login_type){
-        case 'buyer':         loginTypeUrl = '/buyer-account'; break;
-        case 'retailer':      loginTypeUrl = '/retailer-dashboard'; break;
+        case 'buyer':         loginTypeUrl = '/cuenta-comprador'; break;
+        case 'retailer':      loginTypeUrl = '/vendedor-dashboard'; break;
       }
     return loginTypeUrl;  
   }

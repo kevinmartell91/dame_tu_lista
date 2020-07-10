@@ -2,6 +2,7 @@ $img_witdh: 60px
 $details_width: 180px
 $quant_width: 60px
 $isChecked_width: 30px
+$comments_width: 270px
 
 $primary_display_font_size: 14px
 $secondary_display_font_size: 13px
@@ -97,12 +98,12 @@ $third_text_color: #8bce7d
   .options_area
     grid-area: options
     display: grid
-    grid-template-columns: $img_witdh 2fr 2fr 1fr
+    grid-template-columns: $img_witdh $comments_width
     grid-template-rows: 1fr
-    grid-template-areas: "org add_det rmv_det ."
+    grid-template-areas: "org add_det"
     grid-gap: 2px
 
-    .add_detail_area
+    .comment_area
       grid-area: add_det
       font-size: $third_display_font_size
       color: $third_filed_color

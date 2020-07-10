@@ -4,7 +4,7 @@ import { OrderEndPoint } from './order.endpoint';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Order } from '../types/order';
-import { map, tap, switchMap, retry, takeUntil } from 'rxjs/operators';
+import { map, tap, switchMap, retry, takeUntil, throwIfEmpty } from 'rxjs/operators';
 import { StoreRequestStateUpdater } 
     from 'src/app/shared/types/store-request-state-updater';
 import * as endpointHelpers from 'src/app/shared/helpers/endpoint.helpers';
@@ -30,6 +30,8 @@ export class OrderStore extends Store<OrderStoreState>{
 
         this.storeRequestStateUpdater = 
             endpointHelpers.getStoreRequestStateUpdater(this);
+
+        console.log("this.storeRequestStateUpdater BRIAN",this.storeRequestStateUpdater);
 
     }
 

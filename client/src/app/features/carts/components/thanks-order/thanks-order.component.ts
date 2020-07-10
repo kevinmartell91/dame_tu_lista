@@ -37,7 +37,7 @@ export class ThanksOrderComponent implements OnInit {
   }
   
   redirectoRetailStore():void {
-    this.router.navigate(['retailer-store', this.retailer_id ]);
+    this.router.navigate(['tienda-vendedor', this.retailer_id ]);
   }
   
   initializeViewSettings():void {

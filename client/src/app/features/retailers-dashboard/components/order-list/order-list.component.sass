@@ -1,4 +1,11 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+
+
 $panel_title_grid_size: 12px
+$box_container_size: 320px
 
 * 
   box-sizing: border-box 
@@ -8,6 +15,25 @@ h1
   font-size: 30px
   text-align: center
   color: #7c7c7c
+
+.grid_loading_display
+  display: grid
+  grid-template-columns: 1fr $box_container_size 1fr
+  grid-template-rows: 1fr 1fr
+  grid-template-areas: ". brand ." ". loading ."
+  transform: translateY(40%)
+  
+  .login_brand_area
+    grid-area: brand
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 30px
+      text-align: center
+    
+  .loading_symbol_area
+    grid-area: loading
+    justify-self: center
+    align-self: center  
 
 // Panel-titel grid
 // ========================================

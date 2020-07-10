@@ -409,12 +409,12 @@ export class StoreComponent implements OnDestroy{
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/personal-cart']);
+    this.router.navigate(['/carrito-personal']);
   }
 
   goBackToBuyerAccount(): void {
     // this.location.back();
-    this.router.navigate(['/buyer-account']);
+    this.router.navigate(['/cuenta-comprador']);
   }
 
   goToRetailerCategoryView(): void {
@@ -424,7 +424,7 @@ export class StoreComponent implements OnDestroy{
       BUYER_CONFIG.navegation.categoryView
     );
 
-    this.router.navigate(['/retailer-store',
+    this.router.navigate(['/tienda-vendedor',
       this.retailerStoreStore.state.retailer._id,
       'categoria']);
   }

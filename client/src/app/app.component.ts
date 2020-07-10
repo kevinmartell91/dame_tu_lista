@@ -126,7 +126,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/personal-cart']);
+    this.router.navigate(['/carrito-personal']);
   }
 
   viewBuyerDetails():void {

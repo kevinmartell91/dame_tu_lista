@@ -1,21 +1,29 @@
 
 <br>
 <div fxLayout="row" fxLayoutAlign="center stretch" >
-    <h1> Órdenes </h1>
+    <h1> Órdenes</h1>
 </div>
 <br>
 <ng-container *ngIf="{state$: orderStore.state$ | async} as subs">
 
-
     <ng-container 
-        *ngIf="subs.state$.request.orderListByRetailerId.inProgress ;
+        *ngIf="subs.state$.requests.getOrdersByRetailerId.inProgress ;
         then showLoading ;
         else showOrders ">
     </ng-container>
 
-    <ng-template #showLoading>
-        Loading...
-    </ng-template>
+    <ng-template #showLoading> 
+        <div class="grid_loading_display">
+           <div class="login_brand_area">
+               <h1> 🍒 Dame tu lista</h1>
+           </div>
+           <div class="loading_symbol_area">
+
+               <mat-spinner >  </mat-spinner>
+           </div>
+        </div>
+         
+   </ng-template>
     
     <ng-template #showOrders>
         <mat-accordion *ngFor="let order of subs.state$.orderListByRetailerId ; let i = index">
@@ -71,7 +79,7 @@
                 </div>
 
                 <mat-action-row>
-                    <button mat-button color="accent" (click)="prevStep()">Anterior</button>
+                    <button mat-button color="primary" (click)="prevStep()">Anterior</button>
                     <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
                     <button id="{{i}}"
                         mat-button color="primary" 

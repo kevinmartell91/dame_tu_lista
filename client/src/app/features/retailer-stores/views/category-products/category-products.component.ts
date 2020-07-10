@@ -78,7 +78,7 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
 
   public goToRetailerVarietyView(): void {
     let category = this.productSelected.categoryName;
-    this.router.navigate(['/retailer-store', this.retailer_id,'variedad',category],);
+    this.router.navigate(['/tienda-vendedor', this.retailer_id,'variedad',category],);
   }
 
   public _filterAllProductsByCategory(products: Product[]): Product[] {

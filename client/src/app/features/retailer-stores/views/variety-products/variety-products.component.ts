@@ -83,7 +83,7 @@ export class VarietyProductsComponent implements OnInit, OnDestroy {
 
   public goToRetailerMaturityView():void {
     let variety = this.productSelected.varietyName;
-    this.route.navigate(['retailer-store',this.retailer_id ,'madurez', this.category, variety, this.productSelected.isOrganic]);
+    this.route.navigate(['tienda-vendedor',this.retailer_id ,'madurez', this.category, variety, this.productSelected.isOrganic]);
   }
 
   public _filterAllProductsByVariety(category: string, products: Product[]): Product[] {

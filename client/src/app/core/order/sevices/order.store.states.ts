@@ -10,6 +10,6 @@ export class OrderStoreState {
         deleteOrder: {},
         postOrders: {},
         getOrders: {},
-        orderListByRetailerId: {}
+        getOrdersByRetailerId: {}
     }
 }

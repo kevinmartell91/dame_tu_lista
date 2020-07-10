@@ -6,45 +6,51 @@ import { AuthGuard } from './core/guard/auth.guards';
 
 const routes: Routes = [
   { 
-  	path: 'landingpage', 
-    loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
-    // canActivate: [AuthGuard]
+    path: '', 
+    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
   { 
-  	path: 'login', 
-  	loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
+    path: 'login', 
+    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
+  // { 
+  //   path: 'homepage', 
+  //   loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
+  // },
   { 
-    path: 'register',
+    path: 'registrate',
     loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) },
+  // { 
+	//   path: 'dashboard-medical-center', 
+  //   loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 
+  //   canActivate: [AuthGuard]
+  // },
+  // { 
+  //   path: 'place-order',
+  //   loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
+  //   // canActivate: [AuthGuard]
+  // },
   { 
-	  path: 'dashboard-medical-center', 
-    loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 
-    canActivate: [AuthGuard]
-  },
-  { 
-    path: 'place-order',
-    loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
-    // canActivate: [AuthGuard]
-  },
-  { 
-    path: 'buyer-account',
+    path: 'cuenta-comprador',
     loadChildren: () => import('./features/buyer-accounts/buyer-accounts.module').then(m => m.BuyerAccountsModule),
     canActivate: [AuthGuard]
   },
   { 
-    path: 'retailer-store/:retailer_id',
+    path: 'tienda-vendedor/:retailer_id',
     // path: '',
     loadChildren: () => import('./features/retailer-stores/retailer-stores.module').then(m => m.RetailerStoresModule),
     canActivate: [AuthGuard]
   },
   { 
-    path: 'personal-cart', 
-    loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule)
+    path: 'carrito-personal', 
+    loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule),
+    canActivate: [AuthGuard]
   },
   { 
-    path: 'retailer-dashboard', 
-    loadChildren: () => import('./features/retailers-dashboard/retailers-dashboard.module').then(m => m.RetailersDashboardModule) },
+    path: 'vendedor-dashboard', 
+    loadChildren: () => import('./features/retailers-dashboard/retailers-dashboard.module').then(m => m.RetailersDashboardModule),
+    canActivate: [AuthGuard]
+  },
   {
   	path: '**',
     component: PageNotFoundComponent
