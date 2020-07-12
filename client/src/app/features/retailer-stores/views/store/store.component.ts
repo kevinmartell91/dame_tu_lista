@@ -8,8 +8,10 @@ import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { FormControl } from '@angular/forms';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-store',
@@ -361,12 +363,19 @@ export class StoreComponent implements OnDestroy{
 
   // public retailer: Retailer = new Retailer().deserialize(this.DATA); 
   public retailer: Retailer;
-  public productsList: Product[];
   public loading: boolean;
-
+  
   cartProducts: CartProduct[];
+  productsList: Product[];
+  filteredProductsList$: Observable<Product[]>;
+  filteredProductListLength: number;
   cartProductsQuantity: number;
   subscription: Subscription;
+
+
+  control = new FormControl();
+  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
+  filteredStreets: Observable<string[]>;
 
   constructor( 
     private router: Router,
@@ -403,6 +412,11 @@ export class StoreComponent implements OnDestroy{
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.storeView
     );
+
+    this.filteredProductsList$ = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   ngOnDestroy():void {
@@ -427,5 +441,18 @@ export class StoreComponent implements OnDestroy{
     this.router.navigate(['/tienda-vendedor',
       this.retailerStoreStore.state.retailer._id,
       'categoria']);
+  }
+
+  private _filter(value: string): Product[] {
+    const filterValue = this._normalizeValue(value);
+    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    console.log("_filter",res);
+    this.filteredProductListLength = res.length;
+    return res;
+  }
+
+  private _normalizeValue(value: string): string {
+    console.log("_normalizeValue", value);
+    return value.toLowerCase().replace(/\s/g, '');
   }
 }

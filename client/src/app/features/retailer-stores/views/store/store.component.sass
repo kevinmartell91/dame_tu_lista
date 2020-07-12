@@ -7,7 +7,7 @@ $store_banner_options_text_size: 1.5em
 $store_name_text_size: 2.3em
 $store_delivery_info_text_size: 1.5em
 $store_pick_up_info_text_size: 1.5em
-$store_options_text_size: 1.3em
+$store_options_text_size: 12px
 
 $primary_filed_color: #565656
 $primary_button_color: #43b02b
@@ -126,31 +126,34 @@ $box_container_size: 320px
   .store_options_area
     grid-area: options    
     display: grid
-    margin: 0em
-    padding: .2em
+    margin: 16px
     grid-template-columns: 1fr 1fr
-    grid-template-rows: 1fr
-    grid-template-areas: "season categories"
+    grid-template-rows: 52px
+    grid-template-areas: "categories season"
     grid-gap: 0px
 
     .season_title_area
       grid-area: season
       font-size: $store_options_text_size
       color: $primary_filed_color
-      adding: 0px
+      padding: 0px
       justify-self: center
-      align-self: center
       
+
     .category_title_area
       grid-area: categories
       font-size: $store_options_text_size
       color: $primary_button_color
+      border: 1px solid $primary_button_color
+      border-radius: 4px
+      padding: 4px
       justify-self: center
       align-self: center
       cursor: pointer
 
   .store_products_area
     grid-area: strPrd
+
 
 
     

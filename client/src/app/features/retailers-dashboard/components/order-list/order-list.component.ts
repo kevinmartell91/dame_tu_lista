@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { ORDER_CONFIG } from 'src/app/core/order/order.config';
 import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/session-storage/services/temporary-storage.service';
+import { OrderDetailModalComponent } from "../order-detail-modal/order-detail-modal.component";
+import { MatDialog } from '@angular/material/dialog';
+import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment-modal.component';
 
 @Component({
   selector: 'app-order-list',
@@ -14,7 +17,7 @@ import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/ses
 })
 export class OrderListComponent implements OnDestroy {
    
-  step = 0;
+  step = -1;
   
   authenticationSubscription: Subscription;
   orderSubscription: Subscription;
@@ -26,10 +29,13 @@ export class OrderListComponent implements OnDestroy {
 
   temporaryStorage: TemporaryStorageFacet;
 
+  dialogRef: any;
+
   constructor(
     public orderStore: OrderStore,
     private authenticationStore: AuthenticationStore,
-    private temporaryStorageService: TemporaryStorageService
+    private temporaryStorageService: TemporaryStorageService,
+    private matDialog: MatDialog
   ) {
 
     this.temporaryStorage = this.temporaryStorageService.forKey("orders_by_retailer");
@@ -195,9 +201,32 @@ export class OrderListComponent implements OnDestroy {
   }
 
   openWhatsApp(order: Order): void {
-    let message = "Tu orden ta esta en camino";
+    let message = "Tu orden ya está en camino";
     let link =`//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
-    console.log("CLICKEDDDDD");
+    console.log("openWhatsApp()");
     window.location.href=link;
-  }  
+  }
+  
+  openOderDetailModal(order: Order): void {
+
+    this.dialogRef = this.matDialog.open(OrderDetailModalComponent, {
+      width: '320px',
+      data: {
+        order: order
+      }
+    });
+    
+  }
+
+  openPaymentDetailModal(order: Order): void {
+
+    this.dialogRef = this.matDialog.open(OrderPaymentModalComponent, {
+      width: '320px',
+      data: {
+        order: order
+      }
+    });
+    
+  }
+
 }

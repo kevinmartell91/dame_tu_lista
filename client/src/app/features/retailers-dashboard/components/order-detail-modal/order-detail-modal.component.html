@@ -1,0 +1,69 @@
+
+
+<div class="address_wrapper" fxLayout="column" fxLayoutAlign="center center">
+    
+    <div class="style_brand">
+        <h1> 
+            <img src="../../../../../assets/icons/location.svg" alt="">
+            Entrega en:
+        </h1>
+
+    <form class="address_form" [formGroup]='orderDetailForm'>
+
+
+        <mat-form-field class="address_address_name_width">
+            <input matInput placeholder="Dirección"
+            name="streeName"
+            type="text"
+            disabled="true"
+            formControlName="streetName">
+        </mat-form-field>
+        
+        <mat-form-field class="address_street_number_width">
+            <input matInput placeholder="Número"
+            name="streetNumber"
+            type="tel"
+            formControlName="streetNumber">
+        </mat-form-field>
+    
+        <mat-form-field class="address_district_width">
+            <mat-label>Distrito</mat-label>
+            <input matInput placeholder=""
+                name="district"
+                type="text"
+                formControlName="district">
+            
+        </mat-form-field>
+        <mat-form-field class="address_city_width">
+        
+            <mat-label>Ciudad</mat-label>
+            <input matInput placeholder=""
+                name="city"
+                type="text"
+                formControlName="city">
+        </mat-form-field>           
+
+        <mat-form-field class="address_full_width">
+            <textarea matInput placeholder="Referencia"
+                name="reference"
+                type="text"
+                formControlName="reference"></textarea>
+        
+        </mat-form-field>
+
+        <mat-form-field class="address_full_width">
+            <textarea matInput placeholder="Detalles adicionales"
+                name="details"
+                type="text"
+                formControlName="details"></textarea>
+        </mat-form-field>
+        
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()" cdkFocusInitial>Cerrar</button>
+            <!-- <button mat-button [mat-dialog-close]="cartPoductOrderDetailForm.value" cdkFocusInitial>Agregar</button> -->
+        </div>        
+
+
+    </form>
+
+</div>

@@ -202,9 +202,10 @@ export class CartsComponent implements OnDestroy {
 
         console.log("pay method from Modal", result);
         this.paymentMethodOrder = result.paymentMethod;
-        this.phoneNumberOrder = result.phoneNumber;
+        //setting code area
+        this.phoneNumberOrder = "+51" + result.phoneNumber;
   
-        this.updatePlaceOrderMessage("Ahora ya puede ordenar");
+        // this.updatePlaceOrderMessage("Ahora ya puede ordenar");
         
         // show another view to say thanks for ordering
         // then catch this as a convetion in google analytics
@@ -212,7 +213,7 @@ export class CartsComponent implements OnDestroy {
         
         console.log("this.buyer updated", this.buyer);
   
-        this.updatePlaceOrderMessage("Su orden ya fue enviada");        
+        // this.updatePlaceOrderMessage("Su orden ya fue enviada");        
       }
     });
   }
@@ -233,7 +234,7 @@ export class CartsComponent implements OnDestroy {
     /**
      * Populating the addressOrder from this.buyer.address
      */
-    let addressOrder = new AddressOrder().deserialize(this.addressOrder);
+    let addressOrder = this.addressOrder;
     
     /**
      * Populating the trackingOrder
@@ -242,7 +243,7 @@ export class CartsComponent implements OnDestroy {
     // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
     trackingOrder.driver_name= "";
     trackingOrder.trackingNumber = "";
-    trackingOrder.estimatedDelivery= "Se entregará su delivery en las próximas tres horas";
+    trackingOrder.estimatedDelivery= "Se entregará su delivery en las próximas tres horas. Gracias.";
     
     /**
      * Populating the shippingOrder from this.buyer
@@ -282,7 +283,7 @@ export class CartsComponent implements OnDestroy {
     // place order DB
     this.orderStore.genereteOrder(order).subscribe( x => {
       this.clearCart();
-      this.router.navigate(['/carrito-personal/thanks-for-your-order']);
+      this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
     });
 
   }
@@ -290,6 +291,7 @@ export class CartsComponent implements OnDestroy {
   clearCart():void {
     this.cartStore.state.shoppingCart.products = [];
     let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
+    console.log("cartProductsEmpty",cartProductsEmpty);
     this.cartStore.setCart(cartProductsEmpty);
   }
 

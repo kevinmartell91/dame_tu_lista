@@ -71,22 +71,32 @@ export class AppComponent implements OnInit, OnDestroy{
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
     console.log("temporaryStorage",this.temporaryStorage);
 
-    this.initializeNavegationValues();
-
-    this.initializeLoginTypeValues();
-
     this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
       x => { 
         this.loginUser = x;
         console.log("APP COMPONENT - subscribe - loginUser$", this.loginUser); 
       }
     );
+    
+    this.initializeNavegationValues();
+
+    this.initializeLoginTypeValues();
+
+ 
+  }
+
+  ngOnInit(): void {
+    
+    // console.log("AppComponent - ngOnInit() 0709");
+    //first we restore data form storage then subscribe works
+    this.restoreFromTemporaryStorage();
+
 
     this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe(
       y => {
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
-        console.log("y.products",y.products);
+        console.log("cartStoreSubcription => shoppingCart.products",y.products);
        this.handleSaveTemporaryStorage();
         
       }
@@ -96,16 +106,9 @@ export class AppComponent implements OnInit, OnDestroy{
       z => {
         this.favoriteRetailerIdSelected = z;
         this.handleSaveTemporaryStorage();
-        // console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
+        console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
       }
     )
-  }
-
-  ngOnInit(): void {
-    
-    // console.log("AppComponent - ngOnInit() 0709");
-    this.restoreFromTemporaryStorage();
-    
   }
 
 
@@ -163,8 +166,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
       
 
-      // remove data from temporary storage
-      // this.temporaryStorage.remove();
+     
    
   }
 
@@ -191,9 +193,23 @@ export class AppComponent implements OnInit, OnDestroy{
         cartProducts: this.cartProducts,
         favoriteRetailer: this.favoriteRetailerIdSelected
       }
-      // console.log("saveToTemporaryStorage 0709");
+      console.log("saveToTemporaryStorage 0709");
       this.saveToTemporaryStorage(dataToStore);
-    } 
+    }  
+    if (this.cartProducts.length == 0) {
+      // clear CartProducts from temporary storage
+      //and keep favorite retailer
+      
+      console.log("remove CartProducts from temporary storage");
+      
+      dataToStore = {
+        cartProducts: [],
+        favoriteRetailer: this.favoriteRetailerIdSelected
+      }
+      // this.temporaryStorage.remove();
+      this.saveToTemporaryStorage(dataToStore);
+
+    }
 
   }
   

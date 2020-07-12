@@ -39,15 +39,16 @@ h1
 // ========================================
 .panel_title_grid
   display: grid
-  grid-template-columns: 100px 100px 20px
-  grid-template-areas: "dstrct . wimg"
-  grid-gap: 1px
+  grid-template-columns: 100px 1fr 20px 20px
+  grid-template-areas: "dstrct pers . wimg"
+  grid-gap: 2px
 
   .district_area
     grid-area: dstrct
 
-  .buyer_name_area
-    grid-area: name
+  .buyer_area
+    grid-area: pers
+    justify-self: end
 
   .whatapp_img_area
     grid-area: wimg

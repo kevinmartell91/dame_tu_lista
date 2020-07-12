@@ -8,7 +8,7 @@ import { ThanksOrderComponent } from "./components/thanks-order/thanks-order.com
 const routes: Routes = [
   { path: '', component: CartsComponent },
   { path: 'completar-direccion', component: FillShippingAddressComponent },
-  { path: 'thanks-for-your-order', component: ThanksOrderComponent }
+  { path: 'gracias-por-tu-compra', component: ThanksOrderComponent }
 ];
 
 @NgModule({

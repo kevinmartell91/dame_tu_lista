@@ -1,0 +1,86 @@
+<div class="payment_wrapper" fxLayout="column" fxLayoutAlign="center center">
+    
+    <div class="style_title">
+        <h1> 
+            <img src="../../../../../assets/icons/credit-card.svg" alt="">
+            Forma de pago
+        </h1>
+    </div>
+
+    <div [ngSwitch]="paymentMethod">
+            
+        <div *ngSwitchCase="'upon_delivery_pos'">
+            <div class="img_pos_area">
+                <img src="../../../../../assets/icons/edc.svg" alt="">
+            </div>
+            <div class="pos_method_area">
+                POS  <br> Contraentrega
+            </div>
+
+        </div>
+        
+        <div *ngSwitchCase="'bank_deposit'">
+            <div class="img_deposit_area">
+                <img src="../../../../../assets/icons/cheque.svg" alt="">
+            </div>
+            <div class="deposit_method_area">
+                Depósito <br> Bancario
+            </div>
+
+        </div>
+        
+        <div *ngSwitchCase="'upon_delivery_cash'">
+            <div class="img_cash_area">
+                <img src="../../../../../assets/icons/cash-payment.svg" alt="">
+            </div>
+            <div class="cash_method_area">
+                Efectivo <br> Contraentrega
+            </div>
+
+        </div>
+    </div>
+
+    
+    <form [formGroup]="orderPaymentForm">
+        
+        <div class="payment_form_grid">
+            <mat-form-field class="amount_area_witdth">
+                <input matInput placeholder="Total"
+                name="amount"
+                type="tel"
+                formControlName="amount">
+            </mat-form-field>
+
+            <mat-form-field class="address_district_width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre"
+                    name="buyerName"
+                    type="text"
+                    formControlName="buyerName">
+                
+            </mat-form-field>
+            <mat-form-field class="address_city_width">
+            
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email"
+                    name="buyerEmail"
+                    type="text"
+                    formControlName="buyerEmail">
+            </mat-form-field>           
+    
+            <mat-form-field class="address_full_width">
+                <mat-label>Teléfono</mat-label>
+                <input matInput placeholder="Teléfono"
+                    name="buyerPhoneNumber"
+                    type="text"
+                    formControlName="buyerPhoneNumber">
+            
+            </mat-form-field>
+
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancelar</button>
+        </div> 
+       
+    </form>

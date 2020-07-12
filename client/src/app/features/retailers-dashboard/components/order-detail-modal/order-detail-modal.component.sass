@@ -1,0 +1,58 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+.address_wrapper
+
+  .style_brand
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 25px
+    
+
+  .address_form
+    
+    .address_full_width, .btn_block
+      width: 100%
+    
+
+    .address_address_name_width
+      // display: inline-flex
+      width: 75%
+      margin: 3px
+
+    .address_street_number_width
+      width: 20%
+      margin: 3px
+
+    .address_district_width
+      // display: inline-flex
+      width: 65%
+      margin: 3px
+      
+    .address_city_width
+      width: 30%
+      margin: 3px
+    
+  .style_pick_up_message
+      margin: 10%
+      text-align: center
+      color: mat-color($primary, default, 1)
+
+  .style_error_message
+    color: #fd8686
+    font-size: 12px
+    text-align: center
+  
+  .sing-up-section
+    font-size: 14px  
+
+.mat-step-icon .mat-icon 
+  font-size: 0px
+  height: 16px
+  width: 16px
+

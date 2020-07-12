@@ -1,9 +1,9 @@
 * 
   box-sizing: border-box
 
-$primary_display_font_size: 1.1em
-$secondary_display_font_size: 1em
-$third_display_font_size: 0.9em
+$primary_display_font_size: 15px
+$secondary_display_font_size: 12px
+$third_display_font_size: 11px
 
 $primary_filed_dark_color: #000000
 $primary_filed_color: #565656
@@ -14,7 +14,8 @@ $primary_button_color: #43b02b
 $secondary_text_color: #808080
 $third_text_color: #8bce7d
 
-$box_image_size: 127px
+$box_image_size: 1fr
+$box_image_size_fixed: 127px
 $box_add_button_size: 30px
 
 
@@ -25,8 +26,8 @@ $box_add_button_size: 30px
   padding: 1em
   grid-template-columns: $box_image_size $box_add_button_size
   grid-gap: 0px
-  grid-template-rows: 0fr 140px 23px 17px 17px 15px 15px 0fr
-  grid-template-areas: "emptyTop emptyTop" "image add" "price price" "matur info" "type type" "eatIn eatIn" "last last" "emptyBottom emptyBottom"
+  grid-template-rows: 0fr 140px 1fr 1fr 1fr 1fr 1fr 1fr 0fr
+  grid-template-areas: "emptyTop emptyTop" "image add" "price price" "cate cate" "matur matur" "type type" "eatIn eatIn" "last last" "emptyBottom emptyBottom"
   background-color: white
   div:empty 
     display: none 
@@ -35,7 +36,7 @@ $box_add_button_size: 30px
   display: grid
   margin: 0
   padding: 14px
-  grid-template-columns: 100px
+  grid-template-columns: 10px
   grid-gap: 0px
   grid-template-rows: 0fr 100px 20px 0fr
   grid-template-areas: "emptyTop emptyTop" "image image" "cate cate" "emptyBottom emptyBottom"
@@ -48,10 +49,10 @@ $box_add_button_size: 30px
   display: grid
   margin: 0
   padding: 20px
-  grid-template-columns: $box_image_size 1fr
+  grid-template-columns: $box_image_size_fixed .1fr
   grid-gap: 0px
-  grid-template-rows: 0fr $box_image_size 15px 0fr
-  grid-template-areas: "emptyTop emptyTop" "image add" "type type" "emptyBottom emptyBottom"
+  grid-template-rows: 0fr $box_image_size_fixed 15px 0fr
+  grid-template-areas: "emptyTop emptyTop" "image add" "cate cate" "type type" "emptyBottom emptyBottom"
   background-color: white
   div:empty 
     display: none
@@ -60,10 +61,10 @@ $box_add_button_size: 30px
   display: grid
   margin: 0em
   padding: 1em
-  grid-template-columns: $box_image_size $box_add_button_size
+  grid-template-columns: $box_image_size_fixed $box_add_button_size
   grid-gap: 0px
-  grid-template-rows: 0fr $box_image_size 18px 15px 14px 14px 0fr
-  grid-template-areas: "emptyTop emptyTop" "image add" "price price" "matur info" "eatIn eatIn" "last last" "emptyBottom emptyBottom"
+  grid-template-rows: 0fr $box_image_size_fixed .1fr .1fr .1fr .1fr 0fr
+  grid-template-areas: "emptyTop emptyTop" "image add" "price price" "cate cate" "matur matur" "eatIn eatIn" "last last" "emptyBottom emptyBottom"
   background-color: white
   div:empty 
     display: none   
@@ -91,7 +92,6 @@ $box_add_button_size: 30px
 .product_price_area
   grid-area: price
   margin: 0px
-  padding: 4px 4px 4px 4px
   font-size: $primary_display_font_size
   color: $primary_filed_dark_color
   font-weight: bold
@@ -103,7 +103,6 @@ $box_add_button_size: 30px
 .product_type_area
   grid-area: type
   margin: 0px
-  padding: 0px 4px 0px 4px
   font-size: $secondary_display_font_size
   color: $secondary_filed_color
   justify-self: center
@@ -153,7 +152,7 @@ $box_add_button_size: 30px
   display: inline-flex
   align-items: center
   padding: 0px
-  font-size: 20px
+  font-size: 17px
   height: 20px
   background-color: #ffffff75
   color: $third_text_color
@@ -201,11 +200,12 @@ $box_add_button_size: 30px
   // background-color: orange
 
 .product_info_area
-  grid-area: info
+  grid-area: add
   margin: 0px
-  padding: 0px 
-  // background-color: yellow
-  justify-self: end
+  padding: 0px
+  justify-self: flex-end
+  align-self: self-end
+  transform: translateY(22px)
 
 .product_eatIn_area
   grid-area: eatIn

@@ -48,13 +48,39 @@
                 </div>
             </div>
             <div class="store_options_area">
-                <div class="season_title_area">Productos de temporada</div>
-                <div (click)="goToRetailerCategoryView()" class="category_title_area">Categorías</div>
+                <!-- <div class="season_title_area">Productos de temporada</div> -->
+                <div (click)="goToRetailerCategoryView()" class="category_title_area">Ver categorías</div>
+                
+                <div class="season_title_area">
+                    <form class="example-form">
+                        
+                        <!-- <mat-form-field class="example-full-width">
+                            <mat-label>Buscar:</mat-label>
+                            <input matInput placeholder="Sandia ... " [formControl]="control">
+                        </mat-form-field> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>Buscar</mat-label>
+                            <input matInput placeholder="Sandia ..." [formControl]="control">
+                        </mat-form-field>
+                        <!-- <mat-icon matBadge="{{filteredProductListLength}}" matBadgeColor="warn"></mat-icon>                     -->
+                        
+                    </form>
+                </div>
+                <!-- <button mat-stroked-button color="primary"
+                (click)="goToRetailerCategoryView()" class="category_title_area">Categorías</button> -->
+
             </div>
             <div class="store_products_area">
                 <app-seasonal-products 
-                    [storeProducts]="subs.state$.retailer.store.productsList">
+                    [storeProducts]="filteredProductsList$ | async">
                 </app-seasonal-products>
+                <!-- <app-seasonal-products 
+                    [storeProducts]="subs.state$.retailer.store.productsList">
+                </app-seasonal-products> -->
+
+                <!-- <app-category-products></app-category-products> -->
+
+              
             </div>
         
         </div>
