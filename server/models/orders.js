@@ -14,7 +14,7 @@ var orderSchema = new Schema({
     deliveryNotes: String,
     address: {
       streetName: String,
-      streetnumber: String,
+      streetNumber: String,
       district: String,
       city: String,
       department: String,

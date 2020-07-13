@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
+import { Product } from 'src/app/core/retailer/types/product';
 
 @Component({
   selector: 'app-add-button',
@@ -16,6 +17,7 @@ export class AddButtonComponent implements OnInit {
   @Input() quantity: number;
   @Input() size: string;
   @Input() isCartProductButtonType: boolean = false;
+  @Input() product: any;
   // valiable that let the app know how increment 
   // by kilograms or units
   @Input() isKilo: boolean;
@@ -63,8 +65,12 @@ export class AddButtonComponent implements OnInit {
     // choosing the sugerUni
     if( this.isKilo) {
       this.surgeQuantity = 0.25;
-    } else {
-      this.surgeQuantity = 1;
+    } else { // units
+      if( this.product.categoryName == 'Plátano'){
+        this.surgeQuantity = 5;
+      } else {  //other fruit by unit
+        this.surgeQuantity = 1;
+      }
     }
     console.log("setSurgeQuantity", this.isKilo, this.surgeQuantity);
   }
@@ -81,7 +87,7 @@ export class AddButtonComponent implements OnInit {
         
   }
 
-  quantityUpdate(operator:string){
+  async quantityUpdate(operator:string){
     if(operator === "+") {
       this.count += this.surgeQuantity;
     } else { // discount quantity
@@ -94,6 +100,7 @@ export class AddButtonComponent implements OnInit {
     }
 
     this.convertQuantiyToString();
+    // await this.delay(1500);
     
     console.log("this.quantityUpdated.emit(this.count)");
     this.quantityUpdated.emit(this.count)
@@ -119,7 +126,7 @@ export class AddButtonComponent implements OnInit {
 
   async sizeUpdate (size: string) {
     this.updateSizesSelection(size);
-    // await this.delay(1000);
+    // await this.delay(1500);
     this.sizeUpdated.emit(size);
   }
 

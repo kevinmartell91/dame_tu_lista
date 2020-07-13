@@ -83,6 +83,7 @@
                 <app-add-button 
                     [quantity]="cartProduct.quantity"
                     [isKilo]="cartProduct.isKilo"
+                    [product]="cartProduct"
                     [isCartProductButtonType]="true"
                     (quantityUpdated)="onQuantityUpdated($event)">
                 </app-add-button>

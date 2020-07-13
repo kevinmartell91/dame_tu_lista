@@ -48,6 +48,7 @@ class="product_type_area">
                 [size]="size"
                 [isCartProductButtonType]="false"
                 [isKilo]="product.isKilo"
+                [product]="product"
                 [quantity]="quantity"
                 (quantityUpdated)="onQuantityUpdated($event)"
                 (kiloOrUnitUpdated)="onMassUpdated($event)"

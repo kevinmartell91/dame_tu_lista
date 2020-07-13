@@ -23,7 +23,7 @@ export class OrderDetailModalComponent implements OnInit {
 
     this.orderDetailForm = this.fb.group({
       streetName: [this.data.order.shipping.address.streetName],
-      streetNumber: [this.data.order.shipping.address.streetnumber],
+      streetNumber: [this.data.order.shipping.address.streetNumber],
       district: [this.data.order.shipping.address.district],
       city: [this.data.order.shipping.address.city],
       reference: [this.data.order.shipping.address.reference],

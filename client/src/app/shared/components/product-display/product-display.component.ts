@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Product } from '../../../core/retailer/types/product';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { getCartProductFromProduct, round } from 'src/app/core/cart/helpers/cart-helper';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-display-shared',
@@ -74,7 +75,7 @@ export class ProductDisplaySharedComponent implements OnInit {
    * listen to quantityUpdated from add-button-component.ts
    * @param newQuantity 
    */
-  onQuantityUpdated(quantityUpdated: number){ 
+  async onQuantityUpdated(quantityUpdated: number){ 
     
     // if cartProduct quatity is 0, 
     // then disableQuantityMode
@@ -96,6 +97,10 @@ export class ProductDisplaySharedComponent implements OnInit {
     // then send it to to listener to be updated in
     // Cart stores
     this.selectedCartProduct.emit(this.getCartProduct());
+
+    // close quantity mode automatically after 1.5 seconds
+    // await this.delay(2500);
+    // this.disableQuantityMode();
   
   }
   
@@ -135,6 +140,10 @@ export class ProductDisplaySharedComponent implements OnInit {
 
     return getCartProductFromProduct(this.product, this.quantity, this.size);
     
+  }
+  
+  delay(ms: number)  {
+    return new Promise( resolve => setTimeout(resolve, ms));
   }
 
 }

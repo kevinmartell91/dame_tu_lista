@@ -29,7 +29,7 @@ export class OrderPaymentModalComponent implements OnInit {
       buyerName: [this.data.order.shipping.buyer.name],
       buyerEmail: [this.data.order.shipping.buyer.email],
       buyerPhoneNumber: [this.data.order.shipping.buyer.phoneNumber],
-      amount: [this.data.order.payment.amount]
+      amount: [((this.data.order.payment.amount) as Number).toFixed(2)]
     });
   }
 
