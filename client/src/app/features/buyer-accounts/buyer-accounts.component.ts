@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationStore  } from "../../core/login/services/authentication.store";
 import { LoginUser } from 'src/app/core/login/types/user';
 import { Router } from '@angular/router';
@@ -11,42 +11,51 @@ import { deserialize } from './helpers/buyer-accounts.helper';
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { Subscription } from 'rxjs';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { MatDialog } from '@angular/material/dialog';
+import { AddRetailerModalComponent } from "./components/add-retailer-modal/add-retailer-modal.component";
 
 @Component({
   selector: 'app-buyer-accounts',
   templateUrl: './buyer-accounts.component.html',
   styleUrls: ['./buyer-accounts.component.sass']
 })
-export class BuyerAccountsComponent implements OnInit {
+export class BuyerAccountsComponent implements OnInit, OnDestroy{
 
   loginUser: LoginUser;
   favoriteRetailers:  FavoriteReatailers[] = [];
   buyer_id: string;
+  subscription: Subscription;
+
+  dialogRef: any;
 
   constructor(
     private router: Router,
     private authenticationStore: AuthenticationStore,
     private buyerNavegationStore: BuyerNavegationStore,
     public buyerAccountStore: BuyerAccountStore,
-    private cartStore: CartStore) { 
+    private cartStore: CartStore,
+    private matDialog: MatDialog) { 
 
-    this.authenticationStore.loginUser$.subscribe(
+        
+
+    this.subscription = this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
-        this.buyer_id = data.entity._id;
         this.loginUser = data;
-        console.log("SUBSCRIBED to BuyerAccountsComponent - authenticationStore -  Listened");
+        console.log("authenticationStore  => loginUser$", data);
+
+    // wired issue in this subscription (it is not in sync)
+    // temp solution via retrieveing buyer_id through localstorage
+    let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+    this.buyer_id = loginUserLocalStorage.entity._id;
+    // console.log("localStorage", this.buyer_id, data.entity._id);
+    this.buyerAccountStore.init(this.buyer_id);
+    // ====================================================       
+      
         
       }
     );
-      
-    // this.buyerAccountStore.buyerAccount$.subscribe(
-    //   (data : any) => { 
-    //     console.log("SUBSCRIBED to BuyerAccountsComponent - buyerAccountStore - Listened");
-    //     if(data != null) {
-    //       this.favoriteRetailers = deserialize(data.myFavoriteRetailers);
-    //     }
-    //   }
-    // )
 
   }
   
@@ -66,7 +75,13 @@ export class BuyerAccountsComponent implements OnInit {
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.accountView
     );
-    this.buyerAccountStore.init(this.buyer_id);
+
+
+
+  }
+
+  ngOnDestroy(){
+    // this.subscription.unsubscribe();
   }
 
   goToRetailerStoreView(retailer: Retailer): void {
@@ -95,11 +110,22 @@ export class BuyerAccountsComponent implements OnInit {
   }
 
   addFavoriteRetailer(): void {
-    // this.buyerAccountStore.init();
-    // let buyer_id = "5edeecfc09ff9d6770b10344";
-    let retailer_email = "vania@gmail.com";
-    console.log("addFavoriteRetailer");
-    this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
+
+    this.dialogRef = this.matDialog.open(AddRetailerModalComponent, {
+      width: '320px'
+    });
+    
+    this.dialogRef.afterClosed().subscribe( result => {
+
+      if(result != undefined){
+        
+        console.log("addFavoriteRetailer", result);
+        let retailer_email = result.retailer_email;
+        this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
+      }
+      
+    });
+
   }
 
 

@@ -18,6 +18,7 @@ import { CartProduct } from './core/cart/types/cart-product';
 import { TemporaryStorageService, TemporaryStorageFacet } from './core/session-storage/services/temporary-storage.service';
 import { Product } from './core/retailer/types/product';
 import { Retailer } from './core/retailer/types/retailer';
+import { BuyerAccountStore } from './features/buyer-accounts/services/buyer-account.store';
 
 @Component({
   selector: 'app-root',
@@ -62,19 +63,19 @@ export class AppComponent implements OnInit, OnDestroy{
     private location: Location,
     public cartStore: CartStore,
     private temporaryStorageService: TemporaryStorageService,
-    private retailerStoreStore: RetailerStoreStore
+    private retailerStoreStore: RetailerStoreStore,
   ) {
 
     // this.retailerStoreStore.getAirTabeDATA();
     
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
-    console.log("temporaryStorage",this.temporaryStorage);
+    // console.log("temporaryStorage",this.temporaryStorage);
 
     this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
       x => { 
         this.loginUser = x;
-        console.log("APP COMPONENT - subscribe - loginUser$", this.loginUser); 
+        console.log("AppComponent - loginUser$", this.loginUser); 
       }
     );
     
@@ -86,7 +87,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    
+
     // console.log("AppComponent - ngOnInit() 0709");
     //first we restore data form storage then subscribe works
     this.restoreFromTemporaryStorage();
@@ -96,7 +97,7 @@ export class AppComponent implements OnInit, OnDestroy{
       y => {
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
-        console.log("cartStoreSubcription => shoppingCart.products",y.products);
+        // console.log("cartStoreSubcription => shoppingCart.products",y.products);
        this.handleSaveTemporaryStorage();
         
       }
@@ -106,7 +107,7 @@ export class AppComponent implements OnInit, OnDestroy{
       z => {
         this.favoriteRetailerIdSelected = z;
         this.handleSaveTemporaryStorage();
-        console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
+        // console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
       }
     )
   }

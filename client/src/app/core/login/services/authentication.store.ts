@@ -37,14 +37,12 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         return this.endPoint.postAuthentication(this.storeRequestStateUpdater, user).pipe(
             tap((loginUser: any) => {
                 if(loginUser.success) {
-                    // store user ditails and jwttoken in localStorage to keep user
+                    // store user details and jwttoken in localStorage to keep user
                     // logged in between pages
                     loginUser.name = loginUser.entity.name; 
                     loginUser.email = loginUser.entity.email; 
                     loginUser.password = loginUser.entity.password; 
                     loginUser.login_type = loginUser.entity.user_type; 
-                    // console.log("KEVIN as any = >",loginUser);
-                    // console.log("KEVIN as LoginUser = >",loginUser as LoginUser);
                     localStorage.setItem(LOGIN_CONFIG.loginUserStorage, JSON.stringify(loginUser));
                     this.handleGetUserLoginResponse(loginUser);                    
                 } 
@@ -57,14 +55,6 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
         this.handleGetUserLoginResponse(null);
     }
 
-    testAuthenticationStoreState(): void {
-        let userTest = new LoginUser();
-        userTest.login_type = "comprador";
-        userTest.password = "*******";
-        userTest.name = "kevin";
-        this.handleGetUserLoginResponse(userTest);
-    }
-
     public handleGetUserLoginResponse (loginUser: LoginUser): void {
         // The user object is then published to all subscribers with the call to
         // calls this.currentUserSubject.next(user);
@@ -72,6 +62,7 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             ...this.state,
             loginUser: loginUser
         });
+        console.log("handleGetUserLoginResponse",this.state.loginUser);
     }
    
 }

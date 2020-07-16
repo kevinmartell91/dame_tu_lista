@@ -37,8 +37,6 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
     }
     
     init(buyer_id: string): void {
-        console.log("ON INIT =>>>>>>");
-
         this.initReloadBuyer$(buyer_id);
         this.reloadBuyer();
         
@@ -48,11 +46,10 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         this.reloadBuyer$.next();
     }
 
-    private initReloadBuyer$(buyer_id: string): void {
+    private initReloadBuyerOrigin$(buyer_id: string): void {
         this.reloadBuyer$
             .pipe(
                 switchMap( () => {
-                    console.log("SWITCH MAP");
                     return this.endPoint.getBuyerAccount(this.storeRequestUpdater,buyer_id);
                 }),
                 tap( (data: any) => {
@@ -64,6 +61,19 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
                 }),
                 retry(),
                 takeUntil(this.ngUnsubscribe$)
+            )
+            .subscribe();
+    }
+    private initReloadBuyer$(buyer_id: string) {
+        return this.endPoint.getBuyerAccount(this.storeRequestUpdater,buyer_id)
+            .pipe(
+                 map( (data: any) => {
+                    console.log("BuyerAccount Store - initReloadBuyer()", data);
+                    this.setState({
+                        ...this.state,
+                        buyerAccount: new Buyer().deserialize(data.data),
+                    })
+                })
             )
             .subscribe();
     }

@@ -145,7 +145,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     let loginUser = this.prepareAuthentication();
-    console.log("KEVINSSSSSSSSSSSS",loginUser);
     
     // hard coded, quick login purposes
     // loginUser.login_type= "vendedor";

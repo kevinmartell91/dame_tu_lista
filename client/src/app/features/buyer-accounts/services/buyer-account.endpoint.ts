@@ -23,11 +23,10 @@ export class BuyerAccountEndPoint {
         const options = getHeadersForGet();
         requestStateUpdater(request.name, {inProgress: true});
         
-        console.log("requestStateUpdater",requestStateUpdater); 
         return this.http.get<any>(request.url + buyer_id, options).pipe(
             map( response => {
                 requestStateUpdater(request.name, {inProgress: false});
-                console.log("requestStateUpdater",requestStateUpdater);   
+                console.log("BuyerAccountEndPoint", response);   
                 
                 return response;
             }),
@@ -46,11 +45,9 @@ export class BuyerAccountEndPoint {
         retailer_email: string,
         requestStateUpdater: StoreRequestStateUpdater
     ) {
-        console.log("patchtFavoriteRetailer");
         const request =  BUYER_ACCOUNT_CONFIG.request.patchFavoriteRetailer;
         const options = getHeadersForGet();
         requestStateUpdater(request.name, {inProgress: true});
-        console.log("requestStateUpdater",request.name);
         
         return this.http.patch<any>(request.url + buyer_id, {retailer_email:retailer_email}, options).pipe(
             map( response => {

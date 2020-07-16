@@ -1,3 +1,7 @@
+// Sets up dotenv as soon as our application starts
+require('dotenv').config(); 
+
+
 module.exports = {
   development: {
     port: process.env.PORT || 8080,

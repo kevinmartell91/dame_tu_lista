@@ -26,7 +26,7 @@ router.route('/authenticate')
 
 // Create endpoint handlers for /buyers/:buyer_id
 router.route('/buyers/:buyer_id')
-  .get(authorizationMiddleware, buyerController.getBuyer)
+  .get( buyerController.getBuyer)
   .put(buyerController.putBuyer)
   .delete(buyerController.deleteBuyer);
   
