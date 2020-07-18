@@ -139,12 +139,15 @@ exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 		console.log("req.body",req.body);
 		
 		const retailer = await Retailer.findOne({email: retailer_email});
+		console.log("RETAILER => ", retailer);
 		let newFavoriteRetailer = {
 			_id: retailer._id,
 			storeName: retailer.store.name,
 			isDeliveryService: retailer.store.isDeliveryService,
 			isPickUpService: retailer.store.isPickUpService,
-			storeImgUrl: retailer.store.imgUrl
+			storeImgUrl: retailer.store.imgUrl,
+			email: retailer.email,
+			phoneNumber: retailer.phoneNumber
 		}
 	
 		console.log("KEVIN => ", newFavoriteRetailer);

@@ -3,7 +3,7 @@ import { Deserializable } from "../../../shared/models/deserializable.model";
 export class Address implements Deserializable {
 
     public streetName?: string;
-    public streetnumber?: string;
+    public streetNumber?: string;
     public district?: string;
     public city?: string;
     public department?: string;

@@ -41,7 +41,7 @@ export class RegisterRetailerComponent implements OnInit {
     let newRetailer = this.deserialize();
     
     console.log("onSubmit ()",newRetailer);
-    this.retailerStore.registerNewBuyer(newRetailer).subscribe(
+    this.retailerStore.registerNewRetailer(newRetailer).subscribe(
       response => {
         if(response.success){
           

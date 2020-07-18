@@ -12,7 +12,7 @@ import { RetailerEndPoint } from './retailer.endpoint';
 @Injectable({ providedIn: 'root'})
 export class RetailerStore extends Store<RetailerStoreState> {
 
-    buyer$: Observable<Retailer>;
+    retailer$: Observable<Retailer>;
     private storeRequestStateUpdater: StoreRequestStateUpdater;
 
     constructor( 
@@ -20,18 +20,54 @@ export class RetailerStore extends Store<RetailerStoreState> {
     ) {
         super(new RetailerStoreState())
 
-        this.buyer$ = this.state$.pipe(map (state => state.buyer))
+        this.retailer$ = this.state$.pipe(map (state => state.retailer))
         this.storeRequestStateUpdater = 
             endpointHelpers.getStoreRequestStateUpdater(this);
 
     }
 
-    registerNewBuyer(newBuyer: Retailer): Observable<any> {
-        return this.endPoint.postBuyer(this.storeRequestStateUpdater, newBuyer).pipe(
-            tap( ( buyer: any ) => {
-                console.log("registerNewBuyer => response : ",  buyer);
+    setNewRetailerState(retailer: Retailer): void{
+        this.setState({
+            ...this.state,
+            retailer: retailer
+        });
+    }
+
+    registerNewRetailer(newBuyer: Retailer): Observable<any> {
+        return this.endPoint.postRetailer(this.storeRequestStateUpdater, newBuyer).pipe(
+            tap( ( retailer: any ) => {
+                console.log("postRetailer => response : ",  retailer);
             })
         )
     }
+
+    getRetailerById(retailer_id: string) {
+        return this.endPoint.getRetailerById(retailer_id, this.storeRequestStateUpdater)
+            .pipe(
+                map((data: any) => {
+                    console.log("getRetailerById KEVIN", data);
+                    this.setState({
+                        ...this.state,
+                        retailer: new Retailer().deserialize(data.data)
+                    });
+                })
+            )
+            .subscribe();
+    }
+
+    updateRetailerStoreInfo(retailer_id: string, data: any){
+        return this.endPoint.putRetailerStoreInfo(retailer_id, data, this.storeRequestStateUpdater)
+            .pipe(
+                map((data: any) => {
+                    console.log("updateRetailerStoreInfo", data);
+                    this.setState({
+                        ...this.state,
+                        retailer: new Retailer().deserialize(data.data)
+                    })
+                })
+            )
+            .subscribe();
+    }
+
     
 }

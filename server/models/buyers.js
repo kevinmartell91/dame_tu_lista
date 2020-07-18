@@ -29,7 +29,9 @@ var buyerSchema = new Schema({
     storeName: String,
     isDeliveryService: Boolean,
     isPickUpService: Boolean,
-    storeImgUrl: String,    
+    storeImgUrl: String,
+    email: String,
+    phoneNumber: String    
   }],
  
 // what else  

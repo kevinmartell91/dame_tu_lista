@@ -1,0 +1,34 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+
+.flex_container 
+  display: flex
+  margin: 10px
+  align-items: center
+
+  .style_secction
+    color: mat-color($primary, default, 1)
+    h1
+      font-size: 25px
+  
+
+.flex_container > div 
+  color: #727272
+  margin: 15px
+  line-height: 25px
+  font-size: 15px
+  max-width: 400px
+  
+.store .address
+  
+.full_width
+  width: 100%
+
+  
+  

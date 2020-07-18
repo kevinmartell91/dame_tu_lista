@@ -2,8 +2,8 @@ import { Retailer } from '../types/retailer';
 import { Requests } from '../types/requests';
 
 export class RetailerStoreState {
-    buyer: Retailer = null;
-    buyerList: Retailer [] = []; 
+    retailer: Retailer = null;
+    retailerList: Retailer [] = []; 
     request: Requests = { 
         getRetailer: {},
         putRetailer: {},

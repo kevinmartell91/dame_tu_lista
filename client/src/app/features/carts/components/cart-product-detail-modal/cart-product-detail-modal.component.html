@@ -1,8 +1,9 @@
 <form class="address_form" [formGroup]='cartPoductDetailForm'>
 
     <mat-form-field appearance="outline" class="full_width">
-        <mat-label>Agregue comentarios del producto: </mat-label>
-        <textarea   name="productCartDetail"
+        <mat-label>Agregar comentarios del producto: </mat-label>
+        <textarea   cdkFocusInitial
+                    name="productCartDetail"
                     type="text"
                     formControlName="productCartDetail"
                     matInput placeholder="Etiquetarlos por orden de madurez..."></textarea>

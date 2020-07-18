@@ -15,3 +15,45 @@
 <p>homepage works!</p>
 
 <router-outlet></router-outlet>
+
+<div fxLayout="column">
+  <!-- stacking your children vertically -->
+  <div
+      fxLayoutGap="2%"
+      fxFlex="auto"
+      fxLayoutAlign="space-between center" 
+      fxLayout="row">
+
+      <div fxFlex="10"
+          class="brand">
+          <h3>Hi</h3>
+      </div>
+
+      <div 
+          flexLayoutAlign="space-around center" 
+          fxLayoutGap="2%"
+          fxFlex="70"
+          fxHide.xs>
+          <mat-form-field appearance="fill">
+              <mat-label>Input</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Input</mat-label>
+                <input matInput>
+              </mat-form-field>
+      </div>
+
+      <div 
+          fxLayout="row"
+          fxLayoutAlign="end center">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+
+      </div>
+  </div>
+  <div fxLayout="row">
+  </div>
+
+</div>

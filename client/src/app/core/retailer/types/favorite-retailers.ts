@@ -7,6 +7,8 @@ export class FavoriteReatailers implements Deserializable {
     isDeliveryService?: string;
     isPickUpService?: string;
     storeImgUrl?: string;
+    email?: string;
+    phoneNumber?: string;
 
     deserialize(input: any) {
         Object.assign(this, input);

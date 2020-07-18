@@ -67,7 +67,7 @@ exports.getRetailer = async function(req, res, next) {
     res.json({ 
       success: true,
       status: 200,
-      message: 'retailer added', 
+      message: 'retailer retrieved', 
       data: retailerData
     });
     
@@ -75,13 +75,13 @@ exports.getRetailer = async function(req, res, next) {
     res.json({ 
       success: false,
       status: 500,
-      message: 'retailer not added', 
+      message: 'retailer not retrieved', 
       data: retailerData
     });
   }
 };
 
-// Create endpoint /api/retailers/:reatiler_id for PUT
+// Create endpoint /api/retailers/:retailer_id for PUT
 exports.putRetailer = async function(req, res) {
 
   let id = req.params.retailer_id;
@@ -110,20 +110,21 @@ exports.putRetailer = async function(req, res) {
 
 // Create endpoint /api/retailers/:retailer_id for DELETE
 exports.deleteRetailer = function(req, res) {
-
+  
   Retailer.findByIdAndRemove(req.params.retailer_id, function(err) {
     if (err)
-      return res.send(err);
-
-      res.json({ 
-        success: true,
-        status: 200,
-        message: 'retailer deleted', 
-      });
+    return res.send(err);
+    
+    res.json({ 
+      success: true,
+      status: 200,
+      message: 'retailer deleted', 
+    });
   });
 };
 
 //ok
+// Create endpoint /api/retailer-store/:retailer_id 
 exports.putRetailerStore = function(req, res) {
 
   let id = req.params.retailer_id;
@@ -131,6 +132,9 @@ exports.putRetailerStore = function(req, res) {
   Retailer.findById(id, function(err, retailer) {
     if (err)
       return res.status(500).send(err);
+
+    // to do = > add UI to get this attribute
+    retailer.phoneNumber = req.body.phoneNumber;
 
     retailer.store.name = req.body.store.name;
     retailer.store.imgUrl = req.body.store.imgUrl;
@@ -141,13 +145,13 @@ exports.putRetailerStore = function(req, res) {
     retailer.store.productsList = retailer.store.productsList;
  
     retailer.store.address.streetName = req.body.store.address.streetName;
-    retailer.store.address.streetnumber = req.body.store.address.streetnumber;
+    retailer.store.address.streetNumber = req.body.store.address.streetNumber;
     retailer.store.address.district = req.body.store.address.district;
     retailer.store.address.city = req.body.store.address.city;
     retailer.store.address.department = req.body.store.address.department;
     retailer.store.address.country = req.body.store.address.country;
     retailer.store.address.reference = req.body.store.address.reference;
-    retailer.store.address.details = req.body.store.address.detail;
+    retailer.store.address.details = req.body.store.address.details;
 
     retailer.save(function(err) {
 

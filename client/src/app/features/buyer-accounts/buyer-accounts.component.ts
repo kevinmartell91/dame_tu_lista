@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRetailerModalComponent } from "./components/add-retailer-modal/add-retailer-modal.component";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-buyer-accounts',
@@ -24,7 +25,6 @@ import { AddRetailerModalComponent } from "./components/add-retailer-modal/add-r
 export class BuyerAccountsComponent implements OnInit, OnDestroy{
 
   loginUser: LoginUser;
-  favoriteRetailers:  FavoriteReatailers[] = [];
   buyer_id: string;
   subscription: Subscription;
 
@@ -36,6 +36,7 @@ export class BuyerAccountsComponent implements OnInit, OnDestroy{
     private buyerNavegationStore: BuyerNavegationStore,
     public buyerAccountStore: BuyerAccountStore,
     private cartStore: CartStore,
+    private snackBarService: MatSnackBar,
     private matDialog: MatDialog) { 
 
         
@@ -117,15 +118,36 @@ export class BuyerAccountsComponent implements OnInit, OnDestroy{
     
     this.dialogRef.afterClosed().subscribe( result => {
 
+      let message = "Ya agregaste al vendedor."
+
       if(result != undefined){
-        
-        console.log("addFavoriteRetailer", result);
-        let retailer_email = result.retailer_email;
-        this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
+        let email = result.retailer_email;
+
+        if(this.isNewFavoriteRetailer(email)){
+          
+          message = "Vendedor agregado."
+          console.log("addFavoriteRetailer", result);
+          let retailer_email = email;
+          this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
+       
+        } 
+        this.openSnackBar( message,"Cerrar");
       }
       
     });
 
+  }
+
+  isNewFavoriteRetailer(email: string): boolean {
+    let favRet =  this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers;
+    console.log("myFavoriteRetailers", favRet);
+    return  Boolean(favRet.find( function (fr) { return fr.email == email}));
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBarService.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

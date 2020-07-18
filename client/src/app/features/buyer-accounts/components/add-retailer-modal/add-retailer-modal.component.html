@@ -2,7 +2,8 @@
 
     <mat-form-field appearance="outline" class="full_width">
         <mat-label>Agregue el correo de su cacero: </mat-label>
-        <textarea   class="style_comments"
+        <textarea   cdkFocusInitial
+                    class="style_comments"
                     name="retailer_email"
                     type="text"
                     formControlName="retailer_email"
@@ -11,7 +12,7 @@
     
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Cancelar</button>
-        <button mat-button [mat-dialog-close]="favoriteRetailerForm.value" cdkFocusInitial>Agregar</button>
+        <button mat-button [mat-dialog-close]="favoriteRetailerForm.value" >Agregar</button>
     </div>        
 
 </form>

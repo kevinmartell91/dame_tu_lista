@@ -13,10 +13,10 @@ const routes: Routes = [
     path: 'login', 
     loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
-  // { 
-  //   path: 'homepage', 
-  //   loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
-  // },
+  { 
+    path: 'homepage', 
+    loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
+  },
   { 
     path: 'registrate',
     loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) },
