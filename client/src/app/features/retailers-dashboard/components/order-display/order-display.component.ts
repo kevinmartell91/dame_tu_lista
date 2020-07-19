@@ -41,8 +41,6 @@ export class OrderDisplayComponent implements OnInit {
 
   transformcartProductOrderTotalPriceToStr(): void {
     this.cartProductOrderTotalPriceStr = this.cartProductOrder.totalPrice.toFixed(2);
-
-    console.log("transformcartProductOrderTotalPriceToStr", this.cartProductOrderTotalPriceStr);
   }
 
   openAddcartProductOrderDetailModal(): void {

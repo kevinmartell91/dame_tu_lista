@@ -17,7 +17,7 @@ $box_container_size: 320px
   grid-template-columns: 1fr $box_container_size 1fr
   grid-template-rows: 1fr 1fr
   grid-template-areas: ". brand ." ". loading ."
-  transform: translateY(20%)
+  transform: translateY(60%)
   
   .login_brand_area
     grid-area: brand
@@ -39,10 +39,21 @@ $box_container_size: 320px
   font-size: 25px
 
 .display_products_grid
-  grid-area: strPrd
   display: grid
-  margin: 0em
-  padding: 1px
-  grid-template-columns: repeat(auto-fill, minmax($product_contianer_size, 1fr))
-  grid-gap: 1px
-  // background-color:  #bee4b6
+  grid-template-columns: 1fr
+  grid-template-rows: 30px 1fr
+  grid-template-areas: "quest" "prod"
+  margin-top: -1px
+
+  .question_area
+    grid-area: quest
+    margin-top: 68px
+
+  .display_products_area
+    grid-area: prod
+    display: grid
+    margin: 0em
+    padding: 1px
+    grid-template-columns: repeat(auto-fill, minmax($product_contianer_size, 1fr))
+    grid-gap: 1px
+    margin-top: 122px

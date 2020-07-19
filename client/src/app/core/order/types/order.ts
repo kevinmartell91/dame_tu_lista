@@ -6,6 +6,7 @@ import { CartProductOrder } from "./cart-product-order";
 export class Order implements Deserializable {
 
     _id: string;
+    orderType: string;
     retailer_id: string;
     shipping: ShippingOrder;
     payment: PaymentOrder;

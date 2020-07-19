@@ -40,6 +40,9 @@ router.route('/buyers-favorite-retailers/:buyer_id')
 router.route('/buyers-address/:buyer_id')
   .patch(buyerController.updateBuyerAddress);
 
+router.route('/buyer-order-history/:buyer_id')
+  .get(buyerController.getOrderHistory);
+
 
 // Create endpoint handlers for /retailers/:retailer_id
 router.route('/retailers/:retailer_id')

@@ -4,6 +4,10 @@ var Schema = mongoose.Schema;
 var orderSchema = new Schema({
   createdOn: { type: Date, default: Date.now() },  
   retailer_id: String,
+  orderType: {
+    type: String,
+    enum: ['delivery', 'pickup']
+  },
   shipping: {
     buyer: {
       _id: String,
@@ -76,7 +80,7 @@ orderSchema.pre('save', function(next) {
   if(!order.isModified || !order.isNew) {
     next();
   } else {
-    order.shipping.tracking.orderStatus = ["generated_by_buyer", Date.now() ];
+    // order.shipping.tracking.orderStatus = ["generated_by_buyer", Date.now() ];
     next();
   }
 

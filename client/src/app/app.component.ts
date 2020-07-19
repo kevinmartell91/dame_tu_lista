@@ -134,7 +134,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   viewBuyerDetails():void {
-    this.router.navigate(['/buyer-details']);
+    // this.router.navigate(['/buyer-details']);
   }
   
   logout() {

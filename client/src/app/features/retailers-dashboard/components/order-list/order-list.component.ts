@@ -9,6 +9,7 @@ import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/ses
 import { OrderDetailModalComponent } from "../order-detail-modal/order-detail-modal.component";
 import { MatDialog } from '@angular/material/dialog';
 import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment-modal.component';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 @Component({
   selector: 'app-order-list',
@@ -26,6 +27,7 @@ export class OrderListComponent implements OnDestroy {
   isOrderCompleted: boolean = false;
 
   retailer: Retailer;
+  retailer_id: string;
 
   temporaryStorage: TemporaryStorageFacet;
 
@@ -42,14 +44,17 @@ export class OrderListComponent implements OnDestroy {
 
 
 
-    this.authenticationSubscription = this.authenticationStore.loginUser$.subscribe(
-      x => {
-        this.retailer = new Retailer().deserialize(x.entity);
-        console.log("authenticationSubscription", this.retailer._id);
-      }
-    )
+    // this.authenticationSubscription = this.authenticationStore.loginUser$.subscribe(
+    //   x => {
+    //     this.retailer = new Retailer().deserialize(x.entity);
+    //     console.log("authenticationSubscription", this.retailer._id);
+    //   }
+    // )
 
-    this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe( 
+    let dataStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+    this.retailer_id = dataStorage.entity._id;
+
+;    this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe( 
       y => {
         this.saveToTemporaryStorage(y);
       }
@@ -63,14 +68,14 @@ export class OrderListComponent implements OnDestroy {
   init(): void {
 
     this.restoreFromTemporaryStorage();
-    this.orderStore.initOrderByRetailerId(this.retailer._id);
+    this.orderStore.initOrderByRetailerId(this.retailer_id);
     this.isMobileView = true;
 
   }
 
   ngOnDestroy() {
 
-    this.authenticationSubscription.unsubscribe();
+    // this.authenticationSubscription.unsubscribe();
 
   }
 
@@ -130,6 +135,10 @@ export class OrderListComponent implements OnDestroy {
 
     this.step = index;
     this.setNewOrderStatus(ORDER_CONFIG.orderStatus.seen_by_retailer, order);
+    // put not patch =>time issues, It shoud be patch
+    this.orderStore.updateOrder(order).subscribe(
+      res => {console.log(res)}
+    )
 
   }
   
@@ -201,14 +210,17 @@ export class OrderListComponent implements OnDestroy {
   }
 
   openWhatsApp(order: Order): void {
-    let message = "Tu orden ya está en camino";
+    let message = "Tu orden ya está en camino.";
+    if( order.orderType == ' pickup'){
+      message = "Ya pudes recoger tu orden, está Lista. Te esperamos.";
+    }
     let link =`//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
     console.log("openWhatsApp()");
     window.location.href=link;
   }
   
   openOderDetailModal(order: Order): void {
-
+    
     this.dialogRef = this.matDialog.open(OrderDetailModalComponent, {
       width: '320px',
       data: {

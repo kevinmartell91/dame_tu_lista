@@ -35,7 +35,7 @@
         <ng-template #showFileds>
             <br>
                 <mat-form-field class="address_address_name_width">
-                    <input matInput placeholder="Dirección"
+                    <input cdkFocusInitial matInput placeholder="Dirección"
                     name="streeName"
                     type="text"
                     formControlName="streetName">
@@ -105,7 +105,7 @@
         <div mat-dialog-actions>
             <button mat-button (click)="onNoClick()">Cancelar</button>
             <button mat-button [mat-dialog-close]="addressForm.value" 
-                    [disabled]="!addressForm.valid" cdkFocusInitial>Continuar</button>
+                    [disabled]="!addressForm.valid" >Continuar</button>
         </div>   
     
     </form>

@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
     this.dynamicColDetail = '';
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    // this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
   }
   
   toggle() {
@@ -163,14 +163,15 @@ export class LoginComponent implements OnInit {
       loginUser.login_type = LOGIN_CONFIG.loginUserRetailerType;
     }
 
-    this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
+    // this.returnUrl  = (this.returnUrl !== "/") ? `${this.returnUrl}` : this.getloginTypeRedirect(loginUser);
 
     this.authenticationStore.login(loginUser)
     .pipe(first())
     .subscribe(
       loginUser => {
         if(loginUser.token) {
-          this.router.navigate([this.returnUrl])
+          // this.router.navigate([this.returnUrl])
+          this.router.navigate([this.getloginTypeRedirect(loginUser)])
         } else {
           this.loading = false;
           this.errorMessage = "Usuario o contraseña incorrecta.";

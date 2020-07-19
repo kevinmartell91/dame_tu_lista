@@ -272,7 +272,9 @@ export class CartsComponent implements OnDestroy {
     
     // populate the order;
     let order = new Order();
+
     order.retailer_id = this.favoriteRetilerSelected._id;
+    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup" ;
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;

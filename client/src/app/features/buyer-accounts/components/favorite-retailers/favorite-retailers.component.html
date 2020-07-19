@@ -1,0 +1,77 @@
+<div *ngIf="loginUser">
+    <div class="container-grid">
+        <!-- 
+            Login account section coming from App.component.html
+         -->
+       
+         <!-- 
+            Title Seccion
+         -->
+        <div class="buyer-title-section">
+            <span>Vendedores favoritos</span>
+        
+              <button 
+                class="style_add_button"
+                (click)="addFavoriteRetailer()"
+                mat-button color="primary">Agregar</button>
+
+        </div>
+        
+         <!-- 
+            Favorite stores section
+         -->
+        <div class="buyer-stores-section">
+           
+    
+                <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
+                    
+                    <ng-container 
+                    *ngIf = "subs.state$.requests.getBuyers.inProgress ;
+                        then showLoading ;
+                        else showFavoriteRetailers">
+                    </ng-container>
+
+                    <ng-template #showLoading> 
+                        <div class="grid_loading_display">
+                           <div class="login_brand_area">
+                               <h1> Cargando ...</h1>
+                           </div>
+                           <div class="loading_symbol_area">
+                               <mat-spinner >  </mat-spinner>
+                           </div>
+                        </div>
+                         
+                   </ng-template>
+                    
+                    <ng-template #showFavoriteRetailers>
+                         <div class="stores_grid">
+                            <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
+                                <div (click)="goToRetailerStoreView(favoriteRetailer)" class="store_grid">
+                                    <div class="store_image_area">
+                                        <!-- <img src="../../../assets/fruit-images/fruits_portal_img.jpg" alt=""> -->
+                                        <img src="assets/fruit-images/fruits_portal_img.jpg" alt="">
+                                    </div>
+                                    <div class="store_name_area">{{favoriteRetailer.storeName}}</div>
+                                    <div class="store_visit_area">{{favoriteRetailer.email}}</div>
+                                    <div class="store_service_area">
+                                        <span *ngIf="(favoriteRetailer.isDeliveryService)"> Delivery </span>
+                                        <span *ngIf="(favoriteRetailer.isPickUpService)"> Recojo </span>
+                                    </div>
+                                </div>
+        
+                            </ng-container>
+                        </div>
+                    </ng-template>
+                    
+                </ng-container>
+           
+        </div>
+
+        <!-- <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
+            <ng-container *ngIf="subs.state$.requests.getBuyers.inProgress ; then showLoading; else show"></ng-container>
+                <ng-template #showLoading> LOADDING</ng-template>
+                <ng-template #show> DONE</ng-template>
+        </ng-container> -->
+        
+    </div>
+</div>

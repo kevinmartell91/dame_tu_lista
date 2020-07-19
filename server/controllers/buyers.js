@@ -2,6 +2,7 @@
 // Load required packages
 var Buyer = require('../models/buyers');
 const Retailer = require('../models/retailers');
+const Order = require('../models/orders')
 
 // creating endpoint /api/buyers POST
 exports.postBuyers = function(req, res) {
@@ -197,4 +198,52 @@ exports.updateBuyerAddress = async function(req, res, next) {
 		});
 	}
 
-  }
+}
+
+exports.getOrderHistory = async function(req, res, next) {
+
+	try {
+		const { buyer_id } =  req.params;
+		const { retailer_email } = req.body;
+		console.log("req.params",req.params);
+		console.log("req.body",req.body);
+		
+		const orderHistory = await Order.find({'shipping.buyer._id' : buyer_id});
+		// .then(
+		// 	orders => {
+		// 		return Order.
+		// 			find({'tracking.orderStatus[0][0]': {$gte: '2020-06-18' ,$lte: '2020-06-19' }})
+		// 	}
+		// );
+
+		
+
+		console.log("orderHistory KEVIN=> ", orderHistory);
+		// let newFavoriteRetailer = {
+		// 	_id: retailer._id,
+		// 	storeName: retailer.store.name,
+		// 	isDeliveryService: retailer.store.isDeliveryService,
+		// 	isPickUpService: retailer.store.isPickUpService,
+		// 	storeImgUrl: retailer.store.imgUrl,
+		// 	email: retailer.email,
+		// 	phoneNumber: retailer.phoneNumber
+		// }
+	
+		// console.log("KEVIN => ", newFavoriteRetailer);
+		// const buyer = await Buyer.findById(buyer_id);
+		
+		// buyer.myFavoriteRetailers.push(newFavoriteRetailer);
+		// const oldBuyer = await buyer.save();
+		
+		res.json({
+			success: true,
+			status: 200,
+			message: "orderHistory retrieved",
+			entity: orderHistory
+		  });
+	} catch (error) {
+		res.status(500).send(error);
+		console.log(error);
+	}
+
+}

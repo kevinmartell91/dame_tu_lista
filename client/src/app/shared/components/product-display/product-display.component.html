@@ -31,33 +31,34 @@ class="product_type_area">
 
 
 <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
-[ngClass]="{product_add_area: true , quantity_increased: isQuantityIncreased}">
+    [ngClass]="{product_add_area: true}">
 
-<ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showAddButton"></ng-container>
+    <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showAddButton"></ng-container>
         
-        <ng-template #showAddButton>
-            <div (click)="enableQuantityMode()">
-                {{quantityStr}}
-            </div>
-        </ng-template>
+    <ng-template #showAddButton>
+        <div [ngClass]="{style_add_button: true, quantity_increased: isQuantityIncreased}"
+            (click)="enableQuantityMode()">
+            {{quantityStr}}
+        </div>
+    </ng-template>
 
-        <ng-template #showAddOptions >
-            <app-add-button 
-                [isSizeAvailable]="isSizeAvailable" 
-                [isKiloUnitAvailable]="isKiloUnitAvailable"
-                [size]="size"
-                [isCartProductButtonType]="false"
-                [isKilo]="product.isKilo"
-                [product]="product"
-                [quantity]="quantity"
-                (quantityUpdated)="onQuantityUpdated($event)"
-                (kiloOrUnitUpdated)="onMassUpdated($event)"
-                (sizeUpdated)="onSizeUpdated($event)">
-            </app-add-button>
+    <ng-template #showAddOptions >
+        <app-add-button 
+            [isSizeAvailable]="isSizeAvailable" 
+            [isKiloUnitAvailable]="isKiloUnitAvailable"
+            [size]="size"
+            [isCartProductButtonType]="false"
+            [isKilo]="product.isKilo"
+            [product]="product"
+            [quantity]="quantity"
+            (quantityUpdated)="onQuantityUpdated($event)"
+            (kiloOrUnitUpdated)="onMassUpdated($event)"
+            (sizeUpdated)="onSizeUpdated($event)">
+        </app-add-button>
 
-        </ng-template>
-    </div>
-
+    </ng-template>
+    
+</div>
 
     <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
             && product.isMaturityDetails" 

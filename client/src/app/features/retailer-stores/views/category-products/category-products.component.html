@@ -1,5 +1,3 @@
-<hr>
-
 <ng-container 
     *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
     
@@ -21,13 +19,19 @@
     </ng-template>
 
     <ng-template #showCategoryList>
+
         <div class="display_products_grid">
-            <ng-container  
-                *ngFor='let product of _filterAllProductsByCategory(subs.state$.productsList.products)'>
-                <app-product-display-shared typeView="categoryView" [product]="product"
-                    (selected)=onSelected($event)></app-product-display-shared>
-            </ng-container>
+
+            <div class="display_products_area">
+                <ng-container  
+                    *ngFor='let product of _filterAllProductsByCategory(subs.state$.productsList.products)'>
+                    <app-product-display-shared typeView="categoryView" [product]="product"
+                        (selected)=onSelected($event)></app-product-display-shared>
+                </ng-container>
+            </div>
+            
         </div>
+
     </ng-template>
 
 </ng-container>

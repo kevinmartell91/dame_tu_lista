@@ -13,59 +13,61 @@ $buyer_cart_number_font_size: 1.7em
 * 
   box-sizing: border-box 
 
-
-.buyer_account_cart_area
-  gird-area: account_cart
+.continer_grid
   display: grid
-  margin: .3em
-  padding: .3em .3em 0em .3em 
+  padding: 3px 5px 3px 5px
   grid-template-columns: 3fr 1fr
   grid-template-rows: 1fr
-  grid-gap: 10px
-  grid-template-areas: "account  cart"
-  border: 1px
-  border-radius: 10px
+  grid-template-areas: "account_cart cart"
+  z-index: 3
+  position: fixed
+  background: #fafafafa
+  width: 100%
 
-  .buyer_account_area
-    grid-area: account
+  .buyer_account_cart_area
+    grid-area: account_cart
     display: grid
-    margin: .2em
-    grid-template-columns: 55px 1fr
-    grid-template-rows: .1fr 1fr 1fr
-    grid-template-areas: "icon ." "icon name" "icon accountDetail"
-    grid-gap: 5px
-    
-  .buyer_personal_icon_area
-    grid-area: icon
-    font-size: 100px
-    padding: 5px
-    border-radius: 10px
-    background-color: #f7f7f7
+    margin: 0em
+    padding: .6em
+    grid-template-columns: 1fr
+    grid-template-rows: 1fr
+    grid-gap: 10px
+    grid-template-areas: "account"
+    border: 1px
+    z-index: 3
+    background: transparent
+    width: 100%
 
-  .buyer_name_area
-    grid-area: name
-    font-size: $buyer_name_font_size
-    font-weight: 700
+    .buyer_account_area
+      grid-area: account
+      display: grid
+      margin: .2em
+      grid-template-columns: 55px 1fr
+      grid-template-rows: .1fr 1fr 1fr
+      grid-template-areas: "icon ." "icon name" "icon accountDetail"
+      grid-gap: 5px
+      
+      .buyer_personal_icon_area
+        grid-area: icon
+        font-size: 100px
+        padding: 5px
+        border-radius: 10px
+        background-color: #f7f7f7
 
-  .buyer_view_account_area
-    grid-area: accountDetail
-    font-size: $buyer_view_account_font_size
-    cursor: pointer
-    .style_logout
-      color: mat-color($primary, darker, 0.5)
+      .buyer_name_area
+        grid-area: name
+        color: #737373
+        font-size: $buyer_name_font_size
+        font-weight: 700
 
-  .buyer_cart_area
-    grid-area: cart
-    margin: 0px
-    padding: 3px 5px 3px 5px
-    justify-self: end
-    align-self: center
-    border-radius: 15px
-    background-color: #43b02b
-    font-size: $buyer_cart_number_font_size
-    color: white
-    cursor: pointer
+      .buyer_view_account_area
+        grid-area: accountDetail
+        font-size: $buyer_view_account_font_size
+        cursor: pointer
+        .style_logout
+          color: mat-color($primary, darker, 0.5)
 
+      
   .navegation_grid
     display: grid
     margin: 0 
@@ -85,3 +87,37 @@ $buyer_cart_number_font_size: 1.7em
       justify-self: start
       align-self: center
       color: #737373
+  
+
+  .buyer_cart_area
+    grid-area: cart
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-areas: "icon quant"
+    margin: 10px
+    padding: 6px 5px 7px 31px
+    justify-self: end
+    align-self: center
+    border-radius: 15px
+    background-color: transparent
+    font-size: $buyer_cart_number_font_size
+    color: white
+    z-index: 4 
+
+    .cart_icon_area
+      grid-area: icon
+      margin: 6px 0px 3px -12px
+      z-index: 3
+
+
+    .quantity_area
+      grid-area: quant
+      margin: -47px 0px -3px 6px
+      border-radius: 22px
+      height: 36px
+      width: 36px
+      text-align: center
+      padding: 8px
+      background: #43b02b
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { AuthenticationStore  } from "../../core/login/services/authentication.store";
 import { LoginUser } from 'src/app/core/login/types/user';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRetailerModalComponent } from "./components/add-retailer-modal/add-retailer-modal.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-buyer-accounts',
@@ -24,39 +25,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BuyerAccountsComponent implements OnInit, OnDestroy{
 
-  loginUser: LoginUser;
-  buyer_id: string;
-  subscription: Subscription;
-
-  dialogRef: any;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
   constructor(
     private router: Router,
     private authenticationStore: AuthenticationStore,
-    private buyerNavegationStore: BuyerNavegationStore,
-    public buyerAccountStore: BuyerAccountStore,
-    private cartStore: CartStore,
-    private snackBarService: MatSnackBar,
-    private matDialog: MatDialog) { 
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
+    ) { 
 
-        
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);    
 
-    this.subscription = this.authenticationStore.loginUser$.subscribe(
-      (data : any) => { 
-        this.loginUser = data;
-        console.log("authenticationStore  => loginUser$", data);
-
-    // wired issue in this subscription (it is not in sync)
-    // temp solution via retrieveing buyer_id through localstorage
-    let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
-    this.buyer_id = loginUserLocalStorage.entity._id;
-    // console.log("localStorage", this.buyer_id, data.entity._id);
-    this.buyerAccountStore.init(this.buyer_id);
-    // ====================================================       
-      
-        
-      }
-    );
+   
 
   }
   
@@ -71,83 +54,19 @@ export class BuyerAccountsComponent implements OnInit, OnDestroy{
    * in a variable.
    */
   ngOnInit(): void {
+   
+
+
+  }
+
     
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.accountView
-    );
-
-
-
+  logout():void {
+    this.authenticationStore.logout();
+    this.router.navigateByUrl('login');
   }
 
   ngOnDestroy(){
     // this.subscription.unsubscribe();
-  }
-
-  goToRetailerStoreView(retailer: Retailer): void {
-
-    // In order to keep the selected favorite retailer _id,
-    // we store it in cartStore. So its subscribers will
-    // about which one was selecetd from other components
-    // such as this one and cart component to generate a
-    // new order which requieres favorite reatiler _id.
-    this.cartStore.setFavoriteRetalerSelected(retailer);
-
-    this.router.navigate(['/tienda-vendedor/',retailer._id]);
-  }
-
-  viewBuyerCart(): void {
-    this.router.navigate(['/buyer-cart']);
-  }
-  
-  viewBuyerDetails():void {
-    this.router.navigate(['/buyer-details']);
-  }
-  
-  logout():void {
-    this.authenticationStore.logout();
-    this.router.navigate(['/login']);
-  }
-
-  addFavoriteRetailer(): void {
-
-    this.dialogRef = this.matDialog.open(AddRetailerModalComponent, {
-      width: '320px'
-    });
-    
-    this.dialogRef.afterClosed().subscribe( result => {
-
-      let message = "Ya agregaste al vendedor."
-
-      if(result != undefined){
-        let email = result.retailer_email;
-
-        if(this.isNewFavoriteRetailer(email)){
-          
-          message = "Vendedor agregado."
-          console.log("addFavoriteRetailer", result);
-          let retailer_email = email;
-          this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
-       
-        } 
-        this.openSnackBar( message,"Cerrar");
-      }
-      
-    });
-
-  }
-
-  isNewFavoriteRetailer(email: string): boolean {
-    let favRet =  this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers;
-    console.log("myFavoriteRetailers", favRet);
-    return  Boolean(favRet.find( function (fr) { return fr.email == email}));
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBarService.open(message, action, {
-      duration: 2000,
-    });
   }
 
 

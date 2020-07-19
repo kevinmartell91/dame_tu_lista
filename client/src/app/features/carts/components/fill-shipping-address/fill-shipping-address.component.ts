@@ -178,8 +178,9 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
        this.addressForm.patchValue({
         streetName: "Recojo en tienda",
         streetNumber: "Recojo en tienda",
-        district: "SURQUILLO",
+        district: "Tienda",
         city: "LIM",
+        details: "pickup"
        });
       console.log(this.addressForm.value);
     } else {
@@ -188,6 +189,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
         streetNumber: "",
         district: "",
         city: "",
+        details: ""
        });
     }
 

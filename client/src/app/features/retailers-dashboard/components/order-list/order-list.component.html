@@ -30,11 +30,21 @@
             <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i, order)">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="panel_title_grid">
-                        <div 
-                            class="district_area"
-                            (click)="openOderDetailModal(order)">
-                            {{order.shipping.address.district}}
+                        <div class="district_area">
+                            <!-- {{order.shipping.address.district}} -->
+                            <span 
+                                *ngIf=" order.orderType == 'delivery'" 
+                                (click)="openOderDetailModal(order)">
+                                Delivery
+                            </span>
+                       
+                            <span
+                                *ngIf=" order.orderType == 'pickup'" >
+                                En tienda
+                            </span>
                         </div>
+                      
+                           
                         
                         <div class="buyer_area">
                             <img src="../../../../../assets/icons/payroll-20px.png" alt=""

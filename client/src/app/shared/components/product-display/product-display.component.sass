@@ -111,29 +111,33 @@ $box_add_button_size: 30px
 // add button area  
 .product_add_area
   grid-area: add
-  align-self: start
-  font-weight: bold
-  touch-action: manipulation
-  border: 1px solid rgb(67, 176, 42)
-  border-radius: 20px
-  font-weight: 100
-  white-space: nowrap
-  user-select: none
-  -webkit-font-smoothing: antialiased
-  background-image: none
-  display: inline-flex
-  align-items: center
-  padding: 0px
-  font-size: 12px
-  height: $box_add_button_size
-  background-color: white
-  color: rgb(67, 176, 42)
-  min-width: $box_add_button_size
-  top: 8px
-  right: 8px
-  justify-content: center
 
-  
+  .style_add_button
+    align-self: start
+    font-weight: bold
+    touch-action: manipulation
+    border: 1px solid rgb(67, 176, 42)
+    border-radius: 20px
+    font-weight: 100
+    white-space: nowrap
+    user-select: none
+    -webkit-font-smoothing: antialiased
+    background-image: none
+    display: inline-flex
+    align-items: center
+    padding: 0px
+    font-size: 12px
+    height: $box_add_button_size
+    background-color: white
+    color: rgb(67, 176, 42)
+    min-width: $box_add_button_size
+    top: 8px
+    right: 8px
+    justify-content: center
+
+  .quantity_increased
+    background-color: rgb(67, 176, 42)
+    color: white
 
 // taking advantage of "add" grid-area
 // to add organic and size area
@@ -245,6 +249,4 @@ $box_add_button_size: 30px
   color: $third_text_color
   transform: translate3d(98px, -1px, 0px)
 
-.quantity_increased
-  background-color: rgb(67, 176, 42)
-  color: white
+

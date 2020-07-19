@@ -90,7 +90,7 @@ export class OrderStore extends Store<OrderStoreState>{
         )
     }
 
-    private getOrdersByRetailerId(retailer_id: string): void {
+    private getOrdersByRetailerIdOrigin(retailer_id: string): void {
 
         this.reloadOrderListByRetailerId$
         .pipe(
@@ -113,6 +113,27 @@ export class OrderStore extends Store<OrderStoreState>{
                 }),
                 retry(),
                 takeUntil(this.ngUnsubscribe$)
+            )
+            .subscribe();
+    }
+
+    
+    private getOrdersByRetailerId(retailer_id: string) {
+
+        return this.http.getOrdersByReatilerId(retailer_id, this.storeRequestStateUpdater)
+            .pipe(
+                map( (res: any) => {
+                    let orders: Order[]=[];
+                    res.data.forEach(ele => {
+                        orders.push(new Order().deserialize(ele));
+                    });
+                    
+                    console.log("Orders by retailer Id - Store - getOrdersByRetailerId()", orders);
+                    this.setState({
+                        ...this.state,
+                        orderListByRetailerId : orders
+                    })
+                })
             )
             .subscribe();
     }

@@ -1,6 +1,6 @@
 $text-font-size: 1.5em
 $sign-font-size: 2.5em
-$quantity-font-size-product-display: 1.5em
+$quantity-font-size-product-display: 20px
 $quantity-font-size-cart-product: 1.3em
 $quantity-color: #5f5f5f
 $optionsColor: #43b02a
@@ -24,14 +24,15 @@ $box-size: 40px
   display: grid
   margin: 0
   padding: 0em
-  grid-template-columns: 40px 80px 40px
+  grid-template-columns: 33px 95px 33px
   grid-template-rows: $box-size 
   grid-template-areas: "decre number incre"
   background-color: white
   border-radius: $border-radius
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px
   user-select: none
-  transform: translate(-60px, -4px)
+  transform: translate(-127px, -4px)
+  width: fit-content
   div:empty 
     display: none 
 
@@ -47,7 +48,7 @@ $box-size: 40px
     
   .number_area
     grid-area: number
-    padding: 7px
+    padding: 10px 3px 7px 3px
     width: 100%
     height: $box-size
     font-size: $quantity-font-size-product-display

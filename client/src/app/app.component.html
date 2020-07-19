@@ -5,29 +5,28 @@
             <!-- Because no logic is implemented, It used a as proxy to pass the state here -->
             <ng-container *ngIf="(buyerNavegationStore.state$ | async) as subs">
                 <!-- {{subs.buyerNavegation.typeView}} -->
-                <div class="buyer_account_cart_area">
+                <div class="continer_grid">
                     
                     <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
-                    <div [ngSwitch]="subs.buyerNavegation.typeView">
+                    <ng-container [ngSwitch]="subs.buyerNavegation.typeView">
                         
                 
-                        <div *ngSwitchCase="navegation.accountView" class="buyer_account_area">
-                            <div class="buyer_personal_icon_area" 
-                                (click)="viewBuyerDetails()">
-                                <img class="buyer_icon" src="../assets/icons/person-green-36dp.svg" alt="">
-                            </div>
-                
-                            <div class="buyer_name_area" >
-                                <span> {{loginUser.name}} </span>
-                            </div>
-                            <!-- <button (click)="logout()">logout</button> -->
-                            
-                            <!-- <button (click)="logout()">logout</button> -->
+                        <div *ngSwitchCase="navegation.accountView" class="buyer_account_cart_area">
+                             <div  
+                                class="buyer_account_area">
 
-
-                            <div class="buyer_view_account_area" >
-                                <!-- <span (click)="viewBuyerDetails()">Ver cuenta</span> -->
-                                <span class="style_logout" (click)="logout()">Cerrar sesión</span>
+                                <div class="buyer_personal_icon_area" 
+                                    (click)="viewBuyerDetails()">
+                                    <img class="buyer_icon" src="../assets/icons/person-green-36dp.svg" alt="">
+                                </div>
+                    
+                                <div class="buyer_name_area" >
+                                    <span> {{loginUser.name}} </span>
+                                </div>
+    
+                                <div class="buyer_view_account_area" >
+                                    <span class="style_logout" (click)="logout()">Cerrar sesión</span>
+                                </div>
                             </div>
                         </div>
                 
@@ -78,14 +77,25 @@
                         <!-- nothing to render when StoreView is selected -->
                         <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
                     
-                    </div>
+                    </ng-container>
                     
                     <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView &&
-                                subs.buyerNavegation.typeView !== navegation.thanksView" class="buyer_cart_area">
+                                subs.buyerNavegation.typeView !== navegation.thanksView" 
+                                class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
                         <div (click)="viewBuyerCart()">
-                            <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
-                            <span>{{cartProductsQuantity}}</span>
+                            <div class="cart_icon_area">
+                                <img  src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
+                            </div>
+                            <div class="quantity_area">
+                                {{cartProductsQuantity}}
+
+                            </div>
+<!-- 
+                            <mat-icon matBadge="{{cartProductsQuantity}}" matBadgeColor="primary">
+                                <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
+                            </mat-icon> -->
+                                                           
                         </div>
                     </div>
                 </div>
@@ -94,7 +104,7 @@
 
         </div>
         <div *ngSwitchCase="loginType.retailer">
-            retailer
+            <!-- retailer -->
         </div>
     </ng-container>
 
