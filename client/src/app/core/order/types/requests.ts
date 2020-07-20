@@ -7,4 +7,5 @@ export interface Requests {
     postOrders: RequestState;
     getOrders: RequestState;
     getOrdersByRetailerId: RequestState;
+    getOrdersByBuyerId: RequestState;
 }

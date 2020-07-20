@@ -1,0 +1,92 @@
+<div class="continer_grid">
+    <div class="product_area">
+        
+        <div class="img_area">
+            <img src="{{cartProductOrder.varietyImageUrl}}" alt="">
+            <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
+        </div>
+
+        <div class="product_name_area" >
+            <!-- (click)="disableQuantityMode()"> -->
+            {{cartProductOrder.categoryName}} - {{cartProductOrder.varietyName}}
+            <!-- <span *ngIf="cartProductOrder.isOrganic">Orgánico</span>
+            <span *ngIf="cartProductOrder.isOrganic === false">Normal</span> -->
+        </div>
+
+        <div class="product_kilo_unit_size_area">
+            <!-- (click)="disableQuantityMode()"> -->
+            S/.{{cartProductOrderPriceStr}}
+            <span *ngIf="cartProductOrder.isKilo" 
+                class="style_price_per_unit_or_kg">
+                 Kg.
+            </span>
+            <span *ngIf="cartProductOrder.isUnit" 
+                class="style_price_per_unit_or_kg">
+                 Uni.
+            </span>
+            <span *ngIf="cartProductOrder.isSmallSize" 
+                class="style_price_per_unit_or_kg">
+                 / Pequeño
+            </span>
+            <span *ngIf="cartProductOrder.isMediumSize" 
+                class="style_price_per_unit_or_kg">
+                 / Mediano
+            </span>
+            <span *ngIf="cartProductOrder.isBigSize" 
+                class="style_price_per_unit_or_kg">
+                 / Grande
+            </span>
+        </div>
+        
+        <div class="product_detail_area">
+            
+
+            <span class="style_maturity_details">
+                {{cartProductOrder.maturityName}}. 
+            </span> 
+            
+            <span class="style_maturity_field">
+                Comer en:
+            </span>
+            
+            <span class="style_maturity_details">
+                {{cartProductOrder.maturityEatIn}} días
+            </span> 
+            
+            <span class="style_maturity_field">
+                 Y te durá: 
+            </span>
+            
+            <span class="style_maturity_details">
+                {{cartProductOrder.maturityLastFor}} días
+            </span> 
+
+        </div>
+
+
+        
+        <div class="quatity_area">
+            {{cartProductOrder.quantity}}
+        </div>
+
+        
+        <div class="total_price_area" >
+            S/.{{cartProductOrderTotalPriceStr}} 
+        </div>
+
+    </div>
+    <div class="options_area">
+        <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
+
+        <div class="add_detail_area">
+         <!-- (click)="openAddCartProductDetailModal()"> -->
+            <img src="../../../../../../../assets/icons/edit-15dp.svg" alt=""> 
+            Comentarios
+        </div>
+        <div class="remove_area">
+         <!-- (click)="deleteCartProduct()"> -->
+            <img src="../../../../../../../assets/icons/delete-15dp.svg" alt=""> 
+            Eliminar
+        </div>
+    </div>
+</div>

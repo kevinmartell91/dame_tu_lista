@@ -47,6 +47,13 @@ export class RegisterRetailerComponent implements OnInit {
           
           this.openSnackBar("Se creó se usuario","Cerrar");
           this.loading = false;
+
+          this.registerRetailerForm.patchValue({
+            name: "",
+            password: "",
+            email: ""
+          });
+        
         
         } else {
           

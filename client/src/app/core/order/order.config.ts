@@ -25,6 +25,10 @@ export const ORDER_CONFIG = {
         getOrdersByRetailerId: {
             name: "getOrdersByRetailerId",
             url: `${APP_CONFIG.apiBaseUrl}/orders-by-retailer-id/`
+        },  
+        getOrdersByBuyerId: {
+            name: "getOrdersByBuyerId",
+            url: `${APP_CONFIG.apiBaseUrl}/buyer-order-history/`
         }  
     },
     orderStatus: {

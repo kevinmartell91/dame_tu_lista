@@ -15,6 +15,7 @@ export class OrderStore extends Store<OrderStoreState>{
 
     order$: Observable<Order>;
     orderListByRetailerId$: Observable<Order[]>;
+    orderListByBuyerId$: Observable<Order[]>;
     private ngUnsubscribe$: Subject<undefined> = new Subject();
     private reloadOrderListByRetailerId$ : Subject<undefined> = new Subject();
 
@@ -27,6 +28,7 @@ export class OrderStore extends Store<OrderStoreState>{
 
         this.order$ = this.state$.pipe(map ( state => state.order))
         this.orderListByRetailerId$ = this.state$.pipe(map ( state => state.orderListByRetailerId));
+        this.orderListByBuyerId$ = this.state$.pipe(map (state => state.orderListByBuyerId));
 
         this.storeRequestStateUpdater = 
             endpointHelpers.getStoreRequestStateUpdater(this);
@@ -49,6 +51,13 @@ export class OrderStore extends Store<OrderStoreState>{
         this.reloadOrderListByRetailerId();
 
     }
+
+    initOrderByBuyerId(retailer_id: string):void {
+        this.getOrdersByBuyerId(retailer_id);
+        // this.reloadOrderListByRetailerId();
+
+    }
+
     reloadOrderListByRetailerId() : void {
         this.reloadOrderListByRetailerId$.next();
     }
@@ -132,6 +141,26 @@ export class OrderStore extends Store<OrderStoreState>{
                     this.setState({
                         ...this.state,
                         orderListByRetailerId : orders
+                    })
+                })
+            )
+            .subscribe();
+    }
+
+    private getOrdersByBuyerId(retailer_id: string) {
+
+        return this.http.getOrdersByBuyerId(retailer_id, this.storeRequestStateUpdater)
+            .pipe(
+                map( (res: any) => {
+                    let orders: Order[]=[];
+                    res.data.forEach(ele => {
+                        orders.push(new Order().deserialize(ele));
+                    });
+                    
+                    console.log("Orders by buyer Id - Store - getOrdersByBuyerId()", orders);
+                    this.setState({
+                        ...this.state,
+                        orderListByBuyerId : orders
                     })
                 })
             )

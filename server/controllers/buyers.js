@@ -239,7 +239,7 @@ exports.getOrderHistory = async function(req, res, next) {
 			success: true,
 			status: 200,
 			message: "orderHistory retrieved",
-			entity: orderHistory
+			data: orderHistory
 		  });
 	} catch (error) {
 		res.status(500).send(error);

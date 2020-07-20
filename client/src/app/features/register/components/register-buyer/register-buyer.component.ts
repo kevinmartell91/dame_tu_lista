@@ -51,6 +51,12 @@ export class RegisterBuyerComponent implements OnInit {
           this.openSnackBar("Se creó se usuario","Cerrar");
           this.loading = false;
           this.registerBuyerForm.setValue = null;
+
+          this.registerBuyerForm.patchValue({
+            name: "",
+            password: "",
+            email: ""
+          });
         
         } else {
           

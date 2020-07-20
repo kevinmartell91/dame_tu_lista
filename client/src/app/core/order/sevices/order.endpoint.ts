@@ -138,4 +138,36 @@ export class OrderEndPoint  {
         )
     }
 
+    getOrdersByBuyerId(
+        buyer_id: string,
+        requestStateUpdater: StoreRequestStateUpdater
+    ) {
+        console.log("API", buyer_id);
+        const options = getHeadersForGet();
+        const request = ORDER_CONFIG.request.getOrdersByBuyerId;
+        
+        requestStateUpdater(request.name, {
+            inProgress: true
+        })
+        
+        console.log("API", request.url);
+        return this.http.get<any>(request.url + buyer_id, options).pipe(
+            map( (response: any) => {
+                requestStateUpdater(request.name,{
+                    inProgress: false
+                });
+                console.log("API response", response);
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                requestStateUpdater(request.name,{
+                    inProgress: false,
+                    error: true
+                });
+                console.log("ERROR",error);
+                return throwError(error);
+            })
+        )
+    }
+
 }

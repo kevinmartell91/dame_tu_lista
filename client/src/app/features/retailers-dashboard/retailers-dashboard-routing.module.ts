@@ -7,10 +7,10 @@ const routes: Routes = [
   { 
     path: '', component: RetailersDashboardComponent ,
     children : [
-      { path: '', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: '', loadChildren: () => import('./components/profile-settings/profile-settings.module').then(m => m.ProfileSettingsModule) },
       { path: 'ordenes', loadChildren: () => import('./components/order-list/order-list.module').then(m => m.OrderListModule) },
-      { path: 'productos', loadChildren: () => import('./components/product-list/product-list.module').then(m => m.ProductListModule) },
-      { path: 'perfil-cuenta', loadChildren: () => import('./components/profile-settings/profile-settings.module').then(m => m.ProfileSettingsModule) },
+      // { path: 'productos', loadChildren: () => import('./components/product-list/product-list.module').then(m => m.ProductListModule) },
+      // { path: 'perfil-cuenta', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule) },
     ]
   },
 ];

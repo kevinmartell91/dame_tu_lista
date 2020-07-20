@@ -1,0 +1,258 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+
+
+$panel_title_grid_size: 12px
+$box_container_size: 320px
+
+* 
+  box-sizing: border-box 
+
+
+h1
+  font-size: 30px
+  text-align: center
+  color: #7c7c7c
+
+.container
+
+
+
+  .grid_loading_display
+    display: grid
+    grid-template-columns: 1fr $box_container_size 1fr
+    grid-template-rows: 1fr 1fr
+    grid-template-areas: ". brand ." ". loading ."
+    transform: translateY(40%)
+    
+    .login_brand_area
+      grid-area: brand
+      color: mat-color($primary, default, 1)
+      h1
+        font-size: 30px
+        text-align: center
+      
+    .loading_symbol_area
+      grid-area: loading
+      justify-self: center
+      align-self: center  
+
+  // Panel-titel grid
+  // ========================================
+  .panel_title_grid
+    display: grid
+    grid-template-columns: 100px 100px 20px 20px
+    grid-template-areas: "dstrct pers . wimg"
+    grid-gap: 2px
+
+    .district_area
+      grid-area: dstrct
+
+    .buyer_area
+      grid-area: pers
+      justify-self: end
+
+    .whatapp_img_area
+      grid-area: wimg
+
+
+  // Panel-titel grid
+  // ========================================
+  .status_grid
+    display: grid
+    grid-template-columns: 40px 20px
+    grid-template-areas: "cart stat"
+    grid-gap: 1px
+    
+    .cart_area
+      grid-area: cart
+    
+    .status_area
+      grid-area: stat
+
+
+
+  .mat-expansion-panel-body
+    padding: 0 0px 0px 18px
+    
+  .mat-expansion-panel-header-title 
+    color: #43b02a
+
+
+  .mat-expansion-panel-header 
+      font-family: inherit
+
+  .mat-expansion-panel-header-description
+      display: flex
+      flex-grow: 1
+      margin: 4px 0px 7px 0px
+
+
+
+  // Product-list grid Movile
+  // ========================================
+  .product_list_grid_mobile
+    display: grid
+    margin: 0
+    padding: 0px 0px 0px 0px
+    grid-template-columns: repeat(auto-fit, minmax(320px,1fr))
+    grid-gap: 20px
+
+  .style_order_complete
+    float: right
+
+
+
+
+
+
+      
+
+  // $panel_title_grid_size: 20px
+
+  // $image_mobile_size: 30px
+  // $image_desktop_size: 100px
+
+  // $product_size_container: 300px
+
+  // * 
+  //   box-sizing: border-box 
+
+
+
+
+  // // ========================================
+  // // ========================================
+  // // Order List
+  // // ========================================
+  // // ========================================
+  // h1
+  //   font-size: 40px
+  //   color: #7c7c7c
+
+
+
+  // // Product-list grid Movile
+  // // ========================================
+  // .product_list_grid_mobile
+  //   display: grid
+  //   margin: 0
+  //   padding: 0px 0px 0px 0px
+  //   grid-template-columns: repeat(auto-fit, minmax($product_size_container,1fr))
+  //   grid-gap: 10px
+
+  //   div 
+  //     border: 0px solid #45B02A 
+  //     border-radius: 1px
+  //     background-color: white
+  //     padding: 0.2em
+  //     color: green
+
+  //   // Product grid 
+  //   // ========================================
+  //   .product_grid
+  //     display: grid
+  //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+  //     grid-template-rows: 1fr 
+  //     grid-template-areas: "img name type quan last"
+  //     grid-gap: 0px
+    
+  //     div 
+  //       border: 0px solid rgb(0,95,107)
+  //       border-radius: 0px
+  //       background-color: #fafafa
+  //       padding: 0.2em
+  //       color: #43b02a
+    
+    
+  //     .product_name
+  //       grid-area: name
+    
+  //     .product_image
+  //       grid-area: img
+  //       width: $image_mobile_size
+  //       height: $image_mobile_size
+  //       align-self: center
+  //       justify-self: center
+    
+  //       div
+  //           overflow: hidden
+  //           background-size: cover
+  //           background-position: center
+  //           height: inherit
+    
+  //     .product_quantity
+  //       grid-area: quan
+  //       font-size: 14px
+    
+  //     .product_type
+  //       grid-area: type
+    
+  //     .product_last_for
+  //       grid-area: last
+
+
+
+  //   // Product-list grid Desktop
+  //   // ========================================
+  // .product_list_grid_desktop
+  //   display: grid
+  //   margin: 0
+  //   padding: 0px 0px 0px 0px
+  //   grid-template-columns: repeat(auto-fit, minmax($product_size_container,1fr))
+  //   grid-gap: 10px
+    
+  //   div 
+  //     border: 0px solid #45B02A 
+  //     border-radius: 1px
+  //     background-color: white
+  //     padding: 0.2em
+  //     color: green
+    
+  //   // Product grid 
+  //   // ========================================
+  //   .product_grid
+  //     display: grid
+  //     grid-template-columns: 1fr 1fr 1fr
+  //     grid-template-rows: 1fr 1fr 1fr
+  //     grid-template-areas: "img quan name" "img quan type" "img quan last"
+  //     grid-gap: 30px
+      
+  //     div 
+  //       border: 0px solid rgb(0,95,107)
+  //       border-radius: 0px
+  //       background-color: #fafafa
+  //       padding: 0.2em
+  //       color: #43b02a
+      
+      
+  //     .product_image
+  //       grid-area: name
+      
+  //     .product_image
+  //       grid-area: img
+  //       width: $image_desktop_size
+  //       height: $image_desktop_size
+  //       align-self: center
+  //       justify-self: center
+      
+  //       div
+  //           overflow: hidden
+  //           background-size: cover
+  //           background-position: center
+  //           height: inherit
+      
+  //     .product_quantity
+  //       grid-area: quan
+  //       font-size: 34px
+      
+  //     .product_type
+  //       grid-area: type
+      
+  //     .product_last_for
+  //       grid-area: last   
+    
+
+
