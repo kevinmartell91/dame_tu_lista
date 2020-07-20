@@ -2,6 +2,7 @@
 // Load required packages
 var Retailer = require('../models/retailers');
 var Product = require('../models/products');
+var airTable = require('./airtable');
 
 // Create endpoint /api/retailers for POST
 exports.postRetailers = async function(req, res, next) {
@@ -180,6 +181,7 @@ exports.postRetailerProductList = function(req, res) {
     if(err) 
       return res.status(500).send(err);
     
+    retailer.store.productsList= [];
 
     for(var i = 0; i < productsList.length; i++ ){
       retailer.store.productsList.push(productsList[i]);
@@ -265,3 +267,9 @@ exports.putRetailerProductList = function(req, res) {
     });
   });
 };
+
+exports.dltAirtableToMongo = async function(req, res, next) {
+
+  let r = airTable.getAirtableRecords();
+  return (r);
+}
