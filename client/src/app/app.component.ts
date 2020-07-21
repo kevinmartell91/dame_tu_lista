@@ -77,14 +77,14 @@ export class AppComponent implements OnInit, OnDestroy{
       x => { 
         this.loginUser = x;
         console.log("AppComponent - loginUser$", this.loginUser); 
+
+        if( this.loginUser != null){
+          this.initializeNavegationValues();
+          this.initializeLoginTypeValues();
+        }
       }
     );
-    
-    this.initializeNavegationValues();
-
-    this.initializeLoginTypeValues();
-
- 
+  
   }
 
   ngOnInit(): void {
