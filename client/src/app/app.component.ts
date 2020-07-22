@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy{
   ) {
 
     // console.log("retailerStoreStore Started..");
-    // this.retailerStoreStore.getAirTabeDATA();
+    this.retailerStoreStore.getAirTabeDATA();
     
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");

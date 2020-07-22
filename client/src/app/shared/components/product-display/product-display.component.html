@@ -23,7 +23,7 @@
 </div>
 
 <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
-class="product_type_area">
+class="product_variety_area">
 {{product.varietyName}}
 <!-- <span *ngIf="product.isOrganic === false">Normal</span> -->
 </div>
@@ -73,22 +73,22 @@ class="product_type_area">
     <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
             && product.isMaturityDetails" 
         class="product_eatIn_area">
-        <span class="style_maturity_field">
+        <!-- <span class="style_maturity_field">
              Comerlo en:
         </span>
         <span class="style_maturity_details">
             {{product.maturityEatIn}} días
-        </span> 
+        </span>  -->
     </div>
     
     <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') && product.isMaturityDetails" 
         class="product_lastFor_area">
-        <span class="style_maturity_field">
+        <!-- <span class="style_maturity_field">
              Y te durá: 
         </span>
         <span class="style_maturity_details">
             {{product.maturityLastFor}} días
-        </span> 
+        </span>  -->
     </div>
 
 

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Order } from 'src/app/core/order/types/order';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
+import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 
 @Component({
   selector: 'app-order',
@@ -16,9 +19,16 @@ export class OrderComponent implements OnInit {
   cartProductOrderPriceStr: string;
 
 
-  constructor() { }
+  constructor(
+    private buyerNavegationStore: BuyerNavegationStore
+  ) { }
 
   ngOnInit(): void {
+
+    updateBuyerNavagation(
+      this.buyerNavegationStore,
+      BUYER_CONFIG.navegation.accountView
+    );
 
     this.cartProductOrderPriceStr = this.cartProductOrder.price.toFixed(2);
     this.transformcartProductOrderTotalPriceToStr();
