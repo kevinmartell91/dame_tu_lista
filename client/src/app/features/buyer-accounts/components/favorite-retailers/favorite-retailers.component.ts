@@ -40,15 +40,15 @@ export class FavoriteRetailersComponent implements OnInit {
     this.subscription = this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
         this.loginUser = data;
-        console.log("authenticationStore  => loginUser$", data);
+        // console.log("authenticationStore  => loginUser$", data);
 
-    // wired issue in this subscription (it is not in sync)
-    // temp solution via retrieveing buyer_id through localstorage
-    let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
-    this.buyer_id = loginUserLocalStorage.entity._id;
-    // console.log("localStorage", this.buyer_id, data.entity._id);
-    this.buyerAccountStore.init(this.buyer_id);
-    // ====================================================       
+        // wired issue in this subscription (it is not in sync)
+        // temp solution via retrieveing buyer_id through localstorage
+        let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+        this.buyer_id = loginUserLocalStorage.entity._id;
+        // console.log("localStorage", this.buyer_id, data.entity._id);
+        this.buyerAccountStore.init(this.buyer_id);
+        // ====================================================       
       
         
       }
@@ -100,7 +100,7 @@ export class FavoriteRetailersComponent implements OnInit {
         if(this.isNewFavoriteRetailer(email)){
           
           message = "Vendedor agregado."
-          console.log("addFavoriteRetailer", result);
+          // console.log("addFavoriteRetailer", result);
           let retailer_email = email;
           this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
        
@@ -114,7 +114,7 @@ export class FavoriteRetailersComponent implements OnInit {
 
   isNewFavoriteRetailer(email: string): boolean {
     let favRet =  this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers;
-    console.log("myFavoriteRetailers", favRet);
+    // console.log("myFavoriteRetailers", favRet);
     return  !Boolean(favRet.find( function (fr) { return fr.email == email}));
   }
 
@@ -122,6 +122,12 @@ export class FavoriteRetailersComponent implements OnInit {
     this.snackBarService.open(message, action, {
       duration: 2000,
     });
+  }
+
+  addStoreAutomatically():void {
+    const retailer_email = "keylahuincho@gmail.com";
+    this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
+
   }
 
 }

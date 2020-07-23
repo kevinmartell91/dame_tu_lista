@@ -24,7 +24,8 @@ export class RegisterBuyerComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public buyerStore: BuyerStore,
-    private snackBarService: MatSnackBar ) {
+    private snackBarService: MatSnackBar ,
+    private router: Router) {
 
      }
 
@@ -36,6 +37,21 @@ export class RegisterBuyerComponent implements OnInit {
       // phone_number: ['', Validators.required],
       // login_type: ['', Validators.required]
     }) 
+
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    const emailControl = this.registerBuyerForm.get('email');
+    emailControl.valueChanges.subscribe(val => {
+      
+      val = val.toLowerCase();
+
+      this.registerBuyerForm.get('email').setValue(val, {
+        emitEvent: false,
+        emitModelToViewChange: false
+      });
+    });
   }
   
   onSubmit () {
@@ -43,14 +59,14 @@ export class RegisterBuyerComponent implements OnInit {
     this.loading = true;
     let newBuyer = this.deserialize();
     
-    console.log("onSubmit ()",newBuyer);
+    // console.log("onSubmit ()",newBuyer);
     this.buyerStore.registerNewBuyer(newBuyer).subscribe(
       response => {
         if(response.success){
           
-          this.openSnackBar("Se creó se usuario","Cerrar");
+          this.openSnackBar("Creación de cuenta exitosa! Ingrese como usuario comprador.","");
           this.loading = false;
-          this.registerBuyerForm.setValue = null;
+          this.router.navigate(['/login']);
 
           this.registerBuyerForm.patchValue({
             name: "",
@@ -79,9 +95,10 @@ export class RegisterBuyerComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBarService.open(message, action, {
-      duration: 2000,
+    let snackBarRef = this.snackBarService.open(message, action, {
+      duration: 5000,
     });
+
   }
 
 }

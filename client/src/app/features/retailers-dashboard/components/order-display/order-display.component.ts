@@ -12,7 +12,7 @@ import { DisplayDetailModalComponent } from "../display-detail-modal/display-det
 })
 export class OrderDisplayComponent implements OnInit {
 
-
+  @Input() isOrderProductPackagedCompleted: boolean;
   @Input() cartProductOrder: CartProductOrder;
   @Input() order_id: string;
   @Output() isProductOrderCompleted = new EventEmitter<any>();
@@ -56,7 +56,7 @@ export class OrderDisplayComponent implements OnInit {
 
   isCheckedCompleted(): void {
     // this.isChecked = !this.isChecked;
-    console.log("this.isChecked", this.cartProductOrder.categoryName, this.isChecked);
+    // console.log("this.isChecked", this.cartProductOrder.categoryName, this.isChecked);
     this.isProductOrderCompleted.emit({
       orderCompleted: this.isChecked,
       order_id: this.order_id,

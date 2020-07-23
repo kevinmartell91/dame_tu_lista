@@ -22,7 +22,7 @@ export class OrderHistoryComponent implements OnInit {
     this.subscription = this.orderStore.orderListByBuyerId$.subscribe(
       x => {
         this.ordersHistory = x;
-        console.log("ordersHistory = > KEVIN" ,this.ordersHistory);
+        // console.log("ordersHistory = > KEVIN" ,this.ordersHistory);
       }
     )
 

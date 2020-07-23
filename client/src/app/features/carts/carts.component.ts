@@ -83,7 +83,7 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
-        console.log("listening shoppingCart changes poloooo", this.cartProducts);
+        // console.log("listening shoppingCart changes poloooo", this.cartProducts);
         this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
         // formating to two decimals and as a string
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
@@ -93,7 +93,7 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionFavoriteRetailerSelected = this.cartStore.favoriteRetailerSelected$.subscribe(
       x => {
         this.favoriteRetilerSelected = x;
-        console.log("listening favoriteRetilerSelected changes poloooo",this.favoriteRetilerSelected);
+        // console.log("listening favoriteRetilerSelected changes poloooo",this.favoriteRetilerSelected);
       }
     )
 
@@ -183,7 +183,7 @@ export class CartsComponent implements OnDestroy {
       if(result != undefined){
         
         this.addressOrder = new AddressOrder().deserialize(result);
-        console.log("Address KEVIN from Modal", this.addressOrder);
+        // console.log("Address KEVIN from Modal", this.addressOrder);
         this.openAddPayMethodModal();
       }
 
@@ -200,7 +200,7 @@ export class CartsComponent implements OnDestroy {
       
       if(result != undefined) {
 
-        console.log("pay method from Modal", result);
+        // console.log("pay method from Modal", result);
         this.paymentMethodOrder = result.paymentMethod;
         //setting code area
         this.phoneNumberOrder = "+51" + result.phoneNumber;
@@ -211,7 +211,7 @@ export class CartsComponent implements OnDestroy {
         // then catch this as a convetion in google analytics
         this.createOrderFromShoppingCart();
         
-        console.log("this.buyer updated", this.buyer);
+        // console.log("this.buyer updated", this.buyer);
   
         // this.updatePlaceOrderMessage("Su orden ya fue enviada");        
       }
@@ -280,7 +280,7 @@ export class CartsComponent implements OnDestroy {
     order.cart = cartProductOrder;
 
 
-    console.log("genereteOrder ", typeof(order), JSON.stringify(order) );
+    // console.log("genereteOrder ", typeof(order), JSON.stringify(order) );
 
     // place order DB
     this.orderStore.genereteOrder(order).subscribe( x => {
@@ -293,7 +293,7 @@ export class CartsComponent implements OnDestroy {
   clearCart():void {
     this.cartStore.state.shoppingCart.products = [];
     let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
-    console.log("cartProductsEmpty",cartProductsEmpty);
+    // console.log("cartProductsEmpty",cartProductsEmpty);
     this.cartStore.setCart(cartProductsEmpty);
   }
 
@@ -305,7 +305,7 @@ export class CartsComponent implements OnDestroy {
 
     this.buyerStore.updateBuyerAddress(this.buyer._id, this.addressOrder).subscribe(
       response => {
-        console.log("Se guardó su direccion como frecuente.");        
+        // console.log("Se guardó su direccion como frecuente.");        
       }
     )    
   }

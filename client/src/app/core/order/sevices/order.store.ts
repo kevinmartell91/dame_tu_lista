@@ -33,7 +33,7 @@ export class OrderStore extends Store<OrderStoreState>{
         this.storeRequestStateUpdater = 
             endpointHelpers.getStoreRequestStateUpdater(this);
 
-        console.log("this.storeRequestStateUpdater BRIAN",this.storeRequestStateUpdater);
+        // console.log("this.storeRequestStateUpdater BRIAN",this.storeRequestStateUpdater);
 
     }
 
@@ -70,30 +70,30 @@ export class OrderStore extends Store<OrderStoreState>{
     }
 
     public genereteOrder( order: Order): Observable<any>{
-        console.log("genereteOrder", order);
+        // console.log("genereteOrder", order);
         return this.http.postOrder(this.storeRequestStateUpdater, order).pipe(
             tap( (response: any) => {
-                console.log("DATA ORDER RESPONSE =>", response);
+                // console.log("DATA ORDER RESPONSE =>", response);
                 return response;
             })
         )
     }
 
     public updateOrder( order: Order): Observable<any>{
-        console.log("genereteOrder", order);
+        // console.log("genereteOrder", order);
         return this.http.putOrder(this.storeRequestStateUpdater, order).pipe(
             tap( (response: any) => {
-                console.log("DATA ORDER UPDATE =>", response);
+                // console.log("DATA ORDER UPDATE =>", response);
                 return response;
             })
         )
     }
 
     getOrders(): Observable<any>{
-        console.log("getOrders");
+        // console.log("getOrders");
         return this.http.getOrders(this.storeRequestStateUpdater).pipe(
             tap( (response: any) => {
-                console.log("DATA ORDERSS RESPONSE =>", response);
+                // console.log("DATA ORDERSS RESPONSE =>", response);
                 return response;
             })
         )
@@ -104,7 +104,7 @@ export class OrderStore extends Store<OrderStoreState>{
         this.reloadOrderListByRetailerId$
         .pipe(
             switchMap( () => {
-                    console.log("switchMap => getOrdersByRetailerId()");
+                    // console.log("switchMap => getOrdersByRetailerId()");
                     return this.http.getOrdersByReatilerId(retailer_id, this.storeRequestStateUpdater);
                 }),
                 tap ( (res: any) => {
@@ -114,7 +114,7 @@ export class OrderStore extends Store<OrderStoreState>{
                         orders.push(new Order().deserialize(ele));
                     });
                     
-                    console.log("Orders by retailer Id - Store - getOrdersByRetailerId()", orders);
+                    // console.log("Orders by retailer Id - Store - getOrdersByRetailerId()", orders);
                     this.setState({
                         ...this.state,
                         orderListByRetailerId : orders
@@ -137,7 +137,7 @@ export class OrderStore extends Store<OrderStoreState>{
                         orders.push(new Order().deserialize(ele));
                     });
                     
-                    console.log("Orders by retailer Id - Store - getOrdersByRetailerId()", orders);
+                    // console.log("Orders by retailer Id - Store - getOrdersByRetailerId()", orders);
                     this.setState({
                         ...this.state,
                         orderListByRetailerId : orders
@@ -157,7 +157,7 @@ export class OrderStore extends Store<OrderStoreState>{
                         orders.push(new Order().deserialize(ele));
                     });
                     
-                    console.log("Orders by buyer Id - Store - getOrdersByBuyerId()", orders);
+                    // console.log("Orders by buyer Id - Store - getOrdersByBuyerId()", orders);
                     this.setState({
                         ...this.state,
                         orderListByBuyerId : orders

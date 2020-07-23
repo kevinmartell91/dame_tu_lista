@@ -30,7 +30,7 @@ export class BuyerStore extends Store<BuyerStoreState> {
     registerNewBuyer(newBuyer: Buyer): Observable<any> {
         return this.endPoint.postBuyer(this.storeRequestStateUpdater, newBuyer).pipe(
             tap( ( buyer: any ) => {
-                console.log("registerNewBuyer => response : ",  buyer);
+                // // console.log("registerNewBuyer => response : ",  buyer);
             })
         )
     }
@@ -41,7 +41,7 @@ export class BuyerStore extends Store<BuyerStoreState> {
             buyer_id,
             address).pipe(
                 tap( ( buyer: any ) => {
-                    console.log("Buyer address updated => response : ",  buyer);
+                    // console.log("Buyer address updated => response : ",  buyer);
                 })
             )
     }
@@ -54,10 +54,10 @@ export class BuyerStore extends Store<BuyerStoreState> {
     }
 
     getBuyers(): Observable<any>{
-        console.log("getBuyers");
+        // console.log("getBuyers");
         return this.endPoint.getBuyers(this.storeRequestStateUpdater).pipe(
             tap( (response: any) => {
-                console.log("DATA ORDERSS RESPONSE =>", response);
+                // console.log("DATA ORDERSS RESPONSE =>", response);
                 return response;
             })
         )

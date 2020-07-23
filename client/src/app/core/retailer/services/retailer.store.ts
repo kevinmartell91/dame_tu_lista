@@ -36,7 +36,7 @@ export class RetailerStore extends Store<RetailerStoreState> {
     registerNewRetailer(newBuyer: Retailer): Observable<any> {
         return this.endPoint.postRetailer(this.storeRequestStateUpdater, newBuyer).pipe(
             tap( ( retailer: any ) => {
-                console.log("postRetailer => response : ",  retailer);
+                // console.log("postRetailer => response : ",  retailer);
             })
         )
     }
@@ -45,7 +45,7 @@ export class RetailerStore extends Store<RetailerStoreState> {
         return this.endPoint.getRetailerById(retailer_id, this.storeRequestStateUpdater)
             .pipe(
                 map((data: any) => {
-                    console.log("getRetailerById KEVIN", data);
+                    // console.log("getRetailerById KEVIN", data);
                     this.setState({
                         ...this.state,
                         retailer: new Retailer().deserialize(data.data)
@@ -59,7 +59,7 @@ export class RetailerStore extends Store<RetailerStoreState> {
         return this.endPoint.putRetailerStoreInfo(retailer_id, data, this.storeRequestStateUpdater)
             .pipe(
                 map((data: any) => {
-                    console.log("updateRetailerStoreInfo", data);
+                    // console.log("updateRetailerStoreInfo", data);
                     this.setState({
                         ...this.state,
                         retailer: new Retailer().deserialize(data.data)

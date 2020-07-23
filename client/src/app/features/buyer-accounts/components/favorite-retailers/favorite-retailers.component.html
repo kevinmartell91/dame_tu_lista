@@ -44,6 +44,8 @@
                    </ng-template>
                     
                     <ng-template #showFavoriteRetailers>
+
+                        <ng-container *ngIf="subs.state$.buyerAccount.myFavoriteRetailers.length == 0 ? addStoreAutomatically() : '' " ></ng-container>
                          <div class="stores_grid">
                             <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
                                 <div (click)="goToRetailerStoreView(favoriteRetailer)" class="store_grid">

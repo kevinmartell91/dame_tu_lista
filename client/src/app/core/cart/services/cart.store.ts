@@ -68,14 +68,14 @@ export class CartStore extends Store<CartStoreState> {
         if ( exit ) {
             //remove is quantity is cero
             if( cartProduct.quantity === 0) {
-                console.log("CERO =>>>>");
+                // // console.log("CERO =>>>>");
                 cartProducts = 
                 cartProducts.filter( ele => ele._id != cartProduct._id )
                 
             } else { // update quantity
                  cartProducts.filter( elem => {
                     if (elem._id == cartProduct._id )  {
-                        console.log("Updating details", cartProduct.details);
+                        // console.log("Updating details", cartProduct.details);
                         elem.quantity = cartProduct.quantity;
                         elem.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
                         elem.details = cartProduct.details;
@@ -90,7 +90,7 @@ export class CartStore extends Store<CartStoreState> {
         // update the cartStore
         this.setCart(cartProducts);
 
-        console.log("updateCartStore", this.state.shoppingCart.products );
+        // console.log("updateCartStore", this.state.shoppingCart.products );
     }
 
     private isOnCartStoreList(cartProduct: CartProduct): boolean {

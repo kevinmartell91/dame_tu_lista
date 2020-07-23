@@ -28,18 +28,18 @@ exports.postAuthenticate = function(req, res) {
   if(!entityType) {
     res.json( {success: false, message: 'Authentication fail. Entity not found.'})
   }
-  console.log("KEVIN - entityType", entityType);
-  console.log("KEVIN - email", email);
-  console.log("KEVIN - password", password);
+  // console.log("KEVIN - entityType", entityType);
+  // console.log("KEVIN - email", email);
+  // console.log("KEVIN - password", password);
 
   entityType.findOne({
     email: email
   }, function(err, entity) {
     if (err) {
-      console.log("ERROR = >",err);
+      // console.log("ERROR = >",err);
       throw err;
     }
-    console.log("KEVIN-  entity", entity);
+    // console.log("KEVIN-  entity", entity);
     
     if (entity === null) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
@@ -47,10 +47,10 @@ exports.postAuthenticate = function(req, res) {
       // check if passwords matche
       bcrypt.compare(password, entity.password).then(math => {
         if (math) {
-          console.log(`Match this ${password} con este ${entity.password}`);
+          // console.log(`Match this ${password} con este ${entity.password}`);
           // genreate a token
           const token = genAccessToken2(entity.toJSON());
-          console.log(" token", token);
+          // console.log(" token", token);
           res.json({
             success: true,
             message: 'Enjoy your token!',
@@ -61,7 +61,7 @@ exports.postAuthenticate = function(req, res) {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });
         }  
       })
-      .catch( err => console.log(err));
+      // .catch( err => console.log(err));
     }
   });
 

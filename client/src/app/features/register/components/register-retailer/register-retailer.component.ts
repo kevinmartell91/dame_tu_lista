@@ -23,16 +23,30 @@ export class RegisterRetailerComponent implements OnInit {
   constructor(  
     private fb: FormBuilder,
     private retailerStore: RetailerStore,
-    private snackBarService: MatSnackBar ) { 
+    private snackBarService: MatSnackBar,
+    private router: Router ) { 
 
-    }
-
+  }
   ngOnInit(): void {
     this.registerRetailerForm = this.fb.group({
       name: ['', Validators.required],
       password: ['',Validators.required],
       email: ['', Validators.pattern(VALIDATORS_PATTERNS.email)]
     }) 
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    const emailControl = this.registerRetailerForm.get('email');
+    emailControl.valueChanges.subscribe(val => {
+      
+      val = val.toLowerCase();
+
+      this.registerRetailerForm.get('email').setValue(val, {
+        emitEvent: false,
+        emitModelToViewChange: false
+      });
+    });
   }
   
   onSubmit () {
@@ -40,13 +54,15 @@ export class RegisterRetailerComponent implements OnInit {
     this.loading = true;
     let newRetailer = this.deserialize();
     
-    console.log("onSubmit ()",newRetailer);
+    // console.log("onSubmit ()",newRetailer);
     this.retailerStore.registerNewRetailer(newRetailer).subscribe(
       response => {
         if(response.success){
           
-          this.openSnackBar("Se creó se usuario","Cerrar");
+          this.openSnackBar("Creación de cuenta exitosa! Ingrese como usuario vendedor.","");
           this.loading = false;
+          this.router.navigate(['/login']);
+
 
           this.registerRetailerForm.patchValue({
             name: "",
@@ -76,9 +92,10 @@ export class RegisterRetailerComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBarService.open(message, action, {
-      duration: 2000,
+    let snackBarRef = this.snackBarService.open(message, action, {
+      duration: 5000,
     });
+
   }
 
 }

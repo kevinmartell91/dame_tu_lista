@@ -12,7 +12,7 @@
                         
                 
                         <div *ngSwitchCase="navegation.accountView" class="buyer_account_cart_area">
-                             <div  
+                                <div  
                                 class="buyer_account_area">
 
                                 <div class="buyer_personal_icon_area" 
@@ -21,7 +21,7 @@
                                 </div>
                     
                                 <div class="buyer_name_area" >
-                                    <span> {{loginUser.name}} </span>
+                                    <span>{{nameCapitalized}} </span>
                                 </div>
     
                                 <div class="buyer_view_account_area" >
@@ -72,7 +72,7 @@
                             <div class="navegation_title_area">
                                 <div>Dame tu lista </div>
                             </div>
-                         </div>
+                            </div>
                 
                         <!-- nothing to render when StoreView is selected -->
                         <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
@@ -95,7 +95,7 @@
                             <mat-icon matBadge="{{cartProductsQuantity}}" matBadgeColor="primary">
                                 <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
                             </mat-icon> -->
-                                                           
+                                                            
                         </div>
                     </div>
                 </div>

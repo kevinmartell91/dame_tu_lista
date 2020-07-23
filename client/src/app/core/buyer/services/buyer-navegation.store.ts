@@ -34,7 +34,7 @@ export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {
             ...this.state,
             categoryProduct: newCategoryProduct
         });
-        console.log("setNewCategoryProductState", this.state.categoryProduct);
+        // console.log("setNewCategoryProductState", this.state.categoryProduct);
     }
 
     setNewVarietyProductState(newVarietyProduct: string):void {
@@ -42,7 +42,7 @@ export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {
             ...this.state,
             varietyProduct: newVarietyProduct
         });
-        console.log("setNewVarietyProductState", this.state.varietyProduct);
+        // console.log("setNewVarietyProductState", this.state.varietyProduct);
     }
     
     setNewMaturityProductState(newMaturityProduct: string):void {
@@ -50,6 +50,6 @@ export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {
             ...this.state,
             maturityProduct: newMaturityProduct
         });
-        console.log("setNewMaturityProductState", this.state.maturityProduct);
+        // console.log("setNewMaturityProductState", this.state.maturityProduct);
     }
 }

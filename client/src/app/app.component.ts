@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy{
   ) {
 
     // console.log("retailerStoreStore Started..");
-    this.retailerStoreStore.getAirTabeDATA();
+    // this.retailerStoreStore.getAirTabeDATA();
     
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
@@ -178,7 +178,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
 		if ( cachedFormData ) {
 
-      console.log("cachedData", cachedFormData);
+      // console.log("cachedData", cachedFormData);
       Object.assign( this.cartProducts, cachedFormData );
       
 
@@ -195,14 +195,14 @@ export class AppComponent implements OnInit, OnDestroy{
         cartProducts: this.cartProducts,
         favoriteRetailer: this.favoriteRetailerIdSelected
       }
-      console.log("saveToTemporaryStorage 0709");
+      // console.log("saveToTemporaryStorage 0709");
       this.saveToTemporaryStorage(dataToStore);
     }  
     if (this.cartProducts.length == 0) {
       // clear CartProducts from temporary storage
       //and keep favorite retailer
       
-      console.log("remove CartProducts from temporary storage");
+      // console.log("remove CartProducts from temporary storage");
       
       dataToStore = {
         cartProducts: [],
@@ -220,5 +220,11 @@ export class AppComponent implements OnInit, OnDestroy{
     data: any
   ): void {
     this.temporaryStorage.set(data);
+  }
+  
+
+  get nameCapitalized() {
+    let word = this.loginUser.name;
+    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 }

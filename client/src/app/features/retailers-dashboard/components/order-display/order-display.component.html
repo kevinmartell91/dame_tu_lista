@@ -69,6 +69,7 @@
            
             <mat-checkbox 
                 color="primary" 
+                [disabled]="isOrderProductPackagedCompleted"
                 class="example-margin"
                 [(ngModel)]="isChecked"
                 (ngModelChange)="isCheckedCompleted()"></mat-checkbox>

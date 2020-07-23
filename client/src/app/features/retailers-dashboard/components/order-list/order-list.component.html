@@ -86,6 +86,7 @@
                     <ng-container *ngFor="let productOrder of order.cart">
                     
                         <app-order-display
+                            [isOrderProductPackagedCompleted] = "order.shipping.tracking.orderStatus.length == 3 ? true : false"
                             [order_id]="order._id"
                             [cartProductOrder]="productOrder"
                             (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)">

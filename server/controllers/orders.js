@@ -15,7 +15,7 @@ exports.postOrders = function(req, res) {
   order.save(function(err){
         
     if (err){
-      console.log("ERROR ", err);
+    //   console.log("ERROR ", err);
         return res.status(500).send(err);
     }
     res.json({ 
@@ -65,17 +65,17 @@ exports.getOrder = function(req, res) {
 exports.putOrder = async function(req, res, next) {
 
 
-  console.log("KEVIN => ");
+//   console.log("KEVIN => ");
   // use this put method to update buyer data only
 	let id = req.params.order_id;
 	let orderData = req.body;
-  console.log("KEVIN => ",id,  orderData);
+//   console.log("KEVIN => ",id,  orderData);
 
 	const orderUpdated = 
 		await Order.findByIdAndUpdate(id, orderData, { new: true});
 
 	if(orderUpdated) {
-		console.log("updateBuyerAddress - PUT ");
+		// console.log("updateBuyerAddress - PUT ");
 		res.json({
 			success: true,
 			status: 200,
@@ -114,14 +114,14 @@ exports.getOrdersByRetailerId = function(req, res) {
 
   
   let retailer_id = req.params.retailer_id; 
-  console.log("orders ================ >>", retailer_id);
+//   console.log("orders ================ >>", retailer_id);
 
 
   Order.find({retailer_id: retailer_id},function(err, orders) {
     if (err)
       return res.status(500).send(err);
 
-    console.log("orders ================ >>", orders);
+    // console.log("orders ================ >>", orders);
     res.json({ 
         success: true,
         status: 200,

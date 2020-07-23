@@ -182,7 +182,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
         city: "LIM",
         details: "pickup"
        });
-      console.log(this.addressForm.value);
+      // console.log(this.addressForm.value);
     } else {
       this.addressForm.patchValue({
         streetName: "",

@@ -22,7 +22,7 @@ function genKey (id, password) {
 };
 
 function getAccessTokenFromHeader(req) {
-  console.log("req.headers['x-access-token']",req.headers['x-access-token']);
+  // console.log("req.headers['x-access-token']",req.headers['x-access-token']);
   return req.headers['x-access-token'];
 };
 
@@ -41,7 +41,7 @@ module.exports = {
 
   async authorizationMiddleware(req, res, next) {
     const accessToken = getAccessTokenFromHeader(req);
-    console.log("accessToken => BRIAN", accessToken); 
+    // console.log("accessToken => BRIAN", accessToken); 
     let tokenPayLoad;
 
     try {
@@ -56,7 +56,7 @@ module.exports = {
         req.decoded  = tokenPayload;
         next();
     } catch (error) {
-        console.log("error",error);
+        // console.log("error",error);
         res.status(401).send(error.message);
     }
   },

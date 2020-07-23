@@ -19,7 +19,7 @@ export class OrderDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
   
-    console.log("KEVIN", this.data.order.shipping.address);
+    // console.log("KEVIN", this.data.order.shipping.address);
 
     this.orderDetailForm = this.fb.group({
       streetName: [this.data.order.shipping.address.streetName],

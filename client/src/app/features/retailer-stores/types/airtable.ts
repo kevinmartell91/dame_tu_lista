@@ -17102,8 +17102,8 @@ export function manuallyRetrievedAritableData():any {
     });
 
     let json = JSON.stringify({ productsList: productsList });
-    console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", deserializedData);
-    console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", json);
+   //  console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", deserializedData);
+   //  console.log("mockedAmanuallyRetrievedAritableDataritableData - deserialzedData", json);
 
 
     
