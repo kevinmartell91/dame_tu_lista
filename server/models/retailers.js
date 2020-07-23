@@ -1,8 +1,7 @@
+const stage = require('../CONFIG');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const environment = process.env.NODE_ENV; // development
-const stage = require('../CONFIG')[environment];
 
 var retailerSchema = new Schema({
   // Will be send by email TO THE ATTORNEY

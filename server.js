@@ -1,11 +1,7 @@
-// Sets up dotenv as soon as our application starts
-require('dotenv').config(); 
-
+const stage = require('./server/CONFIG')
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const environment = process.env.NODE_ENV; // development
-const stage = require('./server/CONFIG')[environment]
 
 const path = require('path');
 const http = require('http');
@@ -27,7 +23,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // use morgan to log requests to the console
-if(environment !== 'production') {
+if(stage.environment !== 'production') {
   app.use(logger('dev'));
 }
 

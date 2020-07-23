@@ -1,14 +1,17 @@
 // Sets up dotenv as soon as our application starts
-require('dotenv').config(); 
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
+require('dotenv').config({
+  path: `.env.${NODE_ENV}`
+}); 
 
 module.exports = {
-  development: {
-    port: process.env.PORT || 8080,
-    saltingRounds: 10
-  },
-  production: {
-    port: process.env.PORT || 8080,
-    saltingRounds: 10
-  }
+  environment: process.env.NODE_ENV,
+  saltingRounds: process.env.SALTING_ROUNDS,
+  jwt_secret: process.env.JWT_SECRET,
+  mongo_path: process.env.MONGO_PATH,
+  mongo_db: process.env.MONGO_DB,
+  mongo_user: process.env.MONOGO_USER,
+  mongo_pass: process.env.MONGO_PASSWORD,
+  port: process.env.PORT || 8080,
 }

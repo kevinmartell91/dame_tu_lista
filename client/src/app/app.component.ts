@@ -76,7 +76,7 @@ export class AppComponent implements OnInit, OnDestroy{
     this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
       x => { 
         this.loginUser = x;
-        console.log("AppComponent - loginUser$", this.loginUser); 
+        console.log("AppComponent - loginUser$ - id =>", this.loginUser.entity); 
 
         if( this.loginUser != null){
           this.initializeNavegationValues();

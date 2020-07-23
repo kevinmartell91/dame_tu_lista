@@ -1,10 +1,7 @@
-// grab the things we need
+const stage = require('../CONFIG');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const environment = process.env.NODE_ENV; // development
-const stage = require('../CONFIG')[environment];
-
 
 // create a schema
 var buyerSchema = new Schema({
