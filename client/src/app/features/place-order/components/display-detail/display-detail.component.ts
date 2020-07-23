@@ -35,14 +35,14 @@ export class DisplayDetailComponent  {
   }
 
   ChangeAction (last_for_selected){
-    console.log("ChangeAction KEVNI", last_for_selected);
+    // console.log("ChangeAction KEVNI", last_for_selected);
   }
 
 
   //////  Child parent comunication implementation //////
   sendProductDetailToProductDisplay(displayDetail: ProductDetail) {
     // change PRODUCT NAME to productToEmmit
-    console.log("displayDetail => ", displayDetail);
+    // console.log("displayDetail => ", displayDetail);
     this.displayDetailEmmit.emit(displayDetail);
   }
 }

@@ -21,7 +21,7 @@ export class OrderPaymentModalComponent implements OnInit {
 
   ngOnInit(): void {
   
-    console.log("KEVIN", this.data.order);
+    // console.log("KEVIN", this.data.order);
 
     this.paymentMethod = this.data.order.payment.method;
     

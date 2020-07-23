@@ -31,7 +31,7 @@ export class SeasonalProductsComponent implements OnInit {
   ) { 
     this.retailerStoreStore.retailer$.subscribe(
       x => {
-        console.log("SUBSCRIBED to SeasonalProductsComponent Listened");
+        // console.log("SUBSCRIBED to SeasonalProductsComponent Listened");
 
         this.retailer = x;
         // this.productsList = filterProducts(STORE_CONFIG.view_type.seasonalView)
@@ -40,7 +40,7 @@ export class SeasonalProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("SeasonalProductsComponent => products", this.storeProducts);
+    // console.log("SeasonalProductsComponent => products", this.storeProducts);
     this.seasonalView = STORE_CONFIG.view_type.seasonalView;
     this.question = STORE_CONFIG.question_view_type.seasonalView;
   }
@@ -52,7 +52,7 @@ export class SeasonalProductsComponent implements OnInit {
    */
   public onSelected(product: Product){
     this.productSelected = product;
-    console.log("productSelected", this.productSelected);
+    // console.log("productSelected", this.productSelected);
     // this.buyerNavegationStore.setNewCategoryProductState(product.categoryName);
     // this.goToRetailerVarietyView();
   } 

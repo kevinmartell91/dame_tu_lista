@@ -108,8 +108,8 @@ export class ProfileSettingsComponent implements OnDestroy {
   }
 
   onFormSubmit() {
-    console.log("KEIVN");
-    console.log(JSON.stringify(this.accountRetailerForm.value, null, 2));
+    // console.log("KEIVN");
+    // console.log(JSON.stringify(this.accountRetailerForm.value, null, 2));
 
     this.retailerStore.updateRetailerStoreInfo(
       this.retailer._id,

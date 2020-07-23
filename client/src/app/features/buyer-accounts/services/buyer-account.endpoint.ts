@@ -26,7 +26,7 @@ export class BuyerAccountEndPoint {
         return this.http.get<any>(request.url + buyer_id, options).pipe(
             map( response => {
                 requestStateUpdater(request.name, {inProgress: false});
-                console.log("BuyerAccountEndPoint", response);   
+                // console.log("BuyerAccountEndPoint", response);   
                 
                 return response;
             }),

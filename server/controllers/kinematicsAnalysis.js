@@ -1210,7 +1210,7 @@ exports.postKinematicsAnalysiss = function(req, res) {
   kinematicAnalysis.accesories = req.body.accesories;
   kinematicAnalysis.accesories_descriptions = req.body.accesories_descriptions;
 
-  // console. log('req.body.status',req.body.status);
+  console. log('req.body.status',req.body.status);
   kinematicAnalysis.status = req.body.status;
     
 
@@ -1252,7 +1252,7 @@ exports.getKinematicsAnalysiss = function(req, res) {
     query.medical_center_id = req.query.medical_center_id;
   }
 
-  console.log("query to exec", query);
+  // console.log("query to exec", query);
 
   KinematicsAnalysis.find(query,function(err, kinematicAnalysiss) {
     if (err)
@@ -1283,8 +1283,8 @@ exports.putKinematicsAnalysis = function(req, res) {
       return res.send(err);
     }
 
-    console.log('req.body');
-    console.log(req.body);
+    // console.log('req.body');
+    // console.log(req.body);
 
     kinematicAnalysis.patient_id = req.body.patient_id;
     kinematicAnalysis.patient_full_name = req.body.patient_full_name;
@@ -1363,14 +1363,14 @@ exports.putKinematicsAnalysisMatlabRawPositions = function(req, res) {
 
   var json;
   if(typeof req.headers.data === 'undefined') {
-    console.log('request from  POSTMAN');
+    // console.log('request from  POSTMAN');
     json = req.body;
   } else {
-    console.log('request from ONLINE MATALAB');
+    // console.log('request from ONLINE MATALAB');
     json = JSON.parse(req.headers.data);
   }
-  console.log('======================');
-  console.log('json',json);
+  // console.log('======================');
+  // console.log('json',json);
 
   KinematicsAnalysis.findById(req.params.kinematics_analysis_id,
                               function(err, kinematicAnalysis) {
@@ -1472,6 +1472,6 @@ exports.putKinematicsAnalysisMatlabRawPositions = function(req, res) {
 //   if (err) throw err;
 
 //   // show the admins in the past month
-//   console.log(users);
+  // console.log(users);
 // });
 

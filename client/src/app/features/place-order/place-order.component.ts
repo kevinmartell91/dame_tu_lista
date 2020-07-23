@@ -831,7 +831,7 @@ export class PlaceOrderComponent {
 
   getProductDisplay(productDisplay: ProductDetail){
     this.productDisplay = productDisplay;
-    console.log("productDisplay => ",productDisplay);
+    // console.log("productDisplay => ",productDisplay);
     
     // end a notification that productDisplay was gotten
     // in order to move out the displayDitailComponent called 

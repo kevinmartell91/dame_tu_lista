@@ -54,11 +54,11 @@ buyerSchema.pre('save', function(next) {
 
   bcrypt.hash(buyer.password, stage.saltingRounds, function(err, hash) {
     if(err) {
-      console.log("Error hashing password for Buyer");
+      // console.log("Error hashing password for Buyer");
       return next(err);
     }
     buyer.password = hash;
-    console.log ("Buyer password hashed", buyer.password);
+    // console.log ("Buyer password hashed", buyer.password);
     next();
   });
 });

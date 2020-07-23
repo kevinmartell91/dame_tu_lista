@@ -47,7 +47,7 @@ export class OrderListComponent implements OnDestroy {
     // this.authenticationSubscription = this.authenticationStore.loginUser$.subscribe(
     //   x => {
     //     this.retailer = new Retailer().deserialize(x.entity);
-    //     console.log("authenticationSubscription", this.retailer._id);
+        // console.log("authenticationSubscription", this.retailer._id);
     //   }
     // )
 
@@ -86,11 +86,11 @@ export class OrderListComponent implements OnDestroy {
 
     orders.forEach(order => {
       if( data.order_id == order._id) {
-        console.log("LISTENING => this.isOrderCompleted", data.order_id, order._id);
+        // console.log("LISTENING => this.isOrderCompleted", data.order_id, order._id);
         order.cart.filter( productOrder => {
           if( productOrder._id == data.cartProductOrder_id ) {
             productOrder.isCheckedDone = !productOrder.isCheckedDone;
-            console.log("Mached checked DONE => ", productOrder.isCheckedDone);
+            // console.log("Mached checked DONE => ", productOrder.isCheckedDone);
           }
          
           //looping again looking if the priducts are checkDone 
@@ -107,7 +107,7 @@ export class OrderListComponent implements OnDestroy {
 
           }
           
-          console.log("this.isOrderCompleted",this.isOrderCompleted);
+          // console.log("this.isOrderCompleted",this.isOrderCompleted);
 
         })
       }
@@ -124,7 +124,9 @@ export class OrderListComponent implements OnDestroy {
 
     // put not patch =>time issues, It shoud be patch
     this.orderStore.updateOrder(order).subscribe(
-      res => {console.log(res)}
+      res => {
+        // console.log(res)
+      }
     )
 
   }
@@ -137,7 +139,9 @@ export class OrderListComponent implements OnDestroy {
     this.setNewOrderStatus(ORDER_CONFIG.orderStatus.seen_by_retailer, order);
     // put not patch =>time issues, It shoud be patch
     this.orderStore.updateOrder(order).subscribe(
-      res => {console.log(res)}
+      res => {
+        // console.log(res)
+      }
     )
 
   }
@@ -199,7 +203,7 @@ export class OrderListComponent implements OnDestroy {
 
 
   saveToTemporaryStorage(orders: Order[]): void {
-    console.log("saveToTemporaryStorage");
+    // console.log("saveToTemporaryStorage");
 
     this.temporaryStorage.set(orders);
   }
@@ -215,7 +219,7 @@ export class OrderListComponent implements OnDestroy {
       message = "Ya pudes recoger tu orden, está Lista. Te esperamos.";
     }
     let link =`//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
-    console.log("openWhatsApp()");
+    // console.log("openWhatsApp()");
     window.location.href=link;
   }
   

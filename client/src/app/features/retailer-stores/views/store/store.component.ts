@@ -446,13 +446,13 @@ export class StoreComponent implements OnDestroy{
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
     let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
-    console.log("_filter",res);
+    // console.log("_filter",res);
     this.filteredProductListLength = res.length;
     return res;
   }
 
   private _normalizeValue(value: string): string {
-    console.log("_normalizeValue", value);
+    // console.log("_normalizeValue", value);
     return value.toLowerCase().replace(/\s/g, '');
   }
 }

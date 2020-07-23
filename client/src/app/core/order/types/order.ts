@@ -40,7 +40,7 @@ export class Order implements Deserializable {
         if ( !existOrderStatus ) {
           orderUpdate.shipping.tracking.orderStatus.push([newOrderStatus, new Date]);
         }
-        console.log("updateOrderStatus => new  => ",newOrderStatus, orderUpdate.shipping.tracking.orderStatus);
+        // console.log("updateOrderStatus => new  => ",newOrderStatus, orderUpdate.shipping.tracking.orderStatus);
         return orderUpdate;
     }
 }

@@ -46,7 +46,7 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   select(){ 
 
-    console.log("select()",this.product,this.size, this.kiloOrUnit);
+    // console.log("select()",this.product,this.size, this.kiloOrUnit);
     this.selected.emit(this.product)
 
   }
@@ -114,7 +114,7 @@ export class ProductDisplaySharedComponent implements OnInit {
    
     // this.switchQuantityMode();
     this.size = sizeUpdated;
-    console.log("onSizeUpdated", this.size);
+    // console.log("onSizeUpdated", this.size);
   
   }
 

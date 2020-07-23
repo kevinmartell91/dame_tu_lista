@@ -44,7 +44,7 @@ export class RetailerEndpoint {
         let api_key = "keyNqSR6NoYacM8nC";
         let headers = { headers: { Authorization : "Bearer "+ api_key}}
 
-        console.log("url", url);
+        // console.log("url", url);
 
        return this.http.get(url,
             { headers: { Authorization: "Bearer " + api_key }});

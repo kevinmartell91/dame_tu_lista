@@ -111,7 +111,7 @@ export class ProductDisplayComponent {
 
   //////  Child parent comunication implementation //////
   getDisplayDetail(displayDetail: ProductDetail){
-    console.log("displayDetaill => ",displayDetail);
+    // console.log("displayDetaill => ",displayDetail);
     this.receivedDisplayDetail = displayDetail;
     this.productDisplayEmmit.emit(this.receivedDisplayDetail);
   }

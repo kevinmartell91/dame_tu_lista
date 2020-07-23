@@ -56,7 +56,7 @@ export class OrderDisplayComponent implements OnInit {
 
   isCheckedCompleted(): void {
     // this.isChecked = !this.isChecked;
-    console.log("this.isChecked", this.cartProductOrder.categoryName, this.isChecked);
+    // console.log("this.isChecked", this.cartProductOrder.categoryName, this.isChecked);
     this.isProductOrderCompleted.emit({
       orderCompleted: this.isChecked,
       order_id: this.order_id,

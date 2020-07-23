@@ -75,10 +75,10 @@ retailerSchema.pre('save', function(next) {
 
   bcrypt.hash(retailer.password, stage.saltingRounds, function(err, hash) {
     if(err) {
-      console.log("Error hashing password for Retailer");
+      // console.log("Error hashing password for Retailer");
       return next(err);
     } else {
-      console.log ("Retailer password hashed", hash);
+      // console.log ("Retailer password hashed", hash);
       retailer.password = hash;
       next();
     }

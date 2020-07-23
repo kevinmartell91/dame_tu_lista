@@ -50,15 +50,15 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
 
     private initReloadRetailer$(retailer_id: string): void {
-        console.log("initReloadRetailer");
+        // console.log("initReloadRetailer");
         this.retailer$
             .pipe(
                 switchMap( () => {
-                    console.log("SWITCH MAP");
+                    // console.log("SWITCH MAP");
                     return this.endPoint.getRetailer(retailer_id, this.storeRequestUpdater);
                 }),
                 tap( (response: any) => {
-                    console.log(" retailerStore - initReloadretailer()", response);
+                    // console.log(" retailerStore - initReloadretailer()", response);
                     this.setState({
                         ...this.state,
                         retailer: new Retailer().deserialize(response.data),
@@ -103,10 +103,10 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
                     // console.log("val", val);
                 },
                 (err) => {
-                    console.log("err",err);
+                    // console.log("err",err);
                 },
                 () => {
-                    console.log("Completed - endPoint.getRetailer ",res);
+                    // console.log("Completed - endPoint.getRetailer ",res);
                 }
             );      
     }
@@ -125,7 +125,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     public getAirTabeDATA():any {
         // return this.endPoint.getAirTabeData().pipe(
         //     map(response => {
-        //         console.log("getAirTabeDATA",response);
+                // console.log("getAirTabeDATA",response);
         //     })
         // )
 
