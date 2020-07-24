@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile-settings',
@@ -21,7 +22,8 @@ export class ProfileSettingsComponent implements OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    public retailerStore: RetailerStore
+    public retailerStore: RetailerStore,
+    private snackBarService: MatSnackBar
   ) { 
 
     this.initForm();
@@ -115,6 +117,8 @@ export class ProfileSettingsComponent implements OnDestroy {
       this.retailer._id,
       {store: this.accountRetailerForm.value}
     );
+
+    this.openSnackBar("Los datos de tu tienda fueron guardados.","");
   }
 
   loadDistricts():void {
@@ -171,6 +175,13 @@ export class ProfileSettingsComponent implements OnDestroy {
   }
   loadDeparments(): void {
     this.departments = ['LIM'];
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBarService.open(message, action, {
+      duration: 2000,
+    });
 
   }
 

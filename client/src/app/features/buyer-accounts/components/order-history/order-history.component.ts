@@ -55,5 +55,11 @@ export class OrderHistoryComponent implements OnInit {
     return order.payment.amount.toFixed(2);
   }
 
+  getOrderGeneratedDate(order: Order): string {
+    let date = String (new Date(order.shipping.tracking.orderStatus[0][1]));
+    let arrDate = date.split(" ");
+
+    return arrDate[2] + " - " + arrDate[1] + " - " + arrDate[3];
+  }
 
 }

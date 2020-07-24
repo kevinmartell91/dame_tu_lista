@@ -36,10 +36,10 @@ exports.postAuthenticate = function(req, res) {
     email: email
   }, function(err, entity) {
     if (err) {
-      // console.log("ERROR = >",err);
+      console.log("ERROR = >",err);
       throw err;
     }
-    // console.log("KEVIN-  entity", entity);
+    console.log("KEVIN-  entity", entity);
     
     if (entity === null) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });

@@ -1,10 +1,7 @@
-// grab the things we need
+const stage = require('../CONFIG');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const environment = process.env.NODE_ENV; // development
-const stage = require('../CONFIG')[environment];
-
 
 // create a schema
 var buyerSchema = new Schema({
@@ -52,7 +49,9 @@ buyerSchema.pre('save', function(next) {
   // Do not rehash if it's an old buyer
   if(!buyer.isModified('password')) return next();
 
-  bcrypt.hash(buyer.password, stage.saltingRounds, function(err, hash) {
+  console.log("stage.saltingRounds",stage.saltingRounds);
+  const saltingRounds = stage.saltingRounds;
+  bcrypt.hash(buyer.password, saltingRounds, function(err, hash) {
     if(err) {
       // console.log("Error hashing password for Buyer");
       return next(err);

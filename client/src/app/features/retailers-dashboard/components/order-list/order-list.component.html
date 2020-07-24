@@ -82,9 +82,17 @@
                 </mat-expansion-panel-header>
               
               <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
+                <span class="orderDetail_title">
+                    Órden de {{order.shipping.buyer.name}}:
+                </span>
+                <span class="orderDate_title">
+                    {{getOrderGeneratedDate(order)}}
+                </span>
+
                 <div class="product_list_grid_mobile">
-                    <ng-container *ngFor="let productOrder of order.cart">
                     
+                    <ng-container *ngFor="let productOrder of order.cart">
+                        
                         <app-order-display
                             [isOrderProductPackagedCompleted] = "order.shipping.tracking.orderStatus.length == 3 ? true : false"
                             [order_id]="order._id"

@@ -27,6 +27,7 @@ exports.postBuyers = function(req, res) {
 	
 	buyer.save(function(err){
 		if (err) {
+			console.log("postBuyers",err);
 			return  res.json({ 
 					success: false,
 					status: 500,
@@ -35,7 +36,7 @@ exports.postBuyers = function(req, res) {
 				}
 			);
 		}
-
+		console.log("postBuyers",buyer);
 		res.json({ 
 			success: true,
 			status: 200,

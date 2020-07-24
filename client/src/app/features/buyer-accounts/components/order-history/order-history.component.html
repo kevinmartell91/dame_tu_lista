@@ -84,6 +84,14 @@
                     </mat-expansion-panel-header>
                   
                   <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
+
+                    <span class="orderDetail_title">
+                        Detalle de tu órden: 
+                    </span>
+                    <span class="orderDate_title">
+                        {{getOrderGeneratedDate(order)}}
+                    </span>
+
                     <div class="product_list_grid_mobile">
                         <ng-container *ngFor="let productOrder of order.cart">
                         

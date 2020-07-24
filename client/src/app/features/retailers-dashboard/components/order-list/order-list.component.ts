@@ -127,7 +127,7 @@ export class OrderListComponent implements OnDestroy {
     // put not patch =>time issues, It shoud be patch
     this.orderStore.updateOrder(order).subscribe(
       res => {
-        this.snackBarService.open("Terminaste una órden más! 👏👏","cerrar");
+        this.openSnackBar("Terminaste una órden más! 👏👏","cerrar");
         this.step = -1;
         }
       )
@@ -136,7 +136,7 @@ export class OrderListComponent implements OnDestroy {
 
   openSnackBar(message: string, action: string) {
     this.snackBarService.open(message, action, {
-      duration: 2000,
+      duration: 3000,
     });
 
   }
@@ -251,6 +251,13 @@ export class OrderListComponent implements OnDestroy {
       }
     });
     
+  }
+
+  getOrderGeneratedDate(order: Order): string {
+    let date = String (new Date(order.shipping.tracking.orderStatus[0][1]));
+    let arrDate = date.split(" ");
+
+    return arrDate[2] + " - " + arrDate[1] + " - " + arrDate[3];
   }
 
 }
