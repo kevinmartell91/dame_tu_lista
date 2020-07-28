@@ -6,7 +6,7 @@
   $background: map-get($theme, background)
   $foreground: map-get($theme, foreground)
 
-$buyer_name_font_size: 2em
+$buyer_name_font_size: 20px
 $buyer_view_account_font_size: .8em
 $buyer_cart_number_font_size: 1.7em
 
@@ -60,13 +60,15 @@ $buyer_cart_number_font_size: 1.7em
         font-size: $buyer_name_font_size
         font-weight: 700
 
+        .greetings
+          color: #43b02b
+
       .buyer_view_account_area
         grid-area: accountDetail
         font-size: $buyer_view_account_font_size
         cursor: pointer
         .style_logout
-          color: mat-color($primary, darker, 0.5)
-
+          color: #43b02b
       
   .navegation_grid
     display: grid

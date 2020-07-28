@@ -17073,8 +17073,14 @@ export function manuallyRetrievedAritableData():any {
 
             let product = new Product();
     
-            product.varietyImageUrl = assetPath + AT.varietyImageUrl;
-            product.categoryImageUrl = assetPath + AT.categoryImageUrl;
+            // product.varietyImageUrl = assetPath + AT.varietyImageUrl;
+            // product.categoryImageUrl = assetPath + AT.categoryImageUrl;
+            // product.maturityImageUrl = assetPath + AT.maturityImageUrl;
+            
+            product.varietyImageUrl =  AT.Variety_Img[0].thumbnails.large.url;
+            product.categoryImageUrl = AT.Category_Img[0].thumbnails.large.url;
+            product.maturityImageUrl = AT.Maturity_Img[0].thumbnails.large.url;
+
             product.categoryName = CapFirstChar(AT.categoryName);
     
             product.varietyName = AT.varietyName == "-" ? "Normal" : CapFirstChar(AT.varietyName);
@@ -17085,7 +17091,6 @@ export function manuallyRetrievedAritableData():any {
             product.isUnit = (AT.isUnit) ? product.isUnit = true : product.isUnit = false;
             product.isSeasonal = (AT.isSeasonal) ? product.isSeasonal = true : product.isSeasonal = false;
             product.isMaturityDetails = (AT.isMaturityDetails) ? product.isMaturityDetails = true : product.isMaturityDetails = false;
-            product.maturityImageUrl = assetPath + AT.maturityImageUrl;
             product.maturityName = CapFirstChar(AT.maturityName);
             product.maturityInfo = AT.maturityInfo;
             product.maturityEatIn = AT.maturityEatIn.toString();
