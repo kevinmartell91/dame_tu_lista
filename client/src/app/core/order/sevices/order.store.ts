@@ -46,14 +46,15 @@ export class OrderStore extends Store<OrderStoreState>{
     }
 
     initOrderByRetailerId(retailer_id: string):void {
-        this.getOrdersByRetailerId(retailer_id);
+        // this.getOrdersByRetailerId(retailer_id);
+        this.getOrdersByRetailerIdOrigin(retailer_id);
         this.reloadOrderListByRetailerId();
 
     }
 
     initOrderByBuyerId(retailer_id: string):void {
         this.getOrdersByBuyerId(retailer_id);
-        // this.reloadOrderListByRetailerId();
+        this.reloadOrderListByRetailerId();
 
     }
 

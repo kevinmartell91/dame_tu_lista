@@ -26,7 +26,7 @@
                 <ng-container *ngIf="{state$: buyerAccountStore.state$ | async} as subs">
                     
                     <ng-container 
-                    *ngIf = "subs.state$.requests.getBuyers.inProgress ;
+                    *ngIf = "false ;
                         then showLoading ;
                         else showFavoriteRetailers">
                     </ng-container>
@@ -45,7 +45,7 @@
                     
                     <ng-template #showFavoriteRetailers>
 
-                        <ng-container *ngIf="subs.state$.buyerAccount.myFavoriteRetailers.length == 0 ? addStoreAutomatically() : '' " ></ng-container>
+                        <!-- <ng-container *ngIf="subs.state$.buyerAccount.myFavoriteRetailers.length == 0 ? addStoreAutomatically() : '' " ></ng-container> -->
                          <div class="stores_grid">
                             <ng-container *ngFor='let favoriteRetailer of subs.state$.buyerAccount.myFavoriteRetailers'>
                                 <div (click)="goToRetailerStoreView(favoriteRetailer)" class="store_grid">

@@ -13,6 +13,7 @@ import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
 import { BuyerAccountStore } from '../../services/buyer-account.store';
 import { AddRetailerModalComponent } from '../add-retailer-modal/add-retailer-modal.component';
+import { Buyer } from 'src/app/core/buyer/types/buyer';
 
 @Component({
   selector: 'app-favorite-retailers',
@@ -40,15 +41,18 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
     this.subscription = this.authenticationStore.loginUser$.subscribe(
       (data : any) => { 
         this.loginUser = data;
-        // console.log("authenticationStore  => loginUser$", data);
+        console.log("FavoriteRetailersComponent  => loginUser$", data);
 
         // wired issue in this subscription (it is not in sync)
         // temp solution via retrieveing buyer_id through localstorage
-        let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
-        this.buyer_id = loginUserLocalStorage.entity._id;
+        // let loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+        this.buyer_id = data.entity._id;
         // console.log("localStorage", this.buyer_id, data.entity._id);
-        this.buyerAccountStore.init(this.buyer_id);
+        this.buyerAccountStore.setNewBuyerAccountState(new Buyer().deserialize(data.entity));
         // ====================================================       
+        if(this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers.length == 0) {
+          this.addStoreAutomatically();
+        }
       
         
       }

@@ -44,6 +44,13 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         this.reloadBuyer$.next();
     }
 
+    setNewBuyerAccountState(buyerAccount: Buyer):void {
+        this.setState({
+            ...this.state,
+            buyerAccount: buyerAccount
+        })
+    }
+
     private initReloadBuyerOrigin$(buyer_id: string): void {
         this.reloadBuyer$
             .pipe(
