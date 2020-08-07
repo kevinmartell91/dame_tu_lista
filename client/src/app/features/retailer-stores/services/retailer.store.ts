@@ -1,17 +1,15 @@
 import { Injectable, OnDestroy } from "@angular/core";
-import { RetailerStoreStoreState } from './retailer.store.state';
-import { RetailerEndpoint } from './retailer.endpoint';
-import { Store } from 'rxjs-observable-store';
 import { Observable, Subject } from 'rxjs';
+import { Store } from 'rxjs-observable-store';
+import { map, retry, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { map, switchMap, tap, retry, takeUntil } from 'rxjs/operators';
 import * as endpointHelpers from "../../../shared/helpers/endpoint.helpers";
-import { Product } from 'src/app/core/retailer/types/product';
-import { APP_CONFIG } from 'src/app/app.config';
 import { getProductDeserialized } from "../helpers/product.helper";
-
 import * as airtable from "../types/airtable";
+import { RetailerEndpoint } from './retailer.endpoint';
+import { RetailerStoreStoreState } from './retailer.store.state';
+
 
 
 @Injectable({ providedIn: 'root'})

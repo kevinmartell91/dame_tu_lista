@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Store} from 'rxjs-observable-store';
-import {Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
-
-import { AuthenticationEndPoint} from './authentication.endpoint';
-import { AuthenticationStoreState } from './authentication.store.state';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from 'rxjs-observable-store';
+import { map, tap } from 'rxjs/operators';
+import * as endpointHelpers from '../../../shared/helpers/endpoint.helpers';
+import { StoreRequestStateUpdater } from '../../../shared/types/store-request-state-updater';
 import { LOGIN_CONFIG } from "../login.config";
 import { LoginUser } from '../types/user';
-import { StoreRequestStateUpdater } from '../../../shared/types/store-request-state-updater';
-import * as endpointHelpers from '../../../shared/helpers/endpoint.helpers';
+import { AuthenticationEndPoint } from './authentication.endpoint';
+import { AuthenticationStoreState } from './authentication.store.state';
+
 
 @Injectable({ providedIn: 'root' }) 
 export class AuthenticationStore extends Store<AuthenticationStoreState> {

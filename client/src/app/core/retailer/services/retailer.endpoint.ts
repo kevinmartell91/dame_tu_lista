@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { getHeadersForNewUsers, getHeadersForPut, getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { Retailer } from '../types/retailer';
+import { catchError, map } from 'rxjs/operators';
+import { getHeadersForGet, getHeadersForNewUsers, getHeadersForPut } from 'src/app/shared/helpers/endpoint.helpers';
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import { RETAILER_CONFIG } from "../retailer.config";
+import { Retailer } from '../types/retailer';
+
+
 @Injectable({ providedIn: "root"})
 export class RetailerEndPoint {
 

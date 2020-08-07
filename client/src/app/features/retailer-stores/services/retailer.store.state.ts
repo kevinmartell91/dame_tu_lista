@@ -1,7 +1,7 @@
 import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { Request } from '../types/requests';
 import { RETAILER_STORES_CONFIG } from '../retailer-stores.config';
 import { ProductsList } from '../types/products-list';
+import { Request } from '../types/requests';
 
 export class RetailerStoreStoreState {
     retailer: Retailer = null;

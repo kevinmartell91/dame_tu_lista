@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedModule } from "../../shared/shared.module";
+import { RegisterBuyerComponent } from './components/register-buyer/register-buyer.component';
+import { RegisterRetailerComponent } from './components/register-retailer/register-retailer.component';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
-import { SharedModule } from "../../shared/shared.module";
-import { RegisterRetailerComponent } from './components/register-retailer/register-retailer.component';
-import { RegisterBuyerComponent } from './components/register-buyer/register-buyer.component';
+
 
 @NgModule({
   declarations: [

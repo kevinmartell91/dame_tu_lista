@@ -1,19 +1,14 @@
 // https://medium.com/better-programming/angular-4-shared-modules-18ac50f24852
-import { NgModule } from '@angular/core';
+import { MdlModule } from "@angular-mdl/core";
 import { CommonModule } from '@angular/common';
-
-// rows and col
-import { FlexLayoutModule } from '@angular/flex-layout'
-
-// forms
-import { ReactiveFormsModule, FormsModule} from '@angular/forms';
-
 // services
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { NgModule } from '@angular/core';
+// rows and col
+import { FlexLayoutModule } from '@angular/flex-layout';
+// forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // importing angular material components
-
 // import { A11yModule } from '@angular/cdk/a11y';
 // import { ClipboardModule } from '@angular/cdk/clipboard';
 // import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -30,7 +25,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -40,34 +35,29 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatNativeDateModule , MatRippleModule} from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-
-
-
-import { MdlModule } from "@angular-mdl/core";
-
-
-
-
+import { AddButtonComponent } from './components/add-button/add-button.component';
 // import 'hammerjs';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductDisplaySharedComponent } from './components/product-display/product-display.component';
-import { AddButtonComponent } from './components/add-button/add-button.component';
+
+
+
 
 const EXPORTED_DECLARATIONS = [
   	// ClipboardModule,

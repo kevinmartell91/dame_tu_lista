@@ -1,24 +1,17 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from "./core/buyer/buyer.config";
+import { BuyerNavegationStore } from "./core/buyer/services/buyer-navegation.store";
+import { CartStore } from './core/cart/services/cart.store';
+import { CartProduct } from './core/cart/types/cart-product';
 import { LOGIN_CONFIG } from "./core/login/login.config";
 import { AuthenticationStore } from "./core/login/services/authentication.store";
 import { LoginUser } from "./core/login/types/user";
-import { BuyerNavegationStore } from "./core/buyer/services/buyer-navegation.store";
-import { Location } from '@angular/common';
-import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
-import { PlatformLocation } from "@angular/common";
-import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
-import { map } from 'rxjs/operators';
-import { ProductsList } from './features/retailer-stores/types/products-list';
-import { CartStore } from './core/cart/services/cart.store';
-import { Subscription } from 'rxjs';
-import { ShoppingCart } from './core/cart/types/shopping-cart';
-import { CartProduct } from './core/cart/types/cart-product';
-import { TemporaryStorageService, TemporaryStorageFacet } from './core/session-storage/services/temporary-storage.service';
-import { Product } from './core/retailer/types/product';
 import { Retailer } from './core/retailer/types/retailer';
-import { BuyerAccountStore } from './features/buyer-accounts/services/buyer-account.store';
+import { TemporaryStorageFacet, TemporaryStorageService } from './core/session-storage/services/temporary-storage.service';
+import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
 
 @Component({
   selector: 'app-root',
@@ -63,7 +56,6 @@ export class AppComponent implements OnInit, OnDestroy{
     private location: Location,
     public cartStore: CartStore,
     private temporaryStorageService: TemporaryStorageService,
-    private retailerStoreStore: RetailerStoreStore,
   ) {
 
     // console.log("retailerStoreStore Started..");

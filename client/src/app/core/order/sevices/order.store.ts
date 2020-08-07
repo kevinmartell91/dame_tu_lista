@@ -1,13 +1,12 @@
-import { Store } from 'rxjs-observable-store';
-import { OrderStoreState } from './order.store.states';
-import { OrderEndPoint } from './order.endpoint';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Order } from '../types/order';
-import { map, tap, switchMap, retry, takeUntil, throwIfEmpty } from 'rxjs/operators';
-import { StoreRequestStateUpdater } 
-    from 'src/app/shared/types/store-request-state-updater';
+import { Store } from 'rxjs-observable-store';
+import { map, retry, switchMap, takeUntil, tap } from 'rxjs/operators';
 import * as endpointHelpers from 'src/app/shared/helpers/endpoint.helpers';
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
+import { Order } from '../types/order';
+import { OrderEndPoint } from './order.endpoint';
+import { OrderStoreState } from './order.store.states';
 
 
 @Injectable({ providedIn: "root"})

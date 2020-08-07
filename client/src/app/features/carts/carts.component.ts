@@ -1,29 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
+import { Buyer } from 'src/app/core/buyer/types/buyer';
+import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { Subscription } from 'rxjs';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
-import { MatDialog } from '@angular/material/dialog';
-import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
 import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
-import { Buyer } from 'src/app/core/buyer/types/buyer';
-import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { OrderStore } from 'src/app/core/order/sevices/order.store';
+import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { Order } from 'src/app/core/order/types/order';
+import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { AddressOrder } from "../../core/order/types/address-order";
 import { BuyerOrder } from "../../core/order/types/buyer-order";
 import { PaymentOrder } from "../../core/order/types/payment-order";
 import { ShippingOrder } from "../../core/order/types/shipping-order";
-import { AddressOrder } from "../../core/order/types/address-order";
-import { TrackingOrder } from 'src/app/core/order/types/tracking-order';
-import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
-import { Router } from '@angular/router';
-import { CartProductDetailModalComponent  } from "./components/cart-product-detail-modal/cart-product-detail-modal.component";
-import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
+import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
+import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
+import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 
 @Component({
   selector: 'app-carts',
@@ -112,6 +111,7 @@ export class CartsComponent implements OnDestroy {
   ngOnDestroy(): void {
 
     this.subscriptionCart.unsubscribe();
+    this.subscriptionFavoriteRetailerSelected.unsubscribe();
     this.subscriptionBuyer.unsubscribe();
 
   }

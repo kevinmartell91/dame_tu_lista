@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { OrderComponent } from './components/order/order.component';
+import { ProductCommentModalComponent } from './components/product-comment-modal/product-comment-modal.component';
 import { OrderHistoryRoutingModule } from './order-history-routing.module';
 import { OrderHistoryComponent } from './order-history.component';
-import { OrderComponent } from './components/order/order.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductCommentModalComponent } from './components/product-comment-modal/product-comment-modal.component';
-
 
 
 @NgModule({

@@ -1,14 +1,11 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { Product } from 'src/app/core/retailer/types/product';
-import { RetailerStoreStore } from '../../services/retailer.store';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { Component, Input, OnInit } from '@angular/core';
+import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
-// import { filterProducts } from '../../helpers/product.helper';
-// import { ProductDisplaySharedComponent } from "../../../../shared/components/product-display/product-display.component";
+import { Product } from 'src/app/core/retailer/types/product';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({
   selector: 'app-seasonal-products',

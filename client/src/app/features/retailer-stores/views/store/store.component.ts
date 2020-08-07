@@ -1,17 +1,16 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from "../../../../core/retailer/types/retailer";
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
-import { CartStore } from 'src/app/core/cart/services/cart.store';
-import { Subscription, Observable } from 'rxjs';
-import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { FormControl } from '@angular/forms';
-import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-store',
@@ -379,7 +378,6 @@ export class StoreComponent implements OnDestroy{
 
   constructor( 
     private router: Router,
-    private location: Location,
     private buyerNavegationStore: BuyerNavegationStore,
     public retailerStoreStore: RetailerStoreStore,
     private cartStore: CartStore
@@ -420,6 +418,7 @@ export class StoreComponent implements OnDestroy{
   }
 
   ngOnDestroy():void {
+    this.subscription.unsubscribe();
   }
 
   viewBuyerCart(): void {

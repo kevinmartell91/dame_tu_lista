@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { BuyersComponent } from './buyers.component';
-import { BuyerAddComponent } from './components/buyer-add/buyer-add.component'
+import { BuyerAddComponent } from './components/buyer-add/buyer-add.component';
 import { BuyerDeleteComponent } from "./components/buyer-delete/buyer-delete.component";
 import { BuyerUpdateComponent } from "./components/buyer-update/buyer-update.component";
 import { BuyerViewComponent } from "./components/buyer-view/buyer-view.component";
+
 
 const routes: Routes = [
   {

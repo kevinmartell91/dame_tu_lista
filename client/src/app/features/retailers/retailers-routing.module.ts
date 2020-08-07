@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { RetailersComponent } from './retailers.component';
-import { RetailerAddComponent } from './components/retailer-add/retailer-add.component'
+import { RouterModule, Routes } from '@angular/router';
+import { RetailerAddComponent } from './components/retailer-add/retailer-add.component';
 import { RetailerDeleteComponent } from "./components/retailer-delete/retailer-delete.component";
 import { RetailerUpdateComponent } from "./components/retailer-update/retailer-update.component";
 import { RetailerViewComponent } from "./components/retailer-view/retailer-view.component";
+import { RetailersComponent } from './retailers.component';
+
 
 const routes: Routes = [
   {

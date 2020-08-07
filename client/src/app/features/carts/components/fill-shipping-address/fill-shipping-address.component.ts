@@ -1,15 +1,10 @@
-import { Component, OnInit, OnDestroy, Injectable, Inject, Output, EventEmitter } from '@angular/core';
-import { CartStore } from 'src/app/core/cart/services/cart.store';
-import { BuyerEndPoint } from 'src/app/core/buyer/services/buyer.endpoint';
+import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
-import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
 import { Subscription } from 'rxjs';
 import { Address } from 'src/app/core/buyer/types/address';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
-import { LoginUser } from 'src/app/core/login/types/user';
-import { IfStmt } from '@angular/compiler';
+import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
 
 @Component({
   selector: 'app-fill-shipping-address',
@@ -36,7 +31,6 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
   @Output() addressFilled = new EventEmitter<any>();  
   
   constructor(
-    private cartStore: CartStore,
     private authenticationStore: AuthenticationStore,
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<FillShippingAddressComponent>,

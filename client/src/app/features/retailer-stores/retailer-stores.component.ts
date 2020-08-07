@@ -1,14 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Product } from 'src/app/core/retailer/types/product';
-import { Retailer } from "../../core/retailer/types/retailer";
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location, PlatformLocation } from '@angular/common';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { updateBuyerNavagation } from "./helpers/buyerNavegation.helper";
-import { RetailerStoreStore } from './services/retailer.store';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Retailer } from "../../core/retailer/types/retailer";
+import { RetailerStoreStore } from './services/retailer.store';
 
 @Component({
   selector: 'app-retailer-stores',

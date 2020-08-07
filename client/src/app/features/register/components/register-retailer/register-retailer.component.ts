@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,
-  Validators,
-  FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { VALIDATORS_PATTERNS } from '../../../../core/constants/validators-patterns';
 import { RetailerStore } from "../.././../../core/retailer/services/retailer.store";
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-retailer',
   templateUrl: './register-retailer.component.html',
   styleUrls: ['./register-retailer.component.sass']
 })
-export class RegisterRetailerComponent implements OnInit {
+export class RegisterRetailerComponent implements OnInit, OnDestroy {
 
   loading = false;
   registerRetailerForm: FormGroup;
   returnUrl: string;
   errorMessage = '';
+  subscribe: Subscription;
 
+
+  
   constructor(  
     private fb: FormBuilder,
     private retailerStore: RetailerStore,
@@ -34,6 +36,10 @@ export class RegisterRetailerComponent implements OnInit {
       email: ['', Validators.pattern(VALIDATORS_PATTERNS.email)]
     }) 
     this.onChanges();
+  }
+
+  ngOnDestroy(){
+    
   }
 
   onChanges(): void {
@@ -55,7 +61,7 @@ export class RegisterRetailerComponent implements OnInit {
     let newRetailer = this.deserialize();
     
     // console.log("onSubmit ()",newRetailer);
-    this.retailerStore.registerNewRetailer(newRetailer).subscribe(
+    this.subscribe = this.retailerStore.registerNewRetailer(newRetailer).subscribe(
       response => {
         if(response.success){
           
@@ -85,6 +91,9 @@ export class RegisterRetailerComponent implements OnInit {
         this.loading = false;
       },
     );
+
+
+    // this.subscribe.unsubscribe();
   }
 
   deserialize(): Retailer {

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
-import { CartProductOrder } from '../../../../core/order/types/cart-product-order';
-import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CartProductOrder } from '../../../../core/order/types/cart-product-order';
 import { DisplayDetailModalComponent } from "../display-detail-modal/display-detail-modal.component";
 
 

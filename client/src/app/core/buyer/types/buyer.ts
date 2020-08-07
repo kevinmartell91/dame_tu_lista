@@ -1,7 +1,6 @@
 import { Deserializable } from "../../../shared/models/deserializable.model";
-import { Address } from "./address";
 import { FavoriteReatailers } from "../../retailer/types/favorite-retailers";
-import { map } from 'rxjs/operators';
+import { Address } from "./address";
 
 export class Buyer implements Deserializable {
 

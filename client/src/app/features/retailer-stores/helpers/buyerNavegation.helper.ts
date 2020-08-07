@@ -1,6 +1,4 @@
-
 import { BuyerNavegationStore } from "../../../core/buyer/services/buyer-navegation.store";
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 
 export function  updateBuyerNavagation(
     buyerNavegationStore: BuyerNavegationStore,

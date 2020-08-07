@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalComponent } from "../../shared/components/modal/modal.component";
 import { FormGroup } from '@angular/forms';
 import { APP_CONFIG } from 'src/app/app.config';
 

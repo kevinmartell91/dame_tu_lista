@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Order } from 'src/app/core/order/types/order';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { MatDialog } from '@angular/material/dialog';
 import { ProductCommentModalComponent } from "../product-comment-modal/product-comment-modal.component";
 
 @Component({

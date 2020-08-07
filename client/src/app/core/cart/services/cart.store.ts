@@ -1,12 +1,12 @@
-import { CartStoreState } from './cart.store.states';
-import { Store } from 'rxjs-observable-store';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ShoppingCart } from '../types/shopping-cart';
-import { CartProduct } from '../types/cart-product';
-import { ignoreElements, map } from 'rxjs/operators';
-import { updateTotalProductPrice } from '../helpers/cart-helper';
+import { Store } from 'rxjs-observable-store';
+import { map } from 'rxjs/operators';
 import { Retailer } from '../../retailer/types/retailer';
+import { updateTotalProductPrice } from '../helpers/cart-helper';
+import { CartProduct } from '../types/cart-product';
+import { ShoppingCart } from '../types/shopping-cart';
+import { CartStoreState } from './cart.store.states';
 
 @Injectable({ providedIn: 'root'})
 export class CartStore extends Store<CartStoreState> {

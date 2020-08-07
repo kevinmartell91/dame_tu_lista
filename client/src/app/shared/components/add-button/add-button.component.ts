@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
-import { Product } from 'src/app/core/retailer/types/product';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-button',

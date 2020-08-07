@@ -2,8 +2,9 @@ var jwt = require ('jsonwebtoken');
 const crypto = require ('crypto');
 const getUserIdByLoginTypeFromDB = require('../utils').getUserIdByLoginType;
 // const getEntityType = require ('../utils').getEntityType;
-const JWT_SECRET_KEY = 'ilovescotchyscotch';
-// const JWT_SECRET_KEY = process.env.JWT_SECRET;
+// const JWT_SECRET_KEY = 'ilovescotchyscotch';
+const stage = require('../CONFIG');
+const JWT_SECRET_KEY = stage.jwt_secret;
 
 const options = {
   expiresIn: '2d',
@@ -33,7 +34,8 @@ module.exports = {
     const userType = user.user_type;
     const password = user.password;
     const key = genKey(userId, password);
-    const tokenPayLoad = { userId, userType, key };
+    // const tokenPayLoad = { userId, userType, key };
+    const tokenPayLoad = { userId, userType};
     const accessToken = jwt.sign(tokenPayLoad, JWT_SECRET_KEY);    
     // console.log("accessToken GEN", accessToken);
     return accessToken;

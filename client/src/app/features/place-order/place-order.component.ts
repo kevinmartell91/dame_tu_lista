@@ -1,15 +1,6 @@
-import { Component, OnInit, Injectable,
-  ViewChild, AfterViewInit, Output,
-  EventEmitter } from '@angular/core';
-import { InputProductSizeComponent } from "./components/input-product-size/input-product-size.component";
-import { Observable } from 'rxjs'
-
-// MatDilag used in the parent, who called the dialog
-// MatDialogRef MAT_DIALOG_DATA, used in the child, dialog perse.
-import { MatDialog, MatDialogRef,
-  MAT_DIALOG_DATA
- } from "@angular/material/dialog";
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductDetail } from './types/product-detail';
+
 
 // import orders  from '../../../assets/mocked-data/orders.json';
 

@@ -1,7 +1,6 @@
 
 // Import the core angular services.
-import { Injectable } from "@angular/core";
-import { NgZone } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 import { StorageCache } from "../types/storage-cache";
 import { StorageWrapper } from "../types/storage-wrapper";
 // ----------------------------------------------------------------------------------- //

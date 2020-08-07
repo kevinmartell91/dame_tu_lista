@@ -1,6 +1,5 @@
-import { Deserializable } from 'src/app/shared/models/deserializable.model';
-import { element } from 'protractor';
 import { Product } from 'src/app/core/retailer/types/product';
+import { Deserializable } from 'src/app/shared/models/deserializable.model';
 
 export class Small {
     url: string;

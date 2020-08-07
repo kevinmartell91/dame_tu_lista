@@ -1,12 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BUYER_ACCOUNT_CONFIG } from '../buyer-account.config';
-import { Buyer } from 'src/app/core/buyer/types/buyer';
-import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
-import { map, catchError, delay } from 'rxjs/operators';
-import { throwError, Observable } from 'rxjs';
-import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
+import { BUYER_ACCOUNT_CONFIG } from '../buyer-account.config';
 
 
 @Injectable()

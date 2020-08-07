@@ -1,7 +1,7 @@
 import { Deserializable } from 'src/app/shared/models/deserializable.model';
-import { ShippingOrder } from './shipping-order';
-import { PaymentOrder } from './payment-order';
 import { CartProductOrder } from "./cart-product-order";
+import { PaymentOrder } from './payment-order';
+import { ShippingOrder } from './shipping-order';
 
 export class Order implements Deserializable {
 

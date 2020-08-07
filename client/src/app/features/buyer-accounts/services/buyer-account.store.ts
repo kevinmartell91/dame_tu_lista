@@ -1,16 +1,14 @@
+import { Injectable, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Store } from 'rxjs-observable-store';
-import { Observable, Subject, pipe } from 'rxjs';
-import { map, tap, switchMap, takeUntil, retry } from 'rxjs/operators';
-
-
-import { BuyerAccountStoreState } from './buyer-account.store.state';
-import { BuyerAccountEndPoint } from './buyer-account.endpoint';
-import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
+import { map, retry, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import * as endpointHelpers from "../../../shared/helpers/endpoint.helpers";
-import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
-import { OnDestroy, Inject, Injectable } from '@angular/core';
-import { Product } from 'src/app/core/retailer/types/product';
+import { BuyerAccountEndPoint } from './buyer-account.endpoint';
+import { BuyerAccountStoreState } from './buyer-account.store.state';
+
+
 
 @Injectable()
 export class BuyerAccountStore extends Store<BuyerAccountStoreState>

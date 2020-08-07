@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
 
 @Component({
   selector: 'app-profile-settings',

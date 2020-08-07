@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,
-  Validators,
-  FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { VALIDATORS_PATTERNS } from '../../../../core/constants/validators-patterns';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { VALIDATORS_PATTERNS } from '../../../../core/constants/validators-patterns';
 
 
 @Component({
@@ -14,12 +13,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './register-buyer.component.html',
   styleUrls: ['./register-buyer.component.sass']
 })
-export class RegisterBuyerComponent implements OnInit {
+export class RegisterBuyerComponent implements OnInit, OnDestroy {
 
   loading = false;
   registerBuyerForm: FormGroup;
   returnUrl: string;
   errorMessage = '';
+  subscribe: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +41,9 @@ export class RegisterBuyerComponent implements OnInit {
     this.onChanges();
   }
 
+  ngOnDestroy(){
+  }
+
   onChanges(): void {
     const emailControl = this.registerBuyerForm.get('email');
     emailControl.valueChanges.subscribe(val => {
@@ -60,7 +63,7 @@ export class RegisterBuyerComponent implements OnInit {
     let newBuyer = this.deserialize();
     
     // console.log("onSubmit ()",newBuyer);
-    this.buyerStore.registerNewBuyer(newBuyer).subscribe(
+    this.subscribe = this.buyerStore.registerNewBuyer(newBuyer).subscribe(
       response => {
         if(response.success){
           
@@ -88,6 +91,9 @@ export class RegisterBuyerComponent implements OnInit {
         this.loading = false;
       },
     );
+
+    // this.subscribe.unsubscribe();
+
   }
 
   deserialize(): Buyer {

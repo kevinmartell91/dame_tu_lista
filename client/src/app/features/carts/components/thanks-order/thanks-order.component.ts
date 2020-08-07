@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderStore } from 'src/app/core/order/sevices/order.store';
 import { Subscription } from 'rxjs';
-import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
+import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
 
 @Component({
   selector: 'app-thanks-order',
   templateUrl: './thanks-order.component.html',
   styleUrls: ['./thanks-order.component.sass']
 })
-export class ThanksOrderComponent implements OnInit {
+export class ThanksOrderComponent implements OnInit, OnDestroy {
 
   retailer_id: string;
   subscription: Subscription;
@@ -34,6 +33,9 @@ export class ThanksOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
   
   redirectoRetailStore():void {

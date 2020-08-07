@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from 'rxjs-observable-store';
-import { BuyerNavegationStoreState } from './buyer-navegation.store.states';
-import { BuyerNavegation } from '../types/buyer-navegation';
 import { map } from 'rxjs/operators';
+import { BuyerNavegation } from '../types/buyer-navegation';
+import { BuyerNavegationStoreState } from './buyer-navegation.store.states';
 
 @Injectable({providedIn: 'root'})
 export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {

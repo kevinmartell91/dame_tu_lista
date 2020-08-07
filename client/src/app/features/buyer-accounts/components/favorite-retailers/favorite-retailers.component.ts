@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BuyerAccountStore } from '../../services/buyer-account.store';
-import { CartStore } from 'src/app/core/cart/services/cart.store';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginUser } from 'src/app/core/login/types/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { AddRetailerModalComponent } from '../add-retailer-modal/add-retailer-modal.component';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
+import { LoginUser } from 'src/app/core/login/types/user';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { updateBuyerNavagation } from 'src/app/features/retailer-stores/helpers/buyerNavegation.helper';
+import { BuyerAccountStore } from '../../services/buyer-account.store';
+import { AddRetailerModalComponent } from '../add-retailer-modal/add-retailer-modal.component';
 
 @Component({
   selector: 'app-favorite-retailers',
   templateUrl: './favorite-retailers.component.html',
   styleUrls: ['./favorite-retailers.component.sass']
 })
-export class FavoriteRetailersComponent implements OnInit {
+export class FavoriteRetailersComponent implements OnInit, OnDestroy {
 
   loginUser: LoginUser;
   buyer_id: string;
@@ -63,6 +63,10 @@ export class FavoriteRetailersComponent implements OnInit {
       BUYER_CONFIG.navegation.accountView
     );
 
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 

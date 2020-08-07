@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { Buyer } from '../types/buyer';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BUYER_CONFIG } from '../buyer.config';
-import { getHeadersForNewUsers, getHeadersForPatch, getHeadersForNewOrders } from 'src/app/shared/helpers/endpoint.helpers';
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { getHeadersForNewUsers, getHeadersForPatch } from 'src/app/shared/helpers/endpoint.helpers';
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
+import { BUYER_CONFIG } from '../buyer.config';
 import { Address } from '../types/address';
-import { ORDER_CONFIG } from '../../order/order.config';
+import { Buyer } from '../types/buyer';
 
 @Injectable({ providedIn: "root"})
 export class BuyerEndPoint {

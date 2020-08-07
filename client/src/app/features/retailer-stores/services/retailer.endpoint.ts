@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { getHeadersForGet, getHeadersForNewUsers } from 'src/app/shared/helpers/endpoint.helpers';
-import { map, catchError } from 'rxjs/operators';
-import { throwError, Observable } from 'rxjs';
-import { Injectable, Inject } from '@angular/core';
 import { RETAILER_STORES_CONFIG } from '../retailer-stores.config';
 
 @Injectable({providedIn: 'root'})

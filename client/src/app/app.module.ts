@@ -1,21 +1,14 @@
-//https://georgebyte.com/scalable-angular-app-architecture/#22-core-module
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
-import { SharedModule } from './shared/shared.module'; 
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-
-// import { HTTP_INTERCEPTORS } from '@angular/common/http'
-// import { ErrorInterceptors  } from './core/interceptors/error.interceptor'; 
-// import { TokenInterceptor } from './core/interceptors/token.interceptor';
-// import { AuthenticationService } from './core/services/authentication.service';
-// import { AuthService } from './features/login/services/auth.service';
 import { CoreModule } from "./core/core.module";
+import { SharedModule } from './shared/shared.module';
 
-import { HttpClientModule } from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -75,5 +68,5 @@ export class AppModule { }
      other module, component, provider, etc.
 */
 
-
+//https://georgebyte.com/scalable-angular-app-architecture/#22-core-module
 // https://angular.io/guide/lazy-loading-ngmodules

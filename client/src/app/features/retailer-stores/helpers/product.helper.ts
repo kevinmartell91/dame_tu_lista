@@ -1,7 +1,5 @@
-import { Product } from "../../../core/retailer/types/product";
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { ProductContainerComponent } from '../../place-order/components/product-container/product-container.component';
-import { element } from 'protractor';
+import { Product } from "../../../core/retailer/types/product";
 
 export function getProductDeserialized(products: any):  Product[] {
     let productsList: Product[] = [];

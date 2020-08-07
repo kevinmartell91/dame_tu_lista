@@ -1,15 +1,13 @@
-import { Component, OnInit, Input, OnDestroy} from '@angular/core';
-import { STORE_CONFIG } from "../../../../core/store/store_config";
-import { Product } from "../../../../core/retailer/types/product";
-import { Router, ActivatedRoute } from '@angular/router';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
-import { RetailerStoreStore } from '../../services/retailer.store';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { filterAllProductsByCategory, getProductDeserialized } from '../../helpers/product.helper';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TemporaryStorageFacet, TemporaryStorageService } from 'src/app/core/session-storage/services/temporary-storage.service';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { Product } from "../../../../core/retailer/types/product";
+import { STORE_CONFIG } from "../../../../core/store/store_config";
+import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
+import { filterAllProductsByCategory } from '../../helpers/product.helper';
+import { RetailerStoreStore } from '../../services/retailer.store';
 
 
 @Component({
@@ -27,7 +25,6 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
   public retailer_id: string;
   
   subscription: Subscription;
-  private temporaryStorage: TemporaryStorageFacet;
 
   constructor(
     private router: Router,

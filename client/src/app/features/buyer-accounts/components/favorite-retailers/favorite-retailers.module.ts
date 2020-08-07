@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { FavoriteRetailersRoutingModule } from './favorite-retailers-routing.module';
 import { FavoriteRetailersComponent } from './favorite-retailers.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({

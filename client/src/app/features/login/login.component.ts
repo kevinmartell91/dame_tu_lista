@@ -1,28 +1,18 @@
-import { Component, OnInit, HostBinding, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { FormGroup,
-		 FormControl,
-     Validators, 
-     FormGroupDirective,
-     NgForm,
-     FormBuilder } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { trigger,
-		 state,
-		 style,
-		 animate,
-		 transition } from '@angular/animations';
-import { LoginUser } from '../../core/login/types/user';
-import { AuthenticationStore } from "../../core/login/services/authentication.store";
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-
-import {ThemePalette} from '@angular/material/core';
-import {ProgressBarMode} from '@angular/material/progress-bar';
-
+import { APP_CONFIG } from 'src/app/app.config';
+import { LOGIN_CONFIG } from "../../core/login/login.config";
+import { AuthenticationStore } from "../../core/login/services/authentication.store";
 // test
 import { Requests } from "../../core/login/types/requests";
-import { LOGIN_CONFIG } from "../../core/login/login.config";
-import { APP_CONFIG } from 'src/app/app.config';
+import { LoginUser } from '../../core/login/types/user';
+
+
 
 // export class MyErrorStateMatcher implements ErrorStateMatcher {
 //   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

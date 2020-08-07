@@ -1,22 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { AuthenticationStore  } from "../../core/login/services/authentication.store";
-import { LoginUser } from 'src/app/core/login/types/user';
-import { Router } from '@angular/router';
-import { BuyerNavegation } from 'src/app/core/buyer/types/buyer-navegation';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { BuyerAccountStore } from './services/buyer-account.store';
-import { FavoriteReatailers } from 'src/app/core/retailer/types/favorite-retailers';
-import { deserialize } from './helpers/buyer-accounts.helper';
-import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
-import { CartStore } from 'src/app/core/cart/services/cart.store';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { Subscription } from 'rxjs';
-import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
-import { MatDialog } from '@angular/material/dialog';
-import { AddRetailerModalComponent } from "./components/add-retailer-modal/add-retailer-modal.component";
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationStore } from "../../core/login/services/authentication.store";
 
 @Component({
   selector: 'app-buyer-accounts',

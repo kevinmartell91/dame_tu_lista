@@ -1,8 +1,7 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Product } from '../../../core/retailer/types/product';
-import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { getCartProductFromProduct, round } from 'src/app/core/cart/helpers/cart-helper';
-import { timeout } from 'rxjs/operators';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { Product } from '../../../core/retailer/types/product';
 
 @Component({
   selector: 'app-product-display-shared',

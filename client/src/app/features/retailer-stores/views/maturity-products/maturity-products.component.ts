@@ -1,21 +1,17 @@
-import { Component, OnInit, Input, OnDestroy} from '@angular/core';
-import { STORE_CONFIG } from "../../../../core/store/store_config";
-import { Product } from "../../../../core/retailer/types/product";
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { RetailerStoreStore } from '../../services/retailer.store';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import {filterProductsByMaturity, getProductDeserialized} from '../../helpers/product.helper';
-import { Subscription } from 'rxjs';
-import { 
-  TemporaryStorageFacet, 
-  TemporaryStorageService 
-} from 'src/app/core/session-storage/services/temporary-storage.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { Product } from "../../../../core/retailer/types/product";
+import { STORE_CONFIG } from "../../../../core/store/store_config";
+import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
+import { filterProductsByMaturity } from '../../helpers/product.helper';
+import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({
   selector: 'app-maturity-products',

@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-import { DisplayDetailComponent } from "../display-detail/display-detail.component";
 import { ProductDetail } from '../../types/product-detail';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { DisplayDetailComponent } from "../display-detail/display-detail.component";
 
 @Component({
   selector: 'app-product-display',

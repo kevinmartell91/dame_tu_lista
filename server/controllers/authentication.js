@@ -1,22 +1,7 @@
 var app = require('express')();
-// used to create, sign, and verify tokens
-var jwt    = require('jsonwebtoken'); 
-var configJWT = require('../config/jwt');
-// var jwt_helper = require('../routes/simple_jwt');
 const bcrypt = require('bcrypt');
 const genAccessToken2 = require('../routes/simple_jwt').genAccessToken;
 const getEntityType = require('../utils').getEntityType;
-
-
-
-
-// secret variable
-app.set('superSecret', configJWT.secret); 
-
-// var User = require('../models/users');
-// var Pacient = require('../models/pacients');
-// var Therapist = require('../models/therapists');
-// var MedicalCenter = require('../models/medicalCenters');
 
 exports.postAuthenticate = function(req, res) {
 
@@ -50,7 +35,7 @@ exports.postAuthenticate = function(req, res) {
           // console.log(`Match this ${password} con este ${entity.password}`);
           // genreate a token
           const token = genAccessToken2(entity.toJSON());
-          // console.log(" token", token);
+          console.log(" token", token);
           res.json({
             success: true,
             message: 'Enjoy your token!',

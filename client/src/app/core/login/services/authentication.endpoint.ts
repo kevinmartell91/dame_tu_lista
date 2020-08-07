@@ -1,16 +1,11 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import { HttpClient,
-  		   HttpHeaders,
-         HttpErrorResponse} from "@angular/common/http";
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-
-
-// import { environment } from '../../../../environments/environment';
-import { ApiResponse } from "../../../shared/types/api-response";
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { StoreRequestStateUpdater } from "../../../shared/types/store-request-state-updater";
 import { LOGIN_CONFIG } from "../login.config";
 import { LoginUser } from '../types/user';
+
 
 
 @Injectable({providedIn: 'root'})

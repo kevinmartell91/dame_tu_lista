@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
-import { Order } from '../types/order';
-import { ORDER_CONFIG } from '../order.config';
-import { getHeadersForNewOrders, getHeadersForGet, getHeadersForPut  } from "src/app/shared/helpers/endpoint.helpers";
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { getHeadersForGet, getHeadersForNewOrders, getHeadersForPut } from "src/app/shared/helpers/endpoint.helpers";
+import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
+import { ORDER_CONFIG } from '../order.config';
+import { Order } from '../types/order';
 
 @Injectable({providedIn : "root"})
 export class OrderEndPoint  {

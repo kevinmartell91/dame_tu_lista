@@ -1,11 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from "@angular/cdk/layout";
-import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { Subscription } from 'rxjs';
+import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
+import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 
 @Component({
   selector: 'app-retailers-dashboard',

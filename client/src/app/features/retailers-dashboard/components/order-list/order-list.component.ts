@@ -1,16 +1,15 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { Order } from 'src/app/core/order/types/order';
-import { OrderStore } from 'src/app/core/order/sevices/order.store';
-import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
-import { Subscription } from 'rxjs';
-import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { ORDER_CONFIG } from 'src/app/core/order/order.config';
-import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/session-storage/services/temporary-storage.service';
-import { OrderDetailModalComponent } from "../order-detail-modal/order-detail-modal.component";
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment-modal.component';
-import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { ORDER_CONFIG } from 'src/app/core/order/order.config';
+import { OrderStore } from 'src/app/core/order/sevices/order.store';
+import { Order } from 'src/app/core/order/types/order';
+import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { TemporaryStorageFacet, TemporaryStorageService } from 'src/app/core/session-storage/services/temporary-storage.service';
+import { OrderDetailModalComponent } from "../order-detail-modal/order-detail-modal.component";
+import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment-modal.component';
 
 @Component({
   selector: 'app-order-list',
@@ -36,7 +35,6 @@ export class OrderListComponent implements OnDestroy {
 
   constructor(
     public orderStore: OrderStore,
-    private authenticationStore: AuthenticationStore,
     private temporaryStorageService: TemporaryStorageService,
     private matDialog: MatDialog,
     private snackBarService: MatSnackBar
@@ -77,7 +75,7 @@ export class OrderListComponent implements OnDestroy {
 
   ngOnDestroy() {
 
-    // this.authenticationSubscription.unsubscribe();
+    this.orderSubscription.unsubscribe();
 
   }
 
