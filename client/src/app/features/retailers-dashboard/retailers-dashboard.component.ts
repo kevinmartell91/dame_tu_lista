@@ -22,6 +22,8 @@ export class RetailersDashboardComponent implements OnDestroy {
     private retailerStore: RetailerStore
   ) {
 
+    console.log("RetailersDashboardComponent");
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -29,6 +31,7 @@ export class RetailersDashboardComponent implements OnDestroy {
     const loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
     const retailer_id = loginUserLocalStorage.entity._id;
 
+    console.log("HERE REtailer _ ID", retailer_id);
     // get retailer for all it subscribers
     this.retailerStore.getRetailerById(retailer_id);
   

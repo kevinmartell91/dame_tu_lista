@@ -19,6 +19,7 @@ var orderSchema = new Schema({
     address: {
       streetName: String,
       streetNumber: String,
+      apartmentNumber: String,
       district: String,
       city: String,
       department: String,

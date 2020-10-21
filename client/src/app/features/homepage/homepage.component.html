@@ -1,59 +1,546 @@
-<mat-toolbar color="XXXX">
-  <mat-toolbar-row>
-    <span><a class="nav-item nav-link" routerLink="/">Home</a> </span>
-    <span class="spacer"></span>
-    <!-- <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon> -->
-    <!-- <mat-icon class="icon" aria-hidden="false" aria-label="Example delete icon">dynamic_feed</mat-icon> -->
-    <div class="example-button-row">
-      <button mat-button color="accent" [routerLink]="['login']" >Login</button>
-      <button mat-button color="primary" [routerLink]="['/']">homepage</button>
-      <button mat-button color="warn" [routerLink]="['dashboard-medical-center']">medDashboard</button>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
 
-<p>homepage works!</p>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <!-- <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6ac393">
+  <link rel="canonical" href="index.html"><link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0328/1823/3484/files/OCO_Icon_32x32.png?v=1581107468" type="image/png"><title>Oco Meal Prep Vancouver 🥗 🌯 🧆
+&ndash; Oco Meals</title><meta name="description" content="Locally prepared meals 🥗 🌯 🧆 delivered 🚛 for your week. Imagine it&#39;s lunch time and instead of making something 🥘 or ordering take-out 🍔 you simply walk over to your fridge, take out a meal, and eat! 😋 💚 Oco Meal Delivery 🍝 🥗 🌯 🥙 🍛 🧆 🥘"><!-- /snippets/social-meta-tags.liquid -->
+ -->
 
-<router-outlet></router-outlet>
 
-<div fxLayout="column">
-  <!-- stacking your children vertically -->
-  <div
-      fxLayoutGap="2%"
-      fxFlex="auto"
-      fxLayoutAlign="space-between center" 
-      fxLayout="row">
 
-      <div fxFlex="10"
-          class="brand">
-          <h3>Hi</h3>
-      </div>
+<!-- <meta property="og:site_name" content="Oco Meals">
+<meta property="og:url" content="https://ocomeals.com/">
+<meta property="og:title" content="Oco Meal Prep Vancouver 🥗 🌯 🧆">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Locally prepared meals 🥗 🌯 🧆 delivered 🚛 for your week. Imagine it&#39;s lunch time and instead of making something 🥘 or ordering take-out 🍔 you simply walk over to your fridge, take out a meal, and eat! 😋 💚 Oco Meal Delivery 🍝 🥗 🌯 🥙 🍛 🧆 🥘">
 
-      <div 
-          flexLayoutAlign="space-around center" 
-          fxLayoutGap="2%"
-          fxFlex="70"
-          fxHide.xs>
-          <mat-form-field appearance="fill">
-              <mat-label>Input</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Input</mat-label>
-                <input matInput>
-              </mat-form-field>
-      </div>
+<meta property="og:image" content="http://cdn.shopify.com/s/files/1/0328/1823/3484/files/Oco_Meals_1200x1200.jpg?v=1593034039">
+<meta property="og:image:secure_url" content="https://cdn.shopify.com/s/files/1/0328/1823/3484/files/Oco_Meals_1200x1200.jpg?v=1593034039">
 
-      <div 
-          fxLayout="row"
-          fxLayoutAlign="end center">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-          <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
 
-      </div>
-  </div>
-  <div fxLayout="row">
-  </div>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oco Meal Prep Vancouver 🥗 🌯 🧆">
+<meta name="twitter:description" content="Locally prepared meals 🥗 🌯 🧆 delivered 🚛 for your week. Imagine it&#39;s lunch time and instead of making something 🥘 or ordering take-out 🍔 you simply walk over to your fridge, take out a meal, and eat! 😋 💚 Oco Meal Delivery 🍝 🥗 🌯 🥙 🍛 🧆 🥘"> -->
 
-</div>
+<!-- 
+  <link href="https://cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/theme.scss.css?v=8276372210772902748" rel="stylesheet" type="text/css" media="all" /> -->
+
+  <script>
+    var theme = {
+      breakpoints: {
+        medium: 750,
+        large: 990,
+        widescreen: 1400
+      },
+      strings: {
+        addToCart: "Add to cart",
+        soldOut: "Sold out",
+        unavailable: "Unavailable",
+        regularPrice: "Regular price",
+        salePrice: "Sale price",
+        sale: "SAVE",
+        fromLowestPrice: "from [price]",
+        vendor: "Vendor",
+        showMore: "Show More",
+        showLess: "Show Less",
+        searchFor: "Search for",
+        addressError: "Error looking up that address",
+        addressNoResults: "No results for that address",
+        addressQueryLimit: "You have exceeded the Google API usage limit. Consider upgrading to a \u003ca href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\"\u003ePremium Plan\u003c\/a\u003e.",
+        authError: "There was a problem authenticating your Google Maps account.",
+        newWindow: "Opens in a new window.",
+        external: "Opens external website.",
+        newWindowExternal: "Opens external website in a new window.",
+        removeLabel: "Remove [product]",
+        update: "Update",
+        quantity: "Quantity",
+        discountedTotal: "Discounted total",
+        regularTotal: "Regular total",
+        priceColumn: "See Price column for discount details.",
+        quantityMinimumMessage: "Quantity must be 1 or more",
+        cartError: "There was an error while updating your cart. Please try again.",
+        removedItemMessage: "Removed \u003cspan class=\"cart__removed-product-details\"\u003e([quantity]) [link]\u003c\/span\u003e from your cart.",
+        unitPrice: "Unit price",
+        unitPriceSeparator: "per",
+        oneCartCount: "1 item",
+        otherCartCount: "[count] items",
+        quantityLabel: "Quantity: [count]",
+        products: "Products",
+        loading: "Loading",
+        number_of_results: "[result_number] of [results_count]",
+        number_of_results_found: "[results_count] results found",
+        one_result_found: "1 result found"
+      },
+      moneyFormat: "${{amount}}",
+      moneyFormatWithCurrency: "${{amount}} CAD",
+      settings: {
+        predictiveSearchEnabled: false,
+        predictiveSearchShowPrice: false,
+        predictiveSearchShowVendor: false
+      }
+    }
+
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script><script src="https://cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/lazysizes.js?v=9422402313628365795" async="async"></script>
+  <script src="https://cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/vendor.js?v=8583346420283214553" defer="defer"></script>
+  <script src="https://cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/theme.js?v=1387038008499164568" defer="defer"></script>
+
+  <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/32818233484/digital_wallets/dialog">
+<link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script id="shopify-features" type="application/json">{"accessToken":"501cb4c072267225aff37d0f2f5a046f","betas":["rich-media-storefront-analytics"],"domain":"ocomeals.com","predictiveSearch":true,"shopId":32818233484,"smart_payment_buttons_url":"https:\/\/cdn.shopify.com\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js","dynamic_checkout_cart_url":"https:\/\/cdn.shopify.com\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js","locale":"en"}</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "oco-meals.myshopify.com";
+Shopify.locale = "en";
+Shopify.currency = {"active":"CAD","rate":"1.0"};
+Shopify.theme = {"name":"Debut","id":86847488140,"theme_store_id":796,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+Shopify.cdnHost = "cdn.shopify.com";</script>
+<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
+<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
+<script>(function() {
+  function asyncLoad() {
+    var urls = ["https:\/\/app.zapiet.com\/js\/storepickup.js?shop=oco-meals.myshopify.com","https:\/\/mpop.pxucdn.com\/apps.pixelunion.net\/scripts\/js\/countdown\/bundle.min.js?shop=oco-meals.myshopify.com","https:\/\/kickbooster.me\/shopify\/kbr.js?shop=oco-meals.myshopify.com","https:\/\/cdn.reamaze.com\/assets\/reamaze-loader.js?shop=oco-meals.myshopify.com","https:\/\/cdn-bundler.nice-team.net\/app\/js\/bundler.js?shop=oco-meals.myshopify.com","\/\/productreviews.shopifycdn.com\/assets\/v4\/spr.js?shop=oco-meals.myshopify.com","https:\/\/cdn.tabarn.app\/cdn\/automatic-discount\/wallsh_dp.min.js?shop=oco-meals.myshopify.com","https:\/\/shopify.sendinblue.com\/mascript.php?makey=lpb28sa4knj6sqj593cdlxek\u0026shop=oco-meals.myshopify.com\u0026shop=oco-meals.myshopify.com","https:\/\/bundle-builder.herokuapp.com\/script.js?shop=oco-meals.myshopify.com","https:\/\/cdn.judge.me\/assets\/installed.js?shop=oco-meals.myshopify.com","https:\/\/www.shoutout.global\/js\/shoutout_theme.js?shop=oco-meals.myshopify.com","https:\/\/www.shoutout.global\/js\/shoutout_cart.js?shop=oco-meals.myshopify.com","https:\/\/cdn.jsdelivr.net\/gh\/apphq\/slidecart-dist@master\/slidecarthq-forward.js?4\u0026shop=oco-meals.myshopify.com","https:\/\/shinedezign.tk\/mini\/js\/minicart.js?shop=oco-meals.myshopify.com"];
+    for (var i = 0; i < urls.length; i++) {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = urls[i];
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  };
+  if(window.attachEvent) {
+    window.attachEvent('onload', asyncLoad);
+  } else {
+    window.addEventListener('load', asyncLoad, false);
+  }
+})();</script>
+<script id="__st">var __st={"a":32818233484,"offset":-25200,"reqid":"5bc43653-9ee8-43c8-94fe-4bc02e26c05b","pageurl":"ocomeals.com\/","u":"777ab6b25748","p":"home"};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script>window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+window.ShopifyAnalytics.meta.currency = 'CAD';
+var meta = {"page":{"pageType":"home"}};
+for (var attr in meta) {
+  window.ShopifyAnalytics.meta[attr] = meta[attr];
+}</script>
+<script>window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+  
+};
+</script>
+<script class="analytics">(window.gaDevIds=window.gaDevIds||[]).push('BwiEti');
+
+
+(function () {
+  var customDocumentWrite = function(content) {
+    var jquery = null;
+
+    if (window.jQuery) {
+      jquery = window.jQuery;
+    } else if (window.Checkout && window.Checkout.$) {
+      jquery = window.Checkout.$;
+    }
+
+    if (jquery) {
+      jquery('body').append(content);
+    }
+  };
+
+  var isDuplicatedThankYouPageView = function() {
+    return document.cookie.indexOf('loggedConversion=' + window.location.pathname) !== -1;
+  }
+
+  var setCookieIfThankYouPage = function() {
+    if (window.location.pathname.indexOf('/checkouts') !== -1 &&
+        window.location.pathname.indexOf('/thank_you') !== -1) {
+
+      var twoMonthsFromNow = new Date(Date.now());
+      twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+      document.cookie = 'loggedConversion=' + window.location.pathname + '; expires=' + twoMonthsFromNow;
+    }
+  }
+
+  var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+  if (trekkie.integrations) {
+    return;
+  }
+  trekkie.methods = [
+    'identify',
+    'page',
+    'ready',
+    'track',
+    'trackForm',
+    'trackLink'
+  ];
+  trekkie.factory = function(method) {
+    return function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(method);
+      trekkie.push(args);
+      return trekkie;
+    };
+  };
+  for (var i = 0; i < trekkie.methods.length; i++) {
+    var key = trekkie.methods[i];
+    trekkie[key] = trekkie.factory(key);
+  }
+  trekkie.load = function(config) {
+    trekkie.config = config;
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.onerror = function(e) {      var Monorail = {
+      produce: function produce(monorailDomain, schemaId, payload) {
+        var currentMs = new Date().getTime();
+        var event = {
+          schema_id: schemaId,
+          payload: payload,
+          metadata: {
+            event_created_at_ms: currentMs,
+            event_sent_at_ms: currentMs
+          }
+        };
+        return Monorail.sendRequest("https://" + monorailDomain + "/v1/produce", JSON.stringify(event));
+      },
+      sendRequest: function sendRequest(endpointUrl, payload) {
+        // Try the sendBeacon API
+        if (window && window.navigator && typeof window.navigator.sendBeacon === 'function' && typeof window.Blob === 'function' && !Monorail.isIos12()) {
+          var blobData = new window.Blob([payload], {
+            type: 'text/plain'
+          });
+    
+          if (window.navigator.sendBeacon(endpointUrl, blobData)) {
+            return true;
+          } // sendBeacon was not successful
+    
+        } // XHR beacon   
+    
+        var xhr = new XMLHttpRequest();
+    
+        try {
+          xhr.open('POST', endpointUrl);
+          xhr.setRequestHeader('Content-Type', 'text/plain');
+          xhr.send(payload);
+        } catch (e) {
+          console.log(e);
+        }
+    
+        return false;
+      },
+      isIos12: function isIos12() {
+        return window.navigator.userAgent.lastIndexOf('iPhone; CPU iPhone OS 12_') !== -1 || window.navigator.userAgent.lastIndexOf('iPad; CPU OS 12_') !== -1;
+      }
+    };
+    Monorail.produce('monorail-edge.shopifysvc.com',
+      'trekkie_storefront_load_errors/1.0',
+      {shop_id: 32818233484,
+      theme_id: 86847488140,
+      app_name: "storefront"});          
+
+      (new Image()).src = '//v.shopify.com/internal_errors/track?error=trekkie_load';
+    };
+    script.async = true;
+    script.src = 'https://cdn.shopify.com/s/javascripts/tricorder/trekkie.storefront.min.js?v=2020.07.13.1';
+    var first = document.getElementsByTagName('script')[0];
+    first.parentNode.insertBefore(script, first);
+  };
+  trekkie.load(
+    {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":32818233484,"isMerchantRequest":null,"themeId":86847488140,"themeCityHash":"18208818121832610989","contentLanguage":"en","currency":"CAD"},"isServerSideCookieWritingEnabled":true,"isPixelGateEnabled":true},"Performance":{"navigationTimingApiMeasurementsEnabled":true,"navigationTimingApiMeasurementsSampleRate":1},"Google Analytics":{"trackingId":"UA-164390720-2","domain":"auto","siteSpeedSampleRate":"10","enhancedEcommerce":true,"doubleClick":true,"includeSearch":true},"Session Attribution":{}}
+  );
+
+  var loaded = false;
+  trekkie.ready(function() {
+    if (loaded) return;
+    loaded = true;
+
+    window.ShopifyAnalytics.lib = window.trekkie;
+    
+      ga('require', 'linker');
+      function addListener(element, type, callback) {
+        if (element.addEventListener) {
+          element.addEventListener(type, callback);
+        }
+        else if (element.attachEvent) {
+          element.attachEvent('on' + type, callback);
+        }
+      }
+      function decorate(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target && (target.getAttribute('action') || target.getAttribute('href'))) {
+          ga(function (tracker) {
+            var linkerParam = tracker.get('linkerParam');
+            document.cookie = '_shopify_ga=' + linkerParam + '; ' + 'path=/';
+          });
+        }
+      }
+      addListener(window, 'load', function(){
+        for (var i=0; i < document.forms.length; i++) {
+          var action = document.forms[i].getAttribute('action');
+          if(action && action.indexOf('/cart') >= 0) {
+            addListener(document.forms[i], 'submit', decorate);
+          }
+        }
+        for (var i=0; i < document.links.length; i++) {
+          var href = document.links[i].getAttribute('href');
+          if(href && href.indexOf('/checkout') >= 0) {
+            addListener(document.links[i], 'click', decorate);
+          }
+        }
+      });
+    
+
+    var originalDocumentWrite = document.write;
+    document.write = customDocumentWrite;
+    try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+    document.write = originalDocumentWrite;
+      (function () {
+        if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
+          return;
+        }
+        window.BOOMR = window.BOOMR || {};
+        window.BOOMR.snippetStart = new Date().getTime();
+        window.BOOMR.snippetExecuted = true;
+        window.BOOMR.snippetVersion = 12;
+        window.BOOMR.application = "storefront-renderer";
+        window.BOOMR.themeName = "Debut";
+        window.BOOMR.themeVersion = "16.3.0";
+        window.BOOMR.shopId = 32818233484;
+        window.BOOMR.themeId = 86847488140;
+        window.BOOMR.url =
+          "https://cdn.shopify.com/shopifycloud/boomerang/shopify-boomerang-1.0.0.min.js";
+        var where = document.currentScript || document.getElementsByTagName("script")[0];
+        var parentNode = where.parentNode;
+        var promoted = false;
+        var LOADER_TIMEOUT = 3000;
+        function promote() {
+          if (promoted) {
+            return;
+          }
+          var script = document.createElement("script");
+          script.id = "boomr-scr-as";
+          script.src = window.BOOMR.url;
+          script.async = true;
+          parentNode.appendChild(script);
+          promoted = true;
+        }
+        function iframeLoader(wasFallback) {
+          promoted = true;
+          var dom, bootstrap, iframe, iframeStyle;
+          var doc = document;
+          var win = window;
+          window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
+          bootstrap = function(parent, scriptId) {
+            var script = doc.createElement("script");
+            script.id = scriptId || "boomr-if-as";
+            script.src = window.BOOMR.url;
+            BOOMR_lstart = new Date().getTime();
+            parent = parent || doc.body;
+            parent.appendChild(script);
+          };
+          if (!window.addEventListener && window.attachEvent && navigator.userAgent.match(/MSIE [67]./)) {
+            window.BOOMR.snippetMethod = "s";
+            bootstrap(parentNode, "boomr-async");
+            return;
+          }
+          iframe = document.createElement("IFRAME");
+          iframe.src = "about:blank";
+          iframe.title = "";
+          iframe.role = "presentation";
+          iframe.loading = "eager";
+          iframeStyle = (iframe.frameElement || iframe).style;
+          iframeStyle.width = 0;
+          iframeStyle.height = 0;
+          iframeStyle.border = 0;
+          iframeStyle.display = "none";
+          parentNode.appendChild(iframe);
+          try {
+            win = iframe.contentWindow;
+            doc = win.document.open();
+          } catch (e) {
+            dom = document.domain;
+            iframe.src = "javascript:var d=document.open();d.domain='" + dom + "';void(0);";
+            win = iframe.contentWindow;
+            doc = win.document.open();
+          }
+          if (dom) {
+            doc._boomrl = function() {
+              this.domain = dom;
+              bootstrap();
+            };
+            doc.write("<body onload='document._boomrl();'>");
+          } else {
+            win._boomrl = function() {
+              bootstrap();
+            };
+            if (win.addEventListener) {
+              win.addEventListener("load", win._boomrl, false);
+            } else if (win.attachEvent) {
+              win.attachEvent("onload", win._boomrl);
+            }
+          }
+          doc.close();
+        }
+        var link = document.createElement("link");
+        if (link.relList &&
+          typeof link.relList.supports === "function" &&
+          link.relList.supports("preload") &&
+          ("as" in link)) {
+          window.BOOMR.snippetMethod = "p";
+          link.href = window.BOOMR.url;
+          link.rel = "preload";
+          link.as = "script";
+          link.addEventListener("load", promote);
+          link.addEventListener("error", function() {
+            iframeLoader(true);
+          });
+          setTimeout(function() {
+            if (!promoted) {
+              iframeLoader(true);
+            }
+          }, LOADER_TIMEOUT);
+          BOOMR_lstart = new Date().getTime();
+          parentNode.appendChild(link);
+        } else {
+          iframeLoader(false);
+        }
+        function boomerangSaveLoadTime(e) {
+          window.BOOMR_onload = (e && e.timeStamp) || new Date().getTime();
+        }
+        if (window.addEventListener) {
+          window.addEventListener("load", boomerangSaveLoadTime, false);
+        } else if (window.attachEvent) {
+          window.attachEvent("onload", boomerangSaveLoadTime);
+        }
+        if (document.addEventListener) {
+          document.addEventListener("onBoomerangLoaded", function(e) {
+            e.detail.BOOMR.init({
+              producer_url: "https://monorail-edge.shopifysvc.com/v1/produce",
+              ResourceTiming: {
+                enabled: true,
+                trackedResourceTypes: ["script", "img", "css"]
+              },
+            });
+            e.detail.BOOMR.t_end = new Date().getTime();
+          });
+        } else if (document.attachEvent) {
+          document.attachEvent("onpropertychange", function(e) {
+            if (!e) e=event;
+            if (e.propertyName === "onBoomerangLoaded") {
+              e.detail.BOOMR.init({
+                producer_url: "https://monorail-edge.shopifysvc.com/v1/produce",
+                ResourceTiming: {
+                  enabled: true,
+                  trackedResourceTypes: ["script", "img", "css"]
+                },
+              });
+              e.detail.BOOMR.t_end = new Date().getTime();
+            }
+          });
+        }
+      })();
+    
+
+    if (!isDuplicatedThankYouPageView()) {
+      setCookieIfThankYouPage();
+      
+        window.ShopifyAnalytics.lib.page(
+          null,
+          {"pageType":"home"}
+        );
+      
+      
+    }
+  });
+
+  
+      var eventsListenerScript = document.createElement('script');
+      eventsListenerScript.async = true;
+      eventsListenerScript.src = "//cdn.shopify.com/s/assets/shop_events_listener-d81deda6557a113fbcc6a993184828adcef6f241e4ca52b6a21169cb03169317.js";
+      document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+    
+})();</script>
+<script integrity="sha256-/yz3KdTbvYyCjvClJ1EuENpgCyPfKK73b0tRgu969Zs=" data-source-attribution="shopify.loadfeatures" defer="defer" src="https://cdn.shopify.com/s/assets/storefront/load_feature-ff2cf729d4dbbd8c828ef0a527512e10da600b23df28aef76f4b5182ef7af59b.js" crossorigin="anonymous"></script>
+<script integrity="sha256-h+g5mYiIAULyxidxudjy/2wpCz/3Rd1CbrDf4NudHa4=" data-source-attribution="shopify.dynamic-checkout" defer="defer" src="https://cdn.shopify.com/s/assets/storefront/features-87e8399988880142f2c62771b9d8f2ff6c290b3ff745dd426eb0dfe0db9d1dae.js" crossorigin="anonymous"></script>
+
+
+<script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+<!--Gem_Page_Header_Script-->
+
+<!--End_Gem_Page_Header_Script-->
+
+  <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
+<!-- Reamaze Config file - DO NOT REMOVE -->
+<script type="text/javascript">
+  var _support = _support || { 'ui': {}, 'user': {} };
+  _support.account = "oco-meals";
+</script>
+<!-- Reamaze SSO file - DO NOT REMOVE -->
+
+
+<!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
+
+</head>
+
+<body>
+<div class="gem-container">
+	 
+
+<!--GEM_HEADER-->
+<link data-instant-track rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/gem-page-index-1599000392.css?v=6549552029690047540" class="gf_page_style">
+<link data-instant-track class="gf_fonts" data-fonts="Montserrat" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+<link data-instant-track rel="stylesheet" type="text/css" href= "https://d1um8515vdn9kb.cloudfront.net/libs/css/owl.carousel.min.css" class="gf_libs">
+<!--GEM_HEADER_END-->
+ 
+<!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor">
+<div data-label="Liquid" id="m-1599242011119" class="module-wrap" data-icon="gpicon-liquid" data-ver="1.0" data-id="1599242011119" data-name="Custom Liquid Element: Full Story and Google Analytics HTML Snippet. ONLY INSERT IF NO HEADER ON PAGE" style="background-image: none;"><div class="module gf_module- gf_module--lg gf_module--md gf_module--sm gf_module--xs "><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WHWJVQH');</script><!-- End Google Tag Manager --><!-- Full Story Tracking --><script>window['_fs_debug'] = false;window['_fs_host'] = 'fullstory.com';window['_fs_script'] = 'edge.fullstory.com/s/fs.js';window['_fs_org'] = 'S60HV';window['_fs_namespace'] = 'FS';(function(m,n,e,t,l,o,g,y){if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};g.anonymize=function(){g.identify(!!0)};g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};g.log = function(a,b){g("log",[a,b])};g.consent=function(a){g("consent",!arguments.length||a)};g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};g.clearUserCookie=function(){};g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};g._v="1.2.0";})(window,document,window['_fs_namespace'],'script','user');</script><!-- Global site tag (gtag.js) - Google Analytics --><!--<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-164390720-4"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-164390720-4');</script>--><!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '417985952254792');fbq('track', 'PageView');</script><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=417985952254792&ev=PageView&noscript=1"></noscript><!-- End Facebook Pixel Code --><!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHWJVQH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --></div></div><!--gfsplit--><div data-label="Row" id="r-1600126052794" class="gf_row gf_row-gap-0" data-icon="gpicon-row" data-id="1600126052794" data-extraclass="" data-row-gap="0px"><div class="gf_column gf_col-md-4 gf_col-lg-4 gf_col-sm-4 gf_col-xs-3" id="c-1600126052853" data-id="1600126052853" style="min-height: auto;"><div data-label="Text Block" id="e-1600126121213" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1600126121213"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p><br></p></div></div></div><div class="gf_column gf_col-md-4 gf_col-lg-4 gf_col-sm-4 gf_col-xs-6" id="c-1600126065095" data-id="1600126065095" style="min-height: auto;"><div data-label="Image" id="e-1599242011023" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011023" data-resolution="480x480"><div class="elm gf-elm-center gf_elm-left-xs gf-elm--lg gf-elm--md gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><img src="https://dl.airtable.com/.attachmentThumbnails/a19e24f7a2d5cbdf13defe320895d6c8/bcddc3d8" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-md-4 gf_col-lg-4 gf_col-sm-4 gf_col-xs-3" id="c-1600126065124" data-id="1600126065124" style="min-height: auto;"><div data-label="Button" id="e-1600124106592" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1600124106592"><div class="elm gf-elm-center gf-elm-right-lg gf-elm-right-md gf-elm-right-sm gf-elm-right-xs"><a class="button btn gf_button" href="http://app.ocomeals.com/sign-in" target="" data-scroll-speed="2000" data-exc="" aria-describedby="a11y-external-message"><span>Login</span></a></div></div></div></div><!--gfsplit--><div data-label="Heading" id="e-1599421126542" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599421126542"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Recibe los pedidos de tus cliente en WhatsApp</h1></div></div><!--gfsplit--><div data-label="Row" id="r-1599242011125" class="gf_row" data-icon="gpicon-row" data-id="1599242011125" data-extraclass=""><div class="gf_column gf_col-lg-6 gf_col-md-6 gf_col-sm-6 gf_col-xs-12" id="c-1599196463837" data-id="1599196463837" style="min-height: auto;"><div data-label="Image" id="e-1599242011075" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011075"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/5ebf8814-e9de-45c7-9938-d1bb740743c3/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-6 gf_col-md-6 gf_col-sm-6 gf_col-xs-12" id="c-1599196483976" data-id="1599196483976" style="min-height: auto;"><div data-label="Row" id="r-1599242011031" class="gf_row" data-icon="gpicon-row" data-id="1599242011031" data-extraclass=""><div class="gf_col-lg-12 gf_column" id="c-1596751803774" data-id="1596751803774" style="min-height: auto;"><div data-label="Heading" id="e-1599242011092" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011092"><div class="elm text-edit gf-elm-center gf-elm-center-xs gf-elm-center-sm gf-elm-center-lg gf-elm-center-md" data-gemlang="en" data-exc=""><h1><b>Atiende ilimitadas órdenes por S/.20 al mes</b></h1></div></div><div data-label="Text Block" id="e-1599242011129" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011129" style="display: block;"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>Membresia mensual sin contratos</p></div></div><div data-label="Heading" id="e-1599242011046" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011046"><div class="elm text-edit gf-elm-center gf-elm-center-xs gf-elm-center-sm gf-elm-center-lg gf-elm-center-md" data-gemlang="en" data-exc=""><h1>Además, &nbsp;<b>cero comisiones</b> por tus ventas!</h1></div></div><div data-label="Button" id="e-1599242011055" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011055"><div class="elm gf-elm-center gf-elm-center-xs gf-elm-center-sm gf-elm-center-md gf-elm-center-lg"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Redeem Now</span></a></div></div><div data-label="Text Block" id="e-1599242011101" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011101"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Valid for new customers only</p></div></div></div></div></div></div><!--gfsplit--><div data-label="Image" id="e-1599242011102" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011102"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/5ebf8814-e9de-45c7-9938-d1bb740743c3/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div><!--gfsplit--><div data-label="Row" id="r-1599242011133" class="gf_row" data-icon="gpicon-row" data-id="1599242011133" data-extraclass=""><div class="gf_col-lg-12 gf_column" id="c-1596751803774" data-id="1596751803774" style="min-height: auto;"><div data-label="Heading" id="e-1599242011037" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011037"><div class="elm text-edit gf-elm-center gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><h1><b>Atiende ilimitadas órdenes por S/.20 al mes</b></h1></div></div><div data-label="Text Block" id="e-1599242011104" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011104"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>Membresia mensual sin contratos</p></div></div><div data-label="Heading" id="e-1599242011105" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011105"><div class="elm text-edit gf-elm-center gf-elm-center-xs gf-elm-center-sm" data-gemlang="en" data-exc=""><h1>Además, <b>Cero comisiones</b> por tus ventas!</h1></div></div><div data-label="Text Block" id="e-1599242011115" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011115"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-sm gf-elm-center-lg gf-elm-center-md" data-gemlang="en" data-exc=""><p>Offer Expires In</p></div></div><div data-label="Count Down" id="m-1599242011063" class="module-wrap" data-icon="gpicon-countdown" data-ver="1.0" data-id="1599242011063"><div class="module count-down gf_module-center gf_module-center-lg gf_module--md gf_module--sm gf_module--xs " data-end="2020/9/11 17:0:48" data-week="0" data-weeklabel="Weeks" data-day="1" data-daylabel="Days" data-hour="1" data-hourlabel="Hours" data-minute="1" data-minutelabel="Minutes" data-second="1" data-secondlabel="Seconds" data-type="daily" data-daily="0h, 0m, 10s" data-evergreen="3h" data-redirect="#" data-cookietime="0" data-evergreenloop="1" data-timezone="UTC-7"><div class="count-down-wrap"><div class="count-down-inner"><div class="day-left time-left"><span class="num">00</span><span class="count-label">Days</span></div><div class="hour-left time-left"><span class="num">00</span><span class="count-label">Hours</span></div><div class="minute-left time-left"><span class="num">00</span><span class="count-label">Minutes</span></div><div class="second-left time-left"><span class="num">00</span><span class="count-label">Seconds</span></div></div></div></div></div><div data-label="Button" id="e-1599242011071" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011071"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Redeem Now</span></a></div></div><div data-label="Text Block" id="e-1599242011057" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011057"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Valid for new customers only</p></div></div></div></div><!--gfsplit--><div data-label="Row" id="r-1599242011158" class="gf_row gf_row-fluid gf_row-no-padding gf_row-gap-0" data-icon="gpicon-row" data-id="1599242011158" style="display: block;" data-row-gap="0px" data-extraclass=""><div class="gf_col-lg-12 gf_column" id="c-1593118037609" data-id="1593118037609" style="min-height: auto;"><div data-label="Row" id="r-1599242011127" class="gf_row gf_row-fluid gf_row-no-padding gf_row-gap-0" data-icon="gpicon-row" data-id="1599242011127" data-extraclass="" data-row-gap="0px"><div class="gf_column gf_col-lg-12 gf_col-md-12 gf_col-sm-12 gf_col-xs-12" id="c-1593121801969" data-id="1593121801969" style="min-height: auto;"><div data-label="Heading" id="e-1599242011106" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011106"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Cómo funciona</h1></div></div><div data-label="Row" id="r-1599242011091" class="gf_row gf_row-gap-10" data-icon="gpicon-row" data-id="1599242011091" data-vivaldi-spatnav-clickable="1" data-extraclass="" style="" data-row-gap="10px"><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-12" id="c-1505553082233" data-id="1505553082233" style="min-height: auto;" data-extraclass=""><div data-label="Image" id="e-1599242011097" class="element-wrap" data-icon="gpicon-image" data-id="1599242011097" data-vivaldi-spatnav-clickable="1" style=""><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-lg gf-elm-center-xs gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/cb6439c3-1bc7-4a4b-95fd-d0ede28bca6a/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-vivaldi-spatnav-clickable="1" style="" title=""></div></div><div data-label="Heading" id="e-1599242011076" class="element-wrap" data-icon="gpicon-heading" data-id="1599242011076" data-vivaldi-spatnav-clickable="1"><div class="elm text-edit gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-xs gf-elm-center-sm" data-exc=""><h2><span style="font-weight: normal;"><font color="#1c1c25">Tu cliente ordena por tu tienda online</font></span></h2></div></div><div data-label="Separator" id="e-1599242011130" class="element-wrap" data-icon="gpicon-separator" data-ver="1" data-id="1599242011130"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-align="left" data-exc=""><hr class="gf_separator"></div></div><div data-label="Text Block" id="e-1599242011034" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011034"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-left-lg gf-elm-left-md gf-elm-left-sm" data-gemlang="en" data-exc=""><p>Tendras un URL personalizada con el nombre de tu tienda por donde podras mostrar tus productos de venta.</p></div></div></div><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-12" id="c-1505553082336" data-id="1505553082336" data-extraclass="" style="min-height: auto;"><div data-label="Image" id="e-1599242011065" class="element-wrap" data-icon="gpicon-image" data-id="1599242011065" data-vivaldi-spatnav-clickable="1" style=""><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-xs gf-elm-center-lg gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/d2b24dac-eeb7-455a-ad66-c4df98b6c23c/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-vivaldi-spatnav-clickable="1" style="" title=""></div></div><div data-label="Heading" id="e-1599242011098" class="element-wrap" data-icon="gpicon-heading" data-id="1599242011098" data-vivaldi-spatnav-clickable="1"><div class="elm text-edit gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-xs gf-elm-center-sm" data-exc=""><h2><span style="font-weight: normal;"><font color="#1c1c25">Recibe la órden en tu WhatsApp o WhatApp Business</font></span></h2></div></div><div data-label="Separator" id="e-1599242011107" class="element-wrap" data-icon="gpicon-separator" data-ver="1" data-id="1599242011107"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-align="left" data-exc=""><hr class="gf_separator"></div></div><div data-label="Text Block" id="e-1599242011121" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011121"><div class="elm text-edit gf-elm-left gf-elm-center-xs" data-gemlang="en" data-exc=""><p>Entendemos que este medio te permite realizar ventas más fácil y rápidamente. La misma orden aparecerá en tu cuenta de Dametulista.com. </p></div></div></div><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-12" id="c-1505553082229" data-id="1505553082229" data-extraclass="" style="min-height: auto;"><div data-label="Image" id="e-1599242011120" class="element-wrap" data-icon="gpicon-image" data-id="1599242011120" data-vivaldi-spatnav-clickable="1" style=""><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-lg gf-elm-center-sm gf-elm-center-xs" data-exc=""><img src="https://ucarecdn.com/afa695cc-b61e-4284-b631-e23b5ad68a3c/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-vivaldi-spatnav-clickable="1" style="" title=""></div></div><div data-label="Heading" id="e-1599242011085" class="element-wrap" data-icon="gpicon-heading" data-id="1599242011085" data-vivaldi-spatnav-clickable="1"><div class="elm text-edit gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><h2><font color="#1c1c25"><span style="font-weight: normal;">Cobra y entregra la orden como desees.</span></font></h2><div><font color="#1c1c25"><span style="font-weight: normal;"><br></span></font></div></div></div><div data-label="Separator" id="e-1599242011061" class="element-wrap" data-icon="gpicon-separator" data-ver="1" data-id="1599242011061"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-align="left" data-exc=""><hr class="gf_separator"></div></div><div data-label="Text Block" id="e-1599242011080" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011080"><div class="elm text-edit gf-elm-left gf-elm-center-xs" data-gemlang="en" data-exc=""><p>No te imponemos como entregar o cobrar por los productos que vendas. Te ayudamos a que obtengas un lista ordenada, clara y concreta con la app que estás más familiarizado. 😃</p></div></div></div></div><div data-label="Button" id="e-1599242011079" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011079"><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-sm gf-elm-center-lg gf-elm-center-xs"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Empieza ahora</span></a></div></div><div data-label="Text Block" id="e-1599242011116" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011116"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Sin compromiso. Cancele u omita en cualquier momento.&nbsp;</p></div></div><div data-label="Row" id="r-1599242011186" class="gf_row" data-icon="gpicon-row" data-id="1599242011186" data-extraclass=""><div class="gf_column gf_col-lg-12 gf_col-md-12 gf_col-sm-12 gf_col-xs-12" id="c-1596752846161" data-id="1596752846161" style="min-height: auto;"><div data-label="Heading" id="e-1599242011148" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011148"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Muchos ya empezaron con dametulista.com/el-nombre-de-tu-tienda</h1></div></div><div data-label="Row" id="r-1599242011074" class="gf_row" data-icon="gpicon-row" data-id="1599242011074" data-extraclass=""><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-4" id="c-1596837566191" data-id="1596837566191" style="min-height: auto;"><div data-label="Image" id="e-1599242011167" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011167"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-sm gf-elm-center-md" data-exc=""><img src="https://ucarecdn.com/a52c2bb7-5615-427c-8860-c5bdaf58bc53/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div><div data-label="Heading" id="e-1599242011136" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011136"><div class="elm text-edit gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-xs gf-elm-center-sm" data-gemlang="en" data-exc=""><h1>Ahorra tiempo</h1></div></div><div data-label="Text Block" id="e-1599242011073" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011073"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>¿Porqué atender un cliente a la vez? Atiende 8 ó 10. Se productivo.  </p></div></div></div><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-4" id="c-1596837571587" data-id="1596837571587" style="min-height: auto;"><div data-label="Image" id="e-1599242011069" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011069"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-sm gf-elm-center-md" data-exc=""><img src="https://ucarecdn.com/e2ce6fe0-88a0-4cde-a38e-6f7253faaac3/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div><div data-label="Heading" id="e-1599242011124" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011124"><div class="elm text-edit gf-elm-center gf-elm-left-xs gf-elm-center-lg gf-elm-center-sm gf-elm-center-md" data-gemlang="en" data-exc=""><h1>Genera m</h1></div></div><div data-label="Text Block" id="e-1599242011022" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011022"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>Save 25% to 50% compared to takeout!</p></div></div></div><div class="gf_column gf_col-lg-4 gf_col-md-4 gf_col-sm-4 gf_col-xs-4" id="c-1596837571546" data-id="1596837571546" style="min-height: auto;"><div data-label="Image" id="e-1599242011086" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011086"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-sm gf-elm-center-md" data-exc=""><img src="https://ucarecdn.com/465d7efe-7780-4579-83a0-b48b5e22106f/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div><div data-label="Heading" id="e-1599242011185" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011185"><div class="elm text-edit gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-xs gf-elm-center-sm" data-gemlang="en" data-exc=""><h1>Eat Well</h1></div></div><div data-label="Text Block" id="e-1599242011163" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011163"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc="">Fresh and locally sourced ingredients!</div></div></div></div><div data-label="Row" id="r-1599242011174" class="gf_row" data-icon="gpicon-row" data-id="1599242011174" data-extraclass=""><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-3 gf_col-xs-3" id="c-1596753491269" data-id="1596753491269" style="min-height: auto;"><div data-label="Image" id="e-1599242011059" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011059"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/a52c2bb7-5615-427c-8860-c5bdaf58bc53/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-9 gf_col-md-9 gf_col-sm-9 gf_col-xs-9" id="c-1596753525203" data-id="1596753525203" style="min-height: auto;"><div data-label="Heading" id="e-1599242011081" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011081"><div class="elm text-edit gf-elm-center gf-elm-left-xs gf-elm-left-lg gf-elm-left-md gf-elm-left-sm" data-gemlang="en" data-exc=""><h1>Save Time</h1></div></div><div data-label="Text Block" id="e-1599242011042" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011042"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>¿Porqué atender un cliente a la vez? Atiende 8 ó 10. Se productivo.  </p></div></div></div></div><div data-label="Row" id="r-1599242011147" class="gf_row" data-icon="gpicon-row" data-id="1599242011147" data-extraclass=""><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-3 gf_col-xs-3" id="c-1596753491269" data-id="1596753491269" style="min-height: auto;"><div data-label="Image" id="e-1599242011016" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011016"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/e2ce6fe0-88a0-4cde-a38e-6f7253faaac3/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-9 gf_col-md-9 gf_col-sm-9 gf_col-xs-9" id="c-1596753525203" data-id="1596753525203" style="min-height: auto;"><div data-label="Heading" id="e-1599242011054" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011054"><div class="elm text-edit gf-elm-center gf-elm-left-xs gf-elm-left-lg gf-elm-left-md gf-elm-left-sm" data-gemlang="en" data-exc=""><h1>Save Money</h1></div></div><div data-label="Text Block" id="e-1599242011035" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011035"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>Save up to 50% compared to takeout!</p></div></div></div></div><div data-label="Row" id="r-1599242011153" class="gf_row" data-icon="gpicon-row" data-id="1599242011153" data-extraclass=""><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-3 gf_col-xs-3" id="c-1596753491269" data-id="1596753491269" style="min-height: auto;"><div data-label="Image" id="e-1599242011060" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011060"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/465d7efe-7780-4579-83a0-b48b5e22106f/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-9 gf_col-md-9 gf_col-sm-9 gf_col-xs-9" id="c-1596753525203" data-id="1596753525203" style="min-height: auto;"><div data-label="Heading" id="e-1599242011100" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011100"><div class="elm text-edit gf-elm-center gf-elm-left-xs gf-elm-left-lg gf-elm-left-md gf-elm-left-sm" data-gemlang="en" data-exc=""><h1>Eat Well</h1></div></div><div data-label="Text Block" id="e-1599242011122" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011122"><div class="elm text-edit gf-elm-left" data-gemlang="en">Fresh and locally sourced ingredients!</div></div></div></div><div data-label="Button" id="e-1599242011169" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011169"><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>View Menu</span></a></div></div><div data-label="Text Block" id="e-1599242011168" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011168"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Paga cuando quieras que te ayudemos. Si no pagas no hay ningun problema.&nbsp;</p></div></div></div></div><div data-label="Row" id="r-1599242011179" class="gf_row" data-icon="gpicon-row" data-id="1599242011179"><div class="gf_col-lg-12 gf_column" id="c-1599006340828" data-id="1599006340828"><div data-label="Heading" id="e-1599242011108" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011108"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Delivery Zone</h1></div></div><div data-label="Image" id="e-1599242011135" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011135"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/9dc91166-1c4c-4802-a1c2-e64f503d0067/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div><div data-label="Button" id="e-1599242011056" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011056"><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Learn More</span></a></div></div><div data-label="Text Block" id="e-1599242011156" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011156"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Sin compromiso. Cancele u omita en cualquier momento.&nbsp;</p></div></div></div></div><div data-label="Row" id="r-1599242011083" class="gf_row" data-icon="gpicon-row" data-id="1599242011083"><div class="gf_col-lg-12 gf_column" id="c-1599006340828" data-id="1599006340828"><div data-label="Heading" id="e-1599242011099" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011099"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Meals Prepared by Chefs in Vancouver</h1></div></div><div data-label="Text Block" id="e-1599242011144" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011144"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-sm gf-elm-center-lg gf-elm-center-md" data-gemlang="en" data-exc=""><p>Our Chef Partners:</p></div></div><div data-label="Row" id="r-1599242011183" class="gf_row" data-icon="gpicon-row" data-id="1599242011183" data-extraclass=""><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-6 gf_col-xs-6" id="c-1599242011183" data-id="1599242011183" style="min-height: auto;"><div data-label="Image" id="e-1599242011103" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011103"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-sm" data-exc=""><img src="https://ucarecdn.com/336e468d-aef4-4ee7-8f01-977c3ab2f519/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-6 gf_col-xs-6" id="c-1599007656397" data-id="1599007656397" style="min-height: auto;"><div data-label="Image" id="e-1599242011045" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011045"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-sm gf-elm-center-md gf-elm-center-lg" data-exc=""><img src="https://ucarecdn.com/94fafc25-2919-4642-9f2c-5aa169cf8bcc/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-6 gf_col-xs-6" id="c-1599007656348" data-id="1599007656348" style="min-height: auto;"><div data-label="Image" id="e-1599242011111" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011111"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-sm gf-elm-center-md gf-elm-center-lg" data-exc=""><img src="https://ucarecdn.com/7ada890c-9feb-4c4a-83f7-e34d60af6fca/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div><div class="gf_column gf_col-lg-3 gf_col-md-3 gf_col-sm-6 gf_col-xs-6" id="c-1599007656500" data-id="1599007656500" style="min-height: auto;"><div data-label="Image" id="e-1599242011094" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1599242011094"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-xs gf-elm-center-sm gf-elm-center-md gf-elm-center-lg" data-exc=""><img src="https://ucarecdn.com/933a5fb6-3df0-4bef-8e2f-4462a39e3fb2/-/format/auto/-/preview/2560x2560/-/quality/lighter/" alt="" class="gf_image" data-gemlang="en" title=""></div></div></div></div><div data-label="Button" id="e-1599242011123" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011123"><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Empieza ahora</span></a></div></div><div data-label="Text Block" id="e-1599242011113" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011113"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Sin compromiso. Cancele u omita en cualquier momento.&nbsp;</p></div></div><div data-label="Row" id="r-1599242011087" class="gf_row gf_row-fluid gf_row-no-padding gf_row-gap-0" data-icon="gpicon-row" data-id="1599242011087" data-extraclass="" data-row-gap="0px"><div class="gf_col-lg-12 gf_column" id="c-1599006340828" data-id="1599006340828" style="min-height: auto;"><div data-label="Heading" id="e-1599242011139" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011139"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>Testimonials</h1></div></div><div data-label="Carousel" id="m-1599242011051" class="module-wrap" data-icon="gpicon-carousel" data-ver="1.0" data-id="1599242011051"><div class="module main-slider owl-carousel owl-theme " data-collg="3" data-colmd="3" data-colsm="2" data-colxs="1" data-marginlg="5px" data-marginmd="5px" data-marginsm="5px" data-marginxs="5px" data-dotslg="1" data-dotsmd="1" data-dotssm="1" data-dotsxs="1" data-navlg="1" data-navmd="1" data-navsm="0" data-navxs="0" data-navspeed="1500" data-autoplay="1" data-autoplaytimeout="4500" data-autoplayhoverpause="1" data-loop="0"><div class="item"><div data-index="1" class="item-content"><div data-label="Text Block" id="e-1599242011187" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011187"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>"When it's lunch time, I love how I can just walk over to the fridge, take out a meal, and eat! This is way easier than takeout or cooking, plus I'm saving money"</p><p>David Hsu - Vancouver</p></div></div></div></div><div class="item"><div data-index="2" class="item-content"><div data-label="Text Block" id="e-1599242011078" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011078"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p><span style="letter-spacing: 0px; background-color: transparent;">"Oco Meals is perfect for busy bodies like me! I've tried all the different meal kits and Oco is just way more convenient and surprisingly more affordable. And best of all, my husband loves it too."</span></p><p>Maggie Kong - Richmond</p></div></div></div></div><div class="item"><div data-index="3" class="item-content"><div data-label="Text Block" id="e-1599242011112" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011112"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p><span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px; background-color: transparent;">"I started using OCO because of the convenience, now I'm using OCO as it's the easiest way to limit exposure to community spread."</span><br></p><p>Dan Millar - North Vancouver</p></div></div></div></div><div class="item"><div data-index="4" class="item-content"><div data-label="Text Block" id="e-1599242011050" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011050"><div class="elm text-edit gf-elm-left gf-elm-center-md gf-elm-center-sm gf-elm-center-lg gf-elm-center-xs" data-gemlang="en" data-exc=""><p><span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px; background-color: transparent;">"Oco has been&nbsp;</span>GREAT. I especially love the chili and meatball zoodles. Service is amazing. I have zero complaints. I have told people about it. The food lasts 3-4 days or even 5 and still tastes great.<span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px; background-color: transparent;">"</span><br></p><p>Stephen Chen - Vancouver</p></div></div></div></div><div class="item"><div data-index="5" class="item-content"><div data-label="Text Block" id="e-1599242011062" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011062"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p><span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px; background-color: transparent;">"</span>Each week the choices are getting better and better - great balance for us picky dieters (no carbs, no dairy, no sugar)!<span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px; background-color: transparent;">"</span><br></p><p>Andrew Levine - Vancouver </p></div></div></div></div></div></div></div></div></div></div></div></div><div data-label="Row" id="r-1599242011082" class="gf_row" data-icon="gpicon-row" data-id="1599242011082"><div class="gf_col-lg-12 gf_column" id="c-1599006340828" data-id="1599006340828"><div data-label="Heading" id="e-1599242011132" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1599242011132"><div class="elm text-edit gf-elm-center" data-gemlang="en"><h1>More Questions?</h1></div></div><div data-label="Text Block" id="e-1599242011142" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011142"><div class="elm text-edit gf-elm-left gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-gemlang="en" data-exc=""><p>Email, Text, or Call us and we'll be happy to help you out!</p><p><span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px;">Email: hello@ocomeals.com&nbsp;</span><span style="color: inherit; font-family: inherit; font-size: inherit; text-align: inherit; letter-spacing: 0px;"></span></p><p>Text or Call: 604-332-1780</p></div></div></div></div></div></div><!--gfsplit--><div data-label="Row" id="r-1599242011154" class="gf_row" data-icon="gpicon-row" data-id="1599242011154"><div class="gf_col-lg-12 gf_column" id="c-1599177948978" data-id="1599177948978"><div data-label="Button" id="e-1599242011109" class="element-wrap" data-icon="gpicon-gpicon-button" data-ver="1.0" data-id="1599242011109"><div class="elm gf-elm-center gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg"><a class="button btn gf_button" href="https://app.ocomeals.com/?offer=WELCOMEBONUS" target="" data-scroll-speed-xs="2000" data-exc="" aria-describedby="a11y-external-message" data-scroll-speed="2000" data-scroll-speed-md="2000" data-scroll-speed-sm="2000"><span>Empieza ahora</span></a></div></div><div data-label="Text Block" id="e-1599242011118" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1599242011118"><div class="elm text-edit gf-elm-left gf-elm-center-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm" data-gemlang="en" data-exc=""><p>Sin compromiso. Cancele u omita en cualquier momento.&nbsp;</p></div></div></div></div><!--gfsplit-->
+
+
+</div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+<!--GEM_FOOTER-->
+
+<!--GEM_FOOTER_END-->
+</div><!-- end .gem-container -->
+<!--Gem_Page_Footer_Script-->
+
+
+<script data-instant-track type="text/javascript">
+if(typeof pageLibs === 'undefined' || pageLibs === null){	var pageLibs = [		"https://d1um8515vdn9kb.cloudfront.net/libs/js/gfv1countdown.js",
+		 "https://d1um8515vdn9kb.cloudfront.net/libs/js/owl.carousel.min.js",
+		'//cdn.shopify.com/s/files/1/0328/1823/3484/t/1/assets/gem-page-index-1599000392.js?v=6422884855458915978',	];
+}
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+
+<!--End_Gem_Page_Footer_Script-->
+   <style>
+    p{
+    font-family: Montserrat !important;
+    }
+    span{
+    font-family: Montserrat !important;
+    }
+    b,strong{
+    font-family: Montserrat !important;
+    }
+    h1,h2,h3,h4,h5,h6{
+    font-family: Montserrat !important;
+    }
+    .text-edit{
+    font-family: Montserrat !important;
+    }
+    .text-edit p{
+    font-family: Montserrat !important;
+    }
+  </style>
+</body>
+</html>

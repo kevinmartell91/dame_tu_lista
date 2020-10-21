@@ -37,14 +37,36 @@ export class RetailerEndpoint {
 
         );
     }
+    public getRetailerByNameStore(
+        retailer_store_name: string,
+        requesStateUpdater: StoreRequestStateUpdater
+    ) {
+        const request = RETAILER_STORES_CONFIG.request.getRetailerByStoreName
+        const options = getHeadersForGet();
+        
+        requesStateUpdater(request.name, {inProgress: true } );
+        
+        return this.http.get<any>(request.url + retailer_store_name, options ).pipe(
+            map( response => {
+                requesStateUpdater(request.name, { inProgress: false });
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                requesStateUpdater(request.name,{ 
+                    inProgress: false,
+                    error: true
+                });
+                return throwError(error);
+            })
+
+        );
+    }
 
     public getAirTabeData(){
         
         let url = `https://api.airtable.com/v0/app90UT0ZXO2CSQwS/test%20cases`;
         let api_key = "keyNqSR6NoYacM8nC";
         let headers = { headers: { Authorization : "Bearer "+ api_key}}
-
-        // console.log("url", url);
 
        return this.http.get(url,
             { headers: { Authorization: "Bearer " + api_key }});

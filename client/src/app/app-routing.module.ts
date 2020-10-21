@@ -7,7 +7,8 @@ import { AuthGuard } from './core/guard/auth.guards';
 const routes: Routes = [
   { 
     path: '', 
-    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
+    // loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./features/homepage/homepage.module').then(m => m.HomepageModule), 
   },
   { 
     path: 'login', 
@@ -36,15 +37,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
-    path: 'tienda-vendedor/:retailer_id',
-    // path: '',
+    // path: 'tienda-vendedor/:retailer_id',
+    path: ':retailer_store_name',
     loadChildren: () => import('./features/retailer-stores/retailer-stores.module').then(m => m.RetailerStoresModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { 
-    path: 'carrito-personal', 
+    // path: 'carrito-personal', 
+    path: ':retailer_store_name/carrito-personal', 
     loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { 
     path: 'vendedor-dashboard', 

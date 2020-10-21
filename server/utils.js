@@ -3,7 +3,6 @@
 const jwt    = require('jsonwebtoken');
 const crypto = require ('crypto'); 
 const configJWT = require('./config/jwt');
-// const getUserDB = require('../controllers/user').getUserBD;
 
 const Buyer = require('./models/buyers');
 const Retailer = require('./models/retailers');
@@ -27,7 +26,6 @@ module.exports = {
   getEntityType(login_type) {
     
     let entity_type;
-    // console.log("KEVIN =>login_type => ", login_type);
     switch (login_type){
       case 'buyer':           entity_type = (Buyer); break;
       case 'retailer':        entity_type = (Retailer); break;
@@ -37,18 +35,15 @@ module.exports = {
 
   getUserIdByLoginType(login_type, entity_id ){
     const entity_type =  module.exports.getEntityType(login_type);
-    // console.log("entity_type = > ",entity_type);
     return new Promise( function(resolve, reject) {
       entity_type.findById(entity_id, function (err, entity_data){
         if(err) {  
-          // console.log(err);
           reject(error);
         }
         resolve(entity_data);
       });
     })
     .then(() => { })
-    // .catch("ERROR ERROR")
   },
 
 };

@@ -10,24 +10,13 @@ exports.postBuyers = function(req, res) {
 	var buyer = new Buyer();
 
 	// setting buyer properties that come from POST
-	// buyer.username = req.body.username; 
 	buyer.password = req.body.password; 
 	buyer.name = req.body.name; 
-	// buyer.lastname = req.body.lastname; 
 	buyer.email = req.body.email; 
-	// buyer.phoneNumber = req.body.phoneNumber; 
 
-	// buyer.lastLoginDate = req.body.lastLoginDate; 
-	// buyer.last_order = req.body.last_order; 
-
-	// var len = req.body.myFavoriteRetailers.length;
-	// for (var i=0 ; i<len ; i++) {
-	// 	buyer.myFavoriteRetailers.push(req.body.myFavoriteRetailers[i]);
-	// }
 	
 	buyer.save(function(err){
 		if (err) {
-			console.log("postBuyers",err);
 			return  res.json({ 
 					success: false,
 					status: 500,
@@ -36,7 +25,6 @@ exports.postBuyers = function(req, res) {
 				}
 			);
 		}
-		console.log("postBuyers",buyer);
 		res.json({ 
 			success: true,
 			status: 200,
@@ -99,7 +87,6 @@ exports.putBuyer = async function(req, res, next) {
 		await Buyer.findByIdAndUpdate(id, buyerData, { new: true});
 
 	if(buyerUpdated) {
-		// console.log("updateBuyerAddress - PATCH");
 		res.json({
 			success: true,
 			status: 200,
@@ -137,11 +124,8 @@ exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 	try {
 		const { buyer_id } =  req.params;
 		const { retailer_email } = req.body;
-		// console.log("req.params",req.params);
-		// console.log("req.body",req.body);
 		
 		const retailer = await Retailer.findOne({email: retailer_email});
-		// console.log("RETAILER => ", retailer);
 		let newFavoriteRetailer = {
 			_id: retailer._id,
 			storeName: retailer.store.name,
@@ -152,7 +136,6 @@ exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 			phoneNumber: retailer.phoneNumber
 		}
 	
-		// console.log("KEVIN => ", newFavoriteRetailer);
 		const buyer = await Buyer.findById(buyer_id);
 		
 		buyer.myFavoriteRetailers.push(newFavoriteRetailer);
@@ -166,7 +149,6 @@ exports.updateBuyerFavoriteRetailers = async function(req, res, next) {
 		  });
 	} catch (error) {
 		res.status(500).send(error);
-		// console.log(error);
 	}
 
 }
@@ -178,12 +160,10 @@ exports.updateBuyerAddress = async function(req, res, next) {
 	let addressData = req.body;
 	let id = req.params.buyer_id;
 
-	// console.log("body - id => ",addressData, id);
 	const buyerUpdated = 
 		await Buyer.findByIdAndUpdate(id, addressData, {new: true});
 	
 	if(buyerUpdated) {
-		// console.log("updateBuyerAddress - PATCH");
 		res.json({
 			success: true,
 			status: 200,
@@ -206,35 +186,10 @@ exports.getOrderHistory = async function(req, res, next) {
 	try {
 		const { buyer_id } =  req.params;
 		const { retailer_email } = req.body;
-		// console.log("req.params",req.params);
-		// console.log("req.body",req.body);
 		
 		const orderHistory = await Order.find({'shipping.buyer._id' : buyer_id});
-		// .then(
-		// 	orders => {
-		// 		return Order.
-		// 			find({'tracking.orderStatus[0][0]': {$gte: '2020-06-18' ,$lte: '2020-06-19' }})
-		// 	}
-		// );
 
 		
-
-		// console.log("orderHistory KEVIN=> ", orderHistory);
-		// let newFavoriteRetailer = {
-		// 	_id: retailer._id,
-		// 	storeName: retailer.store.name,
-		// 	isDeliveryService: retailer.store.isDeliveryService,
-		// 	isPickUpService: retailer.store.isPickUpService,
-		// 	storeImgUrl: retailer.store.imgUrl,
-		// 	email: retailer.email,
-		// 	phoneNumber: retailer.phoneNumber
-		// }
-	
-		// console.log("KEVIN => ", newFavoriteRetailer);
-		// const buyer = await Buyer.findById(buyer_id);
-		
-		// buyer.myFavoriteRetailers.push(newFavoriteRetailer);
-		// const oldBuyer = await buyer.save();
 		
 		res.json({
 			success: true,
@@ -244,7 +199,6 @@ exports.getOrderHistory = async function(req, res, next) {
 		  });
 	} catch (error) {
 		res.status(500).send(error);
-		// console.log(error);
 	}
 
 }

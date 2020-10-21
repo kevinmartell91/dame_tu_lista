@@ -58,7 +58,6 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
                     return this.endPoint.getBuyerAccount(this.storeRequestUpdater,buyer_id);
                 }),
                 tap( (data: any) => {
-                    // console.log("BuyerAccount Store - initReloadBuyer()", data);
                     this.setState({
                         ...this.state,
                         buyerAccount: new Buyer().deserialize(data.data),
@@ -73,7 +72,6 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         return this.endPoint.getBuyerAccount(this.storeRequestUpdater,buyer_id)
             .pipe(
                  map( (data: any) => {
-                    // console.log("BuyerAccount Store - initReloadBuyer()", data);
                     this.setState({
                         ...this.state,
                         buyerAccount: new Buyer().deserialize(data.data),
@@ -90,7 +88,6 @@ export class BuyerAccountStore extends Store<BuyerAccountStoreState>
         return this.endPoint.patchtFavoriteRetailer(buyer_id, retailer_email, this.storeRequestUpdater)
             .pipe(
                 map( (data: any) => {
-                    // console.log("result", data);
                     this.setState({
                         ...this.state,
                         buyerAccount: new Buyer().deserialize(data.entity)

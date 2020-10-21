@@ -56,15 +56,6 @@ export class CartProductComponent implements OnInit {
 
     this.cartProductUpdated.emit(this.cartProduct);
 
- 
-    
-    // if(quantityUpdated == 0) {
-    //   this.quantityStr = "+";
-    //   this.isQuantityIncreased = false;
-    // } else {
-    //   this.quantityStr = quantityUpdated.toString();
-    //   this.isQuantityIncreased = true;
-    // }
   
   }
 
@@ -73,19 +64,16 @@ export class CartProductComponent implements OnInit {
   }
 
   enableQuantityMode(): void {
-    // console.log("enableQuantityMode");
     this.isQuantityMode = true;
   }
 
   disableQuantityMode(): void {
-    // console.log("disableQuantityMode");
     this.isQuantityMode = false;
   }
 
   transformCartProductTotalPriceToStr(): void {
     this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
 
-    // console.log("transformCartProductTotalPriceToStr", this.cartProductTotalPriceStr);
   }
 
   openAddCartProductDetailModal(): void {
@@ -98,7 +86,6 @@ export class CartProductComponent implements OnInit {
     
     this.dialogRef.afterClosed().subscribe( result => {
 
-      // console.log("RESUTL => ",result);
       this.cartProduct.details = result.productCartDetail;
       this.cartProductUpdated.emit(this.cartProduct);
 

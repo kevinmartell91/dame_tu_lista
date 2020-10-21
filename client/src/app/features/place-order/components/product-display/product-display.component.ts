@@ -93,7 +93,6 @@ export class ProductDisplayComponent {
 
     this.dialogRef.afterClosed().subscribe( result => {
       this.productDetail = result;
-      console.log("ProductDetail KEVIN from Modal", this.productDetail);
     });
   }
 
@@ -111,7 +110,6 @@ export class ProductDisplayComponent {
 
   //////  Child parent comunication implementation //////
   getDisplayDetail(displayDetail: ProductDetail){
-    // console.log("displayDetaill => ",displayDetail);
     this.receivedDisplayDetail = displayDetail;
     this.productDisplayEmmit.emit(this.receivedDisplayDetail);
   }

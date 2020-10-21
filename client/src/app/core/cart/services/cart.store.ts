@@ -40,25 +40,6 @@ export class CartStore extends Store<CartStoreState> {
         })
     }
 
-    // updateCartProduct(
-    //     cartProduct: CartProduct
-    // ): CartProduct [] {
-    //     return this.setState({
-    //         ...this.state,
-    //         shoppingCart: {
-    //             ...this.state.shoppingCart,
-    //             products: this.state.shoppingCart.products.map( p => { 
-    //                 if (p._id == cartProduct._id) {
-    //                     return { ...p , totalPrice : p.updateTotalPrice(), }
-    //                 }
-    //                 return this.state.shoppingCart.products;
-    //             })
-                    
-                
-    //         }
-    //     });
-    // }
-
     public updateCart(cartProduct: CartProduct):void {
     
         let cartProducts: CartProduct[] = this.state.shoppingCart.products;   
@@ -68,14 +49,12 @@ export class CartStore extends Store<CartStoreState> {
         if ( exit ) {
             //remove is quantity is cero
             if( cartProduct.quantity === 0) {
-                // // console.log("CERO =>>>>");
                 cartProducts = 
                 cartProducts.filter( ele => ele._id != cartProduct._id )
                 
             } else { // update quantity
                  cartProducts.filter( elem => {
                     if (elem._id == cartProduct._id )  {
-                        // console.log("Updating details", cartProduct.details);
                         elem.quantity = cartProduct.quantity;
                         elem.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
                         elem.details = cartProduct.details;
@@ -90,7 +69,6 @@ export class CartStore extends Store<CartStoreState> {
         // update the cartStore
         this.setCart(cartProducts);
 
-        // console.log("updateCartStore", this.state.shoppingCart.products );
     }
 
     private isOnCartStoreList(cartProduct: CartProduct): boolean {

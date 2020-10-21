@@ -18,7 +18,6 @@ export class TokenInterceptor implements HttpInterceptor {
 		necessary because of the getter method.		
 	*/
 	let currentUser = this.authenticationStore.loginUser;
-	// console.log("TokenInterceptor get loginUser")
 	 
  	if(currentUser && currentUser.token){
 		request = request.clone({

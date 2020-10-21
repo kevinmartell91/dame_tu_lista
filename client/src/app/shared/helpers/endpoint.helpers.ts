@@ -30,10 +30,10 @@ export function getStoreRequestStateUpdater(
 export function  getHeadersForGet(): any {
 
     let headers = new HttpHeaders();
-    let localStorageToken = 
-        JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage)).token;
+    // let localStorageToken = 
+        // JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage)).token;
     headers.append('Content-Type', 'application/json');
-    headers.append('x-access-token',localStorageToken )
+    // headers.append('x-access-token',localStorageToken )
     let options = { headers: headers }
   return options;
 }

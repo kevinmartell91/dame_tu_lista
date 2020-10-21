@@ -5,6 +5,7 @@ import { Product } from './product';
 export class Store implements Deserializable {
 
     public name?: string;
+    public nameUrl?: string;
     public imgUrl?: string;
     public isDeliveryService?: Boolean;
     public isPickUpService?: Boolean;

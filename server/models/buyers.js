@@ -49,15 +49,12 @@ buyerSchema.pre('save', function(next) {
   // Do not rehash if it's an old buyer
   if(!buyer.isModified('password')) return next();
 
-  console.log("stage.saltingRounds",stage.saltingRounds);
   const saltingRounds = stage.saltingRounds;
   bcrypt.hash(buyer.password, saltingRounds, function(err, hash) {
     if(err) {
-      // console.log("Error hashing password for Buyer");
       return next(err);
     }
     buyer.password = hash;
-    // console.log ("Buyer password hashed", buyer.password);
     next();
   });
 });

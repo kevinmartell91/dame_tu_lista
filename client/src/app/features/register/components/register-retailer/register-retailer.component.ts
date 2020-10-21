@@ -39,7 +39,9 @@ export class RegisterRetailerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    
+    if(this.subscribe != null) {
+      this.subscribe.unsubscribe();
+    }
   }
 
   onChanges(): void {
@@ -60,7 +62,6 @@ export class RegisterRetailerComponent implements OnInit, OnDestroy {
     this.loading = true;
     let newRetailer = this.deserialize();
     
-    // console.log("onSubmit ()",newRetailer);
     this.subscribe = this.retailerStore.registerNewRetailer(newRetailer).subscribe(
       response => {
         if(response.success){
@@ -93,7 +94,6 @@ export class RegisterRetailerComponent implements OnInit, OnDestroy {
     );
 
 
-    // this.subscribe.unsubscribe();
   }
 
   deserialize(): Retailer {

@@ -49,14 +49,16 @@ router.route('/retailers/:retailer_id')
   .get(retailerController.getRetailer)
   .put(retailerController.putRetailer)
   .delete(retailerController.deleteRetailer);
-  
+
 router.route('/retailers')
   .post(retailerController.postRetailers)
   .get(retailerController.getRetailers);
-
+  
 router.route('/retailer-store/:retailer_id')
   .put(retailerController.putRetailerStore);
   
+
+    
 router.route('/retailer-product-list/:retailer_id')
   .post(retailerController.postRetailerProductList)
   .put(retailerController.putRetailerProductList);
@@ -78,5 +80,10 @@ router.route('/orders-by-retailer-id/:retailer_id')
 router.route('/orders')
   .post(orderController.postOrders)
   .get(orderController.getOrders);
+
+
+    
+router.route('/:retailer_store_name')
+  .get(retailerController.getRetailerByStoreName);
 
 module.exports = router;

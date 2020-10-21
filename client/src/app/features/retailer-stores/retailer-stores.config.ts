@@ -7,6 +7,10 @@ export const RETAILER_STORES_CONFIG = {
             name: "getRetailer",
             url: `${APP_CONFIG.apiBaseUrl}/retailers/`
         },
+        getRetailerByStoreName: {
+            name: "getRetailer",
+            url: `${APP_CONFIG.apiBaseUrl}/`
+        },
         getRetailers: {
             name: "getRetailers",
             url: `${APP_CONFIG.apiBaseUrl}/retailers`

@@ -47,7 +47,7 @@ export class VarietyProductsComponent implements OnInit, OnDestroy {
 
     this.subscription = this.activatedRoute.paramMap.subscribe( params => {
       this.category = params.get("categoryName");
-      this.retailer_id = params.get("retailer_id")
+      this.retailer_id = params.get("retailer_store_name");
     });
 
   }
@@ -83,7 +83,14 @@ export class VarietyProductsComponent implements OnInit, OnDestroy {
 
   public goToRetailerMaturityView():void {
     let variety = this.productSelected.varietyName;
-    this.route.navigate(['tienda-vendedor',this.retailer_id ,'madurez', this.category, variety, this.productSelected.isOrganic]);
+    // this.route.navigate(['tienda-vendedor',this.retailer_id ,'madurez', this.category, variety, this.productSelected.isOrganic]);
+    this.route.navigate([
+      this.retailerStoreStore.state.retailer.store.nameUrl,
+      'madurez',
+      this.category,
+      variety,
+      this.productSelected.isOrganic
+    ]);
   }
 
   public _filterAllProductsByVariety(category: string, products: Product[]): Product[] {

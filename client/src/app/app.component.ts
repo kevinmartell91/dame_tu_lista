@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from "./core/buyer/buyer.config";
 import { BuyerNavegationStore } from "./core/buyer/services/buyer-navegation.store";
@@ -12,6 +12,8 @@ import { LoginUser } from "./core/login/types/user";
 import { Retailer } from './core/retailer/types/retailer';
 import { TemporaryStorageFacet, TemporaryStorageService } from './core/session-storage/services/temporary-storage.service';
 import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
+import { BuyerNavegation } from './core/buyer/types/buyer-navegation';
+import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,7 @@ import { RetailerStoreStore } from './features/retailer-stores/services/retailer
 })
 export class AppComponent implements OnInit, OnDestroy{
   title = 'Dame tu lista';
-  loginUser: LoginUser;
+  loginUser: LoginUser = null;
   cartProductsQuantity: number = 0;
   cartProducts: CartProduct[];
 
@@ -30,6 +32,10 @@ export class AppComponent implements OnInit, OnDestroy{
   favoriteRetailerIdSelected: Retailer;
   favoriteRetailerSubcription: Subscription;
 
+  buyerNavegationSubscription: Subscription;
+  buyerNavegation: BuyerNavegation;
+
+  retailerStoreName: string;
 
   temporaryStorage: TemporaryStorageFacet; 
 
@@ -56,41 +62,53 @@ export class AppComponent implements OnInit, OnDestroy{
     private location: Location,
     public cartStore: CartStore,
     private temporaryStorageService: TemporaryStorageService,
+    private readonly activatedRoute: ActivatedRoute
   ) {
 
-    // console.log("retailerStoreStore Started..");
     // this.retailerStoreStore.getAirTabeDATA();
-    
+
+    updateBuyerNavagation(
+      this.buyerNavegationStore,
+      BUYER_CONFIG.navegation.storeView
+    );
+
+    console.log("AppComponent retailerStoreName",this.retailerStoreName);
+
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
-    // console.log("temporaryStorage",this.temporaryStorage);
 
-    this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
-      x => { 
-        this.loginUser = x;
-        // console.log("AppComponent - loginUser$", this.loginUser); 
-
-        if( this.loginUser != null){
-          this.initializeNavegationValues();
-          this.initializeLoginTypeValues();
-        }
+    this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
+      y =>  {
+        this.buyerNavegation = y;
+        console.log("buyerNavegationSubscription", this.buyerNavegation);
       }
-    );
+    )
+
+    this.initializeNavegationValues();
+    // this.initializeLoginTypeValues();
+    // this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
+    //   x => { 
+    //     this.loginUser = x;
+    //     if( this.loginUser != null){
+    //       this.initializeNavegationValues();
+    //       this.initializeLoginTypeValues();
+    //     }
+    //   }
+    // );
   
   }
 
   ngOnInit(): void {
 
-    // console.log("AppComponent - ngOnInit() 0709");
     //first we restore data form storage then subscribe works
     this.restoreFromTemporaryStorage();
 
+    this.retailerStoreName = localStorage.getItem("retailer_store_name");
 
     this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe(
       y => {
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
-        // console.log("cartStoreSubcription => shoppingCart.products",y.products);
        this.handleSaveTemporaryStorage();
         
       }
@@ -100,7 +118,6 @@ export class AppComponent implements OnInit, OnDestroy{
       z => {
         this.favoriteRetailerIdSelected = z;
         this.handleSaveTemporaryStorage();
-        // console.log("this.favoriteRetailerIdSelected - 0709",this.favoriteRetailerIdSelected);
       }
     )
   }
@@ -110,7 +127,7 @@ export class AppComponent implements OnInit, OnDestroy{
     this.authenticationSubcription.unsubscribe();
     this.cartStoreSubcription.unsubscribe();
     this.favoriteRetailerSubcription.unsubscribe();
-
+    this.buyerNavegationSubscription.unsubscribe();
     this.temporaryStorage.remove();
   }
   
@@ -123,11 +140,14 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/carrito-personal']);
+    console.log("viewBuyerCart");
+    // this.router.navigate(['/carrito-personal']);
+    // TODO get retaialer store name from URL params
+    // this.router.navigate([':retailer_store_name/carrito-personal']);
+    this.router.navigate([`${this.retailerStoreName}/carrito-personal`]);
   }
 
   viewBuyerDetails():void {
-    // this.router.navigate(['/buyer-details']);
   }
   
   logout() {
@@ -150,17 +170,14 @@ export class AppComponent implements OnInit, OnDestroy{
         cachedData.cartProducts.forEach(elem => {
           cartProducts.push(new CartProduct().deserialize(elem));
         });
+        // update cartStore with date from temporary storage
+        this.cartStore.setCart(cartProducts);
+  
+        // retrieve favoriteRetailer
+        this.favoriteRetailerIdSelected = cachedData.favoriteRetailer;
+        this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
+        
       }   
-      
-      // update cartStore with date from temporary storage
-      this.cartStore.setCart(cartProducts);
-
-      // retrieve favoriteRetailer
-      this.favoriteRetailerIdSelected = cachedData.favoriteRetailer;
-      this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
-      
-
-     
    
   }
 
@@ -170,9 +187,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
 		if ( cachedFormData ) {
 
-      // console.log("cachedData", cachedFormData);
       Object.assign( this.cartProducts, cachedFormData );
-      
 
 		}
 
@@ -187,20 +202,16 @@ export class AppComponent implements OnInit, OnDestroy{
         cartProducts: this.cartProducts,
         favoriteRetailer: this.favoriteRetailerIdSelected
       }
-      // console.log("saveToTemporaryStorage 0709");
       this.saveToTemporaryStorage(dataToStore);
     }  
     if (this.cartProducts.length == 0) {
       // clear CartProducts from temporary storage
-      //and keep favorite retailer
-      
-      // console.log("remove CartProducts from temporary storage");
+      // and keep favorite retailer
       
       dataToStore = {
         cartProducts: [],
         favoriteRetailer: this.favoriteRetailerIdSelected
       }
-      // this.temporaryStorage.remove();
       this.saveToTemporaryStorage(dataToStore);
 
     }

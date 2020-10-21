@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
@@ -31,30 +31,26 @@ export class StoreComponent implements OnDestroy{
   cartProductsQuantity: number;
   subscription: Subscription;
 
+  retailerStoreName: string;
+  subscriptionStoreName: Subscription;
 
   control = new FormControl();
-  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
-  filteredStreets: Observable<string[]>;
 
   constructor( 
     private router: Router,
     private buyerNavegationStore: BuyerNavegationStore,
     public retailerStoreStore: RetailerStoreStore,
-    private cartStore: CartStore
+    private cartStore: CartStore,
+    private readonly activedRoute: ActivatedRoute
   ){
     this.init();
 
-    // this.retailerStoreStore.state.retailer.store.name
-    // this.retailerStoreStore.retailer$.subscribe(
-      // x => {
-    //     console.log("StoreComponent subscribe => ",x);
-    //     this.retailer = x;
-    //     this.productsList = x.store.productsList;
-        // this.loading = this.retailerStoreStore.state.request.getRetailer.inProgress;
-        // console.log("StoreComponent =>", this.loading);
-        
-      // }
-    // )
+    this.subscription = this.activedRoute.paramMap.subscribe( params => {
+      this.retailerStoreName = params.get("retailer_store_name");
+      console.log("StoreComponent retailerStoreName",this.retailerStoreName);
+      localStorage.setItem("retailer_store_name",this.retailerStoreName);
+    })
+
   }
  
   init(): void {
@@ -82,36 +78,39 @@ export class StoreComponent implements OnDestroy{
   }
 
   viewBuyerCart(): void {
-    this.router.navigate(['/carrito-personal']);
+    // this.router.navigate(['/carrito-personal']);
+      this.router.navigate([`${this.retailerStoreName}/carrito-personal`]);
+
   }
 
   goBackToBuyerAccount(): void {
-    // this.location.back();
     this.router.navigate(['/cuenta-comprador']);
   }
 
   goToRetailerCategoryView(): void {
 
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.categoryView
-    );
+    // updateBuyerNavagation(
+    //   this.buyerNavegationStore,
+    //   BUYER_CONFIG.navegation.categoryView
+    // );
 
-    this.router.navigate(['/tienda-vendedor',
-      this.retailerStoreStore.state.retailer._id,
-      'categoria']);
+    // this.router.navigate(['/tienda-vendedor',
+    //   this.retailerStoreStore.state.retailer._id,
+    //   'categoria']);
+    this.router.navigate([
+      this.retailerStoreStore.state.retailer.store.nameUrl,
+      'categoria']
+    );
   }
 
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
     let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
-    // console.log("_filter",res);
     this.filteredProductListLength = res.length;
     return res;
   }
 
   private _normalizeValue(value: string): string {
-    // console.log("_normalizeValue", value);
     return value.toLowerCase().replace(/\s/g, '');
   }
 }

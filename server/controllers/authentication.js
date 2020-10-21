@@ -13,9 +13,6 @@ exports.postAuthenticate = function(req, res) {
   if(!entityType) {
     res.json( {success: false, message: 'Authentication fail. Entity not found.'})
   }
-  // console.log("KEVIN - entityType", entityType);
-  // console.log("KEVIN - email", email);
-  // console.log("KEVIN - password", password);
 
   entityType.findOne({
     email: email
@@ -32,7 +29,6 @@ exports.postAuthenticate = function(req, res) {
       // check if passwords matche
       bcrypt.compare(password, entity.password).then(math => {
         if (math) {
-          // console.log(`Match this ${password} con este ${entity.password}`);
           // genreate a token
           const token = genAccessToken2(entity.toJSON());
           console.log(" token", token);

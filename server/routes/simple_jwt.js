@@ -1,8 +1,6 @@
 var jwt = require ('jsonwebtoken');
 const crypto = require ('crypto');
 const getUserIdByLoginTypeFromDB = require('../utils').getUserIdByLoginType;
-// const getEntityType = require ('../utils').getEntityType;
-// const JWT_SECRET_KEY = 'ilovescotchyscotch';
 const stage = require('../CONFIG');
 const JWT_SECRET_KEY = stage.jwt_secret;
 
@@ -23,7 +21,6 @@ function genKey (id, password) {
 };
 
 function getAccessTokenFromHeader(req) {
-  // console.log("req.headers['x-access-token']",req.headers['x-access-token']);
   return req.headers['x-access-token'];
 };
 
@@ -37,13 +34,11 @@ module.exports = {
     // const tokenPayLoad = { userId, userType, key };
     const tokenPayLoad = { userId, userType};
     const accessToken = jwt.sign(tokenPayLoad, JWT_SECRET_KEY);    
-    // console.log("accessToken GEN", accessToken);
     return accessToken;
   },
 
   async authorizationMiddleware(req, res, next) {
     const accessToken = getAccessTokenFromHeader(req);
-    // console.log("accessToken => BRIAN", accessToken); 
     let tokenPayLoad;
 
     try {
@@ -58,7 +53,6 @@ module.exports = {
         req.decoded  = tokenPayload;
         next();
     } catch (error) {
-        // console.log("error",error);
         res.status(401).send(error.message);
     }
   },

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Retailer } from "../../core/retailer/types/retailer";
 import { RetailerStoreStore } from './services/retailer.store';
@@ -17,6 +17,7 @@ export class RetailerStoresComponent implements OnDestroy {
   subscribe: Subscription
 
   constructor( 
+    private router: Router,
     private readonly route: ActivatedRoute,
     private retailerStoreStore: RetailerStoreStore 
   ) { 
@@ -27,9 +28,17 @@ export class RetailerStoresComponent implements OnDestroy {
   init(): void {
 
     this.subscribe = this.route.paramMap.subscribe( params => {
-      this.subscribedParamRetailerId = params.get("retailer_id");
+      // this.subscribedParamRetailerId = params.get("retailer_id");
+      this.subscribedParamRetailerId = params.get("retailer_store_name");
+      console.log("RetailerStoresComponent retailer_store_name", this.subscribedParamRetailerId);
+
     });
-    this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
+    // this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
+    this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerId);
+    console.log(this.retailerStoreStore);
+    if(this.retailerStoreStore.state.retailer == null ){
+      this.router.navigate(['/**']);
+    }
   }
 
   ngOnDestroy():void {

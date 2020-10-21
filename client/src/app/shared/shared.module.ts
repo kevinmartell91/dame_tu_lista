@@ -3,7 +3,7 @@ import { MdlModule } from "@angular-mdl/core";
 import { CommonModule } from '@angular/common';
 // services
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 // rows and col
 import { FlexLayoutModule } from '@angular/flex-layout';
 // forms
@@ -102,9 +102,8 @@ const EXPORTED_DECLARATIONS = [
   	MatTreeModule,
   	// PortalModule,
 	  // ScrollingModule,
-	
+	  MdlModule
 
-	MdlModule
 ];
 
 @NgModule({
@@ -134,4 +133,12 @@ const EXPORTED_DECLARATIONS = [
   providers: [
   ]
 })
-export class SharedModule { }
+export class SharedModule { 
+	static forRoot() : ModuleWithProviders {
+		return {
+			ngModule: SharedModule,
+			providers: []
+
+		}
+	}
+}

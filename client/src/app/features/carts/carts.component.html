@@ -21,9 +21,14 @@
     
     <div class="style_empty_space"></div>
     
-    <button class="style_checkout_button"
+    <!-- <button class="style_checkout_button"
             (click)="submitOrder()">
         {{place_order_message}}
+        <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
+    </button>     -->
+    <button class="style_checkout_button"
+            (click)="completeOrderDetails()">
+        Enviar por WhatsApp
         <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
     </button>    
 </div>

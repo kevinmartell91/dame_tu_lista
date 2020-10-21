@@ -71,7 +71,6 @@ export class AddButtonComponent implements OnInit {
         this.surgeQuantity = 1;
       }
     }
-    // console.log("setSurgeQuantity", this.isKilo, this.surgeQuantity);
   }
   setbuttonTypeToRender(isCartProductButtonType: boolean): void {
 
@@ -101,7 +100,6 @@ export class AddButtonComponent implements OnInit {
     this.convertQuantiyToString();
     // await this.delay(1500);
     
-    // console.log("this.quantityUpdated.emit(this.count)");
     this.quantityUpdated.emit(this.count)
   }
   

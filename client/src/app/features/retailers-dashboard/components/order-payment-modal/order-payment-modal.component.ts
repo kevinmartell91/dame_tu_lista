@@ -21,8 +21,6 @@ export class OrderPaymentModalComponent implements OnInit {
 
   ngOnInit(): void {
   
-    // console.log("KEVIN", this.data.order);
-
     this.paymentMethod = this.data.order.payment.method;
     
     this.orderPaymentForm = this.fb.group({
@@ -32,7 +30,6 @@ export class OrderPaymentModalComponent implements OnInit {
       amount: [((this.data.order.payment.amount) as Number).toFixed(2)]
     });
   }
-
 
   onNoClick(): void {
     this.matDialogRef.close();

@@ -9,6 +9,19 @@ exports.postRetailers = async function(req, res, next) {
 
   let buyerData = req.body;
   // Create a new instance of the Retailer model
+
+  const newUser = await Retailer.findOne( {email: buyerData.email});
+
+  if(newUser){
+    return  res.json({ 
+      success: false,
+      status: 500,
+      message: 'retailer already exist', 
+      data: err
+    });
+    // next();
+  }
+
   const retailerData =  new Retailer(buyerData);
 
   retailerData.save( function(err) {
@@ -28,7 +41,9 @@ exports.postRetailers = async function(req, res, next) {
 			status: 200,
 			message: 'retailer added', 
 			data: retailerData
-		});
+    });
+    
+    // next();
   })
 
 };
@@ -36,6 +51,7 @@ exports.postRetailers = async function(req, res, next) {
 // Create endpoint /api/retailers for GET
 exports.getRetailers = async function(req, res, next) {
 
+  console.log("object")
   const retailerData = await Retailer.find();
 
   if(retailerData) {
@@ -51,7 +67,7 @@ exports.getRetailers = async function(req, res, next) {
     res.json({ 
       success: false,
       status: 500,
-      message: 'retailer not added', 
+      message: 'retailers not retrieved', 
       data: retailerData
     });
   }
@@ -76,7 +92,31 @@ exports.getRetailer = async function(req, res, next) {
     res.json({ 
       success: false,
       status: 500,
-      message: 'retailer not retrieved', 
+      message: 'retailer not retrieved by id', 
+      data: retailerData
+    });
+  }
+};
+// Create endpoint /api/:reatiler_name_store for GET
+exports.getRetailerByStoreName = async function(req, res, next) {
+
+  let store_name = req.params.retailer_store_name;
+  const retailerData = await Retailer.findOne({'store.nameUrl' : store_name});
+  
+  if(retailerData) {
+  
+    res.json({ 
+      success: true,
+      status: 200,
+      message: 'retailer retrieved', 
+      data: retailerData
+    });
+    
+  } else {
+    res.json({ 
+      success: false,
+      status: 500,
+      message: 'retailer not retrieved by store name', 
       data: retailerData
     });
   }
@@ -126,9 +166,77 @@ exports.deleteRetailer = function(req, res) {
 
 //ok
 // Create endpoint /api/retailer-store/:retailer_id 
-exports.putRetailerStore = function(req, res) {
-
+exports.putRetailerStore = async function(req, res) {
+console.log("RETAILER TO UPDATE", req.body);
   let id = req.params.retailer_id;
+
+  const retailer = await Retailer.findById(id);
+
+  if (retailer){
+
+    // validate store name if exist
+    const storeName = req.body.store.name.toLowerCase().trim();
+
+    const retailerStoreNameExist = await Retailer.findOne({'store.name': storeName});
+
+    // if belong to the same retailer
+    if(retailerStoreNameExist) {
+      if( retailerStoreNameExist._id != id){
+        // cannot update with this name 
+        return res.json({ 
+          success: false,
+          status: 500,
+          message: 'store name already exit, choose another name for your store', 
+          data: null
+        });
+      }
+    } else {
+      // set nameUrl value with a new store name
+      retailer.store.nameUrl = getNameUrl(storeName);
+    }
+
+
+    // to do = > add UI to get this attribute
+    retailer.phoneNumber = req.body.store.phoneNumber;
+    retailer.store.name = storeName;
+    retailer.store.imgUrl = req.body.store.imgUrl;
+    retailer.store.isDeliveryService = req.body.store.isDeliveryService;
+    retailer.store.isPickUpService = req.body.store.isPickUpService;
+    retailer.store.deliveryInfo = req.body.store.deliveryInfo;
+    retailer.store.pickUpInfo = req.body.store.pickUpInfo;
+    retailer.store.productsList = retailer.store.productsList;
+  
+    retailer.store.address.streetName = req.body.store.address.streetName;
+    retailer.store.address.streetNumber = req.body.store.address.streetNumber;
+    retailer.store.address.district = req.body.store.address.district;
+    retailer.store.address.city = req.body.store.address.city;
+    retailer.store.address.department = req.body.store.address.department;
+    retailer.store.address.country = req.body.store.address.country;
+    retailer.store.address.reference = req.body.store.address.reference;
+    retailer.store.address.details = req.body.store.address.details;
+
+     const update = await retailer.save();
+
+     if(update){
+      res.json({
+        success: true,
+        status: 200,
+        message: "retailer's address updated",
+        data: retailer
+      });  
+     } else {
+       return res.status(500).send(err);
+     }
+
+  } else {
+    return res.status(500).send(err);
+  }
+    
+};
+//ok
+// Create endpoint /api/retailer-store/:retailer_id 
+exports.putRetailerStoreOrigin = function(req, res) {
+
 
   Retailer.findById(id, function(err, retailer) {
     if (err)
@@ -138,6 +246,8 @@ exports.putRetailerStore = function(req, res) {
     retailer.phoneNumber = req.body.phoneNumber;
 
     retailer.store.name = req.body.store.name;
+    // create store name value
+    retailer.store.nameUrl = getNameUrl(retailer.store.name);
     retailer.store.imgUrl = req.body.store.imgUrl;
     retailer.store.isDeliveryService = req.body.store.isDeliveryService;
     retailer.store.isPickUpService = req.body.store.isPickUpService;
@@ -170,6 +280,19 @@ exports.putRetailerStore = function(req, res) {
     
   });
 };
+
+function getNameUrl(name){
+
+  const array =  name.split(" ");
+  var nameUrl = "";
+  array.forEach(word => {
+    nameUrl += word;
+    if( word != array[array.length - 1 ])
+    nameUrl += "-";
+  });
+  return nameUrl.toLowerCase();
+
+}
 
 exports.postRetailerProductList = function(req, res) {
   

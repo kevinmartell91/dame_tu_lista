@@ -61,6 +61,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       this.addressForm = this.fb.group({
         streetName: ['', Validators.required],
         streetNumber: ['', Validators.required],
+        apartmentNumber: [''],
         district: ['', Validators.required],
         city: ['', Validators.required],
         // isSaveAsFrequentAddress: [false],
@@ -74,6 +75,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       this.addressForm = this.fb.group({
         streetName: [this.buyer.address.streetName, Validators.required],
         streetNumber: [this.buyer.address.streetNumber, Validators.required],
+        apartmentNumber: [this.buyer.address.apartmentNumber],
         district: [this.buyer.address.district, Validators.required],
         city: [this.buyer.address.city, Validators.required],
         // isSaveAsFrequentAddress: [false],
@@ -84,13 +86,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       });
 
     }
-    
 
-
-    // this.phoneNumberForm = this.fb.group({
-    //   phoneNumber: ['', Validators.required]
-    // });
-    
   }
 
   ngOnDestroy(){
@@ -172,11 +168,11 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
        this.addressForm.patchValue({
         streetName: "Recojo en tienda",
         streetNumber: "Recojo en tienda",
+        apartmentNumber: "",
         district: "Tienda",
         city: "LIM",
         details: "pickup"
        });
-      // console.log(this.addressForm.value);
     } else {
       this.addressForm.patchValue({
         streetName: "",

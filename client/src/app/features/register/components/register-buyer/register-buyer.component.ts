@@ -34,14 +34,15 @@ export class RegisterBuyerComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       password: ['',Validators.required],
       email: ['', Validators.pattern(VALIDATORS_PATTERNS.email)],
-      // phone_number: ['', Validators.required],
-      // login_type: ['', Validators.required]
     }) 
 
     this.onChanges();
   }
 
   ngOnDestroy(){
+    if(this.subscribe != null) {
+      this.subscribe.unsubscribe();
+    }
   }
 
   onChanges(): void {
@@ -62,7 +63,6 @@ export class RegisterBuyerComponent implements OnInit, OnDestroy {
     this.loading = true;
     let newBuyer = this.deserialize();
     
-    // console.log("onSubmit ()",newBuyer);
     this.subscribe = this.buyerStore.registerNewBuyer(newBuyer).subscribe(
       response => {
         if(response.success){

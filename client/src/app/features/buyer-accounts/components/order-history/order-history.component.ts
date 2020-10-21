@@ -23,7 +23,6 @@ export class OrderHistoryComponent implements OnInit, OnDestroy {
     this.subscription = this.orderStore.orderListByBuyerId$.subscribe(
       x => {
         this.ordersHistory = x;
-        // console.log("ordersHistory = > KEVIN" ,this.ordersHistory);
       }
     )
 
@@ -52,7 +51,6 @@ export class OrderHistoryComponent implements OnInit, OnDestroy {
     //   message = "Ya pudes recoger tu orden, está Lista. Te esperamos.";
     // }
     // let link =`//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
-    // console.log("openWhatsApp()");
     // window.location.href=link;
   }
 

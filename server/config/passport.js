@@ -53,12 +53,10 @@
 //     passport.use('local-authorization',new BearerStrategy(
 //         function(token, done) {
 
-//             console.log(token);
 
 //             User.findOne({ 'token.auth_token' : token }, function (err, user) {
 //                 if (err) { return done(err); }
 //                 if (!user) {
-//                     console.log(user);
 //                     return done(null, false);
 //                 }
 //                 if (user.hasExpired()) {

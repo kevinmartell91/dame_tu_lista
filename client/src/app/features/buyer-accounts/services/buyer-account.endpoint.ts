@@ -24,7 +24,6 @@ export class BuyerAccountEndPoint {
         return this.http.get<any>(request.url + buyer_id, options).pipe(
             map( response => {
                 requestStateUpdater(request.name, {inProgress: false});
-                // console.log("BuyerAccountEndPoint", response);   
                 
                 return response;
             }),
@@ -49,7 +48,6 @@ export class BuyerAccountEndPoint {
         
         return this.http.patch<any>(request.url + buyer_id, {retailer_email:retailer_email}, options).pipe(
             map( response => {
-                console.log("request.url", request.url + buyer_id);
                 requestStateUpdater(request.name, {inProgress: false});
                 return response;
             }),

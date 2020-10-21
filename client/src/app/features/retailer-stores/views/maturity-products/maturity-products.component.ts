@@ -87,13 +87,11 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
   public onSelected(product: Product) {
 
     this.productSelected =  product;
-    // console.log("onSelected");
   }
   
   public onSelectedCartProduct( cartProduct: CartProduct): void {
     
     cartProduct.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
-    // console.log("this.cartProduct.totalPrice ",cartProduct.totalPrice );
 
     this.cartStore.updateCart(cartProduct);
   

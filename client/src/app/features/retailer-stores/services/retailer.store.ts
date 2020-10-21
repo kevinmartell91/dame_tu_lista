@@ -13,7 +13,6 @@ import { RetailerStoreStoreState } from './retailer.store.state';
 
 
 @Injectable({ providedIn: 'root'})
-// @Injectable()
 export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     implements OnDestroy {
 
@@ -48,15 +47,12 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
 
     private initReloadRetailer$(retailer_id: string): void {
-        // console.log("initReloadRetailer");
         this.retailer$
             .pipe(
                 switchMap( () => {
-                    // console.log("SWITCH MAP");
                     return this.endPoint.getRetailer(retailer_id, this.storeRequestUpdater);
                 }),
                 tap( (response: any) => {
-                    // console.log(" retailerStore - initReloadretailer()", response);
                     this.setState({
                         ...this.state,
                         retailer: new Retailer().deserialize(response.data),
@@ -98,35 +94,48 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             )
             .subscribe(
                 (val) => {
-                    // console.log("val", val);
                 },
                 (err) => {
-                    // console.log("err",err);
                 },
                 () => {
-                    // console.log("Completed - endPoint.getRetailer ",res);
+                }
+            );      
+    }
+    public getRetailerByNameStore(
+        retailer_store_name: string 
+    ) {
+        let res;
+        return this.endPoint.getRetailerByNameStore(retailer_store_name, this.storeRequestUpdater)
+            .pipe(
+                map( (response: any) => {
+                    res = response;
+                    this.setState({
+                        ...this.state,
+                        retailer: new Retailer().deserialize(response.data)
+                    }),
+                    this.setState({
+                        ...this.state,
+                        productsList: {
+                            ...this.state.productsList,
+                            products:  getProductDeserialized(response.data.store.productsList)
+                        }
+                    })
+                })
+            )
+            .subscribe(
+                (val) => {
+                },
+                (err) => {
+                },
+                () => {
                 }
             );      
     }
 
-    // setNewProductState(newProductsList: Product[]): void {
-    //     this.setState({
-    //         ...this.state,
-    //         productsList: {
-    //             ...this.state.productsList,
-    //             products: newProductsList
-    //         }
-    //     });
-    // }
-
+   
 
     public getAirTabeDATA():any {
-        // return this.endPoint.getAirTabeData().pipe(
-        //     map(response => {
-                // console.log("getAirTabeDATA",response);
-        //     })
-        // )
-
+     
         return airtable.manuallyRetrievedAritableData();
     }
     

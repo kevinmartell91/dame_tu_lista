@@ -1,8 +1,4 @@
-<div>
-  <!-- <button (click)="toggle()">Logout</button>   -->
-  <!-- <button (click)="onSubmit()">Quicklogin</button>   -->
-</div> 
-<div [@slideInOutDetails]="menuState"> 
+
   <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
     
         <div class="login-brand">
@@ -19,24 +15,18 @@
                               name="email"
                               type="text"
                               formControlName="email" >
-<!-- 
-              <mat-hint>Errors appear instantly!</mat-hint> [errorStateMatcher]="matcher"
-              <mat-error *ngIf="loginForm.email.hasError('email') && !loginForm.email.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error *ngIf="loginForm.email.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>         
-              
-               -->
 
             </mat-form-field>
 
             <mat-form-field class="login-full-width">
-              <input matInput placeholder="Contraseña"
+              <input matInput [type]="hide ? 'password' : 'text'"
+                              placeholder="Contraseña"
                               name="password"
                               type="password"
                               formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
 
             <mat-form-field class="login-full-width">
@@ -68,15 +58,9 @@
             </div>
 
         </form>
-        <!-- <div *ngIf="authenticationStore.state.requests.postAuthentication.inProgress">Loading WORKS!</div>       -->
-
-    <!-- </div> -->
+      
   </div>
-   <!-- <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
-    <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
-  </div> -->
 
-</div>
 
 
 

@@ -62,7 +62,6 @@ export class AuthenticationStore extends Store<AuthenticationStoreState> {
             ...this.state,
             loginUser: loginUser
         });
-        // console.log("handleGetUserLoginResponse",this.state.loginUser);
     }
    
 }

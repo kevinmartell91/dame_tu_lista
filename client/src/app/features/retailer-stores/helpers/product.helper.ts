@@ -11,32 +11,6 @@ export function getProductDeserialized(products: any):  Product[] {
     return productsList;
 }
 
-// export function filterAllCategoriesFromProducts_removing(
-//   products: Product[]
-//   ): Product[] {
-
-//   let j = 0;
-//   for (let i = 1; i < products.length; i++) {
-//     console.log("products[j].categoryName - products[i].categoryName ",products[j].categoryName  ,products[i].categoryName)
-//     if(products[j].categoryName === products[i].categoryName ) {
-      
-//       console.log("deleting replicated  - slice", products.splice(i,1));
-//       products.splice(i,1);
-//       i -=1;
-//     }
-    
-//     if(products.length < 2 ) {
-//       console.log("FOR LOOP - BREAK");
-//       break;
-//     }
-//     if(products.length  == i + 1) {
-//      console.log("FOR LOOP - INCREMENT 'j'");
-//       j += 1;
-//       i = j;
-//     }
-//   }
-//   return products;
-// }
 
 export function filterAllProductsByCategory(
   products: Product[]
@@ -98,7 +72,6 @@ export function filterProductsByMaturity(
     isOrganicStr: string,
     productsList: Product[]
   ): Product[]{
-    // console.log("filterProductsByMaturity => ", category, variety, productsList.length);
 
   let maturityList: Product[] = [];
   let isOrganic: boolean = JSON.parse(isOrganicStr);
@@ -112,47 +85,6 @@ export function filterProductsByMaturity(
   });
   return maturityList;
 }
-
-// export function filterProducts( filterField: string , products :Product[]): Product[] {
-
-//   let filterValue: string;
-  
-//   let filterList: Product[] = [];
-//   filterList.push(products[0]);
-  
-  
-//   products.forEach(product => {
-//     switch (filterField) {
-//       case STORE_CONFIG.view_type.categoryView:
-//         filterValue = product.categoryName;
-//         break;
-        
-//       case STORE_CONFIG.view_type.varietyView:
-//         filterValue = product.varietyName;
-//         break;
-        
-      
-//       case STORE_CONFIG.view_type.maturityView: 
-//         filterValue = product.maturityName;
-//         break;
-
-//       default: // STORE_CONFIG.view_type.seasonalView: 
-//         filterValue = STORE_CONFIG.view_type.categoryView;
-//         // filterValue = STORE_CONFIG.view_type.seasonalView;
-//         /**
-//          * this doesn't work since it is a boolean value,
-//          * not a string to compare in this function as the
-//          * othe cases
-//          */
-//         break;
-//     }
-//     if( !isOnList(filterField, filterValue, filterList )) {
-//       filterList.push(product);
-//     }
-//   });
-
-//   return filterList;
-// }
 
 export function isOnList (viewType: string, filterValue1: string, filterValue2: any, products: Product[]): Boolean {
 

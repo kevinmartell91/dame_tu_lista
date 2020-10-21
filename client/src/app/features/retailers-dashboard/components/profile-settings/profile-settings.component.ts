@@ -1,9 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { APP_CONFIG } from 'src/app/app.config';
 
 @Component({
   selector: 'app-profile-settings',
@@ -15,6 +16,7 @@ export class ProfileSettingsComponent implements OnDestroy {
   accountRetailerForm: FormGroup;
   subscriptionRetailerStore: Subscription;
   retailer: Retailer;
+  errorStoreNameExist: string = "";
 
   cities: string [];
   districts: string [];
@@ -30,9 +32,12 @@ export class ProfileSettingsComponent implements OnDestroy {
 
     this.subscriptionRetailerStore =  this.retailerStore.retailer$.subscribe(
       y => {
+        console.log("NO UPDATED => retailer after saving ")
         if(y != null){
           this.retailer = y;
           this.loadForm();
+        } else {
+
         }
       }
     )
@@ -43,14 +48,23 @@ export class ProfileSettingsComponent implements OnDestroy {
     this.accountRetailerForm = this.fb.group({  
 
       name: ["",
-        [Validators.required,
-        Validators.maxLength(20)]],
+        [
+          Validators.required
+          // Validators.maxLength(20)
+        ]
+      ],
       imgUrl:["../../../assets/fruit-images/fruits_portal_img.jpg",Validators.required],
       isDeliveryService:[false, Validators.required],
       isPickUpService:[false, Validators.required],
       deliveryInfo:[""],
       pickUpInfo:[""],
-      
+      phoneNumber: ["xxx-xxx-xxx",
+        [
+          Validators.required, 
+          // this.phoneNumberValidator,
+          Validators.maxLength(9)
+        ]
+      ],
       address: this.fb.group({
         streetName:["",[Validators.required]],
         streetNumber:["",Validators.required],
@@ -66,22 +80,32 @@ export class ProfileSettingsComponent implements OnDestroy {
     this.loadCities();
     this.loadDistricts();
     this.loadDeparments();
-    
+    this.errorStoreNameExist = "El nombre de la tienda ya existe, elija otro porfavor";
   }
 
   loadForm() {
-
+    
     this.accountRetailerForm = this.fb.group({  
   
       name: [
         this.retailer.store.name, 
-        [Validators.required,
-        Validators.maxLength(20)]],
+        [
+          Validators.required
+          // Validators.maxLength(20)
+        ]
+      ],
       imgUrl: [this.retailer.store.imgUrl, Validators.required],
       isDeliveryService: [this.retailer.store.isDeliveryService, Validators.required],
       isPickUpService: [this.retailer.store.isPickUpService, Validators.required],
       deliveryInfo: [this.retailer.store.deliveryInfo],
       pickUpInfo: [this.retailer.store.pickUpInfo],
+      phoneNumber: [this.retailer.phoneNumber,
+        [
+          Validators.required, 
+          // this.phoneNumberValidator,
+          Validators.maxLength(9)
+        ]
+      ],
       
       address: this.fb.group({
         streetName: [ this.retailer.store.address.streetName, [Validators.required]],
@@ -109,16 +133,67 @@ export class ProfileSettingsComponent implements OnDestroy {
     return this.accountRetailerForm.get('isPickUpService').value;
   }
 
+  get storeName() {
+
+    let urlStoreName = "";
+    let storeName = this.accountRetailerForm.get("name").value.trim().split(" ");
+    storeName.forEach( word => {
+      
+      urlStoreName += word;
+      if( word != storeName[storeName.length-1]) {
+        urlStoreName += "-";
+      }
+    });
+    return urlStoreName.toLowerCase();
+  }
+  get phoneNumber() {
+    return this.accountRetailerForm.get("phoneNumber").value;
+  }
+
+  copyUrlStoreName(): void {
+    
+    let url = `${APP_CONFIG.appBaseUrl}/${this.storeName}`;
+    this.copyText(url);
+    this.openSnackBar("Se copió la Url de tu tienda. Enviaselo a tus clientes por WhatsApp!", "");
+  }
+  
+  /* To copy any Text */
+  copyText(val: string): void {
+  let selBox = document.createElement('textarea');
+  selBox.style.position = 'fixed';
+  selBox.style.left = '0';
+  selBox.style.top = '0';
+  selBox.style.opacity = '0';
+  selBox.value = val;
+  document.body.appendChild(selBox);
+  selBox.focus();
+  selBox.select();
+  document.execCommand('copy');
+  document.body.removeChild(selBox);
+  }
+
+  phoneNumberValidator(
+    control: AbstractControl
+  ): { [key: string]: any } | null {
+    console.log("phoneNumberValidator");
+    const valid = false;
+    return valid
+      ? null
+      : { invalidNumber: { valid: false, value: control.value } }
+  }
+
   onFormSubmit() {
-    // console.log("KEIVN");
-    // console.log(JSON.stringify(this.accountRetailerForm.value, null, 2));
 
     this.retailerStore.updateRetailerStoreInfo(
       this.retailer._id,
       {store: this.accountRetailerForm.value}
-    );
-
-    this.openSnackBar("Los datos de tu tienda fueron guardados.","");
+    ).subscribe( (res: any) => {
+      if( res.success ) {
+        this.openSnackBar("Los datos de tu tienda fueron guardados.", "");
+      } else {
+        this.openSnackBar(this.errorStoreNameExist, "");
+      }
+    })
   }
 
   loadDistricts():void {
@@ -180,45 +255,9 @@ export class ProfileSettingsComponent implements OnDestroy {
 
   openSnackBar(message: string, action: string) {
     this.snackBarService.open(message, action, {
-      duration: 2000,
+      duration: 5000,
     });
 
   }
-
-  // this.user = this.userService
-  // .loadUser()
-  // .pipe(tap(user => this.form.patchValue(user)));
-
-// API Data returned has the same property names as the form control names
-// making it easier to assign the form values with patchValue
-// {
-//  id: 0,
-//  firstName: "Cory",
-//  lastName: "Rylan",
-//  about: "Web Developer"
-// }
-
-  /**
-   * {
-  "store": {
-    "name": "La tienda de Irene",
-    "imgUrl": "../../../assets/fruit-images/fruits_portal_img.jpg",
-    "isDeliveryService": true,
-    "isPickUpService": true,
-    "deliveryInfo": "De 9hrs a 13hrs",
-    "pickUpInfo": "De 10hrs a 14hrs",
-    "address": {
-      "streetName": "Dante",
-      "streetnumber": "343",
-      "district": "Surquillo",
-      "city": "LIM",
-      "department": "LIM",
-      "country": "PE",
-      "reference": "Frente al parque XXXX",
-      "details": "A unos metros de la comisaria"
-    }
-  }
-   */
-
 
 }

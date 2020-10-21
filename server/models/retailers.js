@@ -13,6 +13,7 @@ var retailerSchema = new Schema({
   phoneNumber: String,
   store: {
     name: String,
+    nameUrl: String,
     imgUrl: String,
     isDeliveryService: Boolean,
     isPickUpService: Boolean,
@@ -60,29 +61,26 @@ var retailerSchema = new Schema({
 
 });
 
-// productsList: [{
-//   type: Schema.Types.ObjectId,
-//   ref: "Products"
-// }]
-
 // on every save, add the date
 retailerSchema.pre('save', function(next) {
   let retailer = this;
-
+  
   // Do not rehash if it's an old retailer
   if(!retailer.isModified('password')) return next();
-
+  
   bcrypt.hash(retailer.password, stage.saltingRounds, function(err, hash) {
     if(err) {
-      // console.log("Error hashing password for Retailer");
       return next(err);
     } else {
-      // console.log ("Retailer password hashed", hash);
       retailer.password = hash;
       next();
     }
   });
+  
+  
 });
+
+
 
 var Retailer = mongoose.model('Retailer',retailerSchema);
 

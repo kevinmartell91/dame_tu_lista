@@ -22,7 +22,7 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
   public productSelected: Product;
 
   // url params attributes
-  public retailer_id: string;
+  public retailerStoreName: string;
   
   subscription: Subscription;
 
@@ -39,9 +39,13 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
 
-    this.subscription = this.activatedRoute.paramMap.subscribe( params => {
-      this.retailer_id = params.get("retailer_id")
-    });
+    // this.subscription = this.activatedRoute.paramMap.subscribe( params => {
+    //   // this.retailerStoreName = params.get("retailerStoreName")
+      // this.retailerStoreName = params.get("retailer_store_name")
+    //   console.log("HERE", params );
+    // });
+
+    this.retailerStoreName = localStorage.getItem("retailer_store_name");
 
   }
 
@@ -49,7 +53,7 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
    *  By unsubscribing, It prevents memory leak
    */
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   private initializeViewSettings(): void {
@@ -65,7 +69,7 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
   /**
    * Listen to childre component(product-displaycomponent)
    * @param product product selected on children 
-   * component
+   * component  
    */
   public onSelected(product: Product){
     this.productSelected = product;
@@ -75,7 +79,8 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
 
   public goToRetailerVarietyView(): void {
     let category = this.productSelected.categoryName;
-    this.router.navigate(['/tienda-vendedor', this.retailer_id,'variedad',category],);
+    // this.router.navigate(['/tienda-vendedor', this.retailerStoreName,'variedad',category],);
+    this.router.navigate([ this.retailerStoreName,'variedad',category],);
   }
 
   public _filterAllProductsByCategory(products: Product[]): Product[] {

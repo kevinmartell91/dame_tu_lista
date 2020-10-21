@@ -11,22 +11,10 @@ import { LoginUser } from '../types/user';
 @Injectable({providedIn: 'root'})
 export class AuthenticationEndPoint {
   
-  // private currentUserSubject: BehaviorSubject<LoginUser>;
-  // public currentUser: Observable<LoginUser>;
-  
+ 
   constructor( private httpClient: HttpClient) {
-    // this.currentUserSubject = 
-      // new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem('currentUser')));
-    // set currentUserSubject(as observable) to currentUser
-    // to notify all the other components which are subscribe to 
-    // currentUser. See currentUserValue() => 
-    // this.currentUser = this.currentUserSubject.asObservable();
-  }
 
-  // public get currentUserValue(): LoginUser {
-    // avoid other components to subscribe to currentUser to be notified
-    // return this.currentUserSubject.value;
-  // }
+  }
 
   postAuthentication( 
     requestStateUpdater: StoreRequestStateUpdater,
@@ -48,7 +36,7 @@ export class AuthenticationEndPoint {
         // localStorage.setItem('currentUser',JSON.stringify(user));
         // The user object is then published to all subscribers by calling
         // this.currentUserSubject.next(user);
-        // console.log("EndPoint:",user);
+        console.log("USER postAuthentication => ", user);
         return user;
       }),
       catchError((error: HttpErrorResponse) => {
@@ -65,11 +53,7 @@ export class AuthenticationEndPoint {
 
   	return this.httpClient.post<LoginUser>(request.url, loginUser, this.getHeaders()).pipe(
       map(user => {
-        // store user ditails and jwttoken in localStorage to keep user
-        // logged in between pages
-        // localStorage.setItem('currentUser',JSON.stringify(user));
-        // The user object is then published to all subscribers by calling
-        // this.currentUserSubject.next(user);`
+        
         return user;
       }),
       catchError((error: HttpErrorResponse) => {
@@ -80,9 +64,7 @@ export class AuthenticationEndPoint {
   }
 
   logout() {
-    // remove user from localStorage
-    // localStorage.removeItem('currentUser');
-    // this.currentUserSubject.next(null);
+   
   }
 
   private getHeaders() {

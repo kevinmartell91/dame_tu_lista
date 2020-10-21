@@ -8,8 +8,8 @@ export class Retailer implements Deserializable {
     public _id: string;
     public username?: string;
     public password?: string;
-    public name?: String;
-    public lastname?: String;
+    public name?: string;
+    public lastname?: string;
     public email?: string;
     public phoneNumber?: string;
     public store?: Store;

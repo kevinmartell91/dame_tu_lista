@@ -6,10 +6,20 @@ import { ThanksOrderComponent } from "./components/thanks-order/thanks-order.com
 
 
 const routes: Routes = [
-  { path: '', component: CartsComponent },
-  { path: 'completar-direccion', component: FillShippingAddressComponent },
-  { path: 'gracias-por-tu-compra', component: ThanksOrderComponent }
-];
+  { 
+    path: '',
+    component: CartsComponent,
+    children: [
+      {
+        path: '',
+        children: [
+         { path: 'completar-direccion', component: FillShippingAddressComponent },
+         { path: 'gracias-por-tu-compra', component: ThanksOrderComponent }
+        ]
+      }
+    ] 
+  },
+];``
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

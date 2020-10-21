@@ -7,15 +7,10 @@ exports.postOrders = function(req, res) {
     // creating a new instance of the Orders model
   let orderData = req.body;
   var order = new Order(orderData);
-  // order.shipping = req.body.shipping;
-  // order.payment = req.body.payment;
-  // order.cart = req.body.cart;
-
  
   order.save(function(err){
         
     if (err){
-    //   console.log("ERROR ", err);
         return res.status(500).send(err);
     }
     res.json({ 
@@ -35,6 +30,7 @@ exports.getOrders = function(req, res) {
     if (err)
       return res.status(500).send(err);
 
+	console.log("ORDERS", JSON.parse(orders));  
     res.json({ 
         success: true,
         status: 200,
@@ -65,17 +61,14 @@ exports.getOrder = function(req, res) {
 exports.putOrder = async function(req, res, next) {
 
 
-//   console.log("KEVIN => ");
   // use this put method to update buyer data only
 	let id = req.params.order_id;
 	let orderData = req.body;
-//   console.log("KEVIN => ",id,  orderData);
 
 	const orderUpdated = 
 		await Order.findByIdAndUpdate(id, orderData, { new: true});
 
 	if(orderUpdated) {
-		// console.log("updateBuyerAddress - PUT ");
 		res.json({
 			success: true,
 			status: 200,
@@ -114,14 +107,12 @@ exports.getOrdersByRetailerId = function(req, res) {
 
   
   let retailer_id = req.params.retailer_id; 
-//   console.log("orders ================ >>", retailer_id);
 
 
   Order.find({retailer_id: retailer_id},function(err, orders) {
     if (err)
       return res.status(500).send(err);
 
-    // console.log("orders ================ >>", orders);
     res.json({ 
         success: true,
         status: 200,
@@ -159,6 +150,7 @@ exports.updateOrderAddress = function(req, res) {
 	  order.address = { 
 		streetName: req.body.address.streetName,
 		streetnumber: req.body.address.streetnumber,
+		apartmentNumber: req.body.address.apartmentNumber,
 		district: req.body.address.district,
 		city: req.body.address.city,
 		department: req.body.address.department,

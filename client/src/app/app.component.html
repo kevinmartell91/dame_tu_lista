@@ -1,14 +1,13 @@
-<div *ngIf="loginUser">
+ <div *ngIf="!loginUser">
     
-    <ng-container [ngSwitch]="loginUser.login_type" >
-        <div *ngSwitchCase="loginType.buyer">
+  <!--  <ng-container [ngSwitch]="loginUser.login_type" >
+        <div *ngSwitchCase="loginType.buyer"> -->
             <!-- Because no logic is implemented, It used a as proxy to pass the state here -->
-            <ng-container *ngIf="(buyerNavegationStore.state$ | async) as subs">
-                <!-- {{subs.buyerNavegation.typeView}} -->
+
                 <div class="continer_grid">
                     
                     <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
-                    <ng-container [ngSwitch]="subs.buyerNavegation.typeView">
+                    <ng-container [ngSwitch]="buyerNavegation.typeView">
                         
                 
                         <div *ngSwitchCase="navegation.accountView" class="buyer_account_cart_area">
@@ -22,7 +21,7 @@
                     
                                 <div class="buyer_name_area" >
                                     <span class="greetings">Hola </span>
-                                    <span>, {{nameCapitalized}} </span>
+                                    <!-- <span>, {{nameCapitalized}} </span> -->
                                 </div>
     
                                 <div class="buyer_view_account_area" >
@@ -80,8 +79,8 @@
                     
                     </ng-container>
                     
-                    <div *ngIf="subs.buyerNavegation.typeView !== navegation.storeView &&
-                                subs.buyerNavegation.typeView !== navegation.thanksView" 
+                    <div *ngIf="buyerNavegation.typeView !== navegation.storeView &&
+                                buyerNavegation.typeView !== navegation.thanksView" 
                                 class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
                         <div (click)="viewBuyerCart()">
@@ -101,14 +100,14 @@
                     </div>
                 </div>
             
-            </ng-container>
+  
 
-        </div>
+        <!-- </div>
         <div *ngSwitchCase="loginType.retailer">
-            <!-- retailer -->
+            retailer
         </div>
-    </ng-container>
+    </ng-container>-->
+</div> 
 
-</div>
 <router-outlet></router-outlet>
 
