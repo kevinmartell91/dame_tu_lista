@@ -1,7 +1,8 @@
 <div [class]="getGridView()">
 
-    <div class="product_image_area" (click)="disableQuantityMode()">
-        <img *ngIf="typeView === 'rowView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
+    <div class="product_image_area">
+        <img *ngIf="typeView === 'rowView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
+            alt="">
         <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}}
             alt="">
         <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
@@ -49,7 +50,8 @@
             <app-add-button [isSizeAvailable]="isSizeAvailable" [isKiloUnitAvailable]="isKiloUnitAvailable"
                 [size]="size" [isCartProductButtonType]="false" [isKilo]="product.isKilo" [product]="product"
                 [quantity]="quantity" (quantityUpdated)="onQuantityUpdated($event)"
-                (kiloOrUnitUpdated)="onMassUpdated($event)" (sizeUpdated)="onSizeUpdated($event)">
+                (kiloOrUnitUpdated)="onMassUpdated($event)" (sizeUpdated)="onSizeUpdated($event)"
+                (disableQuantityMode)=" onDisableQuantityMode($event)">
             </app-add-button>
 
         </ng-template>
@@ -89,15 +91,13 @@
     <!-- taking advantage of "add" grid-area
       to add organic and size area Information
 -->
-    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'  "
-        class="product_size_add_area">
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'  " class="product_size_add_area">
         <span *ngIf="product.isSmallSize">Pequeño</span>
         <span *ngIf="product.isMediumSize">Mediano</span>
         <span *ngIf="product.isBigSize">Grande</span>
     </div>
 
-    <div *ngIf="typeView === 'maturityView' || typeView === 'varietyView'  "
-        class="product_organic_add_area">
+    <div *ngIf="typeView === 'maturityView' || typeView === 'varietyView'  " class="product_organic_add_area">
         <span *ngIf="product.isOrganic">Org.</span>
     </div>
 

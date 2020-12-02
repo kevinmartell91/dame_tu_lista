@@ -76,7 +76,8 @@ export class ProductDisplaySharedComponent implements OnInit {
     // if cartProduct quatity is 0, 
     // then disableQuantityMode
     if (quantityUpdated == 0) {
-      this.disableQuantityMode();
+      // this.disableQuantityMode();
+      this.isQuantityMode = false;
     }
 
 
@@ -119,9 +120,10 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   }
 
-  disableQuantityMode(): void {
+  onDisableQuantityMode(disable: boolean): void {
 
-    this.isQuantityMode = false;
+    console.log("DISABLE:", disable);
+    this.isQuantityMode = disable;
 
   }
 

@@ -7,9 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class AddButtonComponent implements OnInit {
 
-  @Output() quantityUpdated = new EventEmitter <number>();
+  @Output() quantityUpdated = new EventEmitter<number>();
   @Output() sizeUpdated = new EventEmitter<string>();
-  @Output() kiloOrUnitUpdated =  new EventEmitter<string>();
+  @Output() kiloOrUnitUpdated = new EventEmitter<string>();
+  @Output() disableQuantityMode = new EventEmitter<boolean>();
 
   @Input() isKiloUnitAvailable: boolean;
   @Input() isSizeAvailable: boolean;
@@ -27,7 +28,7 @@ export class AddButtonComponent implements OnInit {
   // simutaneously is updated by @Input quantity
   // when this component is opened.
   count: number;
-  
+
   // variable for updating visual selection 
   // on quantity options 
   isClickedKg: boolean = false;
@@ -41,31 +42,29 @@ export class AddButtonComponent implements OnInit {
 
   countStr: string = "";
 
-  
-  constructor() { 
+  constructor() {
   }
-  ngOnInit():void  {
+  ngOnInit(): void {
 
     this.setbuttonTypeToRender(this.isCartProductButtonType);
 
     this.setSurgeQuantity();
 
     this.count = this.quantity;
-    
+
     this.convertQuantiyToString();
 
-    
-    if(this.count == 0)
+    if (this.count == 0)
       this.quantityUpdate('+');
 
   }
 
-  setSurgeQuantity():void {
+  setSurgeQuantity(): void {
     // choosing the sugerUni
-    if( this.isKilo) {
+    if (this.isKilo) {
       this.surgeQuantity = 0.25;
     } else { // units
-      if( this.product.categoryName == 'Plátano'){
+      if (this.product.categoryName == 'Plátano') {
         this.surgeQuantity = 5;
       } else {  //other fruit by unit
         this.surgeQuantity = 1;
@@ -74,22 +73,29 @@ export class AddButtonComponent implements OnInit {
   }
   setbuttonTypeToRender(isCartProductButtonType: boolean): void {
 
-    if( isCartProductButtonType ) {
+    if (isCartProductButtonType) {
 
       this.isCartProductButtonType = true;
 
     } else {
-      
+
       this.isCartProductButtonType = false;
     }
-        
+
   }
 
-  async quantityUpdate(operator:string){
-    if(operator === "+") {
+  // deactivate the quantitymode from the children component
+  deactivateQuantityMode(): void {
+
+    this.disableQuantityMode.emit(false);
+
+  }
+
+  async quantityUpdate(operator: string) {
+    if (operator === "+") {
       this.count += this.surgeQuantity;
     } else { // discount quantity
-      if(this.count > 0 ){
+      if (this.count > 0) {
         this.count -= this.surgeQuantity;
       } else {
         // disable button 
@@ -99,14 +105,14 @@ export class AddButtonComponent implements OnInit {
 
     this.convertQuantiyToString();
     // await this.delay(1500);
-    
+
     this.quantityUpdated.emit(this.count)
   }
-  
+
   convertQuantiyToString(): void {
-        // here I can set how to increment or decrement quantity
+    // here I can set how to increment or decrement quantity
     // depending on MANO, (UNITS || KG)
-    if(this.isKilo) { 
+    if (this.isKilo) {
       this.countStr = this.count.toFixed(2) + " kg.";
     } else {
       this.countStr = this.count.toString() + " Uni.";
@@ -118,45 +124,45 @@ export class AddButtonComponent implements OnInit {
     this.updateKiliOrUnitSelection(mass);
     this.kiloOrUnitUpdated.emit(mass);
   }
-  
-  
 
-  async sizeUpdate (size: string) {
+
+
+  async sizeUpdate(size: string) {
     this.updateSizesSelection(size);
     // await this.delay(1500);
     this.sizeUpdated.emit(size);
   }
 
   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve,ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  updateSizesSelection(size: string) : void{
+  updateSizesSelection(size: string): void {
     switch (size) {
       case "S":
         this.isClickedSmall = true;
         this.isClickedMedium = false;
         this.isClickedBig = false;
         break;
-    
+
       case "M":
         this.isClickedSmall = false;
         this.isClickedMedium = true;
         this.isClickedBig = false;
-        
+
         break;
-    
+
       default:
         this.isClickedSmall = false;
         this.isClickedMedium = false;
         this.isClickedBig = true;
-        
+
         break;
     }
   }
 
-  updateKiliOrUnitSelection(mass: string) : void{
-    if(mass === "K") {
+  updateKiliOrUnitSelection(mass: string): void {
+    if (mass === "K") {
       this.isClickedKg = true;
       this.isClickedUni = false;
     } else {
@@ -165,5 +171,5 @@ export class AddButtonComponent implements OnInit {
     }
   }
 
- 
+
 }
