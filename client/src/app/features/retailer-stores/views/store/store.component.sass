@@ -44,7 +44,7 @@ $box_container_size: 320px
   margin: 0
   padding: 0
   grid-template-columns: 1fr
-  grid-template-rows: 250px 90px 1fr
+  grid-template-rows: 200px 90px 1fr 
   grid-gap: 0em
   grid-template-areas: "banner" "options" "strPrd" 
   z-index: 6  
@@ -53,30 +53,20 @@ $box_container_size: 320px
     grid-area: banner
     display: grid
     grid-template-columns: 1fr
-    grid-template-rows: 1fr 1fr 1fr 1fr 
-    grid-template-areas: "back_cart" "storeName" "delivery" "pickUp"
+    grid-template-rows: 1fr 1fr 1fr 1fr
+    grid-template-areas: "___cart" "storeName" "delivery" "pickUp" 
     grid-gap: 0em
     z-index: 3
         
-    .store_back_cart_area
-      grid-area: back_cart
+    .store_____cart_area
+      grid-area: ___cart
       display: grid
       margin: 0em
       padding 3em
-      grid-template-columns: 1fr 1fr
+      grid-template-columns: 1fr
       grid-template-rows: 1fr
-      grid-template-areas: "back cart"
+      grid-template-areas: "cart"
       background-color: $background_banner
-      
-      .back_button_area
-        grid-area: back
-        padding: 0em
-        font-weight: 500
-        font-size: $store_banner_options_text_size
-        color: white
-        align-self: center
-        justify-self: left
-        cursor: pointer
 
       .cart_icon_area
         grid-area: cart
@@ -90,7 +80,8 @@ $box_container_size: 320px
         border-radius: 10px
         background: #ffffff
         cursor: pointer
-        
+
+
     .store_name_area
       grid-area: storeName
       font-weight: 800
@@ -123,13 +114,18 @@ $box_container_size: 320px
         text-align: center
         margin: 0em
 
+
+      
+  .product_type_area
+    grid-area: prodType
+
   .store_options_area
     grid-area: options    
     display: grid
     margin: 5px
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr
     grid-template-rows: 52px
-    grid-template-areas: "categories season"
+    grid-template-areas: "categories search"
     grid-gap: 0px
 
     .season_title_area
@@ -143,13 +139,31 @@ $box_container_size: 320px
     .category_title_area
       grid-area: categories
       font-size: $store_options_text_size
-      color: $primary_button_color
-      border: 1px solid $primary_button_color
-      border-radius: 4px
-      padding: 4px
+      // color: $primary_button_color
+      // border: 1px solid $primary_button_color
+      // border-radius: 4px
+      // padding: 4px
       justify-self: center
       align-self: center
       cursor: pointer
+
+
+    .search_box_area
+      grid-area: search
+      padding: 0em
+      // font-weight: 500
+      // font-size: $store_banner_options_text_size
+      // color: white
+      align-self: rigth
+      // background-color: $background_banner
+      
+      .mat-form-field
+        padding: 0em
+        // transform: translateY(10%)
+  
+      .full_width
+        width: 100%
+                
 
   .store_products_area
     grid-area: strPrd

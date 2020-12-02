@@ -1,0 +1,25 @@
+$store_options_text_size: 12px 
+$primary_filed_color: #565656
+$primary_button_color: #43b02b
+
+$display_type_product_min_size: 100px
+$display_type_product_max_size: 100px
+*
+  box-sizing: border-box
+
+.display_type_product_grid
+  display: grid
+  margin: 0px
+//   grid-template-columns: repeat(auto-fill, minmax($display_type_product_min_size, $display_type_product_max_size))
+//   grid-template-rows: $display_type_product_max_size
+//   grid-gap: 0px
+
+  .button_box_style
+    font-size: $store_options_text_size
+    color: $primary_button_color
+    border: 1px solid $primary_button_color
+    border-radius: 4px
+    padding: 0px
+    justify-self: center
+    align-self: center
+    cursor: pointer

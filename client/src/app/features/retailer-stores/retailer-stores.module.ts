@@ -10,6 +10,7 @@ import { CategoryProductsComponent } from './views/category-products/category-pr
 import { MaturityProductsComponent } from './views/maturity-products/maturity-products.component';
 import { StoreComponent } from './views/store/store.component';
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
+import { ProductTypeComponent } from './componentes/product-type/product-type.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { VarietyProductsComponent } from './views/variety-products/variety-produ
     SeasonalProductsComponent,
     MaturityProductsComponent,
     VarietyProductsComponent,
-    StoreComponent
+    StoreComponent,
+    ProductTypeComponent
   ],
   imports: [
     CommonModule,

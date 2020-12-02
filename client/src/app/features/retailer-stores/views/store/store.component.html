@@ -1,37 +1,35 @@
 <ng-container *ngIf="{state$: retailerStoreStore.state$ | async} as subs">
 
-    <ng-container 
-    *ngIf="subs.state$.requests.getRetailer.inProgress ;
+    <ng-container *ngIf="subs.state$.requests.getRetailer.inProgress ;
         then showLoading ;
         else showStore ">
     </ng-container>
 
-    <ng-template #showLoading> 
-         <div class="grid_loading_display">
+    <ng-template #showLoading>
+        <div class="grid_loading_display">
             <div class="login_brand_area">
                 <h1> 🍒 Dame tu lista</h1>
             </div>
             <div class="loading_symbol_area">
 
-                <mat-spinner >  </mat-spinner>
+                <mat-spinner> </mat-spinner>
             </div>
-         </div>
-          
+        </div>
+
     </ng-template>
-    
+
     <ng-template #showStore>
         <div class="store_grid">
             <div class="store_banner_area" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}">
-                <div class="store_back_cart_area">
+                <div class="store_____cart_area">
                     <!-- <div class="back_button_area" 
                         (click)="goBackToBuyerAccount()">
                         <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
                         Volver 
                     </div> -->
-                    <div class="back_button_area"> </div>
-                    
-                    <div class="cart_icon_area"
-                        (click)="viewBuyerCart()">
+
+
+                    <div class="cart_icon_area" (click)="viewBuyerCart()">
                         <img src="../../../../../assets/icons/shopping_cart-green-28dp.svg" alt="">
                         {{cartProductsQuantity}}
                     </div>
@@ -39,52 +37,51 @@
                 <div class="store_name_area">
                     <div class="style_store_name">{{subs.state$.retailer.store.name}}</div>
                 </div>
-                <div *ngIf="subs.state$.retailer.store.isDeliveryService" 
-                    class="store_delivery_area">
+                <div *ngIf="subs.state$.retailer.store.isDeliveryService" class="store_delivery_area">
                     <div class="style_delivery_info">Delivery: {{subs.state$.retailer.store.deliveryInfo}}</div>
                 </div>
-                <div *ngIf="subs.state$.retailer.store.isPickUpService"  
-                    class="store_pick_up_area">
+                <div *ngIf="subs.state$.retailer.store.isPickUpService" class="store_pick_up_area">
                     <div class="style_pick_up_info">Recojo: {{subs.state$.retailer.store.pickUpInfo}}</div>
                 </div>
+
             </div>
+
+            <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
+
             <div class="store_options_area">
                 <!-- <div class="season_title_area">Productos de temporada</div> -->
-                <div (click)="goToRetailerCategoryView()" class="category_title_area">Ver categorías</div>
-                
-                <div class="season_title_area">
-                    <form class="example-form">
-                        
+                <button mat-raised-button color="primary" (click)="goToRetailerCategoryView()"
+                    class="category_title_area">Ver categorías</button>
+                <!-- <div class="season_title_area">
+                    
+                </div> -->
+                <!-- <button mat-stroked-button color="primary"
+                (click)="goToRetailerCategoryView()" class="category_title_area">Categorías</button> -->
+                <div class="search_box_area">
+                    <form>
+
                         <!-- <mat-form-field class="example-full-width">
                             <mat-label>Buscar:</mat-label>
                             <input matInput placeholder="Sandia ... " [formControl]="control">
                         </mat-form-field> -->
-                        <mat-form-field appearance="outline">
+                        <mat-form-field class="full_width" appearance="outline">
                             <mat-label>Buscar</mat-label>
-                            <input matInput placeholder="Sandia ..." [formControl]="control">
+                            <input matInput placeholder="Buscar" [formControl]="control">
+                            <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
                         <!-- <mat-icon matBadge="{{filteredProductListLength}}" matBadgeColor="warn"></mat-icon>                     -->
-                        
+
                     </form>
                 </div>
-                <!-- <button mat-stroked-button color="primary"
-                (click)="goToRetailerCategoryView()" class="category_title_area">Categorías</button> -->
-
             </div>
+
             <div class="store_products_area">
-                <app-seasonal-products 
-                    [storeProducts]="filteredProductsList$ | async">
+                <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
                 </app-seasonal-products>
-                <!-- <app-seasonal-products 
-                    [storeProducts]="subs.state$.retailer.store.productsList">
-                </app-seasonal-products> -->
 
-                <!-- <app-category-products></app-category-products> -->
-
-              
             </div>
-        
+
         </div>
     </ng-template>
-    
+
 </ng-container>

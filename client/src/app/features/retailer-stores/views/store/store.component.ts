@@ -36,6 +36,8 @@ export class StoreComponent implements OnDestroy{
 
   control = new FormControl();
 
+  allProductTypes: string[] = ["🍏", "🐄", "🐑","🐓", "🐷","🐟"];
+
   constructor( 
     private router: Router,
     private buyerNavegationStore: BuyerNavegationStore,

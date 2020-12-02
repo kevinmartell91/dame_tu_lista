@@ -35,10 +35,7 @@ export class RetailerStoresComponent implements OnDestroy {
     });
     // this.retailerStoreStore.getRetailer(this.subscribedParamRetailerId);
     this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerId);
-    console.log(this.retailerStoreStore);
-    if(this.retailerStoreStore.state.retailer == null ){
-      this.router.navigate(['/**']);
-    }
+  
   }
 
   ngOnDestroy():void {
