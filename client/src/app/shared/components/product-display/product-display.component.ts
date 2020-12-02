@@ -16,13 +16,13 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   @Output() selected = new EventEmitter<Product>();
   @Output() selectedCartProduct = new EventEmitter<CartProduct>();
-  
-  
+
+
   isQuantityMode: boolean = false;
   isKiloUnitAvailable: boolean = true;
   isSizeAvailable: boolean = true;
-  
-  quantityStr : string = "+";
+
+  quantityStr: string = "+";
   quantity: number = 0;
   kiloOrUnit: string = "";
   size: string = "";
@@ -30,12 +30,12 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   isQuantityIncreased: boolean = false;
 
-  constructor( ) { 
+  constructor() {
   }
-  
-  ngOnInit():void {
+
+  ngOnInit(): void {
     // formating to two decimals and as a string
-    this.productPriceStr = round(this.product.price,2).toFixed(2);
+    this.productPriceStr = round(this.product.price, 2).toFixed(2);
 
   }
 
@@ -43,7 +43,7 @@ export class ProductDisplaySharedComponent implements OnInit {
     return this.product.isKilo;
   }
 
-  select(){ 
+  select() {
 
     this.selected.emit(this.product)
 
@@ -55,36 +55,34 @@ export class ProductDisplaySharedComponent implements OnInit {
     switch (this.typeView) {
       case "maturityView":
         return "product_display_grid_maturity_view";
-        break;
       case "categoryView":
         return "product_display_grid_category_view";
-        break;
       case "varietyView":
         return "product_display_grid_variety_view";
-        break;
+      case "rowView":
+        return "product_display_grid_row_view";
       default: // "SeasonView"
         return "product_display_grid_seasonal_view";
-        break;
     }
- 
+
   }
 
   /**
    * listen to quantityUpdated from add-button-component.ts
    * @param newQuantity 
    */
-  async onQuantityUpdated(quantityUpdated: number){ 
-    
+  async onQuantityUpdated(quantityUpdated: number) {
+
     // if cartProduct quatity is 0, 
     // then disableQuantityMode
-    if(quantityUpdated == 0) {
+    if (quantityUpdated == 0) {
       this.disableQuantityMode();
     }
 
 
     this.quantity = quantityUpdated;
-    
-    if(quantityUpdated == 0) {
+
+    if (quantityUpdated == 0) {
       this.quantityStr = "+";
       this.isQuantityIncreased = false;
     } else {
@@ -99,48 +97,48 @@ export class ProductDisplaySharedComponent implements OnInit {
     // close quantity mode automatically after 1.5 seconds
     // await this.delay(2500);
     // this.disableQuantityMode();
-  
-  }
-  
-  onMassUpdated(kiloOrUnitUpdated: string) {
-  
-    this.kiloOrUnit = kiloOrUnitUpdated;
-  
-  }
-  
-  onSizeUpdated(sizeUpdated: string){
-   
-    // this.switchQuantityMode();
-    this.size = sizeUpdated;
-  
+
   }
 
-  enableQuantityMode():void {
-    
+  onMassUpdated(kiloOrUnitUpdated: string) {
+
+    this.kiloOrUnit = kiloOrUnitUpdated;
+
+  }
+
+  onSizeUpdated(sizeUpdated: string) {
+
+    // this.switchQuantityMode();
+    this.size = sizeUpdated;
+
+  }
+
+  enableQuantityMode(): void {
+
     this.isQuantityMode = true;
- 
+
   }
 
   disableQuantityMode(): void {
-   
+
     this.isQuantityMode = false;
-  
+
   }
-  
+
   switchQuantityMode(): void {
-    
+
     this.isQuantityMode ? this.isQuantityMode = false : this.isQuantityMode = true;
-  
+
   }
-  
+
   private getCartProduct(): CartProduct {
 
     return getCartProductFromProduct(this.product, this.quantity, this.size);
-    
+
   }
-  
-  delay(ms: number)  {
-    return new Promise( resolve => setTimeout(resolve, ms));
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

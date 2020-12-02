@@ -1,0 +1,48 @@
+<h1 class="style_question">
+    {{question}}
+</h1>
+
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+
+    <ng-container *ngIf="subs.state$.requests.getRetailer.inProgress ;
+        then showLoading ; 
+        else showData">
+    </ng-container>
+
+    <ng-template #showLoading>
+        <div class="grid_loading_display">
+            <div class="login_brand_area">
+                <span> Cargando ...</span>
+            </div>
+            <div class="loading_symbol_area">
+                <mat-spinner> </mat-spinner>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template #showData>
+        <ng-container *ngIf = "storeProducts.length > 0;
+            then showStoreProducts; 
+            else ShowEmptyMessage">
+        </ng-container>
+
+        <ng-template #showStoreProducts>
+            <div class="display_products_row_grid">
+                <!-- <ng-container *ngFor='let product of subs.state$.productsList.products'> -->
+                <ng-container *ngFor='let product of storeProducts'>
+                    <app-product-display-shared typeView="rowView" [product]="product" (selected)="onSelected($event)"
+                        (selectedCartProduct)="onSelectedCartProduct($event)"> </app-product-display-shared>
+                </ng-container>
+            </div>
+        </ng-template>
+
+        <ng-template #ShowEmptyMessage>
+            <div class="style_empty_message">
+                <span> No se encontratron resultados de búsqueda.</span>
+            </div>
+            
+        </ng-template>
+
+    </ng-template>
+
+</ng-container>

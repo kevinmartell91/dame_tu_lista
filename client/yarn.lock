@@ -117,6 +117,11 @@
     ora "4.0.3"
     rxjs "6.5.4"
 
+"@angular-mdl/core@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@angular-mdl/core/-/core-9.0.0.tgz#a12e1ffb684701ea2690a5a6213ba19478235713"
+  integrity sha512-1sJHvscPyUvY9xF6zCVAbW2TDb4E86KM5ibCigvOnF1MEcJUlb0i8ZgUhR+M43u7iO6IXga4H+xG8eSGDmQqqg==
+
 "@angular/animations@^9.1.1":
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-9.1.1.tgz#983e54d96e7a854cee801dbac214f31c03c1cfa8"

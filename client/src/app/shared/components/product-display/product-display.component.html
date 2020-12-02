@@ -1,78 +1,72 @@
-<div  [class]="getGridView()">
-    
-    <div class="product_image_area"  (click)="disableQuantityMode()">
-        <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}} alt="">
-        <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
-        <img *ngIf="typeView === 'varietyView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
-        <img *ngIf="typeView === 'maturityView'" class="image_style" (click)="select()" src={{product.maturityImageUrl}} alt="">
-        
-         
-        
+<div [class]="getGridView()">
+
+    <div class="product_image_area" (click)="disableQuantityMode()">
+        <img *ngIf="typeView === 'rowView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}} alt="">
+        <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}}
+            alt="">
+        <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
+            alt="">
+        <img *ngIf="typeView === 'varietyView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
+            alt="">
+        <img *ngIf="typeView === 'maturityView'" class="image_style" (click)="select()" src={{product.maturityImageUrl}}
+            alt="">
+
+
+
     </div>
-    
+
     <!-- <div *ngIf="typeView === 'categoryView'"  -->
-    <div  
-    class="product_category_area">
-    {{product.categoryName}}</div>
-    
-    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
-    class="product_price_area">
-    S/.{{productPriceStr}}
-    <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
-    <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg"> Uni.</span>
-</div>
+    <div class="product_category_area">
+        {{product.categoryName}}</div>
 
-<div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'" 
-class="product_variety_area">
-{{product.varietyName}}
-<!-- <span *ngIf="product.isOrganic === false">Normal</span> -->
-</div>
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' || typeView === 'rowView'"
+        class="product_price_area">
+        S/.{{productPriceStr}}
+        <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
+        <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg"> Uni.</span>
+    </div>
+
+    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView' || typeView === 'rowView'"
+        class="product_variety_area">
+        {{product.varietyName}}
+        <!-- <span *ngIf="product.isOrganic === false">Normal</span> -->
+    </div>
 
 
-<div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'" 
-    [ngClass]="{product_add_area: true}">
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' || typeView === 'rowView'"
+        [ngClass]="{product_add_area: true}">
 
-    <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showAddButton"></ng-container>
-        
-    <ng-template #showAddButton>
-        <div [ngClass]="{style_add_button: true, quantity_increased: isQuantityIncreased}"
-            (click)="enableQuantityMode()">
-            {{quantityStr}}
-        </div>
-    </ng-template>
+        <ng-container *ngIf="(isQuantityMode); then showAddOptions ; else showAddButton"></ng-container>
 
-    <ng-template #showAddOptions >
-        <app-add-button 
-            [isSizeAvailable]="isSizeAvailable" 
-            [isKiloUnitAvailable]="isKiloUnitAvailable"
-            [size]="size"
-            [isCartProductButtonType]="false"
-            [isKilo]="product.isKilo"
-            [product]="product"
-            [quantity]="quantity"
-            (quantityUpdated)="onQuantityUpdated($event)"
-            (kiloOrUnitUpdated)="onMassUpdated($event)"
-            (sizeUpdated)="onSizeUpdated($event)">
-        </app-add-button>
+        <ng-template #showAddButton>
+            <div [ngClass]="{style_add_button: true, quantity_increased: isQuantityIncreased}"
+                (click)="enableQuantityMode()">
+                {{quantityStr}}
+            </div>
+        </ng-template>
 
-    </ng-template>
-    
-</div>
+        <ng-template #showAddOptions>
+            <app-add-button [isSizeAvailable]="isSizeAvailable" [isKiloUnitAvailable]="isKiloUnitAvailable"
+                [size]="size" [isCartProductButtonType]="false" [isKilo]="product.isKilo" [product]="product"
+                [quantity]="quantity" (quantityUpdated)="onQuantityUpdated($event)"
+                (kiloOrUnitUpdated)="onMassUpdated($event)" (sizeUpdated)="onSizeUpdated($event)">
+            </app-add-button>
 
-    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
-            && product.isMaturityDetails" 
-        class="product_maturity_area">
+        </ng-template>
+
+    </div>
+
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView' ) 
+            && product.isMaturityDetails" class="product_maturity_area">
         {{product.maturityName}}</div>
-    
-    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
-            && product.isMaturityDetails" 
-        class="product_info_area">
+
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView' ) 
+            && product.isMaturityDetails" class="product_info_area">
         <img src="../../../../assets/icons/icons8-información.svg" alt="">
     </div>
-    
-    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') 
-            && product.isMaturityDetails" 
-        class="product_eatIn_area">
+
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView' ) 
+            && product.isMaturityDetails" class="product_eatIn_area">
         <!-- <span class="style_maturity_field">
              Comerlo en:
         </span>
@@ -80,8 +74,8 @@ class="product_variety_area">
             {{product.maturityEatIn}} días
         </span>  -->
     </div>
-    
-    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView') && product.isMaturityDetails" 
+
+    <div *ngIf="(typeView === 'maturityView' || typeView === 'seasonalView' ) && product.isMaturityDetails"
         class="product_lastFor_area">
         <!-- <span class="style_maturity_field">
              Y te durá: 
@@ -92,23 +86,23 @@ class="product_variety_area">
     </div>
 
 
-<!-- taking advantage of "add" grid-area
+    <!-- taking advantage of "add" grid-area
       to add organic and size area Information
 -->
-<div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' " 
-    class="product_size_add_area">
-    <span *ngIf="product.isSmallSize">Pequeño</span>
-    <span *ngIf="product.isMediumSize">Mediano</span>
-    <span *ngIf="product.isBigSize">Grande</span>       
-</div>
+    <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView'  "
+        class="product_size_add_area">
+        <span *ngIf="product.isSmallSize">Pequeño</span>
+        <span *ngIf="product.isMediumSize">Mediano</span>
+        <span *ngIf="product.isBigSize">Grande</span>
+    </div>
 
-<div *ngIf="typeView === 'maturityView' || typeView === 'varietyView' || typeView === 'seasonalView' " 
-    class="product_organic_add_area">
-    <span *ngIf="product.isOrganic">Org.</span>
-</div>
+    <div *ngIf="typeView === 'maturityView' || typeView === 'varietyView'  "
+        class="product_organic_add_area">
+        <span *ngIf="product.isOrganic">Org.</span>
+    </div>
 
-    
+
     <div class="product_empty_top_area"></div>
     <div class="product_empty_bottom_area"></div>
 
-</div>      
+</div>

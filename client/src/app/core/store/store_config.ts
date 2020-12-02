@@ -13,7 +13,8 @@ export const STORE_CONFIG = {
         categoryView: "categoryView",
         varietyView: "varietyView",
         maturityView: "maturityView",
-        cartView: "cartView"
+        cartView: "cartView",
+        rowView: "rowView"
     },
     question_view_type: {
         storeView: "Promociones 2 x 1",
@@ -21,7 +22,8 @@ export const STORE_CONFIG = {
         categoryView: "-",
         varietyView: "¿Qué tipo deseas?",
         maturityView: "¿Cuándo lo quieres comer?",
-        cartView: "Tu carrito de compras"
+        cartView: "Tu carrito de compras",
+        rowView: "Productos"
     }
 }
 

@@ -10,7 +10,7 @@ import { CategoryProductsComponent } from './views/category-products/category-pr
 import { MaturityProductsComponent } from './views/maturity-products/maturity-products.component';
 import { StoreComponent } from './views/store/store.component';
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
-import { ProductTypeComponent } from './componentes/product-type/product-type.component';
+import { RowProductViewComponent } from './componentes/row-product-view/row-product-view.component';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { ProductTypeComponent } from './componentes/product-type/product-type.co
     MaturityProductsComponent,
     VarietyProductsComponent,
     StoreComponent,
-    ProductTypeComponent
+    RowProductViewComponent
   ],
   imports: [
     CommonModule,
