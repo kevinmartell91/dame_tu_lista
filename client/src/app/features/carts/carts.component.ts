@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
@@ -31,7 +31,7 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
 })
 export class CartsComponent implements OnDestroy {
 
-  cartProducts: CartProduct[] = null ;
+  cartProducts: CartProduct[] = null;
   favoriteRetilerSelected: Retailer;
 
   subscriptionCart: Subscription;
@@ -49,7 +49,7 @@ export class CartsComponent implements OnDestroy {
   private dialogRef: any;
 
   buyer: Buyer;
-  
+
   // variable for paymet method coming from payment method modal
   paymentMethodOrder: string = "";
   phoneNumberOrder: string = "";
@@ -59,8 +59,9 @@ export class CartsComponent implements OnDestroy {
   isSetAddress: boolean = false;
   isSetPayMethod: boolean = false;
 
-  place_order_message: string = "Ordenar";
-  
+  place_order_message: string = "Enviar por WhatsApp";
+  isOrderPushed: boolean = false;
+
 
 
   constructor(
@@ -70,14 +71,17 @@ export class CartsComponent implements OnDestroy {
     private authenticationStore: AuthenticationStore,
     private orderStore: OrderStore,
     private matDialog: MatDialog,
-    private router: Router
-  ) { 
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
 
     this.init();
     this.initializeViewSettings();
-    
+    console.log("isOrderPushed:", this.isOrderPushed);
+
   }
-  
+
+
   init(): void {
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
@@ -98,13 +102,13 @@ export class CartsComponent implements OnDestroy {
 
     this.subscriptionBuyer = this.authenticationStore.loginUser$.subscribe(
       y => {
-         if( y.login_type == 'buyer') {
-           this.buyer = new Buyer().deserialize(y.entity);
-         }
+        if (y !== null && y.login_type == 'buyer') {
+          this.buyer = new Buyer().deserialize(y.entity);
+        }
       }
     )
 
-    
+
   }
 
   ngOnDestroy(): void {
@@ -115,20 +119,24 @@ export class CartsComponent implements OnDestroy {
 
   }
 
+  // *******************************************************
+  // Cart methohds
+  // *******************************************************
+
   private initializeViewSettings(): void {
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.cartView
     );
-    
+
     this.maturityView = STORE_CONFIG.view_type.cartView;
     this.question = STORE_CONFIG.question_view_type.cartView;
 
   }
 
-  onCartProducDeleted(carProductDeleted: CartProduct):void {
-    
+  onCartProducDeleted(carProductDeleted: CartProduct): void {
+
     // set quantity to cero to be removed from cartProdcuts
     // a shortcut to romeve cartPrduct
     carProductDeleted.quantity = 0;
@@ -137,9 +145,9 @@ export class CartsComponent implements OnDestroy {
 
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
 
- 
-    this.cartProducts.filter( cp => {
-      if(cp._id == cartProductUpdate._id) {
+
+    this.cartProducts.filter(cp => {
+      if (cp._id == cartProductUpdate._id) {
         cp = cartProductUpdate;
       }
     });
@@ -162,147 +170,357 @@ export class CartsComponent implements OnDestroy {
 
   submitOrder(): void {
 
-    if( ! this.isSetAddress ) {
+    if (!this.isSetAddress) {
       this.openAddAddressModal();
     }
   }
 
   completeOrderDetails(): void {
 
-    if( ! this.isSetAddress ) {
+    if (!this.isSetAddress) {
       this.openAddAddressModal();
     }
 
   }
 
+  openAddAddressModal(): void {
+    this.dialogRef = this.matDialog.open(FillShippingAddressComponent, {
+      width: '420px',
+      data: {
+        buyer: this.buyer
+      }
+    });
 
-  sendInVoiceViaWhatsApp(order: Order): void {
-    // parse order data in Tab separated text
+    this.dialogRef.afterClosed().subscribe(result => {
 
-    console.log("order.cart",order);
+      if (result != undefined) {
+
+        this.addressOrder = new AddressOrder().deserialize(result);
+        this.openAddPayMethodModal();
+      }
+
+    });
+  }
+
+  openAddPayMethodModal(): void {
+    this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
+      width: '420px'
+    });
+
+    this.dialogRef.afterClosed().subscribe(result => {
+
+      if (result != undefined) {
+
+        this.paymentMethodOrder = result.paymentMethod;
+        //setting code area
+        this.phoneNumberOrder = "+51" + result.phoneNumber;
+
+        // this.updatePlaceOrderMessage("Ahora ya puede ordenar");
+
+        // show another view to say thanks for ordering
+        // then catch this as a convetion in google analytics
+        let order = this.createOrderFromShoppingCart();
+
+        if (order != null) {
+
+          console.log("Order placed Successfuly");
+
+
+          // console.log("createOrderFromShoppingCart in BD", order);
+          // const orderRawText = this.transformOrderToRawText(order);
+          // this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
+          this.isOrderPushed = true;
+
+          this.updatePlaceOrderMessage("Su orden ya fue enviada");        
+        }
+        // else {
+        //   this.updatePlaceOrderMessage("Envie nuevamente su ordenr");        
+
+        // }
+
+      }
+    });
+  }
+
+  createOrderFromShoppingCart(): Order {
+
+
+    let order = null;
+
+    /**
+     * Populating the buyerOrder from this.buyer
+     */
+    let buyerOrder = new BuyerOrder();
+    // buyerOrder._id = this.buyer._id;
+    // buyerOrder.name = this.buyer.name;
+    // buyerOrder.email = this.buyer.email;
+    buyerOrder.phoneNumber = this.phoneNumberOrder;
+
+
+    /**
+     * Populating the addressOrder from this.buyer.address
+     */
+    let addressOrder = this.addressOrder;
+
+    /**
+     * Populating the trackingOrder
+     */
+    let trackingOrder = new TrackingOrder();
+    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.driver_name = "";
+    trackingOrder.trackingNumber = "";
+    trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
+
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let shippingOrder = new ShippingOrder();
+    shippingOrder.buyer = buyerOrder;
+    shippingOrder.deliveryNotes = "";
+    shippingOrder.address = addressOrder;
+    shippingOrder.tracking = trackingOrder;
+
+
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let paymentMethodOrder = new PaymentOrder();
+    paymentMethodOrder.method = this.paymentMethodOrder;
+    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+
+    /**
+     * Populating the cartProductOrder from this.cartProduct
+     */
+    let cartProductOrder: CartProductOrder[] = [];
+    this.cartProducts.forEach(cp => {
+      cartProductOrder.push(new CartProductOrder().deserialize(cp));
+    });
+
+    // populate the order;
+    order = new Order();
+
+    // order.retailer_id = this.favoriteRetilerSelected._id;
+    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    order.shipping = shippingOrder;
+    order.payment = paymentMethodOrder;
+    order.cart = cartProductOrder;
+
+    // place order DB
+    this.orderStore.genereteOrder(order).subscribe(
+      x => {
+
+        if (x) {
+
+          console.log("createOrderFromShoppingCart in BD (callback)", x);
+          
+          // transform the order into raw text 
+          const orderRawText = this.transformOrderToRawText(order);
+          // and send it via whatapp
+          // to the desired phone number
+          
+          
+          // TO DO: with the order _id, it is posible to share the link of the order
+          // TO DO:
+          
+          // TO DO: if CurrentUser Login(seller)  
+          //  the seller can send invoice to customers
+          this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
+
+          // TO DO else NO CurrentUser Login(seller)
+          // the app should not request phone number.
+          // the will send automatically to the seller
+          // phone number
+          // this.sendViaWhatsApp(orderRawText)
+          
+          
+          this.clearCart();
+          this.removeTemporaryStorage();
+          this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
+        }
+
+        // this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
+        // this.router.navigate([`/carrito-personal/gracias-por-tu-compra`]);
+      });
+    return order;
+
+  }
+
+  clearCart(): void {
+    this.cartStore.state.shoppingCart.products = [];
+    let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
+    this.cartStore.setCart(cartProductsEmpty);
+  }
+
+  updatePlaceOrderMessage(message: string): void {
+    this.place_order_message = message;
+  }
+
+  saveAddressInBuyerAccount(): void {
+
+    this.buyerStore.updateBuyerAddress(this.buyer._id, this.addressOrder).subscribe(
+      response => {
+      }
+    )
+  }
+
+  removeTemporaryStorage() {
+    sessionStorage.clear();
+    this.cartStore.setCart([]);
+  }
+
+  // *******************************************************
+  // WhatsApp methohd
+  // *******************************************************
+
+  sendViaWhatsApp(textMessageOrder: string, phoneNumber: string): void {
+
+    // find out how to paste it automatically in
+    // whatsapp
+    // const storePhoneNumber: string = "+51996821980";
+    let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(textMessageOrder)}`;
+    window.location.href = link;
+  }
+
+  // *******************************************************
+  // WhatsApp helper methohds
+  // *******************************************************
+
+  // this transform-order-to-raw-text method should know to who 
+  // the order is to: 
+  // (1) from C2B => placing an order directly
+  // (2) from B2C => assiting a customer with his/her order
+  //                 and then send an invoice 
+  transformOrderToRawText(order: Order): string {
 
     let orderRawTxt: string = "";
-    const tab: string = String.fromCodePoint(parseInt("9", 16));
-    const breakLine: string = "\n";
 
-    orderRawTxt += breakLine;
-    orderRawTxt += breakLine;
-    orderRawTxt += "🏁           *Nueva orden entrante*          🏁" + breakLine;
-    orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
-    // orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
-    orderRawTxt += breakLine;
-
-    orderRawTxt += "📥 *Pedido* :" + breakLine;
-    orderRawTxt += "⚖️Cant." + tab +  tab +  tab + "📌Productos " + tab + tab +  tab  + " 💰Precio" + breakLine;
-    orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
-
-    order.cart.forEach(product => {
-      
-      orderRawTxt += breakLine + 
-          
-      " " + product.quantity.toFixed(2) + tab + 
-      
-      this.formatQuantityWeightType(
-        product.isKilo
-      ) + tab + 
-      
-      // product.categoryName + " " + product.varietyName;
-      this.formatProductNameTo20Characters(
-        product.categoryName + 
-        " " +
-        product.varietyName
-        ) + tab + tab +
-        
-      "S/." + product.totalPrice.toFixed(2) 
-    })
-
-    orderRawTxt += breakLine;
-    orderRawTxt += breakLine;
-// [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
-// [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
-    orderRawTxt += "📝 *Detalles* :" + breakLine;
-    orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
-
-    orderRawTxt += breakLine;
-    
-    orderRawTxt += `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
-    
-    orderRawTxt += breakLine;
-
-    let paymentType;
-    
-    switch (order.payment.method) {
-      case "pos_method_area":
-        paymentType = "*POS/contra entrega* 🤝💳";
-        break;
-      case "bank_deposit":
-        paymentType = "*Deposito bancario* 🏦";
-        break;
-    
-      default:
-        paymentType = "*Efectivo/contra entrega* 🤝💵"
-        break;
-    }
-
-    orderRawTxt += `Pago : ${paymentType}` + breakLine;
-
-    orderRawTxt += breakLine;
-
-    let orderType = 
-       order.orderType == "delivery" ?
-       "Delivery 🛵." :  "Recogo en tienda 🏪.";
-    
-    orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
-
-    
-    
-    if(order.orderType == "delivery") {
+    if (order != null) {
+      // parse order data in Tab separated text
+      console.log("order.cart", order);
+      const tab: string = String.fromCodePoint(parseInt("9", 16));
+      const breakLine: string = "\n";
 
       orderRawTxt += breakLine;
-      orderRawTxt += `📍 *Entrega en* :` + breakLine; 
-      orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
-      
-      orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
+      orderRawTxt += breakLine;
+      orderRawTxt += "🏁           *Nueva orden entrante*          🏁" + breakLine;
+      orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
+      // orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
+      orderRawTxt += breakLine;
 
-      if(order.shipping.address.apartmentNumber) {
-        orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine; 
+      orderRawTxt += "📥 *Pedido* :" + breakLine;
+      orderRawTxt += "⚖️Cant." + tab + tab + tab + "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
+      orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+      order.cart.forEach(product => {
+
+        orderRawTxt += breakLine +
+
+          " " + product.quantity.toFixed(2) + tab +
+
+          this.formatQuantityWeightType(
+            product.isKilo
+          ) + tab +
+
+          // product.categoryName + " " + product.varietyName;
+          this.formatProductNameTo20Characters(
+            product.categoryName +
+            " " +
+            product.varietyName
+          ) + tab + tab +
+
+          "S/." + product.totalPrice.toFixed(2)
+      })
+
+      orderRawTxt += breakLine;
+      orderRawTxt += breakLine;
+      // [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
+      // [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
+      orderRawTxt += "📝 *Detalles* :" + breakLine;
+      orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+      orderRawTxt += breakLine;
+
+      orderRawTxt += `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
+
+      orderRawTxt += breakLine;
+
+      let paymentType;
+
+      switch (order.payment.method) {
+        case "pos_method_area":
+          paymentType = "*POS/contra entrega* 🤝💳";
+          break;
+        case "bank_deposit":
+          paymentType = "*Deposito bancario* 🏦";
+          break;
+
+        default:
+          paymentType = "*Efectivo/contra entrega* 🤝💵"
+          break;
       }
 
-      orderRawTxt += `${order.shipping.address.district}.` + breakLine;
+      orderRawTxt += `Pago : ${paymentType}` + breakLine;
 
-      if(order.shipping.address.reference) {
-        orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine; 
-      }  
+      orderRawTxt += breakLine;
 
-      if(order.shipping.address.details) {
-        orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine; 
+      let orderType =
+        order.orderType == "delivery" ?
+          "Delivery 🛵." : "Recogo en tienda 🏪.";
+
+      orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
+
+
+
+      if (order.orderType == "delivery") {
+
+        orderRawTxt += breakLine;
+        orderRawTxt += `📍 *Entrega en* :` + breakLine;
+        orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+        orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
+
+        if (order.shipping.address.apartmentNumber) {
+          orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
+        }
+
+        orderRawTxt += `${order.shipping.address.district}.` + breakLine;
+
+        if (order.shipping.address.reference) {
+          orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
+        }
+
+        if (order.shipping.address.details) {
+          orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
+        }
       }
-    } 
-    
-    orderRawTxt += breakLine;
-    orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
-    orderRawTxt += "🥑🌿🍇🍓🍈🍒🍑🥭🥑🌿🌱🌴" + breakLine;
-    
-    // this.cartProducts.forEach(product => {
-    //   orderRawTxt += breakLine + 
-    //     this.formatProductNameTo20Characters(
-    //       product.categoryName + 
-    //       " " +
-    //       product.varietyName
-    //     ) + tab + tab +
-    //     this.formatQuantityWeightType(
-    //       product.isKilo
-    //     ) + tab + tab +
-    //     this.formatQuantityToFractionsOrUnits(
-    //       product.quantity, product.isKilo
-    //     ) + tab + tab + 
-    //     product.totalPrice.toFixed(2);
-    // })
-    
-    this.copyText(orderRawTxt);
-    console.log(orderRawTxt)
-    // this.sendViaWhatsApp(orderRawTxt);
-    // copy text in the clipboard
+
+      orderRawTxt += breakLine;
+      orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
+      orderRawTxt += "🥑🌿🍇🍓🍈🍒🍑🥭🥑🌿🌱🌴" + breakLine;
+
+      // this.cartProducts.forEach(product => {
+      //   orderRawTxt += breakLine + 
+      //     this.formatProductNameTo20Characters(
+      //       product.categoryName + 
+      //       " " +
+      //       product.varietyName
+      //     ) + tab + tab +
+      //     this.formatQuantityWeightType(
+      //       product.isKilo
+      //     ) + tab + tab +
+      //     this.formatQuantityToFractionsOrUnits(
+      //       product.quantity, product.isKilo
+      //     ) + tab + tab + 
+      //     product.totalPrice.toFixed(2);
+      // })
+
+      this.copyText(orderRawTxt);
+      console.log(orderRawTxt)
+      // this.sendViaWhatsApp(orderRawTxt);
+      // copy text in the clipboard
+    }
+
+    return orderRawTxt;
   }
 
   /* To copy any Text */
@@ -320,45 +538,45 @@ export class CartsComponent implements OnDestroy {
     document.body.removeChild(selBox);
   }
 
-  formatProductNameTo20Characters(term: string): string{
+  formatProductNameTo20Characters(term: string): string {
 
     const maxLenght: number = 18;
     const threePointsLenght: number = 3;
 
-    if ( term == null || term == "") return;
+    if (term == null || term == "") return;
 
-    if(term.length < maxLenght ) {
+    if (term.length < maxLenght) {
       //print null string
       const num = maxLenght - term.length;
       return term + this.getEmptyStr(num);
     }
 
-    return term.slice(0,maxLenght - threePointsLenght) + " . . .";
-    
+    return term.slice(0, maxLenght - threePointsLenght) + " . . .";
+
   }
 
-  formatQuantityToFractionsOrUnits(quant: number, isKilo: boolean): string{
-    if(quant == 0 ) return "";
+  formatQuantityToFractionsOrUnits(quant: number, isKilo: boolean): string {
+    if (quant == 0) return "";
 
     // formating quantity for kilos
-    if(quant < 1 && isKilo) {
+    if (quant < 1 && isKilo) {
 
       return this.turnIntoFraction(quant);
 
     } if (quant > 1 && isKilo) {
 
       //more than 1 kilo
-      const units = quant.toString().split(".",1);
+      const units = quant.toString().split(".", 1);
       console.log("UNITS split :", units);
       return units.toString() + "," + this.turnIntoFraction(quant - (+units));
-            
-    } 
+
+    }
     // formation for units
     return quant.toString();
   }
 
-  turnIntoFraction(quant: number): string{
-    if(quant == 0 ) return "";
+  turnIntoFraction(quant: number): string {
+    if (quant == 0) return "";
 
     switch (quant) {
       case 0.25:
@@ -373,172 +591,21 @@ export class CartsComponent implements OnDestroy {
     }
   }
 
-  formatQuantityWeightType(isKilo : boolean): string{
-    if(isKilo === undefined) return;
-    return  isKilo? " Kg -" : "Uni -";
+  formatQuantityWeightType(isKilo: boolean): string {
+    if (isKilo === undefined) return;
+    return isKilo ? " Kg -" : "Uni -";
   }
 
-  getEmptyStr(num: number): string{
-    let emptyStr= "";
+  getEmptyStr(num: number): string {
+    let emptyStr = "";
     for (let i = 0; i < num; i++) {
-        emptyStr += " .";      
+      emptyStr += " .";
     }
     return emptyStr;
   }
 
-  sendViaWhatsApp(textMessageOrder: string): void {
-    
-    // find out how to paste it automatically in
-    const storePhoneNumber: string = "+51996821980";
-    let link =`//api.whatsapp.com/send?phone=${storePhoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    window.location.href=link;
-    // whatsapp
 
 
-
-  }
-  
-  openAddAddressModal():void {
-    this.dialogRef = this.matDialog.open(FillShippingAddressComponent, {
-      width: '420px',
-      data: {
-        buyer: this.buyer
-      }
-    });
-
-    this.dialogRef.afterClosed().subscribe( result => {
-
-      if(result != undefined){
-        
-        this.addressOrder = new AddressOrder().deserialize(result);
-        this.openAddPayMethodModal();
-      }
-
-    });
-  }
-
-
-  openAddPayMethodModal():void {
-    this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
-      width: '420px'
-    });
-
-    this.dialogRef.afterClosed().subscribe( result => {
-      
-      if(result != undefined) {
-
-        this.paymentMethodOrder = result.paymentMethod;
-        //setting code area
-        this.phoneNumberOrder = "+51" + result.phoneNumber;
-  
-        // this.updatePlaceOrderMessage("Ahora ya puede ordenar");
-        
-        // show another view to say thanks for ordering
-        // then catch this as a convetion in google analytics
-        let order = this.createOrderFromShoppingCart();
-
-        console.log("sending via whatsApp",order);
-        this.sendInVoiceViaWhatsApp(order);
-        // this.sendViaWhatsApp(order);
-
-  
-        // this.updatePlaceOrderMessage("Su orden ya fue enviada");        
-      }
-    });
-  }
-
-
-  createOrderFromShoppingCart(): Order {
-
-    /**
-     * Populating the buyerOrder from this.buyer
-     */
-    let buyerOrder = new BuyerOrder();
-    // buyerOrder._id = this.buyer._id;
-    // buyerOrder.name = this.buyer.name;
-    // buyerOrder.email = this.buyer.email;
-    buyerOrder.phoneNumber = this.phoneNumberOrder; 
-    
-    
-    /**
-     * Populating the addressOrder from this.buyer.address
-     */
-    let addressOrder = this.addressOrder;
-    
-    /**
-     * Populating the trackingOrder
-     */
-    let trackingOrder =  new TrackingOrder();
-    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
-    trackingOrder.driver_name= "";
-    trackingOrder.trackingNumber = "";
-    trackingOrder.estimatedDelivery= "Se entregará su delivery en las próximas tres horas. Gracias.";
-    
-    /**
-     * Populating the shippingOrder from this.buyer
-     */
-    let shippingOrder = new ShippingOrder();
-    shippingOrder.buyer = buyerOrder;
-    shippingOrder.deliveryNotes = "";
-    shippingOrder.address = addressOrder;
-    shippingOrder.tracking = trackingOrder;
-    
-    
-    /**
-     * Populating the shippingOrder from this.buyer
-     */
-    let paymentMethodOrder = new PaymentOrder();
-    paymentMethodOrder.method = this.paymentMethodOrder;
-    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
-    
-    /**
-     * Populating the cartProductOrder from this.cartProduct
-     */
-    let cartProductOrder: CartProductOrder[] = [];
-    this.cartProducts.forEach(cp => {
-      cartProductOrder.push( new CartProductOrder().deserialize(cp));
-    });
-    
-    // populate the order;
-    let order = new Order();
-
-    // order.retailer_id = this.favoriteRetilerSelected._id;
-    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup" ;
-    order.shipping = shippingOrder;
-    order.payment = paymentMethodOrder;
-    order.cart = cartProductOrder;
-
-    console.log("ORDER", order);
-    
-    
-    // place order DB
-    this.orderStore.genereteOrder(order).subscribe( x => {
-      this.clearCart();
-      
-      // this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
-      // this.router.navigate([`/carrito-personal/gracias-por-tu-compra`]);
-    });
-    return order;
-    
-  }
-
-  clearCart():void {
-    this.cartStore.state.shoppingCart.products = [];
-    let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
-    this.cartStore.setCart(cartProductsEmpty);
-  }
-
-  updatePlaceOrderMessage(message: string): void {
-    this.place_order_message = message;
-  }
-
-  saveAddressInBuyerAccount():void {
-
-    this.buyerStore.updateBuyerAddress(this.buyer._id, this.addressOrder).subscribe(
-      response => {
-      }
-    )    
-  }
 
 
 }

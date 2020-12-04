@@ -6,7 +6,7 @@ export function getCartProductFromProduct(
     quantitySelected: number,
     sizeSelected: string
 ): CartProduct {
-    
+
     let newCartProduct = new CartProduct();
 
     newCartProduct._id = productSelected._id;
@@ -30,7 +30,7 @@ export function getCartProductFromProduct(
     newCartProduct.maturityEatIn = productSelected.maturityEatIn;
     newCartProduct.maturityLastFor = productSelected.maturityLastFor;
     newCartProduct.isInStock = productSelected.isInStock;
-    
+
     newCartProduct.quantity = quantitySelected;
     newCartProduct.size = sizeSelected;
     newCartProduct.details = "";
@@ -38,6 +38,7 @@ export function getCartProductFromProduct(
 
     return newCartProduct;
 }
+
 
 export function updateTotalProductPrice(quantity: number, price: number): number {
     return round(quantity * price, 2);
@@ -47,14 +48,16 @@ export function calculateCartTotalPrice(products: CartProduct[]): number {
 
     let totalCartPrice: number = 0;
     products.forEach(product => {
-        totalCartPrice += ( product.price * product.quantity );
+        totalCartPrice += (product.price * product.quantity);
     });
-    return round(totalCartPrice,2);
+    return round(totalCartPrice, 2);
 }
 
 export function round(value: number, precision: number): number {
-    
+
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 
 }
+
+

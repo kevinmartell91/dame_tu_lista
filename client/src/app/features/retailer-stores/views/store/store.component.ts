@@ -17,13 +17,13 @@ import { RetailerStoreStore } from '../../services/retailer.store';
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.sass']
 })
-export class StoreComponent implements OnDestroy{
+export class StoreComponent implements OnDestroy {
 
 
   // public retailer: Retailer = new Retailer().deserialize(this.DATA); 
   public retailer: Retailer;
   public loading: boolean;
-  
+
   cartProducts: CartProduct[];
   productsList: Product[];
   filteredProductsList$: Observable<Product[]>;
@@ -33,36 +33,62 @@ export class StoreComponent implements OnDestroy{
 
   retailerStoreName: string;
   subscriptionStoreName: Subscription;
+  subscriptionRetailerStore: Subscription;
+  subscriptionStoreState: Subscription;
+
+  stateProductsList: Product[] = null;
+  stateRetailer: Retailer = null;
 
   control = new FormControl();
 
-  allProductTypes: string[] = ["🍏", "🐄", "🐑","🐓", "🐷","🐟"];
+  allProductTypes: string[] = ["🍏", "🐄", "🐑", "🐓", "🐷", "🐟"];
 
-  constructor( 
+  constructor(
     private router: Router,
     private buyerNavegationStore: BuyerNavegationStore,
     public retailerStoreStore: RetailerStoreStore,
     private cartStore: CartStore,
     private readonly activedRoute: ActivatedRoute
-  ){
+  ) {
     this.init();
 
-    this.subscription = this.activedRoute.paramMap.subscribe( params => {
+    this.subscriptionStoreName = this.activedRoute.paramMap.subscribe(params => {
       this.retailerStoreName = params.get("retailer_store_name");
-      console.log("StoreComponent retailerStoreName",this.retailerStoreName);
-      localStorage.setItem("retailer_store_name",this.retailerStoreName);
-    })
+      console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
+      localStorage.setItem("retailer_store_name", this.retailerStoreName);
+    });
+
+    this.subscriptionStoreState = this.retailerStoreStore.state$.subscribe(
+      state => {
+        this.stateProductsList = state.productsList.products;
+        this.stateRetailer = state.retailer;
+        console.log("subscriptionStoreState", state);
+      }
+    );
 
   }
- 
+
   init(): void {
+
+    // console.log("INIT -  StoreComponent: ");
+
+
+    this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
+      products => {
+        // console.log("subscriptionRetailerStore- products",products);
+        this.productsList = products;
+        // console.log("FORM SESSION STORAGE", this.productsList);
+        // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
+
+      }
+    );
 
     this.subscription = this.cartStore.shoppingCart$.subscribe(
       x => {
-        this.cartProducts = x.products;
+        console.log("This.cartStore.shoppingCart$.products", x.products);
         this.cartProductsQuantity = x.products.length;
       }
-    )
+    );
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
@@ -75,13 +101,16 @@ export class StoreComponent implements OnDestroy{
     );
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.subscriptionStoreState.unsubscribe();
+    this.subscriptionStoreName.unsubscribe();
+    this.subscriptionRetailerStore.unsubscribe();
   }
 
   viewBuyerCart(): void {
     // this.router.navigate(['/carrito-personal']);
-      this.router.navigate([`${this.retailerStoreName}/carrito-personal`]);
+    this.router.navigate([`${this.retailerStoreName}/carrito-personal`]);
 
   }
 
@@ -105,10 +134,14 @@ export class StoreComponent implements OnDestroy{
     );
   }
 
+
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
     let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
+    // console.log("filterd prod: ", res);
     return res;
   }
 

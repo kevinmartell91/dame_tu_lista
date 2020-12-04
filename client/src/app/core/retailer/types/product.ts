@@ -23,6 +23,9 @@ export class Product implements Deserializable {
     public maturityEatIn?: string;
     public maturityLastFor?: string;
     public isInStock?: boolean;
+
+    public quantity?: number;
+
     
     deserialize(input: any) {
         Object.assign(this, input);

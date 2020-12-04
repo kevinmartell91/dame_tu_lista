@@ -28,12 +28,24 @@ export class ProductDisplaySharedComponent implements OnInit {
   size: string = "";
   productPriceStr: string;
 
-  isQuantityIncreased: boolean = false;
+  isQuantityIncreased: boolean;
 
   constructor() {
+
+
   }
 
   ngOnInit(): void {
+    if (this.product.quantity) {
+
+      this.quantityStr = this.product.quantity.toString();
+
+      if (this.product.quantity > 0) {
+        this.isQuantityIncreased = true;
+      } else {
+        this.isQuantityIncreased = false;
+      }
+    }
     // formating to two decimals and as a string
     this.productPriceStr = round(this.product.price, 2).toFixed(2);
 
@@ -80,9 +92,6 @@ export class ProductDisplaySharedComponent implements OnInit {
       this.isQuantityMode = false;
     }
 
-
-    this.quantity = quantityUpdated;
-
     if (quantityUpdated == 0) {
       this.quantityStr = "+";
       this.isQuantityIncreased = false;
@@ -91,13 +100,10 @@ export class ProductDisplaySharedComponent implements OnInit {
       this.isQuantityIncreased = true;
     }
 
+    // create a new cart stores with updated quantity
+    const cartProduct: CartProduct = getCartProductFromProduct(this.product, quantityUpdated, this.size);
     // then send it to to listener to be updated in
-    // Cart stores
-    this.selectedCartProduct.emit(this.getCartProduct());
-
-    // close quantity mode automatically after 1.5 seconds
-    // await this.delay(2500);
-    // this.disableQuantityMode();
+    this.selectedCartProduct.emit(cartProduct);
 
   }
 
@@ -122,7 +128,6 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   onDisableQuantityMode(disable: boolean): void {
 
-    console.log("DISABLE:", disable);
     this.isQuantityMode = disable;
 
   }
@@ -133,11 +138,11 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   }
 
-  private getCartProduct(): CartProduct {
+  // private getCartProduct(): CartProduct {
 
-    return getCartProductFromProduct(this.product, this.quantity, this.size);
+  //   return getCartProductFromProduct(this.product, this.quantity, this.size);
 
-  }
+  // }
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));

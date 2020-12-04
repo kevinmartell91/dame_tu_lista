@@ -1,34 +1,49 @@
-<div class="continer">
-    <hr>
+<ng-container *ngIf="isOrderPushed ; 
+    then showThankYouMessage;
+    else showCustomerCartDetails">
+</ng-container>
 
-    <h1 class="style_question">
-        {{question}}
-    </h1>
+<ng-template #showCustomerCartDetails>
+    <div class="continer">
+        <hr>
     
-    <ng-container *ngFor='let cartProduct of cartProducts'>
-    
-        <div class="cart_product_grid">
-    
-            <app-cart-product 
-                [cartProduct]="cartProduct"
-                (cartProducDeleted)="onCartProducDeleted($event)" 
-                (cartProductUpdated)="onCartProductUpdate($event)">
-            </app-cart-product>
+        <h1 class="style_question">
+            {{question}}
+        </h1>
         
-        </div>
+        <ng-container *ngFor='let cartProduct of cartProducts'>
+        
+            <div class="cart_product_grid">
+        
+                <app-cart-product 
+                    [cartProduct]="cartProduct"
+                    (cartProducDeleted)="onCartProducDeleted($event)" 
+                    (cartProductUpdated)="onCartProductUpdate($event)">
+                </app-cart-product>
+            
+            </div>
+        
+        </ng-container>
+        
+        <div class="style_empty_space"></div>
+        
+        <!-- <button class="style_checkout_button"
+                (click)="submitOrder()">
+            {{place_order_message}}
+            <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
+        </button>     -->
+        <button class="style_checkout_button"
+                (click)="completeOrderDetails()">
+            
+            {{place_order_message}}
     
-    </ng-container>
-    
-    <div class="style_empty_space"></div>
-    
-    <!-- <button class="style_checkout_button"
-            (click)="submitOrder()">
-        {{place_order_message}}
-        <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
-    </button>     -->
-    <button class="style_checkout_button"
-            (click)="completeOrderDetails()">
-        Enviar por WhatsApp
-        <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
-    </button>    
-</div>
+            <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
+        </button>   
+    </div>
+</ng-template>
+
+<ng-template #showThankYouMessage>
+    <router-outlet></router-outlet>	
+</ng-template>
+
+

@@ -20,12 +20,13 @@ const routes: Routes = [
   },
   { 
     path: 'registrate',
-    loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) },
-  // { 
-	//   path: 'dashboard-medical-center', 
-  //   loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 
-  //   canActivate: [AuthGuard]
-  // },
+    loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) 
+  },
+  { 
+	  path: 'dashboard-medical-center', 
+    loadChildren: () => import('./features/medical-dashboard/medical-dashboard.module').then(m => m.MedicalDashboardModule), 
+    // canActivate: [AuthGuard]
+  },
   // { 
   //   path: 'place-order',
   //   loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),

@@ -20,7 +20,7 @@ import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerN
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Dame tu lista';
   loginUser: LoginUser = null;
   cartProductsQuantity: number = 0;
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   authenticationSubcription: Subscription;
   cartStoreSubcription: Subscription;
-  
+
   favoriteRetailerIdSelected: Retailer;
   favoriteRetailerSubcription: Subscription;
 
@@ -37,12 +37,12 @@ export class AppComponent implements OnInit, OnDestroy{
 
   retailerStoreName: string;
 
-  temporaryStorage: TemporaryStorageFacet; 
+  temporaryStorage: TemporaryStorageFacet;
 
   loginType: {
     buyer,
     retailer
-  }; 
+  };
 
 
   navegation: {
@@ -72,13 +72,13 @@ export class AppComponent implements OnInit, OnDestroy{
       BUYER_CONFIG.navegation.storeView
     );
 
-    console.log("AppComponent retailerStoreName",this.retailerStoreName);
+    // console.log("AppComponent retailerStoreName", this.retailerStoreName);
 
 
-    this.temporaryStorage = this.temporaryStorageService.forKey("cart_products_list");
+    this.temporaryStorage = this.temporaryStorageService.forKey("cart_product_list");
 
     this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
-      y =>  {
+      y => {
         this.buyerNavegation = y;
         console.log("buyerNavegationSubscription", this.buyerNavegation);
       }
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy{
     //     }
     //   }
     // );
-  
+
   }
 
   ngOnInit(): void {
@@ -107,127 +107,93 @@ export class AppComponent implements OnInit, OnDestroy{
 
     this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe(
       y => {
+        // console.log("cartStoreSubcription", y);
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
-       this.handleSaveTemporaryStorage();
-        
+        // this.handleSaveTemporaryStorage(y.products);
+        this.saveToTemporaryStorage(y.products);
+
       }
     )
 
     this.favoriteRetailerSubcription = this.cartStore.favoriteRetailerSelected$.subscribe(
       z => {
         this.favoriteRetailerIdSelected = z;
-        this.handleSaveTemporaryStorage();
+        // this.handleSaveTemporaryStorage();
       }
     )
   }
 
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.authenticationSubcription.unsubscribe();
     this.cartStoreSubcription.unsubscribe();
     this.favoriteRetailerSubcription.unsubscribe();
     this.buyerNavegationSubscription.unsubscribe();
-    this.temporaryStorage.remove();
   }
-  
+
   initializeNavegationValues(): void {
-    this.navegation = BUYER_CONFIG.navegation; 
+    this.navegation = BUYER_CONFIG.navegation;
   }
 
   initializeLoginTypeValues(): void {
-    this.loginType = LOGIN_CONFIG.loginType; 
+    this.loginType = LOGIN_CONFIG.loginType;
   }
 
   viewBuyerCart(): void {
-    console.log("viewBuyerCart");
+    // console.log("viewBuyerCart");
     // this.router.navigate(['/carrito-personal']);
     // TODO get retaialer store name from URL params
     // this.router.navigate([':retailer_store_name/carrito-personal']);
     this.router.navigate([`${this.retailerStoreName}/carrito-personal`]);
   }
 
-  viewBuyerDetails():void {
+  viewBuyerDetails(): void {
   }
-  
+
   logout() {
     this.authenticationStore.logout();
     this.router.navigate(['/login']);
   }
-  
+
   goBackLocation(): void {
     this.location.back();
   }
 
   public async restoreFromTemporaryStorage(): Promise<void> {
 
-      let cachedData = await this.temporaryStorage.get<any>();
-  
-      let cartProducts: CartProduct[] = [];
-  
-      if ( cachedData ) { 
-  
-        cachedData.cartProducts.forEach(elem => {
-          cartProducts.push(new CartProduct().deserialize(elem));
-        });
-        // update cartStore with date from temporary storage
-        this.cartStore.setCart(cartProducts);
-  
-        // retrieve favoriteRetailer
-        this.favoriteRetailerIdSelected = cachedData.favoriteRetailer;
-        this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
-        
-      }   
-   
-  }
+    let cachedData = await this.temporaryStorage.get<any>();
 
-  public async restoreFromTemporaryStorageDEMO() : Promise<void> {
+    let cartProducts: CartProduct[] = [];
 
-		var cachedFormData = await this.temporaryStorage.get<any>();
+    // console.log("CacheData:", cachedData);
+    if (cachedData) {
 
-		if ( cachedFormData ) {
 
-      Object.assign( this.cartProducts, cachedFormData );
+      cachedData.forEach(elem => {
+        cartProducts.push(new CartProduct().deserialize(elem));
+      });
+      // update cartStore with date from temporary storage
+      this.cartStore.setCart(cartProducts);
 
-		}
-
-	}
-
-  handleSaveTemporaryStorage():void {
-   
-    let dataToStore;
-
-    if(this.cartProducts.length !== 0 && this.favoriteRetailerIdSelected != null) { 
-      dataToStore = {
-        cartProducts: this.cartProducts,
-        favoriteRetailer: this.favoriteRetailerIdSelected
-      }
-      this.saveToTemporaryStorage(dataToStore);
-    }  
-    if (this.cartProducts.length == 0) {
-      // clear CartProducts from temporary storage
-      // and keep favorite retailer
-      
-      dataToStore = {
-        cartProducts: [],
-        favoriteRetailer: this.favoriteRetailerIdSelected
-      }
-      this.saveToTemporaryStorage(dataToStore);
+      // retrieve favoriteRetailer
+      // this.favoriteRetailerIdSelected = cachedData.favoriteRetailer;
+      // this.cartStore.setFavoriteRetalerSelected(this.favoriteRetailerIdSelected);
 
     }
 
   }
-  
-  
+
   public saveToTemporaryStorage(
-    data: any
+    cartProduct: CartProduct[]
   ): void {
-    this.temporaryStorage.set(data);
+    this.temporaryStorage.set(cartProduct);
   }
-  
+
 
   get nameCapitalized() {
     let word = this.loginUser.name;
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
+
 }
