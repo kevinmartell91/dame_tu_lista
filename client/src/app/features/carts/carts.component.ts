@@ -31,7 +31,7 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
 })
 export class CartsComponent implements OnDestroy {
 
-  cartProducts: CartProduct[] = null ;
+  cartProducts: CartProduct[] = null;
   favoriteRetilerSelected: Retailer;
 
   subscriptionCart: Subscription;
@@ -49,7 +49,7 @@ export class CartsComponent implements OnDestroy {
   private dialogRef: any;
 
   buyer: Buyer;
-  
+
   // variable for paymet method coming from payment method modal
   paymentMethodOrder: string = "";
   phoneNumberOrder: string = "";
@@ -60,7 +60,7 @@ export class CartsComponent implements OnDestroy {
   isSetPayMethod: boolean = false;
 
   place_order_message: string = "Ordenar";
-  
+
 
 
   constructor(
@@ -71,13 +71,13 @@ export class CartsComponent implements OnDestroy {
     private orderStore: OrderStore,
     private matDialog: MatDialog,
     private router: Router
-  ) { 
+  ) {
 
     this.init();
     this.initializeViewSettings();
-    
+
   }
-  
+
   init(): void {
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
@@ -98,13 +98,13 @@ export class CartsComponent implements OnDestroy {
 
     this.subscriptionBuyer = this.authenticationStore.loginUser$.subscribe(
       y => {
-         if( y.login_type == 'buyer') {
-           this.buyer = new Buyer().deserialize(y.entity);
-         }
+        if (y.login_type == 'buyer') {
+          this.buyer = new Buyer().deserialize(y.entity);
+        }
       }
     )
 
-    
+
   }
 
   ngOnDestroy(): void {
@@ -121,14 +121,14 @@ export class CartsComponent implements OnDestroy {
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.cartView
     );
-    
+
     this.maturityView = STORE_CONFIG.view_type.cartView;
     this.question = STORE_CONFIG.question_view_type.cartView;
 
   }
 
-  onCartProducDeleted(carProductDeleted: CartProduct):void {
-    
+  onCartProducDeleted(carProductDeleted: CartProduct): void {
+
     // set quantity to cero to be removed from cartProdcuts
     // a shortcut to romeve cartPrduct
     carProductDeleted.quantity = 0;
@@ -137,9 +137,9 @@ export class CartsComponent implements OnDestroy {
 
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
 
- 
-    this.cartProducts.filter( cp => {
-      if(cp._id == cartProductUpdate._id) {
+
+    this.cartProducts.filter(cp => {
+      if (cp._id == cartProductUpdate._id) {
         cp = cartProductUpdate;
       }
     });
@@ -162,14 +162,15 @@ export class CartsComponent implements OnDestroy {
 
   submitOrder(): void {
 
-    if( ! this.isSetAddress ) {
+    if (!this.isSetAddress) {
       this.openAddAddressModal();
     }
   }
 
   completeOrderDetails(): void {
+    this.removeTemporaryStorage();
 
-    if( ! this.isSetAddress ) {
+    if (!this.isSetAddress) {
       this.openAddAddressModal();
     }
 
@@ -179,7 +180,7 @@ export class CartsComponent implements OnDestroy {
   sendInVoiceViaWhatsApp(order: Order): void {
     // parse order data in Tab separated text
 
-    console.log("order.cart",order);
+    console.log("order.cart", order);
 
     let orderRawTxt: string = "";
     const tab: string = String.fromCodePoint(parseInt("9", 16));
@@ -193,44 +194,44 @@ export class CartsComponent implements OnDestroy {
     orderRawTxt += breakLine;
 
     orderRawTxt += "📥 *Pedido* :" + breakLine;
-    orderRawTxt += "⚖️Cant." + tab +  tab +  tab + "📌Productos " + tab + tab +  tab  + " 💰Precio" + breakLine;
+    orderRawTxt += "⚖️Cant." + tab + tab + tab + "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
     orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
 
     order.cart.forEach(product => {
-      
-      orderRawTxt += breakLine + 
-          
-      " " + product.quantity.toFixed(2) + tab + 
-      
-      this.formatQuantityWeightType(
-        product.isKilo
-      ) + tab + 
-      
-      // product.categoryName + " " + product.varietyName;
-      this.formatProductNameTo20Characters(
-        product.categoryName + 
-        " " +
-        product.varietyName
+
+      orderRawTxt += breakLine +
+
+        " " + product.quantity.toFixed(2) + tab +
+
+        this.formatQuantityWeightType(
+          product.isKilo
+        ) + tab +
+
+        // product.categoryName + " " + product.varietyName;
+        this.formatProductNameTo20Characters(
+          product.categoryName +
+          " " +
+          product.varietyName
         ) + tab + tab +
-        
-      "S/." + product.totalPrice.toFixed(2) 
+
+        "S/." + product.totalPrice.toFixed(2)
     })
 
     orderRawTxt += breakLine;
     orderRawTxt += breakLine;
-// [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
-// [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
+    // [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
+    // [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
     orderRawTxt += "📝 *Detalles* :" + breakLine;
     orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
 
     orderRawTxt += breakLine;
-    
+
     orderRawTxt += `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
-    
+
     orderRawTxt += breakLine;
 
     let paymentType;
-    
+
     switch (order.payment.method) {
       case "pos_method_area":
         paymentType = "*POS/contra entrega* 🤝💳";
@@ -238,7 +239,7 @@ export class CartsComponent implements OnDestroy {
       case "bank_deposit":
         paymentType = "*Deposito bancario* 🏦";
         break;
-    
+
       default:
         paymentType = "*Efectivo/contra entrega* 🤝💵"
         break;
@@ -248,41 +249,41 @@ export class CartsComponent implements OnDestroy {
 
     orderRawTxt += breakLine;
 
-    let orderType = 
-       order.orderType == "delivery" ?
-       "Delivery 🛵." :  "Recogo en tienda 🏪.";
-    
+    let orderType =
+      order.orderType == "delivery" ?
+        "Delivery 🛵." : "Recogo en tienda 🏪.";
+
     orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
 
-    
-    
-    if(order.orderType == "delivery") {
+
+
+    if (order.orderType == "delivery") {
 
       orderRawTxt += breakLine;
-      orderRawTxt += `📍 *Entrega en* :` + breakLine; 
+      orderRawTxt += `📍 *Entrega en* :` + breakLine;
       orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
-      
+
       orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
 
-      if(order.shipping.address.apartmentNumber) {
-        orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine; 
+      if (order.shipping.address.apartmentNumber) {
+        orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
       }
 
       orderRawTxt += `${order.shipping.address.district}.` + breakLine;
 
-      if(order.shipping.address.reference) {
-        orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine; 
-      }  
-
-      if(order.shipping.address.details) {
-        orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine; 
+      if (order.shipping.address.reference) {
+        orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
       }
-    } 
-    
+
+      if (order.shipping.address.details) {
+        orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
+      }
+    }
+
     orderRawTxt += breakLine;
     orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
     orderRawTxt += "🥑🌿🍇🍓🍈🍒🍑🥭🥑🌿🌱🌴" + breakLine;
-    
+
     // this.cartProducts.forEach(product => {
     //   orderRawTxt += breakLine + 
     //     this.formatProductNameTo20Characters(
@@ -298,7 +299,7 @@ export class CartsComponent implements OnDestroy {
     //     ) + tab + tab + 
     //     product.totalPrice.toFixed(2);
     // })
-    
+
     this.copyText(orderRawTxt);
     console.log(orderRawTxt)
     // this.sendViaWhatsApp(orderRawTxt);
@@ -320,45 +321,45 @@ export class CartsComponent implements OnDestroy {
     document.body.removeChild(selBox);
   }
 
-  formatProductNameTo20Characters(term: string): string{
+  formatProductNameTo20Characters(term: string): string {
 
     const maxLenght: number = 18;
     const threePointsLenght: number = 3;
 
-    if ( term == null || term == "") return;
+    if (term == null || term == "") return;
 
-    if(term.length < maxLenght ) {
+    if (term.length < maxLenght) {
       //print null string
       const num = maxLenght - term.length;
       return term + this.getEmptyStr(num);
     }
 
-    return term.slice(0,maxLenght - threePointsLenght) + " . . .";
-    
+    return term.slice(0, maxLenght - threePointsLenght) + " . . .";
+
   }
 
-  formatQuantityToFractionsOrUnits(quant: number, isKilo: boolean): string{
-    if(quant == 0 ) return "";
+  formatQuantityToFractionsOrUnits(quant: number, isKilo: boolean): string {
+    if (quant == 0) return "";
 
     // formating quantity for kilos
-    if(quant < 1 && isKilo) {
+    if (quant < 1 && isKilo) {
 
       return this.turnIntoFraction(quant);
 
     } if (quant > 1 && isKilo) {
 
       //more than 1 kilo
-      const units = quant.toString().split(".",1);
+      const units = quant.toString().split(".", 1);
       console.log("UNITS split :", units);
       return units.toString() + "," + this.turnIntoFraction(quant - (+units));
-            
-    } 
+
+    }
     // formation for units
     return quant.toString();
   }
 
-  turnIntoFraction(quant: number): string{
-    if(quant == 0 ) return "";
+  turnIntoFraction(quant: number): string {
+    if (quant == 0) return "";
 
     switch (quant) {
       case 0.25:
@@ -373,32 +374,32 @@ export class CartsComponent implements OnDestroy {
     }
   }
 
-  formatQuantityWeightType(isKilo : boolean): string{
-    if(isKilo === undefined) return;
-    return  isKilo? " Kg -" : "Uni -";
+  formatQuantityWeightType(isKilo: boolean): string {
+    if (isKilo === undefined) return;
+    return isKilo ? " Kg -" : "Uni -";
   }
 
-  getEmptyStr(num: number): string{
-    let emptyStr= "";
+  getEmptyStr(num: number): string {
+    let emptyStr = "";
     for (let i = 0; i < num; i++) {
-        emptyStr += " .";      
+      emptyStr += " .";
     }
     return emptyStr;
   }
 
   sendViaWhatsApp(textMessageOrder: string): void {
-    
+
     // find out how to paste it automatically in
     const storePhoneNumber: string = "+51996821980";
-    let link =`//api.whatsapp.com/send?phone=${storePhoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    window.location.href=link;
+    let link = `//api.whatsapp.com/send?phone=${storePhoneNumber}&text=${encodeURI(textMessageOrder)}`;
+    window.location.href = link;
     // whatsapp
 
 
 
   }
-  
-  openAddAddressModal():void {
+
+  openAddAddressModal(): void {
     this.dialogRef = this.matDialog.open(FillShippingAddressComponent, {
       width: '420px',
       data: {
@@ -406,10 +407,10 @@ export class CartsComponent implements OnDestroy {
       }
     });
 
-    this.dialogRef.afterClosed().subscribe( result => {
+    this.dialogRef.afterClosed().subscribe(result => {
 
-      if(result != undefined){
-        
+      if (result != undefined) {
+
         this.addressOrder = new AddressOrder().deserialize(result);
         this.openAddPayMethodModal();
       }
@@ -418,30 +419,30 @@ export class CartsComponent implements OnDestroy {
   }
 
 
-  openAddPayMethodModal():void {
+  openAddPayMethodModal(): void {
     this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
       width: '420px'
     });
 
-    this.dialogRef.afterClosed().subscribe( result => {
-      
-      if(result != undefined) {
+    this.dialogRef.afterClosed().subscribe(result => {
+
+      if (result != undefined) {
 
         this.paymentMethodOrder = result.paymentMethod;
         //setting code area
         this.phoneNumberOrder = "+51" + result.phoneNumber;
-  
+
         // this.updatePlaceOrderMessage("Ahora ya puede ordenar");
-        
+
         // show another view to say thanks for ordering
         // then catch this as a convetion in google analytics
         let order = this.createOrderFromShoppingCart();
 
-        console.log("sending via whatsApp",order);
+        console.log("sending via whatsApp", order);
         this.sendInVoiceViaWhatsApp(order);
         // this.sendViaWhatsApp(order);
 
-  
+
         // this.updatePlaceOrderMessage("Su orden ya fue enviada");        
       }
     });
@@ -457,23 +458,23 @@ export class CartsComponent implements OnDestroy {
     // buyerOrder._id = this.buyer._id;
     // buyerOrder.name = this.buyer.name;
     // buyerOrder.email = this.buyer.email;
-    buyerOrder.phoneNumber = this.phoneNumberOrder; 
-    
-    
+    buyerOrder.phoneNumber = this.phoneNumberOrder;
+
+
     /**
      * Populating the addressOrder from this.buyer.address
      */
     let addressOrder = this.addressOrder;
-    
+
     /**
      * Populating the trackingOrder
      */
-    let trackingOrder =  new TrackingOrder();
+    let trackingOrder = new TrackingOrder();
     // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
-    trackingOrder.driver_name= "";
+    trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
-    trackingOrder.estimatedDelivery= "Se entregará su delivery en las próximas tres horas. Gracias.";
-    
+    trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas tres horas. Gracias.";
+
     /**
      * Populating the shippingOrder from this.buyer
      */
@@ -482,47 +483,47 @@ export class CartsComponent implements OnDestroy {
     shippingOrder.deliveryNotes = "";
     shippingOrder.address = addressOrder;
     shippingOrder.tracking = trackingOrder;
-    
-    
+
+
     /**
      * Populating the shippingOrder from this.buyer
      */
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
     paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
-    
+
     /**
      * Populating the cartProductOrder from this.cartProduct
      */
     let cartProductOrder: CartProductOrder[] = [];
     this.cartProducts.forEach(cp => {
-      cartProductOrder.push( new CartProductOrder().deserialize(cp));
+      cartProductOrder.push(new CartProductOrder().deserialize(cp));
     });
-    
+
     // populate the order;
     let order = new Order();
 
     // order.retailer_id = this.favoriteRetilerSelected._id;
-    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup" ;
+    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
 
     console.log("ORDER", order);
-    
-    
+
+
     // place order DB
-    this.orderStore.genereteOrder(order).subscribe( x => {
+    this.orderStore.genereteOrder(order).subscribe(x => {
       this.clearCart();
-      
+
       // this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
       // this.router.navigate([`/carrito-personal/gracias-por-tu-compra`]);
     });
     return order;
-    
+
   }
 
-  clearCart():void {
+  clearCart(): void {
     this.cartStore.state.shoppingCart.products = [];
     let cartProductsEmpty = this.cartStore.state.shoppingCart.products;
     this.cartStore.setCart(cartProductsEmpty);
@@ -532,12 +533,17 @@ export class CartsComponent implements OnDestroy {
     this.place_order_message = message;
   }
 
-  saveAddressInBuyerAccount():void {
+  saveAddressInBuyerAccount(): void {
 
     this.buyerStore.updateBuyerAddress(this.buyer._id, this.addressOrder).subscribe(
       response => {
       }
-    )    
+    )
+  }
+
+  removeTemporaryStorage() {
+    sessionStorage.clear();
+    this.cartStore.setCart([]);
   }
 
 

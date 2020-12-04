@@ -30,7 +30,7 @@ export class CartStore extends Store<CartStoreState> {
                 products: newCart
             }
         })
-
+        console.log("setCart(newCart: CartProduct[]): void ", newCart);
     }
 
     setFavoriteRetalerSelected(retailer: Retailer): void {
@@ -68,7 +68,6 @@ export class CartStore extends Store<CartStoreState> {
        
         // update the cartStore
         this.setCart(cartProducts);
-
     }
 
     private isOnCartStoreList(cartProduct: CartProduct): boolean {
