@@ -27,7 +27,9 @@ export class CartProductComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-  ) { }
+  ) { 
+    console.log("CartProductComponent - constructor");
+  }
 
   ngOnInit(): void {
 

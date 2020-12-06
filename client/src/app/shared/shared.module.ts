@@ -22,7 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-// import { MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 // import { MatChipsModule } from '@angular/material/chips';
 // import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
@@ -39,11 +39,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // import { MatRadioModule } from '@angular/material/radio';
-// import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 // import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-// import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import { MatSortModule } from '@angular/material/sort';
 // import { MatStepperModule } from '@angular/material/stepper';
 // import { MatTableModule } from '@angular/material/table';
@@ -70,7 +70,7 @@ const EXPORTED_DECLARATIONS = [
   	// MatBottomSheetModule,
   	MatButtonModule,
   	MatButtonToggleModule,
-  	// MatCardModule,
+  	MatCardModule,
   	MatCheckboxModule,
   	// MatChipsModule,
   	// MatStepperModule,
@@ -89,11 +89,11 @@ const EXPORTED_DECLARATIONS = [
   	MatProgressSpinnerModule,
   	// MatRadioModule,
   	// MatRippleModule,
-  	// MatSelectModule,
+  	MatSelectModule,
   	MatSidenavModule,
   	MatSliderModule,
   	// MatSlideToggleModule,
-  	// MatSnackBarModule,
+  	MatSnackBarModule,
   	// MatSortModule,
   	// MatTableModule,
   	MatTabsModule,

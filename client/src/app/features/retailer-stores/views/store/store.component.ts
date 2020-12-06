@@ -54,7 +54,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionStoreName = this.activedRoute.paramMap.subscribe(params => {
       this.retailerStoreName = params.get("retailer_store_name");
-      console.log("StoreComponent retailerStoreName", this.retailerStoreName);
+      console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
       localStorage.setItem("retailer_store_name", this.retailerStoreName);
     });
 

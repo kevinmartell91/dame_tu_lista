@@ -11,7 +11,7 @@ export const LOGIN_CONFIG = {
         buyer: "buyer",
         retailer: "retailer"
     },
-    loginUserStorage: "currentUser1",
+    loginUserStorage: "currentUser",
     loginUserBuyerType: "buyer",
     loginUserCompradorType: "comprador",
     loginUserRetailerType: "retailer"
