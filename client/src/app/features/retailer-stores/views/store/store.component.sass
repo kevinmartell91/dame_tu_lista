@@ -65,8 +65,20 @@ $box_container_size: 320px
       padding 3em
       grid-template-columns: 1fr
       grid-template-rows: 1fr
-      grid-template-areas: "cart"
+      grid-template-areas: "admin cart"
       background-color: $background_banner
+
+      .admin_mode_area
+        grid-area: admin
+        margin: 9px
+        padding: 3px 5px 3px 5px
+        align-self: center
+        color: white
+        justify-self: self-start
+        font-size: 15px
+        font-weight: 600
+        background: #43b02a8a
+        border-radius: 9px
 
       .cart_icon_area
         grid-area: cart
@@ -143,7 +155,7 @@ $box_container_size: 320px
       // border: 1px solid $primary_button_color
       // border-radius: 4px
       // padding: 4px
-      justify-self: center
+      justify-self: self-start
       align-self: center
       cursor: pointer
 
@@ -154,7 +166,7 @@ $box_container_size: 320px
       // font-weight: 500
       // font-size: $store_banner_options_text_size
       // color: white
-      align-self: rigth
+      align-self: flex-start
       // background-color: $background_banner
       
       .mat-form-field

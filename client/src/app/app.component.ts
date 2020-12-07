@@ -86,15 +86,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.initializeNavegationValues();
     // this.initializeLoginTypeValues();
-    // this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe( 
-    //   x => { 
-    //     this.loginUser = x;
-    //     if( this.loginUser != null){
-    //       this.initializeNavegationValues();
-    //       this.initializeLoginTypeValues();
-    //     }
-    //   }
-    // );
+    this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe(
+      x => {
+        if (x != null) {
+          this.loginUser = x;
+          console.log("AUTHENTICATION", this.loginUser);
+          // if there LoginUser then render ACCOUNT_VIEW as a retailer admin
+          // if not, it means a buyer is using the dametulista
+          // so the view remains as STORE_VIEW (set on the constructor)
+
+          //       this.initializeNavegationValues();
+          //       this.initializeLoginTypeValues();
+        }
+      }
+    );
 
   }
 

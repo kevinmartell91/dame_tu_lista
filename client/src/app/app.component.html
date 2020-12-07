@@ -1,10 +1,11 @@
- <div *ngIf="!loginUser">
+ <!-- <div *ngIf="!loginUser"> -->
     
   <!--  <ng-container [ngSwitch]="loginUser.login_type" >
         <div *ngSwitchCase="loginType.buyer"> -->
             <!-- Because no logic is implemented, It used a as proxy to pass the state here -->
 
-                <div class="continer_grid">
+                <div class="continer_grid" [ngClass]="[loginUser ? 'admin_style' : 'continer_grid']">
+
                     
                     <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
                     <ng-container [ngSwitch]="buyerNavegation.typeView">
@@ -107,8 +108,8 @@
             retailer
         </div>
     </ng-container>-->
-</div> 
-
+<!-- </div>  -->
 
 <router-outlet></router-outlet>
+
 

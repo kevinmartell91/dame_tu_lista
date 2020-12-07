@@ -11,6 +11,8 @@ import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from "../../../../core/retailer/types/retailer";
 import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
+import { LoginUser } from 'src/app/core/login/types/user';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 @Component({
   selector: 'app-store',
@@ -41,6 +43,8 @@ export class StoreComponent implements OnDestroy {
 
   control = new FormControl();
 
+  currentUser: LoginUser = null;
+
   allProductTypes: string[] = ["🍏", "🐄", "🐑", "🐓", "🐷", "🐟"];
 
   constructor(
@@ -51,6 +55,12 @@ export class StoreComponent implements OnDestroy {
     private readonly activedRoute: ActivatedRoute
   ) {
     this.init();
+
+    const currentUserStorage = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+
+    if (currentUserStorage) {
+      this.currentUser = new LoginUser().deserialize(currentUserStorage);
+    }
 
     this.subscriptionStoreName = this.activedRoute.paramMap.subscribe(params => {
       this.retailerStoreName = params.get("retailer_store_name");
@@ -63,8 +73,8 @@ export class StoreComponent implements OnDestroy {
         this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
 
-        if(this.stateRetailer){
-          localStorage.setItem("retailer_id",this.stateRetailer._id);
+        if (this.stateRetailer) {
+          localStorage.setItem("retailer_id", this.stateRetailer._id);
         }
 
         console.log("subscriptionStoreState HERE KEVIN", this.stateRetailer);
@@ -120,8 +130,8 @@ export class StoreComponent implements OnDestroy {
 
   }
 
-  goBackToBuyerAccount(): void {
-    this.router.navigate(['/cuenta-comprador']);
+  goBackToRetailerAccount(): void {
+    this.router.navigate(['vendedor-dashboard/cuenta']);
   }
 
   goToRetailerCategoryView(): void {
