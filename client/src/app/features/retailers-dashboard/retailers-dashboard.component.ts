@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
+import { getStoreNameDashFormat } from './helpers/profile-settings.helper';
 
 @Component({
   selector: 'app-retailers-dashboard',
@@ -13,6 +14,7 @@ import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 export class RetailersDashboardComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  retailerStoreName: string = "";
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
@@ -22,7 +24,6 @@ export class RetailersDashboardComponent implements OnDestroy {
     private retailerStore: RetailerStore
   ) {
 
-    console.log("RetailersDashboardComponent");
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -30,8 +31,9 @@ export class RetailersDashboardComponent implements OnDestroy {
 
     const loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
     const retailer_id = loginUserLocalStorage.entity._id;
+    this.retailerStoreName = loginUserLocalStorage.entity.store.name;
 
-    console.log("HERE REtailer _ ID", retailer_id);
+    console.log("HERE retailerStoreName _ ID", this.retailerStoreName);
     // get retailer for all it subscribers
     this.retailerStore.getRetailerById(retailer_id);
   
@@ -39,6 +41,12 @@ export class RetailersDashboardComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  goToRetailerStore(){
+    console.log("STORE NAME", this.retailerStoreName);
+    const storeNameDashFormat = getStoreNameDashFormat(this.retailerStoreName);
+    this.router.navigate([storeNameDashFormat]);
   }
 
   logout(){

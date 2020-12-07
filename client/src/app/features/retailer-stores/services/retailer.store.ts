@@ -83,15 +83,20 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
                     res = response;
                     this.setState({
                         ...this.state,
-                        retailer: new Retailer().deserialize(response.data)
-                    }),
-                        this.setState({
-                            ...this.state,
-                            productsList: {
-                                ...this.state.productsList,
-                                products: getProductDeserialized(response.data.store.productsList)
-                            }
-                        })
+                        retailer: new Retailer().deserialize(response.data),
+                        productsList: {
+                            ...this.state.productsList,
+                            products: getProductDeserialized(response.data.store.productsList)
+                        }
+                    })
+                    // ,
+                    //     this.setState({
+                    //         ...this.state,
+                    //         productsList: {
+                    //             ...this.state.productsList,
+                    //             products: getProductDeserialized(response.data.store.productsList)
+                    //         }
+                    //     })
                 })
             )
             .subscribe(

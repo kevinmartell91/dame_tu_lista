@@ -62,7 +62,13 @@ export class StoreComponent implements OnDestroy {
       state => {
         this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
-        console.log("subscriptionStoreState", state);
+
+        if(this.stateRetailer){
+          localStorage.setItem("retailer_id",this.stateRetailer._id);
+        }
+
+        console.log("subscriptionStoreState HERE KEVIN", this.stateRetailer);
+
       }
     );
 

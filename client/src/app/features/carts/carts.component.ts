@@ -23,6 +23,7 @@ import { ShippingOrder } from "../../core/order/types/shipping-order";
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
+import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 
 @Component({
   selector: 'app-carts',
@@ -32,11 +33,10 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
 export class CartsComponent implements OnDestroy {
 
   cartProducts: CartProduct[] = null;
-  favoriteRetilerSelected: Retailer;
+  retailerStore: Retailer;
 
   subscriptionCart: Subscription;
   subscriptionBuyer: Subscription;
-  subscriptionFavoriteRetailerSelected: Subscription;
 
   maturityView: string;
   question: string;
@@ -78,7 +78,7 @@ export class CartsComponent implements OnDestroy {
     this.init();
     this.initializeViewSettings();
     console.log("isOrderPushed:", this.isOrderPushed);
-
+    
   }
 
 
@@ -87,15 +87,11 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
+        console.log("this.cartProducts ",this.cartProducts);
+
         this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
         // formating to two decimals and as a string
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
-      }
-    )
-
-    this.subscriptionFavoriteRetailerSelected = this.cartStore.favoriteRetailerSelected$.subscribe(
-      x => {
-        this.favoriteRetilerSelected = x;
       }
     )
 
@@ -109,12 +105,12 @@ export class CartsComponent implements OnDestroy {
     )
 
 
+
   }
 
   ngOnDestroy(): void {
 
     this.subscriptionCart.unsubscribe();
-    this.subscriptionFavoriteRetailerSelected.unsubscribe();
     this.subscriptionBuyer.unsubscribe();
 
   }
@@ -176,7 +172,7 @@ export class CartsComponent implements OnDestroy {
   }
 
   completeOrderDetails(): void {
-    this.removeTemporaryStorage();
+    
 
     if (!this.isSetAddress) {
       this.openAddAddressModal();
@@ -293,6 +289,7 @@ export class CartsComponent implements OnDestroy {
      * Populating the cartProductOrder from this.cartProduct
      */
     let cartProductOrder: CartProductOrder[] = [];
+
     this.cartProducts.forEach(cp => {
       cartProductOrder.push(new CartProductOrder().deserialize(cp));
     });
@@ -300,11 +297,12 @@ export class CartsComponent implements OnDestroy {
     // populate the order;
     order = new Order();
 
-    // order.retailer_id = this.favoriteRetilerSelected._id;
+    order.retailer_id = localStorage.getItem("retailer_id");
     order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
+
 
     // place order DB
     this.orderStore.genereteOrder(order).subscribe(
@@ -312,7 +310,7 @@ export class CartsComponent implements OnDestroy {
 
         if (x) {
 
-          console.log("createOrderFromShoppingCart in BD (callback)", x);
+          console.log("createOrderFromShoppingCart in BD (callback as X)", x);
           
           // transform the order into raw text 
           const orderRawText = this.transformOrderToRawText(order);
@@ -325,7 +323,8 @@ export class CartsComponent implements OnDestroy {
           
           // TO DO: if CurrentUser Login(seller)  
           //  the seller can send invoice to customers
-          this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
+          
+          // this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
 
           // TO DO else NO CurrentUser Login(seller)
           // the app should not request phone number.

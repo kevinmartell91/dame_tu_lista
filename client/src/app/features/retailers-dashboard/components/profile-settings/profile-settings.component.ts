@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { APP_CONFIG } from 'src/app/app.config';
+import { getStoreNameDashFormat } from '../../helpers/profile-settings.helper';
 
 @Component({
   selector: 'app-profile-settings',
@@ -32,9 +33,10 @@ export class ProfileSettingsComponent implements OnDestroy {
 
     this.subscriptionRetailerStore =  this.retailerStore.retailer$.subscribe(
       y => {
-        console.log("NO UPDATED => retailer after saving ")
+        console.log("ProfileSettingsComponent - subscriptionRetailerStore ");
         if(y != null){
           this.retailer = y;
+          console.log("ProfileSettingsComponent - current retailer ", this.retailer );
           this.loadForm();
         } else {
 
@@ -135,16 +137,8 @@ export class ProfileSettingsComponent implements OnDestroy {
 
   get storeName() {
 
-    let urlStoreName = "";
-    let storeName = this.accountRetailerForm.get("name").value.trim().split(" ");
-    storeName.forEach( word => {
-      
-      urlStoreName += word;
-      if( word != storeName[storeName.length-1]) {
-        urlStoreName += "-";
-      }
-    });
-    return urlStoreName.toLowerCase();
+    return getStoreNameDashFormat(this.accountRetailerForm.get("name").value);
+    
   }
   get phoneNumber() {
     return this.accountRetailerForm.get("phoneNumber").value;

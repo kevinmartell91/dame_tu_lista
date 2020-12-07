@@ -9,8 +9,8 @@ import { ProfileSettingsComponent } from './profile-settings.component';
   declarations: [ProfileSettingsComponent],
   imports: [
     CommonModule,
-    SharedModule,
-    ProfileSettingsRoutingModule
+    ProfileSettingsRoutingModule,
+    SharedModule
   ]
 })
 export class ProfileSettingsModule { }
