@@ -32,13 +32,28 @@
             {{place_order_message}}
             <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
         </button>     -->
-        <button class="style_checkout_button"
-                (click)="completeOrderDetails()">
+        <ng-container *ngIf="currentUser ;
+            then showSendInvoiceButton ;
+            else showCompleteOrderDetails">
+        </ng-container>
+
+        <ng-template #showSendInvoiceButton>
             
-            {{place_order_message}}
-    
-            <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
-        </button>   
+            <button class="style_checkout_button"
+                (click)="sendInvoiceToBuyer()">
+                Enviar Cotización
+            </button>
+        </ng-template>
+       
+        <ng-template #showCompleteOrderDetails>
+            <button class="style_checkout_button"
+                (click)="completeOrderDetails()">
+                {{place_order_message}}
+            </button>
+        </ng-template>
+
+        <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
+           
     </div>
 </ng-template>
 

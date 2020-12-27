@@ -10,6 +10,7 @@ import { CartQuantityButtonComponent } from './components/cart-quantity-button/c
 import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { ThanksOrderComponent } from './components/thanks-order/thanks-order.component';
+import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 
 
 
@@ -29,6 +30,7 @@ import { ThanksOrderComponent } from './components/thanks-order/thanks-order.com
     SharedModule
   ],
   providers: [
+    RetailerStoreStore,
     { provide: MatDialogRef, useValue: [] }
     // { provide: MAT_DIALOG_DATA, useValue: [] }
   ]

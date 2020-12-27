@@ -7,17 +7,20 @@ module.exports = function(mongoose) {
     const dbPath = stage.mongo_path;
     const dbPass = encodeURIComponent(stage.mongo_pass);
     
-    var dbURI = `mongodb://${dbUser}:${dbPass}${dbPath}${dbName}`;
-   
-    mongoose.set('useUnifiedTopology', true);
-    mongoose.set('useFindAndModify', false);
-    var connection = null;
-   (async function (){
-        connection = await mongoose.connect(dbURI,{ useNewUrlParser: true }).catch(e => {
-            console.log(e.message)})
-        console.log(connection ? 'this was a success' + connection : 'This was a connection DB failure')
-   })()
+    var dbURI = `mongodb+srv://${dbUser}:${dbPass}${dbPath}${dbName}?retryWrites=true&w=majority`;
+        
+        mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
+        .then( (connection) => { 
+            console.log(connection ? 'this was a success' + connection : 'This was a connection DB failure')
+            return connection;    
+        })
+        .catch( (e) => {Î
+            console.log(e.message)
+            return null;
+            
+        });
+        mongoose.set('useFindAndModify', false);
+         
 
-    return connection;    
 }
 

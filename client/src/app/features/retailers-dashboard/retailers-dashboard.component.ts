@@ -5,6 +5,7 @@ import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { getStoreNameDashFormat } from './helpers/profile-settings.helper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-retailers-dashboard',
@@ -15,6 +16,7 @@ export class RetailersDashboardComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   retailerStoreName: string = "";
+  subscriptionRetailerStore: Subscription;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
@@ -36,11 +38,23 @@ export class RetailersDashboardComponent implements OnDestroy {
     console.log("HERE retailerStoreName _ ID", this.retailerStoreName);
     // get retailer for all it subscribers
     this.retailerStore.getRetailerById(retailer_id);
+
+
+    this.subscriptionRetailerStore =  this.retailerStore.retailer$.subscribe(
+      y => {
+        if(y != null){
+          this.retailerStoreName = y.store.name;
+          localStorage.setItem("retailer_store_name", this.retailerStoreName);
+        } 
+      }
+    )
+
   
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.subscriptionRetailerStore.unsubscribe();
   }
 
   goToRetailerStore(){

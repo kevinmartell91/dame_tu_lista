@@ -24,6 +24,7 @@ import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegatio
 import { FillShippingAddressComponent } from './components/fill-shipping-address/fill-shipping-address.component';
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 @Component({
   selector: 'app-carts',
@@ -62,6 +63,7 @@ export class CartsComponent implements OnDestroy {
   place_order_message: string = "Enviar por WhatsApp";
   isOrderPushed: boolean = false;
 
+  currentUser: string = "";
 
 
   constructor(
@@ -75,10 +77,17 @@ export class CartsComponent implements OnDestroy {
     private route: ActivatedRoute
   ) {
 
+    const currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+    if (currentUser) {
+      this.currentUser = currentUser;
+
+    }
+
     this.init();
     this.initializeViewSettings();
+
     console.log("isOrderPushed:", this.isOrderPushed);
-    
+
   }
 
 
@@ -87,7 +96,7 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
         this.cartProducts = x.products;
-        console.log("this.cartProducts ",this.cartProducts);
+        console.log("this.cartProducts ", this.cartProducts);
 
         this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
         // formating to two decimals and as a string
@@ -171,13 +180,26 @@ export class CartsComponent implements OnDestroy {
     }
   }
 
+  // completeOrderDetails works only for buyer pipe line
   completeOrderDetails(): void {
-    
 
-    if (!this.isSetAddress) {
-      this.openAddAddressModal();
+    if(this.currentUser){
+      let order = this.createOrderFromShoppingCart();
+      this.updatePlaceOrderMessage("Cotización enviada");
+
+    }else {
+      
+          if (!this.isSetAddress) {
+            this.openAddAddressModal();
+          }
+
     }
 
+  }
+
+  sendInvoiceToBuyer(){
+    console.log("sendInvoiceToBuyer");
+    this.openAddPayMethodModal();
   }
 
   openAddAddressModal(): void {
@@ -216,7 +238,14 @@ export class CartsComponent implements OnDestroy {
 
         // show another view to say thanks for ordering
         // then catch this as a convetion in google analytics
-        let order = this.createOrderFromShoppingCart();
+
+        let order = null;
+        if(this.currentUser){
+          order = this.createInvoiceFromShoppingCart();
+        }
+        else {
+          order = this.createOrderFromShoppingCart();
+        }
 
         if (order != null) {
 
@@ -228,7 +257,7 @@ export class CartsComponent implements OnDestroy {
           // this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
           this.isOrderPushed = true;
 
-          this.updatePlaceOrderMessage("Su orden ya fue enviada");        
+          this.updatePlaceOrderMessage("Su orden ya fue enviada");
         }
         // else {
         //   this.updatePlaceOrderMessage("Envie nuevamente su ordenr");        
@@ -239,6 +268,109 @@ export class CartsComponent implements OnDestroy {
     });
   }
 
+  createInvoiceFromShoppingCart(): Order {
+
+
+    let order = null;
+
+    /**
+     * Populating the buyerOrder from this.buyer
+     */
+    let buyerOrder = new BuyerOrder();
+    // buyerOrder._id = this.buyer._id;
+    // buyerOrder.name = this.buyer.name;
+    // buyerOrder.email = this.buyer.email;
+    buyerOrder.phoneNumber = this.phoneNumberOrder;
+
+
+    /**
+     * Populating the addressOrder from this.buyer.address
+     */
+    // let addressOrder = this.addressOrder;
+
+    /**
+     * Populating the trackingOrder
+     */
+    let trackingOrder = new TrackingOrder();
+    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.driver_name = "";
+    trackingOrder.trackingNumber = "";
+    trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
+
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let shippingOrder = new ShippingOrder();
+    shippingOrder.buyer = buyerOrder;
+    shippingOrder.deliveryNotes = "";
+    // shippingOrder.address = addressOrder;
+    shippingOrder.tracking = trackingOrder;
+
+
+    /**
+     * Populating the payment from this.buyer
+     */
+    let paymentMethodOrder = new PaymentOrder();
+    // paymentMethodOrder.method = this.paymentMethodOrder;
+    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+
+    /**
+     * Populating the cartProductOrder from this.cartProduct
+     */
+    let cartProductOrder: CartProductOrder[] = [];
+
+    this.cartProducts.forEach(cp => {
+      cartProductOrder.push(new CartProductOrder().deserialize(cp));
+    });
+
+    // populate the order;
+    order = new Order();
+
+    order.retailer_id = localStorage.getItem("retailer_id");
+    // order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    order.shipping = shippingOrder;
+    order.payment = paymentMethodOrder;
+    order.cart = cartProductOrder;
+
+
+    // place order in DB
+    this.orderStore.genereteOrder(order).subscribe(
+      x => {
+
+        if (x) {
+
+          this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+
+
+          console.log("createOrderFromShoppingCart in BD (callback as X)", x);
+
+          // transform the order into raw text 
+          const invoiceRawText = this.transformInvoiceIntoRawText(order);
+          // and send it via whatapp
+          // to the desired phone number
+
+
+          // TO DO: with the order _id, it is posible to share the link of the order
+          // TO DO:
+
+          // if currentUser =>the seller can send invoice to customer phone number
+    
+
+          this.sendViaWhatsApp(invoiceRawText, order.shipping.buyer.phoneNumber);
+
+
+          this.clearCart();
+          this.removeTemporaryStorage();
+          // this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
+        }
+
+        // this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
+        // this.router.navigate([`/carrito-personal/gracias-por-tu-compra`]);
+      });
+    return order;
+
+  }
+  
   createOrderFromShoppingCart(): Order {
 
 
@@ -279,7 +411,7 @@ export class CartsComponent implements OnDestroy {
 
 
     /**
-     * Populating the shippingOrder from this.buyer
+     * Populating the payment from this.buyer
      */
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
@@ -310,29 +442,34 @@ export class CartsComponent implements OnDestroy {
 
         if (x) {
 
+          this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+
+
           console.log("createOrderFromShoppingCart in BD (callback as X)", x);
-          
+
           // transform the order into raw text 
           const orderRawText = this.transformOrderToRawText(order);
           // and send it via whatapp
           // to the desired phone number
-          
-          
+
+
           // TO DO: with the order _id, it is posible to share the link of the order
           // TO DO:
-          
-          // TO DO: if CurrentUser Login(seller)  
-          //  the seller can send invoice to customers
-          
-          // this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
 
-          // TO DO else NO CurrentUser Login(seller)
-          // the app should not request phone number.
-          // the will send automatically to the seller
-          // phone number
-          // this.sendViaWhatsApp(orderRawText)
-          
-          
+          // if currentUser =>the seller can send invoice to customer phone number
+          if (this.currentUser) {
+            this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
+
+          } else {
+
+            // the app should not request phone number.
+            // and it will send automatically to the seller phone number
+            const retailer_phone_number = localStorage.getItem("retailer_phone_number");
+
+            this.sendViaWhatsApp(orderRawText, "+51" + retailer_phone_number);
+
+          }
+
           this.clearCart();
           this.removeTemporaryStorage();
           this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
@@ -344,6 +481,8 @@ export class CartsComponent implements OnDestroy {
     return order;
 
   }
+  
+  
 
   clearCart(): void {
     this.cartStore.state.shoppingCart.products = [];
@@ -377,8 +516,9 @@ export class CartsComponent implements OnDestroy {
     // find out how to paste it automatically in
     // whatsapp
     // const storePhoneNumber: string = "+51996821980";
+    console.log("WHATASPP:", phoneNumber);
     let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    window.location.href = link;
+    // window.location.href = link;
   }
 
   // *******************************************************
@@ -392,22 +532,30 @@ export class CartsComponent implements OnDestroy {
   //                 and then send an invoice 
   transformOrderToRawText(order: Order): string {
 
+    const tab: string = String.fromCodePoint(parseInt("9", 16));
+    const breakLine: string = "\n";
     let orderRawTxt: string = "";
+    let title: string = "";
+    let subTitle: string = "";
+    let totalPrice: string = "";
+
+    title = "🏁         *  Nueva orden entrante  *        🏁" + breakLine;
+    subTitle = "📥 *Pedido* :" + breakLine;
+    totalPrice = `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
 
     if (order != null) {
+
       // parse order data in Tab separated text
       console.log("order.cart", order);
-      const tab: string = String.fromCodePoint(parseInt("9", 16));
-      const breakLine: string = "\n";
 
       orderRawTxt += breakLine;
       orderRawTxt += breakLine;
-      orderRawTxt += "🏁           *Nueva orden entrante*          🏁" + breakLine;
+      orderRawTxt += title;
       orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
       // orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
       orderRawTxt += breakLine;
 
-      orderRawTxt += "📥 *Pedido* :" + breakLine;
+      orderRawTxt += subTitle;
       orderRawTxt += "⚖️Cant." + tab + tab + tab + "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
       orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
 
@@ -440,59 +588,64 @@ export class CartsComponent implements OnDestroy {
 
       orderRawTxt += breakLine;
 
-      orderRawTxt += `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
+      orderRawTxt += totalPrice;
 
       orderRawTxt += breakLine;
 
-      let paymentType;
+      
+      
+     
 
-      switch (order.payment.method) {
-        case "pos_method_area":
-          paymentType = "*POS/contra entrega* 🤝💳";
-          break;
-        case "bank_deposit":
-          paymentType = "*Deposito bancario* 🏦";
-          break;
+        let paymentType;
 
-        default:
-          paymentType = "*Efectivo/contra entrega* 🤝💵"
-          break;
-      }
+        switch (order.payment.method) {
+          case "pos_method_area":
+            paymentType = "*POS/contra entrega* 🤝💳";
+            break;
+          case "bank_deposit":
+            paymentType = "*Deposito bancario* 🏦";
+            break;
 
-      orderRawTxt += `Pago : ${paymentType}` + breakLine;
+          default:
+            paymentType = "*Efectivo/contra entrega* 🤝💵"
+            break;
 
-      orderRawTxt += breakLine;
-
-      let orderType =
-        order.orderType == "delivery" ?
-          "Delivery 🛵." : "Recogo en tienda 🏪.";
-
-      orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
-
-
-
-      if (order.orderType == "delivery") {
+        orderRawTxt += `Pago : ${paymentType}` + breakLine;
 
         orderRawTxt += breakLine;
-        orderRawTxt += `📍 *Entrega en* :` + breakLine;
-        orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
 
-        orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
+        let orderType =
+          order.orderType == "delivery" ?
+            "Delivery 🛵." : "Recogo en tienda 🏪.";
 
-        if (order.shipping.address.apartmentNumber) {
-          orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
-        }
+        orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
 
-        orderRawTxt += `${order.shipping.address.district}.` + breakLine;
 
-        if (order.shipping.address.reference) {
-          orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
-        }
 
-        if (order.shipping.address.details) {
-          orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
+        if (order.orderType == "delivery") {
+
+          orderRawTxt += breakLine;
+          orderRawTxt += `📍 *Entrega en* :` + breakLine;
+          orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+          orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
+
+          if (order.shipping.address.apartmentNumber) {
+            orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
+          }
+
+          orderRawTxt += `${order.shipping.address.district}.` + breakLine;
+
+          if (order.shipping.address.reference) {
+            orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
+          }
+
+          if (order.shipping.address.details) {
+            orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
+          }
         }
       }
+
 
       orderRawTxt += breakLine;
       orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
@@ -516,7 +669,84 @@ export class CartsComponent implements OnDestroy {
 
       this.copyText(orderRawTxt);
       console.log(orderRawTxt)
-      // this.sendViaWhatsApp(orderRawTxt);
+      // copy text in the clipboard
+    }
+
+    return orderRawTxt;
+  }
+
+  transformInvoiceIntoRawText(order: Order): string {
+
+    const tab: string = String.fromCodePoint(parseInt("9", 16));
+    const breakLine: string = "\n";
+    let orderRawTxt: string = "";
+    let title: string = "";
+    let subTitle: string = "";
+    let totalPrice: string = "";
+
+    if (this.currentUser) {
+      title = "🏁           *     Cotización     *          🏁" + breakLine;
+      subTitle = "🛒 *Lista de productos* :" + breakLine;
+      totalPrice = `Total de la cotización : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
+    } 
+
+    if (order != null) {
+
+      // parse order data in Tab separated text
+      console.log("order.cart", order);
+
+      orderRawTxt += breakLine;
+      orderRawTxt += breakLine;
+      orderRawTxt += title;
+      orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
+      // orderRawTxt += "🍏🍎🍐🍊🥝🍅🍆🥑🥦🥬🥒🌶️" + breakLine;
+      orderRawTxt += breakLine;
+
+      orderRawTxt += subTitle;
+      orderRawTxt += "⚖️Cant." + tab + tab + tab + "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
+      orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+      order.cart.forEach(product => {
+
+        orderRawTxt += breakLine +
+
+          " " + product.quantity.toFixed(2) + tab +
+
+          this.formatQuantityWeightType(
+            product.isKilo
+          ) + tab +
+
+          // product.categoryName + " " + product.varietyName;
+          this.formatProductNameTo20Characters(
+            product.categoryName +
+            " " +
+            product.varietyName
+          ) + tab + tab +
+
+          "S/." + product.totalPrice.toFixed(2)
+      })
+
+      orderRawTxt += breakLine;
+      orderRawTxt += breakLine;
+      // [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
+      // [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
+      orderRawTxt += "📝 *Detalles cotizacion* :" + breakLine;
+      orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
+
+      orderRawTxt += breakLine;
+
+      orderRawTxt += totalPrice;
+
+      orderRawTxt += breakLine;
+
+      
+
+      orderRawTxt += breakLine;
+      orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
+      orderRawTxt += "🥑🌿🍇🍓🍈🍒🍑🥭🥑🌿🌱🌴" + breakLine;
+
+      this.copyText(orderRawTxt);
+      console.log(orderRawTxt)
       // copy text in the clipboard
     }
 
