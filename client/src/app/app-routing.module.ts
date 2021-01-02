@@ -50,6 +50,15 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   { 
+    path: ':retailer_store_name/cotizacion/:order_id',
+    loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule),
+    // loadChildren: () => import('./features/sale-quotes/sale-quotes.module').then(m => m.SaleQuotesModule)
+  },
+  { 
+    path: ':retailer_store_name/orders/:order_id',
+    loadChildren: () => import('./features/carts/carts.module').then(m => m.CartsModule),
+  },
+  { 
     path: 'vendedor-dashboard', 
     loadChildren: () => import('./features/retailers-dashboard/retailers-dashboard.module').then(m => m.RetailersDashboardModule),
     canActivate: [AuthGuard]

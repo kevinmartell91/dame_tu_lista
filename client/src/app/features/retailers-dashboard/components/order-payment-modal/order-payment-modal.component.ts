@@ -9,8 +9,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class OrderPaymentModalComponent implements OnInit {
 
-  orderPaymentForm: FormGroup;
+  // orderPaymentForm: FormGroup;
   paymentMethod: string;
+  amount: string = '';
+  buyerName: string = '';
+  buyerEmail: string = '';
+  buyerPhoneNumber: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -23,12 +27,17 @@ export class OrderPaymentModalComponent implements OnInit {
   
     this.paymentMethod = this.data.order.payment.method;
     
-    this.orderPaymentForm = this.fb.group({
-      buyerName: [this.data.order.shipping.buyer.name],
-      buyerEmail: [this.data.order.shipping.buyer.email],
-      buyerPhoneNumber: [this.data.order.shipping.buyer.phoneNumber],
-      amount: [((this.data.order.payment.amount) as Number).toFixed(2)]
-    });
+    // this.orderPaymentForm = this.fb.group({
+    //   buyerName: [this.data.order.shipping.buyer.name],
+    //   buyerEmail: [this.data.order.shipping.buyer.email],
+    //   buyerPhoneNumber: [this.data.order.shipping.buyer.phoneNumber],
+    //   amount: [((this.data.order.payment.amount) as Number).toFixed(2)]
+    // });
+
+      this. buyerName =  this.data.order.shipping.buyer.name;
+      this. buyerEmail =  this.data.order.shipping.buyer.email;
+      this. buyerPhoneNumber =  this.data.order.shipping.buyer.phoneNumber;
+      this.amount =  ((this.data.order.payment.amount) as Number).toFixed(2);
   }
 
   onNoClick(): void {

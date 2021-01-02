@@ -4,11 +4,11 @@
 </ng-container>
 
 <ng-template #showCustomerCartDetails>
-    <div class="continer">
+    <div class="continer" [ngClass]="{'disabled':isDisable}">
         <hr>
     
         <h1 class="style_question">
-            {{question}}
+            {{titleMessage}}
         </h1>
         
         <ng-container *ngFor='let cartProduct of cartProducts'>
@@ -46,9 +46,10 @@
         </ng-template>
        
         <ng-template #showCompleteOrderDetails>
-            <button class="style_checkout_button"
+            <button class="style_checkout_button" 
                 (click)="completeOrderDetails()">
-                {{place_order_message}}
+                
+                {{button_message}}
             </button>
         </ng-template>
 

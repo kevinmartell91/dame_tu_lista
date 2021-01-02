@@ -70,10 +70,11 @@ export function  getHeadersForPatch(): any {
 export function  getHeadersForPut(): any {
 
     let headers = new HttpHeaders();
-    let localStorageToken = 
-        JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage)).token;
+    // let localStorageToken = 
+    //     JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage)).token;
     headers.append('Content-Type', 'application/json');
-    headers.append('x-access-token',localStorageToken )
+    // get a temp token when buyer wants to hit database for securit reasons
+    // headers.append('x-access-token',localStorageToken )
     let options = { headers: headers }
   return options;
 }

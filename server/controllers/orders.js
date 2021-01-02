@@ -1,6 +1,7 @@
 
 // Load required packages
 var Order  = require('../models/orders');
+var mogoose = require('mongoose')
 
 // creating endpoint /api/orders POST
 exports.postOrders = function(req, res) {
@@ -109,10 +110,13 @@ exports.getOrdersByRetailerId = function(req, res) {
   let retailer_id = req.params.retailer_id; 
 
 
-  Order.find({retailer_id: retailer_id},function(err, orders) {
+
+//   Order.find( {retailer_id: retailer_id, orderType: { $ne: 'sale_quote' }  } , function(err, orders) {
+  Order.find( {retailer_id: retailer_id } , function(err, orders) {
     if (err)
       return res.status(500).send(err);
 
+	  console.log("orders=>", orders);
     res.json({ 
         success: true,
         status: 200,

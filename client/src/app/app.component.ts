@@ -161,7 +161,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  goBackLocation(): void {
+  goToStoreRetailer(): void {
+    this.router.navigate([localStorage.getItem("retailer_store_name")])
+  }
+
+  goBackLocation():void {
     this.location.back();
   }
 

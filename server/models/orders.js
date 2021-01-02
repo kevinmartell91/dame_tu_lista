@@ -6,7 +6,7 @@ var orderSchema = new Schema({
   retailer_id: String,
   orderType: {
     type: String,
-    enum: ['delivery', 'pickup']
+    enum: ['delivery', 'pickup','sale_quote']
   },
   shipping: {
     buyer: {
@@ -39,7 +39,7 @@ var orderSchema = new Schema({
     amount: Number,
     method: { 
       type: String,
-      enum: ['upon_delivery_cash', 'upon_delivery_pos', 'bank_deposit' ]
+      enum: ['upon_delivery_cash', 'upon_delivery_pos', 'bank_deposit']
     },
     transaction_id: String
   },
@@ -93,6 +93,7 @@ var Order = mongoose.model('Order', orderSchema);
 module.exports = Order;
 
 // {generated_by_buyer: Boolean, date: Date},
+// {generated_by_retailer: Boolean, date: Date},
 // {seen_by_retailer: Boolean, date: Date},
 // {packaged_by_retailer: Boolean, date: Date},
 // {received_by_driver: Boolean, date: Date},

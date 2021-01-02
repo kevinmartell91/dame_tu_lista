@@ -24,6 +24,14 @@ export const STORE_CONFIG = {
         maturityView: "¿Cuándo lo quieres comer?",
         cartView: "Tu carrito de compras",
         rowView: "Productos"
+    }, 
+    messages_view: {
+        saleQuoteView: "Su cotización",
+        orderInProcessView: "Tu órden ya fue enviada",
+        buttonMessage_OrderProcess: "En proceso",
+        buttonMessage_SendOrder: "Su orden ya fue enviada",
+        buttonMessage_SendSaleQuote: "Cotización enviada",
+        buttonMessage_SendViaWhatsApp: "Enviar por WhatsApp"
     }
 }
 

@@ -38,9 +38,10 @@ export class CartsComponent implements OnDestroy {
 
   subscriptionCart: Subscription;
   subscriptionBuyer: Subscription;
+  subscriptionRoute: Subscription;
 
   maturityView: string;
-  question: string;
+  titleMessage: string;
 
   totalCartPrice: number = 0;
   totalCartPriceStr: string = "0.00";
@@ -60,15 +61,19 @@ export class CartsComponent implements OnDestroy {
   isSetAddress: boolean = false;
   isSetPayMethod: boolean = false;
 
-  place_order_message: string = "Enviar por WhatsApp";
+  button_message: string = "";
   isOrderPushed: boolean = false;
 
   currentUser: string = "";
+  order_id: string = "";
+
+  isDisable: boolean = false;
 
 
   constructor(
     private buyerNavegationStore: BuyerNavegationStore,
     private cartStore: CartStore,
+    private order: OrderStore,
     private buyerStore: BuyerStore,
     private authenticationStore: AuthenticationStore,
     private orderStore: OrderStore,
@@ -83,8 +88,13 @@ export class CartsComponent implements OnDestroy {
 
     }
 
+    this.subscriptionRoute = this.route.paramMap.subscribe( params => {
+      this.order_id = params.get("order_id");
+    })
+
     this.init();
     this.initializeViewSettings();
+    this.initCartOrderType();
 
     console.log("isOrderPushed:", this.isOrderPushed);
 
@@ -92,6 +102,8 @@ export class CartsComponent implements OnDestroy {
 
 
   init(): void {
+
+    this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp);
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
@@ -116,11 +128,60 @@ export class CartsComponent implements OnDestroy {
 
 
   }
+  initCartOrderType() {
+     //path: ':retailer_store_name/cotizacion/:order_id',
+     const isUrlSaleQuote = this.router.url.includes("cotizacion");
+     const isUrlOrders = this.router.url.includes("orders");
+ 
+
+     // sales quote
+      // 
+
+     if( isUrlSaleQuote ){
+       
+       // console.log("Router.url =>",this.router.url, this.order_id);
+       this.order.initSaleQuoteOrderId(this.order_id).subscribe( res => {
+         // console.log("orderDB type", res.data);
+         if(res.data.orderType == "sale_quote"){
+           this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
+           this.cartProducts = [];
+           // change HERE ORDER to CART PRODUCT
+           this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
+           // populate cartProducts
+           this.cartStore.setCart(this.cartProducts);
+           // console.log("saleQuoteCartProduct => ", this.cartProducts);
+           this.isDisable= false;
+           
+         } else {
+           let orderUrl = this.getUrlOrderPath(this.router.url);
+           // redirect to order by id
+           this.router.navigate([orderUrl]);
+         }
+       })
+     }
+     
+     if (isUrlOrders) {
+       
+      this.order.initSaleQuoteOrderId(this.order_id).subscribe( res => {
+        this.titleMessage = STORE_CONFIG.messages_view.orderInProcessView;
+        this.updateButtonMessage( STORE_CONFIG.messages_view.buttonMessage_OrderProcess);
+        this.cartProducts = [];
+        this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
+        this.cartStore.setCart(this.cartProducts);
+        this.isDisable = true;
+      })
+       
+       console.log("isUrlOrders", isUrlOrders);
+ 
+     }
+  }
+ 
 
   ngOnDestroy(): void {
 
     this.subscriptionCart.unsubscribe();
     this.subscriptionBuyer.unsubscribe();
+    this.subscriptionRoute.unsubscribe();
 
   }
 
@@ -136,7 +197,7 @@ export class CartsComponent implements OnDestroy {
     );
 
     this.maturityView = STORE_CONFIG.view_type.cartView;
-    this.question = STORE_CONFIG.question_view_type.cartView;
+    this.titleMessage = STORE_CONFIG.question_view_type.cartView;
 
   }
 
@@ -185,7 +246,7 @@ export class CartsComponent implements OnDestroy {
 
     if(this.currentUser){
       let order = this.createOrderFromShoppingCart();
-      this.updatePlaceOrderMessage("Cotización enviada");
+      this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendSaleQuote);
 
     }else {
       
@@ -242,8 +303,10 @@ export class CartsComponent implements OnDestroy {
         let order = null;
         if(this.currentUser){
           order = this.createInvoiceFromShoppingCart();
-        }
-        else {
+        } else if (this.order_id !== "") {
+          order = this.updateOrderFromShoppingCart(this.order_id);
+          console.log("order = this.updateOrderFromShoppingCart(this.order_id);", this.order_id);
+        } else {
           order = this.createOrderFromShoppingCart();
         }
 
@@ -257,7 +320,7 @@ export class CartsComponent implements OnDestroy {
           // this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
           this.isOrderPushed = true;
 
-          this.updatePlaceOrderMessage("Su orden ya fue enviada");
+          this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendOrder);
         }
         // else {
         //   this.updatePlaceOrderMessage("Envie nuevamente su ordenr");        
@@ -292,7 +355,7 @@ export class CartsComponent implements OnDestroy {
      * Populating the trackingOrder
      */
     let trackingOrder = new TrackingOrder();
-    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.orderStatus.push(["generated_by_retailer", new Date()]);
     trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
     trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
@@ -327,7 +390,7 @@ export class CartsComponent implements OnDestroy {
     order = new Order();
 
     order.retailer_id = localStorage.getItem("retailer_id");
-    // order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    order.orderType = "sale_quote";
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
@@ -395,7 +458,7 @@ export class CartsComponent implements OnDestroy {
      * Populating the trackingOrder
      */
     let trackingOrder = new TrackingOrder();
-    // trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
     trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
     trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
@@ -481,6 +544,117 @@ export class CartsComponent implements OnDestroy {
     return order;
 
   }
+
+  updateOrderFromShoppingCart(order_id: string): Order {
+
+
+    let order = null;
+
+    /**
+     * Populating the buyerOrder from this.buyer
+     */
+    let buyerOrder = new BuyerOrder();
+    // buyerOrder._id = this.buyer._id;
+    // buyerOrder.name = this.buyer.name;
+    // buyerOrder.email = this.buyer.email;
+    buyerOrder.phoneNumber = this.phoneNumberOrder;
+
+
+    /**
+     * Populating the addressOrder from this.buyer.address
+     */
+    let addressOrder = this.addressOrder;
+
+    /**
+     * Populating the trackingOrder
+     */
+    let trackingOrder = new TrackingOrder();
+    trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    trackingOrder.driver_name = "";
+    trackingOrder.trackingNumber = "";
+    trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
+
+    /**
+     * Populating the shippingOrder from this.buyer
+     */
+    let shippingOrder = new ShippingOrder();
+    shippingOrder.buyer = buyerOrder;
+    shippingOrder.deliveryNotes = "";
+    shippingOrder.address = addressOrder;
+    shippingOrder.tracking = trackingOrder;
+
+
+    /**
+     * Populating the payment from this.buyer
+     */
+    let paymentMethodOrder = new PaymentOrder();
+    paymentMethodOrder.method = this.paymentMethodOrder;
+    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+
+    /**
+     * Populating the cartProductOrder from this.cartProduct
+     */
+    let cartProductOrder: CartProductOrder[] = [];
+
+    this.cartProducts.forEach(cp => {
+      cartProductOrder.push(new CartProductOrder().deserialize(cp));
+    });
+
+    // populate the order;
+    order = new Order();
+    order._id = order_id;
+    order.retailer_id = localStorage.getItem("retailer_id");
+    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    order.shipping = shippingOrder;
+    order.payment = paymentMethodOrder;
+    order.cart = cartProductOrder;
+
+
+    // place order DB
+    this.orderStore.updateOrder(order).subscribe(
+      x => {
+
+        if (x) {
+
+          this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+
+
+          console.log("createOrderFromShoppingCart in BD (callback as X)", x);
+
+          // transform the order into raw text 
+          const orderRawText = this.transformOrderToRawText(order);
+          // and send it via whatapp
+          // to the desired phone number
+
+
+          // TO DO: with the order _id, it is posible to share the link of the order
+          // TO DO:
+
+          // if currentUser =>the seller can send invoice to customer phone number
+          if (this.currentUser) {
+            this.sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
+
+          } else {
+
+            // the app should not request phone number.
+            // and it will send automatically to the seller phone number
+            const retailer_phone_number = localStorage.getItem("retailer_phone_number");
+
+            this.sendViaWhatsApp(orderRawText, "+51" + retailer_phone_number);
+
+          }
+
+          this.clearCart();
+          this.removeTemporaryStorage();
+          this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
+        }
+
+        // this.router.navigate(['/carrito-personal/gracias-por-tu-compra']);
+        // this.router.navigate([`/carrito-personal/gracias-por-tu-compra`]);
+      });
+    return order;
+
+  }
   
   
 
@@ -490,8 +664,8 @@ export class CartsComponent implements OnDestroy {
     this.cartStore.setCart(cartProductsEmpty);
   }
 
-  updatePlaceOrderMessage(message: string): void {
-    this.place_order_message = message;
+  updateButtonMessage(message: string): void {
+    this.button_message = message;
   }
 
   saveAddressInBuyerAccount(): void {
@@ -834,8 +1008,32 @@ export class CartsComponent implements OnDestroy {
     return emptyStr;
   }
 
+  transformOrderCartProductToCartProduct(products: CartProductOrder[]): CartProduct[] {
+    
+    let saleQuoteCartProducts: CartProduct[] = [];
+
+    products.forEach(product => {
+      saleQuoteCartProducts.push(new CartProduct().deserialize(product));
+    });
+    console.log("transformOrderCartProductToCartProduct res=> ", saleQuoteCartProducts);
+  
+    return saleQuoteCartProducts;
+  }
 
 
+  getUrlOrderPath(routerUrl: string) {
+
+    let routerArray:string[] = routerUrl.split("/");
+
+    return routerArray.map( function(ele) {
+      if (ele ==="cotizacion") {
+        ele = "orders"; 
+      }
+      return ele;
+    }).join(("/"));
+  }
+
+  
 
 
 }

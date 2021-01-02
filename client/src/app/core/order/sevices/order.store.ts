@@ -56,6 +56,37 @@ export class OrderStore extends Store<OrderStoreState>{
         this.reloadOrderListByRetailerId();
 
     }
+    
+    initSaleQuoteOrderId( order_id: string): Observable<any>{
+        console.log("initSaleQuoteOrderId",order_id);
+        return this.http.getOrder(order_id, this.storeRequestStateUpdater).pipe(
+                tap( (response: any) => {
+                    return response;
+                })
+            )
+        }
+        // this.order$
+        // .pipe(
+        //     switchMap( () => {
+        //             return this.http.getOrder(order_id, this.storeRequestStateUpdater);
+        //         }),
+        //         tap ( (res: any) => {
+                    
+        //             // let orders: Order
+        //             // res.data.forEach(ele => {
+        //             //     orders.push(new Order().deserialize(ele));
+        //             // });
+                    
+        //             this.setState({
+        //                 ...this.state,
+        //                 order : new Order().deserialize(res);
+        //             })
+        //         }),
+        //         retry(),
+        //         takeUntil(this.ngUnsubscribe$)
+        //     )
+        //     .subscribe();
+    // }
 
     reloadOrderListByRetailerId() : void {
         this.reloadOrderListByRetailerId$.next();
@@ -76,7 +107,7 @@ export class OrderStore extends Store<OrderStoreState>{
         )
     }
 
-    public updateOrder( order: Order): Observable<any>{
+    public updateOrder( order: Order ): Observable<any>{
         return this.http.putOrder(this.storeRequestStateUpdater, order).pipe(
             tap( (response: any) => {
                 return response;

@@ -19,8 +19,8 @@ import { OrderListComponent } from './order-list.component';
   ],
   imports: [
     CommonModule,
-    OrderListRoutingModule,
-    SharedModule
+    SharedModule,
+    OrderListRoutingModule
   ]
 })
 export class OrderListModule { }

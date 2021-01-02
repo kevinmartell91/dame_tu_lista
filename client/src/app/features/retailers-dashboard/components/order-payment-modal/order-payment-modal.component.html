@@ -41,39 +41,41 @@
     </div>
 
     
-    <form [formGroup]="orderPaymentForm">
+    <!-- <form [formGroup]="orderPaymentForm"> -->
         
         <div class="payment_form_grid">
+            
+        
             <mat-form-field class="amount_area_witdth">
-                <input matInput placeholder="Total"
+                <input matInput disabled placeholder="Total"
                 name="amount"
                 type="tel"
-                formControlName="amount">
+                value={{amount}}>
             </mat-form-field>
 
-            <mat-form-field class="address_district_width">
+            <!-- <mat-form-field class="address_district_width">
                 <mat-label>Nombre</mat-label>
-                <input matInput placeholder="Nombre"
+                <input matInput disabled placeholder="Nombre"
                     name="buyerName"
                     type="text"
-                    formControlName="buyerName">
+                    value={{buyerName}}>
                 
             </mat-form-field>
             <mat-form-field class="address_city_width">
             
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email"
+                <input matInput disabled placeholder="Email"
                     name="buyerEmail"
                     type="text"
-                    formControlName="buyerEmail">
-            </mat-form-field>           
+                    value={{buyerEmail}}>
+            </mat-form-field>            -->
     
             <mat-form-field class="address_full_width">
                 <mat-label>Teléfono</mat-label>
-                <input matInput placeholder="Teléfono"
+                <input matInput disabled placeholder="Teléfono"
                     name="buyerPhoneNumber"
                     type="text"
-                    formControlName="buyerPhoneNumber">
+                    value={{buyerPhoneNumber}}>
             
             </mat-form-field>
 
@@ -83,4 +85,4 @@
             <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancelar</button>
         </div> 
        
-    </form>
+    <!-- </form> -->

@@ -56,6 +56,7 @@ export class RetailerStoresComponent implements OnDestroy {
     )
 
     this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
+    console.log("getRetailerByNameStore CALLED");
 
   }
 

@@ -46,7 +46,7 @@
                       
                            
                         
-                        <div class="buyer_area">
+                        <div class="buyer_area" >
                             <img src="../../../../../assets/icons/payroll-20px.png" alt=""
                             (click)="openPaymentDetailModal(order)">
                         </div>
@@ -82,9 +82,10 @@
                 </mat-expansion-panel-header>
               
               <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
-                <span class="orderDetail_title">
-                    Órden de {{order.shipping.buyer.name}}:
-                </span>
+                <!-- <span class="orderDetail_title"
+                    *ngIf=" order.orderType == 'delivery'">
+                    Órden de: {{order.shipping.buyer.name}}:
+                </span> -->
                 <span class="orderDate_title">
                     {{getOrderGeneratedDate(order)}}
                 </span>

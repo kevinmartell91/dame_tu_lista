@@ -53,6 +53,7 @@ export class OrderEndPoint  {
             inProgress: true
         })
 
+        console.log("ORDER",order);
         return this.http.put<any>(request.url + order._id, order, options).pipe(
             map( (response: any) => {
                 requestStateUpdater(request.name,{
@@ -70,6 +71,33 @@ export class OrderEndPoint  {
         )
     }
 
+    getOrder(
+        order_id: string,
+        requestStateUpdater: StoreRequestStateUpdater
+    ) {
+        const options = getHeadersForGet();
+        const request = ORDER_CONFIG.request.getOrder;
+        
+        requestStateUpdater(request.name, {
+            inProgress: true
+        })
+
+        return this.http.get<any>(request.url + order_id , options).pipe(
+            map( (response: any) => {
+                requestStateUpdater(request.name,{
+                    inProgress: false
+                });
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                requestStateUpdater(request.name,{
+                    inProgress: false,
+                    error: true
+                });
+                return throwError(error);
+            })
+        )
+    }
     getOrders(
         requestStateUpdater: StoreRequestStateUpdater
     ) {

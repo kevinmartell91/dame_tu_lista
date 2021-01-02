@@ -21,6 +21,7 @@ export class SelectPaymentMethodComponent implements OnInit {
 
   subcription: Subscription;
   currentUser: string;
+  saleQuoteType: string = "sale_quote";
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +52,7 @@ export class SelectPaymentMethodComponent implements OnInit {
     this.paymenytForm = this.fb.group({
       // by default set to upon_delivery_cash
       // works for buyer ans seller
-      paymentMethod: ['upon_delivery_cash', Validators.required],
+      paymentMethod: [this.currentUser ? this.saleQuoteType : '', Validators.required],
       // phoneNumber: ["+51" + this.phoneNumber, Validators.required]
       phoneNumber: [this.phoneNumber, Validators.required]
     })

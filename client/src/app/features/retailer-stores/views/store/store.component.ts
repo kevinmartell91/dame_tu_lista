@@ -92,7 +92,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       products => {
-        // console.log("subscriptionRetailerStore- products",products);
+        console.log("subscriptionRetailerStore- products",products);
         this.productsList = products;
         // console.log("FORM SESSION STORAGE", this.productsList);
         // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
@@ -158,7 +158,7 @@ export class StoreComponent implements OnDestroy {
     // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
-    // console.log("filterd prod: ", res);
+    console.log("filterd prod: ", this.retailerStoreStore.state.productsList.products.length);
     return res;
   }
 
