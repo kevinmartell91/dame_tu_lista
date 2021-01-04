@@ -14,7 +14,7 @@ module.exports = function(mongoose) {
             console.log(connection ? 'this was a success' + connection : 'This was a connection DB failure')
             return connection;    
         })
-        .catch( (e) => {Î
+        .catch( (e) => {
             console.log(e.message)
             return null;
             
