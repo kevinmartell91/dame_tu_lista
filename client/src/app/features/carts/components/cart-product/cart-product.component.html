@@ -6,15 +6,13 @@
             <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
         </div>
 
-        <div class="product_name_area" 
-            (click)="disableQuantityMode()">
+        <div class="product_name_area">
             {{cartProduct.categoryName}} - {{cartProduct.varietyName}}
             <!-- <span *ngIf="cartProduct.isOrganic">Orgánico</span>
             <span *ngIf="cartProduct.isOrganic === false">Normal</span> -->
         </div>
 
-        <div class="product_kilo_unit_size_area" 
-            (click)="disableQuantityMode()">
+        <div class="product_kilo_unit_size_area">
             S/.{{cartProductPriceStr}}
             <span *ngIf="cartProduct.isKilo" 
                 class="style_price_per_unit_or_kg">
@@ -38,8 +36,7 @@
             </span>
         </div>
         
-        <div class="product_detail_area" 
-            (click)="disableQuantityMode()">
+        <div class="product_detail_area">
             
 
             <span class="style_maturity_details">
@@ -85,14 +82,14 @@
                     [isKilo]="cartProduct.isKilo"
                     [product]="cartProduct"
                     [isCartProductButtonType]="true"
-                    (quantityUpdated)="onQuantityUpdated($event)">
+                    (quantityUpdated)="onQuantityUpdated($event)"
+                    (disableQuantityMode)="onDisableQuantityMode($event)">
                 </app-add-button>
             
             </ng-template>
         </div>
         
-        <div class="total_price_area" 
-            (click)="disableQuantityMode()">
+        <div class="total_price_area">
             S/.{{cartProductTotalPriceStr}}
         </div>
 

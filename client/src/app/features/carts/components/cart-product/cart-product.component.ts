@@ -46,7 +46,8 @@ export class CartProductComponent implements OnInit {
     // if cartProduct quatity is 0, 
     // then disableQuantityMode
     if(quantityUpdated == 0){
-      this.disableQuantityMode() 
+      // this.disableQuantityMode() 
+      this.isQuantityMode = false;
     }
 
 
@@ -69,10 +70,11 @@ export class CartProductComponent implements OnInit {
     this.isQuantityMode = true;
   }
 
-  disableQuantityMode(): void {
-    this.isQuantityMode = false;
-  }
+  onDisableQuantityMode(disable: boolean): void {
 
+    this.isQuantityMode = disable;
+  }
+  
   transformCartProductTotalPriceToStr(): void {
     this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
 
