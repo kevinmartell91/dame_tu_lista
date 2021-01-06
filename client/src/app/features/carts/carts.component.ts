@@ -25,6 +25,7 @@ import { FillShippingAddressComponent } from './components/fill-shipping-address
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { APP_CONFIG } from 'src/app/app.config';
 
 @Component({
   selector: 'app-carts',
@@ -88,8 +89,11 @@ export class CartsComponent implements OnDestroy {
 
     }
 
-    this.subscriptionRoute = this.route.paramMap.subscribe( params => {
+    
+    this.subscriptionRoute = this.route.paramMap.subscribe(params => {
       this.order_id = params.get("order_id");
+      if (this.order_id !== null)
+        localStorage.setItem("current_order_id",this.order_id);
     })
 
     this.init();
@@ -129,53 +133,58 @@ export class CartsComponent implements OnDestroy {
 
   }
   initCartOrderType() {
-     //path: ':retailer_store_name/cotizacion/:order_id',
-     const isUrlSaleQuote = this.router.url.includes("cotizacion");
-     const isUrlOrders = this.router.url.includes("orders");
- 
+    //path: ':retailer_store_name/cotizacion/:order_id',
+    const isUrlSaleQuote = this.router.url.includes("cotizacion");
+    const isUrlOrders = this.router.url.includes("orders");
 
-     // sales quote
-      // 
 
-     if( isUrlSaleQuote ){
-       
-       // console.log("Router.url =>",this.router.url, this.order_id);
-       this.order.initSaleQuoteOrderId(this.order_id).subscribe( res => {
-         // console.log("orderDB type", res.data);
-         if(res.data.orderType == "sale_quote"){
-           this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
-           this.cartProducts = [];
-           // change HERE ORDER to CART PRODUCT
-           this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
-           // populate cartProducts
-           this.cartStore.setCart(this.cartProducts);
-           // console.log("saleQuoteCartProduct => ", this.cartProducts);
-           this.isDisable= false;
-           
-         } else {
-           let orderUrl = this.getUrlOrderPath(this.router.url);
-           // redirect to order by id
-           this.router.navigate([orderUrl]);
-         }
-       })
-     }
-     
-     if (isUrlOrders) {
-       
-      this.order.initSaleQuoteOrderId(this.order_id).subscribe( res => {
+    // sales quote
+    // 
+
+    if (isUrlSaleQuote) {
+
+      // console.log("Router.url =>",this.router.url, this.order_id);
+      this.order.initSaleQuoteOrderId(this.order_id).subscribe(res => {
+        // console.log("orderDB type", res.data);
+        if (res.data.orderType == "sale_quote") {
+          this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
+          this.cartProducts = [];
+          // change HERE ORDER to CART PRODUCT
+          this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
+          // populate cartProducts
+          this.cartStore.setCart(this.cartProducts);
+          // console.log("saleQuoteCartProduct => ", this.cartProducts);
+          this.isDisable = false;
+
+        } else {
+          let orderUrl = this.getUrlOrderPath(this.router.url);
+          // redirect to order by id
+          this.router.navigate([orderUrl]);
+        }
+      })
+    }
+
+    if (isUrlOrders) {
+
+      updateBuyerNavagation(
+        this.buyerNavegationStore,
+        BUYER_CONFIG.navegation.placedOrderView
+      );
+
+      this.order.initSaleQuoteOrderId(this.order_id).subscribe(res => {
         this.titleMessage = STORE_CONFIG.messages_view.orderInProcessView;
-        this.updateButtonMessage( STORE_CONFIG.messages_view.buttonMessage_OrderProcess);
+        this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_OrderProcess);
         this.cartProducts = [];
         this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
-        this.cartStore.setCart(this.cartProducts);
+        // this.cartStore.setCart(this.cartProducts);
         this.isDisable = true;
       })
-       
-       console.log("isUrlOrders", isUrlOrders);
- 
-     }
+
+      console.log("isUrlOrders", isUrlOrders);
+
+    }
   }
- 
+
 
   ngOnDestroy(): void {
 
@@ -244,21 +253,21 @@ export class CartsComponent implements OnDestroy {
   // completeOrderDetails works only for buyer pipe line
   completeOrderDetails(): void {
 
-    if(this.currentUser){
+    if (this.currentUser) {
       let order = this.createOrderFromShoppingCart();
       this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendSaleQuote);
 
-    }else {
-      
-          if (!this.isSetAddress) {
-            this.openAddAddressModal();
-          }
+    } else {
+
+      if (!this.isSetAddress) {
+        this.openAddAddressModal();
+      }
 
     }
 
   }
 
-  sendInvoiceToBuyer(){
+  sendInvoiceToBuyer() {
     console.log("sendInvoiceToBuyer");
     this.openAddPayMethodModal();
   }
@@ -300,14 +309,32 @@ export class CartsComponent implements OnDestroy {
         // show another view to say thanks for ordering
         // then catch this as a convetion in google analytics
 
+        // let order = null;
+        // if (this.currentUser) {
+        //   order = this.createInvoiceFromShoppingCart();
+        // } else if (this.order_id !== "") {
+        //   order = this.updateOrderFromShoppingCart(this.order_id);
+        //   console.log("order = this.updateOrderFromShoppingCart(this.order_id);", this.order_id);
+        // } else {
+        //   order = this.createOrderFromShoppingCart();
+        // }
+
+
         let order = null;
         if(this.currentUser){
-          order = this.createInvoiceFromShoppingCart();
-        } else if (this.order_id !== "") {
-          order = this.updateOrderFromShoppingCart(this.order_id);
-          console.log("order = this.updateOrderFromShoppingCart(this.order_id);", this.order_id);
+          this.order_id = localStorage.getItem("current_order_id");
+          console.log("this.order_id =>>>>>>>",this.order_id);
+          if(this.order_id !== null){
+            order = this.updateOrderFromShoppingCart(this.order_id);
+          } else {
+            order = this.createInvoiceFromShoppingCart();
+          }
         } else {
-          order = this.createOrderFromShoppingCart();
+          if(this.order_id !== null){
+            order = this.updateOrderFromShoppingCart(this.order_id);
+          } else {
+            order = this.createOrderFromShoppingCart();
+          }
         }
 
         if (order != null) {
@@ -333,7 +360,7 @@ export class CartsComponent implements OnDestroy {
 
   createInvoiceFromShoppingCart(): Order {
 
-
+    console.log("createInvoiceFromShoppingCart");
     let order = null;
 
     /**
@@ -408,7 +435,7 @@ export class CartsComponent implements OnDestroy {
           console.log("createOrderFromShoppingCart in BD (callback as X)", x);
 
           // transform the order into raw text 
-          const invoiceRawText = this.transformInvoiceIntoRawText(order);
+          const invoiceRawText = this.transformInvoiceIntoRawText(x.data as Order);
           // and send it via whatapp
           // to the desired phone number
 
@@ -417,13 +444,14 @@ export class CartsComponent implements OnDestroy {
           // TO DO:
 
           // if currentUser =>the seller can send invoice to customer phone number
-    
+
 
           this.sendViaWhatsApp(invoiceRawText, order.shipping.buyer.phoneNumber);
 
 
           this.clearCart();
           this.removeTemporaryStorage();
+          this.router.navigate([localStorage.getItem("retailer_store_name")]);
           // this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
         }
 
@@ -433,10 +461,10 @@ export class CartsComponent implements OnDestroy {
     return order;
 
   }
-  
+
   createOrderFromShoppingCart(): Order {
 
-
+    console.log("createOrderFromShoppingCart");
     let order = null;
 
     /**
@@ -511,7 +539,7 @@ export class CartsComponent implements OnDestroy {
           console.log("createOrderFromShoppingCart in BD (callback as X)", x);
 
           // transform the order into raw text 
-          const orderRawText = this.transformOrderToRawText(order);
+          const orderRawText = this.transformOrderToRawText(x.data as Order);
           // and send it via whatapp
           // to the desired phone number
 
@@ -546,7 +574,6 @@ export class CartsComponent implements OnDestroy {
   }
 
   updateOrderFromShoppingCart(order_id: string): Order {
-
 
     let order = null;
 
@@ -604,11 +631,17 @@ export class CartsComponent implements OnDestroy {
     order = new Order();
     order._id = order_id;
     order.retailer_id = localStorage.getItem("retailer_id");
-    order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    
+    if(this.currentUser){
+      order.orderType = "pickup";
+    } else {
+      order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
+    }
     order.shipping = shippingOrder;
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
 
+    console.log("updateOrderFromShoppingCart IN:",order._id);
 
     // place order DB
     this.orderStore.updateOrder(order).subscribe(
@@ -619,7 +652,7 @@ export class CartsComponent implements OnDestroy {
           this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
 
-          console.log("createOrderFromShoppingCart in BD (callback as X)", x);
+          console.log("createOrderFromShoppingCart in BD (callback as X)", );
 
           // transform the order into raw text 
           const orderRawText = this.transformOrderToRawText(order);
@@ -646,6 +679,7 @@ export class CartsComponent implements OnDestroy {
 
           this.clearCart();
           this.removeTemporaryStorage();
+          localStorage.removeItem("current_order_id");
           this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
         }
 
@@ -655,8 +689,8 @@ export class CartsComponent implements OnDestroy {
     return order;
 
   }
-  
-  
+
+
 
   clearCart(): void {
     this.cartStore.state.shoppingCart.products = [];
@@ -766,60 +800,62 @@ export class CartsComponent implements OnDestroy {
 
       orderRawTxt += breakLine;
 
-      
-      
-     
 
-        let paymentType;
 
-        switch (order.payment.method) {
-          case "pos_method_area":
-            paymentType = "*POS/contra entrega* 🤝💳";
-            break;
-          case "bank_deposit":
-            paymentType = "*Deposito bancario* 🏦";
-            break;
+      let paymentType;
 
-          default:
-            paymentType = "*Efectivo/contra entrega* 🤝💵"
-            break;
+      switch (order.payment.method) {
+        case "pos_method_area":
+          paymentType = "*POS/contra entrega* 🤝💳";
+          break;
+        case "bank_deposit":
+          paymentType = "*Deposito bancario* 🏦";
+          break;
 
-        orderRawTxt += `Pago : ${paymentType}` + breakLine;
+        default:
+          paymentType = "*Efectivo/contra entrega* 🤝💵";
+          break;
+      }
+
+      orderRawTxt += `Pago : ${paymentType}` + breakLine;
+
+      orderRawTxt += breakLine;
+
+      let orderType =
+        order.orderType === "delivery" ?
+          "Delivery 🛵." : "Recogo en tienda 🏪.";
+
+      orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
+
+
+
+      if (order.orderType == "delivery") {
 
         orderRawTxt += breakLine;
+        orderRawTxt += `📍 *Entrega en* :` + breakLine;
+        orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
 
-        let orderType =
-          order.orderType == "delivery" ?
-            "Delivery 🛵." : "Recogo en tienda 🏪.";
+        orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
 
-        orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
+        if (order.shipping.address.apartmentNumber) {
+          orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
+        }
 
+        orderRawTxt += `${order.shipping.address.district}.` + breakLine;
 
+        if (order.shipping.address.reference) {
+          orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
+        }
 
-        if (order.orderType == "delivery") {
-
-          orderRawTxt += breakLine;
-          orderRawTxt += `📍 *Entrega en* :` + breakLine;
-          orderRawTxt += "~~~~~~~~~~~~~~~~~~~" + breakLine;
-
-          orderRawTxt += `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` + breakLine;
-
-          if (order.shipping.address.apartmentNumber) {
-            orderRawTxt += `*Departamento* : ${order.shipping.address.apartmentNumber}` + breakLine;
-          }
-
-          orderRawTxt += `${order.shipping.address.district}.` + breakLine;
-
-          if (order.shipping.address.reference) {
-            orderRawTxt += `*Referencia* : ${order.shipping.address.reference}` + breakLine;
-          }
-
-          if (order.shipping.address.details) {
-            orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
-          }
+        if (order.shipping.address.details) {
+          orderRawTxt += `*Detalles adicionales* : ${order.shipping.address.details}` + breakLine;
         }
       }
 
+
+      orderRawTxt += "Si desea puede ver su orden ingresando al siguiente link: ";
+      orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem("retailer_store_name")}/orders/${order._id}`
+      orderRawTxt += breakLine;
 
       orderRawTxt += breakLine;
       orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
@@ -862,7 +898,7 @@ export class CartsComponent implements OnDestroy {
       title = "🏁           *     Cotización     *          🏁" + breakLine;
       subTitle = "🛒 *Lista de productos* :" + breakLine;
       totalPrice = `Total de la cotización : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
-    } 
+    }
 
     if (order != null) {
 
@@ -913,7 +949,9 @@ export class CartsComponent implements OnDestroy {
 
       orderRawTxt += breakLine;
 
-      
+      orderRawTxt += "Si desea puede editar la cotización ingresando al siguiente link: ";
+      orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem("retailer_store_name")}/cotizacion/${order._id}`
+      orderRawTxt += breakLine;
 
       orderRawTxt += breakLine;
       orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
@@ -1009,31 +1047,31 @@ export class CartsComponent implements OnDestroy {
   }
 
   transformOrderCartProductToCartProduct(products: CartProductOrder[]): CartProduct[] {
-    
+
     let saleQuoteCartProducts: CartProduct[] = [];
 
     products.forEach(product => {
       saleQuoteCartProducts.push(new CartProduct().deserialize(product));
     });
     console.log("transformOrderCartProductToCartProduct res=> ", saleQuoteCartProducts);
-  
+
     return saleQuoteCartProducts;
   }
 
 
   getUrlOrderPath(routerUrl: string) {
 
-    let routerArray:string[] = routerUrl.split("/");
+    let routerArray: string[] = routerUrl.split("/");
 
-    return routerArray.map( function(ele) {
-      if (ele ==="cotizacion") {
-        ele = "orders"; 
+    return routerArray.map(function (ele) {
+      if (ele === "cotizacion") {
+        ele = "orders";
       }
       return ele;
     }).join(("/"));
   }
 
-  
+
 
 
 }

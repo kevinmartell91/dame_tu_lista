@@ -48,7 +48,8 @@ export class RetailerStoresComponent implements OnDestroy {
 
         if (sessionStorage.length == 0 ||
           !("product_list" in JSON.parse(sessionStorage.temp_session_storage))) {
-
+            console.log("Brian");
+            
           this.temporaryStorage.set(productsList);
 
         }
@@ -56,7 +57,6 @@ export class RetailerStoresComponent implements OnDestroy {
     )
 
     this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
-    console.log("getRetailerByNameStore CALLED");
 
   }
 

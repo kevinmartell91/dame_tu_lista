@@ -53,7 +53,7 @@ export class OrderEndPoint  {
             inProgress: true
         })
 
-        console.log("ORDER",order);
+        console.log("putOrder => ORDER",order);
         return this.http.put<any>(request.url + order._id, order, options).pipe(
             map( (response: any) => {
                 requestStateUpdater(request.name,{

@@ -3,7 +3,7 @@
     <div class="style_title">
         <h1> 
             <img src="../../../../../assets/icons/credit-card.svg" alt="">
-            {{ currentUser ? 'Ingrese número del comprador para enviar la cotización' : 'Forma de pago'}}
+            {{ currentUser ? 'Número del comprador' : 'Forma de pago'}}
         </h1>
     </div>
     
@@ -13,7 +13,8 @@
         <div class="payment_form_grid" >
 
             <ng-container *ngIf="!currentUser;
-                then showPaymentMethods">
+                then showPaymentMethods ;
+                else showNothing">
 
             </ng-container>
 
@@ -43,6 +44,8 @@
                     Efectivo <br> Contraentrega
                 </div>
             </ng-template>
+
+            <ng-template #showNothing></ng-template>
 
 
             <!-- <ng-template #showPhoneNumberField> -->

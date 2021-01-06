@@ -111,6 +111,9 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
     public getRetailerByNameStore(
         retailer_store_name: string
     ) {
+
+        console.log("getRetailerByNameStore CALLED");
+
         return this.endPoint.getRetailerByNameStore(retailer_store_name, this.storeRequestUpdater)
             .pipe(
                 map((response: any) => {

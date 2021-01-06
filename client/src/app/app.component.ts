@@ -52,7 +52,8 @@ export class AppComponent implements OnInit, OnDestroy {
     varietyView,
     maturityView
     cartView,
-    thanksView
+    thanksView,
+    placedOrderView
   };
 
   constructor(

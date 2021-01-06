@@ -73,6 +73,7 @@ export class StoreComponent implements OnDestroy {
         this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
 
+        console.log("stateProductsList Kevin", this.stateProductsList);
         if (this.stateRetailer) {
           localStorage.setItem("retailer_id", this.stateRetailer._id);
           localStorage.setItem("retailer_phone_number", this.stateRetailer.phoneNumber);
@@ -92,7 +93,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       products => {
-        console.log("subscriptionRetailerStore- products",products);
+        console.log("subscriptionRetailerStore- products KEVIN",products);
         this.productsList = products;
         // console.log("FORM SESSION STORAGE", this.productsList);
         // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
