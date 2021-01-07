@@ -47,8 +47,10 @@ export class RetailerStoresComponent implements OnDestroy {
       productsList => {
 
         if (sessionStorage.length == 0 ||
-          !("product_list" in JSON.parse(sessionStorage.temp_session_storage))) {
-            console.log("Brian");
+          !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
+          JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
+          ) {
+            console.log("Brian => temporaryStorage.set(productsList);",productsList);
             
           this.temporaryStorage.set(productsList);
 
@@ -66,9 +68,12 @@ export class RetailerStoresComponent implements OnDestroy {
 
     // let products: Product[] = [];
 
-    // console.log("CacheData:", cachedData);
+    console.log("CacheData:", cachedData);
 
-    if (cachedData && JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
+    // if (cachedData && JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
+    if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
+
+      console.log("restoreFromTemporaryStorage > 0");
 
       //## restore from Session Storage
       const memCashedProd: Product[] =
@@ -76,6 +81,8 @@ export class RetailerStoresComponent implements OnDestroy {
       const memCashedCartProd: CartProduct[] =
         JSON.parse(sessionStorage.temp_session_storage).cart_product_list;
 
+
+        console.log("memCashedProd",memCashedProd);
       // ETL of memCashed to Product data type
       const payloadProducts: Product[] =
         transformCartProductsIntoProducts(

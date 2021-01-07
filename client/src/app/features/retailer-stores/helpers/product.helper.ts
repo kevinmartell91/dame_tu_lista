@@ -171,8 +171,8 @@ export function getProductFromCartProduct(
 
 export function transformCartProductsIntoProducts(storeProducts: Product[], cartProducts: CartProduct[]): Product[] {
 
-  // console.log("STORE PRODUCTS", storeProducts);
-  // console.log("CART PRODUCTS", cartProducts);
+  console.log("STORE PRODUCTS", storeProducts);
+  console.log("CART PRODUCTS", cartProducts);
 
   cartProducts.forEach(cartProd => {
     // storeProducts.forEach(storeProd => {

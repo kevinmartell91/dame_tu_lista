@@ -31,7 +31,8 @@ export const STORE_CONFIG = {
         buttonMessage_OrderProcess: "En proceso",
         buttonMessage_SendOrder: "Su orden ya fue enviada",
         buttonMessage_SendSaleQuote: "Cotización enviada",
-        buttonMessage_SendViaWhatsApp: "WhatsApp"
+        buttonMessage_SendViaWhatsApp: "WhatsApp",
+        buttonMessage_ConfimOrder: "Confirmar"
     }
 }
 

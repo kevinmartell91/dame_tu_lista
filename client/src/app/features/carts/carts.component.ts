@@ -27,6 +27,7 @@ import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { APP_CONFIG } from 'src/app/app.config';
 import { environment } from '../../../environments/environment';
+import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/session-storage/services/temporary-storage.service';
 
 @Component({
   selector: 'app-carts',
@@ -71,6 +72,12 @@ export class CartsComponent implements OnDestroy {
 
   isDisable: boolean = false;
 
+  subscribedParamRetailerStoreName: string;
+  subscribeRetailerStore: Subscription;
+
+  temporaryStorage: TemporaryStorageFacet;
+
+
 
   constructor(
     private buyerNavegationStore: BuyerNavegationStore,
@@ -81,21 +88,33 @@ export class CartsComponent implements OnDestroy {
     private orderStore: OrderStore,
     private matDialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private temporaryStorageService: TemporaryStorageService,
+    private retailerStoreStore: RetailerStoreStore
   ) {
 
+
+
+    this.temporaryStorage = this.temporaryStorageService.forKey("product_list");
+    
+    
     const currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
     if (currentUser) {
       this.currentUser = currentUser;
-
+      
     }
-
+    
     
     this.subscriptionRoute = this.route.paramMap.subscribe(params => {
+      this.subscribedParamRetailerStoreName = params.get("retailer_store_name");
+      this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
+      localStorage.setItem("retailer_store_name", this.subscribedParamRetailerStoreName)
+
       this.order_id = params.get("order_id");
       if (this.order_id !== null)
         localStorage.setItem("current_order_id",this.order_id);
     })
+
     this.order_id = localStorage.getItem("current_order_id");
 
     this.init();
@@ -109,7 +128,21 @@ export class CartsComponent implements OnDestroy {
 
   init(): void {
 
-    this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp);
+    if(this.order_id){
+      // confirm and order the the shopping cart
+      this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_ConfimOrder);
+    } else {
+      // generating the order by him or her self
+      this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp);
+    }
+
+  
+    this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
+      productsList => {
+        this.temporaryStorage.set(productsList);
+      }
+    )
+
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe(
       x => {
@@ -168,6 +201,9 @@ export class CartsComponent implements OnDestroy {
 
     if (isUrlOrders) {
 
+      localStorage.removeItem("current_order_id");
+
+
       updateBuyerNavagation(
         this.buyerNavegationStore,
         BUYER_CONFIG.navegation.placedOrderView
@@ -194,6 +230,8 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart.unsubscribe();
     this.subscriptionBuyer.unsubscribe();
     this.subscriptionRoute.unsubscribe();
+    // this.subscribeStoreName.unsubscribe();
+    this.subscribeRetailerStore.unsubscribe();
 
   }
 
