@@ -26,6 +26,7 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
 import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { APP_CONFIG } from 'src/app/app.config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-carts',
@@ -95,6 +96,7 @@ export class CartsComponent implements OnDestroy {
       if (this.order_id !== null)
         localStorage.setItem("current_order_id",this.order_id);
     })
+    this.order_id = localStorage.getItem("current_order_id");
 
     this.init();
     this.initializeViewSettings();
@@ -177,6 +179,7 @@ export class CartsComponent implements OnDestroy {
         this.cartProducts = [];
         this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
         // this.cartStore.setCart(this.cartProducts);
+        this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toString();
         this.isDisable = true;
       })
 
@@ -726,7 +729,8 @@ export class CartsComponent implements OnDestroy {
     // const storePhoneNumber: string = "+51996821980";
     console.log("WHATASPP:", phoneNumber);
     let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    // window.location.href = link;
+    if(environment.production)
+      window.location.href = link;
   }
 
   // *******************************************************

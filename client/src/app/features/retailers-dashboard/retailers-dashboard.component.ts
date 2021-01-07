@@ -44,7 +44,7 @@ export class RetailersDashboardComponent implements OnDestroy {
       y => {
         if(y != null){
           this.retailerStoreName = y.store.name;
-          localStorage.setItem("retailer_store_name", this.retailerStoreName);
+          localStorage.setItem("retailer_store_name", y.store.nameUrl);
         } 
       }
     )

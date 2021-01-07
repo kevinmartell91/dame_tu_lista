@@ -72,7 +72,7 @@
             
             <ng-template #showUpdateButton>
                 <div (click)="enableQuantityMode()">
-                    {{cartProduct.quantity}}
+                    {{cartProduct.quantity}} {{cartProduct.isKilo ? 'kg' : 'Uni'}}
                 </div>
             </ng-template>
             

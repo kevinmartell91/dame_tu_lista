@@ -41,14 +41,24 @@
             
             <button class="style_checkout_button"
                 (click)="sendInvoiceToBuyer()">
-                Enviar Cotización
+                <ng-container *ngIf="order_id ; 
+                    then showConfirmationIcon ;
+                    else showSendicon">
+                </ng-container>
+                <ng-template #showConfirmationIcon>
+                    <mat-icon>check_circle</mat-icon>
+                </ng-template>
+                <ng-template #showSendicon>
+                    <mat-icon >send</mat-icon>
+                </ng-template>
+                Cotización
             </button>
         </ng-template>
        
         <ng-template #showCompleteOrderDetails>
             <button class="style_checkout_button" 
                 (click)="completeOrderDetails()">
-                
+                <mat-icon>send</mat-icon>
                 {{button_message}}
             </button>
         </ng-template>

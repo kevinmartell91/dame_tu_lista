@@ -155,9 +155,9 @@ export class StoreComponent implements OnDestroy {
 
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
-    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    // let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
-    // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
     console.log("filterd prod: ", this.retailerStoreStore.state.productsList.products.length);
     return res;
