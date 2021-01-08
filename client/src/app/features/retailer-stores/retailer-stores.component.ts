@@ -31,12 +31,13 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.temporaryStorage = this.temporaryStorageService.forKey("product_list");
 
-    this.restoreFromTemporaryStorage();
-
+    
     this.init();
   }
-
+  
   init(): void {
+
+    this.restoreFromTemporaryStorage();
 
     this.subscribeStoreName = this.route.paramMap.subscribe(params => {
       // this.subscribedParamRetailerId = params.get("retailer_id");
@@ -45,14 +46,18 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       productsList => {
+        
+
+        this.temporaryStorage.set(productsList);
+
 
         if (sessionStorage.length == 0 ||
           !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
           JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
           ) {
-            console.log("Brian => temporaryStorage.set(productsList);",productsList);
+            console.log("Brian => temporaryStorage.set(productsList);",productsList.length);
             
-          this.temporaryStorage.set(productsList);
+            // this.temporaryStorage.set(productsList);
 
         }
       }
@@ -70,8 +75,8 @@ export class RetailerStoresComponent implements OnDestroy {
 
     console.log("CacheData:", cachedData);
 
-    // if (cachedData && JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
-    if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
+    if (cachedData.length > 0) {
+    // if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
 
       console.log("restoreFromTemporaryStorage > 0");
 
@@ -89,7 +94,8 @@ export class RetailerStoresComponent implements OnDestroy {
           memCashedProd,
           memCashedCartProd
         );
-
+      
+        console.log("payloadProducts",payloadProducts);
       // update cartStore with date from temporary storage
       this.retailerStoreStore.updateProductsFromSessionStorage(payloadProducts);
 

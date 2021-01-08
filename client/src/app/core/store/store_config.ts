@@ -26,7 +26,7 @@ export const STORE_CONFIG = {
         rowView: "Productos"
     }, 
     messages_view: {
-        saleQuoteView: "Su cotización",
+        saleQuoteView: "Editando cotización",
         orderInProcessView: "Tu órden ya fue enviada",
         buttonMessage_OrderProcess: "En proceso",
         buttonMessage_SendOrder: "Su orden ya fue enviada",

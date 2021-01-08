@@ -106,16 +106,20 @@ export class CartsComponent implements OnDestroy {
     
     
     this.subscriptionRoute = this.route.paramMap.subscribe(params => {
+
+      
       this.subscribedParamRetailerStoreName = params.get("retailer_store_name");
       this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
       localStorage.setItem("retailer_store_name", this.subscribedParamRetailerStoreName)
-
+      
       this.order_id = params.get("order_id");
       if (this.order_id !== null)
-        localStorage.setItem("current_order_id",this.order_id);
+      localStorage.setItem("current_order_id",this.order_id);
     })
-
+    
     this.order_id = localStorage.getItem("current_order_id");
+    console.log("this.route.paramMap.subscribe", this.order_id);
+
 
     this.init();
     this.initializeViewSettings();
@@ -131,14 +135,18 @@ export class CartsComponent implements OnDestroy {
     if(this.order_id){
       // confirm and order the the shopping cart
       this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_ConfimOrder);
+      this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
     } else {
       // generating the order by him or her self
+      this.titleMessage = STORE_CONFIG.question_view_type.cartView;
+      
       this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp);
     }
 
   
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       productsList => {
+        console.log("setting productsList in sessionStorage:", productsList.length);
         this.temporaryStorage.set(productsList);
       }
     )
@@ -177,6 +185,7 @@ export class CartsComponent implements OnDestroy {
     // 
 
     if (isUrlSaleQuote) {
+      console.log("isUrlSaleQuote", this.order_id);
 
       // console.log("Router.url =>",this.router.url, this.order_id);
       this.order.initSaleQuoteOrderId(this.order_id).subscribe(res => {
@@ -200,6 +209,8 @@ export class CartsComponent implements OnDestroy {
     }
 
     if (isUrlOrders) {
+      console.log("isUrlOrders", this.order_id);
+
 
       localStorage.removeItem("current_order_id");
 
@@ -215,7 +226,7 @@ export class CartsComponent implements OnDestroy {
         this.cartProducts = [];
         this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
         // this.cartStore.setCart(this.cartProducts);
-        this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toString();
+        this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toPrecision(2).toString();
         this.isDisable = true;
       })
 
@@ -247,7 +258,6 @@ export class CartsComponent implements OnDestroy {
     );
 
     this.maturityView = STORE_CONFIG.view_type.cartView;
-    this.titleMessage = STORE_CONFIG.question_view_type.cartView;
 
   }
 
@@ -895,6 +905,7 @@ export class CartsComponent implements OnDestroy {
       }
 
 
+      orderRawTxt += breakLine;
       orderRawTxt += "Si desea puede ver su orden ingresando al siguiente link: ";
       orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem("retailer_store_name")}/orders/${order._id}`
       orderRawTxt += breakLine;
@@ -989,6 +1000,7 @@ export class CartsComponent implements OnDestroy {
 
       orderRawTxt += totalPrice;
 
+      orderRawTxt += breakLine;
       orderRawTxt += breakLine;
 
       orderRawTxt += "Si desea puede editar la cotización ingresando al siguiente link: ";

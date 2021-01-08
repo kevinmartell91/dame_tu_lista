@@ -66,11 +66,15 @@ export class StoreComponent implements OnDestroy {
       this.retailerStoreName = params.get("retailer_store_name");
       console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
       localStorage.setItem("retailer_store_name", this.retailerStoreName);
+
+      // if (this.stateProductsList == null ) {
+      //   this.stateProductsList = JSON.parse(sessionStorage.temp_session_storage).product_list;
+      // }
     });
 
     this.subscriptionStoreState = this.retailerStoreStore.state$.subscribe(
       state => {
-        this.stateProductsList = state.productsList.products;
+        // this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
 
         console.log("stateProductsList Kevin", this.stateProductsList);
@@ -79,7 +83,7 @@ export class StoreComponent implements OnDestroy {
           localStorage.setItem("retailer_phone_number", this.stateRetailer.phoneNumber);
         }
 
-        console.log("subscriptionStoreState HERE KEVIN", this.stateRetailer);
+        // console.log("subscriptionStoreState HERE KEVIN", this.stateRetailer);
 
       }
     );
@@ -155,11 +159,13 @@ export class StoreComponent implements OnDestroy {
 
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
-    // let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
-    let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    // let res = JSON.parse(sessionStorage.temp_session_storage).product_list.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
-    console.log("filterd prod: ", this.retailerStoreStore.state.productsList.products.length);
+    console.log("filtered prod: from retailerStoreStore", this.retailerStoreStore.state.productsList.products.length);
+    console.log("filtered prod from sessionStorage" , this.filteredProductListLength);
     return res;
   }
 

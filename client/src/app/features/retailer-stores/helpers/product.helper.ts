@@ -174,6 +174,12 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
   console.log("STORE PRODUCTS", storeProducts);
   console.log("CART PRODUCTS", cartProducts);
 
+  storeProducts = storeProducts.map( storeProd => { 
+        storeProd.quantity = 0;
+        return storeProd
+      }
+  )
+
   cartProducts.forEach(cartProd => {
     // storeProducts.forEach(storeProd => {
     //   if (cartProd._id === storeProd._id) {
@@ -185,7 +191,8 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
     storeProducts.map(storeProd => {
       if( cartProd._id === storeProd._id) {
         storeProd.quantity = cartProd.quantity;
-      }
+      } 
+      return storeProd;
     })
   });
 
