@@ -67,16 +67,11 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
 
     // this.retailerStoreStore.getAirTabeDATA();
-
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.storeView
-    );
-
-    // console.log("AppComponent retailerStoreName", this.retailerStoreName);
-
-
+    
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_product_list");
+
+    this.initializeNavegationValues();
+    
 
     this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
       y => {
@@ -85,7 +80,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     )
 
-    this.initializeNavegationValues();
     // this.initializeLoginTypeValues();
     this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe(
       x => {
@@ -139,6 +133,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initializeNavegationValues(): void {
+
+    updateBuyerNavagation(
+      this.buyerNavegationStore,
+      BUYER_CONFIG.navegation.storeView
+    );
+
     this.navegation = BUYER_CONFIG.navegation;
   }
 

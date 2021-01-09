@@ -31,13 +31,17 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.temporaryStorage = this.temporaryStorageService.forKey("product_list");
 
-    
+
+
+
+
     this.init();
   }
-  
+
   init(): void {
 
-    this.restoreFromTemporaryStorage();
+    // Not used for now
+    // this.restoreBuyerSelectedProductsFromTemporaryStorage();
 
     this.subscribeStoreName = this.route.paramMap.subscribe(params => {
       // this.subscribedParamRetailerId = params.get("retailer_id");
@@ -46,58 +50,59 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       productsList => {
-        
 
+
+        console.log("LOG => Retailer-Store - Set product list to Session storage", productsList.length);
         this.temporaryStorage.set(productsList);
 
 
-        if (sessionStorage.length == 0 ||
-          !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
-          JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
-          ) {
-            console.log("Brian => temporaryStorage.set(productsList);",productsList.length);
-            
-            // this.temporaryStorage.set(productsList);
+        // if (sessionStorage.length == 0 ||
+        //   !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
+        //   JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
+        //   ) {
 
-        }
+        //     this.temporaryStorage.set(productsList);
+
+        // }
       }
     )
-
     this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
+
 
   }
 
-  public async restoreFromTemporaryStorage(): Promise<void> {
+  public async restoreBuyerSelectedProductsFromTemporaryStorage(): Promise<void> {
 
     let cachedData = await this.temporaryStorage.get<any>();
+    // console.log("CacheData:", cachedData);
+    const memCashedCartProd: CartProduct[] =
+      JSON.parse(sessionStorage.temp_session_storage).cart_product_list;
 
-    // let products: Product[] = [];
 
-    console.log("CacheData:", cachedData);
+    //if there is something to pass from Cart to products after reloading the page    
+    if (cachedData && cachedData.length > 0 &&
+      memCashedCartProd && memCashedCartProd.length > 0) {
+      // if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
 
-    if (cachedData.length > 0) {
-    // if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
-
-      console.log("restoreFromTemporaryStorage > 0");
 
       //## restore from Session Storage
       const memCashedProd: Product[] =
-        JSON.parse(sessionStorage.temp_session_storage).product_list;
-      const memCashedCartProd: CartProduct[] =
-        JSON.parse(sessionStorage.temp_session_storage).cart_product_list;
+        cachedData;
 
 
-        console.log("memCashedProd",memCashedProd);
-      // ETL of memCashed to Product data type
+
+      // console.log("memCashedProd",memCashedProd);
+      // retrievinf selected product by buyers
       const payloadProducts: Product[] =
         transformCartProductsIntoProducts(
           memCashedProd,
           memCashedCartProd
         );
-      
-        console.log("payloadProducts",payloadProducts);
+
+      // console.log("payloadProducts",payloadProducts);
       // update cartStore with date from temporary storage
       this.retailerStoreStore.updateProductsFromSessionStorage(payloadProducts);
+      console.log("LOG => Retailer-Store - restoreBuyerSelectedProductsFromTemporaryStorage DONE");
 
     }
 

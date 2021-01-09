@@ -95,28 +95,25 @@ export class CartsComponent implements OnDestroy {
 
 
 
-    this.temporaryStorage = this.temporaryStorageService.forKey("product_list");
-    
-    
     const currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
     if (currentUser) {
       this.currentUser = currentUser;
-      
+
     }
-    
-    
+
+
     this.subscriptionRoute = this.route.paramMap.subscribe(params => {
 
-      
+
       this.subscribedParamRetailerStoreName = params.get("retailer_store_name");
-      this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
+      // this.retailerStoreStore.getRetailerByNameStore(this.subscribedParamRetailerStoreName);
       localStorage.setItem("retailer_store_name", this.subscribedParamRetailerStoreName)
-      
+
       this.order_id = params.get("order_id");
       if (this.order_id !== null)
-      localStorage.setItem("current_order_id",this.order_id);
+        localStorage.setItem("current_order_id", this.order_id);
     })
-    
+
     this.order_id = localStorage.getItem("current_order_id");
     console.log("this.route.paramMap.subscribe", this.order_id);
 
@@ -132,22 +129,22 @@ export class CartsComponent implements OnDestroy {
 
   init(): void {
 
-    if(this.order_id){
+    if (this.order_id) {
       // confirm and order the the shopping cart
       this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_ConfimOrder);
       this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
     } else {
       // generating the order by him or her self
       this.titleMessage = STORE_CONFIG.question_view_type.cartView;
-      
+
       this.updateButtonMessage(STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp);
     }
 
-  
+
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       productsList => {
         console.log("setting productsList in sessionStorage:", productsList.length);
-        this.temporaryStorage.set(productsList);
+        // this.temporaryStorage.set(productsList);
       }
     )
 
@@ -226,11 +223,10 @@ export class CartsComponent implements OnDestroy {
         this.cartProducts = [];
         this.cartProducts = this.transformOrderCartProductToCartProduct(res.data.cart);
         // this.cartStore.setCart(this.cartProducts);
-        this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toPrecision(2).toString();
+        this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toPrecision(3);
         this.isDisable = true;
       })
 
-      console.log("isUrlOrders", isUrlOrders);
 
     }
   }
@@ -372,16 +368,16 @@ export class CartsComponent implements OnDestroy {
 
 
         let order = null;
-        if(this.currentUser){
+        if (this.currentUser) {
           this.order_id = localStorage.getItem("current_order_id");
-          console.log("this.order_id =>>>>>>>",this.order_id);
-          if(this.order_id !== null){
+          console.log("this.order_id =>>>>>>>", this.order_id);
+          if (this.order_id !== null) {
             order = this.updateOrderFromShoppingCart(this.order_id);
           } else {
             order = this.createInvoiceFromShoppingCart();
           }
         } else {
-          if(this.order_id !== null){
+          if (this.order_id !== null) {
             order = this.updateOrderFromShoppingCart(this.order_id);
           } else {
             order = this.createOrderFromShoppingCart();
@@ -682,8 +678,8 @@ export class CartsComponent implements OnDestroy {
     order = new Order();
     order._id = order_id;
     order.retailer_id = localStorage.getItem("retailer_id");
-    
-    if(this.currentUser){
+
+    if (this.currentUser) {
       order.orderType = "pickup";
     } else {
       order.orderType = this.addressOrder.details != 'pickup' ? "delivery" : "pickup";
@@ -692,7 +688,7 @@ export class CartsComponent implements OnDestroy {
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
 
-    console.log("updateOrderFromShoppingCart IN:",order._id);
+    console.log("updateOrderFromShoppingCart IN:", order._id);
 
     // place order DB
     this.orderStore.updateOrder(order).subscribe(
@@ -703,7 +699,7 @@ export class CartsComponent implements OnDestroy {
           this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
 
-          console.log("createOrderFromShoppingCart in BD (callback as X)", );
+          console.log("createOrderFromShoppingCart in BD (callback as X)");
 
           // transform the order into raw text 
           const orderRawText = this.transformOrderToRawText(order);
@@ -777,7 +773,7 @@ export class CartsComponent implements OnDestroy {
     // const storePhoneNumber: string = "+51996821980";
     console.log("WHATASPP:", phoneNumber);
     let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    if(environment.production)
+    if (environment.production)
       window.location.href = link;
   }
 

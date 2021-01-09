@@ -134,26 +134,27 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
                 },
                 () => {
 
+                    // restoreBuyerSelectedProductsFromTemporaryStorage()
                     const chacheData = sessionStorage.temp_session_storage;
-                    if (chacheData && JSON.parse(chacheData).cart_product_list.length > 0) {
 
-                        //## restore from Session Storage
-                        const memCashedProd: Product[] =
-                            JSON.parse(chacheData).product_list;
-                        const memCashedCartProd: CartProduct[] =
-                            JSON.parse(chacheData).cart_product_list;
+                    const memCashedProd: Product[] =
+                        JSON.parse(chacheData).product_list;
+                    const memCashedCartProd: CartProduct[] =
+                        JSON.parse(chacheData).cart_product_list;
+                    console.log("restored Buyer Selected Products From Temporary Storage :", "memCashedProd.length", memCashedProd.length, "memCashedCartProd.length", memCashedCartProd.length);
+                    // if (chacheData && memCashedProd.length > 0 && memCashedCartProd.length > 0) {
+                    if (chacheData && this.state.productsList.products.length > 0 && memCashedCartProd.length > 0) {
 
                         // ETL of memCashed to Product data type
                         const payloadProducts: Product[] =
                             transformCartProductsIntoProducts(
-                                memCashedProd,
+                                this.state.productsList.products,
                                 memCashedCartProd
                             );
 
                         // update products STORE with cart product
                         this.updateProductsFromSessionStorage(payloadProducts);
-                        // console.log("INIT - RetailerStoresComponent chacheData: ", chacheData);
-
+                        console.log("restoreBuyerSelectedProductsFromTemporaryStorage");        
                     }
                 }
             );

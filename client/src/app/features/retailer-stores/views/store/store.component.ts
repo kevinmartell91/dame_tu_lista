@@ -64,8 +64,8 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionStoreName = this.activedRoute.paramMap.subscribe(params => {
       this.retailerStoreName = params.get("retailer_store_name");
-      console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
-      localStorage.setItem("retailer_store_name", this.retailerStoreName);
+      // console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
+      // localStorage.setItem("retailer_store_name", this.retailerStoreName);
 
       // if (this.stateProductsList == null ) {
       //   this.stateProductsList = JSON.parse(sessionStorage.temp_session_storage).product_list;
@@ -77,7 +77,7 @@ export class StoreComponent implements OnDestroy {
         // this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
 
-        console.log("stateProductsList Kevin", this.stateProductsList);
+        // console.log("stateProductsList Kevin", this.stateProductsList);
         if (this.stateRetailer) {
           localStorage.setItem("retailer_id", this.stateRetailer._id);
           localStorage.setItem("retailer_phone_number", this.stateRetailer.phoneNumber);
@@ -97,7 +97,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       products => {
-        console.log("subscriptionRetailerStore- products KEVIN",products);
+        // console.log("subscriptionRetailerStore- products KEVIN",products);
         this.productsList = products;
         // console.log("FORM SESSION STORAGE", this.productsList);
         // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
@@ -107,7 +107,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscription = this.cartStore.shoppingCart$.subscribe(
       x => {
-        console.log("This.cartStore.shoppingCart$.products", x.products);
+        // console.log("This.cartStore.shoppingCart$.products", x.products);
         this.cartProductsQuantity = x.products.length;
       }
     );

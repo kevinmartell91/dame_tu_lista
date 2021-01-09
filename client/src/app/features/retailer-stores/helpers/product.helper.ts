@@ -171,14 +171,12 @@ export function getProductFromCartProduct(
 
 export function transformCartProductsIntoProducts(storeProducts: Product[], cartProducts: CartProduct[]): Product[] {
 
-  console.log("STORE PRODUCTS", storeProducts);
-  console.log("CART PRODUCTS", cartProducts);
+  // console.log("STORE PRODUCTS", storeProducts);
+  // console.log("CART PRODUCTS", cartProducts);
 
-  storeProducts = storeProducts.map( storeProd => { 
-        storeProd.quantity = 0;
-        return storeProd
-      }
-  )
+  storeProducts.map( storeProd => {
+    return storeProd.quantity = 0;
+  })
 
   cartProducts.forEach(cartProd => {
     // storeProducts.forEach(storeProd => {
@@ -191,8 +189,7 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
     storeProducts.map(storeProd => {
       if( cartProd._id === storeProd._id) {
         storeProd.quantity = cartProd.quantity;
-      } 
-      return storeProd;
+      }
     })
   });
 
