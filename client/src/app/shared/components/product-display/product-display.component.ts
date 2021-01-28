@@ -27,6 +27,7 @@ export class ProductDisplaySharedComponent implements OnInit {
   kiloOrUnit: string = "";
   size: string = "";
   productPriceStr: string;
+  productTotalPriceQuantityStr: string;
 
   isQuantityIncreased: boolean;
 
@@ -48,6 +49,12 @@ export class ProductDisplaySharedComponent implements OnInit {
     }
     // formating to two decimals and as a string
     this.productPriceStr = round(this.product.price, 2).toFixed(2);
+
+    if (this.product.quantity > 0) {
+      this.productTotalPriceQuantityStr = `S/.
+       ${round(this.product.price * this.product.quantity, 2).toFixed(2)}`;
+
+    }
 
   }
 
@@ -94,9 +101,14 @@ export class ProductDisplaySharedComponent implements OnInit {
 
     if (quantityUpdated == 0) {
       this.quantityStr = "+";
+      this.productTotalPriceQuantityStr = "";
       this.isQuantityIncreased = false;
     } else {
+      this.quantity = quantityUpdated;
       this.quantityStr = quantityUpdated.toString();
+      this.productTotalPriceQuantityStr = `S/.
+       ${round(this.product.price * quantityUpdated, 2).toFixed(2)}`;
+
       this.isQuantityIncreased = true;
     }
 

@@ -1,6 +1,6 @@
-$primary_display_font_size: 14px
-$secondary_display_font_size: 12px
-$third_display_font_size: 11px
+$primary_display_font_size: 13px
+$secondary_display_font_size: 11px
+$third_display_font_size: 10px
 
 $primary_filed_dark_color: #000000
 $primary_filed_color: #565656
@@ -22,10 +22,10 @@ $box_add_button_size: 30px
   display: grid
   margin: 0
   padding: 10px
-  grid-template-columns: 30px 0.9fr 87px 20px
+  grid-template-columns: 30px 1fr 80px 20px
   grid-gap: 0px
   grid-template-rows: 15px 15px 
-  grid-template-areas: "image cate price add" "image type price add"
+  grid-template-areas: "image cate  totPriProd  add" "image price  totPriProd add"
   background-color: white
   div:empty 
     display: none 
@@ -101,6 +101,22 @@ $box_add_button_size: 30px
 // Type of product for selecting the variety of bananas  
 .product_price_area
   grid-area: price
+  padding: 0px 5px
+  margin: 0px
+  font-size: $secondary_display_font_size
+  color: $secondary_filed_color
+  font-weight: bold
+  justify-self: left
+  border-radius: 4px
+  background: #ffffffb0
+
+  .style_price_per_unit_or_kg
+    color: $primary_filed_color
+
+
+// Total Price per product in Row View  
+.product_total_price_product_area
+  grid-area: totPriProd
   padding: 0px 5px
   margin: 0px
   font-size: $primary_display_font_size

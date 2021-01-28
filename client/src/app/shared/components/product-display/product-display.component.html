@@ -20,6 +20,24 @@
     <div class="product_category_area">
         {{product.categoryName}}</div>
 
+
+
+    <!-- ROW VIEW HARD CODE -->
+    <!-- ====================== -->
+    <div *ngIf="typeView === 'rowView'" class="product_category_area">
+        {{product.categoryName}} - {{product.varietyName}}</div>
+
+    <div *ngIf="typeView === 'rowView'" class="product_total_price_product_area">
+        {{productTotalPriceQuantityStr}}
+        <!-- <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
+                <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg"> Uni.</span> -->
+    </div>
+
+    <!-- ROW VIEW HARD CODE -->
+    <!-- ====================== -->
+
+
+
     <div *ngIf="typeView === 'maturityView' || typeView === 'seasonalView' || typeView === 'rowView'"
         class="product_price_area">
         S/.{{productPriceStr}}
@@ -27,7 +45,7 @@
         <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg"> Uni.</span>
     </div>
 
-    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView' || typeView === 'rowView'"
+    <div *ngIf="typeView === 'varietyView' || typeView === 'seasonalView'"
         class="product_variety_area">
         {{product.varietyName}}
         <!-- <span *ngIf="product.isOrganic === false">Normal</span> -->
@@ -47,7 +65,8 @@
         </ng-template>
 
         <ng-template #showAddOptions>
-            <app-add-button [isSizeAvailable]="isSizeAvailable" [isKiloUnitAvailable]="isKiloUnitAvailable"
+            <app-add-button 
+                [isSizeAvailable]="isSizeAvailable" [isKiloUnitAvailable]="isKiloUnitAvailable"
                 [size]="size" [isCartProductButtonType]="false" [isKilo]="product.isKilo" [product]="product"
                 [quantity]="quantity" (quantityUpdated)="onQuantityUpdated($event)"
                 (kiloOrUnitUpdated)="onMassUpdated($event)" (sizeUpdated)="onSizeUpdated($event)"
@@ -100,6 +119,8 @@
     <div *ngIf="typeView === 'maturityView' || typeView === 'varietyView'  " class="product_organic_add_area">
         <span *ngIf="product.isOrganic">Org.</span>
     </div>
+
+
 
 
     <div class="product_empty_top_area"></div>
