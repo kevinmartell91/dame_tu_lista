@@ -871,7 +871,7 @@ export class CartsComponent implements OnDestroy {
 
       let orderType =
         order.orderType === "delivery" ?
-          "Delivery 🛵." : "Recogo en tienda 🏪.";
+          "Delivery 🛵." : "Recojo en tienda 🏪.";
 
       orderRawTxt += `Tipo de entrega : *${orderType}*` + breakLine;
 

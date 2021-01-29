@@ -13,8 +13,6 @@ import { AuthenticationStore } from "./login/services/authentication.store";
 import { RetailerEndPoint } from './retailer/services/retailer.endpoint';
 import { RetailerStore } from './retailer/services/retailer.store';
 
-
-
 @NgModule({
     declarations: [],
     imports: [],

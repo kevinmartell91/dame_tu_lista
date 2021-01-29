@@ -20,14 +20,30 @@
 
     <ng-template #showStore>
         <div class="store_grid">
+        <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
             <div class="store_banner_area" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}">
                 <div class="store_____cart_area">
-                    <div *ngIf="currentUser" class="admin_mode_area" 
-                        (click)="goBackToRetailerAccount()">
+                    <div *ngIf="currentUser" class="admin_mode_area" (click)="goBackToRetailerAccount()">
                         <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
-                        Modo Administrador
+                        Adm.
                     </div>
 
+                    <div class="search_box_area">
+                        <form>
+    
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-label>Buscar:</mat-label>
+                                <input matInput placeholder="Sandia ... " [formControl]="control">
+                            </mat-form-field> -->
+                            <mat-form-field class="full_width" >
+                                <!-- <mat-label>Buscar</mat-label> -->
+                                <input type="text" matInput placeholder="Buscar" [formControl]="control">
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+                            <!-- <mat-icon matBadge="{{filteredProductListLength}}" matBadgeColor="warn"></mat-icon>                     -->
+    
+                        </form>
+                    </div>
 
                     <div class="cart_icon_area" (click)="viewBuyerCart()">
                         <img src="../../../../../assets/icons/shopping_cart-green-28dp.svg" alt="">
@@ -48,33 +64,14 @@
 
             <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
 
-            <div class="store_options_area">
+            <!-- <div class="store_options_area">
                 <div class="category_title_area">
-                    <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()"
-                        >Ver categorías
+                    <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Ver categorías
                     </button>
-                    <!-- <!-- <div class="season_title_area"> -->
-                    
-                </div>
-                <!-- <button mat-stroked-button color="primary"
-                (click)="goToRetailerCategoryView()" class="category_title_area">Categorías</button> -->
-                <div class="search_box_area">
-                    <form>
 
-                        <!-- <mat-form-field class="example-full-width">
-                            <mat-label>Buscar:</mat-label>
-                            <input matInput placeholder="Sandia ... " [formControl]="control">
-                        </mat-form-field> -->
-                        <mat-form-field class="full_width" appearance="outline">
-                            <mat-label>Buscar</mat-label>
-                            <input matInput placeholder="Buscar" [formControl]="control">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                        <!-- <mat-icon matBadge="{{filteredProductListLength}}" matBadgeColor="warn"></mat-icon>                     -->
-
-                    </form>
                 </div>
-            </div>
+             
+            </div> -->
 
             <div class="store_products_area">
                 <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
@@ -87,4 +84,3 @@
     </ng-template>
 
 </ng-container>
-

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { updateBuyerNavagation } from "../../helpers/buyerNavegation.helper";
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { LoginUser } from 'src/app/core/login/types/user';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { WindowScrollService } from 'src/app/features/retailer-stores/services/window-scroll.service';
 
 @Component({
   selector: 'app-store',
@@ -20,6 +21,7 @@ import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
   styleUrls: ['./store.component.sass']
 })
 export class StoreComponent implements OnDestroy {
+
 
 
   // public retailer: Retailer = new Retailer().deserialize(this.DATA); 
@@ -45,6 +47,7 @@ export class StoreComponent implements OnDestroy {
 
   currentUser: LoginUser = null;
 
+
   allProductTypes: string[] = ["🍏", "🐄", "🐑", "🐓", "🐷", "🐟"];
 
   constructor(
@@ -54,7 +57,11 @@ export class StoreComponent implements OnDestroy {
     private cartStore: CartStore,
     private readonly activedRoute: ActivatedRoute
   ) {
+
+
     this.init();
+
+   
 
     const currentUserStorage = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -165,11 +172,13 @@ export class StoreComponent implements OnDestroy {
     // let res = JSON.parse(sessionStorage.temp_session_storage).product_list.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
     console.log("filtered prod: from retailerStoreStore", this.retailerStoreStore.state.productsList.products.length);
-    console.log("filtered prod from sessionStorage" , this.filteredProductListLength);
+    console.log("filtered prod from sessionStorage", this.filteredProductListLength);
     return res;
   }
 
   private _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
+
+  
 }

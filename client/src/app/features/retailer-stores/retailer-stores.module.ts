@@ -11,6 +11,7 @@ import { MaturityProductsComponent } from './views/maturity-products/maturity-pr
 import { StoreComponent } from './views/store/store.component';
 import { VarietyProductsComponent } from './views/variety-products/variety-products.component';
 import { RowProductViewComponent } from './componentes/row-product-view/row-product-view.component';
+import { WindowScrollService } from './services/window-scroll.service';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RowProductViewComponent } from './componentes/row-product-view/row-prod
   ],
   providers: [
     RetailerEndpoint,
-    RetailerStoreStore
+    RetailerStoreStore,
+    WindowScrollService
   ]
 })
 export class RetailerStoresModule { }

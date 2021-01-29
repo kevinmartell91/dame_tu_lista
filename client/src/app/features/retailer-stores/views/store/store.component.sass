@@ -44,9 +44,9 @@ $box_container_size: 320px
   margin: 0
   padding: 0
   grid-template-columns: 1fr
-  grid-template-rows: 200px 90px 1fr 
+  grid-template-rows: 200px 15px 1fr 
   grid-gap: 0em
-  grid-template-areas: "banner" "options" "strPrd" 
+  grid-template-areas: "banner" "." "strPrd" 
   z-index: 6  
 
   .store_banner_area
@@ -63,10 +63,12 @@ $box_container_size: 320px
       display: grid
       margin: 0em
       padding 3em
-      grid-template-columns: 1fr
-      grid-template-rows: 1fr
-      grid-template-areas: "admin cart"
-      background-color: $background_banner
+      grid-template-columns: 1fr 1fr 1fr
+      grid-template-rows: 46px
+      grid-template-areas: "admin search cart"
+      background-color: black
+      position: fixed
+
 
       .admin_mode_area
         grid-area: admin
@@ -79,6 +81,27 @@ $box_container_size: 320px
         font-weight: 600
         background: #43b02a8a
         border-radius: 9px
+      
+      .search_box_area
+        grid-area: search
+        padding: 0em
+        // font-weight: 500
+        // font-size: $store_banner_options_text_size
+        // color: white
+        align-self: flex-start
+        background-color: #ffffffb0
+        border-radius: 10px
+        margin-top: 10px
+        width: 150px
+      
+        .mat-form-field
+          padding: 0em
+          // transform: translateY(10%)
+    
+        .full_width
+          width: 100%
+          margin: -12px 5px 0px 4px
+          height: 40px
 
       .cart_icon_area
         grid-area: cart
@@ -103,7 +126,7 @@ $box_container_size: 320px
       .style_store_name
         text-align: center
         margin: 0em
-        padding: .5em 0em 0em 0em
+        padding: 1.5em 0em 0em 0em
 
     .store_delivery_area
       grid-area: delivery
@@ -137,7 +160,7 @@ $box_container_size: 320px
     margin: 5px
     grid-template-columns: 1fr
     grid-template-rows: 52px
-    grid-template-areas: "categories search"
+    grid-template-areas: "categories"
     grid-gap: 0px
 
     .season_title_area
@@ -160,26 +183,26 @@ $box_container_size: 320px
       cursor: pointer
 
 
-    .search_box_area
-      grid-area: search
-      padding: 0em
-      // font-weight: 500
-      // font-size: $store_banner_options_text_size
-      // color: white
-      align-self: flex-start
-      // background-color: $background_banner
+    // .search_box_area
+    //   grid-area: search_origin
+    //   padding: 0em
+    //   // font-weight: 500
+    //   // font-size: $store_banner_options_text_size
+    //   // color: white
+    //   align-self: flex-start
+    //   // background-color: $background_banner
       
-      .mat-form-field
-        padding: 0em
-        // transform: translateY(10%)
+    //   .mat-form-field
+    //     padding: 0em
+    //     // transform: translateY(10%)
   
-      .full_width
-        width: 100%
+    //   .full_width
+    //     width: 100%
                 
 
   .store_products_area
     grid-area: strPrd
 
 
-
-    
+.material-icons
+  transform: translateY(10px)
