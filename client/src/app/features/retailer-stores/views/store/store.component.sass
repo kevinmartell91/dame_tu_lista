@@ -68,6 +68,7 @@ $box_container_size: 320px
       grid-template-areas: "admin search cart"
       background-color: black
       position: fixed
+      width: 100%
 
 
       .admin_mode_area
@@ -85,18 +86,15 @@ $box_container_size: 320px
       .search_box_area
         grid-area: search
         padding: 0em
-        // font-weight: 500
-        // font-size: $store_banner_options_text_size
-        // color: white
         align-self: flex-start
         background-color: #ffffffb0
         border-radius: 10px
         margin-top: 10px
         width: 150px
+        right: 0px
       
         .mat-form-field
           padding: 0em
-          // transform: translateY(10%)
     
         .full_width
           width: 100%

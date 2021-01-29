@@ -14,6 +14,7 @@ import { RetailerStoreStore } from '../../services/retailer.store';
 import { LoginUser } from 'src/app/core/login/types/user';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { WindowScrollService } from 'src/app/features/retailer-stores/services/window-scroll.service';
+import { removeAccents } from '../../helpers/deaccent.helper';
 
 @Component({
   selector: 'app-store',
@@ -166,7 +167,7 @@ export class StoreComponent implements OnDestroy {
 
   private _filter(value: string): Product[] {
     const filterValue = this._normalizeValue(value);
-    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
+    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._deaccent(prod.categoryName).includes(filterValue));
     // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = JSON.parse(sessionStorage.temp_session_storage).product_list.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
@@ -180,5 +181,11 @@ export class StoreComponent implements OnDestroy {
     return value.toLowerCase().replace(/\s/g, '');
   }
 
+  private _deaccent (value: string) : string {
+    let deacceted = removeAccents(value);
+    deacceted = this._normalizeValue(deacceted)
+    console.log(" deacceted :",deacceted);
+    return deacceted;
+  }
   
 }

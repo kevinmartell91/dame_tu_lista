@@ -944,7 +944,7 @@ export class CartsComponent implements OnDestroy {
     let totalPrice: string = "";
 
     if (this.currentUser) {
-      title = "🏁           *     Cotización     *          🏁" + breakLine;
+      title = "🏁           *Cotización*          🏁" + breakLine;
       subTitle = "🛒 *Lista de productos* :" + breakLine;
       totalPrice = `Total de la cotización : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
     }
