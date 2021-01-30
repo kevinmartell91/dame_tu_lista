@@ -184,7 +184,7 @@ export class StoreComponent implements OnDestroy {
   private _deaccent (value: string) : string {
     let deacceted = removeAccents(value);
     deacceted = this._normalizeValue(deacceted)
-    console.log(" deacceted :",deacceted);
+    // console.log(" deacceted :",deacceted);
     return deacceted;
   }
   

@@ -81,7 +81,8 @@ router.route('/orders')
   .post(orderController.postOrders)
   .get(orderController.getOrders);
 
-
+router.route('/delete-all-orders/:retailer_id')
+  .delete(orderController.deleteAllOrdersByReatailerId);
     
 router.route('/:retailer_store_name')
   .get(retailerController.getRetailerByStoreName);

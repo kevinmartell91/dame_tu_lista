@@ -31,17 +31,39 @@
                 <mat-expansion-panel-header>
                     <mat-panel-title class="panel_title_grid">
                         <div class="district_area">
+
                             <!-- {{order.shipping.address.district}} -->
-                            <span 
-                                *ngIf=" order.orderType == 'delivery'" 
-                                (click)="openOderDetailModal(order)">
-                                Delivery
-                            </span>
-                       
-                            <span
-                                *ngIf=" order.orderType == 'pickup'" >
-                                En tienda
-                            </span>
+
+                            <!-- <ng-container *ngIf="order.payment.method === 'sale_quote' ;
+                                then showOrderAsSaleQuote ; 
+                                else showDeliveryOrPickUpOrders ">
+                            </ng-container>
+
+                            <ng-template #showOrderAsSaleQuote>
+                                <span 
+                                    (click)="openOderDetailModal(order)">
+                                    Cotizacion
+                                </span>
+                            </ng-template>
+
+                            <ng-template #showDeliveryOrPickUpOrders> -->
+
+                                <span 
+                                    *ngIf=" order.orderType == 'sale_quote'">
+                                    Cotización
+                                </span>
+                                <span 
+                                    *ngIf=" order.orderType == 'delivery'" 
+                                    (click)="openOderDetailModal(order)">
+                                    Delivery
+                                </span>
+                           
+                                <span
+                                    *ngIf=" order.orderType == 'pickup'" >
+                                    En tienda
+                                </span>
+                            <!-- </ng-template> -->
+
                         </div>
                       
                            
@@ -92,16 +114,30 @@
 
                 <div class="product_list_grid_mobile">
                     
-                    <ng-container *ngFor="let productOrder of order.cart">
-                        
-                        <app-order-display
-                            [isOrderProductPackagedCompleted] = "order.shipping.tracking.orderStatus.length == 3 ? true : false"
-                            [order_id]="order._id"
-                            [cartProductOrder]="productOrder"
-                            (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)">
-                        </app-order-display>
-            
+                    <ng-container *ngIf="order.orderType !== 'sale_quote' ;
+                        then showProductOrder ; 
+                        else showSaleQuoteMessage ">
                     </ng-container>
+
+                    <ng-template #showProductOrder>
+                        <ng-container *ngFor="let productOrder of order.cart">
+                            <!-- [isOrderProductPackagedCompleted] = "isOrderPackagedCompleted(order.shipping.tracking.orderStatus)" -->
+
+                            <app-order-display 
+                                [isOrderProductPackagedCompleted] = "order.shipping.tracking.orderStatus.length > 3 ? true : false"
+                                [order_id]="order._id"
+                                [cartProductOrder]="productOrder"
+                                (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)">
+                            </app-order-display>
+                            
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #showSaleQuoteMessage> 
+                        <div class="style_sale_quote_message">
+                            Esta cotización es por S/.{{order.payment.amount}}. Comunícate con el comprador para que cierres el trato. 
+                        </div>    
+                    </ng-template>
+
         
                 </div>
 

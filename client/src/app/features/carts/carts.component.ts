@@ -28,6 +28,7 @@ import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { APP_CONFIG } from 'src/app/app.config';
 import { environment } from '../../../environments/environment';
 import { TemporaryStorageService, TemporaryStorageFacet } from 'src/app/core/session-storage/services/temporary-storage.service';
+import { ORDER_CONFIG } from 'src/app/core/order/order.config';
 
 @Component({
   selector: 'app-carts',
@@ -76,6 +77,8 @@ export class CartsComponent implements OnDestroy {
   subscribeRetailerStore: Subscription;
 
   temporaryStorage: TemporaryStorageFacet;
+
+  orderBD: Order = null ;
 
 
 
@@ -197,6 +200,8 @@ export class CartsComponent implements OnDestroy {
           // console.log("saleQuoteCartProduct => ", this.cartProducts);
           this.isDisable = false;
 
+          this.orderBD = res.data;
+
         } else {
           let orderUrl = this.getUrlOrderPath(this.router.url);
           // redirect to order by id
@@ -225,6 +230,7 @@ export class CartsComponent implements OnDestroy {
         // this.cartStore.setCart(this.cartProducts);
         this.totalCartPriceStr = calculateCartTotalPrice(this.cartProducts).toPrecision(3);
         this.isDisable = true;
+        this.orderBD = res.data;
       })
 
 
@@ -372,13 +378,13 @@ export class CartsComponent implements OnDestroy {
           this.order_id = localStorage.getItem("current_order_id");
           console.log("this.order_id =>>>>>>>", this.order_id);
           if (this.order_id !== null) {
-            order = this.updateOrderFromShoppingCart(this.order_id);
+            order = this.updateOrderFromShoppingCart(this.order_id, this.orderBD);
           } else {
             order = this.createInvoiceFromShoppingCart();
           }
         } else {
           if (this.order_id !== null) {
-            order = this.updateOrderFromShoppingCart(this.order_id);
+            order = this.updateOrderFromShoppingCart(this.order_id, this.orderBD);
           } else {
             order = this.createOrderFromShoppingCart();
           }
@@ -405,6 +411,7 @@ export class CartsComponent implements OnDestroy {
     });
   }
 
+  //generated_by_retailer
   createInvoiceFromShoppingCart(): Order {
 
     console.log("createInvoiceFromShoppingCart");
@@ -428,8 +435,11 @@ export class CartsComponent implements OnDestroy {
     /**
      * Populating the trackingOrder
      */
-    let trackingOrder = new TrackingOrder();
-    trackingOrder.orderStatus.push(["generated_by_retailer", new Date()]);
+    let trackingOrder = new TrackingOrder(
+      [ORDER_CONFIG.orderStatus.generated_by_retailer,
+        new Date()]
+    );
+    
     trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
     trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
@@ -509,6 +519,7 @@ export class CartsComponent implements OnDestroy {
 
   }
 
+  //generated_by_buyer
   createOrderFromShoppingCart(): Order {
 
     console.log("createOrderFromShoppingCart");
@@ -532,8 +543,10 @@ export class CartsComponent implements OnDestroy {
     /**
      * Populating the trackingOrder
      */
-    let trackingOrder = new TrackingOrder();
-    trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    let trackingOrder = new TrackingOrder(
+      [ORDER_CONFIG.orderStatus.generated_by_buyer,
+      new Date()]);
+    trackingOrder.orderStatus.push([ ORDER_CONFIG.orderStatus.updated_by_buyer, new Date()]);
     trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
     trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
@@ -620,9 +633,10 @@ export class CartsComponent implements OnDestroy {
 
   }
 
-  updateOrderFromShoppingCart(order_id: string): Order {
+  //updated_by_buyer
+  updateOrderFromShoppingCart(order_id: string, order: Order): Order {
 
-    let order = null;
+    // let order = null;
 
     /**
      * Populating the buyerOrder from this.buyer
@@ -642,8 +656,11 @@ export class CartsComponent implements OnDestroy {
     /**
      * Populating the trackingOrder
      */
-    let trackingOrder = new TrackingOrder();
-    trackingOrder.orderStatus.push(["generated_by_buyer", new Date()]);
+    let trackingOrder =  order.shipping.tracking;
+    trackingOrder.orderStatus.push(
+      [ORDER_CONFIG.orderStatus.updated_by_buyer,
+      new Date()]
+    );
     trackingOrder.driver_name = "";
     trackingOrder.trackingNumber = "";
     trackingOrder.estimatedDelivery = "Se entregará su delivery en las próximas horas. Gracias.";
@@ -675,8 +692,8 @@ export class CartsComponent implements OnDestroy {
     });
 
     // populate the order;
-    order = new Order();
-    order._id = order_id;
+    // order = new Order();
+    // order._id = order_id;
     order.retailer_id = localStorage.getItem("retailer_id");
 
     if (this.currentUser) {
@@ -688,7 +705,7 @@ export class CartsComponent implements OnDestroy {
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
 
-    console.log("updateOrderFromShoppingCart IN:", order._id);
+    console.log("updateOrderFromShoppingCart IN:", order);
 
     // place order DB
     this.orderStore.updateOrder(order).subscribe(
@@ -795,7 +812,7 @@ export class CartsComponent implements OnDestroy {
     let subTitle: string = "";
     let totalPrice: string = "";
 
-    title = "🏁         *  Nueva orden entrante  *        🏁" + breakLine;
+    title = "🏁           *Nueva orden entrante*          🏁" + breakLine;
     subTitle = "📥 *Pedido* :" + breakLine;
     totalPrice = `Total a cobrar : *S/. ${order.payment.amount.toFixed(2)}* 🤑` + breakLine;
 

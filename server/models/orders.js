@@ -93,6 +93,7 @@ var Order = mongoose.model('Order', orderSchema);
 module.exports = Order;
 
 // {generated_by_buyer: Boolean, date: Date},
+// {updated_by_buyer: Boolean, date: Date},
 // {generated_by_retailer: Boolean, date: Date},
 // {seen_by_retailer: Boolean, date: Date},
 // {packaged_by_retailer: Boolean, date: Date},

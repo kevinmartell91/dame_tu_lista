@@ -25,7 +25,7 @@
                 <div class="store_____cart_area">
                     <div *ngIf="currentUser" class="admin_mode_area" (click)="goBackToRetailerAccount()">
                         <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
-                        Adm.
+                        Admin
                     </div>
 
                     <div class="search_box_area">
@@ -46,8 +46,11 @@
                     </div>
 
                     <div class="cart_icon_area" (click)="viewBuyerCart()">
-                        <img src="../../../../../assets/icons/shopping_cart-green-28dp.svg" alt="">
-                        {{cartProductsQuantity}}
+                        <img src="../../../../../assets/icons/shopping_cart-white-36dp.svg" alt="">
+                        
+                        <div class="quantity_area">
+                            {{cartProductsQuantity}}
+                        </div>
                     </div>
                 </div>
                 <div class="store_name_area">
@@ -64,14 +67,24 @@
 
             <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
 
-            <!-- <div class="store_options_area">
+            <div class="store_options_area">
                 <div class="category_title_area">
-                    <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Ver categorías
-                    </button>
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                          <!-- <mat-icon>dialpad</mat-icon> -->
+                          <span (click)="goToRetailerCategoryView()">Categorías</span>
+                        </button>
+                      </mat-menu>
+                    <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
+                    </button> -->
 
                 </div>
              
-            </div> -->
+            </div>
 
             <div class="store_products_area">
                 <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">

@@ -17,9 +17,9 @@ import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment
   styleUrls: ['./order-list.component.sass']
 })
 export class OrderListComponent implements OnDestroy {
-   
+
   step = -1;
-  
+
   authenticationSubscription: Subscription;
   orderSubscription: Subscription;
 
@@ -45,7 +45,7 @@ export class OrderListComponent implements OnDestroy {
     let dataStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
     this.retailer_id = dataStorage.entity._id;
 
-;    this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe( 
+    ; this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe(
       y => {
         this.saveToTemporaryStorage(y);
       }
@@ -53,7 +53,7 @@ export class OrderListComponent implements OnDestroy {
 
     this.init();
 
-   }
+  }
 
   init(): void {
 
@@ -69,32 +69,32 @@ export class OrderListComponent implements OnDestroy {
 
   }
 
-  
-  onIsProductOrderCompleted( buttonIndex: string,  data: any): void{
-    
+
+  onIsProductOrderCompleted(buttonIndex: string, data: any): void {
+
     let orders = this.orderStore.state.orderListByRetailerId;
 
     orders.forEach(order => {
-      if( data.order_id == order._id) {
-        order.cart.filter( productOrder => {
-          if( productOrder._id == data.cartProductOrder_id ) {
+      if (data.order_id == order._id) {
+        order.cart.filter(productOrder => {
+          if (productOrder._id == data.cartProductOrder_id) {
             productOrder.isCheckedDone = !productOrder.isCheckedDone;
           }
-         
+
           //looping again looking if the priducts are checkDone 
-          let isAllCartProductsChecked = order.cart.every( p => p.isCheckedDone);
-          
+          let isAllCartProductsChecked = order.cart.every(p => p.isCheckedDone);
+
           let button = document.getElementById(buttonIndex);
-          
-          if(isAllCartProductsChecked){
+
+          if (isAllCartProductsChecked) {
             //enable the buttion
             button.removeAttribute('disabled');
           } else {
             //disabeling the buttion for the respective order
-            button.setAttribute('disabled','disabled');
+            button.setAttribute('disabled', 'disabled');
 
           }
-          
+
 
         })
       }
@@ -112,10 +112,10 @@ export class OrderListComponent implements OnDestroy {
     // put not patch =>time issues, It shoud be patch
     this.orderStore.updateOrder(order).subscribe(
       res => {
-        this.openSnackBar("Terminaste una órden más! 👏👏","cerrar");
+        this.openSnackBar("Terminaste una órden más! 👏👏", "cerrar");
         this.step = -1;
-        }
-      )
+      }
+    )
 
   }
 
@@ -125,70 +125,74 @@ export class OrderListComponent implements OnDestroy {
     });
 
   }
-  
+
   setStep(index: number, order: Order) {
 
     this.step = index;
-    this.setNewOrderStatus(ORDER_CONFIG.orderStatus.seen_by_retailer, order);
-    // put not patch =>time issues, It shoud be patch
-    this.orderStore.updateOrder(order).subscribe(
-      res => {
-      }
-    )
+    
+    if (order.orderType !== 'sale_quote'){
+
+      this.setNewOrderStatus(ORDER_CONFIG.orderStatus.seen_by_retailer, order);
+      // put not patch =>time issues, It shoud be patch
+      this.orderStore.updateOrder(order).subscribe(
+        res => {
+        }
+      )
+    }
 
   }
-  
+
   nextStep() {
 
     this.step++;
 
   }
-  
+
   prevStep() {
 
     this.step--;
 
   }
-  
+
   setNewOrderStatus(newOrderStatus: string, order: Order): void {
-    
+
     let orderUpdate = order.updateOrderStatus(newOrderStatus, order);
-    
+
     //set new orderState
     let orders = this.orderStore.state.orderListByRetailerId;
     orders.forEach(ele => {
-      if( ele._id == orderUpdate._id ) {
+      if (ele._id == orderUpdate._id) {
         ele = orderUpdate;
       }
     });
-    
+
     this.setNextOrderState(orders);
-    
+
   }
-  
+
   setNextOrderState(orders: Order[]): void {
 
     this.orderStore.setNewOrderState(orders);
 
   }
-  
+
   public async restoreFromTemporaryStorage(): Promise<void> {
 
     let cachedData = await this.temporaryStorage.get<any[]>();
 
     let orders: Order[] = [];
 
-    if ( cachedData ) { 
+    if (cachedData) {
 
       cachedData.forEach(elem => {
         orders.push(new Order().deserialize(elem));
       });
-    }   
-    
+    }
+
     // update cartStore with date from temporary storage
     this.orderStore.setNewOrderState(orders);
 
- 
+
   }
 
 
@@ -198,28 +202,28 @@ export class OrderListComponent implements OnDestroy {
   }
 
   getLastStatus(status: any): string {
-    let lastStatus =  status[status.length -1];
+    let lastStatus = status[status.length - 1];
     return lastStatus[0];
   }
 
   openWhatsApp(order: Order): void {
     let message = "Tu orden ya está en camino.";
-    if( order.orderType == ' pickup'){
+    if (order.orderType == ' pickup') {
       message = "Ya pudes recoger tu orden, está Lista. Te esperamos.";
     }
-    let link =`//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
-    window.location.href=link;
+    let link = `//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
+    window.location.href = link;
   }
-  
+
   openOderDetailModal(order: Order): void {
-    
+
     this.dialogRef = this.matDialog.open(OrderDetailModalComponent, {
       width: '320px',
       data: {
         order: order
       }
     });
-    
+
   }
 
   openPaymentDetailModal(order: Order): void {
@@ -230,14 +234,27 @@ export class OrderListComponent implements OnDestroy {
         order: order
       }
     });
-    
+
   }
 
   getOrderGeneratedDate(order: Order): string {
-    let date = String (new Date(order.shipping.tracking.orderStatus[0][1]));
+    let date = String(new Date(order.shipping.tracking.orderStatus[0][1]));
     let arrDate = date.split(" ");
 
     return arrDate[2] + " - " + arrDate[1] + " - " + arrDate[3];
   }
+
+
+  isOrderPackagedCompleted(order: Order): boolean {
+    const orderStatus = order.shipping.tracking.orderStatus;
+    orderStatus.forEach(ordStatus => {
+      if (ordStatus[0] == ORDER_CONFIG.orderStatus.packaged_by_retailer) {
+        console.log(ORDER_CONFIG.orderStatus.packaged_by_retailer, ordStatus[0]);
+        return true;
+      }
+    });
+    return false;
+  }
+
 
 }

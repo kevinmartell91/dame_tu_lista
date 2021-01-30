@@ -49,7 +49,7 @@
             <mat-form-field class="amount_area_witdth">
                 <input matInput disabled placeholder="Total"
                 name="amount"
-                type="tel"
+                type="text"
                 value={{amount}}>
             </mat-form-field>
 
@@ -72,10 +72,21 @@
     
             <mat-form-field class="address_full_width">
                 <mat-label>Teléfono</mat-label>
-                <input matInput disabled placeholder="Teléfono"
-                    name="buyerPhoneNumber"
-                    type="text"
-                    value={{buyerPhoneNumber}}>
+                <div fxLayout="row">
+                    <div fxLayout="colum">
+
+                        <input 
+                            matInput disabled placeholder="Teléfono"
+                            name="buyerPhoneNumber"
+                            type="tel"
+                            value="{{buyerPhoneNumber}}">
+                    </div>
+                    <div fxLayout="colum">
+
+                        <a href="tel:{{buyerPhoneNumber}}">Llamar ahora!</a>
+                    </div>
+                </div>
+
             
             </mat-form-field>
 

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-payment-modal',
@@ -18,15 +19,16 @@ export class OrderPaymentModalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private matDialogRef: MatDialogRef<OrderPaymentModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
 
   ngOnInit(): void {
-  
+
     this.paymentMethod = this.data.order.payment.method;
-    
+
     // this.orderPaymentForm = this.fb.group({
     //   buyerName: [this.data.order.shipping.buyer.name],
     //   buyerEmail: [this.data.order.shipping.buyer.email],
@@ -34,14 +36,20 @@ export class OrderPaymentModalComponent implements OnInit {
     //   amount: [((this.data.order.payment.amount) as Number).toFixed(2)]
     // });
 
-      this. buyerName =  this.data.order.shipping.buyer.name;
-      this. buyerEmail =  this.data.order.shipping.buyer.email;
-      this. buyerPhoneNumber =  this.data.order.shipping.buyer.phoneNumber;
-      this.amount =  ((this.data.order.payment.amount) as Number).toFixed(2);
+    this.buyerName = this.data.order.shipping.buyer.name;
+    this.buyerEmail = this.data.order.shipping.buyer.email;
+    this.buyerPhoneNumber = this.data.order.shipping.buyer.phoneNumber;
+    this.amount = ((this.data.order.payment.amount) as Number).toFixed(2);
   }
 
   onNoClick(): void {
     this.matDialogRef.close();
   }
+
+  // callBuyer(buyerPhoneNumber: string): void {
+  //   this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
+    
+  // }
+
 }
 

@@ -46,7 +46,7 @@ $box_container_size: 320px
   grid-template-columns: 1fr
   grid-template-rows: 200px 15px 1fr 
   grid-gap: 0em
-  grid-template-areas: "banner" "." "strPrd" 
+  grid-template-areas: "banner" "options" "strPrd" 
   z-index: 6  
 
   .store_banner_area
@@ -66,7 +66,7 @@ $box_container_size: 320px
       grid-template-columns: 1fr 1fr 1fr
       grid-template-rows: 46px
       grid-template-areas: "admin search cart"
-      background-color: black
+      background-color: #fafafafa
       position: fixed
       width: 100%
 
@@ -78,9 +78,9 @@ $box_container_size: 320px
         align-self: center
         color: white
         justify-self: self-start
-        font-size: 15px
-        font-weight: 600
-        background: #43b02a8a
+        font-size: 12px
+        font-weight: 100
+        background: #43b02b
         border-radius: 9px
       
       .search_box_area
@@ -98,22 +98,40 @@ $box_container_size: 320px
     
         .full_width
           width: 100%
-          margin: -12px 5px 0px 4px
+          margin: -9px 5px 0px 4px
           height: 40px
 
       .cart_icon_area
         grid-area: cart
         margin: 13px
-        padding: 3px 5px 3px 5px
-        font-weight: 100
-        font-size: $store_banner_options_text_size
-        color: #43b02b
+        grid-template-areas: "icon quant"
+        margin: 10px
+        padding: 6px 5px 7px 31px
+        justify-self: end
         align-self: center
-        justify-self: right
-        border-radius: 10px
-        background: #ffffff
+        border-radius: 15px
+        background-color: transparent
+        font-size: 17px
+        color: white
         cursor: pointer
+        z-index: 4 
+        
+        .cart_icon_area
+          grid-area: icon
+          margin: 6px 0px 3px -12px
+          z-index: 3
 
+
+        .quantity_area
+          grid-area: quant
+          margin: -38px -3px -4px 20px
+          border-radius: 22px
+          height: 30px
+          width: 30px
+          text-align: center
+          padding: 6px
+          background: #43b02b
+          
 
     .store_name_area
       grid-area: storeName
@@ -155,11 +173,13 @@ $box_container_size: 320px
   .store_options_area
     grid-area: options    
     display: grid
-    margin: 5px
+    margin: 0px 19px
     grid-template-columns: 1fr
-    grid-template-rows: 52px
+    grid-template-rows: 44px
     grid-template-areas: "categories"
-    grid-gap: 0px
+    // grid-gap: 0px
+    // position: fixed
+    // z-index: 4
 
     .season_title_area
       grid-area: season

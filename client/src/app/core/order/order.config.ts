@@ -33,6 +33,8 @@ export const ORDER_CONFIG = {
     },
     orderStatus: {
         generated_by_buyer: "generated_by_buyer",
+        updated_by_buyer: "updated_by_buyer",
+        generated_by_retailer: "generated_by_retailer",
         seen_by_retailer: "seen_by_retailer",
         packaged_by_retailer: "packaged_by_retailer",
         received_by_driver: "received_by_driver",
