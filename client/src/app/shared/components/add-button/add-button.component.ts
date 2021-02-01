@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ElementRef } from '@angular/core';
+import { Observable, fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-button',
@@ -15,6 +16,7 @@ export class AddButtonComponent implements OnInit {
   @Input() isKiloUnitAvailable: boolean;
   @Input() isSizeAvailable: boolean;
   @Input() quantity: number;
+  tmpQuantity: number;
   @Input() size: string;
   @Input() isCartProductButtonType: boolean = false;
   @Input() product: any;
@@ -39,12 +41,21 @@ export class AddButtonComponent implements OnInit {
 
   // increment each 0.25 kg
   surgeQuantity: number;
-
   countStr: string = "";
 
-  constructor() {
+  bodyClick$: Observable<Event> = fromEvent(document.body, 'click');
+  subscription: Subscription;
+  isFirstOpend: boolean = false;
+
+  constructor(
+    private eleRef: ElementRef,
+  ) {
+
   }
   ngOnInit(): void {
+
+
+    this.subscribeToClickObservable();
 
     this.setbuttonTypeToRender(this.isCartProductButtonType);
 
@@ -57,6 +68,27 @@ export class AddButtonComponent implements OnInit {
     if (this.count == 0)
       this.quantityUpdate('+');
 
+    this.tmpQuantity = this.quantity;
+
+
+  }
+
+  subscribeToClickObservable() {
+    this.subscription = this.bodyClick$.subscribe((event) => {
+
+      if (this.eleRef.nativeElement.contains(event.target) || !this.isFirstOpend) {
+        this.isFirstOpend = true;
+        return;
+      }
+      else {
+        this.disableQuantityMode.emit(false);
+      }
+    });
+
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   setSurgeQuantity(): void {
@@ -87,6 +119,7 @@ export class AddButtonComponent implements OnInit {
   // deactivate the quantitymode from the children component
   deactivateQuantityMode(): void {
 
+    console.log("deactivateQuantityMode");
     this.disableQuantityMode.emit(false);
 
   }

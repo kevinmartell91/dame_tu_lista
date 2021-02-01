@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ElementRef } from '@angular/core';
 import { getCartProductFromProduct, round } from 'src/app/core/cart/helpers/cart-helper';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from '../../../core/retailer/types/product';
@@ -8,7 +8,7 @@ import { Product } from '../../../core/retailer/types/product';
   templateUrl: './product-display.component.html',
   styleUrls: ['./product-display.component.sass']
 })
-export class ProductDisplaySharedComponent implements OnInit {
+export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
 
   // getting the list of product and render depending on the typeView
   @Input() typeView: string;
@@ -31,12 +31,11 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   isQuantityIncreased: boolean;
 
-  constructor() {
-
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
+
+
     if (this.product.quantity) {
 
       this.quantityStr = this.product.quantity.toString();
@@ -57,6 +56,9 @@ export class ProductDisplaySharedComponent implements OnInit {
     }
 
   }
+  ngOnDestroy() {
+
+  }
 
   isKilo(): boolean {
     return this.product.isKilo;
@@ -67,7 +69,6 @@ export class ProductDisplaySharedComponent implements OnInit {
     this.selected.emit(this.product)
 
   }
-
 
   getGridView(): string {
 
@@ -140,6 +141,7 @@ export class ProductDisplaySharedComponent implements OnInit {
 
   onDisableQuantityMode(disable: boolean): void {
 
+    // console.log("this.isQuantityMode = disable;", disable);
     this.isQuantityMode = disable;
 
   }

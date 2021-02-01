@@ -29,10 +29,8 @@ export class RetailerStoresComponent implements OnDestroy {
     private retailerStoreStore: RetailerStoreStore
   ) {
 
+    console.log("RetailerStoresComponent");
     this.temporaryStorage = this.temporaryStorageService.forKey("product_list");
-
-
-
 
 
     this.init();

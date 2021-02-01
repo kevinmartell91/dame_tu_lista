@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from "./core/buyer/buyer.config";
@@ -14,12 +14,14 @@ import { TemporaryStorageFacet, TemporaryStorageService } from './core/session-s
 import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
 import { BuyerNavegation } from './core/buyer/types/buyer-navegation';
 import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
+import { every } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Dame tu lista';
   loginUser: LoginUser = null;
@@ -44,7 +46,6 @@ export class AppComponent implements OnInit, OnDestroy {
     retailer
   };
 
-
   navegation: {
     accountView,
     storeView,
@@ -56,22 +57,25 @@ export class AppComponent implements OnInit, OnDestroy {
     placedOrderView
   };
 
+  
+
   constructor(
     private router: Router,
     private authenticationStore: AuthenticationStore,
     public buyerNavegationStore: BuyerNavegationStore,
     private location: Location,
     public cartStore: CartStore,
+    private eleRef: ElementRef,
     private temporaryStorageService: TemporaryStorageService,
     private readonly activatedRoute: ActivatedRoute
   ) {
 
     // this.retailerStoreStore.getAirTabeDATA();
-    
+
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_product_list");
 
     this.initializeNavegationValues();
-    
+
 
     this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
       y => {
@@ -98,7 +102,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
+  onBodyClick = (event) => {
+    // console.log("added onBodyClick - APP", event.target, this.eleRef);
+  }
+
   ngOnInit(): void {
+     document.body.addEventListener('click', this.onBodyClick);
 
     //first we restore data form storage then subscribe works
     this.restoreFromTemporaryStorage();
@@ -130,6 +139,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cartStoreSubcription.unsubscribe();
     this.favoriteRetailerSubcription.unsubscribe();
     this.buyerNavegationSubscription.unsubscribe();
+
+    document.body.removeEventListener('click', this.onBodyClick);
   }
 
   initializeNavegationValues(): void {
@@ -166,7 +177,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigate([localStorage.getItem("retailer_store_name")])
   }
 
-  goBackLocation():void {
+  goBackLocation(): void {
     this.location.back();
   }
 
