@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit,AfterContentInit, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
@@ -50,6 +50,8 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
    }
     
   ngOnInit(): void {
+    // window.location.reload();
+
 
     this.subscription = this.activatedRoute.paramMap.subscribe( params => {
       this.retailer_id = params.get('retailer_id');
@@ -59,7 +61,12 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     })
 
   }
-
+  ngDoCheck(){
+    console.log("do check");
+  }
+  ngAfterContentInit(){
+    console.log("after content init");
+  }
   /**
    *  By unsubscribing, It prevents memory leak
    */
@@ -102,8 +109,11 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     variety: string, 
     products: Product[]
   ): Product[] {
+    // return filterProductsByMaturity(category, variety, this.isOrganic, products);
     
-    return filterProductsByMaturity(category, variety, this.isOrganic, products);
+    this.retailerStoreStore.updateProductsFromSessionStorage();
+    return filterProductsByMaturity(category, variety, this.isOrganic,
+      this.retailerStoreStore.state.productsList.products);
 
   }
   

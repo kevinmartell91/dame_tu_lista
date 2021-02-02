@@ -66,9 +66,10 @@ $box_container_size: 320px
       grid-template-columns: 1fr 1fr 70px
       grid-template-rows: 46px
       grid-template-areas: "admin search cart"
-      background-color: #fafafafa
+      background-color: #eeececfa
       position: fixed
       width: 100%
+      // border-bottom: 1px #c2c2c2 solid
 
 
       .admin_mode_area
@@ -83,15 +84,32 @@ $box_container_size: 320px
         background: #43b02b
         border-radius: 9px
       
+      .buyer_mode_area
+        grid-area: admin
+        margin: 9px
+        padding: 12px 5px 3px 0px
+        align-self: center
+        color: #43b029
+        justify-self: self-start
+        font-weight: 100
+        background: #eeececfa
+        border-radius: 9px
+      
       .search_box_area
         grid-area: search
         padding: 0em
         align-self: flex-start
-        background-color: #ffffffb0
+        // background-color: #ffffffb0
         border-radius: 10px
         margin-top: 10px
         width: 150px
         right: 0px
+
+        .search-icon-right
+          position: absolute
+          right: 50px
+          margin: -4px -0px 08px 0px
+          
       
         .mat-form-field
           padding: 0em

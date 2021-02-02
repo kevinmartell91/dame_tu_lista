@@ -99,9 +99,7 @@ export class RetailerStoresComponent implements OnDestroy {
 
       // console.log("payloadProducts",payloadProducts);
       // update cartStore with date from temporary storage
-      this.retailerStoreStore.updateProductsFromSessionStorage(payloadProducts);
-      console.log("LOG => Retailer-Store - restoreBuyerSelectedProductsFromTemporaryStorage DONE");
-
+      this.retailerStoreStore._updateProductsFromSessionStorage(payloadProducts);
     }
 
   }

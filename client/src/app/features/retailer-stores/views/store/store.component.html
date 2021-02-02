@@ -20,34 +20,59 @@
 
     <ng-template #showStore>
         <div class="store_grid">
-        <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
+            <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
             <div class="store_banner_area" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}">
                 <div class="store_____cart_area">
-                    <div *ngIf="currentUser" class="admin_mode_area" (click)="goBackToRetailerAccount()">
-                        <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
-                        Admin
-                    </div>
 
-                    <div class="search_box_area">
-                        <form>
+                    <ng-container *ngIf="currentUser ; 
+                        then showAdminButton ; 
+                        else showDtlLogo">
+                    </ng-container>
+
+                    <ng-template #showAdminButton>
+                        <div *ngIf="currentUser" class="admin_mode_area" (click)="goBackToRetailerAccount()">
+                            <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
+                            Admin
+                        </div>
+
+                    </ng-template>
+                    <ng-template #showDtlLogo>
+                        <div class="buyer_mode_area">
+                            <span> 🍒 Dame tu lista</span>
+                        </div>
+
+                    </ng-template>
+
+
+                    <div  class="search_box_area">
+                        <!-- <mat-icon *ngIf="!isSearchBoxOpen" 
+                        (click)="openSeachBox()" class="search-icon-right" matSuffix>search</mat-icon> -->
+                        <!-- https://codepen.io/912lab/pen/LsplC -->
+                        <ng-container *ngIf="isSearchBoxOpen ; then showForm"></ng-container>
+                        <ng-template #showForm>
+                            <form >
+
+                                <mat-form-field class="full_width">
+                                    <!-- <mat-label>Buscar</mat-label> -->
+                                    <input type="text" matInput placeholder="" [formControl]="control"
+                                        [matAutocomplete]="auto">
+                                    <mat-icon  matSuffix>search</mat-icon>
+                                </mat-form-field>
     
-                            <!-- <mat-form-field class="example-full-width">
-                                <mat-label>Buscar:</mat-label>
-                                <input matInput placeholder="Sandia ... " [formControl]="control">
-                            </mat-form-field> -->
-                            <mat-form-field class="full_width" >
-                                <!-- <mat-label>Buscar</mat-label> -->
-                                <input type="text" matInput placeholder="Buscar" [formControl]="control">
-                                <mat-icon matSuffix>search</mat-icon>
-                            </mat-form-field>
-                            <!-- <mat-icon matBadge="{{filteredProductListLength}}" matBadgeColor="warn"></mat-icon>                     -->
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let product of filteredProductsList$ | async"
+                                        [value]="deaccentSelectedSearcTerm(product)">
+                                        {{product.categoryName}} - {{ product.varietyName}}
+                                    </mat-option>
+                                </mat-autocomplete>
     
-                        </form>
+                            </form>
+                        </ng-template>
                     </div>
 
                     <div class="cart_icon_area" (click)="viewBuyerCart()">
                         <img src="../../../../../assets/icons/shopping_cart-white-36dp.svg" alt="">
-                        
+
                         <div class="quantity_area">
                             {{cartProductsQuantity}}
                         </div>
@@ -72,18 +97,18 @@
 
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
-                      </button>
-                      <mat-menu #menu="matMenu">
+                    </button>
+                    <mat-menu #menu="matMenu">
                         <button mat-menu-item>
-                          <!-- <mat-icon>dialpad</mat-icon> -->
-                          <span (click)="goToRetailerCategoryView()">Categorías</span>
+                            <!-- <mat-icon>dialpad</mat-icon> -->
+                            <span (click)="goToRetailerCategoryView()">Categorías</span>
                         </button>
-                      </mat-menu>
+                    </mat-menu>
                     <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
                     </button> -->
 
                 </div>
-             
+
             </div>
 
             <div class="store_products_area">

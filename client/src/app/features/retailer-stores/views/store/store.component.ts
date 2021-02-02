@@ -1,7 +1,7 @@
 import { Component, OnDestroy, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
@@ -45,11 +45,14 @@ export class StoreComponent implements OnDestroy {
   stateRetailer: Retailer = null;
 
   control = new FormControl();
-
+  isSearchBoxOpen: boolean = true;
   currentUser: LoginUser = null;
 
 
   allProductTypes: string[] = ["🍏", "🐄", "🐑", "🐓", "🐷", "🐟"];
+
+  timerId: any;
+
 
   constructor(
     private router: Router,
@@ -62,7 +65,7 @@ export class StoreComponent implements OnDestroy {
 
     this.init();
 
-   
+
 
     const currentUserStorage = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -105,7 +108,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       products => {
-        // console.log("subscriptionRetailerStore- products KEVIN",products);
+        console.log("subscriptionRetailerStore- products KEVIN", products);
         this.productsList = products;
         // console.log("FORM SESSION STORAGE", this.productsList);
         // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
@@ -115,7 +118,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscription = this.cartStore.shoppingCart$.subscribe(
       x => {
-        // console.log("This.cartStore.shoppingCart$.products", x.products);
+        console.log("This.cartStore.shoppingCart$.products", x.products);
         this.cartProductsQuantity = x.products.length;
       }
     );
@@ -132,6 +135,8 @@ export class StoreComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+
+    clearTimeout(this.timerId);
     this.subscription.unsubscribe();
     this.subscriptionStoreState.unsubscribe();
     this.subscriptionStoreName.unsubscribe();
@@ -166,8 +171,14 @@ export class StoreComponent implements OnDestroy {
 
 
   private _filter(value: string): Product[] {
+
     const filterValue = this._normalizeValue(value);
-    let res = this.retailerStoreStore.state.productsList.products.filter(prod => this._deaccent(prod.categoryName).includes(filterValue));
+    this.retailerStoreStore.updateProductsFromSessionStorage();
+    let res = this.retailerStoreStore.state.productsList.products
+      .filter(prod =>
+        this._deaccent(prod.categoryName + prod.varietyName)
+          .includes(this._deaccent(filterValue))
+      );
     // let res = this.stateProductsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = JSON.parse(sessionStorage.temp_session_storage).product_list.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
@@ -181,11 +192,18 @@ export class StoreComponent implements OnDestroy {
     return value.toLowerCase().replace(/\s/g, '');
   }
 
-  private _deaccent (value: string) : string {
+  private _deaccent(value: string): string {
     let deacceted = removeAccents(value);
     deacceted = this._normalizeValue(deacceted)
     // console.log(" deacceted :",deacceted);
     return deacceted;
   }
-  
+  public deaccentSelectedSearcTerm(product: Product) {
+    return `${product.categoryName} - ${product.varietyName}`;
+  }
+
+  public openSeachBox() {
+    console.log("openSeachBox");
+    this.isSearchBoxOpen = !this.isSearchBoxOpen;
+  }
 }

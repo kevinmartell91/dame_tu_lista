@@ -30,7 +30,7 @@ export class CartStore extends Store<CartStoreState> {
                 products: newCart
             }
         })
-        console.log("setCart(newCart: CartProduct[]): void ", newCart);
+        console.log("CartStore - setCart(newCart: CartProduct[]): void ", newCart);
     }
 
     setFavoriteRetalerSelected(retailer: Retailer): void {

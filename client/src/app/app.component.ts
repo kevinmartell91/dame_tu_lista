@@ -67,6 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public cartStore: CartStore,
     private eleRef: ElementRef,
     private temporaryStorageService: TemporaryStorageService,
+    private retailerStoreStore: RetailerStoreStore,
     private readonly activatedRoute: ActivatedRoute
   ) {
 
@@ -107,6 +108,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log("ngOnInit");
+
      document.body.addEventListener('click', this.onBodyClick);
 
     //first we restore data form storage then subscribe works
@@ -120,6 +123,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.cartProducts = y.products;
         this.cartProductsQuantity = y.products.length;
         // this.handleSaveTemporaryStorage(y.products);
+        console.log("cartStoreSubcription");
         this.saveToTemporaryStorage(y.products);
 
       }
@@ -178,7 +182,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   goBackLocation(): void {
-    this.location.back();
+      this.location.back();
   }
 
   public async restoreFromTemporaryStorage(): Promise<void> {
@@ -190,11 +194,11 @@ export class AppComponent implements OnInit, OnDestroy {
     // console.log("CacheData:", cachedData);
     if (cachedData) {
 
-
       cachedData.forEach(elem => {
         cartProducts.push(new CartProduct().deserialize(elem));
       });
       // update cartStore with date from temporary storage
+      console.log("restoreFromTemporaryStorage");
       this.cartStore.setCart(cartProducts);
 
       // retrieve favoriteRetailer
