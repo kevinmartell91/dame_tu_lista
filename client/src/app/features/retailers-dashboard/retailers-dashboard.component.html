@@ -25,9 +25,9 @@
           <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
           <a mat-list-item [routerLink]="['cuenta']">Cuenta</a>
           <a mat-list-item [routerLink]="['ordenes']">Órdenes</a>
-          <a mat-list-item (click)="goToRetailerStore()">Tu tienda</a>
+          <a mat-list-item (click)="goToRetailerStore()">Mi tienda</a>
+          <a mat-list-item [routerLink]="['productos']">Editar productos</a>
           <a mat-list-item (click)="logout()">Cerrar sesión</a>
-          <!-- <a mat-list-item [routerLink]="['productos']">Productos</a> -->
         </mat-nav-list>
       </mat-sidenav>
   

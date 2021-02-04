@@ -140,16 +140,20 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
     public updateProductsFromSessionStorage() {
 
+        console.log("updateProductsFromSessionStorage");
         // restoreBuyerSelectedProductsFromTemporaryStorage()
         const chacheData = sessionStorage.temp_session_storage;
 
+        if (!JSON.parse(chacheData).product_list) return;
+
         const memCashedProd: Product[] =
             JSON.parse(chacheData).product_list;
+
         const memCashedCartProd: CartProduct[] =
             JSON.parse(chacheData).cart_product_list;
         console.log("restored Buyer Selected Products From Temporary Storage :", "memCashedProd.length", memCashedProd.length, "memCashedCartProd.length", memCashedCartProd.length);
         // if (chacheData && memCashedProd.length > 0 && memCashedCartProd.length > 0) {
-        if (chacheData && this.state.productsList.products.length > 0 && memCashedCartProd.length > 0) {
+        if (chacheData && memCashedProd && this.state.productsList.products.length > 0 && memCashedCartProd.length > 0) {
 
             // ETL of memCashed to Product data type
             const payloadProducts: Product[] =
@@ -161,7 +165,11 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             // update products STORE with cart product
             this._updateProductsFromSessionStorage(payloadProducts);
             console.log("RetailerStoreStore - restoreBuyerSelectedProductsFromTemporaryStorage");
+        } else {
+            console.log('RETURN');
+            return;
         }
+
     }
 
     public _updateProductsFromSessionStorage(cachedProducts: Product[]) {

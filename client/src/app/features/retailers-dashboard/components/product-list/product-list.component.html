@@ -1,1 +1,212 @@
-<p>Sitio web en constructión</p>
+<!-- <iframe class="airtable-embed" src="https://airtable.com/embed/shrx3P6upQ1KURDKx?backgroundColor=green" frameborder="0" onmousewheel="" width="100%" height="100%" style="background: transparent; border: 1px solid #ccc;"></iframe> -->
+
+<button (click)="saveProductAllAtOnce()" mat-button color="primary">Guardar todos los cambios</button>
+<table >
+    <tr>
+        <th>Imágen</th>
+        <th>Categoria</th>
+        <th>Imágen</th>
+        <th>Varidad</th>
+        <th>Moneda</th>
+        <th>Precio</th>
+        <th>Pequeño</th>
+        <th>Mediano</th>
+        <th>Grande</th>
+        <th>Kg?</th>
+        <th>Uni?</th>
+        <th>Orgánico?</th>
+        <th>Temporada?</th>
+        <th>Det. Madures</th>
+        <th>Imágen</th>
+        <th>Madurez</th>
+        <!-- <th>maturityInfo</th> -->
+        <th>Comer en</th>
+        <th>Durara</th>
+        <th>Disponible</th>
+    </tr>
+    <tr  *ngFor="let product of products; index as index">
+        <td>
+            <editable (update)="updateField(index, 'categoryImageUrl')">
+                <ng-template viewMode><img class="product_image" [src]="product.categoryImageUrl" alt=""></ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'categoryImageUrl')">
+                </ng-template>
+            </editable>
+        </td>
+        <td >
+
+            <editable (update)="updateField(index, 'categoryName')">
+                <ng-template viewMode>{{product.categoryName}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'categoryName')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'varietyImageUrl')">
+                <ng-template viewMode><img class="product_image" [src]="product.varietyImageUrl" alt=""></ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'varietyImageUrl')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'varietyName')">
+                <ng-template viewMode>{{product.varietyName}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'varietyName')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'currency')">
+                <ng-template viewMode>{{product.currency}}</ng-template>
+                <!-- <ng-template viewMode>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Favorite food</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </ng-template> -->
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'currency')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'price')">
+                <ng-template viewMode>{{product.price}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'price')">
+                </ng-template>
+            </editable>
+        </td>
+
+        <!-- ===================== -->
+
+        <td>
+            <editable (update)="updateField(index, 'isSmallSize')">
+                <ng-template viewMode>{{product.isSmallSize? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isSmallSize')">
+                    <!-- <mat-checkbox class="example-margin" [formControl]="getControl(index, 'isSmallSize')"></mat-checkbox> -->
+
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isMediumSize')">
+                <ng-template viewMode>{{product.isMediumSize? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isMediumSize')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isBigSize')">
+                <ng-template viewMode>{{product.isBigSize? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isBigSize')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isKilo')">
+                <ng-template viewMode>{{product.isKilo? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isKilo')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isUnit')">
+                <ng-template viewMode>{{product.isUnit? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isUnit')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isOrganic')">
+                <ng-template viewMode>{{product.isOrganic? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isOrganic')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isSeasonal')">
+                <ng-template viewMode>{{product.isSeasonal? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isSeasonal')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'isMaturityDetails')">
+                <ng-template viewMode>{{product.isMaturityDetails? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox"
+                        [formControl]="getControl(index, 'isMaturityDetails')">
+                </ng-template>
+            </editable>
+        </td>
+
+        <!-- ===================== -->
+
+
+        <td>
+            <editable (update)="updateField(index, 'maturityImageUrl')">
+                <ng-template viewMode><img class="product_image" [src]="product.maturityImageUrl" alt=""></ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'maturityImageUrl')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'maturityName')">
+                <ng-template viewMode>{{product.maturityName}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'maturityName')">
+                </ng-template>
+            </editable>
+        </td>
+            <!-- <td>
+            <editable (update)="updateField(index, 'maturityInfo')">
+                <ng-template viewMode>{{product.maturityInfo}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'maturityInfo')">
+                </ng-template>
+            </editable>
+        </td> -->
+        <td>
+            <editable (update)="updateField(index, 'maturityEatIn')">
+                <ng-template viewMode>{{product.maturityEatIn}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'maturityEatIn')">
+                </ng-template>
+            </editable>
+        </td>
+        <td>
+            <editable (update)="updateField(index, 'maturityLastFor')">
+                <ng-template viewMode>{{product.maturityLastFor}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter [formControl]="getControl(index, 'maturityLastFor')">
+                </ng-template>
+            </editable>
+        </td>
+
+
+        <td>
+            <editable (update)="updateField(index, 'isInStock')">
+                <ng-template viewMode>{{product.isInStock? "✅": "⬜"}}</ng-template>
+                <ng-template editMode>
+                    <input editableOnEnter type="checkbox" [formControl]="getControl(index, 'isInStock')">
+                </ng-template>
+            </editable>
+        </td>
+    </tr>
+</table>

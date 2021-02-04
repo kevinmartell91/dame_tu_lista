@@ -330,6 +330,7 @@ exports.putRetailerProductList = function(req, res) {
   
   let id = req.params.retailer_id;
   Retailer.findById(id, function(err, retailer) {
+    console.log("RETAILER => ", req.body.productsList);
     
     if(err) 
       return res.status(500).send(err);
