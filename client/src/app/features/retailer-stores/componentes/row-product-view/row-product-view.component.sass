@@ -19,7 +19,21 @@ $product_contianer_max_size: 1fr
   grid-template-rows: 0.4fr
   grid-gap: 14px
   // background-color:  #bee4b6
+.container
+  opacity: 1
+  transition: opacity 0.4s ease 0s
+  width: 300px
+  height: 18px
+  position: relative
+  overflow: hidden
 
-.style_empty_message
-  text-align: center
-  align-self: center
+  .obsolute_relative
+    position: absolute
+    
+
+    .style_empty_message
+      text-align: center
+      align-self: center
+      transform: translateX(-1440px)
+      transition: transform 36s linear 0s
+      white-space: nowrap
