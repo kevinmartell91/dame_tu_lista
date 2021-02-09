@@ -4,36 +4,39 @@
 
             <mat-form-field class="style-new-name">
                 <mat-label>Producto</mat-label>
-                <input matInput placeholder="Manzanas" formControlName="name">
+                <input #myInputProduct matInput placeholder="Ej. 1kg Uva" formControlName="name"  >
             </mat-form-field>
 
             <mat-form-field class="style-new-price">
                 <mat-label>Precio</mat-label>
                 <span matPrefix>S/. &nbsp;</span>
-                <input type="number" matInput placeholder="13.50" formControlName="price">
+                <input type="number" matInput placeholder="Ej. 3.50" formControlName="price" cdkFocusInitial>
                 <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
             </mat-form-field>
             <!-- <div class="example-button-container"> -->
-            <button (click)="addProduct(newProductForm.value)" class="style-add-button" mat-mini-fab color="primay"
-                [disabled]="!newProductForm.valid" cdkFocusInitial>
+            <button 
+                (click)="addProduct(newProductForm.value)" 
+                class="style-add-button" 
+                mat-fab color="primary"
+                [disabled]="!newProductForm.valid" cdkFocusRegionEnd>
                 <mat-icon>add</mat-icon>
             </button>
             <!-- </div> -->
         </form>
     </div>
-    <div class="product-list">
-        <table>
-            <!-- <tr>
-                <th>Eliminar</th>
-                <th>Nombre producto</th>
-                <th>Precio</th>
-            </tr> -->
+    <div class="bill-list">
+        <table >
+            <tr>
+                <th>Opc.</th>
+                <th>Producto</th>
+                <th>S/.</th>
+            </tr>
 
             <tr *ngFor="let product of productList; index as index">
 
                 <td>
                     <div>
-                        <img (click)="deleteProduct(product.id)" src="../../../assets/icons/delete-15dp.svg" alt="">
+                        <img (click)="deleteProduct(product.id)" src="../../../assets/icons/delete-22dp.svg" alt="">
 
                     </div>
                 </td>
@@ -42,7 +45,8 @@
                     <editable (update)="updateField(product.id, 'name')">
                         <ng-template viewMode> {{product.name}}</ng-template>
                         <ng-template editMode>
-                            <textarea editableOnEnter class="style-name" [formControl]="getControl(product.id, 'name')">
+                            <!-- <input editableOnEnter class="style-edit-name" [formControl]="getControl(product.id, 'name')"> -->
+                            <textarea editableOnEnter class="style-edit-name" [formControl]="getControl(product.id, 'name')">
                             </textarea>
                         </ng-template>
                     </editable>
@@ -52,7 +56,8 @@
                     <editable (update)="updateField(product.id, 'price')">
                         <ng-template viewMode> {{product.price}}</ng-template>
                         <ng-template editMode>
-                            <input editableOnEnter class="style-price" [formControl]="getControl(product.id, 'price')">
+                            <input type="number" editableOnEnter class="style-edit-price"
+                                [formControl]="getControl(product.id, 'price')">
                         </ng-template>
                     </editable>
                 </td>
@@ -61,7 +66,7 @@
         </table>
     </div>
     <div>
-        <button (click)="sendBill()" class="send-button">
+        <button (click)="openPhoneNumberModal()" class="send-button">
             <mat-icon class="icon">send</mat-icon>
             Whatsapp
             <button class="style_total_price_button">{{getTotalPrice()}}</button>

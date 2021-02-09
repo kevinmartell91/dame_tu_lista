@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, AbstractControl, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectPaymentMethodComponent } from '../carts/components/select-payment-method/select-payment-method.component';
 
 interface IProduct {
   id: string,
@@ -22,23 +24,12 @@ export class SendFreeBillComponent implements OnInit {
   newProductForm: FormGroup;
   strTotalPrice: string;
 
-
   productList: IProduct[] = [];
-  // productList: IProduct[] = [
-  //   { id: "1", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "2", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "3", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "4", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "5", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "6", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "8", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "9", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "10", name: "Mazanas rojas chilenas", price: "10.80" },
-  //   { id: "11", name: "Peras", price: "7.80" }
-  // ]
+  dialogRef: any;
 
   constructor(
     private fb: FormBuilder,
+    private matDialog: MatDialog,
     private buyerNavegationStore: BuyerNavegationStore
   ) { }
 
@@ -64,10 +55,15 @@ export class SendFreeBillComponent implements OnInit {
     this.controls = new FormArray(toGroups);
   }
 
+  @ViewChild("myInputProduct") inputProductField: ElementRef;
+  ngAfterViewInit() {
+    this.inputProductField.nativeElement.focus();
+  }
+
   getControl(id: string, field: string): AbstractControl {
-    const absCtrl = this.controls.controls.find(crtl => {
-      if (crtl.value.id === id) {
-        return crtl;
+    const absCtrl = this.controls.controls.find(ctrl => {
+      if (ctrl.value.id === id) {
+        return ctrl;
       }
     })
     return absCtrl.get(field);
@@ -83,6 +79,7 @@ export class SendFreeBillComponent implements OnInit {
         if (id === prod.id.toString()) {
           return {
             ...prod,
+            // [field]: control.value
             [field]: isPrice ? (+control.value).toFixed(2) : control.value
           }
         }
@@ -108,6 +105,7 @@ export class SendFreeBillComponent implements OnInit {
     this.controls.push(newControl);
 
     this.newProductForm.reset();
+    this.inputProductField.nativeElement.focus();
 
   }
 
@@ -119,11 +117,12 @@ export class SendFreeBillComponent implements OnInit {
     });
   }
 
-  sendBill() {
+  sendBillTo(phoneNumber:  string): void {
+
     const listRawText = this.transformProductToRawText(this.productList);
     console.log(listRawText);
+    this.sendViaWhatsApp(listRawText, phoneNumber);
 
-    this.sendViaWhatsApp(listRawText, "+51996821980");
   }
 
   getTotalPrice(): string {
@@ -144,46 +143,40 @@ export class SendFreeBillComponent implements OnInit {
     let totalPrice: string = "";
 
     title = "🏁       *www.dametulista.com*       🏁" + breakLine;
-    subTitle = "📥 *Boleta* :" + breakLine;
+    subTitle = "📝 *Boleta* :" + breakLine;
     totalPrice = `Total: *S/. ${this.getTotalPrice()}* 🤑` + breakLine;
 
     orderRawTxt += breakLine;
     orderRawTxt += breakLine;
     orderRawTxt += title;
     orderRawTxt += breakLine;
-    
+
     orderRawTxt += subTitle;
     orderRawTxt += breakLine;
     orderRawTxt += "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
-    orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
 
     productList.forEach(product => {
 
-      orderRawTxt += breakLine +
+      orderRawTxt += 
 
         this.formatProductNameTo20Characters(
           product.name
         ) + tab + tab +
 
-        "S/." + (+product.price).toFixed(2)
-    })
+        "S/." + (+product.price).toFixed(2) +
 
-    orderRawTxt += breakLine;
-    orderRawTxt += breakLine;
-    // [7:29 PM, 9/25/2020] Kevin Martell: 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
-    // [7:30 PM, 9/25/2020] Kevin Martell: 📦✏️📝📌🛒
-    orderRawTxt += "📝 *Detalles* :" + breakLine;
-    orderRawTxt += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + breakLine;
+        breakLine
+    })
 
     orderRawTxt += breakLine;
 
     orderRawTxt += totalPrice;
 
     orderRawTxt += breakLine;
-    
+
     orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
     orderRawTxt += breakLine;
-    
+
     return orderRawTxt;
   }
 
@@ -221,5 +214,21 @@ export class SendFreeBillComponent implements OnInit {
       emptyStr += " .";
     }
     return emptyStr;
+  }
+
+  openPhoneNumberModal(): void {
+    this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
+      width: '420px',
+      data: {
+        isFreeBill : true
+      }
+    });
+
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (result != undefined) {
+        this.sendBillTo("+51" + result.phoneNumber);
+      }
+    });
+    
   }
 }

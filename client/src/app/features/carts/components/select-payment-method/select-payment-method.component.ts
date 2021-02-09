@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { RetailerStoreStore } from 'src/app/features/retailer-stores/services/retailer.store';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,8 @@ export class SelectPaymentMethodComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private retailerStoreStore: RetailerStoreStore,
-    private matDialogRef: MatDialogRef<SelectPaymentMethodComponent>
+    private matDialogRef: MatDialogRef<SelectPaymentMethodComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
     this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
@@ -52,7 +53,7 @@ export class SelectPaymentMethodComponent implements OnInit {
     this.paymenytForm = this.fb.group({
       // by default set to upon_delivery_cash
       // works for buyer ans seller
-      paymentMethod: [this.currentUser ? this.saleQuoteType : '', Validators.required],
+      paymentMethod: [this.currentUser ? this.saleQuoteType : ' ', Validators.required],
       // phoneNumber: ["+51" + this.phoneNumber, Validators.required]
       phoneNumber: [this.phoneNumber, Validators.required]
     })

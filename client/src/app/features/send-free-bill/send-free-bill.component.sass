@@ -8,7 +8,10 @@
   .add-product
     flex-wrap: nowrap
     align-items: center
-    width: 78%
+    padding: 30px 45px 0px 12px
+    position: fixed
+    background: white
+    transform: translate(0px, -35px)
 
   .style_total_price_button
     position: fixed
@@ -19,6 +22,10 @@
     border-radius: 6px
     border: 5px solid #328221
     background: #328221
+    
+  .bill-list
+    padding-top: 95px
+    margin: 0px 6px 0px 6px 
 
 .send-button
   position: fixed
@@ -36,29 +43,51 @@
 .style-new-name
   margin: 5px
   width: 50%
+  font-size: 22px
 
 .style-new-price
   margin: 5px
-  width: 40%
+  width: 38%
+  font-size: 22px
 
 .style-add-button
   position: absolute
-  transform: translate3d(-32px, 11px, 0px)
-  color: green
+  transform: translate3d(-6px, 16px, 0px)
+  // color: #43b02b
 
+// table
+//   background: red
+//   border-radius: 4px 
+
+//   tr
+//     background: #efefef
+//     border-radius: 10px
 td 
-  padding-right: 17px
+  padding: 12px
   align-items: center
+  background: #efefef
+  border-radius: 10px
 
   .mat-icon 
   //   transform: translate3d(-20px, 5px, 0px)
 
 .style-name
-  width: 140px
-  max-width: 160px
+  width: 270px
+  max-width: 100%
+  font-size: 18px
+  .style-edit-name
+    font-size: 20px
+    border: none
 
 .style-price
-  width: 70px 
+  width: 80px
+  max-width: 80px
+  font-size: 17px 
+
+  .style-edit-price
+    width: 63px
+    font-size: 21px
+    border: none
   
 .icon
   transform: translate3d(-34px, 5px, 0px)

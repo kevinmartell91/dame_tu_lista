@@ -346,7 +346,10 @@ export class CartsComponent implements OnDestroy {
 
   openAddPayMethodModal(): void {
     this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
-      width: '420px'
+      width: '420px',
+      data: {
+        isFreeBill: false
+      }
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
