@@ -55,6 +55,8 @@ import { AddButtonComponent } from './components/add-button/add-button.component
 // import 'hammerjs';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductDisplaySharedComponent } from './components/product-display/product-display.component';
+import { EditableTableComponent } from './components/editable-table/editable-table.component';
+import { EditModeDirective, EditableOnEnterDirective, ViewModeDirective } from './directives/edit-in-place';
 
 
 
@@ -111,6 +113,10 @@ const EXPORTED_DECLARATIONS = [
 	ModalComponent,
 	AddButtonComponent,
 	ProductDisplaySharedComponent,
+	ViewModeDirective,
+    EditModeDirective,
+    EditableOnEnterDirective,
+    EditableTableComponent
   ],
   imports: [
   	CommonModule,
@@ -128,6 +134,10 @@ const EXPORTED_DECLARATIONS = [
 	HttpClientModule,
 	AddButtonComponent,
 	ProductDisplaySharedComponent,
+	ViewModeDirective,
+    EditModeDirective,
+    EditableOnEnterDirective,
+    EditableTableComponent,
 	...EXPORTED_DECLARATIONS,
 ],
   providers: [

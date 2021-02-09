@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
-// import { Product } from 'src/app/core/retailer/types/product';
+import { Product } from 'src/app/core/retailer/types/product';
 
 import { Subscription } from 'rxjs';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 
-interface Product {
+interface IProduct {
   _id?: string;
   categoryImageUrl?: string;
   categoryName?: string;
@@ -43,7 +43,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   controls: FormArray;
   subscribe: Subscription;
-  products: Product[] = null;
+  products: IProduct[] = null;
 
 
   constructor(
@@ -122,14 +122,32 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   saveProductAllAtOnce() {
-    const loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
-    const retailer_id = loginUserLocalStorage.entity._id;
-    this.retailerStore.updateRetailerStoreProductList(retailer_id, this.controls.value).subscribe(
-      response => {
-        console.log("saveProductAllAtOnce - response", response.data.store.productsList);
-        this.products = response.data.store.productsList
+    // const loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+    // const retailer_id = loginUserLocalStorage.entity._id;
+    // this.retailerStore.updateRetailerStoreProductList(retailer_id, this.controls.value).subscribe(
+    //   response => {
+    //     console.log("saveProductAllAtOnce - response", response.data.store.productsList);
+    //     this.products = response.data.store.productsList
+    //   }
+    // );
+
+    this.addProduct();
+  }
+
+  addProduct( ){
+    let newProd = new Product();
+    newProd.categoryName = "kevin"; 
+    this.products.push(newProd);
+  }
+
+  deleteProducto(id){
+  
+    this.products = this.products.filter((prod) => {
+      if(prod._id !== id){
+        return prod;
       }
-    );
+    });
+    console.log("this.products", id,this.products);
   }
 }
 

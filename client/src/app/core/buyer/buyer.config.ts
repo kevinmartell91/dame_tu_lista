@@ -39,6 +39,7 @@ export const BUYER_CONFIG = {
         maturityView: "buyer_maturity_view",
         cartView: "buyer_cart_view",
         thanksView: "thanks_order_view",
-        placedOrderView: "buyer_order_placed_view"
+        placedOrderView: "buyer_order_placed_view",
+        freeBillView: "free-bill-view"
     }
 }

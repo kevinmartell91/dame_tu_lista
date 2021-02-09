@@ -3,6 +3,7 @@
 <button (click)="saveProductAllAtOnce()" mat-button color="primary">Guardar todos los cambios</button>
 <table >
     <tr>
+        <th>Borrar</th>
         <th>Imágen</th>
         <th>Categoria</th>
         <th>Imágen</th>
@@ -25,6 +26,9 @@
         <th>Disponible</th>
     </tr>
     <tr  *ngFor="let product of products; index as index">
+        <td> 
+            <button (click)="deleteProducto(product._id)">-</button>
+        </td>
         <td>
             <editable (update)="updateField(index, 'categoryImageUrl')">
                 <ng-template viewMode><img class="product_image" [src]="product.categoryImageUrl" alt=""></ng-template>

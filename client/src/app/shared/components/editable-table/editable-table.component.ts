@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, ContentChild, ElementRef, EventEmitter } from '@angular/core';
 import { Subject, fromEvent } from 'rxjs';
-import { ViewModeDirective, EditModeDirective, EditableOnEnterDirective } from './product-edit-in-place';
+import { ViewModeDirective, EditModeDirective } from '../../directives/edit-in-place';
 import { switchMapTo, filter, take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
@@ -8,11 +8,10 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 @UntilDestroy()
 @Component({
     selector: 'editable',
-    template: `
-      <ng-container *ngTemplateOutlet="currentView"></ng-container>
-    `
+    templateUrl : './editable-table.component.html',
+    styleUrls : ['./editable-table.component.sass']
 })
-export class EditableComponent implements OnInit {
+export class EditableTableComponent implements OnInit {
     @Output() update = new EventEmitter();
     @ContentChild(ViewModeDirective) viewModeTpl: ViewModeDirective;
     @ContentChild(EditModeDirective) editModeTpl: EditModeDirective;
@@ -63,7 +62,7 @@ export class EditableComponent implements OnInit {
             untilDestroyed(this)
         ).subscribe(event => {
 
-            console.log("editHandler",event)
+            // console.log("editHandler",event)
             this.update.next();
             this.mode = 'view';
         });

@@ -54,7 +54,8 @@ export class AppComponent implements OnInit, OnDestroy {
     maturityView
     cartView,
     thanksView,
-    placedOrderView
+    placedOrderView,
+    freeBillView
   };
 
   

@@ -1,5 +1,5 @@
 import { Directive, TemplateRef, HostListener } from '@angular/core';
-import { EditableComponent } from './editable.component';
+import { EditableTableComponent } from '../components/editable-table/editable-table.component';
 
 @Directive({
     selector: '[viewMode]'
@@ -21,7 +21,7 @@ export class EditModeDirective {
     selector: '[editableOnEnter]'
 })
 export class EditableOnEnterDirective {
-    constructor(private editable: EditableComponent) {
+    constructor(private editable: EditableTableComponent) {
     }
 
     @HostListener('keyup.enter')

@@ -86,6 +86,17 @@
                             </div>
                         </div>
 
+                        <div *ngSwitchCase="navegation.freeBillView" 
+                            class="navegation_grid">
+                            <div class="navegation_image_area">
+                                <!-- <img (click)="goToStoreRetailer()"
+                                src="../assets/icons/back_button-light-black-36dp.svg" alt="">  -->
+                            </div>
+                            <div class="navegation_title_area">
+                                <div>🍒 Dame tu lista</div>
+                            </div>
+                        </div>
+
                     
                         <!-- nothing to render when StoreView is selected -->
                         <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
@@ -94,6 +105,7 @@
                     
                     <div *ngIf="buyerNavegation.typeView !== navegation.storeView &&
                                 buyerNavegation.typeView !== navegation.thanksView &&
+                                buyerNavegation.typeView !== navegation.freeBillView &&
                                 buyerNavegation.typeView !== navegation.placedOrderView" 
                                 class="buyer_cart_area">
                     <!-- <div  class="buyer_cart_area"> -->
