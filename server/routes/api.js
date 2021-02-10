@@ -63,8 +63,8 @@ router.route('/retailer-product-list/:retailer_id')
   .post(retailerController.postRetailerProductList)
   .put(retailerController.putRetailerProductList);
  
-router.route('/dlt-airtable-mongo/:retailer_id')
- .get(retailerController.dltAirtableToMongo);
+router.route('/dtl-airtable-mongo/:retailer_id')
+ .get(retailerController.dtlAirtableToMongo);
 
 
 // Create endpoint handlers for /orders/:order_id

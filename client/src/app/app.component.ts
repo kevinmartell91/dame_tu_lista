@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
     freeBillView
   };
 
-  
+
 
   constructor(
     private router: Router,
@@ -72,7 +72,15 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute
   ) {
 
-    // this.retailerStoreStore.getAirTabeDATA();
+    // let url = "https://api.airtable.com/v0/app4dtPR3GvMixMHE/products?api_key=keyNqSR6NoYacM8nC";
+    // let url = "https://api.airtable.com/v0/app4dtPR3GvMixMHE/products";
+    let airTableBase = "app4dtPR3GvMixMHE";
+    let base = "products"
+    let api_key = "keyNqSR6NoYacM8nC";
+    // this.retailerStoreStore.getAirTableData("retailer_id",airTableBase, base, api_key);
+    console.log("objectobjectobjectobjectobjectobject");
+
+
 
     this.temporaryStorage = this.temporaryStorageService.forKey("cart_product_list");
 
@@ -111,7 +119,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log("ngOnInit");
 
-     document.body.addEventListener('click', this.onBodyClick);
+    document.body.addEventListener('click', this.onBodyClick);
 
     //first we restore data form storage then subscribe works
     this.restoreFromTemporaryStorage();
@@ -183,7 +191,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   goBackLocation(): void {
-      this.location.back();
+    this.location.back();
   }
 
   public async restoreFromTemporaryStorage(): Promise<void> {

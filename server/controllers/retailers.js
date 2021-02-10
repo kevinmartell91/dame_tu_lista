@@ -392,8 +392,22 @@ exports.putRetailerProductList = function(req, res) {
   });
 };
 
-exports.dltAirtableToMongo = async function(req, res, next) {
+exports.dtlAirtableToMongo = async function(req, res, next) {
 
-  let r = airTable.getAirtableRecords();
-  return (r);
+  let result = await airTable.getAirtableRecords();
+  console.log(result);
+  if(result) {
+    res.json({
+      success: true,
+      status: 200,
+      message: "dtlAirtableToMongo success",
+      data: result
+    });  
+  } else {
+    res.json({
+      success: false,
+      status: 500,
+      message: "dtlAirtableToMongo fail",
+    });  
+  }
 }

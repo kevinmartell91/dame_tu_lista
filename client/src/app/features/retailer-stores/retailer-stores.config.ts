@@ -14,6 +14,10 @@ export const RETAILER_STORES_CONFIG = {
         getRetailers: {
             name: "getRetailers",
             url: `${APP_CONFIG.apiBaseUrl}/retailers`
+        },
+        getAirTableDataByUrlAndApiKey: {
+            name: "getAirTableDataByUrlAndApiKey",
+            url: `${APP_CONFIG.apiBaseUrl}/dtl-airtable-mongo`
         }
     },
     defaultSortField: 'seasonal',

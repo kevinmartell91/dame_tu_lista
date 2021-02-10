@@ -22,31 +22,32 @@
 //     isBigSize?: boolean;
 //     isProduction?: boolean;
 // }
-exports.getAirtableRecords = async function( req, res, next ){
+exports.getAirtableRecords = async function (req, res, next) {
 
     var Airtable = require('airtable');
     Airtable.configure({
         endpointUrl: 'https://api.airtable.com',
         apiKey: 'keyNqSR6NoYacM8nC'
     });
-    var base = Airtable.base('app90UT0ZXO2CSQwS');
-    
+    var base = Airtable.base('app4dtPR3GvMixMHE');
 
-    const data = base("pilot_test_data_part_1");
-    
-    const all = data.select({view: "Grid view"});
+
+    const data = base("products");
+
+    const all = data.select({ view: "Grid view" });
 
     // var obj = {};
     // var key = "productsList";
     // obj[key] =[];
 
-    all.firstPage((error, records) => {
-        const _ids = records.map( record => 
-            record.get("_id")
-        )
-    
+    const result = await all.firstPage((error, records) => {
+        const _ids = records.map(record => {
+            // record.get("_id")
+            console.log("record", record);
+        })
+
         // console.log(records[0]);
         return records[0];
-    
+
     });
 }

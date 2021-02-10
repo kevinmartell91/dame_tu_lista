@@ -185,9 +185,18 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
         console.log("Finished updateProductsFromSessionStorage");
     }
 
-    public getAirTabeDATA(): any {
+    public getAirTableData(retailer_id: string, airTableBase: string, base: string, api_key: string) {
 
-        return airtable.manuallyRetrievedAritableData();
+        // let json: string;
+        // this.endPoint.getAirTableData(retailer_id, airTableBase, base, api_key, this.storeRequestUpdater).subscribe(
+        //     result => {
+        //         console.log("getAirTableData", result);
+        //         // 
+        //         // return result;
+        //     }
+        // ).unsubscribe();
+
+        airtable.manuallyRetrievedAritableData("ff");
     }
 
 

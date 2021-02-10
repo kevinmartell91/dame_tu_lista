@@ -3,6 +3,10 @@ import { Deserializable } from "../../../shared/models/deserializable.model";
 export class Product implements Deserializable {
 
     public _id?: string;
+
+    public type?: string;
+    public isVisible?: boolean;
+
     public categoryImageUrl?: string;
     public categoryName?: string;
     public varietyImageUrl?: string;
