@@ -1,6 +1,6 @@
 
 
-<ng-container *ngIf = " { state$: retailerStoreStore.state$ | async } as subs">
+<ng-container *ngIf = "{ state$: retailerStoreStore.state$ | async } as subs">
 
     <ng-container 
         *ngIf = "subs.state$.requests.getRetailer.inProgress ;

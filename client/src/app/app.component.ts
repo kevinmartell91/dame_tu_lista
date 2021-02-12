@@ -78,7 +78,6 @@ export class AppComponent implements OnInit, OnDestroy {
     let base = "products"
     let api_key = "keyNqSR6NoYacM8nC";
     // this.retailerStoreStore.getAirTableData("retailer_id",airTableBase, base, api_key);
-    console.log("objectobjectobjectobjectobjectobject");
 
 
 
@@ -90,7 +89,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
       y => {
         this.buyerNavegation = y;
-        // console.log("buyerNavegationSubscription", this.buyerNavegation);
       }
     )
 
@@ -117,7 +115,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("ngOnInit");
 
     document.body.addEventListener('click', this.onBodyClick);
 
@@ -160,7 +157,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.storeView
+      BUYER_CONFIG.navegation.storeView,
+      "navegation.storeView"
     );
 
     this.navegation = BUYER_CONFIG.navegation;

@@ -31,7 +31,8 @@ export class OrderComponent implements OnInit {
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.accountView
+      BUYER_CONFIG.navegation.accountView,
+      "navegation.accountView"
     );
 
     this.cartProductOrderPriceStr = this.cartProductOrder.price.toFixed(2);

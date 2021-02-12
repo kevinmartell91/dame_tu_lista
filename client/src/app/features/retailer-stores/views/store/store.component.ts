@@ -108,7 +108,7 @@ export class StoreComponent implements OnDestroy {
 
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       products => {
-        console.log("subscriptionRetailerStore- products KEVIN", products);
+        // console.log("subscriptionRetailerStore- products KEVIN", products);
         this.productsList = products;
         // console.log("FORM SESSION STORAGE", this.productsList);
         // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
@@ -118,20 +118,30 @@ export class StoreComponent implements OnDestroy {
 
     this.subscription = this.cartStore.shoppingCart$.subscribe(
       x => {
-        console.log("This.cartStore.shoppingCart$.products", x.products);
+        // console.log("This.cartStore.shoppingCart$.products", x.products);
         this.cartProductsQuantity = x.products.length;
       }
     );
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.storeView
+      BUYER_CONFIG.navegation.storeView,
+      "navegation.storeView"
     );
 
     this.filteredProductsList$ = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
+    // this.filteredProductsList$ = this.control.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => {
+
+    //     setTimeout(()=>{
+    //       this._filter(value)
+    //     },1000);
+    //   })
+    // );
   }
 
   ngOnDestroy(): void {
@@ -183,8 +193,8 @@ export class StoreComponent implements OnDestroy {
     // let res = this.productsList.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     // let res = JSON.parse(sessionStorage.temp_session_storage).product_list.filter(prod => this._normalizeValue(prod.categoryName).includes(filterValue));
     this.filteredProductListLength = res.length;
-    console.log("filtered prod: from retailerStoreStore", this.retailerStoreStore.state.productsList.products.length);
-    console.log("filtered prod from sessionStorage", this.filteredProductListLength);
+    // console.log("filtered prod: from retailerStoreStore", this.retailerStoreStore.state.productsList.products.length);
+    // console.log("filtered ", res, "length", this.filteredProductListLength);
     return res;
   }
 
@@ -199,11 +209,11 @@ export class StoreComponent implements OnDestroy {
     return deacceted;
   }
   public deaccentSelectedSearcTerm(product: Product) {
-    return `${product.categoryName} - ${product.varietyName}`;
+    // return `${product.categoryName} - ${product.varietyName}`;
+    return `${product.varietyName}`;
   }
 
   public openSeachBox() {
-    console.log("openSeachBox");
     this.isSearchBoxOpen = !this.isSearchBoxOpen;
   }
 }

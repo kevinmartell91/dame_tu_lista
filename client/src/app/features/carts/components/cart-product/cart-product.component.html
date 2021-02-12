@@ -1,13 +1,15 @@
 <div class="continer_grid">
     <div class="product_area">
         
-        <div class="img_area">
-            <img src="{{cartProduct.maturityImageUrl}}" alt="">
+        <div class="img_area zoom">
+            <img class="" src="{{cartProduct.maturityImageUrl}}" alt="">
             <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
         </div>
 
         <div class="product_name_area">
-            {{cartProduct.categoryName}} - {{cartProduct.varietyName}}
+            <!-- {{cartProduct.categoryName}} - {{cartProduct.varietyName}} -->
+            <!-- {{cartProduct.maturityName}} -->
+            {{getNameOfTheProduct()}}
             <!-- <span *ngIf="cartProduct.isOrganic">Orgánico</span>
             <span *ngIf="cartProduct.isOrganic === false">Normal</span> -->
         </div>
@@ -97,13 +99,13 @@
     <div class="options_area">
         <div *ngIf="cartProduct.isOrganic" class="isOrganic_area">Org.</div>
 
-        <div class="add_detail_area" (click)="openAddCartProductDetailModal()">
-            <img src="../../../../../assets/icons/edit-15dp.svg" alt=""> 
-            Comentarios
+        <div class="add_detail_area" >
+            <img  src="../../../../../assets/icons/edit-15dp.svg" alt=""> 
+            <span (click)="openAddCartProductDetailModal()">Comentar</span>
         </div>
-        <div class="remove_area" (click)="deleteCartProduct()">
+        <div class="remove_area" >
             <img src="../../../../../assets/icons/delete-15dp.svg" alt=""> 
-            Eliminar
+            <span (click)="deleteCartProduct()" >Eliminar</span>
         </div>
     </div>
 </div>

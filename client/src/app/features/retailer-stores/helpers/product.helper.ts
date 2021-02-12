@@ -1,6 +1,7 @@
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
 import { Product } from "../../../core/retailer/types/product";
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { MaturityProductsByVariety } from '../types/maturityProductsByVariety';
 
 export function getProductDeserialized(products: any): Product[] {
   let productsList: Product[] = [];
@@ -174,7 +175,7 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
   // console.log("STORE PRODUCTS", storeProducts);
   // console.log("CART PRODUCTS", cartProducts);
 
-  storeProducts.map( storeProd => {
+  storeProducts.map(storeProd => {
     return storeProd.quantity = 0;
   })
 
@@ -187,7 +188,7 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
     //   }
     // });
     storeProducts.map(storeProd => {
-      if( cartProd._id === storeProd._id) {
+      if (cartProd._id === storeProd._id) {
         storeProd.quantity = cartProd.quantity;
       }
     })
@@ -197,4 +198,56 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
 
   return storeProducts;
 
+}
+
+
+export function getMaturityProductsByVariety(products: Product[]): MaturityProductsByVariety[] {
+
+  // console.log(" this.storeProducts", products);
+
+  if (!products) return;
+
+  let arrayMaturityProductsByVariety: MaturityProductsByVariety[] = [];
+  const arrayCategories = filterAllProductsByCategory(products);
+  if (!arrayCategories) return;
+  //category name is what matters
+  arrayCategories.forEach(category_product_list => {
+    // variety names is what matters
+    const arrayVarieties =
+      filterProductsByVariety(
+        category_product_list.categoryName,
+        products
+      );
+    if (!arrayVarieties) return;
+    // console.log("arrayVarieties.length", arrayVarieties);
+
+
+    // maturity is what matters 
+    arrayVarieties.forEach(variety_product_list => {
+
+      let maturityProductsByVariety: MaturityProductsByVariety =
+        new MaturityProductsByVariety();
+
+        maturityProductsByVariety.categoryName = 
+          category_product_list.categoryName;
+      maturityProductsByVariety.varietyName =
+        variety_product_list.varietyName;
+
+      const arrayMaturity =
+        filterProductsByMaturity(
+          category_product_list.categoryName,
+          variety_product_list.varietyName,
+          String(variety_product_list.isOrganic),
+          products);
+      if (!arrayMaturity) return;
+
+      maturityProductsByVariety.productList = arrayMaturity;
+      arrayMaturityProductsByVariety.push(maturityProductsByVariety);
+    });
+
+
+  });
+
+  // resolve(arrayMaturityProductsByVariety,"");
+  return arrayMaturityProductsByVariety;
 }

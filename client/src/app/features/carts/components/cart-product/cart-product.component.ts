@@ -98,4 +98,11 @@ export class CartProductComponent implements OnInit {
 
   }
 
+  getNameOfTheProduct(): string{
+
+    return this.cartProduct.categoryName === "Comida rápida"
+    ? this.cartProduct.maturityName 
+    : `${this.cartProduct.categoryName} - ${this.cartProduct.varietyName}` 
+  }
+
 }

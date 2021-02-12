@@ -11,29 +11,19 @@ $product_contianer_max_size: 1fr
 
 
 .display_products_row_grid
-  grid-area: strPrd
   display: grid
   margin: 7px
   padding: 0px
   grid-template-columns: repeat(auto-fill, minmax($product_contianer_min_size, $product_contianer_max_size))
-  grid-template-rows: 0.4fr
+  grid-template-rows: 18px 0.4fr
+  grid-template-areas: "var" "mat"
   grid-gap: 14px
-  // background-color:  #bee4b6
-.container
-  opacity: 1
-  transition: opacity 0.4s ease 0s
-  width: 300px
-  height: 18px
-  position: relative
-  overflow: hidden
 
-  .obsolute_relative
-    position: absolute
-    
+  .variety_area
+    grid-area: var
+    color: #6d6d6d
+    margin: 10px
 
-    .style_empty_message
-      text-align: center
-      align-self: center
-      transform: translateX(-1440px)
-      transition: transform 36s linear 0s
-      white-space: nowrap
+  .maturity_products_area
+    grid-area: mat
+    margin: 10px

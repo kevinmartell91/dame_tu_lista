@@ -62,7 +62,7 @@
                                 <mat-autocomplete #auto="matAutocomplete">
                                     <mat-option *ngFor="let product of filteredProductsList$ | async"
                                         [value]="deaccentSelectedSearcTerm(product)">
-                                        {{product.categoryName}} - {{ product.varietyName}}
+                                         {{ product.varietyName}}
                                     </mat-option>
                                 </mat-autocomplete>
     
@@ -116,6 +116,7 @@
                 </app-seasonal-products> -->
                 <app-row-product-view [storeProducts]="filteredProductsList$ | async">
                 </app-row-product-view>
+
             </div>
 
         </div>

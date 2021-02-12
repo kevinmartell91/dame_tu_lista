@@ -41,7 +41,7 @@ $third_text_color: #8bce7d
     display: grid
     grid-template-columns: $img_witdh 3fr $quant_width $price_width
     grid-template-rows: .1fr .1fr .1fr
-    grid-template-areas: "img name quant price" "img kg_Uni quant price"  "img pro_det pro_det pro_det"
+    grid-template-areas: "img name quant price"  "img kg_Uni quant price" "img pro_det pro_det pro_det"
     grid-gap: 0em
 
     .img_area
@@ -107,11 +107,18 @@ $third_text_color: #8bce7d
       grid-area: add_det
       font-size: $third_display_font_size
       color: $third_filed_color
+      span
+        padding: 12px 0px 0px 4px
+        cursor: pointer
     
     .remove_area
       grid-area: rmv_det
       font-size: $third_display_font_size
       color: $third_filed_color
+      cursor: pointer
+      span
+        padding: 12px 0px 0px 4px
+        cursor: pointer
  
 
     .isOrganic_area
@@ -146,4 +153,12 @@ $third_text_color: #8bce7d
   color: $third_text_color
 
 
+.zoom 
+  transition: transform .2s
+
+.zoom:hover 
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2);
+  z-index: 10
   

@@ -50,7 +50,7 @@ export class RetailerStoresComponent implements OnDestroy {
       productsList => {
 
 
-        console.log("LOG => Retailer-Store - Set product list to Session storage", productsList.length);
+        // console.log("LOG => Retailer-Store - Set product list to Session storage", productsList.length);
         this.temporaryStorage.set(productsList);
 
 

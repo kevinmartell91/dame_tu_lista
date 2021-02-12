@@ -56,7 +56,8 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
      
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.accountView
+      BUYER_CONFIG.navegation.accountView,
+      "navegation.accountView"
     );
 
   }

@@ -58,7 +58,7 @@ export class RetailerStore extends Store<RetailerStoreState> {
             .pipe(
                 map((data: any) => {
                     if (data.success) {
-                        console.log("putRetailerStoreInfo", data);
+                        // console.log("putRetailerStoreInfo", data);
                         this.setState({
                             ...this.state,
                             retailer: new Retailer().deserialize(data.data)

@@ -21,31 +21,40 @@
     </ng-template>
 
     <ng-template #showData>
-        <ng-container *ngIf = "storeProducts.length > 0;
+        <ng-container *ngIf="storeProducts.length > 0;
             then showStoreProducts; 
             else ShowEmptyMessage">
         </ng-container>
 
         <ng-template #showStoreProducts>
-            <div class="display_products_row_grid">
-                <!-- <ng-container *ngFor='let product of subs.state$.productsList.products'> -->
-                <ng-container *ngFor='let product of storeProducts'>
-                    <app-product-display-shared typeView="rowView" [product]="product" (selected)="onSelected($event)"
-                        (selectedCartProduct)="onSelectedCartProduct($event)"> </app-product-display-shared>
-                </ng-container>
-            </div>
+
+            <ng-container *ngFor='let varietyList of maturityProductsByVariety$ | async'>
+                <div class="display_products_row_grid">
+                    <div class="variety_area">
+                        <h2>{{getVarietyName(varietyList)}}</h2>
+                    </div>
+                    <div class="maturity_products_area">
+                        <ng-container *ngFor='let product of varietyList.productList'>
+                            <app-product-display-shared typeView="rowView" [product]="product"
+                                (selected)="onSelected($event)" (selectedCartProduct)="onSelectedCartProduct($event)">
+                            </app-product-display-shared>
+                        </ng-container>
+                    </div>
+
+                </div>
+            </ng-container>
         </ng-template>
 
         <ng-template #ShowEmptyMessage>
             <!-- <div class="container"> -->
-                <!-- <div class="obsolute_relative"> -->
-                    <!-- <div class="style_empty_message"> -->
-                        <!-- <span> No se encontratron resultados de búsqueda.</span> -->
-                        <span> No se encontratron resultados de búsqueda.</span>
-                    <!-- </div> -->
-                <!-- </div> -->
+            <!-- <div class="obsolute_relative"> -->
+            <!-- <div class="style_empty_message"> -->
+            <!-- <span> No se encontratron resultados de búsqueda.</span> -->
+            <span> No se encontratron resultados de búsqueda.</span>
             <!-- </div> -->
-            
+            <!-- </div> -->
+            <!-- </div> -->
+
         </ng-template>
 
     </ng-template>

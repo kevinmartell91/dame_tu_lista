@@ -1,5 +1,5 @@
-$primary_display_font_size: 13px
-$secondary_display_font_size: 11px
+$primary_display_font_size: 14px
+$secondary_display_font_size: 12px
 $third_display_font_size: 10px
 
 $primary_filed_dark_color: #000000
@@ -22,10 +22,10 @@ $box_add_button_size: 30px
   display: grid
   margin: 0
   padding: 10px
-  grid-template-columns: 30px .9fr 80px 20px
+  grid-template-columns: 35px .9fr 80px 20px
   grid-gap: 0px
   grid-template-rows: 15px 15px 
-  grid-template-areas: "image cate  totPriProd  add" "image price  totPriProd add"
+  grid-template-areas: "image matur totPriProd  add" "image price  totPriProd add"
   background-color: white
   div:empty 
     display: none 
@@ -51,6 +51,7 @@ $box_add_button_size: 30px
   grid-template-rows: 0fr 100px 20px 0fr
   grid-template-areas: "emptyTop emptyTop" "image image" "cate cate" "emptyBottom emptyBottom"
   background-color: white
+  cursor: pointer
 
   div:empty 
     display: none 
@@ -64,6 +65,8 @@ $box_add_button_size: 30px
   grid-template-rows: 0fr $box_image_size_fixed 15px 0fr
   grid-template-areas: "emptyTop emptyTop" "image add" "cate cate" "type type" "emptyBottom emptyBottom"
   background-color: white
+  cursor: pointer
+
   div:empty 
     display: none
 
@@ -83,16 +86,21 @@ $box_add_button_size: 30px
 .product_image_area
   grid-area: image
   align-self: center
+
   .image_style
     width: 100%
+    border-radius: 15px
 
+  .image_style_row_view
+    width: 100%
+    border-radius: 5px
 
 // Catergoy area for Category view 
 .product_category_area
   grid-area: cate
   padding: 0px 5px
   margin: 0px
-  justify-self: left
+  justify-self: center
   font-size: $primary_display_font_size
   color: $primary_filed_color
   border-radius: 4px
@@ -101,9 +109,8 @@ $box_add_button_size: 30px
 // Type of product for selecting the variety of bananas  
 .product_price_area
   grid-area: price
-  padding: 0px 5px
-  margin: 0px
-  font-size: $secondary_display_font_size
+  padding: 5px 0px 0px 5px
+  font-size: $primary_display_font_size
   color: $secondary_filed_color
   font-weight: bold
   justify-self: left
@@ -133,8 +140,8 @@ $box_add_button_size: 30px
   grid-area: type
   padding: 0px 5px
   margin: 0px
-  justify-self: left
-  font-size: $secondary_display_font_size
+  justify-self: center
+  font-size: $primary_display_font_size
   color: $secondary_filed_color
   border-radius: 4px
   background: #ffffffb0
@@ -157,7 +164,7 @@ $box_add_button_size: 30px
     display: inline-flex
     align-items: center
     padding: 0px
-    font-size: 12px
+    font-size: 15px
     height: $box_add_button_size
     background-color: white
     color: rgb(67, 176, 42)
@@ -165,6 +172,7 @@ $box_add_button_size: 30px
     top: 8px
     right: 8px
     justify-content: center
+    cursor: pointer
 
   .quantity_increased
     background-color: rgb(67, 176, 42)
@@ -213,8 +221,8 @@ $box_add_button_size: 30px
   padding: 0px
   font-size: 14px
   height: 20px
-  background-color: #ffffff78
-  color: #adadad
+  background-color: #e1e1e1
+  color: #6b6b6b
   min-width: 74px
   top: 8px
   right: 8px
@@ -228,7 +236,7 @@ $box_add_button_size: 30px
 .product_maturity_area
   grid-area: matur
   padding: 0px 5px
-  font-size: 13px
+  font-size: 15px
   color: #6bc05b
   justify-self: left
   border-radius: 4px
@@ -286,3 +294,12 @@ $box_add_button_size: 30px
   transform: translate3d(98px, -1px, 0px)
 
 
+.zoom 
+  transition: transform .2s
+
+.zoom:hover 
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2);
+  z-index: 10
+      

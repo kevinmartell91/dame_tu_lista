@@ -58,6 +58,14 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
       this.category = params.get('categoryName');
       this.variety = params.get('varietyName');
       this.isOrganic = params.get('isOrganic');
+
+      setTimeout(()=>{
+        updateBuyerNavagation(
+          this.buyerNavegationStore,
+          BUYER_CONFIG.navegation.maturityView,
+          this.variety
+        );
+      },10);
     })
 
   }
@@ -76,10 +84,11 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
 
   private initializeViewSettings(): void {
 
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.maturityView
-    );
+    // updateBuyerNavagation(
+    //   this.buyerNavegationStore,
+    //   BUYER_CONFIG.navegation.maturityView,
+    //   ""
+    // );
     
     this.maturityView = STORE_CONFIG.view_type.maturityView;
     this.question = STORE_CONFIG.question_view_type.maturityView;
@@ -112,6 +121,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     // return filterProductsByMaturity(category, variety, this.isOrganic, products);
     
     this.retailerStoreStore.updateProductsFromSessionStorage();
+    console.log("objectobject",category,variety);
     return filterProductsByMaturity(category, variety, this.isOrganic,
       this.retailerStoreStore.state.productsList.products);
 

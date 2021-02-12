@@ -59,7 +59,8 @@ export class CategoryProductsComponent implements OnInit, OnDestroy{
   private initializeViewSettings(): void {
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.categoryView
+      BUYER_CONFIG.navegation.categoryView,
+      "navegation.categoryView"
     );
   
     this.categoryView = STORE_CONFIG.view_type.categoryView;

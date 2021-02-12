@@ -112,7 +112,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
         retailer_store_name: string
     ) {
 
-        console.log("getRetailerByNameStore CALLED");
+        //console.log("getRetailerByNameStore CALLED");
 
         return this.endPoint.getRetailerByNameStore(retailer_store_name, this.storeRequestUpdater)
             .pipe(
@@ -140,7 +140,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
     public updateProductsFromSessionStorage() {
 
-        console.log("updateProductsFromSessionStorage");
+        // console.log("updateProductsFromSessionStorage");
         // restoreBuyerSelectedProductsFromTemporaryStorage()
         const chacheData = sessionStorage.temp_session_storage;
 
@@ -151,7 +151,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
         const memCashedCartProd: CartProduct[] =
             JSON.parse(chacheData).cart_product_list;
-        console.log("restored Buyer Selected Products From Temporary Storage :", "memCashedProd.length", memCashedProd.length, "memCashedCartProd.length", memCashedCartProd.length);
+        //console.log("restored Buyer Selected Products From Temporary Storage :", "memCashedProd.length", memCashedProd.length, "memCashedCartProd.length", memCashedCartProd.length);
         // if (chacheData && memCashedProd.length > 0 && memCashedCartProd.length > 0) {
         if (chacheData && memCashedProd && this.state.productsList.products.length > 0 && memCashedCartProd.length > 0) {
 
@@ -164,9 +164,9 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
 
             // update products STORE with cart product
             this._updateProductsFromSessionStorage(payloadProducts);
-            console.log("RetailerStoreStore - restoreBuyerSelectedProductsFromTemporaryStorage");
+            //console.log("RetailerStoreStore - restoreBuyerSelectedProductsFromTemporaryStorage");
         } else {
-            console.log('RETURN');
+            //console.log('RETURN');
             return;
         }
 
@@ -182,7 +182,7 @@ export class RetailerStoreStore extends Store<RetailerStoreStoreState>
             }
         })
 
-        console.log("Finished updateProductsFromSessionStorage");
+        //console.log("Finished updateProductsFromSessionStorage");
     }
 
     public getAirTableData(retailer_id: string, airTableBase: string, base: string, api_key: string) {

@@ -44,10 +44,23 @@ export class VarietyProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log("object",this.category);
 
     this.subscription = this.activatedRoute.paramMap.subscribe( params => {
       this.category = params.get("categoryName");
+      console.log("object",this.category);
       this.retailer_id = params.get("retailer_store_name");
+
+      
+      console.log("this.categorythis.category",this.category);
+
+      setTimeout(()=>{
+        updateBuyerNavagation(
+          this.buyerNavegationStore,
+          BUYER_CONFIG.navegation.varietyView,
+          this.category
+        );
+      },10);
     });
 
   }
@@ -61,10 +74,11 @@ export class VarietyProductsComponent implements OnInit, OnDestroy {
 
   private initializeViewSettings(): void {
     
-    updateBuyerNavagation(
-      this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.varietyView
-    );
+    // updateBuyerNavagation(
+    //   this.buyerNavegationStore,
+    //   BUYER_CONFIG.navegation.varietyView,
+    //   this.category
+    // );
     this.varietyView = STORE_CONFIG.view_type.varietyView;
     this.question = STORE_CONFIG.question_view_type.varietyView;
     

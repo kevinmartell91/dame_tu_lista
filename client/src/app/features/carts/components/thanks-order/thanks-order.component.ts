@@ -51,7 +51,8 @@ export class ThanksOrderComponent implements OnInit, OnDestroy {
   initializeViewSettings():void {
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.thanksView
+      BUYER_CONFIG.navegation.thanksView,
+      "navegation.thanksView"
     );
     
   }

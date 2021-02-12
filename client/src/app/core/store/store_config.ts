@@ -21,7 +21,7 @@ export const STORE_CONFIG = {
         seasonalView: "Frutas de temporada",
         categoryView: "-",
         varietyView: "¿Qué tipo deseas?",
-        maturityView: "¿Cuándo lo quieres comer?",
+        maturityView: "Elije el que más te guste",
         cartView: "Tu carrito de compras",
         rowView: "Productos"
     }, 

@@ -37,7 +37,8 @@ export class SendFreeBillComponent implements OnInit {
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.freeBillView
+      BUYER_CONFIG.navegation.freeBillView,
+      "navegation.freeBillView"
     );
 
     this.newProductForm = this.fb.group({

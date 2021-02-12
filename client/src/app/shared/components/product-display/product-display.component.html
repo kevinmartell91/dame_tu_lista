@@ -1,9 +1,9 @@
-<div [class]="getGridView()">
+<div [class]="getGridView()" (click)="select()">
 
-    <div class="product_image_area">
-        <img *ngIf="typeView === 'rowView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
+    <div class="product_image_area zoom" >
+        <img *ngIf="typeView === 'rowView'" class="image_style_row_view" (click)="select()" src={{product.maturityImageUrl}}
             alt="">
-        <img *ngIf="typeView === 'categoryView'" class="image_style" (click)="select()" src={{product.categoryImageUrl}}
+        <img *ngIf="typeView === 'categoryView'" class="image_style"  src={{product.categoryImageUrl}}
             alt="">
         <img *ngIf="typeView === 'seasonalView'" class="image_style" (click)="select()" src={{product.varietyImageUrl}}
             alt="">
@@ -17,15 +17,15 @@
     </div>
 
     <!-- <div *ngIf="typeView === 'categoryView'"  -->
-    <div class="product_category_area">
+    <div *ngIf="typeView === 'categoryView'" class="product_category_area">
         {{product.categoryName}}</div>
 
 
 
     <!-- ROW VIEW HARD CODE -->
     <!-- ====================== -->
-    <div *ngIf="typeView === 'rowView'" class="product_category_area">
-        {{product.categoryName}} - {{product.varietyName}}</div>
+    <div *ngIf="typeView === 'rowView'" class="product_maturity_area">
+        {{product.maturityName}}</div>
 
     <div *ngIf="typeView === 'rowView'" class="product_total_price_product_area">
         {{productTotalPriceQuantityStr}}

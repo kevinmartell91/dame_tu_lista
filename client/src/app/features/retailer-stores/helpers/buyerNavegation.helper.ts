@@ -2,11 +2,14 @@ import { BuyerNavegationStore } from "../../../core/buyer/services/buyer-navegat
 
 export function  updateBuyerNavagation(
     buyerNavegationStore: BuyerNavegationStore,
-    newBuyerNavegationView: string
+    newBuyerNavegationView: string,
+    fieldText: string
+
 ): void {
 
     let buyerNavegation = buyerNavegationStore.state.buyerNavegation;
     buyerNavegation.typeView = newBuyerNavegationView,
+    buyerNavegation.field = fieldText;
     buyerNavegationStore.setNewState(buyerNavegation);
     
 }

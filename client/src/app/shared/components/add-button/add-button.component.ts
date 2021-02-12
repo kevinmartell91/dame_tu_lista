@@ -139,7 +139,7 @@ export class AddButtonComponent implements OnInit {
     this.convertQuantiyToString();
     // await this.delay(1500);
 
-    this.quantityUpdated.emit(this.count)
+    this.quantityUpdated.emit(this.count);
   }
 
   convertQuantiyToString(): void {

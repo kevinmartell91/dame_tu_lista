@@ -219,7 +219,8 @@ export class CartsComponent implements OnDestroy {
 
       updateBuyerNavagation(
         this.buyerNavegationStore,
-        BUYER_CONFIG.navegation.placedOrderView
+        BUYER_CONFIG.navegation.placedOrderView,
+        "navegation.placedOrderView"
       );
 
       this.order.initSaleQuoteOrderId(this.order_id).subscribe(res => {
@@ -256,7 +257,8 @@ export class CartsComponent implements OnDestroy {
 
     updateBuyerNavagation(
       this.buyerNavegationStore,
-      BUYER_CONFIG.navegation.cartView
+      BUYER_CONFIG.navegation.cartView,
+      "navegation.cartView"
     );
 
     this.maturityView = STORE_CONFIG.view_type.cartView;
