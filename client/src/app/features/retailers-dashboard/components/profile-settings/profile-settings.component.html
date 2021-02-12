@@ -11,7 +11,8 @@
     </ng-template>
     <ng-template #showStoreDetails>
         <div fxLayout="column" 
-            [formGroup]="accountRetailerForm" (ngSubmit)="onFormSubmit() "
+            [formGroup]="accountRetailerForm" 
+            (ngSubmit)="onFormSubmit() "
             class="flex_container">
         
         
@@ -59,6 +60,14 @@
 
                 </div>
 
+                <mat-form-field  class="full_width">
+                    <mat-label>Url Banner</mat-label>
+                    <input matInput placeholder="https://elBannerDeTuTienda.com"
+                        name="imgUrl"
+                        type="text"
+                        formControlName="imgUrl">
+                </mat-form-field>
+
                 <mat-slide-toggle class="full_width"
                     formControlName="isDeliveryService">
                     Realizo delivery
@@ -70,7 +79,6 @@
                         name="deliveryInfo"
                         type="text"
                         formControlName="deliveryInfo">
-                    
                 </mat-form-field>
                 
                 <mat-slide-toggle 
@@ -84,7 +92,6 @@
                         name="pickUpInfo"
                         type="text"
                         formControlName="pickUpInfo">
-                    
                 </mat-form-field>
 
                 <mat-form-field class="full_width" >
@@ -94,9 +101,7 @@
                         name="phoneNumber"
                         type="tel"
                         formControlName="phoneNumber">
-
                     <mat-icon matSuffix>mode_edit</mat-icon>
-                    
                     <mat-error *ngIf="!accountRetailerForm.hasError('required')">
                         El número <strong>es obligatorio </strong> siendo este de 9 dígitos
                     </mat-error> 
@@ -120,14 +125,13 @@
                 <div class="address"
                     fxLayoutGap="5px"
                     formGroupName="address">
-        
+                    
                     <mat-form-field class="full_width">
                         <mat-label>Nombre de la calle</mat-label>
                         <input matInput placeholder=""
                             name="streetName"
                             type="text"
                             formControlName="streetName">
-                        
                     </mat-form-field>  
                     
                     <mat-form-field class="full_width">
@@ -136,7 +140,6 @@
                             name="streetNumber"
                             type="tel"
                             formControlName="streetNumber">
-                        
                     </mat-form-field>  
         
                     <mat-form-field class="full_width">
@@ -146,8 +149,8 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+
                     <mat-form-field class="full_width">
-                    
                         <mat-label>Ciudad</mat-label>
                         <mat-select formControlName="city">
                             <mat-option [value]="city" *ngFor="let city of cities" >{{city}}
@@ -156,7 +159,6 @@
                     </mat-form-field>           
                     
                     <mat-form-field class="full_width">
-                    
                         <mat-label>Departamento</mat-label>
                         <mat-select formControlName="department">
                             <mat-option [value]="department" *ngFor="let department of departments" >{{department}}
@@ -171,7 +173,6 @@
                             type="text"
                             formControlName="reference">
                         </textarea>
-                        
                     </mat-form-field>  
                     
                     <mat-form-field class="full_width">
@@ -181,19 +182,16 @@
                             type="text"
                             formControlName="details">
                         </textarea>
-                        
                     </mat-form-field>  
+
                 </div>
             
             
                 <div fxLayoutAlign="end center">
-                    
                      <button mat-button (click)="onFormSubmit()"
                      [disabled]="!accountRetailerForm.valid" cdkFocusInitial>Guardar</button>
-        
                 </div>
             </div>
-        
         </div>
     </ng-template>
 </ng-container>

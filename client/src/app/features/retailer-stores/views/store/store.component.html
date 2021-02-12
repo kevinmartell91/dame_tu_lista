@@ -17,11 +17,15 @@
         </div>
 
     </ng-template>
+    
 
     <ng-template #showStore>
         <div class="store_grid">
             <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
-            <div class="store_banner_area" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}">
+            <!-- <div class="bg-image" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl(),'background-repeat': 'no-repeat' ,'background-position': '0px 48px', 'background-size': 'contain'}"></div> -->
+            <div class="bg-image" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}"></div>
+
+            <div class="store_banner_area" >
                 <div class="store_____cart_area">
 
                     <ng-container *ngIf="currentUser ; 
@@ -62,7 +66,7 @@
                                 <mat-autocomplete #auto="matAutocomplete">
                                     <mat-option *ngFor="let product of filteredProductsList$ | async"
                                         [value]="deaccentSelectedSearcTerm(product)">
-                                         {{ product.varietyName}}
+                                         {{  deaccentSelectedSearcTerm(product)}}
                                     </mat-option>
                                 </mat-autocomplete>
     
@@ -111,14 +115,13 @@
 
             </div>
 
-            <div class="store_products_area">
+            <div class="store_products_area" >
                 <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
                 </app-seasonal-products> -->
                 <app-row-product-view [storeProducts]="filteredProductsList$ | async">
                 </app-row-product-view>
 
             </div>
-
         </div>
     </ng-template>
 

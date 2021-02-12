@@ -810,6 +810,7 @@ export class CartsComponent implements OnDestroy {
   //                 and then send an invoice 
   transformOrderToRawText(order: Order): string {
 
+
     const tab: string = String.fromCodePoint(parseInt("9", 16));
     const breakLine: string = "\n";
     let orderRawTxt: string = "";
@@ -839,22 +840,31 @@ export class CartsComponent implements OnDestroy {
 
       order.cart.forEach(product => {
 
+      console.log("transformOrderToRawText",order); 
+
         orderRawTxt += breakLine +
 
           " " + product.quantity.toFixed(2) + tab +
 
           this.formatQuantityWeightType(
             product.isKilo
-          ) + tab +
+          ) + tab ;
 
+          let productName ="";
           // product.categoryName + " " + product.varietyName;
-          this.formatProductNameTo20Characters(
-            product.categoryName +
-            " " +
-            product.varietyName
-          ) + tab + tab +
+          product.categoryName === "Comida rápida"
+          ? productName = this.formatProductNameTo20Characters(
+              product.maturityName 
+            ) 
+          : productName = this.formatProductNameTo20Characters(
+              product.categoryName +
+              " " +
+              product.varietyName
+            )
+            
+            orderRawTxt += productName + tab + tab +
 
-          "S/." + product.totalPrice.toFixed(2)
+          "S/." + product.totalPrice.toFixed(2);
       })
 
       orderRawTxt += breakLine;

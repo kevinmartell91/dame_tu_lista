@@ -8,6 +8,7 @@ $store_name_text_size: 28px
 $store_delivery_info_text_size: 18px
 $store_pick_up_info_text_size: 18px
 $store_options_text_size: 12px
+$translateY: -204px
 
 $primary_filed_color: #565656
 $primary_button_color: #43b02b
@@ -44,10 +45,22 @@ $box_container_size: 320px
   margin: 0
   padding: 0
   grid-template-columns: 1fr
-  grid-template-rows: 200px 15px 1fr 
+  grid-template-rows: 250px 200px 15px 1fr 
   grid-gap: 0em
-  grid-template-areas: "banner" "options" "strPrd" 
+  grid-template-areas:  "banner" "img" "options" "strPrd"
   z-index: 6  
+
+  .bg-image 
+    grid-area: img
+    // background-image: url("https://scontent-lim1-1.xx.fbcdn.net/v/t1.0-9/50063339_664455337285529_4922438266776453120_o.jpg?_nc_cat=100&ccb=3&_nc_sid=e3f864&_nc_eui2=AeHfCc1QM3wLmmNbPYoRixVwXC-T_docLz1cL5P92hwvPcDDS2G8MpBRLmIchKXDMAY&_nc_ohc=pVR2GAreaEoAX8jSbXd&_nc_ht=scontent-lim1-1.xx&oh=267e6405ae89f15d9c9b2bce08e971de&oe=604C4A2F")
+    background-color: rgba(0,0,0, 0.4)
+    filter: blur(5px)
+    -webkit-filter: blur(5px)
+    height: 100%
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    transform: translateY($translateY)
 
   .store_banner_area
     grid-area: banner
@@ -57,6 +70,9 @@ $box_container_size: 320px
     grid-template-areas: "___cart" "storeName" "delivery" "pickUp" 
     grid-gap: 0em
     z-index: 3
+    background-color: $background_banner
+
+    // transform: translateY(-196px)
         
     .store_____cart_area
       grid-area: ___cart
@@ -69,6 +85,8 @@ $box_container_size: 320px
       background-color: #eeececfa
       position: fixed
       width: 100%
+      // transform: translateY(-248px)
+
       // border-bottom: 1px #c2c2c2 solid
 
 
@@ -156,7 +174,8 @@ $box_container_size: 320px
       font-weight: 800
       font-size: $store_name_text_size
       color: white
-      background-color: $background_banner
+
+      // background-color: $background_banner
       .style_store_name
         text-align: center
         margin: 0em
@@ -167,7 +186,9 @@ $box_container_size: 320px
       font-weight: 700
       font-size: $store_delivery_info_text_size
       color: white
-      background-color: $background_banner
+      // transform: translateY(-248px)
+
+      // background-color: $background_banner
       .style_delivery_info
         text-align: center
         margin: 0em
@@ -178,7 +199,8 @@ $box_container_size: 320px
       font-weight: 700
       font-size: $store_pick_up_info_text_size
       color: white
-      background-color: $background_banner
+
+      // background-color: $background_banner
       .style_pick_up_info
         text-align: center
         margin: 0em
@@ -195,6 +217,9 @@ $box_container_size: 320px
     grid-template-columns: 1fr
     grid-template-rows: 44px
     grid-template-areas: "categories"
+    transform: translateY($translateY + 12)
+    z-index: 10
+
     // grid-gap: 0px
     // position: fixed
     // z-index: 4
@@ -238,7 +263,4 @@ $box_container_size: 320px
 
   .store_products_area
     grid-area: strPrd
-
-
-.material-icons
-  transform: translateY(10px)
+    transform: translateY($translateY)

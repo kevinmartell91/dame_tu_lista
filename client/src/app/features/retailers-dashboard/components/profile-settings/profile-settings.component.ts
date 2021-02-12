@@ -55,7 +55,7 @@ export class ProfileSettingsComponent implements OnDestroy {
           // Validators.maxLength(20)
         ]
       ],
-      imgUrl:["../../../assets/fruit-images/fruits_portal_img.jpg",Validators.required],
+      imgUrl:[""],
       isDeliveryService:[false, Validators.required],
       isPickUpService:[false, Validators.required],
       deliveryInfo:[""],
@@ -96,7 +96,7 @@ export class ProfileSettingsComponent implements OnDestroy {
           // Validators.maxLength(20)
         ]
       ],
-      imgUrl: [this.retailer.store.imgUrl, Validators.required],
+      imgUrl: [this.retailer.store.imgUrl],
       isDeliveryService: [this.retailer.store.isDeliveryService, Validators.required],
       isPickUpService: [this.retailer.store.isPickUpService, Validators.required],
       deliveryInfo: [this.retailer.store.deliveryInfo],
