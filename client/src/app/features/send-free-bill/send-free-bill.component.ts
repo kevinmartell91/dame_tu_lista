@@ -1,25 +1,32 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormArray, AbstractControl, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {
+  FormArray,
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectPaymentMethodComponent } from '../carts/components/select-payment-method/select-payment-method.component';
+import { last } from 'rxjs/operators';
 
 interface IProduct {
-  id: string,
-  name: string,
-  price: string
+  id: string;
+  name: string;
+  price: string;
 }
 
 @Component({
   selector: 'app-send-free-bill',
   templateUrl: './send-free-bill.component.html',
-  styleUrls: ['./send-free-bill.component.sass']
+  styleUrls: ['./send-free-bill.component.sass'],
 })
 export class SendFreeBillComponent implements OnInit {
-
   controls: FormArray;
   newProductForm: FormGroup;
   strTotalPrice: string;
@@ -31,71 +38,70 @@ export class SendFreeBillComponent implements OnInit {
     private fb: FormBuilder,
     private matDialog: MatDialog,
     private buyerNavegationStore: BuyerNavegationStore
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     updateBuyerNavagation(
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.freeBillView,
-      "navegation.freeBillView"
+      'navegation.freeBillView'
     );
 
     this.newProductForm = this.fb.group({
-      name: ["", Validators.required],
-      price: ["", Validators.required]
-    })
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+    });
 
-    const toGroups = this.productList.map(product => {
+    const toGroups = this.productList.map((product) => {
       return new FormGroup({
         id: new FormControl(product.id, Validators.required),
         name: new FormControl(product.name, Validators.required),
         price: new FormControl(product.price, Validators.required),
       });
-    })
+    });
     this.controls = new FormArray(toGroups);
   }
 
-  @ViewChild("myInputProduct") inputProductField: ElementRef;
+  @ViewChild('myInputProduct') inputProductField: ElementRef;
   ngAfterViewInit() {
     this.inputProductField.nativeElement.focus();
   }
 
   getControl(id: string, field: string): AbstractControl {
-    const absCtrl = this.controls.controls.find(ctrl => {
+    const absCtrl = this.controls.controls.find((ctrl) => {
       if (ctrl.value.id === id) {
         return ctrl;
       }
-    })
+    });
     return absCtrl.get(field);
   }
 
   updateField(id: string, field: string) {
     const control = this.getControl(id, field);
 
-    let isPrice = (field === "price") ? true : false;
-    console.log("object control", control);
+    let isPrice = field === 'price' ? true : false;
+    console.log('object control', control);
     if (control.valid) {
-      this.productList = this.productList.map(prod => {
+      this.productList = this.productList.map((prod) => {
         if (id === prod.id.toString()) {
           return {
             ...prod,
             // [field]: control.value
-            [field]: isPrice ? (+control.value).toFixed(2) : control.value
-          }
+            [field]: isPrice ? (+control.value).toFixed(2) : control.value,
+          };
         }
         return prod;
-      })
+      });
     }
   }
 
   addProduct(form: IProduct) {
-    console.log("form:", form);
+    console.log('form:', form);
     const newEntity: IProduct = {
       id: Date.now().toString(),
       name: form.name,
-      price: (+form.price).toFixed(2)
-    }
+      price: (+form.price).toFixed(2),
+    };
 
     const newControl = new FormGroup({
       id: new FormControl(Date.now().toString()),
@@ -107,7 +113,6 @@ export class SendFreeBillComponent implements OnInit {
 
     this.newProductForm.reset();
     this.inputProductField.nativeElement.focus();
-
   }
 
   deleteProduct(id: string) {
@@ -118,33 +123,31 @@ export class SendFreeBillComponent implements OnInit {
     });
   }
 
-  sendBillTo(phoneNumber:  string): void {
-
-    const listRawText = this.transformProductToRawText(this.productList);
+  sendBillTo(phoneNumber: string): void {
+    // const listRawText = this.transformProductToRawText(this.productList);
+    const listRawText = this.transformProductToRawTextMiltiline(this.productList);
     console.log(listRawText);
     this.sendViaWhatsApp(listRawText, phoneNumber);
-
   }
 
   getTotalPrice(): string {
     let total: number = 0;
-    this.productList.forEach(prod => {
-      total += +prod.price
+    this.productList.forEach((prod) => {
+      total += +prod.price;
     });
     return total.toFixed(2);
   }
 
-  transformProductToRawText(productList: IProduct[]): string {
+  transformProductToRawTextMiltiline(productList: IProduct[]): string {
+    const tab: string = String.fromCodePoint(parseInt('9', 16));
+    const breakLine: string = '\n';
+    let orderRawTxt: string = '';
+    let title: string = '';
+    let subTitle: string = '';
+    let totalPrice: string = '';
 
-    const tab: string = String.fromCodePoint(parseInt("9", 16));
-    const breakLine: string = "\n";
-    let orderRawTxt: string = "";
-    let title: string = "";
-    let subTitle: string = "";
-    let totalPrice: string = "";
-
-    title = "🏁       *www.dametulista.com*       🏁" + breakLine;
-    subTitle = "📝 *Boleta* :" + breakLine;
+    title = '🏁       *www.dametulista.com*       🏁' + breakLine;
+    subTitle = '📝 *Boleta* :' + breakLine;
     totalPrice = `Total: *S/. ${this.getTotalPrice()}* 🤑` + breakLine;
 
     orderRawTxt += breakLine;
@@ -154,20 +157,22 @@ export class SendFreeBillComponent implements OnInit {
 
     orderRawTxt += subTitle;
     orderRawTxt += breakLine;
-    orderRawTxt += "📌Productos " + tab + tab + tab + " 💰Precio" + breakLine;
-
-    productList.forEach(product => {
-
-      orderRawTxt += 
-
-        this.formatProductNameTo20Characters(
-          product.name
-        ) + tab + tab +
-
-        "S/." + (+product.price).toFixed(2) +
-
-        breakLine
-    })
+    orderRawTxt +=
+    '📌Productos ' + tab + tab + tab + tab + tab + tab + ' 💰Precio' + breakLine;
+    
+    productList.forEach((product, id) => {
+      const multiplineProdName : string[]= this.formatProductNameTo20CharactersMiltipleLines(product.name);
+      console.log(multiplineProdName);
+      orderRawTxt += (id +1) + ")" ;
+      multiplineProdName.forEach(line => {
+        orderRawTxt += tab + tab + line ;
+      });
+      orderRawTxt += tab +
+      'S/.' +
+      (+product.price).toFixed(2) +
+      breakLine +       
+      breakLine;        
+    });
 
     orderRawTxt += breakLine;
 
@@ -175,44 +180,129 @@ export class SendFreeBillComponent implements OnInit {
 
     orderRawTxt += breakLine;
 
-    orderRawTxt += "       *Hecho con mucho ❤️ en 🇵🇪*       " + breakLine;
+    orderRawTxt += '       *Hecho con mucho ❤️ en 🇵🇪*       ' + breakLine;
     orderRawTxt += breakLine;
 
     return orderRawTxt;
   }
 
-  formatProductNameTo20Characters(term: string): string {
+  transformProductToRawText(productList: IProduct[]): string {
+    const tab: string = String.fromCodePoint(parseInt('9', 16));
+    const breakLine: string = '\n';
+    let orderRawTxt: string = '';
+    let title: string = '';
+    let subTitle: string = '';
+    let totalPrice: string = '';
 
-    const maxLenght: number = 18;
-    const threePointsLenght: number = 3;
+    title = '🏁       *www.dametulista.com*       🏁' + breakLine;
+    subTitle = '📝 *Boleta* :' + breakLine;
+    totalPrice = `Total: *S/. ${this.getTotalPrice()}* 🤑` + breakLine;
 
-    if (term == null || term == "") return;
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+    orderRawTxt += title;
+    orderRawTxt += breakLine;
 
-    if (term.length < maxLenght) {
-      //print null string
-      const num = maxLenght - term.length;
-      return term + this.getEmptyStr(num);
+    orderRawTxt += subTitle;
+    orderRawTxt += breakLine;
+    orderRawTxt +=
+    '📌Productos ' + tab + tab + tab + tab + ' 💰Precio' + breakLine;
+    
+    productList.forEach((product) => {
+      orderRawTxt +=
+        tab +
+        'S/.' +
+        (+product.price).toFixed(2) +
+        breakLine;
+    });
+
+    orderRawTxt += breakLine;
+
+    orderRawTxt += totalPrice;
+
+    orderRawTxt += breakLine;
+
+    orderRawTxt += '       *Hecho con mucho ❤️ en 🇵🇪*       ' + breakLine;
+    orderRawTxt += breakLine;
+
+    return orderRawTxt;
+  }
+
+  formatProductNameTo20CharactersMiltipleLines(productName: string): string[] {
+
+    const maxLenTextByLine: number = 25;
+    const maginErr = 3;
+    const breakLine = '\n'
+    const arrWords = productName.split(" ");
+    let bufferMultilineText: string[] = [];
+    let tempLine = "";
+
+    arrWords.forEach(word => {
+      if(tempLine.length + word.length < maxLenTextByLine){
+        tempLine += word + " ";
+      } else {
+        tempLine += breakLine;
+        bufferMultilineText.push(tempLine);
+        tempLine = "";
+        tempLine += word + " ";
+      }
+    });
+    // addinfg the left over wrods
+    bufferMultilineText.push(tempLine);
+
+    
+    // adding dot point in direction to the price.
+    const lastLineId = bufferMultilineText.length-1;
+    let lastLine = bufferMultilineText[lastLineId];
+    if (lastLine.length < maxLenTextByLine - maginErr) {
+      const numEmptySpaces = maxLenTextByLine - lastLine.length;
+      lastLine += this.getEmptyStr(numEmptySpaces) ;
+
+    } else {
+      lastLine += " . .";
     }
+    
+    bufferMultilineText[lastLineId] = lastLine;
+    console.log("bufferMultilineText",bufferMultilineText);
 
-    return term.slice(0, maxLenght - threePointsLenght) + " . . .";
+    return bufferMultilineText;
 
   }
 
-  sendViaWhatsApp(textMessageOrder: string, phoneNumber: string): void {
+  // formatProductNameTo20Characters(term: string): string {
 
+  //   const maxLenName: number = 27;
+  //   const difErr = 2;
+  //   const strFillCharacters = '  ';
+
+  //   const threePointsLenght: number = 3;
+
+  //   if (term == null || term == '') return;
+
+  //   if (term.length < maxLenName) {
+  //     //print null string
+  //     const num = maxLenName - term.length;
+  //     return term + this.getEmptyStr(num * 1) + strFillCharacters;
+  //   }
+
+  //   return term.slice(0, maxLenName + difErr) + strFillCharacters ;
+  // }
+
+  sendViaWhatsApp(textMessageOrder: string, phoneNumber: string): void {
     // find out how to paste it automatically in
     // whatsapp
     // const storePhoneNumber: string = "+51996821980";
-    console.log("WHATASPP:", phoneNumber);
-    let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(textMessageOrder)}`;
-    if (environment.production)
-      window.location.href = link;
+    console.log('WHATASPP:', phoneNumber);
+    let link = `//api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURI(
+      textMessageOrder
+    )}`;
+    if (environment.production) window.location.href = link;
   }
 
   getEmptyStr(num: number): string {
-    let emptyStr = "";
+    let emptyStr = ' ';
     for (let i = 0; i < num; i++) {
-      emptyStr += " .";
+      emptyStr += '. ';
     }
     return emptyStr;
   }
@@ -221,15 +311,14 @@ export class SendFreeBillComponent implements OnInit {
     this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
       width: '420px',
       data: {
-        isFreeBill : true
-      }
+        isFreeBill: true,
+      },
     });
 
     this.dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
-        this.sendBillTo("+51" + result.phoneNumber);
+        this.sendBillTo('+51' + result.phoneNumber);
       }
     });
-    
   }
 }
