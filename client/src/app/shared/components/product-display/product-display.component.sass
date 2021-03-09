@@ -21,11 +21,11 @@ $box_add_button_size: 30px
 .product_display_grid_row_view
   display: grid
   margin: 0
-  padding: 10px
-  grid-template-columns: 35px .9fr 80px 20px
+  padding: 0px 10px 10px 19px
+  grid-template-columns: 35px .9fr 94px 10px
   grid-gap: 0px
-  grid-template-rows: 15px 15px 
-  grid-template-areas: "image matur totPriProd  add" "image price  totPriProd add"
+  grid-template-rows: 15px 15px 11px 
+  grid-template-areas: "image matur totPriProd  add" "image price  totPriProd add" " org . . ."
   background-color: white
   div:empty 
     display: none 
@@ -110,7 +110,7 @@ $box_add_button_size: 30px
 .product_price_area
   grid-area: price
   padding: 5px 0px 0px 5px
-  font-size: $primary_display_font_size
+  font-size: $third_display_font_size
   color: $secondary_filed_color
   font-weight: bold
   justify-self: left
@@ -124,7 +124,7 @@ $box_add_button_size: 30px
 // Total Price per product in Row View  
 .product_total_price_product_area
   grid-area: totPriProd
-  padding: 0px 5px
+  padding: inherit
   margin: 0px
   font-size: $primary_display_font_size
   color: $primary_filed_dark_color
@@ -154,7 +154,7 @@ $box_add_button_size: 30px
     align-self: start
     font-weight: bold
     touch-action: manipulation
-    border: 1px solid rgb(67, 176, 42)
+    // border: 1px solid rgb(67, 176, 42)
     border-radius: 20px
     font-weight: 100
     white-space: nowrap
@@ -176,6 +176,7 @@ $box_add_button_size: 30px
 
   .quantity_increased
     background-color: rgb(67, 176, 42)
+    transform: translateY(5px)
     color: white
 
 // taking advantage of "add" grid-area
@@ -221,8 +222,8 @@ $box_add_button_size: 30px
   padding: 0px
   font-size: 14px
   height: 20px
-  background-color: #e1e1e1
-  color: #6b6b6b
+  background-color: #f3f3f3
+  color: #bfbfbf
   min-width: 74px
   top: 8px
   right: 8px
@@ -236,7 +237,7 @@ $box_add_button_size: 30px
 .product_maturity_area
   grid-area: matur
   padding: 0px 5px
-  font-size: 15px
+  font-size: $primary_display_font_size
   color: #6bc05b
   justify-self: left
   border-radius: 4px
@@ -293,13 +294,32 @@ $box_add_button_size: 30px
   color: $third_text_color
   transform: translate3d(98px, -1px, 0px)
 
+.style_size_color
+  color: #6bc05b
+  font-weight: 100
+  font-size: $third_display_font_size
 
-.zoom 
-  transition: transform .2s
+// .zoom 
+//   transition: transform .2s
 
-.zoom:hover 
-  -ms-transform: scale(1.1);
-  -webkit-transform: scale(1.1); 
-  transform: scale(1.1);
-  z-index: 10
-      
+// .zoom:hover 
+//   -ms-transform: scale(1.1);
+//   -webkit-transform: scale(1.1); 
+//   transform: scale(1.1);
+//   z-index: 10
+    
+
+.organic_area
+  grid-area: org
+  justify-self: center
+  font-weight: bold
+  border-radius: 3px
+  font-weight: 100
+  display: inline-flex
+  align-items: center
+  font-size: 7px
+  height: 8px
+  background-color: #8bce7d
+  color: white
+  min-width: 24px
+  justify-content: center

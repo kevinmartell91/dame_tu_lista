@@ -69,7 +69,7 @@ $box_container_size: 320px
     grid-template-rows: 1fr 1fr 1fr 1fr
     grid-template-areas: "___cart" "storeName" "delivery" "pickUp" 
     grid-gap: 0em
-    z-index: 3
+    z-index: 20
     background-color: $background_banner
 
     // transform: translateY(-196px)
@@ -82,7 +82,8 @@ $box_container_size: 320px
       grid-template-columns: 1fr 1fr 70px
       grid-template-rows: 46px
       grid-template-areas: "admin search cart"
-      background-color: #eeececfa
+      background-color: white
+      border-bottom: 1px solid #efeded
       position: fixed
       width: 100%
       // transform: translateY(-248px)
@@ -111,7 +112,7 @@ $box_container_size: 320px
         color: #43b029
         justify-self: self-start
         font-weight: 100
-        background: #eeececfa
+        // background: #eeececfa
         border-radius: 9px
       
       .search_box_area

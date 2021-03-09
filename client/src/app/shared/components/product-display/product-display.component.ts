@@ -22,7 +22,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   isKiloUnitAvailable: boolean = true;
   isSizeAvailable: boolean = true;
 
-  quantityStr: string = "+";
+  quantityStr: string = "👌";
   quantity: number = 0;
   kiloOrUnit: string = "";
   size: string = "";
@@ -101,7 +101,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     }
 
     if (quantityUpdated == 0) {
-      this.quantityStr = "+";
+      this.quantityStr = "👌";
       this.productTotalPriceQuantityStr = "";
       this.isQuantityIncreased = false;
     } else {

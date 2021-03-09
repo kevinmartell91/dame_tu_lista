@@ -9,21 +9,24 @@ $product_contianer_max_size: 1fr
   font-weight: 600
   font-size: 25px
 
+.container_row_products_view
+  max-width: 500px
+  margin: 0 auto
+  // background: #efeded
 
-.display_products_row_grid
-  display: grid
-  margin: 7px
-  padding: 0px
-  grid-template-columns: repeat(auto-fill, minmax($product_contianer_min_size, $product_contianer_max_size))
-  grid-template-rows: 18px 0.4fr
-  grid-template-areas: "var" "mat"
-  grid-gap: 14px
+  .display_products_row_grid
+    display: grid
+    padding: 0px
+    grid-template-columns: repeat(auto-fill, minmax($product_contianer_min_size, $product_contianer_max_size))
+    grid-template-rows: 18px 0.4fr
+    grid-template-areas: "var" "mat"
+    grid-gap: 14px
 
-  .variety_area
-    grid-area: var
-    color: #6d6d6d
-    margin: 10px
+    .variety_area
+      grid-area: var
+      color: #6d6d6d
+      margin: 10px
 
-  .maturity_products_area
-    grid-area: mat
-    margin: 10px
+    .maturity_products_area
+      grid-area: mat
+      margin: 10px 0px 10px 0px

@@ -1,62 +1,74 @@
 <h1 class="style_question">
-    {{question}}
+  {{ question }}
 </h1>
 
-<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
-
-    <ng-container *ngIf="subs.state$.requests.getRetailer.inProgress ;
-        then showLoading ; 
-        else showData">
+<div>
+  <ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+    <ng-container
+      *ngIf="
+        subs.state$.requests.getRetailer.inProgress;
+        then showLoading;
+        else showData
+      "
+    >
     </ng-container>
 
     <ng-template #showLoading>
-        <div class="grid_loading_display">
-            <div class="login_brand_area">
-                <span> Cargando ...</span>
-            </div>
-            <div class="loading_symbol_area">
-                <mat-spinner> </mat-spinner>
-            </div>
+      <div class="grid_loading_display">
+        <div class="login_brand_area">
+          <span> Cargando ...</span>
         </div>
+        <div class="loading_symbol_area">
+          <mat-spinner> </mat-spinner>
+        </div>
+      </div>
     </ng-template>
 
     <ng-template #showData>
-        <ng-container *ngIf="storeProducts.length > 0;
-            then showStoreProducts; 
-            else ShowEmptyMessage">
-        </ng-container>
+      <ng-container
+        *ngIf="
+          storeProducts.length > 0;
+          then showStoreProducts;
+          else ShowEmptyMessage
+        "
+      >
+      </ng-container>
 
-        <ng-template #showStoreProducts>
+      <ng-template #showStoreProducts>
+        <div class="container_row_products_view">
+          <ng-container
+            *ngFor="let varietyList of maturityProductsByVariety$ | async"
+          >
+            <div class="display_products_row_grid">
+              <div class="variety_area">
+                <h2>{{ getVarietyName(varietyList) }}</h2>
+              </div>
+              <div class="maturity_products_area">
+                <ng-container *ngFor="let product of varietyList.productList">
+                  <app-product-display-shared
+                    typeView="rowView"
+                    [product]="product"
+                    (selected)="onSelected($event)"
+                    (selectedCartProduct)="onSelectedCartProduct($event)"
+                  >
+                  </app-product-display-shared>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-template>
 
-            <ng-container *ngFor='let varietyList of maturityProductsByVariety$ | async'>
-                <div class="display_products_row_grid">
-                    <div class="variety_area">
-                        <h2>{{getVarietyName(varietyList)}}</h2>
-                    </div>
-                    <div class="maturity_products_area">
-                        <ng-container *ngFor='let product of varietyList.productList'>
-                            <app-product-display-shared typeView="rowView" [product]="product"
-                                (selected)="onSelected($event)" (selectedCartProduct)="onSelectedCartProduct($event)">
-                            </app-product-display-shared>
-                        </ng-container>
-                    </div>
-
-                </div>
-            </ng-container>
-        </ng-template>
-
-        <ng-template #ShowEmptyMessage>
-            <!-- <div class="container"> -->
-            <!-- <div class="obsolute_relative"> -->
-            <!-- <div class="style_empty_message"> -->
-            <!-- <span> No se encontratron resultados de búsqueda.</span> -->
-            <span> No se encontratron resultados de búsqueda.</span>
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
-
-        </ng-template>
-
+      <ng-template #ShowEmptyMessage>
+        <!-- <div class="container"> -->
+        <!-- <div class="obsolute_relative"> -->
+        <!-- <div class="style_empty_message"> -->
+        <!-- <span> No se encontratron resultados de búsqueda.</span> -->
+        <span> No se encontratron resultados de búsqueda.</span>
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+      </ng-template>
     </ng-template>
-
-</ng-container>
+  </ng-container>
+</div>
