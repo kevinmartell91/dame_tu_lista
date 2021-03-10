@@ -1,5 +1,5 @@
 $img_witdh: 60px
-$quant_width: 60px
+$quant_width: 40px
 $price_width: 70px
 
 $primary_display_font_size: 14px
@@ -29,11 +29,14 @@ $third_text_color: #8bce7d
 .continer_grid
   display: grid
   margin: 0
-  padding: 0px
+  padding: 0px 0px 10px 0px
   grid-template-columns: 1fr
   grid-template-rows: 1fr 20px
   grid-template-areas: "product" "options"
   grid-gap: 0px
+  .div.options_area:empty 
+    display: none 
+
 
   
   .product_area
@@ -41,8 +44,10 @@ $third_text_color: #8bce7d
     display: grid
     grid-template-columns: $img_witdh 3fr $quant_width $price_width
     grid-template-rows: .1fr .1fr .1fr
-    grid-template-areas: "img name quant price"  "img kg_Uni quant price" "img pro_det pro_det pro_det"
+    grid-template-areas: "img name quant price"  "img kg_Uni quant price" "img pro_det quant price"
     grid-gap: 0em
+    align-self: center
+
 
     .img_area
       grid-area: img
@@ -86,13 +91,11 @@ $third_text_color: #8bce7d
 
     .total_price_area
       grid-area: price
-      padding: 19px 0px 19px 0px     
       font-size: $price_text_size
       color: $price_color
       border-radius: 13px
-      text-align: center
-      transform: translateY(-10px)
-      z-index: -1
+      justify-self: center
+      align-self: center
     
 
 
@@ -109,8 +112,10 @@ $third_text_color: #8bce7d
       font-size: $third_display_font_size
       color: $third_filed_color
       span
-        padding: 12px 0px 0px 4px
         cursor: pointer
+    .bold_style
+      font-weight: 600
+      color: $quant_color
     
     .remove_area
       grid-area: rmv_det
@@ -153,7 +158,9 @@ $third_text_color: #8bce7d
 .style_maturity_details
   color: $third_text_color
 
-
+.disabled
+  pointer-events: none
+  opacity: 1
 // .zoom 
 //   transition: transform .2s
 

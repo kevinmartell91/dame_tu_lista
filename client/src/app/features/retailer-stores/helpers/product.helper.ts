@@ -1,29 +1,34 @@
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { Product } from "../../../core/retailer/types/product";
+import { Product } from '../../../core/retailer/types/product';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { MaturityProductsByVariety } from '../types/maturityProductsByVariety';
+import * as _ from 'lodash';
 
 export function getProductDeserialized(products: any): Product[] {
   let productsList: Product[] = [];
 
-  products.forEach(product => {
-    productsList.push(new Product().deserialize(product))
+  products.forEach((product) => {
+    productsList.push(new Product().deserialize(product));
   });
 
   return productsList;
 }
 
-export function filterAllProductsByCategory(
-  products: Product[]
-): Product[] {
-
+export function filterAllProductsByCategory(products: Product[]): Product[] {
   let categoryList: Product[] = [];
   categoryList.push(products[0]);
 
   let j = 0;
   for (let i = 1; i < products.length; i++) {
     if (products[j].categoryName !== products[i].categoryName) {
-      if (!isOnList(STORE_CONFIG.view_type.categoryView, products[i].categoryName, "", categoryList)) {
+      if (
+        !isOnList(
+          STORE_CONFIG.view_type.categoryView,
+          products[i].categoryName,
+          '',
+          categoryList
+        )
+      ) {
         categoryList.push(products[i]);
       }
     }
@@ -33,30 +38,42 @@ export function filterAllProductsByCategory(
       i = j;
     }
   }
-  return categoryList;
+  return _.sortBy(categoryList, ['categoryName']);
 }
 
 export function filterProductsByVariety(
   category: string,
   products: Product[]
 ): Product[] {
-
   let varietyList: Product[] = [];
 
-
   // Filtering fruits by varitety (organic fruits)
-  products.forEach(product => {
+  products.forEach((product) => {
     if (product.categoryName == category && product.isOrganic == true) {
-      if (!isOnList(STORE_CONFIG.view_type.varietyView, product.varietyName, "", varietyList)) {
+      if (
+        !isOnList(
+          STORE_CONFIG.view_type.varietyView,
+          product.varietyName,
+          '',
+          varietyList
+        )
+      ) {
         varietyList.push(product);
       }
     }
   });
 
   // Filtering fruits by varitety (not organic fruits)
-  products.forEach(product => {
+  products.forEach((product) => {
     if (product.categoryName == category && product.isOrganic == false) {
-      if (!isOnList(STORE_CONFIG.view_type.varietyView, product.varietyName, "", varietyList)) {
+      if (
+        !isOnList(
+          STORE_CONFIG.view_type.varietyView,
+          product.varietyName,
+          '',
+          varietyList
+        )
+      ) {
         varietyList.push(product);
       }
     }
@@ -71,27 +88,32 @@ export function filterProductsByMaturity(
   isOrganicStr: string,
   productsList: Product[]
 ): Product[] {
-
   let maturityList: Product[] = [];
   let isOrganic: boolean = JSON.parse(isOrganicStr);
 
-  productsList.forEach(product => {
-    if (product.categoryName == category &&
+  productsList.forEach((product) => {
+    if (
+      product.categoryName == category &&
       product.varietyName == variety &&
-      product.isOrganic == isOrganic) {
+      product.isOrganic == isOrganic
+    ) {
       maturityList.push(product);
     }
   });
   return maturityList;
 }
 
-export function isOnList(viewType: string, filterValue1: string, filterValue2: any, products: Product[]): Boolean {
-
+export function isOnList(
+  viewType: string,
+  filterValue1: string,
+  filterValue2: any,
+  products: Product[]
+): Boolean {
   let isOnList: Boolean = false;
   let value: string;
   let isOrganic: boolean;
 
-  products.forEach(product => {
+  products.forEach((product) => {
     switch (viewType) {
       case STORE_CONFIG.view_type.categoryView:
         value = product.categoryName;
@@ -103,8 +125,9 @@ export function isOnList(viewType: string, filterValue1: string, filterValue2: a
       case STORE_CONFIG.view_type.varietyView:
         value = product.varietyName;
         isOrganic = product.isOrganic;
-        if (filterValue1 === value
-          // && filterValue2 === isOrganic 
+        if (
+          filterValue1 === value
+          // && filterValue2 === isOrganic
         ) {
           isOnList = true;
         }
@@ -117,7 +140,8 @@ export function isOnList(viewType: string, filterValue1: string, filterValue2: a
         }
         break;
 
-      default: // STORE_CONFIG.view_type.seasonalView: 
+      default:
+        // STORE_CONFIG.view_type.seasonalView:
         value = STORE_CONFIG.view_type.categoryView;
         // searchFiled = STORE_CONFIG.view_type.seasonalView;
         /**
@@ -130,16 +154,12 @@ export function isOnList(viewType: string, filterValue1: string, filterValue2: a
         }
         break;
     }
-
   });
 
   return isOnList;
 }
 
-export function getProductFromCartProduct(
-  cartProduct: CartProduct
-): Product {
-
+export function getProductFromCartProduct(cartProduct: CartProduct): Product {
   let product = new Product();
 
   product._id = cartProduct._id;
@@ -166,20 +186,22 @@ export function getProductFromCartProduct(
 
   product.quantity = cartProduct.quantity;
 
-  console.log("TRANSFORMED TO PRODUCT - getProductFromCartProduct()", product);
+  console.log('TRANSFORMED TO PRODUCT - getProductFromCartProduct()', product);
   return product;
 }
 
-export function transformCartProductsIntoProducts(storeProducts: Product[], cartProducts: CartProduct[]): Product[] {
-
+export function transformCartProductsIntoProducts(
+  storeProducts: Product[],
+  cartProducts: CartProduct[]
+): Product[] {
   // console.log("STORE PRODUCTS", storeProducts);
   // console.log("CART PRODUCTS", cartProducts);
 
-  storeProducts.map(storeProd => {
-    return storeProd.quantity = 0;
-  })
+  storeProducts.map((storeProd) => {
+    return (storeProd.quantity = 0);
+  });
 
-  cartProducts.forEach(cartProd => {
+  cartProducts.forEach((cartProd) => {
     // storeProducts.forEach(storeProd => {
     //   if (cartProd._id === storeProd._id) {
     //     updateProduct.push(getProductFromCartProduct(cartProd));
@@ -187,22 +209,19 @@ export function transformCartProductsIntoProducts(storeProducts: Product[], cart
     //     updateProduct.push(storeProd);
     //   }
     // });
-    storeProducts.map(storeProd => {
+    storeProducts.map((storeProd) => {
       if (cartProd._id === storeProd._id) {
         storeProd.quantity = cartProd.quantity;
       }
-    })
+    });
   });
 
-
-
   return storeProducts;
-
 }
 
-
-export function getMaturityProductsByVariety(products: Product[]): MaturityProductsByVariety[] {
-
+export function getMaturityProductsByVariety(
+  products: Product[]
+): MaturityProductsByVariety[] {
   // console.log(" this.storeProducts", products);
 
   if (!products) return;
@@ -211,43 +230,42 @@ export function getMaturityProductsByVariety(products: Product[]): MaturityProdu
   const arrayCategories = filterAllProductsByCategory(products);
   if (!arrayCategories) return;
   //category name is what matters
-  arrayCategories.forEach(category_product_list => {
+  arrayCategories.forEach((category_product_list) => {
     // variety names is what matters
-    const arrayVarieties =
-      filterProductsByVariety(
-        category_product_list.categoryName,
-        products
-      );
+    const arrayVarieties = filterProductsByVariety(
+      category_product_list.categoryName,
+      products
+    );
     if (!arrayVarieties) return;
     // console.log("arrayVarieties.length", arrayVarieties);
 
+    // maturity is what matters
+    arrayVarieties.forEach((variety_product_list) => {
+      let maturityProductsByVariety: MaturityProductsByVariety = new MaturityProductsByVariety();
 
-    // maturity is what matters 
-    arrayVarieties.forEach(variety_product_list => {
+      maturityProductsByVariety.categoryName =
+        category_product_list.categoryName;
+      maturityProductsByVariety.varietyName = variety_product_list.varietyName;
 
-      let maturityProductsByVariety: MaturityProductsByVariety =
-        new MaturityProductsByVariety();
-
-        maturityProductsByVariety.categoryName = 
-          category_product_list.categoryName;
-      maturityProductsByVariety.varietyName =
-        variety_product_list.varietyName;
-
-      const arrayMaturity =
-        filterProductsByMaturity(
-          category_product_list.categoryName,
-          variety_product_list.varietyName,
-          String(variety_product_list.isOrganic),
-          products);
+      const arrayMaturity = filterProductsByMaturity(
+        category_product_list.categoryName,
+        variety_product_list.varietyName,
+        String(variety_product_list.isOrganic),
+        products
+      );
       if (!arrayMaturity) return;
 
       maturityProductsByVariety.productList = arrayMaturity;
       arrayMaturityProductsByVariety.push(maturityProductsByVariety);
     });
-
-
   });
 
   // resolve(arrayMaturityProductsByVariety,"");
-  return arrayMaturityProductsByVariety;
+  // return arrayMaturityProductsByVariety;
+  // console.log(
+  //   ' SORT',
+  //   _.sortBy(arrayMaturityProductsByVariety, ['categoryName', 'varietyName'])
+  // );
+
+  return _.sortBy(arrayMaturityProductsByVariety, ['categoryName', 'varietyName']);
 }

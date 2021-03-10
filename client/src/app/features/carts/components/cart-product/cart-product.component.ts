@@ -14,6 +14,7 @@ export class CartProductComponent implements OnInit {
 
 
   @Input() cartProduct: CartProduct;
+  @Input() isPlacedOrder: boolean;
   @Output() cartProductUpdated = new EventEmitter<CartProduct>();
   @Output() cartProducDeleted = new EventEmitter<CartProduct>();
 
@@ -35,6 +36,7 @@ export class CartProductComponent implements OnInit {
 
     this.cartProductPriceStr = this.cartProduct.price.toFixed(2);
     this.transformCartProductTotalPriceToStr();
+    console.log("isPlaceOrder", this.isPlacedOrder);
   }
 
    /**

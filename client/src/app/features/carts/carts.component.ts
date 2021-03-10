@@ -80,6 +80,8 @@ export class CartsComponent implements OnDestroy {
 
   orderBD: Order = null ;
 
+  isUrlOrders: boolean;
+  isUrlSaleQuote: boolean;
 
 
   constructor(
@@ -177,14 +179,14 @@ export class CartsComponent implements OnDestroy {
   }
   initCartOrderType() {
     //path: ':retailer_store_name/cotizacion/:order_id',
-    const isUrlSaleQuote = this.router.url.includes("cotizacion");
-    const isUrlOrders = this.router.url.includes("orders");
+    this.isUrlSaleQuote = this.router.url.includes("cotizacion");
+    this.isUrlOrders = this.router.url.includes("orders");
 
 
     // sales quote
     // 
 
-    if (isUrlSaleQuote) {
+    if (this.isUrlSaleQuote) {
       console.log("isUrlSaleQuote", this.order_id);
 
       // console.log("Router.url =>",this.router.url, this.order_id);
@@ -210,8 +212,8 @@ export class CartsComponent implements OnDestroy {
       })
     }
 
-    if (isUrlOrders) {
-      console.log("isUrlOrders", this.order_id);
+    if (this.isUrlOrders) {
+      console.log("this.isUrlOrders", this.order_id);
 
 
       localStorage.removeItem("current_order_id");

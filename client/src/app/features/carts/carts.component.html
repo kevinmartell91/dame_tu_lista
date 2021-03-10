@@ -1,84 +1,85 @@
-<ng-container *ngIf="isOrderPushed ; 
-    then showThankYouMessage;
-    else showCustomerCartDetails">
+<ng-container
+  *ngIf="isOrderPushed; then showThankYouMessage; else showCustomerCartDetails"
+>
 </ng-container>
 
 <ng-template #showCustomerCartDetails>
-    <div class="continer" [ngClass]="{'disabled':isDisable}">
-        <hr>
-    
-        <h1 class="style_question">
-            {{titleMessage}}
-        </h1>
-        
-        <ng-container *ngFor='let cartProduct of cartProducts'>
-        
-            <div class="cart_product_grid">
-        
-                <app-cart-product 
-                    [cartProduct]="cartProduct"
-                    (cartProducDeleted)="onCartProducDeleted($event)" 
-                    (cartProductUpdated)="onCartProductUpdate($event)">
-                </app-cart-product>
-            
-            </div>
-        
-        </ng-container>
-        
-        <div class="style_empty_space"></div>
-        
-        <!-- <button class="style_checkout_button"
+  <div class="continer">
+    <hr />
+
+    <h1 class="style_question">
+      {{ titleMessage }}
+    </h1>
+
+    <ng-container *ngFor="let cartProduct of cartProducts">
+
+      <div class="cart_product_grid">
+        <app-cart-product
+          [cartProduct]="cartProduct"
+          [isPlacedOrder]="isUrlOrders"
+          (cartProducDeleted)="onCartProducDeleted($event)"
+          (cartProductUpdated)="onCartProductUpdate($event)"
+        >
+        </app-cart-product>
+      </div>
+    </ng-container>
+
+    <div class="style_empty_space"></div>
+
+    <!-- <button class="style_checkout_button"
                 (click)="submitOrder()">
             {{place_order_message}}
             <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
         </button>     -->
-        <ng-container *ngIf="currentUser ;
-            then showSendInvoiceButton ;
-            else showCompleteOrderDetails">
-        </ng-container>
+    <div [ngClass]="{ disabled: isDisable }">
+      <ng-container
+        *ngIf="
+          currentUser;
+          then showSendInvoiceButton;
+          else showCompleteOrderDetails
+        "
+      >
+      </ng-container>
 
-        <ng-template #showSendInvoiceButton>
-            
-            <button class="style_checkout_button"
-                (click)="sendInvoiceToBuyer()">
-                <ng-container *ngIf="order_id ; 
-                    then showConfirmationIcon ;
-                    else showSendIcon">
-                </ng-container>
-                <ng-template #showConfirmationIcon>
-                    <mat-icon>check_circle</mat-icon>
-                </ng-template>
-                <ng-template #showSendIcon>
-                    <mat-icon>send</mat-icon>
-                </ng-template>
-                Cotización
-            </button>
-        </ng-template>
-       
-        <ng-template #showCompleteOrderDetails>
-            <button class="style_checkout_button" 
-                (click)="completeOrderDetails()">
-                <ng-container *ngIf="order_id ; 
-                    then showConfirmationIcon ;
-                    else showSendIcon">
-                </ng-container>
-                <ng-template #showConfirmationIcon>
-                    <mat-icon>check_circle</mat-icon>
-                </ng-template>
-                <ng-template #showSendIcon>
-                    <mat-icon>send</mat-icon>
-                </ng-template>
-                {{button_message}}
-            </button>
-        </ng-template>
+      <ng-template #showSendInvoiceButton>
+        <button class="style_checkout_button" (click)="sendInvoiceToBuyer()">
+          <ng-container
+            *ngIf="order_id; then showConfirmationIcon; else showSendIcon"
+          >
+          </ng-container>
+          <ng-template #showConfirmationIcon>
+            <mat-icon>check_circle</mat-icon>
+          </ng-template>
+          <ng-template #showSendIcon>
+            <mat-icon>send</mat-icon>
+          </ng-template>
+          Cotización
+        </button>
+      </ng-template>
 
-        <button class="style_total_price_button">S/. {{totalCartPriceStr}}</button>
-           
+      <ng-template #showCompleteOrderDetails>
+        <button class="style_checkout_button" (click)="completeOrderDetails()">
+          <ng-container
+            *ngIf="order_id; then showConfirmationIcon; else showSendIcon"
+          >
+          </ng-container>
+          <ng-template #showConfirmationIcon>
+            <mat-icon>check_circle</mat-icon>
+          </ng-template>
+          <ng-template #showSendIcon>
+            <mat-icon>send</mat-icon>
+          </ng-template>
+          {{ button_message }}
+        </button>
+      </ng-template>
+
+      <button class="style_total_price_button">
+        S/. {{ totalCartPriceStr }}
+      </button>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #showThankYouMessage>
-    <router-outlet></router-outlet>	
+  <router-outlet></router-outlet>
 </ng-template>
-
-

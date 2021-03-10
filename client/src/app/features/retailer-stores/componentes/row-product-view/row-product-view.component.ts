@@ -1,4 +1,10 @@
-import { Component, Input, OnInit,OnChanges, SimpleChange } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChange,
+} from '@angular/core';
 import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
@@ -10,14 +16,12 @@ import { MaturityProductsByVariety } from '../../types/maturityProductsByVariety
 import { getMaturityProductsByVariety } from '../../helpers/product.helper';
 import { Observable, observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-row-product-view',
   templateUrl: './row-product-view.component.html',
-  styleUrls: ['./row-product-view.component.sass']
+  styleUrls: ['./row-product-view.component.sass'],
 })
 export class RowProductViewComponent implements OnInit {
-
   @Input() storeProducts: Product[];
   public maturityProductsByVariety$: Observable<MaturityProductsByVariety[]>;
 
@@ -32,11 +36,9 @@ export class RowProductViewComponent implements OnInit {
     public retailerStoreStore: RetailerStoreStore,
     private cartStore: CartStore
   ) {
-    this.retailerStoreStore.retailer$.subscribe(
-      x => {
-        this.retailer = x;
-      }
-    )
+    this.retailerStoreStore.retailer$.subscribe((x) => {
+      this.retailer = x;
+    });
   }
   ngOnChanges(changes: SimpleChange) {
     this.getVarietiesByMaturiry(this.storeProducts);
@@ -50,7 +52,7 @@ export class RowProductViewComponent implements OnInit {
 
   /**
    * Listen to childre component(product-displaycomponent)
-   * @param product product selected on children 
+   * @param product product selected on children
    * component
    */
   public onSelected(product: Product) {
@@ -58,27 +60,33 @@ export class RowProductViewComponent implements OnInit {
   }
 
   public onSelectedCartProduct(cartProduct: CartProduct) {
-    cartProduct.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
+    cartProduct.totalPrice = updateTotalProductPrice(
+      cartProduct.quantity,
+      cartProduct.price
+    );
     this.cartStore.updateCart(cartProduct);
   }
 
   async getVarietiesByMaturiry_promise(products: Product[]) {
-    const matPodVar = await new Promise<MaturityProductsByVariety[]>((resolve, reject) => {
-      resolve(getMaturityProductsByVariety(products));
-    });
+    const matPodVar = await new Promise<MaturityProductsByVariety[]>(
+      (resolve, reject) => {
+        resolve(getMaturityProductsByVariety(products));
+      }
+    );
     return matPodVar;
   }
 
   getVarietiesByMaturiry(products: Product[]) {
-    this.maturityProductsByVariety$ = new Observable<MaturityProductsByVariety[]>(
-      observer => {
-          observer.next(getMaturityProductsByVariety(products));
-      });
+    this.maturityProductsByVariety$ = new Observable<
+      MaturityProductsByVariety[]
+    >((observer) => {
+      observer.next(getMaturityProductsByVariety(products));
+    });
   }
 
-  getVarietyName(maturityProductsByVariety:MaturityProductsByVariety):string{
-    return maturityProductsByVariety.categoryName === "Comida rápida" 
-    ? maturityProductsByVariety.varietyName 
-    : `${maturityProductsByVariety.categoryName} - ${maturityProductsByVariety.varietyName}`
+  getVarietyName(maturityProductsByVariety: MaturityProductsByVariety): string {
+    return maturityProductsByVariety.categoryName === 'Comida rápida'
+      ? maturityProductsByVariety.varietyName
+      : `${maturityProductsByVariety.categoryName} - ${maturityProductsByVariety.varietyName}`;
   }
 }

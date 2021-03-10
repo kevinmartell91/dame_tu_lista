@@ -54,7 +54,7 @@
             </span>  -->
     </div>
 
-    <div class="quatity_area">
+    <div  [ngClass]="{'disabled':isPlacedOrder}" class="quatity_area">
       <ng-container
         *ngIf="isQuantityMode; then showAddOptions; else showUpdateButton"
       ></ng-container>
@@ -82,14 +82,55 @@
   </div>
   <div class="options_area">
     <div *ngIf="cartProduct.isOrganic" class="isOrganic_area">Org.</div>
+    <!-- class="add_detail_area" -->
 
-    <div class="add_detail_area">
+    <ng-container
+      *ngIf="
+        isPlacedOrder;
+        then ShowViewCommentInPlacedOrder;
+        else ShowAddComments
+      "
+    >
+    </ng-container>
+
+    <ng-template #ShowViewCommentInPlacedOrder>
+      <div
+        *ngIf="cartProduct.details"
+        [ngClass]="{
+          add_detail_area: true,
+          bold_style: cartProduct.details ? true : false
+        }"
+      >
+        <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
+        <span (click)="openAddCartProductDetailModal()">Ver comentario</span>
+      </div>
+    </ng-template>
+
+    <ng-template #ShowAddComments>
+      <div
+        [ngClass]="{
+          add_detail_area: true,
+          bold_style: cartProduct.details ? true : false
+        }"
+      >
+        <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
+        <span (click)="openAddCartProductDetailModal()">Comentar</span>
+      </div>
+
+      <div class="remove_area">
+        <img src="../../../../../assets/icons/delete-15dp.svg" alt="" />
+        <span (click)="deleteCartProduct()">Eliminar</span>
+      </div>
+    </ng-template>
+
+    <!-- <div [ngClass]="{ add_detail_area: true, bold_style: cartProduct.details ? true : false}">
       <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
       <span (click)="openAddCartProductDetailModal()">Comentar</span>
     </div>
-    <div class="remove_area">
+
+    <div *ngIf="!isPlacedOrder" class="remove_area">
       <img src="../../../../../assets/icons/delete-15dp.svg" alt="" />
       <span (click)="deleteCartProduct()">Eliminar</span>
-    </div>
+    </div> -->
   </div>
 </div>
