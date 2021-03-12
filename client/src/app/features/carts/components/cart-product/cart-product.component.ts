@@ -20,6 +20,7 @@ export class CartProductComponent implements OnInit {
 
   cartProductTotalPriceStr: string;
   cartProductPriceStr: string;
+  cartProductQuantityStr: string;
 
 
   isQuantityMode: boolean = false;
@@ -35,6 +36,7 @@ export class CartProductComponent implements OnInit {
   ngOnInit(): void {
 
     this.cartProductPriceStr = this.cartProduct.price.toFixed(2);
+    this.cartProductQuantityStr = this.cartProduct.quantity.toFixed(2);
     this.transformCartProductTotalPriceToStr();
     console.log("isPlaceOrder", this.isPlacedOrder);
   }
@@ -79,6 +81,8 @@ export class CartProductComponent implements OnInit {
   
   transformCartProductTotalPriceToStr(): void {
     this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
+    this.cartProductQuantityStr = this.cartProduct.quantity.toFixed(2);
+
 
   }
 

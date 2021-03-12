@@ -50,7 +50,7 @@ export function calculateCartTotalPrice(products: CartProduct[]): number {
     products.forEach(product => {
         totalCartPrice += (product.price * product.quantity);
     });
-    return round(totalCartPrice, 2);
+    return totalCartPrice;
 }
 
 export function round(value: number, precision: number): number {
