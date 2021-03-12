@@ -8,6 +8,7 @@ $product_contianer_max_size: 1fr
   text-align: center
   font-weight: 600
   font-size: 25px
+  color: #6d6d6d
 
 .container_row_products_view
   max-width: 500px
@@ -16,7 +17,7 @@ $product_contianer_max_size: 1fr
 
   .display_products_row_grid
     display: grid
-    padding: 0px
+    padding: 0px 10px
     grid-template-columns: repeat(auto-fill, minmax($product_contianer_min_size, $product_contianer_max_size))
     grid-template-rows: 18px 0.4fr
     grid-template-areas: "var" "mat"
@@ -32,4 +33,4 @@ $product_contianer_max_size: 1fr
 
     .maturity_products_area
       grid-area: mat
-      margin: 10px 0px 10px 0px
+      margin: 0px 0px 0px 0px

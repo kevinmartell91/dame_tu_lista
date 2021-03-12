@@ -1,6 +1,6 @@
-$primary_display_font_size: 15px
-$secondary_display_font_size: 13px
-$third_display_font_size: 11px
+$primary_display_font_size: 17px
+$secondary_display_font_size: 15px
+$third_display_font_size: 13px
 
 $primary_filed_dark_color: #000000
 $primary_filed_color: #565656
@@ -21,10 +21,10 @@ $box_add_button_size: 30px
 .product_display_grid_row_view
   display: grid
   margin: 4px 0px 4px 0px
-  padding: 15px 10px 0px 19px
+  padding: 15px 10px 0px 10px
   grid-template-columns: 45px .9fr 94px 10px
   grid-gap: 0px
-  grid-template-rows: 1fr 1fr 1fr
+  // grid-template-rows: 1fr 1fr 1fr
   grid-template-areas: "image matur totPriProd add" "image price totPriProd add" "org price totPriProd add"
   background-color: white
   div:empty 
@@ -45,10 +45,10 @@ $box_add_button_size: 30px
 .product_display_grid_category_view
   display: grid
   margin: 0
-  padding: 14px
+  padding: 5px
   grid-template-columns: 10px
-  grid-gap: 0px
-  grid-template-rows: 0fr 100px 20px 0fr
+  grid-gap: 17px
+  grid-template-rows: 0px 90px 0px 0px
   grid-template-areas: "emptyTop emptyTop" "image image" "cate cate" "emptyBottom emptyBottom"
   background-color: white
   cursor: pointer

@@ -125,7 +125,9 @@ export class SendFreeBillComponent implements OnInit {
 
   sendBillTo(phoneNumber: string): void {
     // const listRawText = this.transformProductToRawText(this.productList);
-    const listRawText = this.transformProductToRawTextMiltiline(this.productList);
+    const listRawText = this.transformProductToRawTextMiltiline(
+      this.productList
+    );
     console.log(listRawText);
     this.sendViaWhatsApp(listRawText, phoneNumber);
   }
@@ -145,6 +147,9 @@ export class SendFreeBillComponent implements OnInit {
     let title: string = '';
     let subTitle: string = '';
     let totalPrice: string = '';
+    const verticalPipe = ' ║ ';
+    const corner = ' ╚> ';
+    const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
 
     title = '🏁       *www.dametulista.com*       🏁' + breakLine;
     subTitle = '📝 *Boleta* :' + breakLine;
@@ -158,28 +163,35 @@ export class SendFreeBillComponent implements OnInit {
     orderRawTxt += subTitle;
     orderRawTxt += breakLine;
     orderRawTxt +=
-    '📌Productos ' + tab + tab + tab + tab + tab + tab + ' 💰Precio' + breakLine;
-    
+      '📌Productos ' +
+      tab +
+      tab +
+      tab +
+      tab +
+      tab +
+      tab +
+      ' 💰Precio' +
+      breakLine;
+
     productList.forEach((product, id) => {
-      const multiplineProdName : string[]= this.formatProductNameTo20CharactersMiltipleLines(product.name);
+      const multiplineProdName: string[] = this.formatProductNameTo20CharactersMiltipleLines(
+        product.name
+      );
       console.log(multiplineProdName);
-      orderRawTxt += (id +1) + ")" ;
-      multiplineProdName.forEach(line => {
-        orderRawTxt += tab + tab + line ;
+      orderRawTxt += id + 1 + ')' + breakLine;
+      multiplineProdName.forEach((line) => {
+        orderRawTxt += verticalPipe + tab + line;
       });
-      orderRawTxt += tab +
-      'S/.' +
-      (+product.price).toFixed(2) +
-      breakLine +       
-      breakLine;        
+      orderRawTxt += breakLine;
+      orderRawTxt +=
+        corner + priceGuideLine + 'S/.' + (+product.price).toFixed(2);
+      orderRawTxt += breakLine;
+      orderRawTxt += breakLine;
     });
 
     orderRawTxt += breakLine;
-
     orderRawTxt += totalPrice;
-
     orderRawTxt += breakLine;
-
     orderRawTxt += '       *Hecho con mucho ❤️ en 🇵🇪*       ' + breakLine;
     orderRawTxt += breakLine;
 
@@ -206,14 +218,10 @@ export class SendFreeBillComponent implements OnInit {
     orderRawTxt += subTitle;
     orderRawTxt += breakLine;
     orderRawTxt +=
-    '📌Productos ' + tab + tab + tab + tab + ' 💰Precio' + breakLine;
-    
+      '📌Productos ' + tab + tab + tab + tab + ' 💰Precio' + breakLine;
+
     productList.forEach((product) => {
-      orderRawTxt +=
-        tab +
-        'S/.' +
-        (+product.price).toFixed(2) +
-        breakLine;
+      orderRawTxt += tab + 'S/.' + (+product.price).toFixed(2) + breakLine;
     });
 
     orderRawTxt += breakLine;
@@ -229,44 +237,27 @@ export class SendFreeBillComponent implements OnInit {
   }
 
   formatProductNameTo20CharactersMiltipleLines(productName: string): string[] {
+    const maxLenTextByLine: number = 27;
+    const breakLine = '\n';
 
-    const maxLenTextByLine: number = 25;
-    const maginErr = 3;
-    const breakLine = '\n'
-    const arrWords = productName.split(" ");
+    const arrWords = productName.split(' ');
     let bufferMultilineText: string[] = [];
-    let tempLine = "";
+    let tempLine = '';
 
-    arrWords.forEach(word => {
-      if(tempLine.length + word.length < maxLenTextByLine){
-        tempLine += word + " ";
+    arrWords.forEach((word) => {
+      if (tempLine.length + word.length < maxLenTextByLine) {
+        tempLine += word + ' ';
       } else {
         tempLine += breakLine;
         bufferMultilineText.push(tempLine);
-        tempLine = "";
-        tempLine += word + " ";
+        tempLine = '';
+        tempLine += word + ' ';
       }
     });
-    // addinfg the left over wrods
+    // addinfg the left over words
     bufferMultilineText.push(tempLine);
 
-    
-    // adding dot point in direction to the price.
-    const lastLineId = bufferMultilineText.length-1;
-    let lastLine = bufferMultilineText[lastLineId];
-    if (lastLine.length < maxLenTextByLine - maginErr) {
-      const numEmptySpaces = maxLenTextByLine - lastLine.length;
-      lastLine += this.getEmptyStr(numEmptySpaces) ;
-
-    } else {
-      lastLine += " . .";
-    }
-    
-    bufferMultilineText[lastLineId] = lastLine;
-    console.log("bufferMultilineText",bufferMultilineText);
-
     return bufferMultilineText;
-
   }
 
   // formatProductNameTo20Characters(term: string): string {
