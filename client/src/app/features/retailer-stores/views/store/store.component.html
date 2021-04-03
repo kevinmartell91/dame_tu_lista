@@ -1,106 +1,131 @@
-<ng-container *ngIf="{state$: retailerStoreStore.state$ | async} as subs">
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+  <ng-container
+    *ngIf="
+      subs.state$.requests.getRetailer.inProgress;
+      then showLoading;
+      else showStore
+    "
+  >
+  </ng-container>
 
-    <ng-container *ngIf="subs.state$.requests.getRetailer.inProgress ;
-        then showLoading ;
-        else showStore ">
-    </ng-container>
+  <ng-template #showLoading>
+    <div class="grid_loading_display">
+      <div class="login_brand_area">
+        <h1>🍒 Dame tu lista</h1>
+      </div>
+      <div class="loading_symbol_area">
+        <mat-spinner> </mat-spinner>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #showLoading>
-        <div class="grid_loading_display">
-            <div class="login_brand_area">
-                <h1> 🍒 Dame tu lista</h1>
+  <ng-template #showStore>
+    <div class="store_grid">
+      <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
+      <!-- <div class="bg-image" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl(),'background-repeat': 'no-repeat' ,'background-position': '0px 48px', 'background-size': 'contain'}"></div> -->
+      <div
+        class="bg-image"
+        [ngStyle]="{ 'background-image': subs.state$.retailer.getBannerUrl() }"
+      ></div>
+
+      <div class="store_banner_area">
+        <div class="store_____cart_area">
+          <ng-container
+            *ngIf="currentUser; then showAdminButton; else showDtlLogo"
+          >
+          </ng-container>
+
+          <ng-template #showAdminButton>
+            <div
+              *ngIf="currentUser"
+              class="admin_mode_area"
+              (click)="goBackToRetailerAccount()"
+            >
+              <img
+                src="../../../../../assets/icons/back_button-white-36dp.svg"
+                alt=""
+              />
+              Admin
             </div>
-            <div class="loading_symbol_area">
-
-                <mat-spinner> </mat-spinner>
+          </ng-template>
+          <ng-template #showDtlLogo>
+            <div class="buyer_mode_area">
+              <span> 🍒 Dame tu lista</span>
             </div>
-        </div>
+          </ng-template>
 
-    </ng-template>
-    
-
-    <ng-template #showStore>
-        <div class="store_grid">
-            <!-- <div  [ngClass]="[ isFixedGrid ? 'store_grid' : 'store_fix_grid']"> -->
-            <!-- <div class="bg-image" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl(),'background-repeat': 'no-repeat' ,'background-position': '0px 48px', 'background-size': 'contain'}"></div> -->
-            <div class="bg-image" [ngStyle]="{'background-image': subs.state$.retailer.getBannerUrl()}"></div>
-
-            <div class="store_banner_area" >
-                <div class="store_____cart_area">
-
-                    <ng-container *ngIf="currentUser ; 
-                        then showAdminButton ; 
-                        else showDtlLogo">
-                    </ng-container>
-
-                    <ng-template #showAdminButton>
-                        <div *ngIf="currentUser" class="admin_mode_area" (click)="goBackToRetailerAccount()">
-                            <img src="../../../../../assets/icons/back_button-white-36dp.svg" alt="">
-                            Admin
-                        </div>
-
-                    </ng-template>
-                    <ng-template #showDtlLogo>
-                        <div class="buyer_mode_area">
-                            <span> 🍒 Dame tu lista</span>
-                        </div>
-
-                    </ng-template>
-
-
-                    <div  class="search_box_area">
-                        <!-- <mat-icon *ngIf="!isSearchBoxOpen" 
+          <div class="search_box_area">
+            <!-- <mat-icon *ngIf="!isSearchBoxOpen" 
                         (click)="openSeachBox()" class="search-icon-right" matSuffix>search</mat-icon> -->
-                        <!-- https://codepen.io/912lab/pen/LsplC -->
-                        <ng-container *ngIf="isSearchBoxOpen ; then showForm"></ng-container>
-                        <ng-template #showForm>
-                            <form >
+            <!-- https://codepen.io/912lab/pen/LsplC -->
+            <ng-container *ngIf="isSearchBoxOpen; then showForm"></ng-container>
+            <ng-template #showForm>
+              <form>
+                <mat-form-field class="full_width">
+                  <!-- <mat-label>Buscar</mat-label> -->
+                  <input
+                    type="text"
+                    matInput
+                    placeholder=""
+                    [formControl]="control"
+                    [matAutocomplete]="auto"
+                  />
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
 
-                                <mat-form-field class="full_width">
-                                    <!-- <mat-label>Buscar</mat-label> -->
-                                    <input type="text" matInput placeholder="" [formControl]="control"
-                                        [matAutocomplete]="auto">
-                                    <mat-icon  matSuffix>search</mat-icon>
-                                </mat-form-field>
-    
-                                <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let product of filteredProductsList$ | async"
-                                        [value]="deaccentSelectedSearcTerm(product)">
-                                         {{  deaccentSelectedSearcTerm(product)}}
-                                    </mat-option>
-                                </mat-autocomplete>
-    
-                            </form>
-                        </ng-template>
-                    </div>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option
+                    *ngFor="let product of filteredProductsList$ | async"
+                    [value]="deaccentSelectedSearcTerm(product)"
+                  >
+                    {{ deaccentSelectedSearcTerm(product) }}
+                  </mat-option>
+                </mat-autocomplete>
+              </form>
+            </ng-template>
+          </div>
 
-                    <div class="cart_icon_area" (click)="viewBuyerCart()">
-                        <img src="../../../../../assets/icons/shopping_cart-white-36dp.svg" alt="">
+          <div class="cart_icon_area" (click)="viewBuyerCart()">
+            <img
+              src="../../../../../assets/icons/shopping_cart-white-36dp.svg"
+              alt=""
+            />
 
-                        <div class="quantity_area">
-                            {{cartProductsQuantity}}
-                        </div>
-                    </div>
-                </div>
-                <div class="store_name_area">
-                    <div class="style_store_name">{{subs.state$.retailer.store.name}}</div>
-                </div>
-                <div *ngIf="subs.state$.retailer.store.isDeliveryService" class="store_delivery_area">
-                    <div class="style_delivery_info">Delivery: {{subs.state$.retailer.store.deliveryInfo}}</div>
-                </div>
-                <div *ngIf="subs.state$.retailer.store.isPickUpService" class="store_pick_up_area">
-                    <div class="style_pick_up_info">Recojo: {{subs.state$.retailer.store.pickUpInfo}}</div>
-                </div>
-
+            <div class="quantity_area">
+              {{ cartProductsQuantity }}
             </div>
+          </div>
+        </div>
+        <div class="store_name_area">
+          <div class="style_store_name">
+            {{ subs.state$.retailer.store.name }}
+          </div>
+        </div>
+        <div
+          *ngIf="subs.state$.retailer.store.isDeliveryService"
+          class="store_delivery_area"
+        >
+          <div class="style_delivery_info">
+            Delivery: {{ subs.state$.retailer.store.deliveryInfo }}
+          </div>
+        </div>
+        <div
+          *ngIf="subs.state$.retailer.store.isPickUpService"
+          class="store_pick_up_area"
+        >
+          <div class="style_pick_up_info">
+            Recojo: {{ subs.state$.retailer.store.pickUpInfo }}
+          </div>
+        </div>
+      </div>
 
-            <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
+      <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
 
-            <div class="store_options_area">
-                <div class="category_title_area">
-                    <mat-icon (click)="goToRetailerCategoryView()">view_module</mat-icon>
+      <div class="store_options_area">
+        <div class="category_title_area">
+          <mat-icon (click)="goToRetailerCategoryView()">view_module</mat-icon>
 
-                    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon >view_module</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
@@ -108,21 +133,17 @@
                             <span (click)="goToRetailerCategoryView()">Categorías</span>
                         </button>
                     </mat-menu> -->
-                    <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
+          <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
                     </button> -->
-
-                </div>
-
-            </div>
-
-            <div class="store_products_area" >
-                <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
-                </app-seasonal-products> -->
-                <app-row-product-view [storeProducts]="filteredProductsList$ | async">
-                </app-row-product-view>
-
-            </div>
         </div>
-    </ng-template>
+      </div>
 
+      <div class="store_products_area">
+        <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
+                </app-seasonal-products> -->
+        <app-row-product-view [storeProducts]="filteredProductsList$ | async">
+        </app-row-product-view>
+      </div>
+    </div>
+  </ng-template>
 </ng-container>

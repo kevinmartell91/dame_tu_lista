@@ -1,134 +1,181 @@
- <!-- <div *ngIf="!loginUser"> -->
-    
-  <!--  <ng-container [ngSwitch]="loginUser.login_type" >
+<!-- <div *ngIf="!loginUser"> -->
+
+<!--  <ng-container [ngSwitch]="loginUser.login_type" >
         <div *ngSwitchCase="loginType.buyer"> -->
-            <!-- Because no logic is implemented, It used a as proxy to pass the state here -->
+<!-- Because no logic is implemented, It used a as proxy to pass the state here -->
 
-                <div class="continer_grid" [ngClass]="[loginUser ? 'admin_style' : 'continer_grid']">
+<div
+  class="continer_grid"
+  [ngClass]="[loginUser ? 'admin_style' : 'continer_grid']"
+>
+  <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
+  <ng-container [ngSwitch]="buyerNavegation.typeView">
+    <div *ngSwitchCase="navegation.accountView" class="buyer_account_cart_area">
+      <div class="buyer_account_area">
+        <div class="buyer_personal_icon_area" (click)="viewBuyerDetails()">
+          <img
+            class="buyer_icon"
+            src="../assets/icons/person-green-36dp.svg"
+            alt=""
+          />
+        </div>
 
-                    
-                    <!-- <div [ngSwitch]="buyerNavegation.typeView"> -->
-                    <ng-container [ngSwitch]="buyerNavegation.typeView">
-                        
-                
-                        <div *ngSwitchCase="navegation.accountView" class="buyer_account_cart_area">
-                                <div  
-                                class="buyer_account_area">
+        <div class="buyer_name_area">
+          <span class="greetings">Hola </span>
+          <!-- <span>, {{nameCapitalized}} </span> -->
+        </div>
 
-                                <div class="buyer_personal_icon_area" 
-                                    (click)="viewBuyerDetails()">
-                                    <img class="buyer_icon" src="../assets/icons/person-green-36dp.svg" alt="">
-                                </div>
-                    
-                                <div class="buyer_name_area" >
-                                    <span class="greetings">Hola </span>
-                                    <!-- <span>, {{nameCapitalized}} </span> -->
-                                </div>
-    
-                                <div class="buyer_view_account_area" >
-                                    <span class="style_logout" (click)="logout()">Cerrar sesión</span>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <div *ngSwitchCase="navegation.categoryView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <img (click)="goBackLocation()"
-                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>Categorías</div>
-                            </div>
-                        </div>
-                        
-                        <div *ngSwitchCase="navegation.varietyView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <img (click)="goBackLocation()"
-                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>{{buyerNavegation.field}}</div>
-                            </div>
-                        </div>
+        <div class="buyer_view_account_area">
+          <span class="style_logout" (click)="logout()">Cerrar sesión</span>
+        </div>
+      </div>
+    </div>
 
-                        <div *ngSwitchCase="navegation.maturityView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <img (click)="goBackLocation()"
-                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>{{buyerNavegation.field}}</div>
-                            </div>
-                        </div>
+    <div *ngSwitchCase="navegation.categoryView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <img
+          (click)="goBackLocation()"
+          src="../assets/icons/back_button-light-black-36dp.svg"
+          alt=""
+        />
+      </div>
+      <div class="navegation_title_area">
+        <div>Categorías</div>
+      </div>
+      <div *ngIf="!loginUser" class="style_total_price_button">
+        <div *ngIf="isVisible">
+          <app-checkout-button
+            [numProducts]="cartProductsQuantity"
+            [totalPrice]="totalCartPriceStr"
+            (clickedButton)="onClickedButton($event)"
+          ></app-checkout-button>
+        </div>
+      </div>
+    </div>
 
-                        <div *ngSwitchCase="navegation.cartView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <img (click)="goToStoreRetailer()"
-                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>Dame tu lista </div>
-                            </div>
-                        </div>
+    <div *ngSwitchCase="navegation.varietyView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <img
+          (click)="goBackLocation()"
+          src="../assets/icons/back_button-light-black-36dp.svg"
+          alt=""
+        />
+      </div>
+      <div class="navegation_title_area">
+        <div>{{ buyerNavegation.field }}</div>
+      </div>
+      <div *ngIf="!loginUser" class="style_total_price_button">
+        <div *ngIf="isVisible">
+          <app-checkout-button
+            [numProducts]="cartProductsQuantity"
+            [totalPrice]="totalCartPriceStr"
+            (clickedButton)="onClickedButton($event)"
+          ></app-checkout-button>
+        </div>
+      </div>
+    </div>
 
-                        <div *ngSwitchCase="navegation.placedOrderView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <img (click)="goToStoreRetailer()"
-                                src="../assets/icons/back_button-light-black-36dp.svg" alt=""> 
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>🍒 Dame tu lista</div>
-                            </div>
-                        </div>
+    <div *ngSwitchCase="navegation.maturityView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <img
+          (click)="goBackLocation()"
+          src="../assets/icons/back_button-light-black-36dp.svg"
+          alt=""
+        />
+      </div>
+      <div class="navegation_title_area">
+        <div>{{ buyerNavegation.field }}</div>
+      </div>
+      <div *ngIf="!loginUser" class="style_total_price_button">
+        <div *ngIf="isVisible">
+          <app-checkout-button
+            [numProducts]="cartProductsQuantity"
+            [totalPrice]="totalCartPriceStr"
+            (clickedButton)="onClickedButton($event)"
+          ></app-checkout-button>
+        </div>
+      </div>
+    </div>
 
-                        <div *ngSwitchCase="navegation.freeBillView" 
-                            class="navegation_grid">
-                            <div class="navegation_image_area">
-                                <!-- <img (click)="goToStoreRetailer()"
+    <div *ngSwitchCase="navegation.cartView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <img
+          (click)="goToStoreRetailer()"
+          src="../assets/icons/back_button-light-black-36dp.svg"
+          alt=""
+        />
+      </div>
+      <div class="navegation_title_area">
+        <div>Dame tu lista</div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="navegation.placedOrderView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <img
+          (click)="goToStoreRetailer()"
+          src="../assets/icons/back_button-light-black-36dp.svg"
+          alt=""
+        />
+      </div>
+      <div class="navegation_title_area">
+        <div>🍒 Dame tu lista</div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="navegation.freeBillView" class="navegation_grid">
+      <div class="navegation_image_area">
+        <!-- <img (click)="goToStoreRetailer()"
                                 src="../assets/icons/back_button-light-black-36dp.svg" alt="">  -->
-                            </div>
-                            <div class="navegation_title_area">
-                                <div>🍒 Dame tu lista</div>
-                            </div>
-                        </div>
+      </div>
+      <div class="navegation_title_area">
+        <div>🍒 Dame tu lista</div>
+      </div>
+    </div>
 
-                    
-                        <!-- nothing to render when StoreView is selected -->
-                        <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
-                    
-                    </ng-container>
-                    
-                    <div *ngIf="buyerNavegation.typeView !== navegation.storeView &&
-                                buyerNavegation.typeView !== navegation.thanksView &&
-                                buyerNavegation.typeView !== navegation.freeBillView &&
-                                buyerNavegation.typeView !== navegation.placedOrderView" 
-                                class="buyer_cart_area">
-                    <!-- <div  class="buyer_cart_area"> -->
-                        <div (click)="viewBuyerCart()">
-                            <div class="cart_icon_area">
-                                <img  src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
-                            </div>
-                            <div class="quantity_area">
-                                {{cartProductsQuantity}}
+    <div *ngSwitchCase="navegation.storeView">
+      <div *ngIf="!loginUser" class="style_total_price_button">
+        <div *ngIf="isVisible">
+          <app-checkout-button
+            [numProducts]="cartProductsQuantity"
+            [totalPrice]="totalCartPriceStr"
+            (clickedButton)="onClickedButton($event)"
+          ></app-checkout-button>
+        </div>
+      </div>
+    </div>
 
-                            </div>
-<!-- 
+    <!-- nothing to render when StoreView is selected -->
+    <!-- <div *ngSwitchCase="navegation.storeView"> <div>STORE</div> </div> -->
+  </ng-container>
+
+  <div
+    *ngIf="
+      buyerNavegation.typeView !== navegation.storeView &&
+      buyerNavegation.typeView !== navegation.thanksView &&
+      buyerNavegation.typeView !== navegation.freeBillView &&
+      buyerNavegation.typeView !== navegation.placedOrderView &&
+      buyerNavegation.typeView !== navegation.homepageView
+    "
+    class="buyer_cart_area"
+  >
+    <!-- <div  class="buyer_cart_area"> -->
+    <div (click)="viewBuyerCart()">
+      <div class="cart_icon_area">
+        <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="" />
+      </div>
+      <div class="quantity_area">
+        {{ cartProductsQuantity }}
+      </div>
+      <!-- 
                             <mat-icon matBadge="{{cartProductsQuantity}}" matBadgeColor="primary">
                                 <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
                             </mat-icon> -->
-                                                            
-                        </div>
-                    </div>
-                </div>
-            
-  
+    </div>
+  </div>
+</div>
 
-        <!-- </div>
+<!-- </div>
         <div *ngSwitchCase="loginType.retailer">
             retailer
         </div>
@@ -136,5 +183,3 @@
 <!-- </div>  -->
 
 <router-outlet></router-outlet>
-
-

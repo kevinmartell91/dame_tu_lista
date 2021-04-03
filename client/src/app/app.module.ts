@@ -1,20 +1,19 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { CoreModule } from "./core/core.module";
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-
-
+import { CheckoutButtonComponent } from './features/retailer-stores/componentes/checkout-button/checkout-button.component';
 
 @NgModule({
   declarations: [
     //Angular Modules
     AppComponent,
-
+    CheckoutButtonComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -30,17 +29,16 @@ import { SharedModule } from './shared/shared.module';
 
     // Feature modules
 
-    
     SharedModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
 
     // App routing - should be the last import
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 
 /* Core modules 
      Core module is dedicated to singleton providers
