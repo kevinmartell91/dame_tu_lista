@@ -1,4 +1,4 @@
-import { MediaMatcher } from "@angular/cdk/layout";
+import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
@@ -10,46 +10,44 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-retailers-dashboard',
   templateUrl: './retailers-dashboard.component.html',
-  styleUrls: ['./retailers-dashboard.component.sass']
+  styleUrls: ['./retailers-dashboard.component.sass'],
 })
 export class RetailersDashboardComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  retailerStoreName: string = "";
+  retailerStoreName: string = '';
   subscriptionRetailerStore: Subscription;
 
   constructor(
-    changeDetectorRef: ChangeDetectorRef, 
+    changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     public authenticationStore: AuthenticationStore,
     private router: Router,
     private retailerStore: RetailerStore
   ) {
-
-
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    const loginUserLocalStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+    const loginUserLocalStorage = JSON.parse(
+      localStorage.getItem(LOGIN_CONFIG.loginUserStorage)
+    );
     const retailer_id = loginUserLocalStorage.entity._id;
     this.retailerStoreName = loginUserLocalStorage.entity.store.name;
 
-    console.log("HERE retailerStoreName _ ID", this.retailerStoreName);
+    console.log('HERE retailerStoreName _ ID', this.retailerStoreName);
     // get retailer for all it subscribers
     this.retailerStore.getRetailerById(retailer_id);
 
-
-    this.subscriptionRetailerStore =  this.retailerStore.retailer$.subscribe(
-      y => {
-        if(y != null){
+    this.subscriptionRetailerStore = this.retailerStore.retailer$.subscribe(
+      (y) => {
+        console.log('subscriptionRetailerStore, y');
+        if (y != null) {
           this.retailerStoreName = y.store.name;
-          localStorage.setItem("retailer_store_name", y.store.nameUrl);
-        } 
+          localStorage.setItem('retailer_store_name', y.store.nameUrl);
+        }
       }
-    )
-
-  
+    );
   }
 
   ngOnDestroy(): void {
@@ -57,19 +55,17 @@ export class RetailersDashboardComponent implements OnDestroy {
     this.subscriptionRetailerStore.unsubscribe();
   }
 
-  goToRetailerStore(){
-    console.log("STORE NAME", this.retailerStoreName);
+  goToRetailerStore() {
+    console.log('STORE NAME', this.retailerStoreName);
     const storeNameDashFormat = getStoreNameDashFormat(this.retailerStoreName);
     this.router.navigate([storeNameDashFormat]);
   }
 
-  logout(){
+  logout() {
     this.authenticationStore.logout();
     this.router.navigate(['/login']);
   }
-
 }
-
 
 /**  Copyright 2020 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
