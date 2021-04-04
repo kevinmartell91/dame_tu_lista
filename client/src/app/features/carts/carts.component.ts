@@ -34,6 +34,7 @@ import {
   transformInvoiceIntoRawText,
   transformOrderToRawText,
   sendViaWhatsApp,
+  transformOrderToRawTextBaseFortmat,
 } from './helpers/whatsapp.helpers';
 import { transformOrderCartProductToCartProduct } from './helpers/cart-products.helpers';
 
@@ -563,7 +564,9 @@ export class CartsComponent implements OnDestroy {
         console.log('createOrderFromShoppingCart in BD (callback as X)', x);
 
         // transform the order into raw text
-        const orderRawText = transformOrderToRawText(x.data as Order);
+        const orderRawText = transformOrderToRawTextBaseFortmat(
+          x.data as Order
+        );
         // and send it via whatapp
         // to the desired phone number
 
