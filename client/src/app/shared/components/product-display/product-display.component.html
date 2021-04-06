@@ -1,3 +1,6 @@
+<!-- <button (click)="show()">show</button>
+      <button (click)="hide()">hide</button> -->
+
 <div [class]="getGridView()" (click)="select()">
   <div class="product_image_area">
     <img
@@ -36,8 +39,9 @@
     />
   </div>
 
-  <div *ngIf="product.isOrganic && typeView === 'rowView'" class="organic_area">Org.</div>
-
+  <div *ngIf="product.isOrganic && typeView === 'rowView'" class="organic_area">
+    Org.
+  </div>
 
   <!-- <div *ngIf="typeView === 'categoryView'"  -->
   <div *ngIf="typeView === 'categoryView'" class="product_category_area">
@@ -70,23 +74,25 @@
     S/.{{ productPriceStr }}
     <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
     <span *ngIf="product.isUnit" class="style_price_per_unit_or_kg"> Uni.</span>
-    <span
-      *ngIf="product.isSmallSize && typeView === 'rowView'"
-      class="style_size_color"
-    >
-      / Pequeño</span
-    >
-    <span
-      *ngIf="product.isMediumSize && typeView === 'rowView'"
-      class="style_size_color"
-    >
-      / Mediano</span
-    >
-    <span
-      *ngIf="product.isBigSize && typeView === 'rowView'"
-      class="style_size_color"
-    >
-      / Grande</span
+    <ng-container *ngIf="!hasToppings">
+      <span
+        *ngIf="product.isSmallSize && typeView === 'rowView'"
+        class="style_size_color"
+      >
+        / Pequeño</span
+      >
+      <span
+        *ngIf="product.isMediumSize && typeView === 'rowView'"
+        class="style_size_color"
+      >
+        / Mediano</span
+      >
+      <span
+        *ngIf="product.isBigSize && typeView === 'rowView'"
+        class="style_size_color"
+      >
+        / Grande</span
+      ></ng-container
     >
   </div>
 
@@ -123,7 +129,19 @@
     </ng-template>
 
     <ng-template #showAddOptions>
+      <!-- {{ product.categoryName === "Comida rápida" ? true : false }} -->
       <app-add-button
+        *ngIf="hasToppings"
+        [product]="product"
+        [quantity]="quantity"
+        [isCartProductButtonType]="false"
+        (quantityUpdated)="onQuantityUpdated($event)"
+        (disableQuantityMode)="onDisableQuantityMode($event)"
+      >
+      </app-add-button>
+
+      <app-add-button
+        *ngIf="!hasToppings"
         [isSizeAvailable]="isSizeAvailable"
         [isKiloUnitAvailable]="isKiloUnitAvailable"
         [size]="size"
@@ -203,7 +221,7 @@
   </div>
 
   <div
-    *ngIf="typeView === 'maturityView' || typeView === 'varietyView' " 
+    *ngIf="typeView === 'maturityView' || typeView === 'varietyView'"
     class="product_organic_add_area"
   >
     <span *ngIf="product.isOrganic">Org.</span>

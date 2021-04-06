@@ -1,0 +1,62 @@
+<div class="container_product" [@changeState]="data.currentState">
+  <div class="image_area">
+    <img class="product_image" src="{{ data.image }}" alt="" />
+  </div>
+
+  <div class="product_name_area">
+    <h2>{{ data.productName }}</h2>
+  </div>
+
+  <div class="product_label">
+    <form class="example-form">
+      <mat-form-field>
+        <mat-label>Personaliza tu Wawito</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="productLableFormControl"
+          [errorStateMatcher]="matcher"
+          placeholder="Ejm. Luchito"
+        />
+        <mat-hint>Te llamaremos por este nombre</mat-hint>
+        <mat-error
+          *ngIf="
+            productLableFormControl.hasError('email') &&
+            !productLableFormControl.hasError('required')
+          "
+        >
+          Ponle nombre a tu Wawito
+        </mat-error>
+        <mat-error *ngIf="productLableFormControl.hasError('required')">
+          No te olvides que te llamaremos por este <strong>nombre</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="toppings_area">
+    <ng-container *ngFor="let topping of data.toppings">
+      <app-topping
+        [toppingType]="topping"
+        (selectedToppings)="onSelectedToppings($event)"
+      ></app-topping>
+    </ng-container>
+  </div>
+
+  <!-- <button mat-button [mat-dialog-close]="detailForm.value"  
+    class="btn_block"
+    [disabled]="!detailForm.valid">Siguiente</button>
+  -->
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button
+      mat-button
+      [mat-dialog-close]="modalResul"
+      [disabled]="!productLableFormControl.valid"
+      cdkFocusInitial
+    >
+      Aceptar
+    </button>
+  </div>
+</div>

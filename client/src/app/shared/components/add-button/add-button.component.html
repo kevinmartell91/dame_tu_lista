@@ -1,17 +1,25 @@
-<div [ngClass]="[isCartProductButtonType ? 'container_cart_product' : 'container_display_product' ]">
+<div
+  [ngClass]="[
+    isCartProductButtonType
+      ? 'container_cart_product'
+      : 'container_display_product'
+  ]"
+>
+  <div class="decrease_area" (click)="quantityUpdate('-')">
+    <ng-container
+      *ngIf="count > surgeQuantity; then showMinusSignal; else showWastebasket"
+    ></ng-container>
+    <ng-template #showMinusSignal>-</ng-template>
+    <ng-template #showWastebasket>
+      <img src="../../../../assets/icons/wastebasket-button-36dp.svg" alt="" />
+    </ng-template>
+  </div>
+  <div class="number_area" (click)="deactivateQuantityMode()">
+    {{ countStr }}
+  </div>
+  <div class="increase_area" (click)="quantityUpdate('+')">+</div>
 
-    <div class="decrease_area" (click)="quantityUpdate('-')">
-        <ng-container *ngIf=" (count > surgeQuantity) ; then showMinusSignal; else showWastebasket"></ng-container>
-        <ng-template #showMinusSignal>-</ng-template>
-        <ng-template #showWastebasket>
-            <img src="../../../../assets/icons/wastebasket-button-36dp.svg" alt="">
-        </ng-template>
-    </div>
-    <div class="number_area" (click)="deactivateQuantityMode()">{{countStr}}</div>
-    <div class="increase_area" (click)="quantityUpdate('+')">+</div>
-
-
-    <!-- <ng-container *ngIf="!isCartProductButtonType">
+  <!-- <ng-container *ngIf="!isCartProductButtonType">
         
         <div class="devider_one_area"> <hr></div>
         
@@ -31,5 +39,4 @@
         </ng-container>
         
     </ng-container> -->
-
 </div>
