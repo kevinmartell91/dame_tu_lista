@@ -21,19 +21,27 @@
       <span *ngIf="cartProduct.isUnit" class="style_price_per_unit_or_kg">
         Uni.
       </span>
-      <span *ngIf="cartProduct.isSmallSize" class="style_price_per_unit_or_kg">
-        / Pequeño
-      </span>
-      <span *ngIf="cartProduct.isMediumSize" class="style_price_per_unit_or_kg">
-        / Mediano
-      </span>
-      <span *ngIf="cartProduct.isBigSize" class="style_price_per_unit_or_kg">
-        / Grande
-      </span>
+      <ng-container *ngIf="!hasToppings">
+        <span
+          *ngIf="cartProduct.isSmallSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Pequeño
+        </span>
+        <span
+          *ngIf="cartProduct.isMediumSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Mediano
+        </span>
+        <span *ngIf="cartProduct.isBigSize" class="style_price_per_unit_or_kg">
+          / Grande
+        </span>
+      </ng-container>
     </div>
 
     <div class="product_detail_area">
-      <span class="style_maturity_details">
+      <span *ngIf="!hasToppings" class="style_maturity_details">
         {{ cartProduct.maturityName }}.
       </span>
 
@@ -54,7 +62,7 @@
             </span>  -->
     </div>
 
-    <div  [ngClass]="{'disabled':isPlacedOrder}" class="quatity_area">
+    <div [ngClass]="{ disabled: isPlacedOrder }" class="quatity_area">
       <ng-container
         *ngIf="isQuantityMode; then showAddOptions; else showUpdateButton"
       ></ng-container>

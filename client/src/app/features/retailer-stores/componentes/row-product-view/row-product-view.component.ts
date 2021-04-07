@@ -67,6 +67,15 @@ export class RowProductViewComponent implements OnInit {
     this.cartStore.updateCart(cartProduct);
   }
 
+  public onSelectedCartProductWithToppings(cartProduct: CartProduct) {
+    cartProduct.totalPrice = updateTotalProductPrice(
+      cartProduct.quantity,
+      cartProduct.price
+    );
+    console.log('onSelectedCartProductWithToppings', cartProduct);
+    this.cartStore.updateCartWithToppings(cartProduct);
+  }
+
   async getVarietiesByMaturiry_promise(products: Product[]) {
     const matPodVar = await new Promise<MaturityProductsByVariety[]>(
       (resolve, reject) => {

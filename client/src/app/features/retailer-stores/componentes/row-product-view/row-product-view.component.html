@@ -50,6 +50,9 @@
                     [product]="product"
                     (selected)="onSelected($event)"
                     (selectedCartProduct)="onSelectedCartProduct($event)"
+                    (selectedCartProductWithToppings)="
+                      onSelectedCartProductWithToppings($event)
+                    "
                   >
                   </app-product-display-shared>
                 </ng-container>

@@ -1,3 +1,7 @@
+export const containtToppings = (productCategoryName: string): boolean => {
+  return productCategoryName === 'Comida rápida' ? true : false;
+};
+
 // import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 
 // // https://apps.timwhitlock.info/emoji/tables/unicode

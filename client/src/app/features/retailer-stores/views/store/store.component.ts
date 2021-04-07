@@ -9,7 +9,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, timer } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, timeout } from 'rxjs/operators';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { CartStore } from 'src/app/core/cart/services/cart.store';

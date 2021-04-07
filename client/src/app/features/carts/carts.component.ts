@@ -37,6 +37,7 @@ import {
   transformOrderToRawTextBaseFortmat,
 } from './helpers/whatsapp.helpers';
 import { transformOrderCartProductToCartProduct } from './helpers/cart-products.helpers';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 
 @Component({
   selector: 'app-carts',

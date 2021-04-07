@@ -1,5 +1,5 @@
 // https://medium.com/better-programming/angular-4-shared-modules-18ac50f24852
-import { MdlModule } from "@angular-mdl/core";
+import { MdlModule } from '@angular-mdl/core';
 import { CommonModule } from '@angular/common';
 // services
 import { HttpClientModule } from '@angular/common/http';
@@ -56,99 +56,103 @@ import { AddButtonComponent } from './components/add-button/add-button.component
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductDisplaySharedComponent } from './components/product-display/product-display.component';
 import { EditableTableComponent } from './components/editable-table/editable-table.component';
-import { EditModeDirective, EditableOnEnterDirective, ViewModeDirective } from './directives/edit-in-place';
-
-
-
+import {
+  EditModeDirective,
+  EditableOnEnterDirective,
+  ViewModeDirective,
+} from './directives/edit-in-place';
+import { AddToppingsComponent } from './components/add-toppings/add-toppings.component';
+import { ToppingComponent } from './components/topping/topping.component';
 
 const EXPORTED_DECLARATIONS = [
-  	// ClipboardModule,
-  	// CdkStepperModule,
-  	// CdkTableModule,
-  	// CdkTreeModule,
-  	// DragDropModule,
-  	MatAutocompleteModule,
-  	// MatBadgeModule,
-  	// MatBottomSheetModule,
-  	MatButtonModule,
-  	MatButtonToggleModule,
-  	MatCardModule,
-  	MatCheckboxModule,
-  	// MatChipsModule,
-  	// MatStepperModule,
-  	// MatDatepickerModule,
-  	MatDialogModule,
-  	// MatDividerModule,
-  	MatExpansionModule,
-  	// MatGridListModule,
-  	MatIconModule,
-  	MatInputModule,
-  	MatListModule,
-  	MatMenuModule,
-  	// MatNativeDateModule,
-  	// MatPaginatorModule,
-  	MatProgressBarModule,
-  	MatProgressSpinnerModule,
-  	// MatRadioModule,
-  	// MatRippleModule,
-  	MatSelectModule,
-  	MatSidenavModule,
-  	MatSliderModule,
-  	MatSlideToggleModule,
-  	MatSnackBarModule,
-  	// MatSortModule,
-  	// MatTableModule,
-  	MatTabsModule,
-  	MatToolbarModule,
-  	// MatTooltipModule,
-  	// MatTreeModule,
-  	// PortalModule,
-	  // ScrollingModule,
-	  MdlModule
-
+  // ClipboardModule,
+  // CdkStepperModule,
+  // CdkTableModule,
+  // CdkTreeModule,
+  // DragDropModule,
+  MatAutocompleteModule,
+  // MatBadgeModule,
+  // MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  // MatChipsModule,
+  // MatStepperModule,
+  // MatDatepickerModule,
+  MatDialogModule,
+  // MatDividerModule,
+  MatExpansionModule,
+  // MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  // MatNativeDateModule,
+  // MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  // MatRadioModule,
+  // MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  // MatSortModule,
+  // MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  // MatTooltipModule,
+  // MatTreeModule,
+  // PortalModule,
+  // ScrollingModule,
+  MdlModule,
 ];
 
 @NgModule({
   declarations: [
-	ModalComponent,
-	AddButtonComponent,
-	ProductDisplaySharedComponent,
-	ViewModeDirective,
-    EditModeDirective,
-    EditableOnEnterDirective,
-    EditableTableComponent
-  ],
-  imports: [
-  	CommonModule,
-    FlexLayoutModule,
-    ReactiveFormsModule, 
-    FormsModule,
-    ...EXPORTED_DECLARATIONS
-  ],
-  exports: [
-	CommonModule,
-	ModalComponent,
-    FlexLayoutModule,
-    ReactiveFormsModule, 
-    FormsModule,
-	HttpClientModule,
-	AddButtonComponent,
-	ProductDisplaySharedComponent,
-	ViewModeDirective,
+    ModalComponent,
+    AddButtonComponent,
+    ProductDisplaySharedComponent,
+    ViewModeDirective,
     EditModeDirective,
     EditableOnEnterDirective,
     EditableTableComponent,
-	...EXPORTED_DECLARATIONS,
-],
-  providers: [
-  ]
+    AddToppingsComponent,
+    ToppingComponent,
+  ],
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ...EXPORTED_DECLARATIONS,
+  ],
+  exports: [
+    CommonModule,
+    ModalComponent,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    AddButtonComponent,
+    ProductDisplaySharedComponent,
+    ViewModeDirective,
+    EditModeDirective,
+    EditableOnEnterDirective,
+    EditableTableComponent,
+    AddToppingsComponent,
+    ToppingComponent,
+    ...EXPORTED_DECLARATIONS,
+  ],
+  providers: [],
 })
-export class SharedModule { 
-	static forRoot() : ModuleWithProviders {
-		return {
-			ngModule: SharedModule,
-			providers: []
-
-		}
-	}
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [],
+    };
+  }
 }

@@ -5,16 +5,16 @@ import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({
   selector: 'app-seasonal-products',
   templateUrl: './seasonal-products.component.html',
-  styleUrls: ['./seasonal-products.component.sass']
+  styleUrls: ['./seasonal-products.component.sass'],
 })
 export class SeasonalProductsComponent implements OnInit {
-
-  @Input() storeProducts: Product[]; 
+  @Input() storeProducts: Product[];
   public seasonalView: string;
   public question: string;
   public productSelected: Product;
@@ -25,13 +25,10 @@ export class SeasonalProductsComponent implements OnInit {
   constructor(
     public retailerStoreStore: RetailerStoreStore,
     private cartStore: CartStore
-  ) { 
-    this.retailerStoreStore.retailer$.subscribe(
-      x => {
-
-        this.retailer = x;
-      }
-    )
+  ) {
+    this.retailerStoreStore.retailer$.subscribe((x) => {
+      this.retailer = x;
+    });
   }
 
   ngOnInit(): void {
@@ -41,18 +38,18 @@ export class SeasonalProductsComponent implements OnInit {
 
   /**
    * Listen to childre component(product-displaycomponent)
-   * @param product product selected on children 
+   * @param product product selected on children
    * component
    */
-  public onSelected(product: Product){
+  public onSelected(product: Product) {
     this.productSelected = product;
-  } 
+  }
 
-
-  public onSelectedCartProduct(cartProduct: CartProduct) { 
-    
-    cartProduct.totalPrice = updateTotalProductPrice(cartProduct.quantity, cartProduct.price);
+  public onSelectedCartProduct(cartProduct: CartProduct) {
+    cartProduct.totalPrice = updateTotalProductPrice(
+      cartProduct.quantity,
+      cartProduct.price
+    );
     this.cartStore.updateCart(cartProduct);
-
   }
 }

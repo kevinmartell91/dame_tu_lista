@@ -1,68 +1,80 @@
+<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+  <div class="login-brand">
+    <h1>🍒 Dame tu lista</h1>
+  </div>
 
-  <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
-    
-        <div class="login-brand">
-          <h1> 🍒 Dame tu lista</h1>
-        </div>
+  <div class="login-wellcome-message">
+    <h2>Bienvenido de vuelta</h2>
+  </div>
 
-        <div class="login-wellcome-message">
-          <h2>Bienvenido de vuelta</h2>
-        </div>
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="login-full-width">
+      <input
+        matInput
+        placeholder="Correo electrónico"
+        name="email"
+        type="text"
+        formControlName="email"
+      />
+    </mat-form-field>
 
-        <form class="login-form" [formGroup]='loginForm' (ngSubmit)="onSubmit()">
-            <mat-form-field class="login-full-width">
-              <input matInput placeholder="Correo electrónico"
-                              name="email"
-                              type="text"
-                              formControlName="email" >
+    <mat-form-field class="login-full-width">
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Contraseña"
+        name="password"
+        type="password"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
 
-            </mat-form-field>
-
-            <mat-form-field class="login-full-width">
-              <input matInput [type]="hide ? 'password' : 'text'"
-                              placeholder="Contraseña"
-                              name="password"
-                              type="password"
-                              formControlName="password">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-            </mat-form-field>
-
-            <!-- <mat-form-field class="login-full-width">
+    <!-- <mat-form-field class="login-full-width">
                       <mat-label>Usted es ...</mat-label>
                       <mat-select formControlName="login_type">
                         <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
                         </mat-option>
                       </mat-select>
             </mat-form-field> -->
-            <br>
-            <div class="style_error_message">{{errorMessage}}</div>
-            <br>
-            <button mat-stroked-button  
-                    class="btn-block"
-                    color="primary"
-                    type="submit"
-                    [disabled]="!loginForm.valid">Ingrese</button>
-            <br>
-            <br>
-            <div class="sing-up-section" fxLayout="column" fxLayoutAlign="center center">
-                Aún no tienes una cuenta: 
-                <a class="style_redirect_url" [href]="registerUrl">Regístrate ya!</a>
-            </div>
+    <br />
+    <div class="style_error_message">{{ errorMessage }}</div>
+    <br />
+    <button
+      mat-stroked-button
+      class="btn-block"
+      color="primary"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Ingrese
+    </button>
+    <br />
+    <br />
+    <div
+      class="sing-up-section"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      Aún no tienes una cuenta:
+      <a class="style_redirect_url" [href]="registerUrl">Regístrate ya!</a>
+    </div>
 
-            <br>
-            <br>
-            <div *ngIf="loading">
-              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-            </div>
-
-        </form>
-      
-  </div>
-
-
-
+    <br />
+    <br />
+    <div *ngIf="loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </form>
+</div>
 
 <!-- 
 <iframe height="350px" width="100%" allowfullscreen="true" 
