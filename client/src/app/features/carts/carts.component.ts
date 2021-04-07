@@ -260,11 +260,13 @@ export class CartsComponent implements OnDestroy {
     this.maturityView = STORE_CONFIG.view_type.cartView;
   }
 
-  onCartProducDeleted(carProductDeleted: CartProduct): void {
+  onCartProducDeleted(cartProductDeleted: CartProduct): void {
     // set quantity to cero to be removed from cartProdcuts
     // a shortcut to romeve cartPrduct
-    carProductDeleted.quantity = 0;
-    this.cartStore.updateCart(carProductDeleted);
+    cartProductDeleted.quantity = 0;
+    containtToppings(cartProductDeleted.categoryName)
+      ? this.cartStore.updateCartWithToppings(cartProductDeleted)
+      : this.cartStore.updateCart(cartProductDeleted);
   }
 
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
