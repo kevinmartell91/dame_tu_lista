@@ -27,7 +27,7 @@
     <ng-template #showData>
       <ng-container
         *ngIf="
-          storeProducts.length > 0;
+          subs.state$.productsList.products.length > 0;
           then showStoreProducts;
           else ShowEmptyMessage
         "

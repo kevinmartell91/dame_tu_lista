@@ -45,7 +45,9 @@ export class RowProductViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVarietiesByMaturiry(this.storeProducts);
+    this.getVarietiesByMaturiry(
+      this.retailerStoreStore.state.productsList.products
+    );
     this.rowView = STORE_CONFIG.view_type.rowView;
     this.question = STORE_CONFIG.question_view_type.rowView;
   }
@@ -72,7 +74,7 @@ export class RowProductViewComponent implements OnInit {
       cartProduct.quantity,
       cartProduct.price
     );
-    console.log('onSelectedCartProductWithToppings', cartProduct);
+    // console.log('onSelectedCartProductWithToppings', cartProduct);
     this.cartStore.updateCartWithToppings(cartProduct);
   }
 
