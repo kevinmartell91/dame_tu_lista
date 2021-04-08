@@ -72,10 +72,10 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     });
   }
   ngDoCheck() {
-    console.log('do check');
+    // console.log('do check');
   }
   ngAfterContentInit() {
-    console.log('after content init');
+    // console.log('after content init');
   }
   /**
    *  By unsubscribing, It prevents memory leak
@@ -113,6 +113,14 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     this.cartStore.updateCart(cartProduct);
   }
 
+  public onSelectedCartProductWithToppings(cartProduct: CartProduct) {
+    cartProduct.totalPrice = updateTotalProductPrice(
+      cartProduct.quantity,
+      cartProduct.price
+    );
+    this.cartStore.updateCartWithToppings(cartProduct);
+  }
+
   _filterProductsByMaturity(
     category: string,
     variety: string,
@@ -121,7 +129,7 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
     // return filterProductsByMaturity(category, variety, this.isOrganic, products);
 
     this.retailerStoreStore.updateProductsFromSessionStorage();
-    console.log('objectobject', category, variety);
+    // console.log('objectobject', category, variety);
     return filterProductsByMaturity(
       category,
       variety,

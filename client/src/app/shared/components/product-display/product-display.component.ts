@@ -265,19 +265,20 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     const currentTimeInMilliseconds = Date.now(); // unix timestamp in milliseconds)
     cartProduct.idAux = `${cartProduct._id}_${currentTimeInMilliseconds}`;
 
-    const selectedToppings: ToppingSelected[] = result.toppingsSelected;
+    if (result) {
+      const selectedToppings: ToppingSelected[] = result.toppingsSelected;
+      selectedToppings.forEach((topping, id) => {
+        let toppingsFormated = topping.selected.split(',');
 
-    selectedToppings.forEach((topping, id) => {
-      let toppingsFormated = topping.selected.split(',');
-
-      cartProduct.details += `${(id + 1).toString()} ] `;
-      // cartProduct.details += `✔ `;
-      toppingsFormated.forEach((toppingFormated, idx) => {
-        const separator = idx < toppingsFormated.length - 1 ? ', ' : '. ';
-        cartProduct.details += `${toppingFormated}${separator}`;
+        cartProduct.details += `${(id + 1).toString()} ] `;
+        // cartProduct.details += `✔ `;
+        toppingsFormated.forEach((toppingFormated, idx) => {
+          const separator = idx < toppingsFormated.length - 1 ? ', ' : '. ';
+          cartProduct.details += `${toppingFormated}${separator}`;
+        });
+        // cartProduct.details += '\n';
       });
-      // cartProduct.details += '\n';
-    });
+    }
 
     this.quantityStr = cartProduct.quantity.toString();
 

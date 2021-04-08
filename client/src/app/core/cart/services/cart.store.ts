@@ -69,6 +69,7 @@ export class CartStore extends Store<CartStoreState> {
 
     // update the cartStore
     this.setCart(cartProducts);
+    console.log('thorugh  updateCart');
   }
 
   public updateCartWithToppings(cartProduct: CartProduct): void {
@@ -108,6 +109,7 @@ export class CartStore extends Store<CartStoreState> {
 
     // update the cartStore
     this.setCart(cartProducts);
+    console.log('thorugh  updateCartWithToppings');
   }
 
   public countCartStoreProductsWithToppingsSameID(

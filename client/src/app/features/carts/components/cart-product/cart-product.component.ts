@@ -25,9 +25,7 @@ export class CartProductComponent implements OnInit {
   dialogRef: any;
   hasToppings: boolean;
 
-  constructor(private matDialog: MatDialog) {
-    console.log('CartProductComponent - constructor');
-  }
+  constructor(private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.hasToppings = containtToppings(this.cartProduct.categoryName);
@@ -37,7 +35,6 @@ export class CartProductComponent implements OnInit {
     //   ? this.cartProduct.quantity.toFixed(2)
     //   : this.cartProduct.quantity.toFixed(0);
     this.transformCartProductTotalPriceToStr();
-    console.log('isPlaceOrder', this.isPlacedOrder);
   }
 
   /**

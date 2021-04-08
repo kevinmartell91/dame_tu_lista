@@ -148,17 +148,17 @@ export class CartsComponent implements OnDestroy {
 
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       (productsList) => {
-        console.log(
-          'setting productsList in sessionStorage:',
-          productsList.length
-        );
+        // console.log(
+        //   'setting productsList in sessionStorage:',
+        //   productsList.length
+        // );
         // this.temporaryStorage.set(productsList);
       }
     );
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe((x) => {
       this.cartProducts = x.products;
-      console.log('this.cartProducts ', this.cartProducts);
+      // console.log('this.cartProducts ', this.cartProducts);
 
       this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
       // formating to two decimals and as a string
@@ -264,12 +264,14 @@ export class CartsComponent implements OnDestroy {
     // set quantity to cero to be removed from cartProdcuts
     // a shortcut to romeve cartPrduct
     cartProductDeleted.quantity = 0;
+
     containtToppings(cartProductDeleted.categoryName)
       ? this.cartStore.updateCartWithToppings(cartProductDeleted)
       : this.cartStore.updateCart(cartProductDeleted);
   }
 
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
+    console.log('onCartProductUpdate');
     this.cartProducts.filter((cp) => {
       if (cp._id == cartProductUpdate._id) {
         cp = cartProductUpdate;
@@ -279,7 +281,10 @@ export class CartsComponent implements OnDestroy {
     // if cartProduct quatity is 0,
     // then remove from cartProducts.
     // hadledby this updateCart method
-    this.cartStore.updateCart(cartProductUpdate);
+    // this.cartStore.updateCart(cartProductUpdate);
+    containtToppings(cartProductUpdate.categoryName)
+      ? this.cartStore.updateCartWithToppings(cartProductUpdate)
+      : this.cartStore.updateCart(cartProductUpdate);
 
     // then update shopping-cart-total price, this is
     // done by the subscriber on the constructor of

@@ -1,48 +1,53 @@
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+  <ng-container
+    *ngIf="
+      subs.state$.requests.getRetailer.inProgress;
+      then showLoading;
+      else showMaturityList
+    "
+  >
+  </ng-container>
 
+  <ng-template #showLoading>
+    <div class="grid_loading_display">
+      <div class="login_brand_area">
+        <h1>Cargando ...</h1>
+      </div>
+      <div class="loading_symbol_area">
+        <mat-spinner> </mat-spinner>
+      </div>
+    </div>
+  </ng-template>
 
-<ng-container *ngIf = "{ state$: retailerStoreStore.state$ | async } as subs">
-
-    <ng-container 
-        *ngIf = "subs.state$.requests.getRetailer.inProgress ;
-        then showLoading ;
-        else showMaturityList">
-    </ng-container>
-
-    <ng-template #showLoading>
-        <div class="grid_loading_display">
-            <div class="login_brand_area">
-                <h1> Cargando ...</h1>
-            </div>
-            <div class="loading_symbol_area">
-                <mat-spinner >  </mat-spinner>
-            </div>
-         </div>
-    </ng-template>
-
-    <ng-template #showMaturityList>
-        
-
-        <div class="display_products_grid">
-
-            <div class="question_area">
-                <h1 class="style_question">
-                    {{question}}
-                </h1>
-            </div>
-            <div class="display_products_area">
-                <ng-container 
-                    *ngFor='let product of _filterProductsByMaturity(category, variety, subs.state$.productsList.products)'>
-                    <app-product-display-shared 
-                        typeView="maturityView" 
-                        [product]="product"
-                        (selected)="onSelected($event)"
-                        (selectedCartProduct)="onSelectedCartProduct($event)">
-                    </app-product-display-shared>
-                
-                </ng-container>
-            </div>
-            
-        </div>
-
-    </ng-template>
+  <ng-template #showMaturityList>
+    <div class="display_products_grid">
+      <div class="question_area">
+        <h1 class="style_question">
+          {{ question }}
+        </h1>
+      </div>
+      <div class="display_products_area">
+        <ng-container
+          *ngFor="
+            let product of _filterProductsByMaturity(
+              category,
+              variety,
+              subs.state$.productsList.products
+            )
+          "
+        >
+          <app-product-display-shared
+            typeView="maturityView"
+            [product]="product"
+            (selected)="onSelected($event)"
+            (selectedCartProduct)="onSelectedCartProduct($event)"
+            (selectedCartProductWithToppings)="
+              onSelectedCartProductWithToppings($event)
+            "
+          >
+          </app-product-display-shared>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
 </ng-container>

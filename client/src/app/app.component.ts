@@ -18,7 +18,10 @@ import { RetailerStoreStore } from './features/retailer-stores/services/retailer
 import { BuyerNavegation } from './core/buyer/types/buyer-navegation';
 import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
 import { every } from 'rxjs/operators';
-import { calculateCartTotalPrice } from './core/cart/helpers/cart-helper';
+import {
+  calculateCartTotalPrice,
+  getTotalProductsOnShoppingCart,
+} from './core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-root',
@@ -125,16 +128,18 @@ export class AppComponent implements OnInit, OnDestroy {
     this.retailerStoreName = localStorage.getItem('retailer_store_name');
 
     this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe((y) => {
-      // console.log("cartStoreSubcription", y);
-      this.cartProducts = y.products;
-      this.cartProductsQuantity = y.products.length;
-      this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
-      this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
-      this.isVisible = this.totalCartPrice > 0;
+      if (y !== undefined) {
+        this.cartProducts = y.products;
+        this.cartProductsQuantity = getTotalProductsOnShoppingCart(y.products);
+        // this.cartProductsQuantity = y.products.length;
+        this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
+        this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
+        this.isVisible = this.totalCartPrice > 0;
 
-      // this.handleSaveTemporaryStorage(y.products);
-      console.log('cartStoreSubcription');
-      this.saveToTemporaryStorage(y.products);
+        // this.handleSaveTemporaryStorage(y.products);
+
+        this.saveToTemporaryStorage(y.products);
+      }
     });
 
     this.favoriteRetailerSubcription = this.cartStore.favoriteRetailerSelected$.subscribe(

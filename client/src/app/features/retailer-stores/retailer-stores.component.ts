@@ -84,39 +84,39 @@ export class RetailerStoresComponent implements OnDestroy {
     );
   }
 
-  public async restoreBuyerSelectedProductsFromTemporaryStorage(): Promise<void> {
-    let cachedData = await this.temporaryStorage.get<any>();
-    // console.log("CacheData:", cachedData);
-    const memCashedCartProd: CartProduct[] = JSON.parse(
-      sessionStorage.temp_session_storage
-    ).cart_product_list;
+  // public async restoreBuyerSelectedProductsFromTemporaryStorage(): Promise<void> {
+  //   let cachedData = await this.temporaryStorage.get<any>();
+  //   // console.log("CacheData:", cachedData);
+  //   const memCashedCartProd: CartProduct[] = JSON.parse(
+  //     sessionStorage.temp_session_storage
+  //   ).cart_product_list;
 
-    //if there is something to pass from Cart to products after reloading the page
-    if (
-      cachedData &&
-      cachedData.length > 0 &&
-      memCashedCartProd &&
-      memCashedCartProd.length > 0
-    ) {
-      // if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
+  //   //if there is something to pass from Cart to products after reloading the page
+  //   if (
+  //     cachedData &&
+  //     cachedData.length > 0 &&
+  //     memCashedCartProd &&
+  //     memCashedCartProd.length > 0
+  //   ) {
+  //     // if ( JSON.parse(sessionStorage.temp_session_storage).cart_product_list.length > 0) {
 
-      //## restore from Session Storage
-      const memCashedProd: Product[] = cachedData;
+  //     //## restore from Session Storage
+  //     const memCashedProd: Product[] = cachedData;
 
-      // console.log("memCashedProd",memCashedProd);
-      // retrievinf selected product by buyers
-      const payloadProducts: Product[] = transformCartProductsIntoProducts(
-        memCashedProd,
-        memCashedCartProd
-      );
+  //     // console.log("memCashedProd",memCashedProd);
+  //     // retrievinf selected product by buyers
+  //     const payloadProducts: Product[] = transformCartProductsIntoProducts(
+  //       memCashedProd,
+  //       memCashedCartProd
+  //     );
 
-      // console.log("payloadProducts",payloadProducts);
-      // update cartStore with date from temporary storage
-      this.retailerStoreStore._updateProductsFromSessionStorage(
-        payloadProducts
-      );
-    }
-  }
+  //     // console.log("payloadProducts",payloadProducts);
+  //     // update cartStore with date from temporary storage
+  //     this.retailerStoreStore._updateProductsFromSessionStorage(
+  //       payloadProducts
+  //     );
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.subscribeStoreName.unsubscribe();

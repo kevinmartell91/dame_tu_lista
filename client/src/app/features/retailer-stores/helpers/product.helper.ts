@@ -219,6 +219,29 @@ export function transformCartProductsIntoProducts(
   return storeProducts;
 }
 
+export function transformCartProductsIntoProductsWithToppings(
+  storeProducts: Product[],
+  cartProducts: CartProduct[]
+): Product[] {
+  storeProducts.map((storeProd) => {
+    return (storeProd.quantity = 0);
+  });
+
+  const idFrequency = _.countBy(
+    cartProducts,
+    _.flow(_.method('_id.replace', '', ''))
+  );
+
+  storeProducts.map((storeProd) => {
+    if (idFrequency.hasOwnProperty(storeProd._id)) {
+      console.log('idFrequency', storeProd._id);
+      storeProd.quantity = idFrequency[storeProd._id];
+    }
+  });
+
+  return storeProducts;
+}
+
 export function getMaturityProductsByVariety(
   products: Product[]
 ): MaturityProductsByVariety[] {
@@ -267,5 +290,8 @@ export function getMaturityProductsByVariety(
   //   _.sortBy(arrayMaturityProductsByVariety, ['categoryName', 'varietyName'])
   // );
 
-  return _.sortBy(arrayMaturityProductsByVariety, ['categoryName', 'varietyName']);
+  return _.sortBy(arrayMaturityProductsByVariety, [
+    'categoryName',
+    'varietyName',
+  ]);
 }

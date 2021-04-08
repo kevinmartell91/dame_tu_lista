@@ -117,7 +117,6 @@ export class StoreComponent implements OnDestroy {
     );
 
     this.subscription = this.cartStore.shoppingCart$.subscribe((x) => {
-      // console.log("This.cartStore.shoppingCart$.products", x.products);
       this.cartProductsQuantity = x.products.length;
     });
 

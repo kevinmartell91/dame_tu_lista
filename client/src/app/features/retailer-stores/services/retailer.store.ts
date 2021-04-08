@@ -8,12 +8,14 @@ import * as endpointHelpers from '../../../shared/helpers/endpoint.helpers';
 import {
   getProductDeserialized,
   transformCartProductsIntoProducts,
+  transformCartProductsIntoProductsWithToppings,
 } from '../helpers/product.helper';
 import * as airtable from '../types/airtable';
 import { RetailerEndpoint } from './retailer.endpoint';
 import { RetailerStoreStoreState } from './retailer.store.state';
 import { Product } from 'src/app/core/retailer/types/product';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 
 @Injectable({ providedIn: 'root' })
 export class RetailerStoreStore
@@ -161,11 +163,22 @@ export class RetailerStoreStore
       this.state.productsList.products.length > 0 &&
       memCashedCartProd.length > 0
     ) {
-      // ETL of memCashed to Product data type
-      const payloadProducts: Product[] = transformCartProductsIntoProducts(
-        this.state.productsList.products,
-        memCashedCartProd
+      let payloadProducts: Product[] = [];
+
+      const isCartProductWithToppings = containtToppings(
+        memCashedCartProd[0].categoryName
       );
+
+      // ETL of memCashed to Product data type
+      isCartProductWithToppings
+        ? (payloadProducts = transformCartProductsIntoProductsWithToppings(
+            this.state.productsList.products,
+            memCashedCartProd
+          ))
+        : (payloadProducts = transformCartProductsIntoProducts(
+            this.state.productsList.products,
+            memCashedCartProd
+          ));
 
       // update products STORE with cart product
       this._updateProductsFromSessionStorage(payloadProducts);
