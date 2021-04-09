@@ -31,16 +31,15 @@
 .payment_form_grid
   display: grid
   grid-template-columns: 1fr 1fr
-  grid-template-rows: .5fr 1fr 1fr 1fr 1.5fr
-  grid-template-areas: ". .""img_pos pos""img_dep dep""img_cash cash" " phone phone"
-  grid-gap: 0px
-
+  grid-template-rows: .5fr .5fr 1fr
+  grid-template-areas: "img_pos pos" "img_dep dep" "img_cash cash"
+  grid-gap: 4px
+  margin: 10px
 
   .pos_method_area
     grid-area: pos
     align-self: center
     text-align: center
-
 
   .deposit_method_area
     grid-area: dep
@@ -52,17 +51,10 @@
     align-self: center
     text-align: center
 
-  .phone_number_area
-    grid-area: phone
-    align-self: center
-    width: 100%
-
-
   .img_pos_area
     grid-area: img_pos
     justify-self: center
     
-
   .img_deposit_area
     grid-area: img_dep
     justify-self: center

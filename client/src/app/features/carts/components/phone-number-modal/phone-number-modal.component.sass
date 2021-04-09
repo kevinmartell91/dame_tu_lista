@@ -1,0 +1,28 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+.payment_wrapper
+  text-align: center
+
+
+  .style_title
+    color: mat-color($primary, default, 1)
+    
+    h1
+      font-size: 25px
+
+  .btn_block
+    width: 100%
+    background-color: mat-color($primary, lighter, 1)
+    border: none
+
+.style_pick_up_message
+  color: mat-color($primary, default, 1)
+
+.phone_number_area
+  width: 100%

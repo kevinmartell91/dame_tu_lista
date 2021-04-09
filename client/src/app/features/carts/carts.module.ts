@@ -11,6 +11,7 @@ import { FillShippingAddressComponent } from './components/fill-shipping-address
 import { SelectPaymentMethodComponent } from './components/select-payment-method/select-payment-method.component';
 import { ThanksOrderComponent } from './components/thanks-order/thanks-order.component';
 import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
+import { PhoneNumberModalComponent } from './components/phone-number-modal/phone-number-modal.component';
 
 
 
@@ -22,7 +23,8 @@ import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
     FillShippingAddressComponent, 
     SelectPaymentMethodComponent,
     ThanksOrderComponent,
-    CartProductDetailModalComponent 
+    CartProductDetailModalComponent,
+    PhoneNumberModalComponent 
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,41 @@
+<div class="payment_wrapper" fxLayout="column" fxLayoutAlign="center center">
+  <div class="style_title">
+    <h1>
+      <img src="../../../../../assets/icons//whatsapp.svg" alt="" />
+      Celular
+    </h1>
+  </div>
+
+  <form [formGroup]="phoneNumberForm">
+    <div class="style_pick_up_message">
+      {{ message }}
+    </div>
+    <!-- <ng-template #showPhoneNumberField> -->
+    <div class="phone_number_area">
+      <mat-form-field>
+        <mat-label>Número de celular: </mat-label>
+        <span matPrefix>+51 &nbsp;</span>
+        <input
+          matInput
+          placeholder="999-999-999"
+          name="phoneNumber"
+          type="tel"
+          formControlName="phoneNumber"
+        />
+      </mat-form-field>
+    </div>
+    <!-- </ng-template> -->
+
+    <div mat-dialog-actions fxLayoutAlign="center center">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button
+        mat-button
+        [mat-dialog-close]="phoneNumberForm.value"
+        [disabled]="!phoneNumberForm.valid"
+        cdkFocusInitial
+      >
+        Continuar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,26 +1,30 @@
-
-
 <div class="address_wrapper" fxLayout="column" fxLayoutAlign="center center">
-    
-    <div class="style_brand">
-        <h1> 
-            <img src="../../../../../assets/icons/location.svg" alt="">
-            Modo entrega:
-        </h1>
-        <mat-button-toggle-group #group="matButtonToggleGroup">
-            
-            <mat-button-toggle (click)="updateValue(true)" value="pickUp" aria-label="Text align left">
-                Recojo en tienda
-            </mat-button-toggle>
-            
-            <mat-button-toggle (click)="updateValue(false)" value="delivery" aria-label="Text align center">
-                Delivery 
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-          <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
-    </div>
-    
-    <!-- <mat-slide-toggle 
+  <div class="style_brand">
+    <h1>
+      <img src="../../../../../assets/icons/location.svg" alt="" />
+      Modo entrega:
+    </h1>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle
+        (click)="updateValue(true)"
+        value="pickUp"
+        aria-label="Text align left"
+      >
+        Recojo en tienda
+      </mat-button-toggle>
+
+      <mat-button-toggle
+        (click)="updateValue(false)"
+        value="delivery"
+        aria-label="Text align center"
+      >
+        Delivery
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+  </div>
+
+  <!-- <mat-slide-toggle 
         [(ngModel)]="isPickUp"
         (ngModelChange)="updateSlide()">
         Recojo en tineda
@@ -28,75 +32,92 @@
         
     </mat-slide-toggle> -->
 
-    <form class="address_form" [formGroup]='addressForm'>
-        <ng-container *ngIf="!isPickUp ; then showFileds ; else showNoFileds">
-        </ng-container>
+  <form class="address_form" [formGroup]="addressForm">
+    <ng-container *ngIf="!isPickUp; then showFileds; else showNoFileds">
+    </ng-container>
 
-        <ng-template #showFileds>
-            <br>
-                <mat-form-field class="address_full_width">
-                    <mat-label>Direccion de entrega</mat-label>
-                    <input cdkFocusInitial matInput placeholder="Mi dirección es ..."
-                    name="streeName"
-                    type="text"
-                    formControlName="streetName">
-                </mat-form-field>
-                
-                <mat-form-field class="address_street_number_width">
-                    <mat-label>Número</mat-label>
-                    <input matInput placeholder="Vivo en el número ..."
-                    name="streetNumber"
-                    type="tel"
-                    formControlName="streetNumber">
-                </mat-form-field>
+    <ng-template #showFileds>
+      <br />
+      <mat-form-field class="address_full_width">
+        <mat-label>Direccion de entrega</mat-label>
+        <input
+          cdkFocusInitial
+          matInput
+          placeholder="Mi dirección es ..."
+          name="streeName"
+          type="text"
+          formControlName="streetName"
+        />
+      </mat-form-field>
 
-                <mat-form-field class="address_apartment_number_width">
-                    <mat-label>Departamento</mat-label>
-                    <input matInput placeholder="Sí tengo, es ..."
-                    name="apartmentNumber"
-                    type="tel"
-                    formControlName="apartmentNumber">
-                </mat-form-field>
-            
-                <mat-form-field class="address_district_width">
-                    <mat-label>Distrito</mat-label>
-                    <mat-select formControlName="district">
-                        <mat-option [value]="district" *ngFor="let district of districts" >{{district}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-               
-                <mat-form-field class="address_city_width">
-                    <mat-label>Ciudad</mat-label>
-                    <mat-select formControlName="city">
-                        <mat-option [value]="city" *ngFor="let city of cities" >{{city}}
-                        </mat-option>
-                        </mat-select>
-                </mat-form-field>           
+      <mat-form-field class="address_street_number_width">
+        <mat-label>Número</mat-label>
+        <input
+          matInput
+          placeholder="Vivo en el número ..."
+          name="streetNumber"
+          type="tel"
+          formControlName="streetNumber"
+        />
+      </mat-form-field>
 
-                <mat-form-field class="address_full_width">
-                    <mat-label>Referencia</mat-label>
-                    <textarea matInput placeholder="Vivo en la urbanización ..."
-                        name="reference"
-                        type="text"
-                        formControlName="reference"></textarea>
-                
-                </mat-form-field>
+      <mat-form-field class="address_apartment_number_width">
+        <mat-label>Departamento</mat-label>
+        <input
+          matInput
+          placeholder="Sí tengo, es ..."
+          name="apartmentNumber"
+          type="tel"
+          formControlName="apartmentNumber"
+        />
+      </mat-form-field>
 
-                <mat-form-field class="address_full_width">
-                    <mat-label>Detalles adicionales</mat-label>
-                    <textarea matInput placeholder="Frente a caseta de policia ..."
-                        name="details"
-                        type="text"
-                        formControlName="details"></textarea>
-                </mat-form-field>
+      <mat-form-field class="address_district_width">
+        <mat-label>Distrito</mat-label>
+        <mat-select formControlName="district">
+          <mat-option [value]="district" *ngFor="let district of districts"
+            >{{ district }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-                <!-- <mat-checkbox class="example-margin"
+      <mat-form-field class="address_city_width">
+        <mat-label>Ciudad</mat-label>
+        <mat-select formControlName="city">
+          <mat-option [value]="city" *ngFor="let city of cities"
+            >{{ city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="address_full_width">
+        <mat-label>Referencia</mat-label>
+        <textarea
+          matInput
+          placeholder="Vivo en la urbanización ..."
+          name="reference"
+          type="text"
+          formControlName="reference"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="address_full_width">
+        <mat-label>Detalles adicionales</mat-label>
+        <textarea
+          matInput
+          placeholder="Frente a caseta de policia ..."
+          name="details"
+          type="text"
+          formControlName="details"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- <mat-checkbox class="example-margin"
                     [saveAddressSelected]="is"
                     (change)="saveDireccion($event.checked)">
                    
                 </mat-checkbox> -->
-                <!-- <mat-form-field class="address_full_width">   
+      <!-- <mat-form-field class="address_full_width">   
                     <mat-checkbox 
                         color="primary" 
                         class="example-margin"
@@ -106,23 +127,23 @@
                         Recordar dirección para futuras compras.
                     </mat-checkbox>
                 </mat-form-field> -->
-            </ng-template>
+    </ng-template>
 
-        <ng-template #showNoFileds> 
-            <div class="style_pick_up_message"> 
-               {{pickUpMessage}}
-            </div>
-        </ng-template>
-            
-        <div mat-dialog-actions>
-            <button mat-button (click)="onNoClick()">Cancelar</button>
-            <button mat-button [mat-dialog-close]="addressForm.value" 
-                    [disabled]="!addressForm.valid" >Continuar</button>
-        </div>   
-    
-    </form>
+    <ng-template #showNoFileds>
+      <div class="style_pick_up_message">
+        {{ pickUpMessage }}
+      </div>
+    </ng-template>
 
-  
+    <div mat-dialog-actions fxLayoutAlign="center center">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button
+        mat-button
+        [mat-dialog-close]="addressForm.value"
+        [disabled]="!addressForm.valid"
+      >
+        Continuar
+      </button>
+    </div>
+  </form>
 </div>
-
-

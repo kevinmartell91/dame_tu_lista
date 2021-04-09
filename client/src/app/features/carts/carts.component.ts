@@ -38,6 +38,7 @@ import {
 } from './helpers/whatsapp.helpers';
 import { transformOrderCartProductToCartProduct } from './helpers/cart-products.helpers';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { PhoneNumberModalComponent } from './components/phone-number-modal/phone-number-modal.component';
 
 @Component({
   selector: 'app-carts',
@@ -242,7 +243,6 @@ export class CartsComponent implements OnDestroy {
     this.subscriptionCart.unsubscribe();
     this.subscriptionBuyer.unsubscribe();
     this.subscriptionRoute.unsubscribe();
-    // this.subscribeStoreName.unsubscribe();
     this.subscribeRetailerStore.unsubscribe();
   }
 
@@ -318,7 +318,10 @@ export class CartsComponent implements OnDestroy {
 
   sendInvoiceToBuyer() {
     console.log('sendInvoiceToBuyer');
-    this.openAddPayMethodModal();
+
+    // HERE - open the phone number modal
+    this.openPhoneNumberModal();
+    // this.openAddPayMethodModal();
   }
 
   openAddAddressModal(): void {
@@ -332,7 +335,11 @@ export class CartsComponent implements OnDestroy {
     this.dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         this.addressOrder = new AddressOrder().deserialize(result);
+        // HERE - open the payment modal only
+        // this.openPhoneNumberModal();
         this.openAddPayMethodModal();
+        // => then in the openPhoneNumberModal open openAddPayMethodModal
+        // this will help to remove an unecessary isFreeBill attribute passed as an input
       }
     });
   }
@@ -340,15 +347,31 @@ export class CartsComponent implements OnDestroy {
   openAddPayMethodModal(): void {
     this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
       width: '420px',
-      data: {
-        isFreeBill: false,
-      },
     });
 
     this.dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         this.paymentMethodOrder = result.paymentMethod;
-        //setting code area
+
+        this.openPhoneNumberModal();
+      }
+    });
+  }
+
+  openPhoneNumberModal(): void {
+    console.log('opening openPhoneNumberModal', this.currentUser);
+
+    this.dialogRef = this.matDialog.open(PhoneNumberModalComponent, {
+      width: '420px',
+      data: {
+        isSalesQuote: this.currentUser !== '' ? true : false,
+        isFreeBill: false,
+      },
+    });
+
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (result.phoneNumber !== undefined) {
+        //  setting code area
         this.phoneNumberOrder = '+51' + result.phoneNumber;
 
         let order = null;
@@ -375,7 +398,7 @@ export class CartsComponent implements OnDestroy {
         }
 
         if (order != null) {
-          console.log('Order placed Successfuly');
+          console.log('Order placed Successfully', order);
 
           // console.log("createOrderFromShoppingCart in BD", order);
           // const orderRawText = this.transformOrderToRawText(order);

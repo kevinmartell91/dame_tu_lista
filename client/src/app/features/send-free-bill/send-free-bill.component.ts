@@ -12,8 +12,8 @@ import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegati
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
-import { SelectPaymentMethodComponent } from '../carts/components/select-payment-method/select-payment-method.component';
-import { last } from 'rxjs/operators';
+import { PhoneNumberModalComponent } from '../carts/components/phone-number-modal/phone-number-modal.component';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 interface IProduct {
   id: string;
@@ -33,12 +33,18 @@ export class SendFreeBillComponent implements OnInit {
 
   productList: IProduct[] = [];
   dialogRef: any;
+  currentUser: string;
 
   constructor(
     private fb: FormBuilder,
     private matDialog: MatDialog,
     private buyerNavegationStore: BuyerNavegationStore
-  ) {}
+  ) {
+    const currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
+    if (currentUser) {
+      this.currentUser = currentUser;
+    }
+  }
 
   ngOnInit(): void {
     updateBuyerNavagation(
@@ -299,9 +305,10 @@ export class SendFreeBillComponent implements OnInit {
   }
 
   openPhoneNumberModal(): void {
-    this.dialogRef = this.matDialog.open(SelectPaymentMethodComponent, {
+    this.dialogRef = this.matDialog.open(PhoneNumberModalComponent, {
       width: '420px',
       data: {
+        isSalesQuote: this.currentUser !== undefined ? true : false,
         isFreeBill: true,
       },
     });

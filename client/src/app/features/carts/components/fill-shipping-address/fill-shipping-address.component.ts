@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -9,55 +16,46 @@ import { AuthenticationStore } from 'src/app/core/login/services/authentication.
 @Component({
   selector: 'app-fill-shipping-address',
   templateUrl: './fill-shipping-address.component.html',
-  styleUrls: ['./fill-shipping-address.component.sass']
+  styleUrls: ['./fill-shipping-address.component.sass'],
 })
 export class FillShippingAddressComponent implements OnInit, OnDestroy {
-
   addressForm: FormGroup;
   phoneNumberForm: FormGroup;
   loading: boolean;
-  errorMessage:string;
+  errorMessage: string;
   districts: string[];
   cities: string[];
 
-  subscription : Subscription;
+  subscription: Subscription;
   buyer: Buyer;
-  address: Address =null;
+  address: Address = null;
   // isCheckedSaveAddress: boolean = false;
 
   isPickUp: boolean = true;
-  pickUpMessage: string = "";
+  pickUpMessage: string = '';
 
-  @Output() addressFilled = new EventEmitter<any>();  
-  
+  @Output() addressFilled = new EventEmitter<any>();
+
   constructor(
     private authenticationStore: AuthenticationStore,
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<FillShippingAddressComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any  
-     
-  ) { 
-
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.loadDistricts();
     this.loadCities();
 
-     this.address = data.address;
-  
-    this.subscription = this.authenticationStore.loginUser$.subscribe(
-      x => {
-          if( x.login_type == 'buyer') {
-            this.buyer = new Buyer().deserialize(x.entity);
-          }
+    this.address = data.address;
+
+    this.subscription = this.authenticationStore.loginUser$.subscribe((x) => {
+      if (x.login_type == 'buyer') {
+        this.buyer = new Buyer().deserialize(x.entity);
       }
-    )
-
-
+    });
   }
 
   ngOnInit(): void {
-
-    if(this.address == undefined ){
-
+    if (this.address == undefined) {
       this.addressForm = this.fb.group({
         streetName: ['', Validators.required],
         streetNumber: ['', Validators.required],
@@ -68,9 +66,8 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
         department: ['LIM', Validators.required],
         country: ['PE', Validators.required],
         reference: [''],
-        details: ['']
+        details: [''],
       });
-
     } else {
       this.addressForm = this.fb.group({
         streetName: [this.buyer.address.streetName, Validators.required],
@@ -82,19 +79,17 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
         department: ['LIM', Validators.required],
         country: ['PE', Validators.required],
         reference: [this.buyer.address.reference],
-        details: [this.buyer.address.details ]
+        details: [this.buyer.address.details],
       });
-
     }
-
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   // onSubmit() { }
-  // replaced by 
+  // replaced by
   // <button mat-button [mat-dialog-close]="adresstForm.value">
   // the from is send to the parent through [mat-dialog-close] in .html
 
@@ -102,8 +97,8 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
-  loadDistricts():void {
-    this.districts = [ 
+  loadDistricts(): void {
+    this.districts = [
       'ANCÓN',
       'ATE',
       'BARRANCO',
@@ -146,45 +141,39 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       'SANTIAGO DE SURCO',
       'SURQUILLO',
       'VILLA EL SALVADOR',
-      'VILLA MARIA DEL TRIUNFO'
-    ]
-
+      'VILLA MARIA DEL TRIUNFO',
+    ];
   }
-  
+
   loadCities(): void {
     this.cities = ['LIM'];
-
   }
-  updateSlide():void {
+  updateSlide(): void {
     // this.isPickUp = value;
   }
 
   updateValue(value: boolean): void {
     this.isPickUp = value;
 
-    if( this.isPickUp ) {
-       
-      this,this.pickUpMessage = " Usted podrá recoger su orden en el horario de atención establecido por el vendedor.";
-       this.addressForm.patchValue({
-        streetName: "Recojo en tienda",
-        streetNumber: "Recojo en tienda",
-        apartmentNumber: "",
-        district: "Tienda",
-        city: "LIM",
-        details: "pickup"
-       });
+    if (this.isPickUp) {
+      this.pickUpMessage =
+        ' Usted podrá recoger su orden en el horario de atención establecido por el vendedor.';
+      this.addressForm.patchValue({
+        streetName: 'Recojo en tienda',
+        streetNumber: 'Recojo en tienda',
+        apartmentNumber: '',
+        district: 'Tienda',
+        city: 'LIM',
+        details: 'pickup',
+      });
     } else {
       this.addressForm.patchValue({
-        streetName: "",
-        streetNumber: "",
-        district: "",
-        city: "",
-        details: ""
-       });
+        streetName: '',
+        streetNumber: '',
+        district: '',
+        city: '',
+        details: '',
+      });
     }
-
   }
-
-
-
 }
