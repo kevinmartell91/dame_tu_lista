@@ -257,7 +257,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
         this.size
       );
 
-      this.emmitModalResults(cartProduct, result);
+      if (result) this.emmitModalResults(cartProduct, result);
     });
   }
   emmitModalResults(cartProduct: CartProduct, result: any): void {

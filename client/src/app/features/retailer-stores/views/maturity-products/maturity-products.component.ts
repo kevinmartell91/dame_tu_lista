@@ -54,8 +54,6 @@ export class MaturityProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // window.location.reload();
-
     this.subscription = this.activatedRoute.paramMap.subscribe((params) => {
       this.retailer_id = params.get('retailer_id');
       this.category = params.get('categoryName');

@@ -3,6 +3,7 @@ import { Product } from '../../../core/retailer/types/product';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { MaturityProductsByVariety } from '../types/maturityProductsByVariety';
 import * as _ from 'lodash';
+import { keyBy } from 'lodash';
 
 export function getProductDeserialized(products: any): Product[] {
   let productsList: Product[] = [];
@@ -223,19 +224,30 @@ export function transformCartProductsIntoProductsWithToppings(
   storeProducts: Product[],
   cartProducts: CartProduct[]
 ): Product[] {
+  console.log('storeProducts', cartProducts);
   storeProducts.map((storeProd) => {
     return (storeProd.quantity = 0);
   });
 
-  const idFrequency = _.countBy(
-    cartProducts,
-    _.flow(_.method('_id.replace', '', ''))
-  );
+  // productId Frequency:
+  let keyById = keyBy(cartProducts, '_id');
 
+  //counting quantity products for each cartProduct _id in idFrequency
+  _.forOwn(keyById, function (_cartPro, key) {
+    let countProduct = 0;
+    cartProducts.map((cartPro) => {
+      if (cartPro._id === key) countProduct += cartPro.quantity;
+    });
+    keyById[key].quantity = countProduct;
+  });
+  // });
+
+  console.log('keyById', keyById);
+
+  //passing to updated quantities to storeProduct
   storeProducts.map((storeProd) => {
-    if (idFrequency.hasOwnProperty(storeProd._id)) {
-      console.log('idFrequency', storeProd._id);
-      storeProd.quantity = idFrequency[storeProd._id];
+    if (keyById.hasOwnProperty(storeProd._id)) {
+      storeProd.quantity = keyById[storeProd._id].quantity;
     }
   });
 

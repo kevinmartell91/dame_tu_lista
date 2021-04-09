@@ -65,11 +65,10 @@ export function round(value: number, precision: number): number {
 export function getTotalProductsOnShoppingCart(
   cartProducts: CartProduct[]
 ): number {
-  // console.log('cartStoreSubcription BRAIN', cartProducts);
-
-  if (cartProducts === [] || cartProducts[0] === undefined) return 199;
-
   let totalShippingCartProducts = 0;
+
+  if (cartProducts === [] || cartProducts[0] === undefined)
+    return totalShippingCartProducts;
 
   if (containtToppings(cartProducts[0].categoryName)) {
     cartProducts.forEach((prod) => {

@@ -22,6 +22,7 @@ import { LoginUser } from 'src/app/core/login/types/user';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { WindowScrollService } from 'src/app/features/retailer-stores/services/window-scroll.service';
 import { removeAccents } from '../../helpers/deaccent.helper';
+import { getTotalProductsOnShoppingCart } from 'src/app/core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-store',
@@ -76,21 +77,14 @@ export class StoreComponent implements OnDestroy {
     this.subscriptionStoreName = this.activedRoute.paramMap.subscribe(
       (params) => {
         this.retailerStoreName = params.get('retailer_store_name');
-        // console.log("KEVIN -StoreComponent retailerStoreName", this.retailerStoreName);
         localStorage.setItem('retailer_store_name', this.retailerStoreName);
-
-        // if (this.stateProductsList == null ) {
-        //   this.stateProductsList = JSON.parse(sessionStorage.temp_session_storage).product_list;
-        // }
       }
     );
 
     this.subscriptionStoreState = this.retailerStoreStore.state$.subscribe(
       (state) => {
-        // this.stateProductsList = state.productsList.products;
         this.stateRetailer = state.retailer;
 
-        // console.log("stateProductsList Kevin", this.stateProductsList);
         if (this.stateRetailer) {
           localStorage.setItem('retailer_id', this.stateRetailer._id);
           localStorage.setItem(
@@ -98,26 +92,19 @@ export class StoreComponent implements OnDestroy {
             this.stateRetailer.phoneNumber
           );
         }
-
-        // console.log("subscriptionStoreState HERE KEVIN", this.stateRetailer);
       }
     );
   }
 
   init(): void {
-    // console.log("INIT -  StoreComponent: ");
-
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       (products) => {
-        // console.log("subscriptionRetailerStore- products KEVIN", products);
         this.productsList = products;
-        // console.log("FORM SESSION STORAGE", this.productsList);
-        // console.log(" this.state.productsList.products KEVIN : ", this.retailerStoreStore.state.productsList.products);
       }
     );
 
     this.subscription = this.cartStore.shoppingCart$.subscribe((x) => {
-      this.cartProductsQuantity = x.products.length;
+      this.cartProductsQuantity = getTotalProductsOnShoppingCart(x.products);
     });
 
     updateBuyerNavagation(
@@ -201,8 +188,6 @@ export class StoreComponent implements OnDestroy {
     return product.categoryName === 'Comida rápida'
       ? product.maturityName
       : product.varietyName;
-
-    // return `${product.varietyName}`;
   }
 
   public openSeachBox() {
