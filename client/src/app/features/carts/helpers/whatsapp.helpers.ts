@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 import { Order } from 'src/app/core/order/types/order';
 import { APP_CONFIG } from 'src/app/app.config';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 
 const maxLenChar: number = 30;
 
@@ -59,23 +60,45 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
     orderRawTxt += breakLine;
 
     order.cart.forEach((product, idx) => {
-      let productName =
-        product.categoryName === 'Comida rápida'
-          ? getNameAndPriceFormat(product.maturityName, product.totalPrice)
-          : getNameAndPriceFormat(
-              product.categoryName + ' ' + product.varietyName,
-              product.totalPrice
-            );
+      let productName: string;
+      let productMaturitName: string;
+      let productFeatures: string;
+      if (containtToppings(product.categoryName)) {
+        //store with toppings
+        productName = getNameAndPriceFormat(
+          product.maturityName,
+          product.totalPrice
+        );
+        productMaturitName = '';
+        productFeatures = '';
+      } else {
+        // regular store
+        productName = getNameAndPriceFormat(
+          product.categoryName + ' ' + product.varietyName,
+          product.totalPrice
+        );
+        productMaturitName = '- ' + getItalicFormat(product.maturityName);
+        productFeatures =
+          getProductSizeStr(product) + '    ' + getOrganicStr(product);
+      }
 
-      let productDetails =
-        product.details !== '' ? '*Detalles:* ' + product.details : '';
+      // let productName =
+      //   product.categoryName === 'Comida rápida'
+      //     ? getNameAndPriceFormat(product.maturityName, product.totalPrice)
+      //     : getNameAndPriceFormat(
+      //         product.categoryName + ' ' + product.varietyName,
+      //         product.totalPrice
+      //       );
 
-      let productMaturitName =
-        product.maturityName !== ''
-          ? '- ' + getItalicFormat(product.maturityName)
-          : '';
-      let productFeatures =
-        getProductSizeStr(product) + '    ' + getOrganicStr(product);
+      // let productMaturitName =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? '- ' + getItalicFormat(product.maturityName)
+      //     : '';
+
+      // let productFeatures =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? getProductSizeStr(product) + '    ' + getOrganicStr(product)
+      //     : '';
 
       // Numeration and product name
       orderRawTxt += (idx + 1).toString() + ')  ';
@@ -99,17 +122,22 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
         orderRawTxt += breakLine;
       }
 
-      if (productDetails !== '') {
-        const multiplineProdNameAndDetails: string[] = formatProductNameTo20CharactersMiltipleLines(
-          productDetails
+      let prodDetailsTitle = product.details !== '' ? '*Detalles:* ' : '';
+
+      orderRawTxt += verticalPipe + tab + tab + prodDetailsTitle;
+      orderRawTxt += breakLine;
+
+      if (prodDetailsTitle !== '') {
+        const multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
+          product.details
         );
 
         multiplineProdNameAndDetails.forEach((line, i) => {
-          if (i !== 0) {
-            orderRawTxt += verticalPipe + tab + tab + tab + line;
-          } else {
-            orderRawTxt += verticalPipe + tab + tab + line;
-          }
+          // if (i !== 0) {
+          orderRawTxt += verticalPipe + tab + tab + tab + line;
+          // } else {
+          // orderRawTxt += verticalPipe + tab + tab + line;
+          // }
         });
         orderRawTxt += breakLine;
       }
@@ -272,7 +300,7 @@ export const transformOrderToRawText = (order: Order): string => {
       orderRawTxt += breakLine;
 
       if (productDetails !== '') {
-        const multiplineProdNameAndDetails: string[] = formatProductNameTo20CharactersMiltipleLines(
+        const multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
           productDetails
         );
 
@@ -495,14 +523,19 @@ export const formatProductNameTo20Characters = (term: string): string => {
   return term.slice(0, maxLenght - threePointsLenght) + ' . . .';
 };
 
-export const formatProductNameTo20CharactersMiltipleLines = (
-  productName: string
+export const formatLongTextTo20CharactersMiltipleLines = (
+  longText: string
 ): string[] => {
   const maxLenTextByLine: number = maxLenChar;
   const breakLine = '\n';
   const tab: string = String.fromCodePoint(parseInt('9', 16));
 
-  const arrWords = productName.split(' ');
+  // const splitCharacter = `
+
+  // `;
+  const splitCharacter = ` \n\n`;
+  const arrWords = longText.split(splitCharacter);
+  console.log('arrWords', arrWords);
   let bufferMultilineText: string[] = [];
   let tempLine = '';
 

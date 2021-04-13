@@ -16,6 +16,7 @@
         <mat-label>Número de celular: </mat-label>
         <span matPrefix>+51 &nbsp;</span>
         <input
+          cdkFocusInitial
           matInput
           placeholder="999-999-999"
           name="phoneNumber"
@@ -29,10 +30,10 @@
     <div mat-dialog-actions fxLayoutAlign="center center">
       <button mat-button (click)="onNoClick()">Cancelar</button>
       <button
+        cdkFocusInitial
         mat-button
         [mat-dialog-close]="phoneNumberForm.value"
         [disabled]="!phoneNumberForm.valid"
-        cdkFocusInitial
       >
         Continuar
       </button>

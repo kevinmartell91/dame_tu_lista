@@ -97,6 +97,54 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
+  loadDistrictsLowerCase(): void {
+    this.districts = [
+      'Ancón',
+      'Ate',
+      'Baranco',
+      'Breña',
+      'Carabayllo',
+      'Chaclacayo',
+      'Chorrillos',
+      'Cieneguilla',
+      'Comas',
+      'El Agustino',
+      'Independencia',
+      'Jesús María',
+      'La Molina',
+      'La Victoria',
+      'Lima',
+      'Lince',
+      'Los Olivos',
+      'Lurigancho-Chosica',
+      'Lurín',
+      'Magdalena del Mar',
+      'Miraflores',
+      'Pachacámac',
+      'Pucusana',
+      'Pueblo libre',
+      'Puente Piedra',
+      'Punta Hermosa',
+      'Punta Negra',
+      'Rímac',
+      'San Bartolo',
+      'San Borja',
+      'San Isidro',
+      'San Juan de Lurigancho',
+      'San Juan de Miraflores',
+      'San Luis',
+      'San Martin de Porres',
+      'San Miguel',
+      'Santa Anita',
+      'Santa María del Mar',
+      'Santa Rosa',
+      'Santiago de Surco',
+      'Surquillo',
+      'Villa el Salvador',
+      'Villa María del Triunfo',
+    ];
+  }
+
   loadDistricts(): void {
     this.districts = [
       'ANCÓN',
@@ -157,7 +205,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
 
     if (this.isPickUp) {
       this.pickUpMessage =
-        ' Usted podrá recoger su orden en el horario de atención establecido por el vendedor.';
+        'Usted podrá recoger su orden en el horario de atención establecido por el vendedor.';
       this.addressForm.patchValue({
         streetName: 'Recojo en tienda',
         streetNumber: 'Recojo en tienda',
