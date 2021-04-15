@@ -49,10 +49,6 @@ export class AddToppingsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  @Input() image: string;
-  @Input() currentState: string;
-  @Input() toppings: any;
-
   ngOnInit(): void {
     this.productLableFormControl.valueChanges.subscribe((changes) => {
       console.log(this.productLableFormControl.value);

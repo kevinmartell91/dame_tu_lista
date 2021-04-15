@@ -1,6 +1,6 @@
 <ng-container
   *ngIf="
-    toppingType.multipleSelection;
+    toppingType.isMultipleSelection_toppings;
     then ShowMutiselection;
     else ShowSingleSelection
   "
@@ -8,7 +8,7 @@
 </ng-container>
 <ng-template #ShowMutiselection>
   <mat-form-field appearance="legacy">
-    <mat-label>{{ toppingType.name }}</mat-label>
+    <mat-label>{{ toppingType.title_toppings }}</mat-label>
     <mat-select [formControl]="toppings" multiple>
       <mat-select-trigger>
         {{ toppings.value ? toppings.value[0] : "" }}
@@ -21,20 +21,27 @@
         </span>
       </mat-select-trigger>
       <mat-option
-        *ngFor="let topping of toppingType.values"
+        *ngFor="let topping of toppingType.name_toppings; let idx = index"
         [value]="topping"
-        >{{ topping }}</mat-option
       >
+        {{ topping }}
+        <!-- <div>
+          <span class="left_style">{{ topping }}</span> -
+          <span class="right_style"
+            >S/. {{ toppingType.price_toppings[idx] }}</span
+          >
+        </div> -->
+      </mat-option>
     </mat-select>
   </mat-form-field>
 </ng-template>
 
 <ng-template #ShowSingleSelection>
   <mat-form-field appearance="legacy">
-    <mat-label>{{ toppingType.name }}</mat-label>
+    <mat-label>{{ toppingType.title_toppings }}</mat-label>
     <mat-select
       [formControl]="toppings"
-      multiple="{{ toppingType.multipleSelection }}"
+      multiple="{{ toppingType.isMultipleSelection_toppings }}"
     >
       <mat-select-trigger>
         {{ toppings.value ? toppings.value : "" }}
@@ -45,7 +52,7 @@
         </span>
       </mat-select-trigger>
       <mat-option
-        *ngFor="let topping of toppingType.values"
+        *ngFor="let topping of toppingType.name_toppings"
         [value]="topping"
         >{{ topping }}</mat-option
       >

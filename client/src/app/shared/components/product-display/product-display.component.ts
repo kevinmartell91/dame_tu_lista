@@ -210,21 +210,13 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
       multipleSelection: false,
     },
     {
-      name: 'Cortesia de la casa',
-      values: ['Queso', 'Jamón', 'Huevo'],
-      multipleSelection: false,
-    },
-    {
-      name: 'Tus cremas',
-      values: [
-        'Ketchup',
-        'Mayonesa',
-        'Mostaza',
-        'Tártara',
-        'Aji',
-        'Salsa Gold',
-      ],
-      multipleSelection: true,
+      type_toppings: 'panes',
+      price_toppings: [0, 0],
+      isEnable_toppings: true,
+      title_toppings: 'tipo de pan',
+      name_toppings: ['Pan de Yema', 'Pan Frances'],
+      isMultipleSelection_toppings: false,
+      _id: '6077870cb877c132ec9eac92',
     },
   ];
 
@@ -239,10 +231,11 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   openToppingsOption(): void {
     this.dialogRef = this.MatDialog.open(AddToppingsComponent, {
       width: '320px',
+      height: '400px',
       data: {
         productName: this.product.maturityName,
         image: this.product.maturityImageUrl,
-        toppings: this.toppings,
+        toppings: this.product.toppings,
         currentState: this.toState,
       },
     });
