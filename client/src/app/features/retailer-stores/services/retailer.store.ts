@@ -207,15 +207,22 @@ export class RetailerStoreStore
     base: string,
     api_key: string
   ) {
-    // let json: string;
-    // this.endPoint.getAirTableData(retailer_id, airTableBase, base, api_key, this.storeRequestUpdater).subscribe(
-    //     result => {
-    //         console.log("getAirTableData", result);
-    //         //
-    //         // return result;
-    //     }
-    // ).unsubscribe();
+    let json: string;
+    this.endPoint
+      .getAirTableData(
+        retailer_id,
+        airTableBase,
+        base,
+        api_key,
+        this.storeRequestUpdater
+      )
+      .subscribe((result) => {
+        console.log('getAirTableData', result);
+        //
+        // return result;
+      })
+      .unsubscribe();
 
-    airtable.manuallyRetrievedAritableData('ff');
+    // airtable.manuallyRetrievedAritableData('ff');
   }
 }
