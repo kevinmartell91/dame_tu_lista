@@ -1,9 +1,25 @@
-<div class="container_product" [@changeState]="data.currentState">
+<!-- <div class="container_product" [@changeState]="data.currentState"> -->
+<div class="container_product" (window:scroll)="getYPosition($event)">
   <div class="image_area">
     <img class="product_image" src="{{ data.image }}" alt="" />
   </div>
 
-  <div class="product_name_area">
+  <div class="add_button_area">
+    <app-add-button
+      class="add-button"
+      [quantity]="data.quantity"
+      (quantityUpdated)="onQuantityUpdated($event)"
+    ></app-add-button>
+  </div>
+
+  <div class="product_price_area">
+    <h2>{{ data.productPrice }}</h2>
+  </div>
+
+  <div
+    [class.header_product_name_change]="isProductNameFixed"
+    class="product_name_area"
+  >
     <h2>{{ data.productName }}</h2>
   </div>
 
@@ -48,7 +64,7 @@
     [disabled]="!detailForm.valid">Siguiente</button>
   -->
 
-  <div mat-dialog-actions>
+  <div class="options_area" mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancelar</button>
     <button
       mat-button

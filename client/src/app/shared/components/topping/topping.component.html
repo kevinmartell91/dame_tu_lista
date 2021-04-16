@@ -22,15 +22,14 @@
       </mat-select-trigger>
       <mat-option
         *ngFor="let topping of toppingType.name_toppings; let idx = index"
-        [value]="topping"
+        [value]="getToppingNameAndPriceAsValue(topping, idx)"
       >
-        {{ topping }}
-        <!-- <div>
-          <span class="left_style">{{ topping }}</span> -
-          <span class="right_style"
-            >S/. {{ toppingType.price_toppings[idx] }}</span
-          >
-        </div> -->
+        <div class="topping_container">
+          <div class="topppin_name">{{ topping }}</div>
+          <div class="topppin_price">
+            {{ getToppingPriceFormat(idx) }}
+          </div>
+        </div>
       </mat-option>
     </mat-select>
   </mat-form-field>

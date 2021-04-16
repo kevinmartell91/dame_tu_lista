@@ -26,5 +26,14 @@ export class ToppingComponent implements OnInit {
     });
   }
 
+  getToppingPriceFormat(id: number): string {
+    if (this.toppingType.price_toppings[id] === 0) return '';
+    return `S/. ${this.toppingType.price_toppings[id].toFixed(2)}`;
+  }
+
+  getToppingNameAndPriceAsValue(name: string, idx: number): string {
+    return `${name} ${this.getToppingPriceFormat(idx)}`;
+  }
+
   ngOnInit(): void {}
 }

@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, HostListener } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -22,6 +22,7 @@ import * as _ from 'lodash';
   selector: 'app-add-toppings',
   templateUrl: './add-toppings.component.html',
   styleUrls: ['./add-toppings.component.sass'],
+
   // animations: [
   //   trigger('changeState', [
   //     state('in', style({ transform: 'translateX(0%)', opacity: 1 })),
@@ -37,9 +38,11 @@ import * as _ from 'lodash';
 export class AddToppingsComponent implements OnInit {
   toppingsSelected: ToppingSelected[] = [];
   productLable: string;
+  quatityUpdated: number;
 
   productLableFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
+  isProductNameFixed: boolean = false;
 
   modalResul: any;
 
@@ -47,16 +50,33 @@ export class AddToppingsComponent implements OnInit {
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<AddToppingsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    console.log('AddToppingsComponent');
+  }
 
   ngOnInit(): void {
+    this.quatityUpdated = this.data.quantity;
+
     this.productLableFormControl.valueChanges.subscribe((changes) => {
-      console.log(this.productLableFormControl.value);
+      console.log(
+        'this.productLableFormControl.value',
+        this.productLableFormControl.value
+      );
       this.modalResul = {
         toppingsSelected: this.toppingsSelected,
         productLabel: this.productLableFormControl.value,
+        quantity: this.quatityUpdated,
       };
     });
+  }
+
+  @HostListener('window:scroll') onScroll(e: Event): void {
+    const posY = this.getYPosition(e);
+  }
+
+  getYPosition(e: Event): number {
+    console.log('posY', 'posY');
+    return (e.target as Element).scrollTop;
   }
 
   onNoClick(): void {
@@ -75,10 +95,42 @@ export class AddToppingsComponent implements OnInit {
         this.toppingsSelected
       );
     }
+    console.log('this.toppingsSelected', this.toppingsSelected);
     this.modalResul = {
       toppingsSelected: this.toppingsSelected,
       productLabel: this.productLableFormControl.value,
+      quantity: this.quatityUpdated,
     };
+  }
+
+  async onQuantityUpdated(quantityUpdated: number) {
+    if (quantityUpdated === 0) {
+      // this.disableQuantityMode();
+      this.onNoClick();
+    }
+    this.quatityUpdated = quantityUpdated;
+
+    // if (quantityUpdated == 0) {
+    //   this.quantityStr = '+';
+    //   this.productTotalPriceQuantityStr = '';
+    //   this.isQuantityIncreased = false;
+    // } else {
+    //   this.quantity = quantityUpdated;
+    //   this.quantityStr = quantityUpdated.toString();
+    //   this.productTotalPriceQuantityStr = `S/.
+    //    ${round(this.product.price * quantityUpdated, 2).toFixed(2)}`;
+
+    //   this.isQuantityIncreased = true;
+    // }
+
+    // // create a new cart stores with updated quantity
+    // const cartProduct: CartProduct = getCartProductFromProduct(
+    //   this.product,
+    //   quantityUpdated,
+    //   this.size
+    // );
+    // // then send it to to listener to be updated in
+    // this.selectedCartProduct.emit(cartProduct);
   }
 }
 

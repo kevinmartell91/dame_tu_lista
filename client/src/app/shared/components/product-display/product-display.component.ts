@@ -9,7 +9,9 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
+  calculateTotalPricePerProductWithToppings,
   getCartProductFromProduct,
+  getCartProductWithToppingsFromProductWithToppings,
   round,
 } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
@@ -17,7 +19,10 @@ import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from '../../../core/retailer/types/product';
 import { containtToppings } from '../../helpers/cart-product.helpers';
 import { AddToppingsComponent } from '../add-toppings/add-toppings.component';
-import { ToppingSelected } from '../topping/types/toppingSelected';
+import {
+  ToppingModalResult,
+  ToppingSelected,
+} from '../topping/types/toppingSelected';
 
 @Component({
   selector: 'app-product-display-shared',
@@ -32,6 +37,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   @Output() selected = new EventEmitter<Product>();
   @Output() selectedCartProduct = new EventEmitter<CartProduct>();
   @Output() selectedCartProductWithToppings = new EventEmitter<CartProduct>();
+  @Output() quantityUpdated = new EventEmitter<number>();
 
   isQuantityMode: boolean = false;
   isKiloUnitAvailable: boolean = true;
@@ -56,6 +62,8 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     this.hasToppings = containtToppings(this.product.categoryName);
 
     if (this.product.quantity) {
+      // // setting this quantity to pass the add button in side the modal
+      this.quantity = this.product.quantity;
       this.quantityStr = this.product.quantity.toString();
 
       if (this.product.quantity > 0) {
@@ -68,8 +76,15 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     this.productPriceStr = round(this.product.price, 2).toFixed(2);
 
     if (this.product.quantity > 0) {
-      this.productTotalPriceQuantityStr = `S/.
-       ${round(this.product.price * this.product.quantity, 2).toFixed(2)}`;
+      this.productTotalPriceQuantityStr = containtToppings(
+        this.product.categoryName
+      )
+        ? `S/. ${this.cartStore.calculateCartStoreTotalPriceCartProductWithToppingById(
+            this.product._id
+          )}`
+        : `S/. ${round(this.product.price * this.product.quantity, 2).toFixed(
+            2
+          )}`;
     }
   }
   ngOnDestroy() {}
@@ -103,6 +118,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
    * @param newQuantity
    */
   async onQuantityUpdated(quantityUpdated: number) {
+    console.log('quantityUpdated on product display', quantityUpdated);
     // if cartProduct quatity is 0,
     // then disableQuantityMode
     if (quantityUpdated == 0) {
@@ -134,6 +150,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   }
 
   onQuantityUpdatedWithToppings(quantityUpdated: number) {
+    console.log('onQuantityUpdatedWithToppings', quantityUpdated);
     // if cartProduct quatity is 0,
     // then disableQuantityMode
     if (quantityUpdated == 0) {
@@ -148,8 +165,12 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     } else {
       this.quantity = quantityUpdated;
       this.quantityStr = quantityUpdated.toString();
-      this.productTotalPriceQuantityStr = `S/.
-       ${round(this.product.price * quantityUpdated, 2).toFixed(2)}`;
+      this.productTotalPriceQuantityStr = `S/. ${this.cartStore.calculateCartStoreTotalPriceCartProductWithToppingById(
+        this.product._id
+      )}`;
+
+      // this.productTotalPriceQuantityStr = `S/.
+      //  ${round(this.product.price * quantityUpdated, 2).toFixed(2)}`;
 
       this.isQuantityIncreased = true;
     }
@@ -231,62 +252,63 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   openToppingsOption(): void {
     this.dialogRef = this.MatDialog.open(AddToppingsComponent, {
       width: '320px',
-      height: '400px',
+      height: '500px',
       data: {
+        productPrice: this.product.price,
         productName: this.product.maturityName,
         image: this.product.maturityImageUrl,
         toppings: this.product.toppings,
         currentState: this.toState,
+        quantity: 1,
       },
     });
 
-    this.dialogRef.afterClosed().subscribe((result: any) => {
-      console.log('RESUT THIS from the modal', result);
-      // create a new cart stores with updated quantity
+    this.dialogRef.afterClosed().subscribe((result: ToppingModalResult) => {
+      if (result) {
+        // create a new cart stores with updated quantity
+        const cartProduct: CartProduct = getCartProductWithToppingsFromProductWithToppings(
+          this.product,
+          this.size,
+          result
+        );
 
-      const cartProduct: CartProduct = getCartProductFromProduct(
-        this.product,
-        1,
-        this.size
-      );
+        // this.emmitModalResults(cartProduct, result);
+        // this.quantityStr = cartProduct.quantity.toString();
 
-      if (result) this.emmitModalResults(cartProduct, result);
+        // console.log('cartProduct UPDATED', cartProduct);
+        this.selectedCartProductWithToppings.emit(cartProduct);
+
+        // // search by _Id and count then increment
+        const quantity = this.cartStore.countCartStoreProductsWithToppingsSameID(
+          cartProduct
+        );
+        this.onQuantityUpdatedWithToppings(quantity);
+      }
     });
   }
   emmitModalResults(cartProduct: CartProduct, result: any): void {
-    // create idAux (_id + "_" timestamp
-    const currentTimeInMilliseconds = Date.now(); // unix timestamp in milliseconds)
-    cartProduct.idAux = `${cartProduct._id}_${currentTimeInMilliseconds}`;
-
-    if (result) {
-      const selectedToppings: ToppingSelected[] = result.toppingsSelected;
-      selectedToppings.forEach((topping, id) => {
-        let toppingList = topping.selected.split(',');
-
-        // cartProduct.details += `${(id + 1).toString()} ] `;
-
-        cartProduct.details += `• ${topping.name}: `;
-
-        toppingList.forEach((topping, idx) => {
-          const separator = idx < toppingList.length - 1 ? ', ' : '. ';
-          cartProduct.details += `${topping}${separator}`;
-        });
-        // cartProduct.details += '\n\n';
-      });
-    }
-
-    this.quantityStr = cartProduct.quantity.toString();
-
-    cartProduct.maturityName = `${cartProduct.maturityName}  (${result.productLabel})`;
-
+    // // create idAux (_id + "_" timestamp
+    // const currentTimeInMilliseconds = Date.now(); // unix timestamp in milliseconds)
+    // cartProduct.idAux = `${cartProduct._id}_${currentTimeInMilliseconds}`;
+    // if (result) {
+    //   const selectedToppings: ToppingSelected[] = result.toppingsSelected;
+    //   cartProduct.toppings = selectedToppings;
+    // }
+    // this.quantityStr = cartProduct.quantity.toString();
+    // formating to two decimals and as a string
+    // cartProduct.quantity = result.quantity;
+    // cartProduct.maturityName = `${cartProduct.maturityName}  (${result.productLabel})`;
+    // const totalPrice = calculateTotalPricePerProductWithToppings(cartProduct);
+    // cartProduct.totalPrice = totalPrice;
+    // this.productTotalPriceQuantityStr = '(cartProduct.totalPrice).toFixed(2);';
     // then send it to to listener to be updated in
     // this.selectedCartProduct.emit(cartProduct);
-    this.selectedCartProductWithToppings.emit(cartProduct);
-
-    // search by _Id and count then incremente
-    const quantity = this.cartStore.countCartStoreProductsWithToppingsSameID(
-      cartProduct
-    );
-    this.onQuantityUpdatedWithToppings(quantity);
+    // console.log('cartProduct UPDATED', cartProduct);
+    // this.selectedCartProductWithToppings.emit(cartProduct);
+    // // search by _Id and count then incremente
+    // const quantity = this.cartStore.countCartStoreProductsWithToppingsSameID(
+    //   cartProduct
+    // );
+    // this.onQuantityUpdatedWithToppings(quantity);
   }
 }

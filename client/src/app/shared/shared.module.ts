@@ -18,13 +18,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { CdkTableModule } from '@angular/cdk/table';
 // import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { MatBadgeModule } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 // import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-// import { MatChipsModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 // import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 // import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -71,13 +71,13 @@ const EXPORTED_DECLARATIONS = [
   // CdkTreeModule,
   // DragDropModule,
   MatAutocompleteModule,
-  // MatBadgeModule,
+  MatBadgeModule,
   // MatBottomSheetModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
   MatCheckboxModule,
-  // MatChipsModule,
+  MatChipsModule,
   // MatStepperModule,
   // MatDatepickerModule,
   MatDialogModule,

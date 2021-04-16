@@ -15,28 +15,43 @@ $box-size: 40px
 .container_product
   display: grid
   grid-template-columns: 100%
-  grid-template-rows: 200px 34px 100px 1fr
-  grid-template-areas: "img" "nameProd" "prodLabel" "toppings" 
+  grid-template-rows:  200px 10px 34px 29px 100px 1fr 20px
+  grid-template-areas:  "img" "priceProd" "nameProd" "addBtn" "prodLabel" "toppings" "opt"
   // grid-gap: 10px
   place-items: center
   text-align: center
  
+  .add_button_area
+    grid-area: addBtn
+    z-index: 30
+    transform: translate(262px, -40px)
+    position: fixed
+
+
   .image_area
     grid-area: img
+    // transform: translateY(-40px)
     .product_image
       border-radius: $border-radius
       height: 270px
-      transform: translateY(-20px)
 
 
   .product_name_area
     grid-area: nameProd
     background: black
-    width: 100%
     place-self: stretch
     color: white
     font-size: $text-font-size
-    z-index: 20
+    transform: translateY(18px)
+    // position: fixed
+    // z-index: 30
+
+  .product_price_area
+    grid-area: priceProd
+    color: gray
+    font-size: $text-font-size
+    transform: translateY(48px)
+    z-index: 30
 
 
   .product_label
@@ -46,4 +61,8 @@ $box-size: 40px
   .toppings_area
     grid-area: toppings
 
+  .options_area
+    grid-area: opt
 
+.header_product_name_change
+  // position: fixed;

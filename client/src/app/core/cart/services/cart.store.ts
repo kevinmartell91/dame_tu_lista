@@ -94,10 +94,13 @@ export class CartStore extends Store<CartStoreState> {
         cartProducts.filter((elem) => {
           if (elem.idAux == cartProduct.idAux) {
             elem.quantity = cartProduct.quantity;
-            elem.totalPrice = updateTotalProductPrice(
-              cartProduct.quantity,
-              cartProduct.price
+
+            console.log(
+              'KEIVN => updateCartWithToppings elem.totalPrice',
+              elem.totalPrice
             );
+            elem.totalPrice = cartProduct.totalAmount;
+            elem.totalAmount = cartProduct.totalAmount;
             elem.details = cartProduct.details;
           }
         });
@@ -122,10 +125,28 @@ export class CartStore extends Store<CartStoreState> {
     for (let i = 0; i < cartProducts.length; i++) {
       const elem = cartProducts[i];
       if (elem._id === cartProduct._id) {
-        count++;
+        count += elem.quantity;
       }
     }
     return count;
+  }
+
+  public calculateCartStoreTotalPriceCartProductWithToppingById(
+    id: string
+  ): string {
+    // retrieve current cartProduct from cartStore
+    let cartProducts: CartProduct[] = this.state.shoppingCart.products;
+    let accumlatedTotalPrice: number = 0;
+    //look for cartProduct in the cartStore
+    for (let i = 0; i < cartProducts.length; i++) {
+      const elem = cartProducts[i];
+      if (elem._id === id) {
+        console.log('elem.totalAmount', elem.totalAmount);
+        accumlatedTotalPrice += elem.totalAmount;
+      }
+    }
+
+    return accumlatedTotalPrice.toFixed(2);
   }
 
   private isOnCartStoreList(cartProduct: CartProduct): boolean {

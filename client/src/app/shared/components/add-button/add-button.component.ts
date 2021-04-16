@@ -45,7 +45,7 @@ export class AddButtonComponent implements OnInit {
   isClickedBig: boolean = false;
 
   // increment each 0.25 kg
-  surgeQuantity: number;
+  surgeQuantity: number = 1;
   countStr: string = '';
 
   bodyClick$: Observable<Event> = fromEvent(document.body, 'click');
@@ -58,7 +58,10 @@ export class AddButtonComponent implements OnInit {
 
     this.setbuttonTypeToRender(this.isCartProductButtonType);
 
-    this.setSurgeQuantity();
+    if (this.isKilo !== undefined) {
+      this.setSurgeQuantity();
+    }
+    console.log('this.quantity', this.quantity);
 
     this.count = this.quantity;
 
@@ -133,6 +136,7 @@ export class AddButtonComponent implements OnInit {
     this.convertQuantiyToString();
     // await this.delay(1500);
 
+    console.log('this.quantityUpdated.emit(this.count)', this.count);
     this.quantityUpdated.emit(this.count);
   }
 

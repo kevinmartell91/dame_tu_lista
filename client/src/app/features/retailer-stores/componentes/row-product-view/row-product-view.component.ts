@@ -74,7 +74,7 @@ export class RowProductViewComponent implements OnInit {
       cartProduct.quantity,
       cartProduct.price
     );
-    // console.log('onSelectedCartProductWithToppings', cartProduct);
+    console.log('onSelectedCartProductWithToppings', cartProduct);
     this.cartStore.updateCartWithToppings(cartProduct);
   }
 

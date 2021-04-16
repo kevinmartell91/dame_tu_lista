@@ -66,7 +66,7 @@ export class ProfileSettingsComponent implements OnDestroy {
       deliveryInfo: [''],
       pickUpInfo: [''],
       phoneNumber: [
-        'xxx-xxx-xxx',
+        '',
         [
           Validators.required,
           // this.phoneNumberValidator,
