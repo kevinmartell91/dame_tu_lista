@@ -197,7 +197,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
 
   enableQuantityMode(): void {
     if (this.hasToppings) {
-      this.openToppingsOption();
+      this.openToppingsOptionModal();
       this.showToppings();
       return;
     }
@@ -249,11 +249,12 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     this.toState = 'out';
   }
 
-  openToppingsOption(): void {
+  openToppingsOptionModal(): void {
     this.dialogRef = this.MatDialog.open(AddToppingsComponent, {
       width: '320px',
       height: '500px',
       data: {
+        mode: 'select',
         productPrice: this.product.price,
         productName: this.product.maturityName,
         image: this.product.maturityImageUrl,

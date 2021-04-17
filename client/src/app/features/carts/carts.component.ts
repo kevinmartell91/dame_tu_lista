@@ -271,7 +271,7 @@ export class CartsComponent implements OnDestroy {
   }
 
   onCartProductUpdate(cartProductUpdate: CartProduct): void {
-    console.log('onCartProductUpdate');
+    console.log('onCartProductUpdate', cartProductUpdate);
     this.cartProducts.filter((cp) => {
       if (cp._id == cartProductUpdate._id) {
         cp = cartProductUpdate;

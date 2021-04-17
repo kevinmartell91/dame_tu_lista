@@ -50,10 +50,20 @@
     </form>
   </div>
 
-  <div class="toppings_area">
+  <div [ngSwitch]="data.mode" class="toppings_area">
     <ng-container *ngFor="let topping of data.toppings">
       <app-topping
+        *ngSwitchCase="'select'"
         [toppingType]="topping"
+        (selectedToppings)="onSelectedToppings($event)"
+      ></app-topping>
+
+      <app-topping
+        *ngSwitchCase="'update'"
+        [toppingType]="topping"
+        [incommingSelectedToppings]="
+          getToppingsSelectedByTitleTopping(topping.title_toppings)
+        "
         (selectedToppings)="onSelectedToppings($event)"
       ></app-topping>
     </ng-container>

@@ -10,6 +10,7 @@ import { ToppingSelected } from './types/toppingSelected';
 })
 export class ToppingComponent implements OnInit {
   @Input() toppingType: Topping;
+  @Input() incommingSelectedToppings: ToppingSelected;
   @Output() selectedToppings = new EventEmitter<ToppingSelected>();
 
   toppings = new FormControl();
@@ -35,5 +36,22 @@ export class ToppingComponent implements OnInit {
     return `${name} ${this.getToppingPriceFormat(idx)}`;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let incommingToppings = this.incommingSelectedToppings;
+    if (
+      incommingToppings !== undefined &&
+      incommingToppings !== null &&
+      incommingToppings.selected !== null
+    ) {
+      //pupulate combos and multicombos
+      if (this.toppingType.isMultipleSelection_toppings) {
+        // multple topping names selected
+        const nameArr = incommingToppings.selected.split(',');
+        this.toppings.setValue(nameArr);
+      } else {
+        // one topping names selected
+        this.toppings.setValue(incommingToppings.selected);
+      }
+    }
+  }
 }

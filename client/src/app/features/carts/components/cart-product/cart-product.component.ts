@@ -2,8 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { AddToppingsComponent } from 'src/app/shared/components/add-toppings/add-toppings.component';
+import { ToppingModalResult } from 'src/app/shared/components/topping/types/toppingSelected';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { getProductFromLocalStorageByProductId } from '../../helpers/cart-products.helpers';
 import { CartProductDetailModalComponent } from '../cart-product-detail-modal/cart-product-detail-modal.component';
+import { calculateTotalPricePerProductWithToppings } from '../../../../core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-cart-product',
@@ -14,6 +18,7 @@ export class CartProductComponent implements OnInit {
   @Input() cartProduct: CartProduct;
   @Input() isPlacedOrder: boolean;
   @Output() cartProductUpdated = new EventEmitter<CartProduct>();
+
   @Output() cartProducDeleted = new EventEmitter<CartProduct>();
 
   cartProductTotalPriceStr: string;
@@ -66,7 +71,8 @@ export class CartProductComponent implements OnInit {
   }
 
   enableQuantityMode(): void {
-    this.isQuantityMode = true;
+    this.openToppingsOptionsModal();
+    // this.isQuantityMode = true;
   }
 
   onDisableQuantityMode(disable: boolean): void {
@@ -74,10 +80,63 @@ export class CartProductComponent implements OnInit {
   }
 
   transformCartProductTotalPriceToStr(): void {
-    this.cartProductTotalPriceStr = this.cartProduct.totalPrice.toFixed(2);
+    this.cartProductTotalPriceStr = containtToppings(
+      this.cartProduct.categoryName
+    )
+      ? this.cartProduct.totalAmount.toFixed(2)
+      : this.cartProduct.totalPrice.toFixed(2);
+
     this.cartProductQuantityStr = this.cartProduct.isKilo
       ? this.cartProduct.quantity.toFixed(2)
       : this.cartProduct.quantity.toFixed(0);
+  }
+
+  openToppingsOptionsModal(): void {
+    const productLocalStorage = getProductFromLocalStorageByProductId(
+      this.cartProduct._id
+    );
+    this.dialogRef = this.matDialog.open(AddToppingsComponent, {
+      width: '320px',
+      height: '500px',
+      data: {
+        mode: 'update',
+        productPrice: this.cartProduct.price,
+        productName: productLocalStorage.maturityName,
+        image: this.cartProduct.maturityImageUrl,
+        toppings: productLocalStorage.toppings,
+        quantity: this.cartProduct.quantity,
+        toppingsSelected: this.cartProduct.toppings,
+        productLabel: this.cartProduct.maturityName.split('(')[1].split(')')[0],
+      },
+    });
+
+    this.dialogRef.afterClosed().subscribe((result: ToppingModalResult) => {
+      if (result) {
+        console.log('Modal has been closed ', result);
+        // update quantity
+        this.cartProduct.quantity = result.quantity;
+        // update productLabel
+        this.cartProduct.maturityName = `${productLocalStorage.maturityName} (${result.productLabel})`;
+        // updateToppings
+        this.cartProduct.toppings = result.toppingsSelected;
+        // update totalPrice and totalAmount
+
+        const totalPriceUpdated = calculateTotalPricePerProductWithToppings(
+          this.cartProduct.quantity,
+          this.cartProduct.price,
+          this.cartProduct.toppings
+        );
+
+        this.cartProduct.totalAmount = totalPriceUpdated;
+        this.cartProduct.totalPrice = totalPriceUpdated;
+
+        console.log('UPDATE PRDODCUT ', this.cartProduct.totalAmount);
+        // formating to two decimals and as a string
+        this.transformCartProductTotalPriceToStr();
+
+        this.cartProductUpdated.emit(this.cartProduct);
+      }
+    });
   }
 
   openAddCartProductDetailModal(): void {

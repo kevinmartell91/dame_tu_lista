@@ -136,13 +136,22 @@ export const calculateTotalPricePerProductWithToppings = (
   toppingSelected.forEach((topping) => {
     const hasMultipleToppings =
       topping.selected.split(',')[0] !== topping.selected;
-    const hasToppingPrice =
+
+    const hasOneToppingPrice =
+      topping.selected.split('S/.')[0] != topping.selected;
+
+    const hasMultipleToppingPrice =
       hasMultipleToppings &&
       topping.selected.split(',')[0].split('S/.')[0] !==
         topping.selected.split(',')[0];
 
-    if (hasToppingPrice) {
-      console.log('topping', topping);
+    if (hasOneToppingPrice) {
+      const toppingPrice: number = +toppingSelected[0].selected
+        .split('S/.')[1]
+        .trim();
+      totalToppingsPrice += toppingPrice;
+    }
+    if (hasMultipleToppingPrice) {
       topping.selected.split(',').map((toppinWtihPrice) => {
         const toppingPrice: number = +toppinWtihPrice.split('S/.')[1].trim();
         totalToppingsPrice += toppingPrice;

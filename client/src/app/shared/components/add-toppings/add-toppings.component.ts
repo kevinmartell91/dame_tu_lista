@@ -17,6 +17,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToppingSelected } from '../topping/types/toppingSelected';
 import * as _ from 'lodash';
+import { Topping } from '../../models/deserializable.model';
 
 @Component({
   selector: 'app-add-toppings',
@@ -56,17 +57,18 @@ export class AddToppingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.quatityUpdated = this.data.quantity;
+    this.productLableFormControl.setValue(this.data.productLabel);
 
     this.productLableFormControl.valueChanges.subscribe((changes) => {
       console.log(
         'this.productLableFormControl.value',
         this.productLableFormControl.value
       );
-      this.modalResul = {
-        toppingsSelected: this.toppingsSelected,
-        productLabel: this.productLableFormControl.value,
-        quantity: this.quatityUpdated,
-      };
+      this.setModalResult(
+        this.toppingsSelected,
+        this.productLableFormControl.value,
+        this.quatityUpdated
+      );
     });
   }
 
@@ -83,9 +85,11 @@ export class AddToppingsComponent implements OnInit {
     this.matDialogRef.close();
   }
 
+  //TO DO : check why onSelectedToppings in not working properly
   onSelectedToppings(topping: ToppingSelected) {
     // search and update the incoming topping
     // incomming topping !exist
+    console.log('onSelectedToppings', topping);
     if (!existIncommingTopping(topping, this.toppingsSelected)) {
       // then add
       this.toppingsSelected.push(topping);
@@ -96,19 +100,30 @@ export class AddToppingsComponent implements OnInit {
       );
     }
     console.log('this.toppingsSelected', this.toppingsSelected);
-    this.modalResul = {
-      toppingsSelected: this.toppingsSelected,
-      productLabel: this.productLableFormControl.value,
-      quantity: this.quatityUpdated,
-    };
+    this.setModalResult(
+      this.toppingsSelected,
+      this.productLableFormControl.value,
+      this.quatityUpdated
+    );
+
+    console.log('MODAL REUSULT', this.modalResul);
   }
 
   async onQuantityUpdated(quantityUpdated: number) {
+    console.log('onQuantityUpdated', quantityUpdated);
+
+    this.quatityUpdated = quantityUpdated;
+    console.log('this.quatityUpdated', this.quatityUpdated);
     if (quantityUpdated === 0) {
       // this.disableQuantityMode();
       this.onNoClick();
     }
-    this.quatityUpdated = quantityUpdated;
+
+    this.setModalResult(
+      this.toppingsSelected,
+      this.productLableFormControl.value,
+      this.quatityUpdated
+    );
 
     // if (quantityUpdated == 0) {
     //   this.quantityStr = '+';
@@ -131,6 +146,28 @@ export class AddToppingsComponent implements OnInit {
     // );
     // // then send it to to listener to be updated in
     // this.selectedCartProduct.emit(cartProduct);
+  }
+
+  getToppingsSelectedByTitleTopping(titleTopping: string): ToppingSelected {
+    if (this.data.toppingsSelected !== undefined) {
+      const selectedToppings: ToppingSelected[] = this.data.toppingsSelected;
+      return selectedToppings.find(
+        (selected) => selected.name === titleTopping
+      );
+    }
+    return null;
+  }
+
+  setModalResult(
+    toppingsSelected: ToppingSelected[],
+    prodcutLabel: string,
+    quantity: number
+  ): void {
+    this.modalResul = {
+      toppingsSelected: toppingsSelected,
+      productLabel: prodcutLabel,
+      quantity: quantity,
+    };
   }
 }
 
