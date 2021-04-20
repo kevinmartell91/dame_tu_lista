@@ -1,8 +1,10 @@
 export interface ToppingSelected {
   name: string;
   selected: string;
-  // selected: [string, number];
+  isMultipleSelection: boolean;
+  countSelected: number;
 }
+
 export interface ToppingModalResult {
   quantity: number;
   productLabel: string;

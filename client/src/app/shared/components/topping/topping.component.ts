@@ -22,6 +22,10 @@ export class ToppingComponent implements OnInit {
       this.toppingSelected = {
         name: this.toppingType.title_toppings,
         selected: this.toppings.value.toString(),
+        isMultipleSelection: this.toppingType.isMultipleSelection_toppings,
+        countSelected: this.toppingType.isMultipleSelection_toppings
+          ? this.toppings.value.length
+          : 1,
       };
       this.selectedToppings.emit(this.toppingSelected);
     });
