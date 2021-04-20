@@ -1,6 +1,8 @@
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from 'src/app/core/retailer/types/product';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { calculateCartTotalPriceWithToppings } from 'src/app/core/cart/helpers/cart-helper';
 
 export const transformOrderCartProductToCartProduct = (
   products: CartProductOrder[]

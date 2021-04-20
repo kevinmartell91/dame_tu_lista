@@ -65,70 +65,70 @@ exports.getAirtableRecords = async function (req, res, next) {
   }
 };
 
-function extractProductList(aritable) {
+function extractProductList(airTable) {
   let product = {};
 
-  product.varietyImageUrl = aritable.Variety_Img[0].thumbnails.large.url;
-  product.categoryImageUrl = aritable.Category_Img[0].thumbnails.large.url;
-  product.maturityImageUrl = aritable.Maturity_Img[0].thumbnails.large.url;
+  product.varietyImageUrl = airTable.Variety_Img[0].thumbnails.large.url;
+  product.categoryImageUrl = airTable.Category_Img[0].thumbnails.large.url;
+  product.maturityImageUrl = airTable.Maturity_Img[0].thumbnails.large.url;
 
-  product.type = aritable.type;
-  product.isVisible = aritable.isVisible;
+  product.type = airTable.type;
+  product.isVisible = airTable.isVisible;
 
-  product.categoryName = CapitalizedFirstChar(aritable.categoryName);
+  product.categoryName = CapitalizedFirstChar(airTable.categoryName);
 
   product.varietyName =
-    aritable.varietyName == "-"
+    airTable.varietyName == "-"
       ? "Normal"
-      : CapitalizedFirstChar(aritable.varietyName);
+      : CapitalizedFirstChar(airTable.varietyName);
 
-  product.currency = aritable.currency;
-  product.price = aritable.price;
-  product.isMediumSize = aritable.isMediumSize
+  product.currency = airTable.currency;
+  product.price = airTable.price;
+  product.isMediumSize = airTable.isMediumSize
     ? (product.isMediumSize = true)
     : (product.isMediumSize = false);
-  product.isUnit = aritable.isUnit
+  product.isUnit = airTable.isUnit
     ? (product.isUnit = true)
     : (product.isUnit = false);
-  product.isSeasonal = aritable.isSeasonal
+  product.isSeasonal = airTable.isSeasonal
     ? (product.isSeasonal = true)
     : (product.isSeasonal = false);
-  product.isMaturityDetails = aritable.isMaturityDetails
+  product.isMaturityDetails = airTable.isMaturityDetails
     ? (product.isMaturityDetails = true)
     : (product.isMaturityDetails = false);
-  product.maturityName = CapitalizedFirstChar(aritable.maturityName);
-  product.maturityInfo = aritable.maturityInfo;
+  product.maturityName = CapitalizedFirstChar(airTable.maturityName);
+  product.maturityInfo = airTable.maturityInfo;
   product.maturityEatIn =
-    aritable.maturityEatIn !== undefined
-      ? aritable.maturityEatIn.toString()
+    airTable.maturityEatIn !== undefined
+      ? airTable.maturityEatIn.toString()
       : "0";
   product.maturityLastFor =
-    aritable.maturityLastFor !== undefined
-      ? aritable.maturityLastFor.toString()
+    airTable.maturityLastFor !== undefined
+      ? airTable.maturityLastFor.toString()
       : "0";
-  product.isInStock = aritable.isInStock
+  product.isInStock = airTable.isInStock
     ? (product.isInStock = true)
     : (product.isInStock = false);
-  product.isSmallSize = aritable.isSmallSize
+  product.isSmallSize = airTable.isSmallSize
     ? (product.isSmallSize = true)
     : (product.isSmallSize = false);
-  product.isKilo = aritable.isKilo
+  product.isKilo = airTable.isKilo
     ? (product.isKilo = true)
     : (product.isKilo = false);
-  product.isOrganic = aritable.isOrganic
+  product.isOrganic = airTable.isOrganic
     ? (product.isOrganic = true)
     : (product.isOrganic = false);
-  product.isBigSize = aritable.isBigSize
+  product.isBigSize = airTable.isBigSize
     ? (product.isBigSize = true)
     : (product.isBigSize = false);
 
   product.toppings = extractToppingsObject(
-    aritable.type_toppings,
-    aritable.price_toppings,
-    aritable.isEnable_toppings,
-    aritable.title_toppings,
-    aritable.name_toppings,
-    aritable.isMultipleSelection_toppings
+    airTable.type_toppings,
+    airTable.price_toppings,
+    airTable.isEnable_toppings,
+    airTable.title_toppings,
+    airTable.name_toppings,
+    airTable.isMultipleSelection_toppings
   );
 
   return product;
@@ -159,14 +159,14 @@ const extractToppingsObject = (
       const freqIdArr = typeFrequencyById[key];
       let topping = [];
       // console.log("freqIdArr", freqIdArr);
-      topping.type_toppings = key;
+      topping.type_toppings = CapitalizedFirstChar(key);
       topping.price_toppings = [];
       topping.name_toppings = [];
       freqIdArr.forEach((id) => {
         topping.price_toppings.push(price_toppings[id]);
         topping.isEnable_toppings = isEnable_toppings[id];
-        topping.title_toppings = title_toppings[id];
-        topping.name_toppings.push(name_toppings[id]);
+        topping.title_toppings = CapitalizedFirstChar(title_toppings[id]);
+        topping.name_toppings.push(CapitalizedFirstChar(name_toppings[id]));
         topping.isMultipleSelection_toppings =
           isMultipleSelection_toppings[id] === null
             ? false

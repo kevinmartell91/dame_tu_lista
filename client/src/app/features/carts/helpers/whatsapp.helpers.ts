@@ -13,9 +13,11 @@ import { Order } from 'src/app/core/order/types/order';
 import { APP_CONFIG } from 'src/app/app.config';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { ToppingSelected } from 'src/app/shared/components/topping/types/toppingSelected';
 
 const maxLenChar: number = 30;
-
+const tab: string = String.fromCodePoint(parseInt('9', 16));
+const breakLine: string = '\n';
 // https://apps.timwhitlock.info/emoji/tables/unicode
 // 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵
 // 🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
@@ -33,8 +35,10 @@ export const sendViaWhatsApp = (
 };
 
 export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
-  const tab: string = String.fromCodePoint(parseInt('9', 16));
-  const breakLine: string = '\n';
+  console.log(
+    'transformOrderToRawTextBaseFortmat',
+    transformOrderToRawTextBaseFortmat
+  );
   let orderRawTxt: string = '';
   let title: string = '';
   let subTitle: string = '';
@@ -43,13 +47,14 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
   const corner = '';
   const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
 
-  title = getTitleCenteredFormat('Nueva Order Entrante') + breakLine;
-  subTitle = '*Lista de pedido* :' + breakLine;
-  totalPrice = `Total a cobrar : *S/. ${order.payment.amount.toFixed(
-    2
-  )}* ${breakLine}`;
-
   if (order != null) {
+    console.log('order KEVIN', order);
+    title = getTitleCenteredFormat('Nueva Order Entrante') + breakLine;
+    subTitle = '*Lista de pedido* :' + breakLine;
+    totalPrice = `Total a cobrar : *S/. ${order.payment.amount.toFixed(
+      2
+    )}* ${breakLine}`;
+
     orderRawTxt += breakLine;
     orderRawTxt += breakLine;
 
@@ -63,23 +68,28 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       let productName: string;
       let productMaturitName: string;
       let productFeatures: string;
+      let isProductToppings: boolean;
       if (containtToppings(product.categoryName)) {
         //store with toppings
         productName = getNameAndPriceFormat(
           product.maturityName,
-          product.totalPrice
+          product.totalAmount
         );
         productMaturitName = '';
         productFeatures = '';
+        isProductToppings = true;
       } else {
         // regular store
         productName = getNameAndPriceFormat(
           product.categoryName + ' ' + product.varietyName,
-          product.totalPrice
+          containtToppings(product.categoryName)
+            ? product.totalAmount
+            : product.totalPrice
         );
         productMaturitName = '- ' + getItalicFormat(product.maturityName);
         productFeatures =
           getProductSizeStr(product) + '    ' + getOrganicStr(product);
+        isProductToppings = false;
       }
 
       // let productName =
@@ -122,13 +132,21 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
         orderRawTxt += breakLine;
       }
 
+      if (isProductToppings && product.toppings !== undefined) {
+        // order.cart.map((cartProduct) => {
+        product.toppings.map((topping) => {
+          orderRawTxt += getToppingFormat(topping);
+          orderRawTxt += breakLine;
+        });
+      }
+
       let prodDetailsTitle = product.details !== '' ? '*Detalles:* ' : '';
 
       orderRawTxt += verticalPipe + tab + tab + prodDetailsTitle;
       orderRawTxt += breakLine;
 
       if (prodDetailsTitle !== '') {
-        const multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
+        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
           product.details
         );
 
@@ -533,7 +551,7 @@ export const formatLongTextTo20CharactersMiltipleLines = (
   // const splitCharacter = `
 
   // `;
-  const splitCharacter = ` \n\n`;
+  const splitCharacter = ` `;
   const arrWords = longText.split(splitCharacter);
   console.log('arrWords', arrWords);
   let bufferMultilineText: string[] = [];
@@ -719,4 +737,27 @@ const getNameAndPriceFormat = (name: string, price: number): string => {
 
 const getItalicFormat = (text: string): string => {
   return `_${text}_`;
+};
+
+const getToppingFormat = (topping: ToppingSelected): string => {
+  const indentationL1 = tab + tab;
+  const indentationL2 = tab + tab + tab;
+  let res = '';
+  res = `${indentationL1}• ${getItalicFormat(
+    topping.name.trim()
+  )} :${breakLine}`;
+  const hasPriceSign = topping.selected.includes('S/.');
+  if (topping.isMultipleSelection) {
+    topping.selected.split(',').map((toppinWithPrice) => {
+      res += `${indentationL2}- ${getItalicFormat(
+        toppinWithPrice.trim()
+      )}${breakLine}`;
+    });
+  } else {
+    // is only on topping selected
+    res += `${indentationL2}- ${getItalicFormat(
+      topping.selected.trim()
+    )}${breakLine}`;
+  }
+  return res;
 };

@@ -122,6 +122,23 @@ export function calculateCartTotalPrice(products: CartProduct[]): number {
   });
   return totalCartPrice;
 }
+export function calculateCartTotalPriceWithToppings(
+  products: CartProduct[]
+): number {
+  let totalCartPrice: number = 0;
+  products.forEach((product) => {
+    totalCartPrice += product.totalAmount;
+  });
+  return totalCartPrice;
+}
+export const getTotalCartPrice = (cartProducts: CartProduct[]): number => {
+  if (cartProducts.length > 0) {
+    return containtToppings(cartProducts[0].categoryName)
+      ? calculateCartTotalPriceWithToppings(cartProducts)
+      : calculateCartTotalPrice(cartProducts);
+  }
+  return 0;
+};
 
 export const calculateTotalPricePerProductWithToppings = (
   quantity: number,

@@ -20,8 +20,10 @@ import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerN
 import { every } from 'rxjs/operators';
 import {
   calculateCartTotalPrice,
+  calculateCartTotalPriceWithToppings,
   getTotalProductsOnShoppingCart,
 } from './core/cart/helpers/cart-helper';
+import { containtToppings } from './shared/helpers/cart-product.helpers';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   authenticationSubcription: Subscription;
   cartStoreSubcription: Subscription;
-  totalCartPrice: number;
+  totalCartPrice: number = 0;
   totalCartPriceStr: string;
   isVisible: boolean;
 
@@ -137,7 +139,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.cartProducts = y.products;
         this.cartProductsQuantity = getTotalProductsOnShoppingCart(y.products);
         // this.cartProductsQuantity = y.products.length;
-        this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
+        if (this.cartProducts.length > 0) {
+          this.totalCartPrice = containtToppings(
+            this.cartProducts[0].categoryName
+          )
+            ? calculateCartTotalPriceWithToppings(this.cartProducts)
+            : calculateCartTotalPrice(this.cartProducts);
+        }
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
         this.isVisible = this.totalCartPrice > 0;
 

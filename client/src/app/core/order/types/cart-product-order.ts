@@ -1,7 +1,9 @@
+import { ToppingSelected } from 'src/app/shared/components/topping/types/toppingSelected';
 import { Deserializable } from '../../../shared/models/deserializable.model';
 
 export class CartProductOrder implements Deserializable {
   public _id?: string;
+  public idAux?: string;
   public categoryImageUrl?: string;
   public categoryName?: string;
   public varietyImageUrl?: string;
@@ -26,8 +28,10 @@ export class CartProductOrder implements Deserializable {
   public quantity?: number;
   public details?: string;
   public size?: string;
+  public totalAmount?: number;
   public totalPrice?: number;
   public isCheckedDone?: boolean = false;
+  public toppings?: ToppingSelected[];
 
   deserialize(input: any) {
     Object.assign(this, input);

@@ -71,8 +71,11 @@ export class CartProductComponent implements OnInit {
   }
 
   enableQuantityMode(): void {
-    this.openToppingsOptionsModal();
-    // this.isQuantityMode = true;
+    if (containtToppings(this.cartProduct.categoryName)) {
+      this.openToppingsOptionsModal();
+    } else {
+      this.isQuantityMode = true;
+    }
   }
 
   onDisableQuantityMode(disable: boolean): void {
@@ -130,7 +133,6 @@ export class CartProductComponent implements OnInit {
         this.cartProduct.totalAmount = totalPriceUpdated;
         this.cartProduct.totalPrice = totalPriceUpdated;
 
-        console.log('UPDATE PRDODCUT ', this.cartProduct.totalAmount);
         // formating to two decimals and as a string
         this.transformCartProductTotalPriceToStr();
 
@@ -148,8 +150,10 @@ export class CartProductComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe((result) => {
-      this.cartProduct.details = result.productCartDetail;
-      this.cartProductUpdated.emit(this.cartProduct);
+      if (result !== undefined) {
+        this.cartProduct.details = result.productCartDetail;
+        this.cartProductUpdated.emit(this.cartProduct);
+      }
     });
   }
 

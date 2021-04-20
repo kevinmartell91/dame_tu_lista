@@ -8,183 +8,178 @@ import { Order } from '../types/order';
 import { OrderEndPoint } from './order.endpoint';
 import { OrderStoreState } from './order.store.states';
 
+@Injectable({ providedIn: 'root' })
+export class OrderStore extends Store<OrderStoreState> {
+  order$: Observable<Order>;
+  orderListByRetailerId$: Observable<Order[]>;
+  orderListByBuyerId$: Observable<Order[]>;
+  private ngUnsubscribe$: Subject<undefined> = new Subject();
+  private reloadOrderListByRetailerId$: Subject<undefined> = new Subject();
 
-@Injectable({ providedIn: "root"})
-export class OrderStore extends Store<OrderStoreState>{
+  private storeRequestStateUpdater: StoreRequestStateUpdater;
 
-    order$: Observable<Order>;
-    orderListByRetailerId$: Observable<Order[]>;
-    orderListByBuyerId$: Observable<Order[]>;
-    private ngUnsubscribe$: Subject<undefined> = new Subject();
-    private reloadOrderListByRetailerId$ : Subject<undefined> = new Subject();
+  constructor(private http: OrderEndPoint) {
+    super(new OrderStoreState());
 
-    private storeRequestStateUpdater: StoreRequestStateUpdater
+    this.order$ = this.state$.pipe(map((state) => state.order));
+    this.orderListByRetailerId$ = this.state$.pipe(
+      map((state) => state.orderListByRetailerId)
+    );
+    this.orderListByBuyerId$ = this.state$.pipe(
+      map((state) => state.orderListByBuyerId)
+    );
 
-    constructor(
-        private http: OrderEndPoint,
-    ){
-        super(new OrderStoreState())
+    this.storeRequestStateUpdater = endpointHelpers.getStoreRequestStateUpdater(
+      this
+    );
+  }
 
-        this.order$ = this.state$.pipe(map ( state => state.order))
-        this.orderListByRetailerId$ = this.state$.pipe(map ( state => state.orderListByRetailerId));
-        this.orderListByBuyerId$ = this.state$.pipe(map (state => state.orderListByBuyerId));
+  get order(): Order {
+    return this.state.order;
+  }
 
-        this.storeRequestStateUpdater = 
-            endpointHelpers.getStoreRequestStateUpdater(this);
+  get orderListByRetailerId(): Order[] {
+    return this.state.orderListByRetailerId;
+  }
 
+  initOrderByRetailerId(retailer_id: string): void {
+    // this.getOrdersByRetailerId(retailer_id);
+    this.getOrdersByRetailerIdOrigin(retailer_id);
+    this.reloadOrderListByRetailerId();
+  }
 
-    }
+  initOrderByBuyerId(retailer_id: string): void {
+    this.getOrdersByBuyerId(retailer_id);
+    this.reloadOrderListByRetailerId();
+  }
 
+  initSaleQuoteOrderId(order_id: string): Observable<any> {
+    console.log('initSaleQuoteOrderId', order_id);
+    return this.http.getOrder(order_id, this.storeRequestStateUpdater).pipe(
+      tap((response: any) => {
+        return response;
+      })
+    );
+  }
+  // this.order$
+  // .pipe(
+  //     switchMap( () => {
+  //             return this.http.getOrder(order_id, this.storeRequestStateUpdater);
+  //         }),
+  //         tap ( (res: any) => {
 
-    get order(): Order {
-        return this.state.order;
-    }
+  //             // let orders: Order
+  //             // res.data.forEach(ele => {
+  //             //     orders.push(new Order().deserialize(ele));
+  //             // });
 
-    get orderListByRetailerId(): Order[] {
-        return this.state.orderListByRetailerId;
-    }
+  //             this.setState({
+  //                 ...this.state,
+  //                 order : new Order().deserialize(res);
+  //             })
+  //         }),
+  //         retry(),
+  //         takeUntil(this.ngUnsubscribe$)
+  //     )
+  //     .subscribe();
+  // }
 
-    initOrderByRetailerId(retailer_id: string):void {
-        // this.getOrdersByRetailerId(retailer_id);
-        this.getOrdersByRetailerIdOrigin(retailer_id);
-        this.reloadOrderListByRetailerId();
+  reloadOrderListByRetailerId(): void {
+    this.reloadOrderListByRetailerId$.next();
+  }
 
-    }
+  setNewOrderState(newOrders: Order[]): void {
+    this.setState({
+      ...this.state,
+      orderListByRetailerId: newOrders,
+    });
+  }
 
-    initOrderByBuyerId(retailer_id: string):void {
-        this.getOrdersByBuyerId(retailer_id);
-        this.reloadOrderListByRetailerId();
+  public generateOrder(order: Order): Observable<any> {
+    return this.http.postOrder(this.storeRequestStateUpdater, order).pipe(
+      tap((response: any) => {
+        return response;
+      })
+    );
+  }
 
-    }
-    
-    initSaleQuoteOrderId( order_id: string): Observable<any>{
-        console.log("initSaleQuoteOrderId",order_id);
-        return this.http.getOrder(order_id, this.storeRequestStateUpdater).pipe(
-                tap( (response: any) => {
-                    return response;
-                })
-            )
-        }
-        // this.order$
-        // .pipe(
-        //     switchMap( () => {
-        //             return this.http.getOrder(order_id, this.storeRequestStateUpdater);
-        //         }),
-        //         tap ( (res: any) => {
-                    
-        //             // let orders: Order
-        //             // res.data.forEach(ele => {
-        //             //     orders.push(new Order().deserialize(ele));
-        //             // });
-                    
-        //             this.setState({
-        //                 ...this.state,
-        //                 order : new Order().deserialize(res);
-        //             })
-        //         }),
-        //         retry(),
-        //         takeUntil(this.ngUnsubscribe$)
-        //     )
-        //     .subscribe();
-    // }
+  public updateOrder(order: Order): Observable<any> {
+    return this.http.putOrder(this.storeRequestStateUpdater, order).pipe(
+      tap((response: any) => {
+        return response;
+      })
+    );
+  }
 
-    reloadOrderListByRetailerId() : void {
-        this.reloadOrderListByRetailerId$.next();
-    }
+  getOrders(): Observable<any> {
+    return this.http.getOrders(this.storeRequestStateUpdater).pipe(
+      tap((response: any) => {
+        return response;
+      })
+    );
+  }
 
-    setNewOrderState(newOrders: Order[]): void {
-        this.setState({
+  private getOrdersByRetailerIdOrigin(retailer_id: string): void {
+    this.reloadOrderListByRetailerId$
+      .pipe(
+        switchMap(() => {
+          return this.http.getOrdersByReatilerId(
+            retailer_id,
+            this.storeRequestStateUpdater
+          );
+        }),
+        tap((res: any) => {
+          let orders: Order[] = [];
+          res.data.forEach((ele) => {
+            orders.push(new Order().deserialize(ele));
+          });
+
+          this.setState({
             ...this.state,
-            orderListByRetailerId : newOrders
+            orderListByRetailerId: orders,
+          });
+        }),
+        retry(),
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe();
+  }
+
+  private getOrdersByRetailerId(retailer_id: string) {
+    return this.http
+      .getOrdersByReatilerId(retailer_id, this.storeRequestStateUpdater)
+      .pipe(
+        map((res: any) => {
+          let orders: Order[] = [];
+          res.data.forEach((ele) => {
+            orders.push(new Order().deserialize(ele));
+          });
+
+          this.setState({
+            ...this.state,
+            orderListByRetailerId: orders,
+          });
         })
-    }
+      )
+      .subscribe();
+  }
 
-    public genereteOrder( order: Order): Observable<any>{
-        return this.http.postOrder(this.storeRequestStateUpdater, order).pipe(
-            tap( (response: any) => {
-                return response;
-            })
-        )
-    }
+  private getOrdersByBuyerId(retailer_id: string) {
+    return this.http
+      .getOrdersByBuyerId(retailer_id, this.storeRequestStateUpdater)
+      .pipe(
+        map((res: any) => {
+          let orders: Order[] = [];
+          res.data.forEach((ele) => {
+            orders.push(new Order().deserialize(ele));
+          });
 
-    public updateOrder( order: Order ): Observable<any>{
-        return this.http.putOrder(this.storeRequestStateUpdater, order).pipe(
-            tap( (response: any) => {
-                return response;
-            })
-        )
-    }
-
-    getOrders(): Observable<any>{
-        return this.http.getOrders(this.storeRequestStateUpdater).pipe(
-            tap( (response: any) => {
-                return response;
-            })
-        )
-    }
-
-    private getOrdersByRetailerIdOrigin(retailer_id: string): void {
-
-        this.reloadOrderListByRetailerId$
-        .pipe(
-            switchMap( () => {
-                    return this.http.getOrdersByReatilerId(retailer_id, this.storeRequestStateUpdater);
-                }),
-                tap ( (res: any) => {
-                    
-                    let orders: Order[]=[];
-                    res.data.forEach(ele => {
-                        orders.push(new Order().deserialize(ele));
-                    });
-                    
-                    this.setState({
-                        ...this.state,
-                        orderListByRetailerId : orders
-                    })
-                }),
-                retry(),
-                takeUntil(this.ngUnsubscribe$)
-            )
-            .subscribe();
-    }
-
-    
-    private getOrdersByRetailerId(retailer_id: string) {
-
-        return this.http.getOrdersByReatilerId(retailer_id, this.storeRequestStateUpdater)
-            .pipe(
-                map( (res: any) => {
-                    let orders: Order[]=[];
-                    res.data.forEach(ele => {
-                        orders.push(new Order().deserialize(ele));
-                    });
-                    
-                    this.setState({
-                        ...this.state,
-                        orderListByRetailerId : orders
-                    })
-                })
-            )
-            .subscribe();
-    }
-
-    private getOrdersByBuyerId(retailer_id: string) {
-
-        return this.http.getOrdersByBuyerId(retailer_id, this.storeRequestStateUpdater)
-            .pipe(
-                map( (res: any) => {
-                    let orders: Order[]=[];
-                    res.data.forEach(ele => {
-                        orders.push(new Order().deserialize(ele));
-                    });
-                    
-                    this.setState({
-                        ...this.state,
-                        orderListByBuyerId : orders
-                    })
-                })
-            )
-            .subscribe();
-    }
-
+          this.setState({
+            ...this.state,
+            orderListByBuyerId: orders,
+          });
+        })
+      )
+      .subscribe();
+  }
 }

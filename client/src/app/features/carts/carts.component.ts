@@ -6,7 +6,10 @@ import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { BuyerStore } from 'src/app/core/buyer/services/buyer.store';
 import { Buyer } from 'src/app/core/buyer/types/buyer';
-import { calculateCartTotalPrice } from 'src/app/core/cart/helpers/cart-helper';
+import {
+  calculateCartTotalPrice,
+  getTotalCartPrice,
+} from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
@@ -161,7 +164,7 @@ export class CartsComponent implements OnDestroy {
       this.cartProducts = x.products;
       // console.log('this.cartProducts ', this.cartProducts);
 
-      this.totalCartPrice = calculateCartTotalPrice(this.cartProducts);
+      this.totalCartPrice = getTotalCartPrice(this.cartProducts);
       // formating to two decimals and as a string
       this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
       console.log('totalCartPriceStr', this.totalCartPriceStr);
@@ -230,9 +233,9 @@ export class CartsComponent implements OnDestroy {
         this.cartProducts = transformOrderCartProductToCartProduct(
           res.data.cart
         );
-        this.totalCartPriceStr = calculateCartTotalPrice(
-          this.cartProducts
-        ).toFixed(2);
+        this.totalCartPriceStr = getTotalCartPrice(this.cartProducts).toFixed(
+          2
+        );
         this.isDisable = true;
         this.orderBD = res.data;
       });
@@ -463,7 +466,7 @@ export class CartsComponent implements OnDestroy {
      */
     let paymentMethodOrder = new PaymentOrder();
     // paymentMethodOrder.method = this.paymentMethodOrder;
-    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+    paymentMethodOrder.amount = getTotalCartPrice(this.cartProducts);
 
     /**
      * Populating the cartProductOrder from this.cartProduct
@@ -484,7 +487,7 @@ export class CartsComponent implements OnDestroy {
     order.cart = cartProductOrder;
 
     // place order in DB
-    this.orderStore.genereteOrder(order).subscribe((x) => {
+    this.orderStore.generateOrder(order).subscribe((x) => {
       if (x) {
         this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -519,7 +522,6 @@ export class CartsComponent implements OnDestroy {
 
   //generated_by_buyer
   createOrderFromShoppingCart(): Order {
-    console.log('createOrderFromShoppingCart');
     let order = null;
 
     /**
@@ -566,7 +568,7 @@ export class CartsComponent implements OnDestroy {
      */
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
-    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+    paymentMethodOrder.amount = getTotalCartPrice(this.cartProducts);
 
     /**
      * Populating the cartProductOrder from this.cartProduct
@@ -587,8 +589,222 @@ export class CartsComponent implements OnDestroy {
     order.payment = paymentMethodOrder;
     order.cart = cartProductOrder;
 
+    console.log('MOCK ORDER => ', JSON.stringify(order));
+
+    const mockOrder = {
+      retailer_id: '60778625d9232c1ec44f5ec2',
+      orderType: 'pickup',
+      shipping: {
+        buyer: {
+          phoneNumber: '+51996821980',
+        },
+        deliveryNotes: '',
+        address: {
+          streetName: 'Recojo en tienda',
+          streetNumber: 'Recojo en tienda',
+          apartmentNumber: '',
+          district: 'Tienda',
+          city: 'LIM',
+          department: 'LIM',
+          country: 'PE',
+          reference: '',
+          details: 'pickup',
+        },
+        tracking: {
+          orderStatus: [
+            ['generated_by_buyer', '2021-04-20T14:26:44.127Z'],
+            ['updated_by_buyer', '2021-04-20T14:26:44.127Z'],
+          ],
+          driver_name: '',
+          trackingNumber: '',
+          estimatedDelivery:
+            'Se entregará su delivery en las próximas horas. Gracias.',
+        },
+      },
+      payment: {
+        method: 'upon_delivery_pos',
+        amount: 63.5,
+      },
+      cart: [
+        {
+          isCheckedDone: false,
+          _id: '607ed72782054b986f5ce317',
+          categoryImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+          categoryName: 'Comida rápida',
+          varietyImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+          varietyName: 'Hamburguesa clásica',
+          currency: 'PEN',
+          price: 7,
+          isSmallSize: false,
+          isMediumSize: true,
+          isBigSize: false,
+          isKilo: false,
+          isUnit: true,
+          isOrganic: false,
+          isSeasonal: true,
+          isMaturityDetails: true,
+          maturityImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
+          maturityName: 'Wawito clasica (Hortencia)',
+          maturityInfo:
+            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+          maturityEatIn: '0',
+          maturityLastFor: '0',
+          isInStock: true,
+          quantity: 1,
+          size: '',
+          details: '',
+          idAux: '607ed72782054b986f5ce317_1618928546200',
+          totalPrice: 17,
+          totalAmount: 17,
+          toppings: [
+            {
+              name: 'Tipo de pan',
+              selected: 'Pan Frances',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Deseas ensalada',
+              selected: 'No',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Deseas adicionales',
+              selected:
+                'Chorizo Parrillero S/. 3.00,Porción de Papas S/. 5.00,Tocino S/. 2.00',
+              isMultipleSelection: true,
+              countSelected: 3,
+            },
+            {
+              name: 'Tipo de papas',
+              selected: 'Papas Fritas',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tus cremas',
+              selected: 'Mostaza ,Salsa Gold ,Aceituna ,Tartara ',
+              isMultipleSelection: true,
+              countSelected: 4,
+            },
+          ],
+        },
+        {
+          isCheckedDone: false,
+          _id: '607ed72782054b986f5ce327',
+          categoryImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+          categoryName: 'Comida rápida',
+          varietyImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+          varietyName: 'Hamburguesa clásica',
+          currency: 'PEN',
+          price: 10.5,
+          isSmallSize: false,
+          isMediumSize: true,
+          isBigSize: false,
+          isKilo: false,
+          isUnit: true,
+          isOrganic: false,
+          isSeasonal: true,
+          isMaturityDetails: true,
+          maturityImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/0a9403641dd1180bb2ba7f5c277ba14f/3c17b31a',
+          maturityName: 'Wawito royal  (kevin)',
+          maturityInfo:
+            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+          maturityEatIn: '0',
+          maturityLastFor: '0',
+          isInStock: true,
+          quantity: 1,
+          size: '',
+          details: '',
+          idAux: '607ed72782054b986f5ce327_1618928735677',
+          totalPrice: 10.5,
+          totalAmount: 10.5,
+        },
+        {
+          isCheckedDone: false,
+          _id: '607ed72782054b986f5ce309',
+          categoryImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+          categoryName: 'Comida rápida',
+          varietyImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+          varietyName: 'Hamburguesa especial',
+          currency: 'PEN',
+          price: 10,
+          isSmallSize: false,
+          isMediumSize: true,
+          isBigSize: false,
+          isKilo: false,
+          isUnit: true,
+          isOrganic: false,
+          isSeasonal: true,
+          isMaturityDetails: true,
+          maturityImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
+          maturityName: 'Wawito tropical  (wendy)',
+          maturityInfo:
+            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+          maturityEatIn: '0',
+          maturityLastFor: '0',
+          isInStock: true,
+          quantity: 3,
+          size: '',
+          details: '',
+          idAux: '607ed72782054b986f5ce309_1618928755403',
+          totalPrice: 30,
+          totalAmount: 36,
+          toppings: [
+            {
+              name: 'Tipo de pan',
+              selected: 'Pan Frances',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Cortesia de la casa',
+              selected: 'Huevo',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tipo de papas',
+              selected: 'Papas Fritas',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Deseas ensalada',
+              selected: 'No',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tus cremas',
+              selected: 'Mostaza ,Aceituna ,Tartara ',
+              isMultipleSelection: true,
+              countSelected: 3,
+            },
+            {
+              name: 'Deseas adicionales',
+              selected: 'Tocino S/. 2.00',
+              isMultipleSelection: true,
+              countSelected: 1,
+            },
+          ],
+        },
+      ],
+    };
+
     // place order DB
-    this.orderStore.genereteOrder(order).subscribe((x) => {
+    // this.orderStore.generateOrder(order).subscribe((x) => {
+    this.orderStore.generateOrder(mockOrder as Order).subscribe((x) => {
       if (x) {
         this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -597,6 +813,7 @@ export class CartsComponent implements OnDestroy {
         // transform the order into raw text
         const orderRawText = transformOrderToRawTextBaseFortmat(
           x.data as Order
+          // order
         );
         // and send it via whatapp
         // to the desired phone number
@@ -675,7 +892,7 @@ export class CartsComponent implements OnDestroy {
      */
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
-    paymentMethodOrder.amount = calculateCartTotalPrice(this.cartProducts);
+    paymentMethodOrder.amount = getTotalCartPrice(this.cartProducts);
 
     /**
      * Populating the cartProductOrder from this.cartProduct
