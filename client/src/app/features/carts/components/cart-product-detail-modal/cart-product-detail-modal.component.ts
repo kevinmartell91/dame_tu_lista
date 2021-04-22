@@ -21,10 +21,8 @@ export class CartProductDetailModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.formatDetails
-
     this.cartPoductDetailForm = this.fb.group({
-      productCartDetail: [this.formatDetails(this.data.cartProductDetail)],
+      productCartDetail: [this.data.cartProductDetail],
     });
   }
 

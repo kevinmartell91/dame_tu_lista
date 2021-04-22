@@ -803,8 +803,8 @@ export class CartsComponent implements OnDestroy {
     };
 
     // place order DB
-    // this.orderStore.generateOrder(order).subscribe((x) => {
-    this.orderStore.generateOrder(mockOrder as Order).subscribe((x) => {
+    this.orderStore.generateOrder(order).subscribe((x) => {
+      // this.orderStore.generateOrder(mockOrder as Order).subscribe((x) => {
       if (x) {
         this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -998,5 +998,9 @@ export class CartsComponent implements OnDestroy {
         return ele;
       })
       .join('/');
+  }
+
+  sendToBluetoothThermalPrinter(): void {
+    window.print();
   }
 }

@@ -72,10 +72,7 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       let isProductToppings: boolean;
       if (containtToppings(product.categoryName)) {
         //store with toppings
-        productName = getNameAndPriceFormat(
-          product.maturityName,
-          product.totalAmount
-        );
+        productName = product.maturityName;
         productMaturitName = '';
         productFeatures = '';
         isProductToppings = true;
@@ -112,20 +109,24 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       //     : '';
 
       // Numeration and product name
-      orderRawTxt += (idx + 1).toString() + ')  ';
-      orderRawTxt += productName;
+      orderRawTxt += `${(idx + 1).toString()}) `;
+      orderRawTxt += `${productName}`;
       orderRawTxt += breakLine;
 
+      const dual = containtToppings(product.categoryName)
+        ? getPriceFormat(product.totalAmount)
+        : productMaturitName;
       // quantity and weight
       orderRawTxt +=
         verticalPipe +
         tab +
         tab +
+        'x ' +
         getQuantityFormat(product.quantity, product.isKilo) +
         ' ' +
         formatQuantityWeightType(product.isKilo) +
-        ' ' +
-        productMaturitName;
+        '       ' +
+        dual;
       orderRawTxt += breakLine;
 
       if (productFeatures !== '    ') {
@@ -152,17 +153,11 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
         );
 
         multiplineProdNameAndDetails.forEach((line, i) => {
-          // if (i !== 0) {
           orderRawTxt += verticalPipe + tab + tab + tab + line;
-          // } else {
-          // orderRawTxt += verticalPipe + tab + tab + line;
-          // }
         });
         orderRawTxt += breakLine;
       }
 
-      //orderRawTxt +=
-      //  corner + priceGuideLine + 'S/. ' + (+product.totalPrice).toFixed(2);
       orderRawTxt += breakLine;
     });
     orderRawTxt += breakLine;
@@ -738,6 +733,10 @@ const getNameAndPriceFormat = (name: string, price: number): string => {
   }
 
   return `*${result}*`;
+};
+const getPriceFormat = (price: number): string => {
+  const priceStr: string = `S/. ${price.toFixed(2)}`;
+  return `*${priceStr}*`;
 };
 
 const getItalicFormat = (text: string): string => {
