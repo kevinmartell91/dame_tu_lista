@@ -1,95 +1,231 @@
-<div class="continer_grid">
+<ng-container *ngIf="hasToppings; then ShowOrderWithToppings; else ShowOrder">
+</ng-container>
+
+<ng-template #ShowOrderWithToppings>
+  <div class="container_grid_toppings">
     <div class="product_area">
-        
-        <div class="img_area">
-            <img src="{{cartProductOrder.maturityImageUrl}}" alt="">
-            <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
+      <div class="img_area">
+        <img src="{{ cartProductOrder.maturityImageUrl }}" alt="" />
+        <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
+      </div>
+
+      <div class="product_name_area">
+        {{ cartProductOrder.maturityName }}
+        <!-- <span *ngIf="cartProductOrder.isOrganic">Orgánico</span>
+                  <span *ngIf="cartProductOrder.isOrganic === false">Normal</span> -->
+      </div>
+
+      <div class="product_kilo_unit_size_area">
+        <!-- S/.{{cartProductOrderPriceStr}} -->
+        S/.{{ cartProductOrderTotalPriceStr }}
+
+        <!-- <span
+          *ngIf="cartProductOrder.isSmallSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Pequeño
+        </span>
+        <span
+          *ngIf="cartProductOrder.isMediumSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Mediano
+        </span>
+        <span
+          *ngIf="cartProductOrder.isBigSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Grande
+        </span> -->
+      </div>
+
+      <!-- <div class="product_detail_area">
+        <span class="style_maturity_details">
+          {{ cartProductOrder.maturityName }}.
+        </span> -->
+
+      <!-- <span class="style_maturity_field">
+                      Comer:
+                  </span>
+                  <span class="style_maturity_details">
+                      {{cartProductOrder.maturityEatIn}} días
+                  </span> 
+                  
+                  <span class="style_maturity_field">
+                       Durá: 
+                  </span>
+                  <span class="style_maturity_details">
+                      {{cartProductOrder.maturityLastFor}} días
+                  </span>  -->
+      <!-- </div> -->
+
+      <div class="quatity_area">
+        {{ cartProductOrder.quantity }}
+        <span
+          *ngIf="cartProductOrder.isKilo"
+          class="style_price_per_unit_or_kg"
+        >
+          Kg.
+        </span>
+        <span
+          *ngIf="cartProductOrder.isUnit"
+          class="style_price_per_unit_or_kg"
+        >
+          Uni.
+        </span>
+      </div>
+
+      <div class="isChecked_area">
+        <mat-checkbox
+          color="primary"
+          [disabled]="isOrderProductPackagedCompleted"
+          class="example-margin"
+          [(ngModel)]="isChecked"
+          (ngModelChange)="isCheckedCompleted()"
+        ></mat-checkbox>
+      </div>
+    </div>
+
+    <div class="toppings_area">
+      <ng-container *ngFor="let topping of cartProductOrder.toppings">
+        <div class="topping_section">
+          <p class="topping_type_margin">{{ topping.name }} :</p>
+
+          <ng-container
+            *ngIf="
+              containsMultipleValues(topping.selected);
+              then ShowMultipleToppingName;
+              else ShowOneToppingName
+            "
+          ></ng-container>
+          <ng-template #ShowMultipleToppingName>
+            <!-- <div class="topping_names_margin"> -->
+            <p
+              class="topping_names_margin"
+              *ngFor="let toppingSelected of topping.selected.split(',')"
+            >
+              - {{ toppingSelected }}
+            </p>
+            <!-- </div> -->
+          </ng-template>
+          <ng-template #ShowOneToppingName>
+            <p class="topping_names_margin">{{ topping.selected }}</p>
+          </ng-template>
         </div>
+      </ng-container>
+    </div>
 
-        <div class="product_name_area">
-            {{cartProductOrder.categoryName}} - {{cartProductOrder.varietyName}}
-            <!-- <span *ngIf="cartProductOrder.isOrganic">Orgánico</span>
-            <span *ngIf="cartProductOrder.isOrganic === false">Normal</span> -->
+    <div class="options_area">
+      <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
+
+      <ng-container *ngIf="cartProductOrder.details != ''">
+        <div
+          class="comment_area"
+          (click)="openAddcartProductOrderDetailModal()"
+        >
+          <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
+          Ver comentarios
         </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+<ng-template #ShowOrder>
+  <div class="continer_grid">
+    <div class="product_area">
+      <div class="img_area">
+        <img src="{{ cartProductOrder.maturityImageUrl }}" alt="" />
+        <!-- <img src="https://dl.airtable.com/.attachments/4b31c3d5ef04f1e87735e6597dc7303e/f0955165/fuji.jpg" alt=""> -->
+      </div>
 
-        <div class="product_kilo_unit_size_area">
-            <!-- S/.{{cartProductOrderPriceStr}} -->
-            S/.{{cartProductOrderTotalPriceStr}}
-            
-            <span *ngIf="cartProductOrder.isSmallSize" 
-                class="style_price_per_unit_or_kg">
-                 / Pequeño
-            </span>
-            <span *ngIf="cartProductOrder.isMediumSize" 
-                class="style_price_per_unit_or_kg">
-                 / Mediano
-            </span>
-            <span *ngIf="cartProductOrder.isBigSize" 
-                class="style_price_per_unit_or_kg">
-                 / Grande
-            </span>
-        </div>
-        
-        <div class="product_detail_area">
-            
-            <span class="style_maturity_details">
-                {{cartProductOrder.maturityName}}. 
-            </span> 
+      <div class="product_name_area">
+        {{ cartProductOrder.categoryName }} - {{ cartProductOrder.varietyName }}
+        <!-- <span *ngIf="cartProductOrder.isOrganic">Orgánico</span>
+                <span *ngIf="cartProductOrder.isOrganic === false">Normal</span> -->
+      </div>
 
-            <!-- <span class="style_maturity_field">
-                Comer:
-            </span>
-            <span class="style_maturity_details">
-                {{cartProductOrder.maturityEatIn}} días
-            </span> 
-            
-            <span class="style_maturity_field">
-                 Durá: 
-            </span>
-            <span class="style_maturity_details">
-                {{cartProductOrder.maturityLastFor}} días
-            </span>  -->
+      <div class="product_kilo_unit_size_area">
+        <!-- S/.{{cartProductOrderPriceStr}} -->
+        S/.{{ cartProductOrderTotalPriceStr }}
 
-        </div>
+        <span
+          *ngIf="cartProductOrder.isSmallSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Pequeño
+        </span>
+        <span
+          *ngIf="cartProductOrder.isMediumSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Mediano
+        </span>
+        <span
+          *ngIf="cartProductOrder.isBigSize"
+          class="style_price_per_unit_or_kg"
+        >
+          / Grande
+        </span>
+      </div>
 
+      <div class="product_detail_area">
+        <span class="style_maturity_details">
+          {{ cartProductOrder.maturityName }}.
+        </span>
 
-        
+        <!-- <span class="style_maturity_field">
+                    Comer:
+                </span>
+                <span class="style_maturity_details">
+                    {{cartProductOrder.maturityEatIn}} días
+                </span> 
+                
+                <span class="style_maturity_field">
+                     Durá: 
+                </span>
+                <span class="style_maturity_details">
+                    {{cartProductOrder.maturityLastFor}} días
+                </span>  -->
+      </div>
 
+      <div class="quatity_area">
+        {{ cartProductOrder.quantity }}
+        <span
+          *ngIf="cartProductOrder.isKilo"
+          class="style_price_per_unit_or_kg"
+        >
+          Kg.
+        </span>
+        <span
+          *ngIf="cartProductOrder.isUnit"
+          class="style_price_per_unit_or_kg"
+        >
+          Uni.
+        </span>
+      </div>
 
-        
-        <div class="quatity_area">
-            {{cartProductOrder.quantity}}
-            <span *ngIf="cartProductOrder.isKilo" 
-                class="style_price_per_unit_or_kg">
-                 Kg.
-            </span>
-            <span *ngIf="cartProductOrder.isUnit" 
-                class="style_price_per_unit_or_kg">
-                 Uni.
-            </span>
-        </div>
-        
-        <div class="isChecked_area">
-           
-            <mat-checkbox 
-                color="primary" 
-                [disabled]="isOrderProductPackagedCompleted"
-                class="example-margin"
-                [(ngModel)]="isChecked"
-                (ngModelChange)="isCheckedCompleted()"></mat-checkbox>
-        </div>
-
+      <div class="isChecked_area">
+        <mat-checkbox
+          color="primary"
+          [disabled]="isOrderProductPackagedCompleted"
+          class="example-margin"
+          [(ngModel)]="isChecked"
+          (ngModelChange)="isCheckedCompleted()"
+        ></mat-checkbox>
+      </div>
     </div>
     <div class="options_area">
-        <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
+      <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
 
-        <ng-container *ngIf="cartProductOrder.details != '' ">
-            <div class="comment_area" (click)="openAddcartProductOrderDetailModal()">
-                <img src="../../../../../assets/icons/edit-15dp.svg" alt=""> 
-                Ver comentarios
-            </div>
-
-        </ng-container>
-        
+      <ng-container *ngIf="cartProductOrder.details != ''">
+        <div
+          class="comment_area"
+          (click)="openAddcartProductOrderDetailModal()"
+        >
+          <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
+          Ver comentarios
+        </div>
+      </ng-container>
     </div>
-</div>
+  </div>
+</ng-template>

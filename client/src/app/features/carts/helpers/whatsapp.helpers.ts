@@ -14,6 +14,7 @@ import { APP_CONFIG } from 'src/app/app.config';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import { ToppingSelected } from 'src/app/shared/components/topping/types/toppingSelected';
+import * as _ from 'lodash';
 
 const maxLenChar: number = 30;
 const tab: string = String.fromCodePoint(parseInt('9', 16));
@@ -236,7 +237,11 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
     orderRawTxt += '      *Hecho con mucho ❤️ en 🇵🇪*      ' + breakLine;
 
     // copy to clipboard
-    copyText(orderRawTxt);
+
+    let copyToBluetoothPrinter = orderRawTxt.replace(/_/g, '');
+    copyToBluetoothPrinter = copyToBluetoothPrinter.replace(/\*/g, '');
+    console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
+    copyText(copyToBluetoothPrinter);
   }
 
   return orderRawTxt;
