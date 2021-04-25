@@ -177,7 +177,9 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       case 'bank_deposit':
         paymentType = '*Deposito bancario*';
         break;
-
+      case 'fast_transfer':
+        paymentType = '*Yaple/Plin*';
+        break;
       default:
         paymentType = '*Efectivo/contra entrega*';
         break;
@@ -355,7 +357,9 @@ export const transformOrderToRawText = (order: Order): string => {
       case 'bank_deposit':
         paymentType = '*Deposito bancario* 🏦';
         break;
-
+      case 'fast_transfer':
+        paymentType = '*Yaple/Plin*';
+        break;
       default:
         paymentType = '*Efectivo/contra entrega* 🤝💵';
         break;

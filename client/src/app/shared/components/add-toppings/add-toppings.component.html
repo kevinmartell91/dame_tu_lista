@@ -77,7 +77,8 @@
   <div class="options_area" mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancelar</button>
     <button
-      mat-button
+      mat-flat-button
+      color="primary"
       [mat-dialog-close]="modalResul"
       [disabled]="!productLableFormControl.valid"
       cdkFocusInitial

@@ -36,12 +36,17 @@ var orderSchema = new Schema({
     },
   },
   payment: {
+    transaction_id: String,
     amount: Number,
     method: {
       type: String,
-      enum: ["upon_delivery_cash", "upon_delivery_pos", "bank_deposit"],
+      enum: [
+        "upon_delivery_cash",
+        "upon_delivery_pos",
+        "bank_deposit",
+        "fast_transfer",
+      ],
     },
-    transaction_id: String,
   },
   cart: [
     {

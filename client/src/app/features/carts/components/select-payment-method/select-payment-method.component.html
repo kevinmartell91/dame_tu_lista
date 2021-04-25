@@ -58,15 +58,29 @@
           Efectivo <br />
           Contraentrega
         </div>
+
+        <div class="img_fast_area">
+          <img src="../../../../../assets/icons/yape_plin_logo.png" alt="" />
+        </div>
+        <div class="fast_method_area">
+          <input
+            type="radio"
+            value="fast_transfer"
+            formControlName="paymentMethod"
+          />
+          Yape <br />
+          Plin
+        </div>
       </ng-template>
 
       <ng-template #showNothing></ng-template>
     </div>
 
-    <div mat-dialog-actions>
+    <div mat-dialog-actions fxLayoutAlign="center center">
       <button mat-button (click)="onNoClick()">Cancelar</button>
       <button
-        mat-button
+        mat-flat-button
+        color="primary"
         [mat-dialog-close]="paymenytForm.value"
         [disabled]="!paymenytForm.valid"
         cdkFocusInitial

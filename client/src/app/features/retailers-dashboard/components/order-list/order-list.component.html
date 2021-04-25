@@ -1,40 +1,40 @@
-
-<br>
-<div fxLayout="row" fxLayoutAlign="center stretch" >
-    <h1> Órdenes</h1>
+<br />
+<div fxLayout="row" fxLayoutAlign="center stretch">
+  <h1>Órdenes</h1>
 </div>
-<br>
-<ng-container *ngIf="{state$: orderStore.state$ | async} as subs">
+<br />
+<ng-container *ngIf="{ state$: orderStore.state$ | async } as subs">
+  <ng-container
+    *ngIf="
+      subs.state$.requests.getOrdersByRetailerId.inProgress;
+      then showLoading;
+      else showOrders
+    "
+  >
+  </ng-container>
 
-    <ng-container 
-        *ngIf="subs.state$.requests.getOrdersByRetailerId.inProgress ;
-        then showLoading ;
-        else showOrders ">
-    </ng-container>
+  <ng-template #showLoading>
+    <div class="grid_loading_display">
+      <div class="login_brand_area">
+        <h1>🍒 Dame tu lista</h1>
+      </div>
+      <div class="loading_symbol_area">
+        <mat-spinner> </mat-spinner>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #showLoading> 
-        <div class="grid_loading_display">
-           <div class="login_brand_area">
-               <h1> 🍒 Dame tu lista</h1>
-           </div>
-           <div class="loading_symbol_area">
+  <ng-template #showOrders>
+    <mat-accordion
+      *ngFor="let order of subs.state$.orderListByRetailerId; let i = index"
+    >
+      <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i, order)">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel_title_grid">
+            <div class="district_area">
+              <!-- {{order.shipping.address.district}} -->
 
-               <mat-spinner >  </mat-spinner>
-           </div>
-        </div>
-         
-   </ng-template>
-    
-    <ng-template #showOrders>
-        <mat-accordion *ngFor="let order of subs.state$.orderListByRetailerId ; let i = index">
-            <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i, order)">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="panel_title_grid">
-                        <div class="district_area">
-
-                            <!-- {{order.shipping.address.district}} -->
-
-                            <!-- <ng-container *ngIf="order.payment.method === 'sale_quote' ;
+              <!-- <ng-container *ngIf="order.payment.method === 'sale_quote' ;
                                 then showOrderAsSaleQuote ; 
                                 else showDeliveryOrPickUpOrders ">
                             </ng-container>
@@ -48,112 +48,130 @@
 
                             <ng-template #showDeliveryOrPickUpOrders> -->
 
-                                <span 
-                                    *ngIf=" order.orderType == 'sale_quote'">
-                                    Cotización
-                                </span>
-                                <span 
-                                    *ngIf=" order.orderType == 'delivery'" 
-                                    (click)="openOderDetailModal(order)">
-                                    Delivery
-                                </span>
-                           
-                                <span
-                                    *ngIf=" order.orderType == 'pickup'" >
-                                    En tienda
-                                </span>
-                            <!-- </ng-template> -->
+              <span *ngIf="order.orderType == 'sale_quote'"> Cotización </span>
+              <span
+                *ngIf="order.orderType == 'delivery'"
+                (click)="openOderDetailModal(order)"
+              >
+                Delivery
+              </span>
 
-                        </div>
-                      
-                           
-                        
-                        <div class="buyer_area" >
-                            <img src="../../../../../assets/icons/payroll-20px.png" alt=""
-                            (click)="openPaymentDetailModal(order)">
-                        </div>
-                        <img  class="whatapp_img_area" 
-                            src="../../../../../assets/icons/whatsapp.svg" alt=""
-                            (click)="openWhatsApp(order)">
+              <span *ngIf="order.orderType == 'pickup'"> En tienda </span>
+              <!-- </ng-template> -->
+            </div>
 
-                    </mat-panel-title>
-                    
-                    <mat-panel-description>
-                        <div class="status_grid">
+            <div class="buyer_area">
+              <img
+                src="../../../../../assets/icons/payroll-20px.png"
+                alt=""
+                (click)="openPaymentDetailModal(order)"
+              />
+            </div>
+            <img
+              class="whatapp_img_area"
+              src="../../../../../assets/icons/whatsapp.svg"
+              alt=""
+              (click)="openWhatsApp(order)"
+            />
+          </mat-panel-title>
 
-                            <div class="cart_area">🛒{{order.cart.length}} </div>
-    
-                            <div [ngSwitch]="getLastStatus(order.shipping.tracking.orderStatus)" class="status_area">
-    
-                                <div *ngSwitchCase="'generated_by_buyer'"  >
-                                    <img src="../../../../../assets/icons/double-tick-indicator-not-seen.svg" alt="">
-                                </div>
-                                
-                                <div *ngSwitchCase="'seen_by_retailer'" > 
-                                    <img src="../../../../../assets/icons/double-tick-indicator-seen.svg" alt="">
-                                </div>
-    
-                                <div *ngSwitchCase="'packaged_by_retailer'">
-                                    <img src="../../../../../assets/icons/package-color-20dp.svg" alt="">
-                                </div>
-                            </div>
-                        </div>
+          <mat-panel-description>
+            <div class="status_grid">
+              <div class="cart_area">🛒{{ order.cart.length }}</div>
 
-                    </mat-panel-description>
-        
-                </mat-expansion-panel-header>
-              
-              <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
-                <!-- <span class="orderDetail_title"
+              <div
+                [ngSwitch]="getLastStatus(order.shipping.tracking.orderStatus)"
+                class="status_area"
+              >
+                <div *ngSwitchCase="'generated_by_buyer'">
+                  <img
+                    src="../../../../../assets/icons/double-tick-indicator-not-seen.svg"
+                    alt=""
+                  />
+                </div>
+
+                <div *ngSwitchCase="'seen_by_retailer'">
+                  <img
+                    src="../../../../../assets/icons/double-tick-indicator-seen.svg"
+                    alt=""
+                  />
+                </div>
+
+                <div *ngSwitchCase="'packaged_by_retailer'">
+                  <img
+                    src="../../../../../assets/icons/package-color-20dp.svg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- <div [ngClass]="[isMobileView ? 'product_list_grid_mobile' : 'product_list_grid_desktop' ]"> -->
+        <!-- <span class="orderDetail_title"
                     *ngIf=" order.orderType == 'delivery'">
                     Órden de: {{order.shipping.buyer.name}}:
                 </span> -->
-                <span class="orderDate_title">
-                    {{getOrderGeneratedDate(order)}}
-                </span>
+        <span class="orderDate_title">
+          {{ getOrderGeneratedDate(order) }}
+        </span>
 
-                <div class="product_list_grid_mobile">
-                    
-                    <ng-container *ngIf="order.orderType !== 'sale_quote' ;
-                        then showProductOrder ; 
-                        else showSaleQuoteMessage ">
-                    </ng-container>
+        <div class="product_list_grid_mobile">
+          <ng-container
+            *ngIf="
+              order.orderType !== 'sale_quote';
+              then showProductOrder;
+              else showSaleQuoteMessage
+            "
+          >
+          </ng-container>
 
-                    <ng-template #showProductOrder>
-                        <ng-container *ngFor="let productOrder of order.cart">
-                            <!-- [isOrderProductPackagedCompleted] = "isOrderPackagedCompleted(order.shipping.tracking.orderStatus)" -->
+          <ng-template #showProductOrder>
+            <ng-container *ngFor="let productOrder of order.cart">
+              <!-- [isOrderProductPackagedCompleted] = "isOrderPackagedCompleted(order.shipping.tracking.orderStatus)" -->
 
-                            <app-order-display 
-                                [isOrderProductPackagedCompleted] = "order.shipping.tracking.orderStatus.length > 3 ? true : false"
-                                [order_id]="order._id"
-                                [cartProductOrder]="productOrder"
-                                (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)">
-                            </app-order-display>
-                            
-                        </ng-container>
-                    </ng-template>
-                    <ng-template #showSaleQuoteMessage> 
-                        <div class="style_sale_quote_message">
-                            Esta cotización es por S/.{{order.payment.amount}}. Comunícate con el comprador para que cierres el trato. 
-                        </div>    
-                    </ng-template>
+              <app-order-display
+                [isOrderProductPackagedCompleted]="
+                  order.shipping.tracking.orderStatus.length > 3 ? true : false
+                "
+                [order_id]="order._id"
+                [cartProductOrder]="productOrder"
+                (isProductOrderCompleted)="onIsProductOrderCompleted(i, $event)"
+              >
+              </app-order-display>
+            </ng-container>
+          </ng-template>
+          <ng-template #showSaleQuoteMessage>
+            <div class="style_sale_quote_message">
+              Esta cotización es por S/.{{ order.payment.amount }}. Comunícate
+              con el comprador para que cierres el trato.
+            </div>
+          </ng-template>
+        </div>
 
-        
-                </div>
-
-                <mat-action-row>
-                    <button mat-button color="primary" (click)="prevStep()">Anterior</button>
-                    <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
-                    <button id="{{i}}"
+        <mat-action-row>
+          <button mat-button color="primary" (click)="prevStep()">
+            Anterior
+          </button>
+          <button mat-button color="primary" (click)="nextStep()">
+            Siguiente
+          </button>
+          <button
+            id="{{ i }}"
+            mat-flat-button
+            color="primary"
+            (click)="setOrderPackagedStatusCompleted(order)"
+            [disabled]="!isOrderCompleted"
+          >
+            Atendido
+          </button>
+          <!-- <button id="{{i}}"
                         mat-button color="primary" 
                         (click)="setOrderPackagedStatusCompleted(order)"
-                        [disabled]="!isOrderCompleted">Atendido</button>
-                </mat-action-row>
-
-            </mat-expansion-panel>
-
-        </mat-accordion>
-
-    </ng-template>
+                        [disabled]="!isOrderCompleted">Atendido</button> -->
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-template>
 </ng-container>
-  

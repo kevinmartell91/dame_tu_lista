@@ -30,8 +30,9 @@
     <div mat-dialog-actions fxLayoutAlign="center center">
       <button mat-button (click)="onNoClick()">Cancelar</button>
       <button
+        mat-flat-button
+        color="primary"
         cdkFocusInitial
-        mat-button
         [mat-dialog-close]="phoneNumberForm.value"
         [disabled]="!phoneNumberForm.valid"
       >

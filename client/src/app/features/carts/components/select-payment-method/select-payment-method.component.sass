@@ -32,45 +32,49 @@
   display: grid
   grid-template-columns: 1fr 1fr
   grid-template-rows: .5fr .5fr 1fr
-  grid-template-areas: "img_pos pos" "img_dep dep" "img_cash cash"
+  grid-template-areas: "img_pos pos" "img_dep dep" "img_cash cash" "img_fast fast" 
   grid-gap: 4px
-  margin: 10px
-
-  .pos_method_area
-    grid-area: pos
-    align-self: center
-    text-align: center
-
-  .deposit_method_area
-    grid-area: dep
-    align-self: center
-    text-align: center
-
-  .cash_method_area
-    grid-area: cash
-    align-self: center
-    text-align: center
+  padding: 10px 10px 27px 10px
 
   .img_pos_area
     grid-area: img_pos
     justify-self: center
+  
+  .pos_method_area
+    grid-area: pos
+    align-self: center
+    text-align: center
     
   .img_deposit_area
     grid-area: img_dep
     justify-self: center
     
+  .deposit_method_area
+    grid-area: dep
+    align-self: center
+    text-align: center
+
 
   .img_cash_area
     grid-area: img_cash
     justify-self: center
     
- 
+  .cash_method_area
+    grid-area: cash
+    align-self: center
+    text-align: center
 
-
-
-
-
-
+  .img_fast_area
+    grid-area: img_fast
+    justify-self: center
+    img 
+      width: 120px
+      height: 60px
+    
+  .fast_method_area
+    grid-area: fast
+    align-self: center
+    text-align: center
 
 
 

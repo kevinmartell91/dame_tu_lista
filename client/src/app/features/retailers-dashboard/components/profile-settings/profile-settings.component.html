@@ -1,198 +1,226 @@
-<ng-container *ngIf="{state$: retailerStore.state$ | async } as subs">
-
-    <ng-container
-        *ngIf="subs.state$.request.getRetailer.inProgress ;
-            then showLoading ;
-            else showStoreDetails ">
-
-    </ng-container>
-    <ng-template #showLoading>
-        Loading
-    </ng-template>
-    <ng-template #showStoreDetails>
-        <div fxLayout="column" 
-            [formGroup]="accountRetailerForm" 
-            (ngSubmit)="onFormSubmit() "
-            class="flex_container">
-        
-        
-            <div class="store"
-                fxLayoutGap="5px">
-                    
-                <div class="style_secction">
-                    <h1> 
-                        <img src="../../../../../assets/icons/store.svg" alt="">
-                        Datos de tu tienda:
-                    </h1>
-                </div>
-                <!-- <span class="style_url">dametulista.com/</span>
+<ng-container *ngIf="{ state$: retailerStore.state$ | async } as subs">
+  <ng-container
+    *ngIf="
+      subs.state$.request.getRetailer.inProgress;
+      then showLoading;
+      else showStoreDetails
+    "
+  >
+  </ng-container>
+  <ng-template #showLoading> Loading </ng-template>
+  <ng-template #showStoreDetails>
+    <div
+      fxLayout="column"
+      [formGroup]="accountRetailerForm"
+      (ngSubmit)="onFormSubmit()"
+      class="flex_container"
+    >
+      <div class="store" fxLayoutGap="5px">
+        <div class="style_secction">
+          <h1>
+            <img src="../../../../../assets/icons/store.svg" alt="" />
+            Datos de tu tienda:
+          </h1>
+        </div>
+        <!-- <span class="style_url">dametulista.com/</span>
                 <br>
                 <span class="style_store_name"><strong>{{storeName}}</strong></span>
                 <br><br> -->
 
-                <div fxLayoutAlign="center center">
-                    <span class="style_url">dametulista.com/</span>
-
-                </div>
-                <div fxLayoutAlign="center center">
-                    <span class="style_store_name"><strong>{{storeName}}</strong></span>
-                </div>
-                
-                <br><br>
-
-                
-                <div fxLayoutAlign="center">
-                    <mat-form-field class="full_width" >
-                        <mat-label>Nombre de tu tienda</mat-label>
-                        <mat-icon (click)="copyUrlStoreName()" matSuffix>content_copy</mat-icon>
-                        <input matInput placeholder=""
-                            name="name"
-                            type="text"
-                            formControlName="name">
-                        <mat-error *ngIf="!accountRetailerForm.hasError('maxlength')">
-                            
-                        </mat-error> 
-    
-                        <mat-error *ngIf="!accountRetailerForm.hasError('required')">
-                            El nombre de la tienda<strong> ya existe </strong>. Elija otro. 
-                        </mat-error> 
-                    </mat-form-field>
-
-                </div>
-
-                <mat-form-field  class="full_width">
-                    <mat-label>Url Banner</mat-label>
-                    <input matInput placeholder="https://elBannerDeTuTienda.com"
-                        name="imgUrl"
-                        type="text"
-                        formControlName="imgUrl">
-                </mat-form-field>
-
-                <mat-slide-toggle class="full_width"
-                    formControlName="isDeliveryService">
-                    Realizo delivery
-                </mat-slide-toggle>
-                
-                <mat-form-field class="full_width" *ngIf="isDeliveryService" >
-                    <mat-label>Horario de delivery</mat-label>
-                    <input matInput placeholder="Ej. De a 10 am a 4pm"
-                        name="deliveryInfo"
-                        type="text"
-                        formControlName="deliveryInfo">
-                </mat-form-field>
-                
-                <mat-slide-toggle 
-                    formControlName="isPickUpService">
-                    Ofrezco recojo en tienda
-                </mat-slide-toggle>
-        
-                <mat-form-field  class="full_width" *ngIf="isPickUpService">
-                    <mat-label>Horario de recojo</mat-label>
-                    <input matInput placeholder="Ej. De a 10 am a 4pm"
-                        name="pickUpInfo"
-                        type="text"
-                        formControlName="pickUpInfo">
-                </mat-form-field>
-
-                <mat-form-field class="full_width" >
-                    <mat-label>WhatsApp Business / WhatsApp</mat-label>
-                    <span matPrefix>+51 &nbsp;</span>
-                    <input matInput placeholder="999-999-999"
-                        name="phoneNumber"
-                        type="tel"
-                        formControlName="phoneNumber">
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-error *ngIf="!accountRetailerForm.hasError('required')">
-                        El número <strong>es obligatorio </strong> siendo este de 9 dígitos
-                    </mat-error> 
-                </mat-form-field>
-                <!-- <p *ngIf="phoneNumber.invalid && phoneNumber.errors.invalidNumber">Muy largo</p>  -->
-        
-        
-            </div>
-        
-            <mat-divider></mat-divider>
-             
-            <div>
-             
-                <div class="style_secction">
-                    <h1> 
-                        <img src="../../../../../assets/icons/location.svg" alt="">
-                        Dirección:
-                    </h1>
-                </div>
-        
-                <div class="address"
-                    fxLayoutGap="5px"
-                    formGroupName="address">
-                    
-                    <mat-form-field class="full_width">
-                        <mat-label>Nombre de la calle</mat-label>
-                        <input matInput placeholder=""
-                            name="streetName"
-                            type="text"
-                            formControlName="streetName">
-                    </mat-form-field>  
-                    
-                    <mat-form-field class="full_width">
-                        <mat-label>Número</mat-label>
-                        <input matInput placeholder=""
-                            name="streetNumber"
-                            type="tel"
-                            formControlName="streetNumber">
-                    </mat-form-field>  
-        
-                    <mat-form-field class="full_width">
-                        <mat-label>Distrito</mat-label>
-                        <mat-select formControlName="district">
-                            <mat-option [value]="district" *ngFor="let district of districts" >{{district}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="full_width">
-                        <mat-label>Ciudad</mat-label>
-                        <mat-select formControlName="city">
-                            <mat-option [value]="city" *ngFor="let city of cities" >{{city}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>           
-                    
-                    <mat-form-field class="full_width">
-                        <mat-label>Departamento</mat-label>
-                        <mat-select formControlName="department">
-                            <mat-option [value]="department" *ngFor="let department of departments" >{{department}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>        
-                    
-                    <mat-form-field class="full_width">
-                        <mat-label>Referencia</mat-label>
-                        <textarea matInput placeholder=""
-                            name="reference"
-                            type="text"
-                            formControlName="reference">
-                        </textarea>
-                    </mat-form-field>  
-                    
-                    <mat-form-field class="full_width">
-                        <mat-label>Detalles adicionales</mat-label>
-                        <textarea matInput placeholder=""
-                            name="details"
-                            type="text"
-                            formControlName="details">
-                        </textarea>
-                    </mat-form-field>  
-
-                </div>
-            
-            
-                <div fxLayoutAlign="end center">
-                     <button mat-button (click)="onFormSubmit()"
-                     [disabled]="!accountRetailerForm.valid" cdkFocusInitial>Guardar</button>
-                </div>
-            </div>
+        <div fxLayoutAlign="center center">
+          <span class="style_url">dametulista.com/</span>
         </div>
-    </ng-template>
-</ng-container>
+        <div fxLayoutAlign="center center">
+          <span class="style_store_name"
+            ><strong>{{ storeName }}</strong></span
+          >
+        </div>
 
+        <br /><br />
+
+        <div fxLayoutAlign="center">
+          <mat-form-field class="full_width">
+            <mat-label>Nombre de tu tienda</mat-label>
+            <mat-icon (click)="copyUrlStoreName()" matSuffix
+              >content_copy</mat-icon
+            >
+            <input
+              matInput
+              placeholder=""
+              name="name"
+              type="text"
+              formControlName="name"
+            />
+            <mat-error *ngIf="!accountRetailerForm.hasError('maxlength')">
+            </mat-error>
+
+            <mat-error *ngIf="!accountRetailerForm.hasError('required')">
+              El nombre de la tienda<strong> ya existe </strong>. Elija otro.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="full_width">
+          <mat-label>Url Banner</mat-label>
+          <input
+            matInput
+            placeholder="https://elBannerDeTuTienda.com"
+            name="imgUrl"
+            type="text"
+            formControlName="imgUrl"
+          />
+        </mat-form-field>
+
+        <mat-slide-toggle
+          class="full_width"
+          formControlName="isDeliveryService"
+        >
+          Realizo delivery
+        </mat-slide-toggle>
+
+        <mat-form-field class="full_width" *ngIf="isDeliveryService">
+          <mat-label>Horario de delivery</mat-label>
+          <input
+            matInput
+            placeholder="Ej. De a 10 am a 4pm"
+            name="deliveryInfo"
+            type="text"
+            formControlName="deliveryInfo"
+          />
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="isPickUpService">
+          Ofrezco recojo en tienda
+        </mat-slide-toggle>
+
+        <mat-form-field class="full_width" *ngIf="isPickUpService">
+          <mat-label>Horario de recojo</mat-label>
+          <input
+            matInput
+            placeholder="Ej. De a 10 am a 4pm"
+            name="pickUpInfo"
+            type="text"
+            formControlName="pickUpInfo"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full_width">
+          <mat-label>WhatsApp Business / WhatsApp</mat-label>
+          <span matPrefix>+51 &nbsp;</span>
+          <input
+            matInput
+            placeholder="999-999-999"
+            name="phoneNumber"
+            type="tel"
+            formControlName="phoneNumber"
+          />
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="!accountRetailerForm.hasError('required')">
+            El número <strong>es obligatorio </strong> siendo este de 9 dígitos
+          </mat-error>
+        </mat-form-field>
+        <!-- <p *ngIf="phoneNumber.invalid && phoneNumber.errors.invalidNumber">Muy largo</p>  -->
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div>
+        <div class="style_secction">
+          <h1>
+            <img src="../../../../../assets/icons/location.svg" alt="" />
+            Dirección:
+          </h1>
+        </div>
+
+        <div class="address" fxLayoutGap="5px" formGroupName="address">
+          <mat-form-field class="full_width">
+            <mat-label>Nombre de la calle</mat-label>
+            <input
+              matInput
+              placeholder=""
+              name="streetName"
+              type="text"
+              formControlName="streetName"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Número</mat-label>
+            <input
+              matInput
+              placeholder=""
+              name="streetNumber"
+              type="tel"
+              formControlName="streetNumber"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Distrito</mat-label>
+            <mat-select formControlName="district">
+              <mat-option [value]="district" *ngFor="let district of districts"
+                >{{ district }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="city">
+              <mat-option [value]="city" *ngFor="let city of cities"
+                >{{ city }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Departamento</mat-label>
+            <mat-select formControlName="department">
+              <mat-option
+                [value]="department"
+                *ngFor="let department of departments"
+                >{{ department }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Referencia</mat-label>
+            <textarea
+              matInput
+              placeholder=""
+              name="reference"
+              type="text"
+              formControlName="reference"
+            >
+            </textarea>
+          </mat-form-field>
+
+          <mat-form-field class="full_width">
+            <mat-label>Detalles adicionales</mat-label>
+            <textarea
+              matInput
+              placeholder=""
+              name="details"
+              type="text"
+              formControlName="details"
+            >
+            </textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="end center">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="onFormSubmit()"
+            [disabled]="!accountRetailerForm.valid"
+            cdkFocusInitial
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
