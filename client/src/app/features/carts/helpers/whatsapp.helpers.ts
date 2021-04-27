@@ -137,7 +137,7 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       if (isProductToppings && product.toppings !== undefined) {
         // order.cart.map((cartProduct) => {
         product.toppings.map((topping) => {
-          orderRawTxt += getToppingFormat(topping);
+          orderRawTxt += getToppingFormatBaseFormat(topping);
           orderRawTxt += breakLine;
         });
       }
@@ -235,10 +235,221 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
 
     // copy to clipboard
 
+    // let copyToBluetoothPrinter = orderRawTxt.replace(/_/g, '');
+    // copyToBluetoothPrinter = copyToBluetoothPrinter.replace(/\*/g, '');
+    // console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
+    // copyText(copyToBluetoothPrinter);
+  }
+  console.log('orderRawTxt ==>', orderRawTxt);
+  return orderRawTxt;
+};
+
+export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
+  order: Order
+): string => {
+  console.log(
+    'transformOrderToRawTextBaseFortmat',
+    transformOrderToRawTextBaseFortmat
+  );
+  let orderRawTxt: string = '';
+  let title: string = '';
+  let subTitle: string = '';
+  let totalPrice: string = '';
+  const verticalPipe = '';
+  const corner = '';
+  const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
+
+  if (order != null) {
+    console.log('order KEVIN', order);
+    title = 'Nueva Order Entrante' + breakLine;
+    subTitle = 'Lista de pedido :' + breakLine;
+    totalPrice = `Total a cobrar : S/. ${order.payment.amount.toFixed(
+      2
+    )} ${breakLine}`;
+
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += title;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += subTitle;
+    orderRawTxt += breakLine;
+
+    order.cart.forEach((product, idx) => {
+      let productName: string;
+      let productMaturitName: string;
+      let productFeatures: string;
+      let isProductToppings: boolean;
+      if (containtToppings(product.categoryName)) {
+        //store with toppings
+        productName = product.maturityName;
+        productMaturitName = '';
+        productFeatures = '';
+        isProductToppings = true;
+      } else {
+        // regular store
+        productName = getNameAndPriceFormat(
+          product.categoryName + ' ' + product.varietyName,
+          containtToppings(product.categoryName)
+            ? product.totalAmount
+            : product.totalPrice
+        );
+        productMaturitName = '- ' + product.maturityName;
+        productFeatures =
+          getProductSizeStr(product) + '    ' + getOrganicStr(product);
+        isProductToppings = false;
+      }
+
+      // let productName =
+      //   product.categoryName === 'Comida rápida'
+      //     ? getNameAndPriceFormat(product.maturityName, product.totalPrice)
+      //     : getNameAndPriceFormat(
+      //         product.categoryName + ' ' + product.varietyName,
+      //         product.totalPrice
+      //       );
+
+      // let productMaturitName =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? '- ' + getItalicFormat(product.maturityName)
+      //     : '';
+
+      // let productFeatures =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? getProductSizeStr(product) + '    ' + getOrganicStr(product)
+      //     : '';
+
+      // Numeration and product name
+      orderRawTxt += `${(idx + 1).toString()}) `;
+      orderRawTxt += `${productName}`;
+      orderRawTxt += breakLine;
+
+      const dual = containtToppings(product.categoryName)
+        ? getPriceFormat(product.totalAmount)
+        : productMaturitName;
+      // quantity and weight
+      orderRawTxt +=
+        verticalPipe +
+        '• •' +
+        'x ' +
+        getQuantityFormat(product.quantity, product.isKilo) +
+        ' ' +
+        formatQuantityWeightType(product.isKilo) +
+        '       ' +
+        dual;
+      orderRawTxt += breakLine;
+
+      if (productFeatures !== '    ') {
+        orderRawTxt += verticalPipe + tab + tab + productFeatures;
+        orderRawTxt += breakLine;
+      }
+
+      if (isProductToppings && product.toppings !== undefined) {
+        // order.cart.map((cartProduct) => {
+        product.toppings.map((topping) => {
+          orderRawTxt += getToppingFormatBaseFormatThermalPrinter(topping);
+          orderRawTxt += breakLine;
+        });
+      }
+
+      let prodDetailsTitle = product.details !== '' ? 'Detalles: ' : '';
+
+      orderRawTxt += verticalPipe + tab + tab + prodDetailsTitle;
+      orderRawTxt += breakLine;
+
+      if (prodDetailsTitle !== '') {
+        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
+          product.details
+        );
+
+        multiplineProdNameAndDetails.forEach((line, i) => {
+          orderRawTxt += verticalPipe + tab + tab + tab + line;
+        });
+        orderRawTxt += breakLine;
+      }
+
+      orderRawTxt += breakLine;
+    });
+    orderRawTxt += breakLine;
+
+    orderRawTxt += '📝 Detalles de la orden : ' + breakLine;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += totalPrice;
+    orderRawTxt += breakLine;
+
+    let paymentType;
+
+    switch (order.payment.method) {
+      case 'pos_method_area':
+        paymentType = 'POS/contra entrega';
+        break;
+      case 'bank_deposit':
+        paymentType = 'Deposito bancario';
+        break;
+      case 'fast_transfer':
+        paymentType = 'Yaple/Plin';
+        break;
+      default:
+        paymentType = 'Efectivo/contra entrega';
+        break;
+    }
+
+    orderRawTxt += `Pago : ${paymentType}` + breakLine;
+
+    orderRawTxt += breakLine;
+
+    let orderType =
+      order.orderType === 'delivery' ? 'Delivery' : 'Recojo en tienda';
+
+    orderRawTxt += `Tipo de entrega : ${orderType}` + breakLine;
+
+    if (order.orderType == 'delivery') {
+      orderRawTxt += breakLine;
+      orderRawTxt += `📍 Entrega en :` + breakLine;
+      orderRawTxt += breakLine;
+
+      orderRawTxt +=
+        `Dirección : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` +
+        breakLine;
+
+      if (order.shipping.address.apartmentNumber) {
+        orderRawTxt +=
+          `Departamento : ${order.shipping.address.apartmentNumber}` +
+          breakLine;
+      }
+
+      orderRawTxt += `${order.shipping.address.district}.` + breakLine;
+
+      if (order.shipping.address.reference) {
+        orderRawTxt +=
+          `Referencia : ${order.shipping.address.reference}` + breakLine;
+      }
+
+      if (order.shipping.address.details) {
+        orderRawTxt +=
+          `Detalles adicionales : ${order.shipping.address.details}` +
+          breakLine;
+      }
+    }
+
+    orderRawTxt += breakLine;
+    orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
+    orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
+      'retailer_store_name'
+    )}/orders/${order._id}`;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += breakLine;
+    orderRawTxt += '      Hecho con mucho ❤️ en 🇵🇪      ' + breakLine;
+
+    // copy to clipboard
+
     let copyToBluetoothPrinter = orderRawTxt.replace(/_/g, '');
     copyToBluetoothPrinter = copyToBluetoothPrinter.replace(/\*/g, '');
-    console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
+    // console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
     copyText(copyToBluetoothPrinter);
+    orderRawTxt = copyToBluetoothPrinter;
   }
 
   return orderRawTxt;
@@ -747,7 +958,7 @@ const getItalicFormat = (text: string): string => {
   return `_${text}_`;
 };
 
-const getToppingFormat = (topping: ToppingSelected): string => {
+const getToppingFormatBaseFormat = (topping: ToppingSelected): string => {
   const indentationL1 = tab + tab;
   const indentationL2 = tab + tab + tab;
   let res = '';
@@ -766,6 +977,24 @@ const getToppingFormat = (topping: ToppingSelected): string => {
     res += `${indentationL2}- ${getItalicFormat(
       topping.selected.trim()
     )}${breakLine}`;
+  }
+  return res;
+};
+const getToppingFormatBaseFormatThermalPrinter = (
+  topping: ToppingSelected
+): string => {
+  const indentationL1 = `• •`;
+  const indentationL2 = `• •`;
+  let res = '';
+  res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
+  const hasPriceSign = topping.selected.includes('S/.');
+  if (topping.isMultipleSelection) {
+    topping.selected.split(',').map((toppinWithPrice) => {
+      res += `${indentationL2}- ${toppinWithPrice.trim()}${breakLine}`;
+    });
+  } else {
+    // is only on topping selected
+    res += `${indentationL2}- ${topping.selected.trim()}${breakLine}`;
   }
   return res;
 };
