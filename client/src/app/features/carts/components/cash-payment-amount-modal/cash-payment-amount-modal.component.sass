@@ -1,0 +1,29 @@
+@import "../../../../styles/scss/variables"
+
+@mixin login-theme($custom-theme) 
+  $primary: map-get($theme, primary)
+  $warn: map-get($theme, warn)
+  $background: map-get($theme, background)
+  $foreground: map-get($theme, foreground)
+
+.cash_payment_wrapper
+  text-align: center
+
+
+  .style_title
+    color: mat-color($primary, default, 1)
+    
+    h1
+      font-size: 25px
+
+  .btn_block
+    width: 100%
+    background-color: mat-color($primary, lighter, 1)
+    border: none
+
+.style_cash_payment_amount_message
+  color: mat-color($primary, default, 1)
+
+.cash_payment_amount_area
+  padding: 30px 10px 10px 10px
+  width: 100%

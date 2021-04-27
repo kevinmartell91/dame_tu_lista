@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatDialogRef } from "@angular/material/dialog";
-import { SharedModule } from "../../shared/shared.module";
+import { MatDialogRef } from '@angular/material/dialog';
+import { SharedModule } from '../../shared/shared.module';
 import { CartsRoutingModule } from './carts-routing.module';
 import { CartsComponent } from './carts.component';
 import { CartProductDetailModalComponent } from './components/cart-product-detail-modal/cart-product-detail-modal.component';
@@ -12,29 +12,25 @@ import { SelectPaymentMethodComponent } from './components/select-payment-method
 import { ThanksOrderComponent } from './components/thanks-order/thanks-order.component';
 import { RetailerStoreStore } from '../retailer-stores/services/retailer.store';
 import { PhoneNumberModalComponent } from './components/phone-number-modal/phone-number-modal.component';
-
-
+import { CashPaymentAmountModalComponent } from './components/cash-payment-amount-modal/cash-payment-amount-modal.component';
 
 @NgModule({
   declarations: [
-    CartsComponent, 
-    CartProductComponent, 
-    CartQuantityButtonComponent, 
-    FillShippingAddressComponent, 
+    CartsComponent,
+    CartProductComponent,
+    CartQuantityButtonComponent,
+    FillShippingAddressComponent,
     SelectPaymentMethodComponent,
     ThanksOrderComponent,
     CartProductDetailModalComponent,
-    PhoneNumberModalComponent 
+    PhoneNumberModalComponent,
+    CashPaymentAmountModalComponent,
   ],
-  imports: [
-    CommonModule,
-    CartsRoutingModule,
-    SharedModule
-  ],
+  imports: [CommonModule, CartsRoutingModule, SharedModule],
   providers: [
     RetailerStoreStore,
-    { provide: MatDialogRef, useValue: [] }
+    { provide: MatDialogRef, useValue: [] },
     // { provide: MAT_DIALOG_DATA, useValue: [] }
-  ]
+  ],
 })
-export class CartsModule { }
+export class CartsModule {}

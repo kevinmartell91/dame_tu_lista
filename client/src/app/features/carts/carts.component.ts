@@ -42,6 +42,7 @@ import {
 import { transformOrderCartProductToCartProduct } from './helpers/cart-products.helpers';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import { PhoneNumberModalComponent } from './components/phone-number-modal/phone-number-modal.component';
+import { CashPaymentAmountModalComponent } from './components/cash-payment-amount-modal/cash-payment-amount-modal.component';
 
 @Component({
   selector: 'app-carts',
@@ -71,6 +72,10 @@ export class CartsComponent implements OnDestroy {
   phoneNumberOrder: string = '';
   // variable for addressOrde method coming from  Address modal
   addressOrder: AddressOrder;
+
+  //variables for cashPaymentAmount
+  cashPaymentAmount: number = 0;
+  cashBackAmount: number = 0;
 
   isSetAddress: boolean = false;
   isSetPayMethod: boolean = false;
@@ -355,7 +360,23 @@ export class CartsComponent implements OnDestroy {
     this.dialogRef.afterClosed().subscribe((result) => {
       if (result != undefined) {
         this.paymentMethodOrder = result.paymentMethod;
+        if (this.paymentMethodOrder === 'upon_delivery_cash') {
+          this.openAddCashPaymentAmountModal();
+        } else {
+          this.openPhoneNumberModal();
+        }
+      }
+    });
+  }
 
+  openAddCashPaymentAmountModal(): void {
+    this.dialogRef = this.matDialog.open(CashPaymentAmountModalComponent, {
+      width: '420px',
+    });
+
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
+        this.cashPaymentAmount = result.cashAmount;
         this.openPhoneNumberModal();
       }
     });
@@ -569,6 +590,9 @@ export class CartsComponent implements OnDestroy {
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
     paymentMethodOrder.amount = getTotalCartPrice(this.cartProducts);
+    paymentMethodOrder.cashPaymentAmount = this.cashPaymentAmount;
+    paymentMethodOrder.cashBackAmount =
+      this.cashPaymentAmount - paymentMethodOrder.amount;
 
     /**
      * Populating the cartProductOrder from this.cartProduct
@@ -893,6 +917,9 @@ export class CartsComponent implements OnDestroy {
     let paymentMethodOrder = new PaymentOrder();
     paymentMethodOrder.method = this.paymentMethodOrder;
     paymentMethodOrder.amount = getTotalCartPrice(this.cartProducts);
+    paymentMethodOrder.cashPaymentAmount = this.cashPaymentAmount;
+    paymentMethodOrder.cashBackAmount =
+      this.cashPaymentAmount - paymentMethodOrder.amount;
 
     /**
      * Populating the cartProductOrder from this.cartProduct

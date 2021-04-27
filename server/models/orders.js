@@ -47,6 +47,8 @@ var orderSchema = new Schema({
         "fast_transfer",
       ],
     },
+    cashPaymentAmount: Number,
+    cashBackAmount: Number,
   },
   cart: [
     {

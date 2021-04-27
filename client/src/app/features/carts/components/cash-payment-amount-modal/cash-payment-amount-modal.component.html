@@ -1,0 +1,47 @@
+<div
+  class="cash_payment_wrapper"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <div class="style_title">
+    <h1>
+      <img src="../../../../../assets/icons/cash-payment.svg" alt="" />
+      ¿Necesitas cambio?
+    </h1>
+  </div>
+
+  <form [formGroup]="cashPaymentAmountForm">
+    <div class="style_cash_payment_amount_message">
+      {{ message }}
+    </div>
+    <!-- <ng-template #showPhoneNumberField> -->
+    <div class="cash_payment_amount_area">
+      <mat-form-field>
+        <mat-label>Pagaré con </mat-label>
+        <!-- <span matPrefix>S/. &nbsp;</span> -->
+        <input
+          cdkFocusInitial
+          matInput
+          placeholder="100.00"
+          name="cashAmount"
+          type="number"
+          formControlName="cashAmount"
+        />
+      </mat-form-field>
+    </div>
+    <!-- </ng-template> -->
+
+    <div mat-dialog-actions fxLayoutAlign="center center">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button
+        mat-flat-button
+        color="primary"
+        cdkFocusInitial
+        [mat-dialog-close]="cashPaymentAmountForm.value"
+        [disabled]="!cashPaymentAmountForm.valid"
+      >
+        Continuar
+      </button>
+    </div>
+  </form>
+</div>
