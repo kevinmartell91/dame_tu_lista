@@ -4,8 +4,8 @@ export class PaymentOrder implements Deserializable {
   transaction_id: string;
   amount: number;
   method: string;
-  cashPaymentAmount: Number;
-  cashBackAmount: Number;
+  cashPaymentAmount: number;
+  cashBackAmount: number;
   //TODO type methods
 
   deserialize(input: any) {

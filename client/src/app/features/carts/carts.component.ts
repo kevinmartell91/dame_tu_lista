@@ -620,9 +620,7 @@ export class CartsComponent implements OnDestroy {
       retailer_id: '60778625d9232c1ec44f5ec2',
       orderType: 'pickup',
       shipping: {
-        buyer: {
-          phoneNumber: '+51996821980',
-        },
+        buyer: { phoneNumber: '+51996821980' },
         deliveryNotes: '',
         address: {
           streetName: 'Recojo en tienda',
@@ -637,8 +635,8 @@ export class CartsComponent implements OnDestroy {
         },
         tracking: {
           orderStatus: [
-            ['generated_by_buyer', '2021-04-20T14:26:44.127Z'],
-            ['updated_by_buyer', '2021-04-20T14:26:44.127Z'],
+            ['generated_by_buyer', '2021-04-28T17:08:32.596Z'],
+            ['updated_by_buyer', '2021-04-28T17:08:32.596Z'],
           ],
           driver_name: '',
           trackingNumber: '',
@@ -647,8 +645,10 @@ export class CartsComponent implements OnDestroy {
         },
       },
       payment: {
-        method: 'upon_delivery_pos',
-        amount: 63.5,
+        method: 'upon_delivery_cash',
+        amount: 43.5,
+        cashPaymentAmount: 100,
+        cashBackAmount: 56.5,
       },
       cart: [
         {
@@ -672,7 +672,7 @@ export class CartsComponent implements OnDestroy {
           isMaturityDetails: true,
           maturityImageUrl:
             'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
-          maturityName: 'Wawito clasica (Hortencia)',
+          maturityName: 'Wawito clasica  (kevin)',
           maturityInfo:
             'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
           maturityEatIn: '0',
@@ -680,39 +680,39 @@ export class CartsComponent implements OnDestroy {
           isInStock: true,
           quantity: 1,
           size: '',
-          details: '',
-          idAux: '607ed72782054b986f5ce317_1618928546200',
-          totalPrice: 17,
-          totalAmount: 17,
+          details:
+            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
+          idAux: '607ed72782054b986f5ce317_1619629587406',
+          totalPrice: 15,
+          totalAmount: 15,
           toppings: [
             {
               name: 'Tipo de pan',
-              selected: 'Pan Frances',
+              selected: 'Pan de Yema',
               isMultipleSelection: false,
               countSelected: 1,
             },
             {
               name: 'Deseas ensalada',
-              selected: 'No',
+              selected: 'Si (tomate y lechuga)',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tipo de papas',
+              selected: 'Al hilo',
               isMultipleSelection: false,
               countSelected: 1,
             },
             {
               name: 'Deseas adicionales',
-              selected:
-                'Chorizo Parrillero S/. 3.00,Porción de Papas S/. 5.00,Tocino S/. 2.00',
+              selected: 'Hamburguesa de Carne S/. 4.00,Hot - Dog S/. 4.00',
               isMultipleSelection: true,
-              countSelected: 3,
-            },
-            {
-              name: 'Tipo de papas',
-              selected: 'Papas Fritas',
-              isMultipleSelection: false,
-              countSelected: 1,
+              countSelected: 2,
             },
             {
               name: 'Tus cremas',
-              selected: 'Mostaza ,Salsa Gold ,Aceituna ,Tartara ',
+              selected: 'Mayonesa ,Ketchup ,Mostaza ,Salsa Gold ',
               isMultipleSelection: true,
               countSelected: 4,
             },
@@ -747,10 +747,71 @@ export class CartsComponent implements OnDestroy {
           isInStock: true,
           quantity: 1,
           size: '',
-          details: '',
-          idAux: '607ed72782054b986f5ce327_1618928735677',
+          details:
+            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de ',
+          idAux: '607ed72782054b986f5ce327_1619629605183',
           totalPrice: 10.5,
           totalAmount: 10.5,
+          toppings: [
+            {
+              name: 'Tipo de pan',
+              selected: 'Pan de Yema',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Deseas ensalada',
+              selected: 'No',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tipo de papas',
+              selected: 'Al hilo',
+              isMultipleSelection: false,
+              countSelected: 1,
+            },
+            {
+              name: 'Tus cremas',
+              selected: 'Ketchup ,Mostaza ,Salsa Gold ',
+              isMultipleSelection: true,
+              countSelected: 3,
+            },
+          ],
+        },
+        {
+          isCheckedDone: false,
+          _id: '607ed72782054b986f5ce330',
+          categoryImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+          categoryName: 'Comida rápida',
+          varietyImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+          varietyName: 'Hamburguesa clásica',
+          currency: 'PEN',
+          price: 8,
+          isSmallSize: false,
+          isMediumSize: true,
+          isBigSize: false,
+          isKilo: false,
+          isUnit: true,
+          isOrganic: false,
+          isSeasonal: true,
+          isMaturityDetails: true,
+          maturityImageUrl:
+            'https://dl.airtable.com/.attachmentThumbnails/7ba16f5058cbc5ad5781845ac9dd2b84/5bc19cf5',
+          maturityName: 'Super wawito  (camilo)',
+          maturityInfo:
+            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+          maturityEatIn: '0',
+          maturityLastFor: '0',
+          isInStock: true,
+          quantity: 1,
+          size: '',
+          details: '',
+          idAux: '607ed72782054b986f5ce330_1619629618343',
+          totalPrice: 8,
+          totalAmount: 8,
         },
         {
           isCheckedDone: false,
@@ -773,56 +834,19 @@ export class CartsComponent implements OnDestroy {
           isMaturityDetails: true,
           maturityImageUrl:
             'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
-          maturityName: 'Wawito tropical  (wendy)',
+          maturityName: 'Wawito tropical  (Clear me)',
           maturityInfo:
             'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
           maturityEatIn: '0',
           maturityLastFor: '0',
           isInStock: true,
-          quantity: 3,
+          quantity: 1,
           size: '',
-          details: '',
-          idAux: '607ed72782054b986f5ce309_1618928755403',
-          totalPrice: 30,
-          totalAmount: 36,
-          toppings: [
-            {
-              name: 'Tipo de pan',
-              selected: 'Pan Frances',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Cortesia de la casa',
-              selected: 'Huevo',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Tipo de papas',
-              selected: 'Papas Fritas',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Deseas ensalada',
-              selected: 'No',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Tus cremas',
-              selected: 'Mostaza ,Aceituna ,Tartara ',
-              isMultipleSelection: true,
-              countSelected: 3,
-            },
-            {
-              name: 'Deseas adicionales',
-              selected: 'Tocino S/. 2.00',
-              isMultipleSelection: true,
-              countSelected: 1,
-            },
-          ],
+          details:
+            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
+          idAux: '607ed72782054b986f5ce309_1619629661760',
+          totalPrice: 10,
+          totalAmount: 10,
         },
       ],
     };

@@ -18,7 +18,9 @@ import * as _ from 'lodash';
 
 const maxLenChar: number = 30;
 const tab: string = String.fromCodePoint(parseInt('9', 16));
+const printerEmptyChar = ' ';
 const breakLine: string = '\n';
+const emptyLine: string = '\n\n';
 // https://apps.timwhitlock.info/emoji/tables/unicode
 // 💰💳💸💵⚖️📥📤🛒📝✅💲✔️🟡🟢🔵🟣⚫⚪🟤🏁🏁🇵🇪🛵
 // 🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶️🌽🥕🧄🧅🌿🌱🌴🐓👍🤠🤝🙏👏
@@ -240,47 +242,36 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
     // console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
     // copyText(copyToBluetoothPrinter);
   }
-  console.log('orderRawTxt ==>', orderRawTxt);
+  console.log('WHATSAPP FORMAT');
+  console.log(orderRawTxt);
   return orderRawTxt;
 };
 
 export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
   order: Order
 ): string => {
-  console.log(
-    'transformOrderToRawTextBaseFortmat',
-    transformOrderToRawTextBaseFortmat
-  );
   let orderRawTxt: string = '';
   let title: string = '';
-  let subTitle: string = '';
   let totalPrice: string = '';
-  const verticalPipe = '';
+  const marginLeft = '';
   const corner = '';
   const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
 
   if (order != null) {
     console.log('order KEVIN', order);
-    title = 'Nueva Order Entrante' + breakLine;
-    subTitle = 'Lista de pedido :' + breakLine;
-    totalPrice = `Total a cobrar : S/. ${order.payment.amount.toFixed(
-      2
-    )} ${breakLine}`;
-
-    orderRawTxt += breakLine;
-    orderRawTxt += breakLine;
-
-    orderRawTxt += title;
-    orderRawTxt += breakLine;
-
-    orderRawTxt += subTitle;
-    orderRawTxt += breakLine;
+    /* #region  Title of the thermal printer order */
+    title = `${marginLeft}        ORDEN ENTRANTE        `;
+    orderRawTxt += title + breakLine;
+    /* #endregion */
 
     order.cart.forEach((product, idx) => {
+      orderRawTxt += '================================' + breakLine;
+      /* #region Setting Product name base on if topponing exist */
       let productName: string;
       let productMaturitName: string;
       let productFeatures: string;
       let isProductToppings: boolean;
+
       if (containtToppings(product.categoryName)) {
         //store with toppings
         productName = product.maturityName;
@@ -300,86 +291,84 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
           getProductSizeStr(product) + '    ' + getOrganicStr(product);
         isProductToppings = false;
       }
+      /* #endregion */
 
-      // let productName =
-      //   product.categoryName === 'Comida rápida'
-      //     ? getNameAndPriceFormat(product.maturityName, product.totalPrice)
-      //     : getNameAndPriceFormat(
-      //         product.categoryName + ' ' + product.varietyName,
-      //         product.totalPrice
-      //       );
-
-      // let productMaturitName =
-      //   product.categoryName !== 'Comida rápida'
-      //     ? '- ' + getItalicFormat(product.maturityName)
-      //     : '';
-
-      // let productFeatures =
-      //   product.categoryName !== 'Comida rápida'
-      //     ? getProductSizeStr(product) + '    ' + getOrganicStr(product)
-      //     : '';
-
-      // Numeration and product name
-      orderRawTxt += `${(idx + 1).toString()}) `;
-      orderRawTxt += `${productName}`;
+      /* #region Getting numeration and product name in one line */
+      // orderRawTxt += `${(idx + 1).toString()}) `;
+      orderRawTxt += `${marginLeft}${productName.toUpperCase()}`;
       orderRawTxt += breakLine;
+      /* #endregion */
 
+      /* #region  Setting quantity, weight and price in one line */
       const dual = containtToppings(product.categoryName)
         ? getPriceFormat(product.totalAmount)
         : productMaturitName;
-      // quantity and weight
-      orderRawTxt +=
-        verticalPipe +
-        '• •' +
-        'x ' +
+      // quantity and weight and price one line
+      let quantityWeightPrice = (
+        '' +
         getQuantityFormat(product.quantity, product.isKilo) +
         ' ' +
         formatQuantityWeightType(product.isKilo) +
         '       ' +
-        dual;
-      orderRawTxt += breakLine;
+        dual
+      )
+        .replace(/_/g, '')
+        .replace(/\*/g, '');
 
+      orderRawTxt +=
+        marginLeft +
+        getToppingsWithPriceAtNumCharactsOneLineFormat(quantityWeightPrice, 32);
+      /* #endregion */
+
+      /* #region  If It has features such as Size and organic */
       if (productFeatures !== '    ') {
-        orderRawTxt += verticalPipe + tab + tab + productFeatures;
+        orderRawTxt +=
+          marginLeft + printerEmptyChar + printerEmptyChar + productFeatures;
         orderRawTxt += breakLine;
       }
+      /* #endregion */
 
+      /* #region Showing toppings */
+      // orderRawTxt += emptyLine;
       if (isProductToppings && product.toppings !== undefined) {
-        // order.cart.map((cartProduct) => {
         product.toppings.map((topping) => {
-          orderRawTxt += getToppingFormatBaseFormatThermalPrinter(topping);
-          orderRawTxt += breakLine;
+          if (topping.isMultipleSelection) {
+            orderRawTxt += breakLine;
+          }
+          orderRawTxt +=
+            marginLeft + getToppingFormatBaseFormatThermalPrinter(topping);
         });
       }
+      /* #endregion */
 
+      /* #region Showing order details */
+      orderRawTxt += breakLine;
       let prodDetailsTitle = product.details !== '' ? 'Detalles: ' : '';
-
-      orderRawTxt += verticalPipe + tab + tab + prodDetailsTitle;
+      orderRawTxt += marginLeft + printerEmptyChar + prodDetailsTitle;
       orderRawTxt += breakLine;
 
       if (prodDetailsTitle !== '') {
-        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
-          product.details
+        let multiplineProdNameAndDetails: string[] = formatLongTextToNNCharactersMiltipleLines(
+          product.details,
+          30 - marginLeft.length
         );
 
         multiplineProdNameAndDetails.forEach((line, i) => {
-          orderRawTxt += verticalPipe + tab + tab + tab + line;
+          orderRawTxt +=
+            marginLeft + printerEmptyChar + printerEmptyChar + line;
         });
-        orderRawTxt += breakLine;
       }
 
-      orderRawTxt += breakLine;
+      /* #endregion */
+      orderRawTxt += emptyLine;
     });
-    orderRawTxt += breakLine;
 
-    orderRawTxt += '📝 Detalles de la orden : ' + breakLine;
-    orderRawTxt += breakLine;
-
-    orderRawTxt += totalPrice;
-    orderRawTxt += breakLine;
-
+    /* #region  Payment, delivery, order link and total amount details */
     let paymentType;
+    let cashPaymenyAmount: number = 0;
+    let cashBackAmount = 0;
 
+    /* #region  Setting Payment type */
     switch (order.payment.method) {
       case 'pos_method_area':
         paymentType = 'POS/contra entrega';
@@ -392,48 +381,95 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
         break;
       default:
         paymentType = 'Efectivo/contra entrega';
+        cashPaymenyAmount = order.payment.cashPaymentAmount;
+        cashBackAmount = order.payment.cashBackAmount;
         break;
     }
+    /* #endregion */
 
+    /* #region  Showing payment t */
+    // orderRawTxt += 'Detalles de la orden : ' + breakLine;
+    orderRawTxt += '================================' + breakLine;
     orderRawTxt += `Pago : ${paymentType}` + breakLine;
+    /* #endregion */
 
-    orderRawTxt += breakLine;
+    /* #region  Total price */
+    totalPrice = `Total a cobrar : S/. ${order.payment.amount.toFixed(2)} `;
+    totalPrice =
+      getToppingsWithPriceAtNumCharactsOneLineFormat(totalPrice, 32) +
+      breakLine;
+    orderRawTxt += totalPrice;
+    /* #endregion */
+
+    /* #region  Showing cash Paayment amount if selected */
+    if (cashPaymenyAmount > 0) {
+      orderRawTxt += getCashPaymetAttibutesAtNNCharactersOneLineFomat(
+        'Pagará con :' + 'S/. ' + cashPaymenyAmount.toFixed(2),
+        32
+      );
+      orderRawTxt += breakLine;
+      orderRawTxt += getCashPaymetAttibutesAtNNCharactersOneLineFomat(
+        'Cambio :' + 'S/. ' + cashBackAmount.toFixed(2),
+        32
+      );
+    }
+    /* #endregion */
+
+    /* #region Setting Deliver or pick up order */
+    orderRawTxt += emptyLine;
 
     let orderType =
       order.orderType === 'delivery' ? 'Delivery' : 'Recojo en tienda';
 
-    orderRawTxt += `Tipo de entrega : ${orderType}` + breakLine;
+    orderRawTxt += `Tipo entrega : ${orderType}` + breakLine;
 
     if (order.orderType == 'delivery') {
       orderRawTxt += breakLine;
-      orderRawTxt += `📍 Entrega en :` + breakLine;
+      orderRawTxt += `Dirección:` + breakLine;
+      // orderRawTxt += breakLine;
+
+      const apartment = order.shipping.address.apartmentNumber
+        ? ', Dpto: ' + order.shipping.address.apartmentNumber
+        : '';
+      const district = `, ${order.shipping.address.district}`;
+
+      let address = `${order.shipping.address.streetName} ${order.shipping.address.streetNumber} ${apartment} ${district}`;
+
+      let multipliAddressLine = formatLongTextToNNCharactersMiltipleLines(
+        address,
+        30 - marginLeft.length
+      );
+
+      multipliAddressLine.forEach((line) => {
+        orderRawTxt += line + breakLine;
+      });
       orderRawTxt += breakLine;
 
-      orderRawTxt +=
-        `Dirección : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` +
-        breakLine;
-
-      if (order.shipping.address.apartmentNumber) {
-        orderRawTxt +=
-          `Departamento : ${order.shipping.address.apartmentNumber}` +
-          breakLine;
-      }
-
-      orderRawTxt += `${order.shipping.address.district}.` + breakLine;
-
       if (order.shipping.address.reference) {
-        orderRawTxt +=
-          `Referencia : ${order.shipping.address.reference}` + breakLine;
+        const multilineReference = formatLongTextToNNCharactersMiltipleLines(
+          order.shipping.address.reference,
+          32
+        );
+        multilineReference.forEach((line) => {
+          orderRawTxt += line + breakLine;
+        });
+
+        orderRawTxt += breakLine;
       }
 
       if (order.shipping.address.details) {
-        orderRawTxt +=
-          `Detalles adicionales : ${order.shipping.address.details}` +
-          breakLine;
+        const multipleLineDetails = formatLongTextToNNCharactersMiltipleLines(
+          order.shipping.address.details,
+          32
+        );
+        multipleLineDetails.forEach((line) => {
+          orderRawTxt += line;
+        });
       }
+      orderRawTxt += breakLine;
+      /* #endregion */
     }
 
-    orderRawTxt += breakLine;
     orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
     orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
       'retailer_store_name'
@@ -447,10 +483,12 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
 
     let copyToBluetoothPrinter = orderRawTxt.replace(/_/g, '');
     copyToBluetoothPrinter = copyToBluetoothPrinter.replace(/\*/g, '');
-    // console.log('copyToBluetoothPrinter', copyToBluetoothPrinter);
-    copyText(copyToBluetoothPrinter);
     orderRawTxt = copyToBluetoothPrinter;
+    /* #endregion */
   }
+  console.log('THERMAL PRINTER FORMAT (clipboard)');
+  console.log(orderRawTxt);
+  copyText(orderRawTxt);
 
   return orderRawTxt;
 };
@@ -788,6 +826,39 @@ export const formatLongTextTo20CharactersMiltipleLines = (
 
   return bufferMultilineText;
 };
+export const formatLongTextToNNCharactersMiltipleLines = (
+  longText: string,
+  chars: number
+): string[] => {
+  const maxLenTextByLine: number = chars;
+  const breakLine = '\n';
+  const tab: string = String.fromCodePoint(parseInt('9', 16));
+
+  // const splitCharacter = `
+
+  // `;
+  const splitCharacter = ` `;
+  const arrWords = longText.split(splitCharacter);
+  console.log('arrWords', arrWords);
+  let bufferMultilineText: string[] = [];
+  let tempLine = '';
+
+  arrWords.forEach((word) => {
+    let text = word.trim();
+    if (tempLine.length + text.length < maxLenTextByLine) {
+      tempLine += text + ' ';
+    } else {
+      tempLine += breakLine;
+      bufferMultilineText.push(tempLine);
+      tempLine = '';
+      tempLine += text + ' ';
+    }
+  });
+  // addinfg the left over words
+  bufferMultilineText.push(tempLine);
+
+  return bufferMultilineText;
+};
 
 /** WhatsApp helper methods  */
 const getQuantityAsFractionFormat = (decimal: number): string => {
@@ -983,18 +1054,81 @@ const getToppingFormatBaseFormat = (topping: ToppingSelected): string => {
 const getToppingFormatBaseFormatThermalPrinter = (
   topping: ToppingSelected
 ): string => {
-  const indentationL1 = `• •`;
-  const indentationL2 = `• •`;
+  const indentationL1 = printerEmptyChar; //!@$#%$#
+  const indentationL2 = printerEmptyChar;
   let res = '';
-  res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
-  const hasPriceSign = topping.selected.includes('S/.');
   if (topping.isMultipleSelection) {
+    // multple toppings selected
+    res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
     topping.selected.split(',').map((toppinWithPrice) => {
-      res += `${indentationL2}- ${toppinWithPrice.trim()}${breakLine}`;
+      const hasPriceSign = toppinWithPrice.includes('S/.');
+      if (hasPriceSign) {
+        res += `${indentationL2}- ${getToppingsWithPriceAtNumCharactsOneLineFormat(
+          toppinWithPrice.trim(),
+          29
+        )}${breakLine}`;
+      } else {
+        res += `${indentationL2}- ${toppinWithPrice.trim()}${breakLine}`;
+      }
     });
   } else {
-    // is only on topping selected
+    // only one topping selected
     res += `${indentationL2}- ${topping.selected.trim()}${breakLine}`;
   }
+  return res;
+};
+
+const getToppingsWithPriceAtNumCharactsOneLineFormat = (
+  text: string,
+  chars: number
+): string => {
+  const priceSign = 'S/. ';
+  const maxLen = chars - priceSign.length;
+  // this character can not be printer by
+  // the thermal printer
+  // Called as empty string since it helps
+  // to the indentation
+  const emptyString = printerEmptyChar;
+  let res = '';
+
+  let wordsArr = text.trim().split(priceSign);
+  const toppingName = wordsArr[0].trim();
+  const toppingPrice = wordsArr[1].trim();
+
+  const totalLen = toppingName.length + toppingPrice.length;
+
+  if (totalLen >= maxLen) {
+    // To do => shorting lenght
+    res = text;
+  } else {
+    const emptyCharLen = maxLen - totalLen;
+    res = toppingName;
+    for (let i = 0; i < emptyCharLen; i++) {
+      res += emptyString;
+    }
+    res += `${priceSign}${toppingPrice}`;
+  }
+
+  return res;
+};
+
+const getCashPaymetAttibutesAtNNCharactersOneLineFomat = (
+  text: string,
+  chars: number
+): string => {
+  const emptyString = printerEmptyChar;
+  const semicolon = ' :';
+  const wordsArr = text.split(semicolon);
+  const title = wordsArr[0].trim();
+  const price = wordsArr[1].trim();
+  const emptyStrLen = chars - (title.length + price.length + semicolon.length);
+
+  let res = title + semicolon;
+
+  for (let i = 0; i < emptyStrLen; i++) {
+    res += emptyString;
+  }
+  res += price;
+
   return res;
 };
