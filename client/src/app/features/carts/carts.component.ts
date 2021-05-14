@@ -35,6 +35,7 @@ import {
 import { ORDER_CONFIG } from 'src/app/core/order/order.config';
 import {
   transformInvoiceIntoRawText,
+  transformInvoiceIntoRawTextBaseFormat,
   transformOrderToRawText,
   sendViaWhatsApp,
   transformOrderToRawTextBaseFortmat,
@@ -147,6 +148,10 @@ export class CartsComponent implements OnDestroy {
         STORE_CONFIG.messages_view.buttonMessage_ConfimOrder
       );
       this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
+      this.order.initSaleQuoteOrderId(this.order_id).subscribe((res) => {
+        this.orderBD = res.data;
+        console.log('res.data', res.data, this.orderBD);
+      });
     } else {
       // generating the order by him or her self
       this.titleMessage = STORE_CONFIG.question_view_type.cartView;
@@ -211,6 +216,7 @@ export class CartsComponent implements OnDestroy {
           this.isDisable = false;
 
           this.orderBD = res.data;
+          console.log('res.data', res.data, this.orderBD);
         } else {
           let orderUrl = this.getUrlOrderPath(this.router.url);
           // redirect to order by id
@@ -444,7 +450,6 @@ export class CartsComponent implements OnDestroy {
 
   //generated_by_retailer
   createInvoiceFromShoppingCart(): Order {
-    console.log('createInvoiceFromShoppingCart');
     let order = null;
 
     /**
@@ -516,10 +521,11 @@ export class CartsComponent implements OnDestroy {
         console.log('createOrderFromShoppingCart in BD (callback as X)', x);
 
         // transform the order into raw text
-        const invoiceRawText = transformInvoiceIntoRawText(
+        const invoiceRawText = transformInvoiceIntoRawTextBaseFormat(
           x.data as Order,
           this.currentUser
         );
+
         // and send it via whatapp
         // to the desired phone number
 
@@ -852,8 +858,8 @@ export class CartsComponent implements OnDestroy {
     };
 
     // place order DB
-    // this.orderStore.generateOrder(order).subscribe((x) => {
-    this.orderStore.generateOrder(mockOrder as Order).subscribe((x) => {
+    this.orderStore.generateOrder(order).subscribe((x) => {
+      // this.orderStore.generateOrder(mockOrder as Order).subscribe((x) => {
       if (x) {
         this.currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
 
@@ -865,9 +871,11 @@ export class CartsComponent implements OnDestroy {
           // order
         );
 
-        const orderThermalPrinterFormat = transformOrderToRawTextBaseFortmatForThermalPrinter(
-          x.data as Order
-        );
+        if (containtToppings((x.data as Order).cart[0].categoryName)) {
+          const orderThermalPrinterFormat = transformOrderToRawTextBaseFortmatForThermalPrinter(
+            x.data as Order
+          );
+        }
         // and send it via whatapp
         // to the desired phone number
 
@@ -903,6 +911,7 @@ export class CartsComponent implements OnDestroy {
   //updated_by_buyer
   updateOrderFromShoppingCart(order_id: string, order: Order): Order {
     // let order = null;
+    console.log('updateOrderFromShoppingCart', order);
 
     /**
      * Populating the buyerOrder from this.buyer
@@ -984,7 +993,7 @@ export class CartsComponent implements OnDestroy {
         console.log('createOrderFromShoppingCart in BD (callback as X)');
 
         // transform the order into raw text
-        const orderRawText = transformOrderToRawText(order);
+        const orderRawText = transformOrderToRawTextBaseFortmat(order as Order);
         // and send it via whatapp
         // to the desired phone number
 

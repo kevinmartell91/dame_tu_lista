@@ -764,6 +764,165 @@ export const transformInvoiceIntoRawText = (
   return orderRawTxt;
 };
 
+// To do: transformInvoiceIntoRawTextBaseFormat (remove old format with fuits)
+export const transformInvoiceIntoRawTextBaseFormat = (
+  order: Order,
+  currentUser: string
+): string => {
+  const tab: string = String.fromCodePoint(parseInt('9', 16));
+  const breakLine: string = '\n';
+  let orderRawTxt: string = '';
+  let title: string = '';
+  let subTitle: string = '';
+  let totalPrice: string = '';
+
+  if (currentUser) {
+    title = '           *Cotización*          ' + breakLine;
+    subTitle = '*Lista de productos* :' + breakLine;
+    totalPrice =
+      `Total de la cotización : *S/. ${order.payment.amount.toFixed(2)}* 🤑` +
+      breakLine;
+  }
+
+  if (order != null) {
+    // parse order data in Tab separated text
+    console.log('order.cart', order);
+
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+    orderRawTxt += title;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += subTitle;
+    orderRawTxt += breakLine;
+
+    order.cart.forEach((product, idx) => {
+      let productName: string;
+      let productMaturitName: string;
+      let productFeatures: string;
+      let isProductToppings: boolean;
+      const verticalPipe = '';
+
+      if (containtToppings(product.categoryName)) {
+        //store with toppings
+        productName = product.maturityName;
+        productMaturitName = '';
+        productFeatures = '';
+        isProductToppings = true;
+      } else {
+        // regular store
+        productName = getNameAndPriceFormat(
+          product.categoryName + ' ' + product.varietyName,
+          containtToppings(product.categoryName)
+            ? product.totalAmount
+            : product.totalPrice
+        );
+        productMaturitName = '- ' + getItalicFormat(product.maturityName);
+        productFeatures =
+          getProductSizeStr(product) + '    ' + getOrganicStr(product);
+        isProductToppings = false;
+      }
+
+      // let productName =
+      //   product.categoryName === 'Comida rápida'
+      //     ? getNameAndPriceFormat(product.maturityName, product.totalPrice)
+      //     : getNameAndPriceFormat(
+      //         product.categoryName + ' ' + product.varietyName,
+      //         product.totalPrice
+      //       );
+
+      // let productMaturitName =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? '- ' + getItalicFormat(product.maturityName)
+      //     : '';
+
+      // let productFeatures =
+      //   product.categoryName !== 'Comida rápida'
+      //     ? getProductSizeStr(product) + '    ' + getOrganicStr(product)
+      //     : '';
+
+      // Numeration and product name
+      orderRawTxt += `${(idx + 1).toString()}) `;
+      orderRawTxt += `${productName}`;
+      orderRawTxt += breakLine;
+
+      const dual = containtToppings(product.categoryName)
+        ? getPriceFormat(product.totalAmount)
+        : productMaturitName;
+      // quantity and weight
+      orderRawTxt +=
+        verticalPipe +
+        tab +
+        tab +
+        'x ' +
+        getQuantityFormat(product.quantity, product.isKilo) +
+        ' ' +
+        formatQuantityWeightType(product.isKilo) +
+        '       ' +
+        dual;
+      orderRawTxt += breakLine;
+
+      if (productFeatures !== '    ') {
+        orderRawTxt += verticalPipe + tab + tab + productFeatures;
+        orderRawTxt += breakLine;
+      }
+
+      if (isProductToppings && product.toppings !== undefined) {
+        // order.cart.map((cartProduct) => {
+        product.toppings.map((topping) => {
+          orderRawTxt += getToppingFormatBaseFormat(topping);
+          orderRawTxt += breakLine;
+        });
+      }
+
+      let prodDetailsTitle = product.details !== '' ? '*Detalles:* ' : '';
+
+      orderRawTxt += verticalPipe + tab + tab + prodDetailsTitle;
+      orderRawTxt += breakLine;
+
+      if (prodDetailsTitle !== '') {
+        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
+          product.details
+        );
+
+        multiplineProdNameAndDetails.forEach((line, i) => {
+          orderRawTxt += verticalPipe + tab + tab + tab + line;
+        });
+        orderRawTxt += breakLine;
+      }
+
+      orderRawTxt += breakLine;
+    });
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+    orderRawTxt += '📝 *Detalles cotizacion* :' + breakLine;
+
+    orderRawTxt += breakLine;
+
+    orderRawTxt += totalPrice;
+
+    orderRawTxt += breakLine;
+    orderRawTxt += breakLine;
+
+    orderRawTxt +=
+      'Si desea puede editar la cotización ingresando al siguiente link: ';
+    orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
+      'retailer_store_name'
+    )}/cotizacion/${order._id}`;
+    orderRawTxt += breakLine;
+
+    orderRawTxt += breakLine;
+    orderRawTxt += '       *Hecho con mucho ❤️ en 🇵🇪*       ' + breakLine;
+
+    copyText(orderRawTxt);
+    console.log(orderRawTxt);
+    // copy text in the clipboard
+  }
+
+  return orderRawTxt;
+};
+
 /* To copy any Text */
 export const copyText = (val: string): void => {
   let selBox = document.createElement('textarea');
@@ -826,6 +985,7 @@ export const formatLongTextTo20CharactersMiltipleLines = (
 
   return bufferMultilineText;
 };
+
 export const formatLongTextToNNCharactersMiltipleLines = (
   longText: string,
   chars: number

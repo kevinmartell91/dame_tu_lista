@@ -95,11 +95,12 @@ export class StoreComponent implements OnDestroy {
       }
     );
   }
-
   init(): void {
     this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
       (products) => {
         this.productsList = products;
+
+        console.log('UPDATED AFTER SET IN STORE KEVIN', this.productsList);
       }
     );
 

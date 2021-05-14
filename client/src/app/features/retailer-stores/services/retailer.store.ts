@@ -117,8 +117,6 @@ export class RetailerStoreStore
       );
   }
   public getRetailerByNameStore(retailer_store_name: string) {
-    console.log('getRetailerByNameStore CALLED');
-
     return this.endPoint
       .getRetailerByNameStore(retailer_store_name, this.storeRequestUpdater)
       .pipe(
@@ -139,7 +137,13 @@ export class RetailerStoreStore
         (val) => {},
         (err) => {},
         () => {
-          this.updateProductsFromSessionStorage();
+          setTimeout(() => {
+            console.log(
+              'updateProductsFromSessionStorage CALLED',
+              this.state.productsList.products.length
+            );
+            this.updateProductsFromSessionStorage();
+          }, 2500);
         }
       );
   }
@@ -150,6 +154,10 @@ export class RetailerStoreStore
     const chacheData = sessionStorage.temp_session_storage;
 
     if (!JSON.parse(chacheData).product_list) return;
+    console.log(
+      'subscribe RESOLVED -  SECOND',
+      JSON.parse(chacheData).product_list
+    );
 
     const memCashedProd: Product[] = JSON.parse(chacheData).product_list;
 
@@ -190,15 +198,26 @@ export class RetailerStoreStore
   }
 
   public _updateProductsFromSessionStorage(cachedProducts: Product[]) {
-    this.setState({
-      ...this.state,
-      productsList: {
-        ...this.state.productsList,
-        products: cachedProducts,
-      },
-    });
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        productsList: {
+          ...this.state.productsList,
+          products: [],
+        },
+      });
+    }, 10);
 
-    //console.log("Finished updateProductsFromSessionStorage");
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        productsList: {
+          ...this.state.productsList,
+          products: cachedProducts,
+        },
+      });
+    }, 10);
+    console.log('Finished updateProductsFromSessionStorage');
   }
 
   public getAirTableData(

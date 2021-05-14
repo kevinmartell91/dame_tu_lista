@@ -141,8 +141,10 @@
       <div class="store_products_area">
         <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">
                 </app-seasonal-products> -->
-        <app-row-product-view [storeProducts]="filteredProductsList$ | async">
+        <app-row-product-view [storeProducts]="productsList">
         </app-row-product-view>
+        <!-- <app-row-product-view [storeProducts]="filteredProductsList$ | async">
+              </app-row-product-view> -->
       </div>
     </div>
   </ng-template>

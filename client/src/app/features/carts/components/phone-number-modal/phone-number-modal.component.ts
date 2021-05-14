@@ -28,7 +28,7 @@ export class PhoneNumberModalComponent implements OnInit {
     this.message = this.data.isFreeBill
       ? 'Envia por whatsApp la lista que creaste ingresando un número de celular.'
       : this.data.isSalesQuote
-      ? 'Envia directamente la cotización de tus productos via WhatsApp.'
+      ? 'Envia directamente la cotización de tus productos a tus clientes via WhatsApp.'
       : 'Ingresa tu WhatsApp para estar en comunicación constante con el vendedor.';
     // : 'Ingresa tu WhatsApp para estar en comunicación constante con el vendedor y en tiempo real coordinar lo que necesites con el vendedor.';
     this.phoneNumberForm = this.fb.group({

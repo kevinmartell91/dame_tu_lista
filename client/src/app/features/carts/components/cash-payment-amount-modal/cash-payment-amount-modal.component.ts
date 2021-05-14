@@ -23,7 +23,8 @@ export class CashPaymentAmountModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.message = '¿Con cuánto pagaras?';
+    this.message =
+      'Para que tengas una buena experiencia durante la entrega de tu producto coméntanos con cuánto pagaras y agilizaremos tu entrega.';
     // this.message = this.data.isFreeBill
     //   ? 'Envia por whatsApp la lista que creaste ingresando un número de celular.'
     //   : this.data.isSalesQuote

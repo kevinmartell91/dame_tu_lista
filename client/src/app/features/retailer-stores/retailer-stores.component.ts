@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Retailer } from '../../core/retailer/types/retailer';
@@ -66,17 +66,19 @@ export class RetailerStoresComponent implements OnDestroy {
 
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
       (productsList) => {
-        // console.log("LOG => Retailer-Store - Set product list to Session storage", productsList.length);
-        this.temporaryStorage.set(productsList);
+        if (productsList !== undefined) {
+          // console.log("LOG => Retailer-Store - Set product list to Session storage", productsList.length);
+          this.temporaryStorage.set(productsList);
 
-        // if (sessionStorage.length == 0 ||
-        //   !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
-        //   JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
-        //   ) {
+          // if (sessionStorage.length == 0 ||
+          //   !("product_list" in JSON.parse(sessionStorage.temp_session_storage)) ||
+          //   JSON.parse(sessionStorage.temp_session_storage).product_list.length === 0
+          //   ) {
 
-        //     this.temporaryStorage.set(productsList);
+          //     this.temporaryStorage.set(productsList);
 
-        // }
+          // }
+        }
       }
     );
     this.retailerStoreStore.getRetailerByNameStore(

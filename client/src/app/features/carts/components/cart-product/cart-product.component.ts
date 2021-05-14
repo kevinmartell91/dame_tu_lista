@@ -98,47 +98,52 @@ export class CartProductComponent implements OnInit {
     const productLocalStorage = getProductFromLocalStorageByProductId(
       this.cartProduct._id
     );
-    this.dialogRef = this.matDialog.open(AddToppingsComponent, {
-      width: '320px',
-      height: '500px',
-      data: {
-        mode: 'update',
-        productPrice: this.cartProduct.price,
-        productName: productLocalStorage.maturityName,
-        image: this.cartProduct.maturityImageUrl,
-        toppings: productLocalStorage.toppings,
-        quantity: this.cartProduct.quantity,
-        toppingsSelected: this.cartProduct.toppings,
-        productLabel: this.cartProduct.maturityName.split('(')[1].split(')')[0],
-      },
-    });
 
-    this.dialogRef.afterClosed().subscribe((result: ToppingModalResult) => {
-      if (result) {
-        console.log('Modal has been closed ', result);
-        // update quantity
-        this.cartProduct.quantity = result.quantity;
-        // update productLabel
-        this.cartProduct.maturityName = `${productLocalStorage.maturityName} (${result.productLabel})`;
-        // updateToppings
-        this.cartProduct.toppings = result.toppingsSelected;
-        // update totalPrice and totalAmount
+    if (productLocalStorage !== null) {
+      this.dialogRef = this.matDialog.open(AddToppingsComponent, {
+        width: '320px',
+        height: '500px',
+        data: {
+          mode: 'update',
+          productPrice: this.cartProduct.price,
+          productName: productLocalStorage.maturityName,
+          image: this.cartProduct.maturityImageUrl,
+          toppings: productLocalStorage.toppings,
+          quantity: this.cartProduct.quantity,
+          toppingsSelected: this.cartProduct.toppings,
+          productLabel: this.cartProduct.maturityName
+            .split('(')[1]
+            .split(')')[0],
+        },
+      });
 
-        const totalPriceUpdated = calculateTotalPricePerProductWithToppings(
-          this.cartProduct.quantity,
-          this.cartProduct.price,
-          this.cartProduct.toppings
-        );
+      this.dialogRef.afterClosed().subscribe((result: ToppingModalResult) => {
+        if (result) {
+          console.log('Modal has been closed ', result);
+          // update quantity
+          this.cartProduct.quantity = result.quantity;
+          // update productLabel
+          this.cartProduct.maturityName = `${productLocalStorage.maturityName} (${result.productLabel})`;
+          // updateToppings
+          this.cartProduct.toppings = result.toppingsSelected;
+          // update totalPrice and totalAmount
 
-        this.cartProduct.totalAmount = totalPriceUpdated;
-        this.cartProduct.totalPrice = totalPriceUpdated;
+          const totalPriceUpdated = calculateTotalPricePerProductWithToppings(
+            this.cartProduct.quantity,
+            this.cartProduct.price,
+            this.cartProduct.toppings
+          );
 
-        // formating to two decimals and as a string
-        this.transformCartProductTotalPriceToStr();
+          this.cartProduct.totalAmount = totalPriceUpdated;
+          this.cartProduct.totalPrice = totalPriceUpdated;
 
-        this.cartProductUpdated.emit(this.cartProduct);
-      }
-    });
+          // formating to two decimals and as a string
+          this.transformCartProductTotalPriceToStr();
+
+          this.cartProductUpdated.emit(this.cartProduct);
+        }
+      });
+    }
   }
 
   openAddCartProductDetailModal(): void {
