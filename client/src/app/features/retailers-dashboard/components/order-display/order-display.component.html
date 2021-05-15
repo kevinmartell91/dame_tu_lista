@@ -119,6 +119,9 @@
       <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
 
       <ng-container *ngIf="cartProductOrder.details != ''">
+        <div class="comment_area">Nota: {{ cartProductOrder.details }}</div>
+      </ng-container>
+      <!-- <ng-container *ngIf="cartProductOrder.details != ''">
         <div
           class="comment_area"
           (click)="openAddcartProductOrderDetailModal()"
@@ -126,7 +129,7 @@
           <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
           Ver comentarios
         </div>
-      </ng-container>
+      </ng-container> -->
     </div>
   </div>
 </ng-template>
@@ -218,6 +221,9 @@
       <div *ngIf="cartProductOrder.isOrganic" class="isOrganic_area">Org.</div>
 
       <ng-container *ngIf="cartProductOrder.details != ''">
+        <div class="comment_area">Nota: {{ cartProductOrder.details }}</div>
+      </ng-container>
+      <!-- <ng-container *ngIf="cartProductOrder.details != ''">
         <div
           class="comment_area"
           (click)="openAddcartProductOrderDetailModal()"
@@ -225,7 +231,7 @@
           <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
           Ver comentarios
         </div>
-      </ng-container>
+      </ng-container> -->
     </div>
   </div>
 </ng-template>

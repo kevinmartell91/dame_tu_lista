@@ -7,41 +7,45 @@
   </div>
 
   <div [ngSwitch]="paymentMethod">
-    <div *ngSwitchCase="'upon_delivery_pos'">
+    <div class="align_center_style" *ngSwitchCase="'upon_delivery_pos'">
       <div class="img_pos_area">
         <img src="../../../../../assets/icons/edc.svg" alt="" />
       </div>
-      <div class="pos_method_area">
+      <div class="name_method_style">
         POS kev <br />
         Contraentrega
       </div>
     </div>
 
-    <div *ngSwitchCase="'bank_deposit'">
+    <div class="align_center_style" *ngSwitchCase="'bank_deposit'">
       <div class="img_deposit_area">
         <img src="../../../../../assets/icons/cheque.svg" alt="" />
       </div>
-      <div class="deposit_method_area">
+      <div class="name_method_style">
         Depósito <br />
         Bancario
       </div>
     </div>
 
-    <div *ngSwitchCase="'upon_delivery_cash'">
+    <div class="align_center_style" *ngSwitchCase="'upon_delivery_cash'">
       <div class="img_cash_area">
         <img src="../../../../../assets/icons/cash-payment.svg" alt="" />
       </div>
-      <div class="cash_method_area">
+      <div class="name_method_style">
         Efectivo <br />
         Contraentrega
       </div>
     </div>
 
-    <div *ngSwitchCase="'fast_transfer'">
+    <div class="align_center_style" *ngSwitchCase="'fast_transfer'">
       <div class="img_cash_area">
-        <img src="../../../../../assets/icons/yape_plin_logo.png" alt="" />
+        <img
+          class="png_width_style"
+          src="../../../../../assets/icons/yape_plin_logo.png"
+          alt=""
+        />
       </div>
-      <div class="cash_method_area">
+      <div class="name_method_style">
         Yape <br />
         Plin
       </div>

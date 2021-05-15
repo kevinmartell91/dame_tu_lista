@@ -39,7 +39,7 @@
     <ng-template #showFileds>
       <br />
       <mat-form-field class="address_full_width">
-        <mat-label>Direccion de entrega</mat-label>
+        <mat-label>Calle / Avenida / Jirón</mat-label>
         <input
           cdkFocusInitial
           matInput
@@ -51,10 +51,10 @@
       </mat-form-field>
 
       <mat-form-field class="address_street_number_width">
-        <mat-label>Número</mat-label>
+        <mat-label>Num. de dirección </mat-label>
         <input
           matInput
-          placeholder="Vivo en el número ..."
+          placeholder="N. 167"
           name="streetNumber"
           type="tel"
           formControlName="streetNumber"
@@ -62,23 +62,14 @@
       </mat-form-field>
 
       <mat-form-field class="address_apartment_number_width">
-        <mat-label>Departamento</mat-label>
+        <mat-label>Dpto. / Mz. / Lote</mat-label>
         <input
           matInput
-          placeholder="Sí tengo, es ..."
+          placeholder=""
           name="apartmentNumber"
           type="tel"
           formControlName="apartmentNumber"
         />
-      </mat-form-field>
-
-      <mat-form-field class="address_district_width">
-        <mat-label>Distrito</mat-label>
-        <mat-select formControlName="district">
-          <mat-option [value]="district" *ngFor="let district of districts"
-            >{{ district }}
-          </mat-option>
-        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="address_city_width">
@@ -90,6 +81,26 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field class="address_district_width">
+        <mat-label>Distrito</mat-label>
+        <mat-select formControlName="district">
+          <mat-option [value]="district" *ngFor="let district of districts"
+            >{{ district }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="address_full_width">
+        <mat-label>Escribe/pega tu direccion completa</mat-label>
+        <textarea
+          matInput
+          placeholder="Mi direcctión es ..."
+          name="details"
+          type="text"
+          formControlName="details"
+        ></textarea>
+      </mat-form-field>
+
       <mat-form-field class="address_full_width">
         <mat-label>Referencia</mat-label>
         <textarea
@@ -98,17 +109,6 @@
           name="reference"
           type="text"
           formControlName="reference"
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field class="address_full_width">
-        <mat-label>Detalles adicionales</mat-label>
-        <textarea
-          matInput
-          placeholder="Frente a caseta de policia ..."
-          name="details"
-          type="text"
-          formControlName="details"
         ></textarea>
       </mat-form-field>
 

@@ -2,7 +2,7 @@ $img_witdh: 60px
 $details_width: 1fr
 $quant_width: 60px
 $isChecked_width: 30px
-$comments_width: 270px
+$comments_width: 1fr
 
 $primary_display_font_size: 14px
 $secondary_display_font_size: 13px
@@ -18,6 +18,7 @@ $primary_filed_dark_color: #323232
 $primary_filed_color: #444444
 $secondary_filed_color: #7b7b7b
 $third_filed_color: #898a89
+$warning_filed_color: #db1d1d
 $days_color: #8bce7d
 
 $primary_button_color: #43b02b 
@@ -113,7 +114,7 @@ $third_text_color: #8bce7d
     .comment_area
       grid-area: add_det
       font-size: $third_display_font_size
-      color: $third_filed_color
+      color: $warning_filed_color
     
     .remove_area
       grid-area: rmv_det
@@ -164,7 +165,7 @@ mat-expansion-panel-body
   margin: 0
   padding:  0px 0px 16px 0px
   grid-template-columns: 1fr
-  grid-template-rows: .1fr .1fr 0px
+  grid-template-rows: .1fr .1fr .1fr
   grid-template-areas: "product" "toppings" "options"
   grid-gap: 0px
 
@@ -251,7 +252,7 @@ mat-expansion-panel-body
     .comment_area
       grid-area: add_det
       font-size: $third_display_font_size
-      color: $third_filed_color
+      color: $warning_filed_color
     
     .remove_area
       grid-area: rmv_det

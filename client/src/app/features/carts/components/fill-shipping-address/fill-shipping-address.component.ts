@@ -53,14 +53,14 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  // Todo comment the unnecessary fields
   ngOnInit(): void {
     if (this.address == undefined) {
       this.addressForm = this.fb.group({
         streetName: ['', Validators.required],
         streetNumber: ['', Validators.required],
-        apartmentNumber: [''],
         district: ['', Validators.required],
+        apartmentNumber: [''],
         city: ['', Validators.required],
         // isSaveAsFrequentAddress: [false],
         department: ['LIM', Validators.required],
@@ -194,7 +194,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
   }
 
   loadCities(): void {
-    this.cities = ['LIM'];
+    this.cities = ['LIM', 'HYO'];
   }
   updateSlide(): void {
     // this.isPickUp = value;
@@ -221,6 +221,13 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
         district: '',
         city: '',
         details: '',
+        // streetName: '',
+        // streetNumber: '',
+        // apartmentNumber: '',
+        // city: '',
+        // district: '',
+        // reference: '',
+        // details: '',
       });
     }
   }

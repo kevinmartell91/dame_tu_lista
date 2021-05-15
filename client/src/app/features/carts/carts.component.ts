@@ -116,6 +116,9 @@ export class CartsComponent implements OnDestroy {
     const currentUser = localStorage.getItem(LOGIN_CONFIG.loginUserStorage);
     if (currentUser) {
       this.currentUser = currentUser;
+      // this.updateButtonMessage(
+      //   STORE_CONFIG.messages_view.buttonMessage_SaleQuote
+      // );
     }
 
     this.subscriptionRoute = this.route.paramMap.subscribe((params) => {
@@ -143,22 +146,29 @@ export class CartsComponent implements OnDestroy {
 
   init(): void {
     if (this.order_id) {
-      // confirm and order the the shopping cart
+      // confirm the order of he shopping cart (here the order can be edited
+      // then i will turn from sales-quote to orde in the urlpath)
       this.updateButtonMessage(
         STORE_CONFIG.messages_view.buttonMessage_ConfimOrder
       );
       this.titleMessage = STORE_CONFIG.messages_view.saleQuoteView;
       this.order.initSaleQuoteOrderId(this.order_id).subscribe((res) => {
         this.orderBD = res.data;
-        console.log('res.data', res.data, this.orderBD);
+        console.log('initSaleQuoteOrderId orderBD', this.orderBD);
       });
     } else {
       // generating the order by him or her self
       this.titleMessage = STORE_CONFIG.question_view_type.cartView;
 
-      this.updateButtonMessage(
-        STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp
-      );
+      if (this.currentUser) {
+        this.updateButtonMessage(
+          STORE_CONFIG.messages_view.buttonMessage_SaleQuote
+        );
+      } else {
+        this.updateButtonMessage(
+          STORE_CONFIG.messages_view.buttonMessage_SendViaWhatsApp
+        );
+      }
     }
 
     this.subscribeRetailerStore = this.retailerStoreStore.products$.subscribe(
@@ -173,8 +183,6 @@ export class CartsComponent implements OnDestroy {
 
     this.subscriptionCart = this.cartStore.shoppingCart$.subscribe((x) => {
       this.cartProducts = x.products;
-      // console.log('this.cartProducts ', this.cartProducts);
-
       this.totalCartPrice = getTotalCartPrice(this.cartProducts);
       // formating to two decimals and as a string
       this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
@@ -216,7 +224,11 @@ export class CartsComponent implements OnDestroy {
           this.isDisable = false;
 
           this.orderBD = res.data;
-          console.log('res.data', res.data, this.orderBD);
+          console.log(
+            'AS a sale_quote => initSaleQuoteOrderId',
+            res.data,
+            this.orderBD
+          );
         } else {
           let orderUrl = this.getUrlOrderPath(this.router.url);
           // redirect to order by id
@@ -226,8 +238,6 @@ export class CartsComponent implements OnDestroy {
     }
 
     if (this.isUrlOrders) {
-      console.log('this.isUrlOrders', this.order_id);
-
       localStorage.removeItem('current_order_id');
 
       updateBuyerNavagation(
@@ -238,9 +248,20 @@ export class CartsComponent implements OnDestroy {
 
       this.order.initSaleQuoteOrderId(this.order_id).subscribe((res) => {
         this.titleMessage = STORE_CONFIG.messages_view.orderInProcessView;
-        this.updateButtonMessage(
-          STORE_CONFIG.messages_view.buttonMessage_OrderProcess
-        );
+
+        if (
+          this.getLastStatus(this.orderBD.shipping.tracking.orderStatus) ===
+          ORDER_CONFIG.orderStatus.packaged_by_retailer
+        ) {
+          console.log('packaged_by_retailer');
+          this.updateButtonMessage(
+            STORE_CONFIG.messages_view.buttonMessage_DispatchedOrder
+          );
+        } else {
+          this.updateButtonMessage(
+            STORE_CONFIG.messages_view.buttonMessage_ProcessingOrder
+          );
+        }
         this.cartProducts = [];
         this.cartProducts = transformOrderCartProductToCartProduct(
           res.data.cart
@@ -252,6 +273,11 @@ export class CartsComponent implements OnDestroy {
         this.orderBD = res.data;
       });
     }
+  }
+
+  getLastStatus(status: any): string {
+    let lastStatus = status[status.length - 1];
+    return lastStatus[0];
   }
 
   ngOnDestroy(): void {
