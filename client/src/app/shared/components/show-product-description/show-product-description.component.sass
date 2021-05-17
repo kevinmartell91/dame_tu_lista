@@ -1,0 +1,52 @@
+$text-font-size: 1.5em
+$sign-font-size: 2.5em
+$quantity-font-size-product-display: 20px
+$quantity-font-size-cart-product: 1.3em
+$quantity-color: #5f5f5f
+$optionsColor: #43b02a
+$border-radius: 7px
+$box-size: 40px
+
+
+
+*
+  box-sizing: $box-size
+ 
+.container_product
+  display: grid
+  grid-template-columns: 100%
+  // grid-template-rows:  200px 10px 34px 29px 100px 1fr 20px
+  // grid-template-areas:  "img" "priceProd" "nameProd" "addBtn" "prodLabel" "toppings" "opt"
+  grid-template-rows:  200px 34px .1fr
+  grid-template-areas:  "img" "nameProd" "proDes" "opt"
+  // grid-gap: 10px
+  place-items: center
+  text-align: center
+ 
+
+  .image_area
+    grid-area: img
+    // transform: translateY(-40px)
+    .product_image
+      border-radius: $border-radius
+      height: 270px
+
+
+  .product_name_area
+    grid-area: nameProd
+    background: black
+    place-self: stretch
+    color: white
+    font-size: $text-font-size
+    transform: translateY(18px)
+    // position: fixed
+    // z-index: 30
+
+  .product_description_area
+    grid-area: proDes
+    z-index: 30
+    transform: translate(0px, 40px)
+   
+  .options_area
+    grid-area: opt
+  

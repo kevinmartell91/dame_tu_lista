@@ -19,6 +19,7 @@ import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from '../../../core/retailer/types/product';
 import { containtToppings } from '../../helpers/cart-product.helpers';
 import { AddToppingsComponent } from '../add-toppings/add-toppings.component';
+import { ShowProductDescriptionComponent } from '../show-product-description/show-product-description.component';
 import {
   ToppingModalResult,
   ToppingSelected,
@@ -95,6 +96,9 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
 
   select() {
     this.selected.emit(this.product);
+  }
+  openShowPeoductDescriptionModal() {
+    this.openShowProductDescription();
   }
 
   getGridView(): string {
@@ -287,6 +291,19 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  openShowProductDescription(): void {
+    this.dialogRef = this.MatDialog.open(ShowProductDescriptionComponent, {
+      width: '320px',
+      height: '400px',
+      data: {
+        image: this.product.maturityImageUrl,
+        productName: this.product.maturityName,
+        description: this.product.description,
+      },
+    });
+  }
+
   emmitModalResults(cartProduct: CartProduct, result: any): void {
     // // create idAux (_id + "_" timestamp
     // const currentTimeInMilliseconds = Date.now(); // unix timestamp in milliseconds)

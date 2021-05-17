@@ -88,6 +88,10 @@ var orderSchema = new Schema({
           countSelected: Number,
         },
       ],
+      description: {
+        type: String,
+        default: "",
+      },
     },
   ],
 });

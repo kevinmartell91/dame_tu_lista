@@ -63,6 +63,7 @@ import {
 } from './directives/edit-in-place';
 import { AddToppingsComponent } from './components/add-toppings/add-toppings.component';
 import { ToppingComponent } from './components/topping/topping.component';
+import { ShowProductDescriptionComponent } from './components/show-product-description/show-product-description.component';
 
 const EXPORTED_DECLARATIONS = [
   // ClipboardModule,
@@ -121,6 +122,7 @@ const EXPORTED_DECLARATIONS = [
     EditableTableComponent,
     AddToppingsComponent,
     ToppingComponent,
+    ShowProductDescriptionComponent,
   ],
   imports: [
     CommonModule,
@@ -144,6 +146,7 @@ const EXPORTED_DECLARATIONS = [
     EditableTableComponent,
     AddToppingsComponent,
     ToppingComponent,
+    ShowProductDescriptionComponent,
     ...EXPORTED_DECLARATIONS,
   ],
   providers: [],

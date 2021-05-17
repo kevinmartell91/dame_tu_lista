@@ -187,7 +187,7 @@ export function getProductFromCartProduct(cartProduct: CartProduct): Product {
 
   product.quantity = cartProduct.quantity;
 
-  console.log('TRANSFORMED TO PRODUCT - getProductFromCartProduct()', product);
+  // console.log('TRANSFORMED TO PRODUCT - getProductFromCartProduct()', product);
   return product;
 }
 
@@ -224,7 +224,7 @@ export function transformCartProductsIntoProductsWithToppings(
   storeProducts: Product[],
   cartProducts: CartProduct[]
 ): Product[] {
-  console.log('storeProducts', cartProducts);
+  // console.log('storeProducts', cartProducts);
   storeProducts.map((storeProd) => {
     return (storeProd.quantity = 0);
   });
@@ -242,7 +242,7 @@ export function transformCartProductsIntoProductsWithToppings(
   });
   // });
 
-  console.log('keyById', keyById);
+  // console.log('keyById', keyById);
 
   //passing to updated quantities to storeProduct
   storeProducts.map((storeProd) => {

@@ -1,26 +1,21 @@
 <!-- <button (click)="show()">show</button>
       <button (click)="hide()">hide</button> -->
 
-<div [class]="getGridView()" (click)="select()">
+<!-- <div [class]="getGridView()" (click)="select()"> -->
+<div [class]="getGridView()">
   <div class="product_image_area">
     <img
       *ngIf="typeView === 'rowView'"
       class="image_style_row_view"
-      (click)="select()"
+      (click)="openShowProductDescription()"
       src="{{ product.maturityImageUrl }}"
       alt=""
     />
     <img
       *ngIf="typeView === 'categoryView'"
       class="image_style"
-      src="{{ product.categoryImageUrl }}"
-      alt=""
-    />
-    <img
-      *ngIf="typeView === 'seasonalView'"
-      class="image_style"
       (click)="select()"
-      src="{{ product.varietyImageUrl }}"
+      src="{{ product.categoryImageUrl }}"
       alt=""
     />
     <img
@@ -33,8 +28,15 @@
     <img
       *ngIf="typeView === 'maturityView'"
       class="image_style"
-      (click)="select()"
+      (click)="openShowPeoductDescriptionModal()"
       src="{{ product.maturityImageUrl }}"
+      alt=""
+    />
+    <img
+      *ngIf="typeView === 'seasonalView'"
+      class="image_style"
+      (click)="select()"
+      src="{{ product.varietyImageUrl }}"
       alt=""
     />
   </div>

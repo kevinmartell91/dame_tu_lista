@@ -137,13 +137,10 @@ export class RetailerStoreStore
         (val) => {},
         (err) => {},
         () => {
-          setTimeout(() => {
-            console.log(
-              'updateProductsFromSessionStorage CALLED',
-              this.state.productsList.products.length
-            );
-            this.updateProductsFromSessionStorage();
-          }, 2500);
+          // setTimeout(() => {
+          // console.log(this.state.productsList.products.length);
+          this.updateProductsFromSessionStorage();
+          // }, 2500);
         }
       );
   }
@@ -154,10 +151,7 @@ export class RetailerStoreStore
     const chacheData = sessionStorage.temp_session_storage;
 
     if (!JSON.parse(chacheData).product_list) return;
-    console.log(
-      'subscribe RESOLVED -  SECOND',
-      JSON.parse(chacheData).product_list
-    );
+    // console.log(JSON.parse(chacheData).product_list);
 
     const memCashedProd: Product[] = JSON.parse(chacheData).product_list;
 
@@ -198,26 +192,26 @@ export class RetailerStoreStore
   }
 
   public _updateProductsFromSessionStorage(cachedProducts: Product[]) {
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        productsList: {
-          ...this.state.productsList,
-          products: [],
-        },
-      });
-    }, 10);
+    // setTimeout(() => {
+    this.setState({
+      ...this.state,
+      productsList: {
+        ...this.state.productsList,
+        products: [],
+      },
+    });
+    // }, 10);
 
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        productsList: {
-          ...this.state.productsList,
-          products: cachedProducts,
-        },
-      });
-    }, 10);
-    console.log('Finished updateProductsFromSessionStorage');
+    // setTimeout(() => {
+    this.setState({
+      ...this.state,
+      productsList: {
+        ...this.state.productsList,
+        products: cachedProducts,
+      },
+    });
+    // }, 10);
+    // console.log('Finished updateProductsFromSessionStorage');
   }
 
   public getAirTableData(
@@ -236,7 +230,7 @@ export class RetailerStoreStore
         this.storeRequestUpdater
       )
       .subscribe((result) => {
-        console.log('getAirTableData', result);
+        // console.log('getAirTableData', result);
         //
         // return result;
       })

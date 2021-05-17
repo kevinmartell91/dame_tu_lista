@@ -34,6 +34,8 @@ export class Product implements Deserializable {
 
   public toppings?: Topping[];
 
+  public description?: string;
+
   deserialize(input: any) {
     Object.assign(this, input);
     return this;

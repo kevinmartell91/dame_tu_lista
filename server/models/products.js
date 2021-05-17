@@ -29,6 +29,8 @@ var productShema = new Schema({
   title_toppings: { type: String, default: "" },
   name_toppings: { type: [String], default: [] },
   isMultipleSelection_toppings: { type: Boolean, default: false },
+
+  description: { type: String, default: "" },
 });
 
 var Products = mongoose.model("Products", productShema);

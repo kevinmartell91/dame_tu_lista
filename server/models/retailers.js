@@ -61,6 +61,7 @@ var retailerSchema = new Schema({
             isMultipleSelection_toppings: { type: Boolean, default: false },
           },
         ],
+        description: { type: String, default: "" },
       },
     ],
   },
