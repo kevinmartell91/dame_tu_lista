@@ -150,9 +150,8 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       orderRawTxt += breakLine;
 
       if (prodDetailsTitle !== '') {
-        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
-          product.details
-        );
+        let multiplineProdNameAndDetails: string[] =
+          formatLongTextTo20CharactersMiltipleLines(product.details);
 
         multiplineProdNameAndDetails.forEach((line, i) => {
           orderRawTxt += verticalPipe + tab + tab + tab + line;
@@ -348,10 +347,11 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
       orderRawTxt += breakLine;
 
       if (prodDetailsTitle !== '') {
-        let multiplineProdNameAndDetails: string[] = formatLongTextToNNCharactersMiltipleLines(
-          product.details,
-          30 - marginLeft.length
-        );
+        let multiplineProdNameAndDetails: string[] =
+          formatLongTextToNNCharactersMiltipleLines(
+            product.details,
+            30 - marginLeft.length
+          );
 
         multiplineProdNameAndDetails.forEach((line, i) => {
           orderRawTxt +=
@@ -569,9 +569,8 @@ export const transformOrderToRawText = (order: Order): string => {
       orderRawTxt += breakLine;
 
       if (productDetails !== '') {
-        const multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
-          productDetails
-        );
+        const multiplineProdNameAndDetails: string[] =
+          formatLongTextTo20CharactersMiltipleLines(productDetails);
 
         multiplineProdNameAndDetails.forEach((line) => {
           orderRawTxt += verticalPipe + tab + tab + line;
@@ -881,9 +880,8 @@ export const transformInvoiceIntoRawTextBaseFormat = (
       orderRawTxt += breakLine;
 
       if (prodDetailsTitle !== '') {
-        let multiplineProdNameAndDetails: string[] = formatLongTextTo20CharactersMiltipleLines(
-          product.details
-        );
+        let multiplineProdNameAndDetails: string[] =
+          formatLongTextTo20CharactersMiltipleLines(product.details);
 
         multiplineProdNameAndDetails.forEach((line, i) => {
           orderRawTxt += verticalPipe + tab + tab + tab + line;
@@ -1022,13 +1020,13 @@ export const formatLongTextToNNCharactersMiltipleLines = (
 
 /** WhatsApp helper methods  */
 const getQuantityAsFractionFormat = (decimal: number): string => {
-  if (decimal && decimal === Math.round(decimal)) return decimal.toFixed(2);
+  if (decimal && decimal === Math.round(decimal)) return decimal.toFixed(0);
 
   let fraStr: string = '';
-  const intStr: string = decimal.toFixed(0);
-  const decStr: string = (decimal - +intStr).toFixed(2);
 
-  if (+intStr > 0) fraStr += intStr + ' ';
+  const int: number = Math.floor(decimal);
+  const decStr: string = (decimal - int).toFixed(2);
+  if (+int > 0) fraStr += int.toFixed(0) + ' ';
 
   switch (decStr) {
     case '0.25':
@@ -1040,8 +1038,8 @@ const getQuantityAsFractionFormat = (decimal: number): string => {
     // case '0.75':
     default:
       fraStr += '¾';
+      break;
   }
-
   return `*${getItalicFormat(fraStr)}*`;
 };
 
