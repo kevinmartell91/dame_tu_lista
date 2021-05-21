@@ -200,9 +200,14 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
       orderRawTxt += `📍 *Entrega en* :` + breakLine;
       orderRawTxt += breakLine;
 
-      orderRawTxt +=
-        `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` +
-        breakLine;
+      if (
+        order.shipping.address.streetName &&
+        order.shipping.address.streetNumber
+      ) {
+        orderRawTxt +=
+          `*Dirección* : ${order.shipping.address.streetName} ${order.shipping.address.streetNumber}` +
+          breakLine;
+      }
 
       if (order.shipping.address.apartmentNumber) {
         orderRawTxt +=
@@ -210,17 +215,19 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
           breakLine;
       }
 
-      orderRawTxt += `${order.shipping.address.district}.` + breakLine;
-
-      if (order.shipping.address.reference) {
-        orderRawTxt +=
-          `*Referencia* : ${order.shipping.address.reference}` + breakLine;
+      if (order.shipping.address.district) {
+        orderRawTxt += `${order.shipping.address.district}.` + breakLine;
       }
 
       if (order.shipping.address.details) {
         orderRawTxt +=
           `*Detalles adicionales* : ${order.shipping.address.details}` +
           breakLine;
+      }
+
+      if (order.shipping.address.reference) {
+        orderRawTxt +=
+          `*Referencia* : ${order.shipping.address.reference}` + breakLine;
       }
     }
 

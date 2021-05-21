@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToppingSelected } from 'src/app/shared/components/topping/types/toppingSelected';
 
@@ -22,7 +22,7 @@ export class CartProductDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartPoductDetailForm = this.fb.group({
-      productCartDetail: [this.data.cartProductDetail],
+      productCartDetail: [this.data.cartProductDetail, Validators.required],
     });
   }
 

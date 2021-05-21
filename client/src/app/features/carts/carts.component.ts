@@ -648,240 +648,240 @@ export class CartsComponent implements OnDestroy {
 
     console.log('MOCK ORDER => ', JSON.stringify(order));
 
-    const mockOrder = {
-      retailer_id: '60778625d9232c1ec44f5ec2',
-      orderType: 'pickup',
-      shipping: {
-        buyer: { phoneNumber: '+51996821980' },
-        deliveryNotes: '',
-        address: {
-          streetName: 'Recojo en tienda',
-          streetNumber: 'Recojo en tienda',
-          apartmentNumber: '',
-          district: 'Tienda',
-          city: 'LIM',
-          department: 'LIM',
-          country: 'PE',
-          reference: '',
-          details: 'pickup',
-        },
-        tracking: {
-          orderStatus: [
-            ['generated_by_buyer', '2021-04-28T17:08:32.596Z'],
-            ['updated_by_buyer', '2021-04-28T17:08:32.596Z'],
-          ],
-          driver_name: '',
-          trackingNumber: '',
-          estimatedDelivery:
-            'Se entregará su delivery en las próximas horas. Gracias.',
-        },
-      },
-      payment: {
-        method: 'upon_delivery_cash',
-        amount: 43.5,
-        cashPaymentAmount: 100,
-        cashBackAmount: 56.5,
-      },
-      cart: [
-        {
-          isCheckedDone: false,
-          _id: '607ed72782054b986f5ce317',
-          categoryImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
-          categoryName: 'Comida rápida',
-          varietyImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
-          varietyName: 'Hamburguesa clásica',
-          currency: 'PEN',
-          price: 7,
-          isSmallSize: false,
-          isMediumSize: true,
-          isBigSize: false,
-          isKilo: false,
-          isUnit: true,
-          isOrganic: false,
-          isSeasonal: true,
-          isMaturityDetails: true,
-          maturityImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
-          maturityName: 'Wawito clasica  (kevin)',
-          maturityInfo:
-            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
-          maturityEatIn: '0',
-          maturityLastFor: '0',
-          isInStock: true,
-          quantity: 1,
-          size: '',
-          details:
-            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
-          idAux: '607ed72782054b986f5ce317_1619629587406',
-          totalPrice: 15,
-          totalAmount: 15,
-          toppings: [
-            {
-              name: 'Tipo de pan',
-              selected: 'Pan de Yema',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Deseas ensalada',
-              selected: 'Si (tomate y lechuga)',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Tipo de papas',
-              selected: 'Al hilo',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Deseas adicionales',
-              selected: 'Hamburguesa de Carne S/. 4.00,Hot - Dog S/. 4.00',
-              isMultipleSelection: true,
-              countSelected: 2,
-            },
-            {
-              name: 'Tus cremas',
-              selected: 'Mayonesa ,Ketchup ,Mostaza ,Salsa Gold ',
-              isMultipleSelection: true,
-              countSelected: 4,
-            },
-          ],
-        },
-        {
-          isCheckedDone: false,
-          _id: '607ed72782054b986f5ce327',
-          categoryImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
-          categoryName: 'Comida rápida',
-          varietyImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
-          varietyName: 'Hamburguesa clásica',
-          currency: 'PEN',
-          price: 10.5,
-          isSmallSize: false,
-          isMediumSize: true,
-          isBigSize: false,
-          isKilo: false,
-          isUnit: true,
-          isOrganic: false,
-          isSeasonal: true,
-          isMaturityDetails: true,
-          maturityImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/0a9403641dd1180bb2ba7f5c277ba14f/3c17b31a',
-          maturityName: 'Wawito royal  (kevin)',
-          maturityInfo:
-            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
-          maturityEatIn: '0',
-          maturityLastFor: '0',
-          isInStock: true,
-          quantity: 1,
-          size: '',
-          details:
-            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de ',
-          idAux: '607ed72782054b986f5ce327_1619629605183',
-          totalPrice: 10.5,
-          totalAmount: 10.5,
-          toppings: [
-            {
-              name: 'Tipo de pan',
-              selected: 'Pan de Yema',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Deseas ensalada',
-              selected: 'No',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Tipo de papas',
-              selected: 'Al hilo',
-              isMultipleSelection: false,
-              countSelected: 1,
-            },
-            {
-              name: 'Tus cremas',
-              selected: 'Ketchup ,Mostaza ,Salsa Gold ',
-              isMultipleSelection: true,
-              countSelected: 3,
-            },
-          ],
-        },
-        {
-          isCheckedDone: false,
-          _id: '607ed72782054b986f5ce330',
-          categoryImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
-          categoryName: 'Comida rápida',
-          varietyImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
-          varietyName: 'Hamburguesa clásica',
-          currency: 'PEN',
-          price: 8,
-          isSmallSize: false,
-          isMediumSize: true,
-          isBigSize: false,
-          isKilo: false,
-          isUnit: true,
-          isOrganic: false,
-          isSeasonal: true,
-          isMaturityDetails: true,
-          maturityImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/7ba16f5058cbc5ad5781845ac9dd2b84/5bc19cf5',
-          maturityName: 'Super wawito  (camilo)',
-          maturityInfo:
-            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
-          maturityEatIn: '0',
-          maturityLastFor: '0',
-          isInStock: true,
-          quantity: 1,
-          size: '',
-          details: '',
-          idAux: '607ed72782054b986f5ce330_1619629618343',
-          totalPrice: 8,
-          totalAmount: 8,
-        },
-        {
-          isCheckedDone: false,
-          _id: '607ed72782054b986f5ce309',
-          categoryImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
-          categoryName: 'Comida rápida',
-          varietyImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
-          varietyName: 'Hamburguesa especial',
-          currency: 'PEN',
-          price: 10,
-          isSmallSize: false,
-          isMediumSize: true,
-          isBigSize: false,
-          isKilo: false,
-          isUnit: true,
-          isOrganic: false,
-          isSeasonal: true,
-          isMaturityDetails: true,
-          maturityImageUrl:
-            'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
-          maturityName: 'Wawito tropical  (Clear me)',
-          maturityInfo:
-            'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
-          maturityEatIn: '0',
-          maturityLastFor: '0',
-          isInStock: true,
-          quantity: 1,
-          size: '',
-          details:
-            'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
-          idAux: '607ed72782054b986f5ce309_1619629661760',
-          totalPrice: 10,
-          totalAmount: 10,
-        },
-      ],
-    };
+    // const mockOrder = {
+    //   retailer_id: '60778625d9232c1ec44f5ec2',
+    //   orderType: 'pickup',
+    //   shipping: {
+    //     buyer: { phoneNumber: '+51996821980' },
+    //     deliveryNotes: '',
+    //     address: {
+    //       streetName: 'Recojo en tienda',
+    //       streetNumber: 'Recojo en tienda',
+    //       apartmentNumber: '',
+    //       district: 'Tienda',
+    //       city: 'LIM',
+    //       department: 'LIM',
+    //       country: 'PE',
+    //       reference: '',
+    //       details: 'pickup',
+    //     },
+    //     tracking: {
+    //       orderStatus: [
+    //         ['generated_by_buyer', '2021-04-28T17:08:32.596Z'],
+    //         ['updated_by_buyer', '2021-04-28T17:08:32.596Z'],
+    //       ],
+    //       driver_name: '',
+    //       trackingNumber: '',
+    //       estimatedDelivery:
+    //         'Se entregará su delivery en las próximas horas. Gracias.',
+    //     },
+    //   },
+    //   payment: {
+    //     method: 'upon_delivery_cash',
+    //     amount: 43.5,
+    //     cashPaymentAmount: 100,
+    //     cashBackAmount: 56.5,
+    //   },
+    //   cart: [
+    //     {
+    //       isCheckedDone: false,
+    //       _id: '607ed72782054b986f5ce317',
+    //       categoryImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+    //       categoryName: 'Comida rápida',
+    //       varietyImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+    //       varietyName: 'Hamburguesa clásica',
+    //       currency: 'PEN',
+    //       price: 7,
+    //       isSmallSize: false,
+    //       isMediumSize: true,
+    //       isBigSize: false,
+    //       isKilo: false,
+    //       isUnit: true,
+    //       isOrganic: false,
+    //       isSeasonal: true,
+    //       isMaturityDetails: true,
+    //       maturityImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
+    //       maturityName: 'Wawito clasica  (kevin)',
+    //       maturityInfo:
+    //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+    //       maturityEatIn: '0',
+    //       maturityLastFor: '0',
+    //       isInStock: true,
+    //       quantity: 1,
+    //       size: '',
+    //       details:
+    //         'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
+    //       idAux: '607ed72782054b986f5ce317_1619629587406',
+    //       totalPrice: 15,
+    //       totalAmount: 15,
+    //       toppings: [
+    //         {
+    //           name: 'Tipo de pan',
+    //           selected: 'Pan de Yema',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Deseas ensalada',
+    //           selected: 'Si (tomate y lechuga)',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Tipo de papas',
+    //           selected: 'Al hilo',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Deseas adicionales',
+    //           selected: 'Hamburguesa de Carne S/. 4.00,Hot - Dog S/. 4.00',
+    //           isMultipleSelection: true,
+    //           countSelected: 2,
+    //         },
+    //         {
+    //           name: 'Tus cremas',
+    //           selected: 'Mayonesa ,Ketchup ,Mostaza ,Salsa Gold ',
+    //           isMultipleSelection: true,
+    //           countSelected: 4,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       isCheckedDone: false,
+    //       _id: '607ed72782054b986f5ce327',
+    //       categoryImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+    //       categoryName: 'Comida rápida',
+    //       varietyImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+    //       varietyName: 'Hamburguesa clásica',
+    //       currency: 'PEN',
+    //       price: 10.5,
+    //       isSmallSize: false,
+    //       isMediumSize: true,
+    //       isBigSize: false,
+    //       isKilo: false,
+    //       isUnit: true,
+    //       isOrganic: false,
+    //       isSeasonal: true,
+    //       isMaturityDetails: true,
+    //       maturityImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/0a9403641dd1180bb2ba7f5c277ba14f/3c17b31a',
+    //       maturityName: 'Wawito royal  (kevin)',
+    //       maturityInfo:
+    //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+    //       maturityEatIn: '0',
+    //       maturityLastFor: '0',
+    //       isInStock: true,
+    //       quantity: 1,
+    //       size: '',
+    //       details:
+    //         'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de ',
+    //       idAux: '607ed72782054b986f5ce327_1619629605183',
+    //       totalPrice: 10.5,
+    //       totalAmount: 10.5,
+    //       toppings: [
+    //         {
+    //           name: 'Tipo de pan',
+    //           selected: 'Pan de Yema',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Deseas ensalada',
+    //           selected: 'No',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Tipo de papas',
+    //           selected: 'Al hilo',
+    //           isMultipleSelection: false,
+    //           countSelected: 1,
+    //         },
+    //         {
+    //           name: 'Tus cremas',
+    //           selected: 'Ketchup ,Mostaza ,Salsa Gold ',
+    //           isMultipleSelection: true,
+    //           countSelected: 3,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       isCheckedDone: false,
+    //       _id: '607ed72782054b986f5ce330',
+    //       categoryImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+    //       categoryName: 'Comida rápida',
+    //       varietyImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+    //       varietyName: 'Hamburguesa clásica',
+    //       currency: 'PEN',
+    //       price: 8,
+    //       isSmallSize: false,
+    //       isMediumSize: true,
+    //       isBigSize: false,
+    //       isKilo: false,
+    //       isUnit: true,
+    //       isOrganic: false,
+    //       isSeasonal: true,
+    //       isMaturityDetails: true,
+    //       maturityImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/7ba16f5058cbc5ad5781845ac9dd2b84/5bc19cf5',
+    //       maturityName: 'Super wawito  (camilo)',
+    //       maturityInfo:
+    //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+    //       maturityEatIn: '0',
+    //       maturityLastFor: '0',
+    //       isInStock: true,
+    //       quantity: 1,
+    //       size: '',
+    //       details: '',
+    //       idAux: '607ed72782054b986f5ce330_1619629618343',
+    //       totalPrice: 8,
+    //       totalAmount: 8,
+    //     },
+    //     {
+    //       isCheckedDone: false,
+    //       _id: '607ed72782054b986f5ce309',
+    //       categoryImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+    //       categoryName: 'Comida rápida',
+    //       varietyImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+    //       varietyName: 'Hamburguesa especial',
+    //       currency: 'PEN',
+    //       price: 10,
+    //       isSmallSize: false,
+    //       isMediumSize: true,
+    //       isBigSize: false,
+    //       isKilo: false,
+    //       isUnit: true,
+    //       isOrganic: false,
+    //       isSeasonal: true,
+    //       isMaturityDetails: true,
+    //       maturityImageUrl:
+    //         'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
+    //       maturityName: 'Wawito tropical  (Clear me)',
+    //       maturityInfo:
+    //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+    //       maturityEatIn: '0',
+    //       maturityLastFor: '0',
+    //       isInStock: true,
+    //       quantity: 1,
+    //       size: '',
+    //       details:
+    //         'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar',
+    //       idAux: '607ed72782054b986f5ce309_1619629661760',
+    //       totalPrice: 10,
+    //       totalAmount: 10,
+    //     },
+    //   ],
+    // };
 
     // place order DB
     this.orderStore.generateOrder(order).subscribe((x) => {
@@ -898,9 +898,10 @@ export class CartsComponent implements OnDestroy {
         );
 
         if (containtToppings((x.data as Order).cart[0].categoryName)) {
-          const orderThermalPrinterFormat = transformOrderToRawTextBaseFortmatForThermalPrinter(
-            x.data as Order
-          );
+          const orderThermalPrinterFormat =
+            transformOrderToRawTextBaseFortmatForThermalPrinter(
+              x.data as Order
+            );
         }
         // and send it via whatapp
         // to the desired phone number

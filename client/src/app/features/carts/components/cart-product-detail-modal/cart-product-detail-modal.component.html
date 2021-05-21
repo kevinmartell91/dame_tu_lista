@@ -13,16 +13,17 @@
   </mat-form-field>
 
   <!-- <button mat-button [mat-dialog-close]="detailForm.value"  
-        class="btn_block"
-        [disabled]="!detailForm.valid">Siguiente</button>
- -->
+          class="btn_block"
+          [disabled]="!detailForm.valid">Siguiente</button>
+   -->
 
-  <div mat-dialog-actions>
+  <div mat-dialog-actions fxLayoutAlign="center center">
     <button mat-button (click)="onNoClick()">Cancelar</button>
     <button
       mat-flat-button
       color="primary"
       [mat-dialog-close]="cartPoductDetailForm.value"
+      [disabled]="!cartPoductDetailForm.valid"
       cdkFocusInitial
     >
       Aceptar

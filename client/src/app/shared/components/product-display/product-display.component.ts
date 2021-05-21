@@ -97,8 +97,11 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   select() {
     this.selected.emit(this.product);
   }
-  openShowPeoductDescriptionModal() {
-    this.openShowProductDescription();
+  openShowProductDescriptionModal() {
+    console.log('this.product.description', this.product.description);
+    if (this.product.description !== '') {
+      this.openShowProductDescription();
+    }
   }
 
   getGridView(): string {
@@ -271,11 +274,12 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
     this.dialogRef.afterClosed().subscribe((result: ToppingModalResult) => {
       if (result) {
         // create a new cart stores with updated quantity
-        const cartProduct: CartProduct = getCartProductWithToppingsFromProductWithToppings(
-          this.product,
-          this.size,
-          result
-        );
+        const cartProduct: CartProduct =
+          getCartProductWithToppingsFromProductWithToppings(
+            this.product,
+            this.size,
+            result
+          );
 
         // this.emmitModalResults(cartProduct, result);
         // this.quantityStr = cartProduct.quantity.toString();
@@ -284,24 +288,25 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
         this.selectedCartProductWithToppings.emit(cartProduct);
 
         // // search by _Id and count then increment
-        const quantity = this.cartStore.countCartStoreProductsWithToppingsSameID(
-          cartProduct
-        );
+        const quantity =
+          this.cartStore.countCartStoreProductsWithToppingsSameID(cartProduct);
         this.onQuantityUpdatedWithToppings(quantity);
       }
     });
   }
 
   openShowProductDescription(): void {
-    this.dialogRef = this.MatDialog.open(ShowProductDescriptionComponent, {
-      width: '320px',
-      height: '400px',
-      data: {
-        image: this.product.maturityImageUrl,
-        productName: this.product.maturityName,
-        description: this.product.description,
-      },
-    });
+    if (this.product.description !== '') {
+      this.dialogRef = this.MatDialog.open(ShowProductDescriptionComponent, {
+        width: '320px',
+        height: '400px',
+        data: {
+          image: this.product.maturityImageUrl,
+          productName: this.product.maturityName,
+          description: this.product.description,
+        },
+      });
+    }
   }
 
   emmitModalResults(cartProduct: CartProduct, result: any): void {

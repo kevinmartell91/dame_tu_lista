@@ -57,27 +57,27 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.address == undefined) {
       this.addressForm = this.fb.group({
-        streetName: ['', Validators.required],
-        streetNumber: ['', Validators.required],
-        district: ['', Validators.required],
-        apartmentNumber: [''],
-        city: ['', Validators.required],
-        // isSaveAsFrequentAddress: [false],
-        department: ['LIM', Validators.required],
-        country: ['PE', Validators.required],
+        // streetName: ['', Validators.required],
+        // streetNumber: ['', Validators.required],
+        // district: ['', Validators.required],
+        // apartmentNumber: [''],
+        // city: ['', Validators.required],
+        // // isSaveAsFrequentAddress: [false],
+        // department: ['LIM', Validators.required],
+        // country: ['PE', Validators.required],
         reference: [''],
-        details: [''],
+        details: ['', Validators.required],
       });
     } else {
       this.addressForm = this.fb.group({
-        streetName: [this.buyer.address.streetName, Validators.required],
-        streetNumber: [this.buyer.address.streetNumber, Validators.required],
-        apartmentNumber: [this.buyer.address.apartmentNumber],
-        district: [this.buyer.address.district, Validators.required],
-        city: [this.buyer.address.city, Validators.required],
-        // isSaveAsFrequentAddress: [false],
-        department: ['LIM', Validators.required],
-        country: ['PE', Validators.required],
+        // streetName: [this.buyer.address.streetName, Validators.required],
+        // streetNumber: [this.buyer.address.streetNumber, Validators.required],
+        // apartmentNumber: [this.buyer.address.apartmentNumber],
+        // district: [this.buyer.address.district, Validators.required],
+        // city: [this.buyer.address.city, Validators.required],
+        // // isSaveAsFrequentAddress: [false],
+        // department: ['LIM', Validators.required],
+        // country: ['PE', Validators.required],
         reference: [this.buyer.address.reference],
         details: [this.buyer.address.details],
       });
@@ -207,19 +207,19 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
       this.pickUpMessage =
         'Usted podrá recoger su orden en el horario de atención establecido por el vendedor.';
       this.addressForm.patchValue({
-        streetName: 'Recojo en tienda',
-        streetNumber: 'Recojo en tienda',
-        apartmentNumber: '',
-        district: 'Tienda',
-        city: 'LIM',
+        // streetName: 'Recojo en tienda',
+        // streetNumber: 'Recojo en tienda',
+        // apartmentNumber: '',
+        // district: 'Tienda',
+        // city: 'LIM',
         details: 'pickup',
       });
     } else {
       this.addressForm.patchValue({
-        streetName: '',
-        streetNumber: '',
-        district: '',
-        city: '',
+        // streetName: '',
+        // streetNumber: '',
+        // district: '',
+        // city: '',
         details: '',
         // streetName: '',
         // streetNumber: '',

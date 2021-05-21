@@ -26,7 +26,7 @@
   <div class="product_label">
     <form class="example-form">
       <mat-form-field>
-        <mat-label>Personaliza tu Wawito</mat-label>
+        <mat-label>Personaliza tu producto</mat-label>
         <input
           type="text"
           matInput
@@ -44,7 +44,8 @@
           Ponle nombre a tu Wawito
         </mat-error>
         <mat-error *ngIf="productLableFormControl.hasError('required')">
-          No te olvides que te llamaremos por este <strong>nombre</strong>
+          No te olvides que este <strong>nombre</strong> está asociado a este
+          producto.
         </mat-error>
       </mat-form-field>
     </form>

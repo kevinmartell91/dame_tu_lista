@@ -1,21 +1,14 @@
 // Import library functions for theme creation.
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
-
 
 // Include non-theme styles for core.
 @include mat-core();
 
 // Define your application's custom theme.
 $primary: mat-palette($mat-green);
-$accent:  mat-palette($mat-indigo, A200, A100, A400);
-$warn:    mat-palette($mat-red, 300, 500, 800);
-
+$accent: mat-palette($mat-indigo, A200, A100, A400);
+$warn: mat-palette($mat-red, 300, 500, 800);
 
 // https://material.angular.io/guide/theming-your-components
 // https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
-
-
-
-
-
