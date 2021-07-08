@@ -18,7 +18,8 @@ $primary_filed_dark_color: #323232
 $primary_filed_color: #444444
 $secondary_filed_color: #7b7b7b
 $third_filed_color: #898a89
-$warning_filed_color: #db1d1d
+$warning_filed_color: #ffffff
+$warning_background_color: #fb9797
 $days_color: #8bce7d
 
 $primary_button_color: #43b02b 
@@ -173,9 +174,9 @@ mat-expansion-panel-body
   .product_area
     grid-area: product
     display: grid
-    grid-template-columns: $img_witdh $details_width $quant_width $isChecked_width
+    grid-template-columns: $isChecked_width $quant_width $details_width $img_witdh 
     grid-template-rows: .1fr .1fr .1fr
-    grid-template-areas: "img name quant chkd" "img kg_Uni quant chkd"  "img kg_Uni quant chkd"
+    grid-template-areas: "chkd quant name img" "chkd quant kg_Uni img"  "chkd quant kg_Uni img"
     grid-gap: 0em
 
     .img_area
@@ -251,8 +252,11 @@ mat-expansion-panel-body
 
     .comment_area
       grid-area: add_det
+      text-align: center
+      border-radius: 4px
       font-size: $third_display_font_size
       color: $warning_filed_color
+      background: $warning_background_color
     
     .remove_area
       grid-area: rmv_det

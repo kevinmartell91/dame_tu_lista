@@ -54,15 +54,14 @@
             </div>
           </ng-template>
 
-          <div class="search_box_area">
-            <!-- <mat-icon *ngIf="!isSearchBoxOpen" 
-                        (click)="openSeachBox()" class="search-icon-right" matSuffix>search</mat-icon> -->
-            <!-- https://codepen.io/912lab/pen/LsplC -->
+          <!-- <mat-icon *ngIf="!isSearchBoxOpen" 
+                      (click)="openSeachBox()" class="search-icon-right" matSuffix>search</mat-icon> -->
+          <!-- https://codepen.io/912lab/pen/LsplC -->
+          <!-- <div class="search_box_area">
             <ng-container *ngIf="isSearchBoxOpen; then showForm"></ng-container>
             <ng-template #showForm>
               <form>
                 <mat-form-field class="full_width">
-                  <!-- <mat-label>Buscar</mat-label> -->
                   <input
                     type="text"
                     matInput
@@ -83,7 +82,7 @@
                 </mat-autocomplete>
               </form>
             </ng-template>
-          </div>
+          </div> -->
 
           <div class="cart_icon_area" (click)="viewBuyerCart()">
             <img
@@ -121,11 +120,11 @@
 
       <!-- <app-product-type class="product_type_area" [productTypes] = allProductTypes></app-product-type> -->
 
-      <div class="store_options_area">
-        <div class="category_title_area">
-          <!-- <mat-icon (click)="goToRetailerCategoryView()">view_module</mat-icon> -->
+      <!-- <div class="store_options_area"> -->
+      <!-- <div class="category_title_area"> -->
+      <!-- <mat-icon (click)="goToRetailerCategoryView()">view_module</mat-icon> -->
 
-          <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon >view_module</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
@@ -133,10 +132,10 @@
                             <span (click)="goToRetailerCategoryView()">Categorías</span>
                         </button>
                     </mat-menu> -->
-          <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
+      <!-- <button mat-stroked-button color="primary" (click)="goToRetailerCategoryView()">Categorías
                     </button> -->
-        </div>
-      </div>
+      <!-- </div> -->
+      <!-- </div> -->
 
       <div class="store_products_area">
         <!-- <app-seasonal-products [storeProducts]="filteredProductsList$ | async">

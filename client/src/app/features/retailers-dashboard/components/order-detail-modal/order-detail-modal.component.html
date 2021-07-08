@@ -41,6 +41,7 @@
       <mat-form-field class="address_full_width">
         <textarea
           class="textarea"
+          disabled
           matInput
           placeholder="Dirección"
           name="details"
@@ -52,6 +53,7 @@
       <mat-form-field class="address_full_width">
         <textarea
           class="textarea"
+          disabled
           matInput
           placeholder="Referencia"
           name="reference"
@@ -60,8 +62,8 @@
         ></textarea>
       </mat-form-field>
 
-      <div mat-dialog-actions>
-        <button mat-button (click)="onNoClick()" cdkFocusInitial>Cerrar</button>
+      <div mat-dialog-actions fxLayoutAlign="center center">
+        <button mat-button (click)="onNoClick()">Cancelar</button>
         <!-- <button mat-button [mat-dialog-close]="cartPoductOrderDetailForm.value" cdkFocusInitial>Agregar</button> -->
       </div>
     </form>

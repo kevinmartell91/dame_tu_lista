@@ -13,7 +13,8 @@ $product_contianer_max_size: 1fr
 .container_row_products_view
   max-width: 500px
   margin: 0 auto
-  // background: #efeded
+  padding: 0px 0px 75px 0px;
+  background: #fcfcfc
 
   .display_products_row_grid
     display: grid
@@ -21,7 +22,7 @@ $product_contianer_max_size: 1fr
     grid-template-columns: repeat(auto-fill, minmax($product_contianer_min_size, $product_contianer_max_size))
     grid-template-rows: 18px 0.4fr
     grid-template-areas: "var" "mat"
-    grid-gap: 14px
+    grid-gap: 25px
 
     .variety_area
       grid-area: var
@@ -33,4 +34,4 @@ $product_contianer_max_size: 1fr
 
     .maturity_products_area
       grid-area: mat
-      margin: 0px 0px 0px 0px
+      margin: 18px 0px 0px 0px

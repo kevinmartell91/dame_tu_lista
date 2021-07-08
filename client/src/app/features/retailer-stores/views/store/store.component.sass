@@ -47,7 +47,8 @@ $box_container_size: 320px
   grid-template-columns: 1fr
   grid-template-rows: 250px 200px 15px 1fr
   grid-gap: 0em
-  grid-template-areas:  "banner" "img" "options" "strPrd"
+  grid-template-areas:  "banner" "img" "strPrd"
+  // grid-template-areas:  "banner" "img" "options" "strPrd"
   z-index: 6  
 
   .bg-image 
@@ -70,7 +71,8 @@ $box_container_size: 320px
     grid-template-areas: "___cart" "storeName" "delivery" "pickUp" 
     grid-gap: 0em
     z-index: 20
-    background-color: $background_banner
+    // background-color: $background_banner
+    background-image: linear-gradient(#000000, #00000000, #000000)
 
     // transform: translateY(-196px)
         
@@ -78,10 +80,11 @@ $box_container_size: 320px
       grid-area: ___cart
       display: grid
       margin: 0em
-      padding 3em
+      // padding: 3em
       grid-template-columns: 1fr 1fr 70px
       grid-template-rows: 46px
-      grid-template-areas: "admin search cart"
+      grid-template-areas: "admin . cart"
+      // grid-template-areas: "admin search cart"
       background-color: white
       border-bottom: 1px solid #efeded
       position: fixed
@@ -178,9 +181,9 @@ $box_container_size: 320px
 
       // background-color: $background_banner
       .style_store_name
-        text-align: center
+        // text-align: center
         margin: 0em
-        padding: 1.5em 0em 0em 0em
+        padding: 1em 0em 0em .6em
 
     .store_delivery_area
       grid-area: delivery
@@ -192,9 +195,9 @@ $box_container_size: 320px
 
       // background-color: $background_banner
       .style_delivery_info
-        text-align: center
+        text-align: right
         margin: 0em
-        padding: 1.3em 0em 0em 0em
+        padding: 6em 1em 0em 1em
 
     .store_pick_up_area
       grid-area: pickUp  
@@ -204,8 +207,10 @@ $box_container_size: 320px
 
       // background-color: $background_banner
       .style_pick_up_info
-        text-align: center
+        text-align: right
         margin: 0em
+        padding: 0em 1em 0em 1em
+
 
 
       
@@ -265,5 +270,6 @@ $box_container_size: 320px
 
   .store_products_area
     grid-area: strPrd
+    margin-bottom: 100px
     transform: translateY($translateY)
 
