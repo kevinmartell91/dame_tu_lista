@@ -90,24 +90,39 @@
         </mat-select>
       </mat-form-field> -->
 
+      <div class="style_delivery_message">
+        {{ deliveryMessage }}
+      </div>
+
       <mat-form-field class="address_full_width">
         <mat-label>Direccion completa (ciudad y departamento)</mat-label>
         <textarea
           class="textarea"
           matInput
-          placeholder="Mi direcctión es ..."
+          placeholder="Mi direcctión es... (No olvidar de escribir el distrito y departmento - Lima, Junin, Ica, etc)"
           name="details"
           type="text"
           formControlName="details"
         ></textarea>
       </mat-form-field>
+      <a
+        class="style_map_icon"
+        href="https://www.google.com/maps/place/Lima/@-12.0266296,-77.0578184,12z/data=!3m1!4b1!4m5!3m4!1s0x9105c5f619ee3ec7:0x14206cb9cc452e4a!8m2!3d-12.0463731!4d-77.042754"
+      >
+        <img
+          height="40px"
+          width="45px"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/220px-Google_Maps_Logo_2020.svg.png"
+          alt=""
+        />
+      </a>
 
-      <mat-form-field class="address_full_width">
+      <mat-form-field class="reference_width">
         <mat-label>Referencia</mat-label>
         <textarea
           class="textarea"
           matInput
-          placeholder="Vivo en la urbanización ..."
+          placeholder="Vivo en la urbanización... (Tambien puede pegar el link de Google Maps de su ubicación y le entreguen la orden rápidamente)"
           name="reference"
           type="text"
           formControlName="reference"

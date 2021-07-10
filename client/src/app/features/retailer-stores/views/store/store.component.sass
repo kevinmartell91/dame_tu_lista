@@ -4,9 +4,9 @@
   $primary: map-get($theme, primary)
 
 $store_banner_options_text_size: 24px
-$store_name_text_size: 28px
-$store_delivery_info_text_size: 18px
-$store_pick_up_info_text_size: 18px
+$store_name_text_size: 25px
+$store_delivery_info_text_size: 13px
+$store_pick_up_info_text_size: 13px
 $store_options_text_size: 12px
 $translateY: -204px
 
@@ -187,7 +187,7 @@ $box_container_size: 320px
 
     .store_delivery_area
       grid-area: delivery
-      font-weight: 700
+      font-weight: 100
       font-size: $store_delivery_info_text_size
       color: white
 
@@ -195,21 +195,35 @@ $box_container_size: 320px
 
       // background-color: $background_banner
       .style_delivery_info
-        text-align: right
+        text-align: left
         margin: 0em
-        padding: 6em 1em 0em 1em
+        padding: 9em 1em 0em 1em
+        font-weight: 900
 
+        .style_delivery_tag
+          border-radius: 4px
+          border: 1px solid white
+          font-size: 13px
+          background: white
+          
     .store_pick_up_area
       grid-area: pickUp  
-      font-weight: 700
+      font-weight: 100
       font-size: $store_pick_up_info_text_size
       color: white
 
       // background-color: $background_banner
       .style_pick_up_info
-        text-align: right
+        text-align: left
         margin: 0em
         padding: 0em 1em 0em 1em
+        font-weight: 900
+
+        .style_pick_up_tag
+          border-radius: 4px
+          border: 1px solid white
+          font-size: 13px
+          background: white
 
 
 

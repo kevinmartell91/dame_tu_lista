@@ -33,6 +33,7 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
 
   isPickUp: boolean = true;
   pickUpMessage: string = '';
+  deliveryMessage: string = '';
 
   @Output() addressFilled = new EventEmitter<any>();
 
@@ -46,6 +47,8 @@ export class FillShippingAddressComponent implements OnInit, OnDestroy {
     this.loadCities();
 
     this.address = data.address;
+    this.deliveryMessage =
+      'Olvídese de completar multiples campos de dirección. Su tiempo es valioso.';
 
     this.subscription = this.authenticationStore.loginUser$.subscribe((x) => {
       if (x.login_type == 'buyer') {

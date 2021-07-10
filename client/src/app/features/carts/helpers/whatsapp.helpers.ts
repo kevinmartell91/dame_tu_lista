@@ -64,6 +64,13 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
     orderRawTxt += title;
     orderRawTxt += breakLine;
 
+    orderRawTxt += breakLine;
+    orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
+    orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
+      'retailer_store_name'
+    )}/orders/${order._id}`;
+    orderRawTxt += breakLine;
+
     orderRawTxt += subTitle;
     orderRawTxt += breakLine;
 
@@ -230,13 +237,6 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
           `*Referencia* : ${order.shipping.address.reference}` + breakLine;
       }
     }
-
-    orderRawTxt += breakLine;
-    orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
-    orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
-      'retailer_store_name'
-    )}/orders/${order._id}`;
-    orderRawTxt += breakLine;
 
     orderRawTxt += breakLine;
     orderRawTxt += '      *Hecho con mucho ❤️ en 🇵🇪*      ' + breakLine;

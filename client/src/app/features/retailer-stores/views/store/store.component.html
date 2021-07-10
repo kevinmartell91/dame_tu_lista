@@ -105,7 +105,8 @@
           class="store_delivery_area"
         >
           <div class="style_delivery_info">
-            Delivery: {{ subs.state$.retailer.store.deliveryInfo }}
+            <span class="style_delivery_tagd">🚚</span>
+            {{ subs.state$.retailer.store.deliveryInfo }}
           </div>
         </div>
         <div
@@ -113,7 +114,8 @@
           class="store_pick_up_area"
         >
           <div class="style_pick_up_info">
-            Recojo: {{ subs.state$.retailer.store.pickUpInfo }}
+            <span class="style_pick_up_tagd">📍</span>
+            {{ subs.state$.retailer.store.pickUpInfo }}
           </div>
         </div>
       </div>
