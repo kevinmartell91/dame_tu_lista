@@ -2,7 +2,10 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Store } from 'rxjs-observable-store';
 import { map, retry, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import * as endpointHelpers from '../../../shared/helpers/endpoint.helpers';
 import {
@@ -10,17 +13,14 @@ import {
   transformCartProductsIntoProducts,
   transformCartProductsIntoProductsWithToppings,
 } from '../helpers/product.helper';
-import * as airtable from '../types/airtable';
 import { RetailerEndpoint } from './retailer.endpoint';
 import { RetailerStoreStoreState } from './retailer.store.state';
-import { Product } from 'src/app/core/retailer/types/product';
-import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 
 @Injectable({ providedIn: 'root' })
 export class RetailerStoreStore
   extends Store<RetailerStoreStoreState>
-  implements OnDestroy {
+  implements OnDestroy
+{
   retailer$: Observable<Retailer>;
   products$: Observable<Product[]>;
   private ngUnsubscribe$: Subject<undefined> = new Subject();
@@ -34,9 +34,8 @@ export class RetailerStoreStore
     this.products$ = this.state$.pipe(
       map((state) => state.productsList.products)
     );
-    this.storeRequestUpdater = endpointHelpers.getStoreRequestStateUpdater(
-      this
-    );
+    this.storeRequestUpdater =
+      endpointHelpers.getStoreRequestStateUpdater(this);
   }
 
   ngOnDestroy(): void {
@@ -155,8 +154,8 @@ export class RetailerStoreStore
 
     const memCashedProd: Product[] = JSON.parse(chacheData).product_list;
 
-    const memCashedCartProd: CartProduct[] = JSON.parse(chacheData)
-      .cart_product_list;
+    const memCashedCartProd: CartProduct[] =
+      JSON.parse(chacheData).cart_product_list;
     //console.log("restored Buyer Selected Products From Temporary Storage :", "memCashedProd.length", memCashedProd.length, "memCashedCartProd.length", memCashedCartProd.length);
     // if (chacheData && memCashedProd.length > 0 && memCashedCartProd.length > 0) {
     if (

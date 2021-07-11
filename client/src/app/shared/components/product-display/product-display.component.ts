@@ -2,14 +2,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
-  OnDestroy,
-  ElementRef,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  calculateTotalPricePerProductWithToppings,
   getCartProductFromProduct,
   getCartProductWithToppingsFromProductWithToppings,
   round,
@@ -20,10 +18,7 @@ import { Product } from '../../../core/retailer/types/product';
 import { containtToppings } from '../../helpers/cart-product.helpers';
 import { AddToppingsComponent } from '../add-toppings/add-toppings.component';
 import { ShowProductDescriptionComponent } from '../show-product-description/show-product-description.component';
-import {
-  ToppingModalResult,
-  ToppingSelected,
-} from '../topping/types/toppingSelected';
+import { ToppingModalResult } from '../topping/types/toppingSelected';
 
 @Component({
   selector: 'app-product-display-shared',

@@ -4,16 +4,16 @@ import { ProductsList } from '../types/products-list';
 import { Request } from '../types/requests';
 
 export class RetailerStoreStoreState {
-    retailer: Retailer = null;
-    productsList: ProductsList = {
-        products: [],
-        sort: {
-            field: RETAILER_STORES_CONFIG.defaultSortField,
-            order: RETAILER_STORES_CONFIG.defaultSortOrder
-        }
-    };
-    
-    request: Request = {
-        getRetailer: {}
-    }
+  retailer: Retailer = null;
+  productsList: ProductsList = {
+    products: [],
+    sort: {
+      field: RETAILER_STORES_CONFIG.defaultSortField,
+      order: RETAILER_STORES_CONFIG.defaultSortOrder,
+    },
+  };
+
+  request: Request = {
+    getRetailer: {},
+  };
 }

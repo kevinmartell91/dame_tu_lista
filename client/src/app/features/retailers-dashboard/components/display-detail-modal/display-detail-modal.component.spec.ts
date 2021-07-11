@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DisplayDetailModalComponent } from './display-detail-modal.component';
 
 describe('DisplayDetailModalComponent', () => {
@@ -8,9 +7,8 @@ describe('DisplayDetailModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DisplayDetailModalComponent ]
-    })
-    .compileComponents();
+      declarations: [DisplayDetailModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

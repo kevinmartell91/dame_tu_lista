@@ -34,6 +34,7 @@ $box_container_size: 320px
     h1
       font-size: 30px
       text-align: center
+      font-family: inherit
     
   .loading_symbol_area
     grid-area: loading
@@ -71,8 +72,8 @@ $box_container_size: 320px
     grid-template-areas: "___cart" "storeName" "delivery" "pickUp" 
     grid-gap: 0em
     z-index: 20
-    // background-color: $background_banner
     background-image: linear-gradient(#000000, #00000000, #000000)
+    border-radius: 6px;
 
     // transform: translateY(-196px)
         
@@ -80,7 +81,6 @@ $box_container_size: 320px
       grid-area: ___cart
       display: grid
       margin: 0em
-      // padding: 3em
       grid-template-columns: 1fr 1fr 70px
       grid-template-rows: 46px
       grid-template-areas: "admin . cart"
@@ -89,6 +89,8 @@ $box_container_size: 320px
       border-bottom: 1px solid #efeded
       position: fixed
       width: 100%
+      border-bottom-left-radius: 14px
+      border-bottom-right-radius: 14px
       // transform: translateY(-248px)
 
       // border-bottom: 1px #c2c2c2 solid
@@ -96,6 +98,7 @@ $box_container_size: 320px
 
       .admin_mode_area
         grid-area: admin
+        display: flex
         margin: 9px
         padding: 3px 5px 3px 5px
         align-self: center
@@ -106,6 +109,9 @@ $box_container_size: 320px
         background: #43b02b
         border-radius: 9px
         cursor: pointer
+
+        .style_admin
+          margin: 4px
       
       .buyer_mode_area
         grid-area: admin

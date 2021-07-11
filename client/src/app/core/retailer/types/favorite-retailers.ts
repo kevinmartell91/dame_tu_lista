@@ -1,17 +1,16 @@
-import { Deserializable } from "../../../shared/models/deserializable.model";
+import { Deserializable } from '../../../shared/models/deserializable.model';
 
 export class FavoriteReatailers implements Deserializable {
+  _id?: string;
+  storeName?: string;
+  isDeliveryService?: string;
+  isPickUpService?: string;
+  storeImgUrl?: string;
+  email?: string;
+  phoneNumber?: string;
 
-    _id?: string;
-    storeName?: string;
-    isDeliveryService?: string;
-    isPickUpService?: string;
-    storeImgUrl?: string;
-    email?: string;
-    phoneNumber?: string;
-
-    deserialize(input: any) {
-        Object.assign(this, input);
-        return this;
-    }
+  deserialize(input: any) {
+    Object.assign(this, input);
+    return this;
+  }
 }

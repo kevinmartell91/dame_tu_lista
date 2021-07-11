@@ -1,9 +1,15 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from './core/buyer/buyer.config';
 import { BuyerNavegationStore } from './core/buyer/services/buyer-navegation.store';
+import { BuyerNavegation } from './core/buyer/types/buyer-navegation';
+import {
+  calculateCartTotalPrice,
+  calculateCartTotalPriceWithToppings,
+  getTotalProductsOnShoppingCart,
+} from './core/cart/helpers/cart-helper';
 import { CartStore } from './core/cart/services/cart.store';
 import { CartProduct } from './core/cart/types/cart-product';
 import { LOGIN_CONFIG } from './core/login/login.config';
@@ -14,15 +20,8 @@ import {
   TemporaryStorageFacet,
   TemporaryStorageService,
 } from './core/session-storage/services/temporary-storage.service';
-import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
-import { BuyerNavegation } from './core/buyer/types/buyer-navegation';
 import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
-import { every } from 'rxjs/operators';
-import {
-  calculateCartTotalPrice,
-  calculateCartTotalPriceWithToppings,
-  getTotalProductsOnShoppingCart,
-} from './core/cart/helpers/cart-helper';
+import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
 import { containtToppings } from './shared/helpers/cart-product.helpers';
 
 @Component({
@@ -93,21 +92,19 @@ export class AppComponent implements OnInit, OnDestroy {
     //   api_key
     // );
 
-    this.temporaryStorage = this.temporaryStorageService.forKey(
-      'cart_product_list'
-    );
+    this.temporaryStorage =
+      this.temporaryStorageService.forKey('cart_product_list');
 
     this.initializeNavegationValues();
 
-    this.buyerNavegationSubscription = this.buyerNavegationStore.buyerNavegation$.subscribe(
-      (y) => {
+    this.buyerNavegationSubscription =
+      this.buyerNavegationStore.buyerNavegation$.subscribe((y) => {
         this.buyerNavegation = y;
-      }
-    );
+      });
 
     // this.initializeLoginTypeValues();
-    this.authenticationSubcription = this.authenticationStore.loginUser$.subscribe(
-      (x) => {
+    this.authenticationSubcription =
+      this.authenticationStore.loginUser$.subscribe((x) => {
         if (x != null) {
           this.loginUser = x;
           console.log('AUTHENTICATION', this.loginUser);
@@ -118,8 +115,7 @@ export class AppComponent implements OnInit, OnDestroy {
           //       this.initializeNavegationValues();
           //       this.initializeLoginTypeValues();
         }
-      }
-    );
+      });
   }
 
   onBodyClick = (event) => {
@@ -155,12 +151,11 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.favoriteRetailerSubcription = this.cartStore.favoriteRetailerSelected$.subscribe(
-      (z) => {
+    this.favoriteRetailerSubcription =
+      this.cartStore.favoriteRetailerSelected$.subscribe((z) => {
         this.favoriteRetailerIdSelected = z;
         // this.handleSaveTemporaryStorage();
-      }
-    );
+      });
   }
 
   ngOnDestroy(): void {

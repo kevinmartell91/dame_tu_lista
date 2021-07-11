@@ -1,3 +1,3 @@
 export interface StorageCache {
-	[ key: string ]: any;
+  [key: string]: any;
 }

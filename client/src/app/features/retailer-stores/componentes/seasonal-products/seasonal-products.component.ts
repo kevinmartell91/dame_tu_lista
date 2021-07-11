@@ -5,7 +5,6 @@ import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({

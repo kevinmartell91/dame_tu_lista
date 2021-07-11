@@ -8,13 +8,12 @@
 //   getTitleCenteredFormat,
 //   getNameAndPriceFormat,
 // } from '../../../shared/helpers/cart-product.helpers';
-import { environment } from '../../../../environments/environment';
-import { Order } from 'src/app/core/order/types/order';
 import { APP_CONFIG } from 'src/app/app.config';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
-import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { Order } from 'src/app/core/order/types/order';
 import { ToppingSelected } from 'src/app/shared/components/topping/types/toppingSelected';
-import * as _ from 'lodash';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { environment } from '../../../../environments/environment';
 
 const maxLenChar: number = 30;
 const tab: string = String.fromCodePoint(parseInt('9', 16));

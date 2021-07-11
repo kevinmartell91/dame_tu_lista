@@ -1,44 +1,58 @@
 <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
-   
-    <img src="../../../assets/icons/store.svg" alt="">
+  <img src="../../../assets/icons/store.svg" alt="" />
 
-    <form class="style_register_form" [formGroup]='registerRetailerForm' (ngSubmit)="onSubmit()">
-       
-        <mat-form-field class="style_login_full_width">
-            <input matInput placeholder="Primer nombre"
-                            name="name"
-                            type="text"
-                            formControlName="name">
-        </mat-form-field>
+  <form
+    class="style_register_form"
+    [formGroup]="registerRetailerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="style_login_full_width">
+      <input
+        matInput
+        placeholder="Primer nombre"
+        name="name"
+        type="text"
+        formControlName="name"
+      />
+    </mat-form-field>
 
-        <mat-form-field class="style_login_full_width">
-          <input matInput placeholder="Correo electrónico"
-                          name="email"
-                          type="text"
-                          formControlName="email">
-        </mat-form-field>
+    <mat-form-field class="style_login_full_width">
+      <input
+        matInput
+        placeholder="Correo electrónico"
+        name="email"
+        type="text"
+        formControlName="email"
+      />
+    </mat-form-field>
 
-        <mat-form-field class="style_login_full_width">
-          <input matInput placeholder="Contraseña"
-                          name="password"
-                          type="password"
-                          formControlName="password">
-        </mat-form-field>
+    <mat-form-field class="style_login_full_width">
+      <input
+        matInput
+        placeholder="Contraseña"
+        name="password"
+        type="password"
+        formControlName="password"
+      />
+    </mat-form-field>
 
-        <br>
-        <div class="style_error_message">{{errorMessage}}</div>
-        <br>
-        <button mat-stroked-button  
-                class="style_btn_block"
-                color="primary"
-                type="submit"
-                [disabled]="!registerRetailerForm.valid">Crear cuenta</button>
-        <br>
-        <br>
-        
-        <div *ngIf="loading">
-          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
+    <br />
+    <div class="style_error_message">{{ errorMessage }}</div>
+    <br />
+    <button
+      mat-stroked-button
+      class="style_btn_block"
+      color="primary"
+      type="submit"
+      [disabled]="!registerRetailerForm.valid"
+    >
+      Crear cuenta
+    </button>
+    <br />
+    <br />
 
-    </form>
+    <div *ngIf="loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </form>
 </div>

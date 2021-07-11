@@ -1,9 +1,9 @@
 // https://medium.com/better-programming/angular-4-shared-modules-18ac50f24852
-import { MdlModule } from '@angular-mdl/core';
+// import { MdlModule } from '@angular-mdl/core';
 import { CommonModule } from '@angular/common';
 // services
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 // rows and col
 import { FlexLayoutModule } from '@angular/flex-layout';
 // forms
@@ -52,18 +52,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatTooltipModule } from '@angular/material/tooltip';
 // import { MatTreeModule } from '@angular/material/tree';
 import { AddButtonComponent } from './components/add-button/add-button.component';
+import { AddToppingsComponent } from './components/add-toppings/add-toppings.component';
+import { EditableTableComponent } from './components/editable-table/editable-table.component';
 // import 'hammerjs';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductDisplaySharedComponent } from './components/product-display/product-display.component';
-import { EditableTableComponent } from './components/editable-table/editable-table.component';
+import { ShowProductDescriptionComponent } from './components/show-product-description/show-product-description.component';
+import { ToppingComponent } from './components/topping/topping.component';
 import {
-  EditModeDirective,
   EditableOnEnterDirective,
+  EditModeDirective,
   ViewModeDirective,
 } from './directives/edit-in-place';
-import { AddToppingsComponent } from './components/add-toppings/add-toppings.component';
-import { ToppingComponent } from './components/topping/topping.component';
-import { ShowProductDescriptionComponent } from './components/show-product-description/show-product-description.component';
 
 const EXPORTED_DECLARATIONS = [
   // ClipboardModule,
@@ -108,7 +108,7 @@ const EXPORTED_DECLARATIONS = [
   // MatTreeModule,
   // PortalModule,
   // ScrollingModule,
-  MdlModule,
+  // MdlModule,
 ];
 
 @NgModule({

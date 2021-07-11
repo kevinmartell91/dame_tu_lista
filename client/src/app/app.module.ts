@@ -6,8 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { CheckoutButtonComponent } from './features/retailer-stores/componentes/checkout-button/checkout-button.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [

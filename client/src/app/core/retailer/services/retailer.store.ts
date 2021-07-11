@@ -17,9 +17,8 @@ export class RetailerStore extends Store<RetailerStoreState> {
     super(new RetailerStoreState());
 
     this.retailer$ = this.state$.pipe(map((state) => state.retailer));
-    this.storeRequestStateUpdater = endpointHelpers.getStoreRequestStateUpdater(
-      this
-    );
+    this.storeRequestStateUpdater =
+      endpointHelpers.getStoreRequestStateUpdater(this);
   }
 
   setNewRetailerState(retailer: Retailer): void {

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CartProductDetailModalComponent } from './cart-product-detail-modal.component';
 
 describe('CartProductDetailModalComponent', () => {
@@ -8,9 +7,8 @@ describe('CartProductDetailModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartProductDetailModalComponent ]
-    })
-    .compileComponents();
+      declarations: [CartProductDetailModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

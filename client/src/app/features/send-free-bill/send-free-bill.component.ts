@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
-  FormArray,
   AbstractControl,
+  FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-  FormBuilder,
 } from '@angular/forms';
-import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
-import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
-import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
-import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
-import { PhoneNumberModalComponent } from '../carts/components/phone-number-modal/phone-number-modal.component';
+import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
+import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { environment } from 'src/environments/environment';
+import { PhoneNumberModalComponent } from '../carts/components/phone-number-modal/phone-number-modal.component';
+import { updateBuyerNavagation } from '../retailer-stores/helpers/buyerNavegation.helper';
 
 interface IProduct {
   id: string;
@@ -180,9 +180,8 @@ export class SendFreeBillComponent implements OnInit {
       breakLine;
 
     productList.forEach((product, id) => {
-      const multiplineProdName: string[] = this.formatProductNameTo20CharactersMiltipleLines(
-        product.name
-      );
+      const multiplineProdName: string[] =
+        this.formatProductNameTo20CharactersMiltipleLines(product.name);
       console.log(multiplineProdName);
       orderRawTxt += id + 1 + ')' + breakLine;
       multiplineProdName.forEach((line) => {

@@ -1,11 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Component, Inject, Input, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,11 +6,9 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToppingSelected } from '../topping/types/toppingSelected';
-import * as _ from 'lodash';
-import { Topping } from '../../models/deserializable.model';
 
 @Component({
   selector: 'app-add-toppings',

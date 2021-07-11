@@ -1,37 +1,41 @@
-<ng-container 
-    *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
-    
-    <ng-container
-        *ngIf = "subs.state$.requests.getRetailer.inProgress ;
-        then showLoading ; 
-        else showCategoryList">
-    </ng-container>
+<ng-container *ngIf="{ state$: retailerStoreStore.state$ | async } as subs">
+  <ng-container
+    *ngIf="
+      subs.state$.requests.getRetailer.inProgress;
+      then showLoading;
+      else showCategoryList
+    "
+  >
+  </ng-container>
 
-    <ng-template #showLoading>
-        <div class="grid_loading_display">
-            <div class="login_brand_area">
-                <h1> Cargando ...</h1>
-            </div>
-            <div class="loading_symbol_area">
-                <mat-spinner >  </mat-spinner>
-            </div>
-         </div>
-    </ng-template>
+  <ng-template #showLoading>
+    <div class="grid_loading_display">
+      <div class="login_brand_area">
+        <h1>Cargando ...</h1>
+      </div>
+      <div class="loading_symbol_area">
+        <mat-spinner> </mat-spinner>
+      </div>
+    </div>
+  </ng-template>
 
-    <ng-template #showCategoryList>
-
-        <div class="display_products_grid">
-
-            <div class="display_products_area">
-                <ng-container  
-                    *ngFor='let product of _filterAllProductsByCategory(subs.state$.productsList.products)'>
-                    <app-product-display-shared typeView="categoryView" [product]="product"
-                        (selected)=onSelected($event)></app-product-display-shared>
-                </ng-container>
-            </div>
-            
-        </div>
-
-    </ng-template>
-
+  <ng-template #showCategoryList>
+    <div class="display_products_grid">
+      <div class="display_products_area">
+        <ng-container
+          *ngFor="
+            let product of _filterAllProductsByCategory(
+              subs.state$.productsList.products
+            )
+          "
+        >
+          <app-product-display-shared
+            typeView="categoryView"
+            [product]="product"
+            (selected)="onSelected($event)"
+          ></app-product-display-shared>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
 </ng-container>

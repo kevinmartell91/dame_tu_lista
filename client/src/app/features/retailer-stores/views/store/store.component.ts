@@ -1,28 +1,20 @@
-import {
-  Component,
-  OnDestroy,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, timer } from 'rxjs';
-import { map, startWith, timeout } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import { getTotalProductsOnShoppingCart } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
+import { LoginUser } from 'src/app/core/login/types/user';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from '../../../../core/retailer/types/retailer';
 import { updateBuyerNavagation } from '../../helpers/buyerNavegation.helper';
-import { RetailerStoreStore } from '../../services/retailer.store';
-import { LoginUser } from 'src/app/core/login/types/user';
-import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
-import { WindowScrollService } from 'src/app/features/retailer-stores/services/window-scroll.service';
 import { removeAccents } from '../../helpers/deaccent.helper';
-import { getTotalProductsOnShoppingCart } from 'src/app/core/cart/helpers/cart-helper';
+import { RetailerStoreStore } from '../../services/retailer.store';
 
 @Component({
   selector: 'app-store',
@@ -96,13 +88,12 @@ export class StoreComponent implements OnDestroy {
     );
   }
   init(): void {
-    this.subscriptionRetailerStore = this.retailerStoreStore.products$.subscribe(
-      (products) => {
+    this.subscriptionRetailerStore =
+      this.retailerStoreStore.products$.subscribe((products) => {
         this.productsList = products;
 
         console.log('UPDATED AFTER SET IN STORE KEVIN', this.productsList);
-      }
-    );
+      });
 
     this.subscription = this.cartStore.shoppingCart$.subscribe((x) => {
       this.cartProductsQuantity = getTotalProductsOnShoppingCart(x.products);

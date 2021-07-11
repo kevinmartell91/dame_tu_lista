@@ -1,9 +1,9 @@
-import { STORE_CONFIG } from 'src/app/core/store/store_config';
-import { Product } from '../../../core/retailer/types/product';
-import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { MaturityProductsByVariety } from '../types/maturityProductsByVariety';
 import * as _ from 'lodash';
 import { keyBy } from 'lodash';
+import { CartProduct } from 'src/app/core/cart/types/cart-product';
+import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { Product } from '../../../core/retailer/types/product';
+import { MaturityProductsByVariety } from '../types/maturityProductsByVariety';
 
 export function getProductDeserialized(products: any): Product[] {
   let productsList: Product[] = [];
@@ -276,7 +276,8 @@ export function getMaturityProductsByVariety(
 
     // maturity is what matters
     arrayVarieties.forEach((variety_product_list) => {
-      let maturityProductsByVariety: MaturityProductsByVariety = new MaturityProductsByVariety();
+      let maturityProductsByVariety: MaturityProductsByVariety =
+        new MaturityProductsByVariety();
 
       maturityProductsByVariety.categoryName =
         category_product_list.categoryName;

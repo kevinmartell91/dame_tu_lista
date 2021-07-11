@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SendFreeBillComponent } from './send-free-bill.component';
 
 describe('SendFreeBillComponent', () => {
@@ -8,9 +7,8 @@ describe('SendFreeBillComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SendFreeBillComponent ]
-    })
-    .compileComponents();
+      declarations: [SendFreeBillComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

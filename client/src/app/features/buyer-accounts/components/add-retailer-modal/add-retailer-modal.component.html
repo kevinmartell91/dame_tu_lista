@@ -1,18 +1,21 @@
-<form class="retailer_email_form" [formGroup]='favoriteRetailerForm'>
+<form class="retailer_email_form" [formGroup]="favoriteRetailerForm">
+  <mat-form-field appearance="outline" class="full_width">
+    <mat-label>Agregue el correo del vendedor: </mat-label>
+    <textarea
+      cdkFocusInitial
+      class="style_comments"
+      name="retailer_email"
+      type="text"
+      formControlName="retailer_email"
+      matInput
+      placeholder="tuVendedorFavorito@gmail.com"
+    ></textarea>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full_width">
-        <mat-label>Agregue el correo del vendedor: </mat-label>
-        <textarea   cdkFocusInitial
-                    class="style_comments"
-                    name="retailer_email"
-                    type="text"
-                    formControlName="retailer_email"
-                    matInput placeholder="tuVendedorFavorito@gmail.com"></textarea>
-    </mat-form-field>
-    
-    <div mat-dialog-actions>
-        <button mat-button (click)="onNoClick()">Cancelar</button>
-        <button mat-button [mat-dialog-close]="favoriteRetailerForm.value" >Agregar</button>
-    </div>        
-
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="favoriteRetailerForm.value">
+      Agregar
+    </button>
+  </div>
 </form>

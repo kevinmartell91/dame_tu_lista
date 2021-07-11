@@ -6,58 +6,61 @@ import { getHeadersForGet } from 'src/app/shared/helpers/endpoint.helpers';
 import { StoreRequestStateUpdater } from 'src/app/shared/types/store-request-state-updater';
 import { BUYER_ACCOUNT_CONFIG } from '../buyer-account.config';
 
-
 @Injectable()
 export class BuyerAccountEndPoint {
-    constructor(
-        private http: HttpClient
-    ) {}
+  constructor(private http: HttpClient) {}
 
-    public getBuyerAccount(
-        requestStateUpdater: StoreRequestStateUpdater,
-        buyer_id: string
-    ) {
-        const request =  BUYER_ACCOUNT_CONFIG.request.getBuyers;
-        const options = getHeadersForGet();
-        requestStateUpdater(request.name, {inProgress: true});
-        
-        return this.http.get<any>(request.url + buyer_id, options).pipe(
-            map( response => {
-                requestStateUpdater(request.name, {inProgress: false});
-                
-                return response;
-            }),
-            catchError((error: HttpErrorResponse) => {
-                requestStateUpdater(request.name, {
-                    inProgress: false,
-                    error: true
-                });
-                return throwError(error);
-            })
-        );
-    }
+  public getBuyerAccount(
+    requestStateUpdater: StoreRequestStateUpdater,
+    buyer_id: string
+  ) {
+    const request = BUYER_ACCOUNT_CONFIG.request.getBuyers;
+    const options = getHeadersForGet();
+    requestStateUpdater(request.name, { inProgress: true });
 
-    public patchtFavoriteRetailer(
-        buyer_id: string,
-        retailer_email: string,
-        requestStateUpdater: StoreRequestStateUpdater
-    ) {
-        const request =  BUYER_ACCOUNT_CONFIG.request.patchFavoriteRetailer;
-        const options = getHeadersForGet();
-        requestStateUpdater(request.name, {inProgress: true});
-        
-        return this.http.patch<any>(request.url + buyer_id, {retailer_email:retailer_email}, options).pipe(
-            map( response => {
-                requestStateUpdater(request.name, {inProgress: false});
-                return response;
-            }),
-            catchError((error: HttpErrorResponse) => {
-                requestStateUpdater(request.name, {
-                    inProgress: false,
-                    error: true
-                });
-                return throwError(error);
-            })
-        );
-    }
+    return this.http.get<any>(request.url + buyer_id, options).pipe(
+      map((response) => {
+        requestStateUpdater(request.name, { inProgress: false });
+
+        return response;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        requestStateUpdater(request.name, {
+          inProgress: false,
+          error: true,
+        });
+        return throwError(error);
+      })
+    );
+  }
+
+  public patchtFavoriteRetailer(
+    buyer_id: string,
+    retailer_email: string,
+    requestStateUpdater: StoreRequestStateUpdater
+  ) {
+    const request = BUYER_ACCOUNT_CONFIG.request.patchFavoriteRetailer;
+    const options = getHeadersForGet();
+    requestStateUpdater(request.name, { inProgress: true });
+
+    return this.http
+      .patch<any>(
+        request.url + buyer_id,
+        { retailer_email: retailer_email },
+        options
+      )
+      .pipe(
+        map((response) => {
+          requestStateUpdater(request.name, { inProgress: false });
+          return response;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          requestStateUpdater(request.name, {
+            inProgress: false,
+            error: true,
+          });
+          return throwError(error);
+        })
+      );
+  }
 }

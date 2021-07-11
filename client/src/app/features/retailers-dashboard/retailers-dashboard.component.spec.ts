@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RetailersDashboardComponent } from './retailers-dashboard.component';
 
 describe('RetailersDashboardComponent', () => {
@@ -8,9 +7,8 @@ describe('RetailersDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RetailersDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [RetailersDashboardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

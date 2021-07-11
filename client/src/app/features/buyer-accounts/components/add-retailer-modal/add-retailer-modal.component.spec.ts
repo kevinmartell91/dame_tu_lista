@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddRetailerModalComponent } from './add-retailer-modal.component';
 
 describe('AddRetailerModalComponent', () => {
@@ -8,9 +7,8 @@ describe('AddRetailerModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddRetailerModalComponent ]
-    })
-    .compileComponents();
+      declarations: [AddRetailerModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -9,54 +9,43 @@ import { Buyer } from '../types/buyer';
 import { BuyerEndPoint } from './buyer.endpoint';
 import { BuyerStoreState } from './buyer.store.state';
 
-
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BuyerStore extends Store<BuyerStoreState> {
+  buyer$: Observable<Buyer>;
+  private storeRequestStateUpdater: StoreRequestStateUpdater;
 
-    buyer$: Observable<Buyer>;
-    private storeRequestStateUpdater: StoreRequestStateUpdater;
+  constructor(private endPoint: BuyerEndPoint) {
+    super(new BuyerStoreState());
 
-    constructor( 
-        private endPoint: BuyerEndPoint 
-    ) {
-        super(new BuyerStoreState())
+    this.buyer$ = this.state$.pipe(map((state) => state.buyer));
+    this.storeRequestStateUpdater =
+      endpointHelpers.getStoreRequestStateUpdater(this);
+  }
 
-        this.buyer$ = this.state$.pipe(map (state => state.buyer))
-        this.storeRequestStateUpdater = 
-            endpointHelpers.getStoreRequestStateUpdater(this);
+  registerNewBuyer(newBuyer: Buyer): Observable<any> {
+    return this.endPoint
+      .postBuyer(this.storeRequestStateUpdater, newBuyer)
+      .pipe(tap((buyer: any) => {}));
+  }
 
-    }
+  updateBuyerAddress(buyer_id: string, address: Address): Observable<any> {
+    return this.endPoint
+      .patchBuyerAddress(this.storeRequestStateUpdater, buyer_id, address)
+      .pipe(tap((buyer: any) => {}));
+  }
 
-    registerNewBuyer(newBuyer: Buyer): Observable<any> {
-        return this.endPoint.postBuyer(this.storeRequestStateUpdater, newBuyer).pipe(
-            tap( ( buyer: any ) => {
-            })
-        )
-    }
+  setNewBuyerState(newBuyer: Buyer): void {
+    this.setState({
+      ...this.state,
+      buyer: newBuyer,
+    });
+  }
 
-    updateBuyerAddress(buyer_id: string, address: Address): Observable<any> {
-        return this.endPoint.patchBuyerAddress(
-            this.storeRequestStateUpdater,
-            buyer_id,
-            address).pipe(
-                tap( ( buyer: any ) => {
-                })
-            )
-    }
-
-    setNewBuyerState( newBuyer: Buyer):void  {
-        this.setState({
-            ...this.state,
-            buyer: newBuyer
-        })
-    }
-
-    getBuyers(): Observable<any>{
-        return this.endPoint.getBuyers(this.storeRequestStateUpdater).pipe(
-            tap( (response: any) => {
-                return response;
-            })
-        )
-    }
-    
+  getBuyers(): Observable<any> {
+    return this.endPoint.getBuyers(this.storeRequestStateUpdater).pipe(
+      tap((response: any) => {
+        return response;
+      })
+    );
+  }
 }

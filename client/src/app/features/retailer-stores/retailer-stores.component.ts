@@ -1,18 +1,15 @@
-import { Component, OnDestroy, SimpleChange } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Retailer } from '../../core/retailer/types/retailer';
-import { RetailerStoreStore } from './services/retailer.store';
-import { transformCartProductsIntoProducts } from './helpers/product.helper';
-import { CartProduct } from 'src/app/core/cart/types/cart-product';
-import { Product } from 'src/app/core/retailer/types/product';
-import {
-  TemporaryStorageService,
-  TemporaryStorageFacet,
-} from 'src/app/core/session-storage/services/temporary-storage.service';
-import { updateBuyerNavagation } from './helpers/buyerNavegation.helper';
 import { BUYER_CONFIG } from 'src/app/core/buyer/buyer.config';
 import { BuyerNavegationStore } from 'src/app/core/buyer/services/buyer-navegation.store';
+import {
+  TemporaryStorageFacet,
+  TemporaryStorageService,
+} from 'src/app/core/session-storage/services/temporary-storage.service';
+import { Retailer } from '../../core/retailer/types/retailer';
+import { updateBuyerNavagation } from './helpers/buyerNavegation.helper';
+import { RetailerStoreStore } from './services/retailer.store';
 
 @Component({
   selector: 'app-retailer-stores',

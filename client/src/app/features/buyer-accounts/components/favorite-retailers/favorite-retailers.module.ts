@@ -4,14 +4,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FavoriteRetailersRoutingModule } from './favorite-retailers-routing.module';
 import { FavoriteRetailersComponent } from './favorite-retailers.component';
 
-
-
 @NgModule({
   declarations: [FavoriteRetailersComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    FavoriteRetailersRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, FavoriteRetailersRoutingModule],
 })
-export class FavoriteRetailersModule { }
+export class FavoriteRetailersModule {}

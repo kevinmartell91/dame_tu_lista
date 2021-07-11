@@ -7,17 +7,19 @@ import { ORDER_CONFIG } from 'src/app/core/order/order.config';
 import { OrderStore } from 'src/app/core/order/sevices/order.store';
 import { Order } from 'src/app/core/order/types/order';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { TemporaryStorageFacet, TemporaryStorageService } from 'src/app/core/session-storage/services/temporary-storage.service';
-import { OrderDetailModalComponent } from "../order-detail-modal/order-detail-modal.component";
+import {
+  TemporaryStorageFacet,
+  TemporaryStorageService,
+} from 'src/app/core/session-storage/services/temporary-storage.service';
+import { OrderDetailModalComponent } from '../order-detail-modal/order-detail-modal.component';
 import { OrderPaymentModalComponent } from '../order-payment-modal/order-payment-modal.component';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.sass']
+  styleUrls: ['./order-list.component.sass'],
 })
 export class OrderListComponent implements OnDestroy {
-
   step = -1;
 
   authenticationSubscription: Subscription;
@@ -39,50 +41,47 @@ export class OrderListComponent implements OnDestroy {
     private matDialog: MatDialog,
     private snackBarService: MatSnackBar
   ) {
+    this.temporaryStorage =
+      this.temporaryStorageService.forKey('orders_by_retailer');
 
-    this.temporaryStorage = this.temporaryStorageService.forKey("orders_by_retailer");
-
-    let dataStorage = JSON.parse(localStorage.getItem(LOGIN_CONFIG.loginUserStorage));
+    let dataStorage = JSON.parse(
+      localStorage.getItem(LOGIN_CONFIG.loginUserStorage)
+    );
     this.retailer_id = dataStorage.entity._id;
 
-    ; this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe(
-      y => {
+    this.orderSubscription = this.orderStore.orderListByRetailerId$.subscribe(
+      (y) => {
         this.saveToTemporaryStorage(y);
       }
-    )
+    );
 
     this.init();
-
   }
 
   init(): void {
-
     this.restoreFromTemporaryStorage();
     this.orderStore.initOrderByRetailerId(this.retailer_id);
     this.isMobileView = true;
-
   }
 
   ngOnDestroy() {
-
     this.orderSubscription.unsubscribe();
-
   }
 
-
   onIsProductOrderCompleted(buttonIndex: string, data: any): void {
-
     let orders = this.orderStore.state.orderListByRetailerId;
 
-    orders.forEach(order => {
+    orders.forEach((order) => {
       if (data.order_id == order._id) {
-        order.cart.filter(productOrder => {
+        order.cart.filter((productOrder) => {
           if (productOrder._id == data.cartProductOrder_id) {
             productOrder.isCheckedDone = !productOrder.isCheckedDone;
           }
 
-          //looping again looking if the priducts are checkDone 
-          let isAllCartProductsChecked = order.cart.every(p => p.isCheckedDone);
+          //looping again looking if the priducts are checkDone
+          let isAllCartProductsChecked = order.cart.every(
+            (p) => p.isCheckedDone
+          );
 
           let button = document.getElementById(buttonIndex);
 
@@ -92,112 +91,85 @@ export class OrderListComponent implements OnDestroy {
           } else {
             //disabeling the buttion for the respective order
             button.setAttribute('disabled', 'disabled');
-
           }
-
-
-        })
+        });
       }
       //set new orderState
       this.setNextOrderState(orders);
-
     });
   }
 
-
   setOrderPackagedStatusCompleted(order: Order): void {
-
-    this.setNewOrderStatus(ORDER_CONFIG.orderStatus.packaged_by_retailer, order);
+    this.setNewOrderStatus(
+      ORDER_CONFIG.orderStatus.packaged_by_retailer,
+      order
+    );
 
     // put not patch =>time issues, It shoud be patch
-    this.orderStore.updateOrder(order).subscribe(
-      res => {
-        this.openSnackBar("Terminaste una órden más! 👏👏", "cerrar");
-        this.step = -1;
-      }
-    )
-
+    this.orderStore.updateOrder(order).subscribe((res) => {
+      this.openSnackBar('Terminaste una órden más! 👏👏', 'cerrar');
+      this.step = -1;
+    });
   }
 
   openSnackBar(message: string, action: string) {
     this.snackBarService.open(message, action, {
       duration: 3000,
     });
-
   }
 
   setStep(index: number, order: Order) {
-
     this.step = index;
-    
-    if (order.orderType !== 'sale_quote'){
 
+    if (order.orderType !== 'sale_quote') {
       this.setNewOrderStatus(ORDER_CONFIG.orderStatus.seen_by_retailer, order);
       // put not patch =>time issues, It shoud be patch
-      this.orderStore.updateOrder(order).subscribe(
-        res => {
-        }
-      )
+      this.orderStore.updateOrder(order).subscribe((res) => {});
     }
-
   }
 
   nextStep() {
-
     this.step++;
-
   }
 
   prevStep() {
-
     this.step--;
-
   }
 
   setNewOrderStatus(newOrderStatus: string, order: Order): void {
-
     let orderUpdate = order.updateOrderStatus(newOrderStatus, order);
 
     //set new orderState
     let orders = this.orderStore.state.orderListByRetailerId;
-    orders.forEach(ele => {
+    orders.forEach((ele) => {
       if (ele._id == orderUpdate._id) {
         ele = orderUpdate;
       }
     });
 
     this.setNextOrderState(orders);
-
   }
 
   setNextOrderState(orders: Order[]): void {
-
     this.orderStore.setNewOrderState(orders);
-
   }
 
   public async restoreFromTemporaryStorage(): Promise<void> {
-
     let cachedData = await this.temporaryStorage.get<any[]>();
 
     let orders: Order[] = [];
 
     if (cachedData) {
-
-      cachedData.forEach(elem => {
+      cachedData.forEach((elem) => {
         orders.push(new Order().deserialize(elem));
       });
     }
 
     // update cartStore with date from temporary storage
     this.orderStore.setNewOrderState(orders);
-
-
   }
 
-
   saveToTemporaryStorage(orders: Order[]): void {
-
     this.temporaryStorage.set(orders);
   }
 
@@ -207,54 +179,50 @@ export class OrderListComponent implements OnDestroy {
   }
 
   openWhatsApp(order: Order): void {
-    let message = "Tu orden ya está en camino.";
+    let message = 'Tu orden ya está en camino.';
     if (order.orderType == ' pickup') {
-      message = "Ya pudes recoger tu orden, está Lista. Te esperamos.";
+      message = 'Ya pudes recoger tu orden, está Lista. Te esperamos.';
     }
     let link = `//api.whatsapp.com/send?phone=${order.shipping.buyer.phoneNumber}&text=${message}`;
     window.location.href = link;
   }
 
   openOderDetailModal(order: Order): void {
-
     this.dialogRef = this.matDialog.open(OrderDetailModalComponent, {
       width: '320px',
       data: {
-        order: order
-      }
+        order: order,
+      },
     });
-
   }
 
   openPaymentDetailModal(order: Order): void {
-
     this.dialogRef = this.matDialog.open(OrderPaymentModalComponent, {
       width: '320px',
       data: {
-        order: order
-      }
+        order: order,
+      },
     });
-
   }
 
   getOrderGeneratedDate(order: Order): string {
     let date = String(new Date(order.shipping.tracking.orderStatus[0][1]));
-    let arrDate = date.split(" ");
+    let arrDate = date.split(' ');
 
-    return arrDate[2] + " - " + arrDate[1] + " - " + arrDate[3];
+    return arrDate[2] + ' - ' + arrDate[1] + ' - ' + arrDate[3];
   }
-
 
   isOrderPackagedCompleted(order: Order): boolean {
     const orderStatus = order.shipping.tracking.orderStatus;
-    orderStatus.forEach(ordStatus => {
+    orderStatus.forEach((ordStatus) => {
       if (ordStatus[0] == ORDER_CONFIG.orderStatus.packaged_by_retailer) {
-        console.log(ORDER_CONFIG.orderStatus.packaged_by_retailer, ordStatus[0]);
+        console.log(
+          ORDER_CONFIG.orderStatus.packaged_by_retailer,
+          ordStatus[0]
+        );
         return true;
       }
     });
     return false;
   }
-
-
 }

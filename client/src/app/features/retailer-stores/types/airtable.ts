@@ -1,4 +1,3 @@
-import { of } from 'rxjs';
 import { Product } from 'src/app/core/retailer/types/product';
 import {
   Deserializable,
@@ -210,27 +209,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -245,27 +240,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attgHmcPAZU0YwZIv',
-              url:
-                'https://dl.airtable.com/.attachments/7b6b4b1f35d9f891083d398504cf92bb/4cfa12b5/wawito_royal.png',
+              url: 'https://dl.airtable.com/.attachments/7b6b4b1f35d9f891083d398504cf92bb/4cfa12b5/wawito_royal.png',
               filename: 'wawito_royal.png',
               size: 696595,
               type: 'image/png',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/0c6b3610e09d0a6e40b5ea99d7c394cc/239a27c8',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/0c6b3610e09d0a6e40b5ea99d7c394cc/239a27c8',
                   width: 46,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/0a9403641dd1180bb2ba7f5c277ba14f/3c17b31a',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/0a9403641dd1180bb2ba7f5c277ba14f/3c17b31a',
                   width: 649,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/b4c0504e2ddd9bdd59a7a71973032533/52b61122',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/b4c0504e2ddd9bdd59a7a71973032533/52b61122',
                   width: 3000,
                   height: 3000,
                 },
@@ -277,27 +268,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -364,30 +351,8 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'adicionales (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
+            0, 0, 0, 0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1,
           ],
           isEnable_toppings: [
             true,
@@ -504,27 +469,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -539,27 +500,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'att71lMl25ufpMPp7',
-              url:
-                'https://dl.airtable.com/.attachments/6777392cd92c502cf4fc88e01f433f76/b05df8de/wawito_lechon_de_lena.png',
+              url: 'https://dl.airtable.com/.attachments/6777392cd92c502cf4fc88e01f433f76/b05df8de/wawito_lechon_de_lena.png',
               filename: 'wawito_lechon_de_lena.png',
               size: 1458229,
               type: 'image/png',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/e81f65681038e4ef55403eebc00b25b0/5c1aeeba',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/e81f65681038e4ef55403eebc00b25b0/5c1aeeba',
                   width: 43,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/f179575ebe2d9b9a65c69b7c0f1875d8/e046aaca',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/f179575ebe2d9b9a65c69b7c0f1875d8/e046aaca',
                   width: 605,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/70ca46b6adada8871abd4264b1f72c07/c8fa9923',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/70ca46b6adada8871abd4264b1f72c07/c8fa9923',
                   width: 3000,
                   height: 3000,
                 },
@@ -571,27 +528,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -658,30 +611,8 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'adicionales (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
+            0, 0, 0, 0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1,
           ],
           isEnable_toppings: [
             true,
@@ -798,27 +729,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -833,27 +760,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'atts1v37srQSNW0Ft',
-              url:
-                'https://dl.airtable.com/.attachments/ed130c957141d00d01e4b6a4718e6584/1fe77784/wawito_tropical.jpg',
+              url: 'https://dl.airtable.com/.attachments/ed130c957141d00d01e4b6a4718e6584/1fe77784/wawito_tropical.jpg',
               filename: 'wawito_tropical.jpg',
               size: 33887,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/1480e96bcd9b1e15dfadb6a6f45602dd/73430ac8',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/1480e96bcd9b1e15dfadb6a6f45602dd/73430ac8',
                   width: 54,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/af1bb20719e8400f31d4921c32945e81/3116f344',
                   width: 768,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/54d057b070b5059adb904122cd7a059d/d385edc4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/54d057b070b5059adb904122cd7a059d/d385edc4',
                   width: 3000,
                   height: 3000,
                 },
@@ -865,27 +788,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -952,30 +871,8 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'adicionales (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
+            0, 0, 0, 0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1,
           ],
           isEnable_toppings: [
             true,
@@ -1092,27 +989,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -1127,27 +1020,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attQSUVbawDH0uzPV',
-              url:
-                'https://dl.airtable.com/.attachments/901c45b08070eb7b38f7e556d95f170f/fd880503/wawito_super_royal.jpg',
+              url: 'https://dl.airtable.com/.attachments/901c45b08070eb7b38f7e556d95f170f/fd880503/wawito_super_royal.jpg',
               filename: 'wawito_super_royal.jpg',
               size: 37908,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/fd5c6d6e57d93c26f899538eb7b4fb44/d0d3784b',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/fd5c6d6e57d93c26f899538eb7b4fb44/d0d3784b',
                   width: 54,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/066ecc300b4167fcc4c650e1e75a274c/f8ad9c97',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/066ecc300b4167fcc4c650e1e75a274c/f8ad9c97',
                   width: 768,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/d53c9165a0049c2b9db2b22e47426670/f6dd0e1c',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/d53c9165a0049c2b9db2b22e47426670/f6dd0e1c',
                   width: 3000,
                   height: 3000,
                 },
@@ -1159,27 +1048,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -1246,30 +1131,8 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'adicionales (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
+            0, 0, 0, 0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1,
           ],
           isEnable_toppings: [
             true,
@@ -1386,27 +1249,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -1421,27 +1280,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attewUF0Tetnh6qen',
-              url:
-                'https://dl.airtable.com/.attachments/de389f4567dafb591323f2e1f1c7937b/0c98abe9/wawito_clasica.jpg',
+              url: 'https://dl.airtable.com/.attachments/de389f4567dafb591323f2e1f1c7937b/0c98abe9/wawito_clasica.jpg',
               filename: 'wawito_clasica.jpg',
               size: 39120,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/9400832dbfda0550b5adb69e13166a86/17d2e292',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/9400832dbfda0550b5adb69e13166a86/17d2e292',
                   width: 54,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/bb7bf03f576ea86b02a161638c998275/3c77dfa5',
                   width: 768,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/2658708ad9fa71cde876759c4519104c/fd9a2de3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/2658708ad9fa71cde876759c4519104c/fd9a2de3',
                   width: 3000,
                   height: 3000,
                 },
@@ -1453,27 +1308,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -1528,24 +1379,7 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'cremas (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0,
           ],
           isEnable_toppings: [
             true,
@@ -1638,27 +1472,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -1673,27 +1503,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attdHVZF1SdnqnJVu',
-              url:
-                'https://dl.airtable.com/.attachments/720f46455816f66fb914b0e48701a931/fbb4a80d/wawito_super_wawito.jpg',
+              url: 'https://dl.airtable.com/.attachments/720f46455816f66fb914b0e48701a931/fbb4a80d/wawito_super_wawito.jpg',
               filename: 'wawito_super_wawito.jpg',
               size: 61242,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/7d7e46c61abfc91e1b66d2a8f95535ca/ea1c933c',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/7d7e46c61abfc91e1b66d2a8f95535ca/ea1c933c',
                   width: 41,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/7ba16f5058cbc5ad5781845ac9dd2b84/5bc19cf5',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/7ba16f5058cbc5ad5781845ac9dd2b84/5bc19cf5',
                   width: 587,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/4f790e6418a9e0d9d0434d68bab9442a/892fa6df',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/4f790e6418a9e0d9d0434d68bab9442a/892fa6df',
                   width: 3000,
                   height: 3000,
                 },
@@ -1705,27 +1531,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attEcLUU3dYarBDrN',
-              url:
-                'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
+              url: 'https://dl.airtable.com/.attachments/9ed7b8ed0cd88eab7685dc348693d71d/4bbefec6/icon_hamburguer.jpeg',
               filename: 'icon_hamburguer.jpeg',
               size: 8964,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/73cfd6a186a754b27daeac1687405ba4/ca784b63',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
                   width: 225,
                   height: 225,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/84379289f8ceb15fc4c443374abd065c/14ee8af4',
                   width: 3000,
                   height: 3000,
                 },
@@ -1792,30 +1614,8 @@ export function manuallyRetrievedAritableData(payload: string): any {
             'adicionales (opc.)',
           ],
           price_toppings: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            4.5,
-            4,
-            4,
-            3,
-            5,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
+            0, 0, 0, 0, 0, 0, 0, 0, 4.5, 4, 4, 3, 5, 2, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1,
           ],
           isEnable_toppings: [
             true,
@@ -1932,27 +1732,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -1967,27 +1763,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attfYVvff2mZDHVFT',
-              url:
-                'https://dl.airtable.com/.attachments/5b30c98c74b327b7a214fa66447ab8ba/ebeaa47f/wawito_salchipapa.png',
+              url: 'https://dl.airtable.com/.attachments/5b30c98c74b327b7a214fa66447ab8ba/ebeaa47f/wawito_salchipapa.png',
               filename: 'wawito_salchipapa.png',
               size: 592571,
               type: 'image/png',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/c1877da31f3604fde1dad7d509de6f14/fec2d86a',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/c1877da31f3604fde1dad7d509de6f14/fec2d86a',
                   width: 42,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/b9aad4d4857b3351c1d3bc000503b3f9/3bbbf1ec',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/b9aad4d4857b3351c1d3bc000503b3f9/3bbbf1ec',
                   width: 599,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5767dbb249dc0d41ea267e908e6a940e/89ed5ddc',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5767dbb249dc0d41ea267e908e6a940e/89ed5ddc',
                   width: 3000,
                   height: 3000,
                 },
@@ -1999,27 +1791,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attFzSXk0l1d5xIb8',
-              url:
-                'https://dl.airtable.com/.attachments/0fb672c20a12418772ec1ec1f5e8190a/7c520e5e/icon_salchipapas_2.jpg',
+              url: 'https://dl.airtable.com/.attachments/0fb672c20a12418772ec1ec1f5e8190a/7c520e5e/icon_salchipapas_2.jpg',
               filename: 'icon_salchipapas_2.jpg',
               size: 148025,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/716e4615c7f92e0d04ce1fe1b9326b74/cda2d998',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/716e4615c7f92e0d04ce1fe1b9326b74/cda2d998',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/445047824cd7110f0ee47fd486352049/fb67da66',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/445047824cd7110f0ee47fd486352049/fb67da66',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/085111936984afaf60a9973819e2d25e/9908dc56',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/085111936984afaf60a9973819e2d25e/9908dc56',
                   width: 3000,
                   height: 3000,
                 },
@@ -2135,27 +1923,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Category_Img: [
             {
               id: 'attMIxzEc1M90X6DV',
-              url:
-                'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
+              url: 'https://dl.airtable.com/.attachments/055f1d2289900641622dda07b1ff3b54/303ff8b1/icon_fastfood.jpg',
               filename: 'icon_fastfood.jpg',
               size: 169356,
               type: 'image/jpeg',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/6ebbd9e6db3a1f5263cb9df26d7d0dca/5a2bd41d',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
                   width: 512,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/116f3aefc636ab793b045624c33fe8c6/58f75db3',
                   width: 3000,
                   height: 3000,
                 },
@@ -2170,27 +1954,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Maturity_Img: [
             {
               id: 'attdyobue52rLqMqU',
-              url:
-                'https://dl.airtable.com/.attachments/a239fb48200802beea092b4117da8d1c/a87e62af/club_sandwich.png',
+              url: 'https://dl.airtable.com/.attachments/a239fb48200802beea092b4117da8d1c/a87e62af/club_sandwich.png',
               filename: 'club_sandwich.png',
               size: 661096,
               type: 'image/png',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/3f4f98ccf8d36ef788142aa9c70047af/14495854',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/3f4f98ccf8d36ef788142aa9c70047af/14495854',
                   width: 38,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/3c35a1cafa33bd8f6410edbe8e131bb3/f511eaa5',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/3c35a1cafa33bd8f6410edbe8e131bb3/f511eaa5',
                   width: 540,
                   height: 512,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/8eebb1bca45b147736b8ffa39d425c81/7d6a8ce0',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/8eebb1bca45b147736b8ffa39d425c81/7d6a8ce0',
                   width: 3000,
                   height: 3000,
                 },
@@ -2202,27 +1982,23 @@ export function manuallyRetrievedAritableData(payload: string): any {
           Variety_Img: [
             {
               id: 'attP2CXe2HC8HxeeO',
-              url:
-                'https://dl.airtable.com/.attachments/75aed368251b1373119edbd3b65bf44d/8f481d45/icon_sandwich.png',
+              url: 'https://dl.airtable.com/.attachments/75aed368251b1373119edbd3b65bf44d/8f481d45/icon_sandwich.png',
               filename: 'icon_sandwich.png',
               size: 17206,
               type: 'image/png',
               thumbnails: {
                 small: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/99295b728a23c566a59ccb862e8c787e/a8ebe9c5',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/99295b728a23c566a59ccb862e8c787e/a8ebe9c5',
                   width: 36,
                   height: 36,
                 },
                 large: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/980302780cdfdf61c2dcd7c0b6eac1eb/1cde0e70',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/980302780cdfdf61c2dcd7c0b6eac1eb/1cde0e70',
                   width: 128,
                   height: 128,
                 },
                 full: {
-                  url:
-                    'https://dl.airtable.com/.attachmentThumbnails/8eeabb08bb387f2d188b254c5f6deba4/7579196a',
+                  url: 'https://dl.airtable.com/.attachmentThumbnails/8eeabb08bb387f2d188b254c5f6deba4/7579196a',
                   width: 3000,
                   height: 3000,
                 },

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SelectPaymentMethodComponent } from './select-payment-method.component';
 
 describe('SelectPaymentMethodComponent', () => {
@@ -8,9 +7,8 @@ describe('SelectPaymentMethodComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectPaymentMethodComponent ]
-    })
-    .compileComponents();
+      declarations: [SelectPaymentMethodComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

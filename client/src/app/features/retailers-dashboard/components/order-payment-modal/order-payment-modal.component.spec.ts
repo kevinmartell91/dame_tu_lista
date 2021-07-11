@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OrderPaymentModalComponent } from './order-payment-modal.component';
 
 describe('OrderPaymentModalComponent', () => {
@@ -8,9 +7,8 @@ describe('OrderPaymentModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderPaymentModalComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderPaymentModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

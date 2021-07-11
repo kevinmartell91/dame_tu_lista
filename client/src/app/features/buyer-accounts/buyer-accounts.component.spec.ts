@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BuyerAccountsComponent } from './buyer-accounts.component';
 
 describe('BuyerAccountsComponent', () => {
@@ -8,9 +7,8 @@ describe('BuyerAccountsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuyerAccountsComponent ]
-    })
-    .compileComponents();
+      declarations: [BuyerAccountsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

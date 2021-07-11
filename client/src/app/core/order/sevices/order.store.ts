@@ -29,9 +29,8 @@ export class OrderStore extends Store<OrderStoreState> {
       map((state) => state.orderListByBuyerId)
     );
 
-    this.storeRequestStateUpdater = endpointHelpers.getStoreRequestStateUpdater(
-      this
-    );
+    this.storeRequestStateUpdater =
+      endpointHelpers.getStoreRequestStateUpdater(this);
   }
 
   get order(): Order {

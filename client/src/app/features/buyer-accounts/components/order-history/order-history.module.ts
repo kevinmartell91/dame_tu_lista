@@ -6,17 +6,12 @@ import { ProductCommentModalComponent } from './components/product-comment-modal
 import { OrderHistoryRoutingModule } from './order-history-routing.module';
 import { OrderHistoryComponent } from './order-history.component';
 
-
 @NgModule({
   declarations: [
     OrderHistoryComponent,
     OrderComponent,
-    ProductCommentModalComponent
+    ProductCommentModalComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    OrderHistoryRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, OrderHistoryRoutingModule],
 })
-export class OrderHistoryModule { }
+export class OrderHistoryModule {}

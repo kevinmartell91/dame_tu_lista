@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 
 @Component({
   selector: 'app-cash-payment-amount-modal',

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-
 import { AuthGuard } from './core/guard/auth.guards';
 
 const routes: Routes = [
@@ -32,19 +31,6 @@ const routes: Routes = [
         (m) => m.RegisterModule
       ),
   },
-  // {
-  //   path: 'dashboard-medical-center',
-  //   loadChildren: () =>
-  //     import('./features/medical-dashboard/medical-dashboard.module').then(
-  //       (m) => m.MedicalDashboardModule
-  //     ),
-  //   // canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'place-order',
-  //   loadChildren: () => import('./features/place-order/place-order.module').then(m => m.PlaceOrderModule),
-  //   // canActivate: [AuthGuard]
-  // },
   {
     path: 'cuenta-comprador',
     loadChildren: () =>
@@ -61,7 +47,6 @@ const routes: Routes = [
       ),
   },
   {
-    // path: 'tienda-vendedor/:retailer_id',
     path: ':retailer_store_name',
     loadChildren: () =>
       import('./features/retailer-stores/retailer-stores.module').then(
@@ -70,7 +55,6 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    // path: 'carrito-personal',
     path: ':retailer_store_name/carrito-personal',
     loadChildren: () =>
       import('./features/carts/carts.module').then((m) => m.CartsModule),

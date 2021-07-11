@@ -1,12 +1,12 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  ElementRef,
 } from '@angular/core';
-import { Observable, fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-button',

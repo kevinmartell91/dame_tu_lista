@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProductCommentModalComponent } from './product-comment-modal.component';
 
 describe('ProductCommentModalComponent', () => {
@@ -8,9 +7,8 @@ describe('ProductCommentModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductCommentModalComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductCommentModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

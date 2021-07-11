@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProfileSettingsComponent } from './profile-settings.component';
 
 describe('ProfileSettingsComponent', () => {
@@ -8,9 +7,8 @@ describe('ProfileSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [ProfileSettingsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

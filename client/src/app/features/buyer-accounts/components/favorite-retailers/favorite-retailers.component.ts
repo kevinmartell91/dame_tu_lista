@@ -17,10 +17,9 @@ import { AddRetailerModalComponent } from '../add-retailer-modal/add-retailer-mo
 @Component({
   selector: 'app-favorite-retailers',
   templateUrl: './favorite-retailers.component.html',
-  styleUrls: ['./favorite-retailers.component.sass']
+  styleUrls: ['./favorite-retailers.component.sass'],
 })
 export class FavoriteRetailersComponent implements OnInit, OnDestroy {
-
   loginUser: LoginUser;
   buyer_id: string;
   subscription: Subscription;
@@ -35,16 +34,20 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
     private cartStore: CartStore,
     private snackBarService: MatSnackBar,
     private matDialog: MatDialog
-  ) { 
-
+  ) {
     this.subscription = this.authenticationStore.loginUser$.subscribe(
-      (data : any) => { 
+      (data: any) => {
         this.loginUser = data;
 
         this.buyer_id = data.entity._id;
-        this.buyerAccountStore.setNewBuyerAccountState(new Buyer().deserialize(data.entity));
+        this.buyerAccountStore.setNewBuyerAccountState(
+          new Buyer().deserialize(data.entity)
+        );
 
-        if(this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers.length == 0) {
+        if (
+          this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers
+            .length == 0
+        ) {
           this.addStoreAutomatically();
         }
       }
@@ -52,23 +55,18 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-     
     updateBuyerNavagation(
       this.buyerNavegationStore,
       BUYER_CONFIG.navegation.accountView,
-      "navegation.accountView"
+      'navegation.accountView'
     );
-
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-
   goToRetailerStoreView(retailer: Retailer): void {
-
     // In order to keep the selected favorite retailer _id,
     // we store it in cartStore. So its subscribers will
     // about which one was selecetd from other components
@@ -76,45 +74,44 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
     // new order which requieres favorite reatiler _id.
     this.cartStore.setFavoriteRetalerSelected(retailer);
 
-    this.router.navigate(['/tienda-vendedor/',retailer._id]);
+    this.router.navigate(['/tienda-vendedor/', retailer._id]);
   }
 
-
-  
-  viewBuyerDetails():void {
+  viewBuyerDetails(): void {
     this.router.navigate(['/buyer-details']);
   }
 
   addFavoriteRetailer(): void {
-
     this.dialogRef = this.matDialog.open(AddRetailerModalComponent, {
-      width: '320px'
+      width: '320px',
     });
-    
-    this.dialogRef.afterClosed().subscribe( result => {
 
-      let message = "Ya agregaste al vendedor."
+    this.dialogRef.afterClosed().subscribe((result) => {
+      let message = 'Ya agregaste al vendedor.';
 
-      if(result != undefined){
+      if (result != undefined) {
         let email = result.retailer_email;
 
-        if(this.isNewFavoriteRetailer(email)){
-          
-          message = "Vendedor agregado."
+        if (this.isNewFavoriteRetailer(email)) {
+          message = 'Vendedor agregado.';
           let retailer_email = email;
-          this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
-       
-        } 
-        this.openSnackBar( message,"Cerrar");
+          this.buyerAccountStore.addFavoriteReatailer(
+            this.buyer_id,
+            retailer_email
+          );
+        }
+        this.openSnackBar(message, 'Cerrar');
       }
-      
     });
-
   }
 
   isNewFavoriteRetailer(email: string): boolean {
-    let favRet =  this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers;
-    return  !Boolean(favRet.find( function (fr) { return fr.email == email}));
+    let favRet = this.buyerAccountStore.state.buyerAccount.myFavoriteRetailers;
+    return !Boolean(
+      favRet.find(function (fr) {
+        return fr.email == email;
+      })
+    );
   }
 
   openSnackBar(message: string, action: string) {
@@ -123,10 +120,8 @@ export class FavoriteRetailersComponent implements OnInit, OnDestroy {
     });
   }
 
-  addStoreAutomatically():void {
-    const retailer_email = "keylahuincho@gmail.com";
+  addStoreAutomatically(): void {
+    const retailer_email = 'keylahuincho@gmail.com';
     this.buyerAccountStore.addFavoriteReatailer(this.buyer_id, retailer_email);
-
   }
-
 }

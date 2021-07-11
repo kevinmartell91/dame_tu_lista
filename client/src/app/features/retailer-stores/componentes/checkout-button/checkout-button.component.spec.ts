@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CheckoutButtonComponent } from './checkout-button.component';
 
 describe('CheckoutButtonComponent', () => {
@@ -8,9 +7,8 @@ describe('CheckoutButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [CheckoutButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

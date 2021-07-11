@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PhoneNumberModalComponent } from './phone-number-modal.component';
 
 describe('PhoneNumberModalComponent', () => {
@@ -8,9 +7,8 @@ describe('PhoneNumberModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PhoneNumberModalComponent ]
-    })
-    .compileComponents();
+      declarations: [PhoneNumberModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

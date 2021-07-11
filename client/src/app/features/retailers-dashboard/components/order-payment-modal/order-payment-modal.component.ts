@@ -1,15 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-payment-modal',
   templateUrl: './order-payment-modal.component.html',
-  styleUrls: ['./order-payment-modal.component.sass']
+  styleUrls: ['./order-payment-modal.component.sass'],
 })
 export class OrderPaymentModalComponent implements OnInit {
-
   // orderPaymentForm: FormGroup;
   paymentMethod: string;
   amount: string = '';
@@ -22,11 +21,9 @@ export class OrderPaymentModalComponent implements OnInit {
     private router: Router,
     private matDialogRef: MatDialogRef<OrderPaymentModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
+  ) {}
 
   ngOnInit(): void {
-
     this.paymentMethod = this.data.order.payment.method;
 
     // this.orderPaymentForm = this.fb.group({
@@ -39,7 +36,7 @@ export class OrderPaymentModalComponent implements OnInit {
     this.buyerName = this.data.order.shipping.buyer.name;
     this.buyerEmail = this.data.order.shipping.buyer.email;
     this.buyerPhoneNumber = this.data.order.shipping.buyer.phoneNumber;
-    this.amount = ((this.data.order.payment.amount) as Number).toFixed(2);
+    this.amount = (this.data.order.payment.amount as Number).toFixed(2);
   }
 
   onNoClick(): void {
@@ -48,8 +45,6 @@ export class OrderPaymentModalComponent implements OnInit {
 
   // callBuyer(buyerPhoneNumber: string): void {
   //   this.router.navigate(['gracias-por-tu-compra'], { relativeTo: this.route });
-    
+
   // }
-
 }
-

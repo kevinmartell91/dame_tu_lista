@@ -5,48 +5,49 @@ import { map } from 'rxjs/operators';
 import { BuyerNavegation } from '../types/buyer-navegation';
 import { BuyerNavegationStoreState } from './buyer-navegation.store.states';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BuyerNavegationStore extends Store<BuyerNavegationStoreState> {
-    
-    buyerNavegation$: Observable<BuyerNavegation>;
+  buyerNavegation$: Observable<BuyerNavegation>;
 
-    constructor () {
-        super( new BuyerNavegationStoreState()) 
-        this.buyerNavegation$ = this.state$.pipe(map(state => state.buyerNavegation));
-        
-        // set the first state
-        let buyerNav = new BuyerNavegation();
-        this.setNewState(buyerNav);
-    }
+  constructor() {
+    super(new BuyerNavegationStoreState());
+    this.buyerNavegation$ = this.state$.pipe(
+      map((state) => state.buyerNavegation)
+    );
 
-    get buyerNavegation(): any {
-        return this.state.buyerNavegation;
-    }
+    // set the first state
+    let buyerNav = new BuyerNavegation();
+    this.setNewState(buyerNav);
+  }
 
-    setNewState( buyerNavegation: BuyerNavegation) {
-        this.setState({
-            ...this.state, 
-            buyerNavegation: buyerNavegation
-        });
-    }
-    setNewCategoryProductState(newCategoryProduct: string):void {
-        this.setState({
-            ...this.state,
-            categoryProduct: newCategoryProduct
-        });
-    }
+  get buyerNavegation(): any {
+    return this.state.buyerNavegation;
+  }
 
-    setNewVarietyProductState(newVarietyProduct: string):void {
-        this.setState({
-            ...this.state,
-            varietyProduct: newVarietyProduct
-        });
-    }
-    
-    setNewMaturityProductState(newMaturityProduct: string):void {
-        this.setState({
-            ...this.state,
-            maturityProduct: newMaturityProduct
-        });
-    }
+  setNewState(buyerNavegation: BuyerNavegation) {
+    this.setState({
+      ...this.state,
+      buyerNavegation: buyerNavegation,
+    });
+  }
+  setNewCategoryProductState(newCategoryProduct: string): void {
+    this.setState({
+      ...this.state,
+      categoryProduct: newCategoryProduct,
+    });
+  }
+
+  setNewVarietyProductState(newVarietyProduct: string): void {
+    this.setState({
+      ...this.state,
+      varietyProduct: newVarietyProduct,
+    });
+  }
+
+  setNewMaturityProductState(newMaturityProduct: string): void {
+    this.setState({
+      ...this.state,
+      maturityProduct: newMaturityProduct,
+    });
+  }
 }

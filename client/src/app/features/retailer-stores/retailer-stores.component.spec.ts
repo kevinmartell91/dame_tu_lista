@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RetailerStoresComponent } from './retailer-stores.component';
 
 describe('RetailerStoresComponent', () => {
@@ -8,9 +7,8 @@ describe('RetailerStoresComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RetailerStoresComponent ]
-    })
-    .compileComponents();
+      declarations: [RetailerStoresComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,5 +20,4 @@ describe('RetailerStoresComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

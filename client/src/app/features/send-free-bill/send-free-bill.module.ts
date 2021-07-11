@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { SendFreeBillRoutingModule } from './send-free-bill-routing.module';
-import { SendFreeBillComponent } from './send-free-bill.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SendFreeBillRoutingModule } from './send-free-bill-routing.module';
+import { SendFreeBillComponent } from './send-free-bill.component';
 
 @NgModule({
   declarations: [SendFreeBillComponent],

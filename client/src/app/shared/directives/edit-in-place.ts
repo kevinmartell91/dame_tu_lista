@@ -1,31 +1,28 @@
-import { Directive, TemplateRef, HostListener } from '@angular/core';
+import { Directive, HostListener, TemplateRef } from '@angular/core';
 import { EditableTableComponent } from '../components/editable-table/editable-table.component';
 
 @Directive({
-    selector: '[viewMode]'
+  selector: '[viewMode]',
 })
 export class ViewModeDirective {
-
-    constructor(public tpl: TemplateRef<any>) { }
+  constructor(public tpl: TemplateRef<any>) {}
 }
 
-
 @Directive({
-    selector: '[editMode]'
+  selector: '[editMode]',
 })
 export class EditModeDirective {
-    constructor(public tpl: TemplateRef<any>) { }
+  constructor(public tpl: TemplateRef<any>) {}
 }
 
 @Directive({
-    selector: '[editableOnEnter]'
+  selector: '[editableOnEnter]',
 })
 export class EditableOnEnterDirective {
-    constructor(private editable: EditableTableComponent) {
-    }
+  constructor(private editable: EditableTableComponent) {}
 
-    @HostListener('keyup.enter')
-    onEnter() {
-        this.editable.toViewMode();
-    }
+  @HostListener('keyup.enter')
+  onEnter() {
+    this.editable.toViewMode();
+  }
 }

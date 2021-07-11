@@ -37,9 +37,8 @@ export class OrderDisplayComponent implements OnInit {
   }
 
   transformcartProductOrderTotalPriceToStr(): void {
-    this.cartProductOrderTotalPriceStr = this.cartProductOrder.totalPrice.toFixed(
-      2
-    );
+    this.cartProductOrderTotalPriceStr =
+      this.cartProductOrder.totalPrice.toFixed(2);
   }
 
   openAddcartProductOrderDetailModal(): void {

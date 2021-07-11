@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddToppingsComponent } from './add-toppings.component';
 
 describe('AddToppingsComponent', () => {
@@ -8,9 +7,8 @@ describe('AddToppingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddToppingsComponent ]
-    })
-    .compileComponents();
+      declarations: [AddToppingsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

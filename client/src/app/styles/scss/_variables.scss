@@ -1,24 +1,6 @@
-// ##########################################################
 // ##############     Angular materail       ################
-// ##########################################################
-
 @import "custom";
 
 $custom-theme: mat-light-theme($primary, $accent, $warn);
-
 // Include theme styles for Angular Material components.
 @include angular-material-theme($custom-theme);
-
-// ##########################################################
-// ##############     Angular-mdl2       ####################
-// ##########################################################
-
-@import "~@angular-mdl/core/scss/color-definitions";
-
-$color-primary: $palette-blue-500;
-$color-primary-dark: $palette-blue-700;
-$color-accent: $palette-amber-A200;
-$color-primary-contrast: $color-dark-contrast;
-$color-accent-contrast: $color-dark-contrast;
-
-@import "~@angular-mdl/core/scss/material-design-lite";

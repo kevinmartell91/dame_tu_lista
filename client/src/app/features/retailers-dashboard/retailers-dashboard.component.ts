@@ -1,11 +1,11 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { AuthenticationStore } from 'src/app/core/login/services/authentication.store';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { getStoreNameDashFormat } from './helpers/profile-settings.helper';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-retailers-dashboard',

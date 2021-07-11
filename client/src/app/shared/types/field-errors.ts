@@ -1,3 +1,3 @@
 export interface FieldErrors {
-    [field: string]: string[];
+  [field: string]: string[];
 }

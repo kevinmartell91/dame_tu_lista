@@ -1,9 +1,8 @@
-import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
 import { RetailerStoreStore } from 'src/app/features/retailer-stores/services/retailer.store';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-select-payment-method',

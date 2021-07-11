@@ -1,78 +1,97 @@
 <div class="box">
-    <div class="add-product">
-        <form [formGroup]="newProductForm" class="example-form">
+  <div class="add-product">
+    <form [formGroup]="newProductForm" class="example-form">
+      <mat-form-field class="style-new-name">
+        <mat-label>Producto</mat-label>
+        <input
+          #myInputProduct
+          matInput
+          placeholder="Ej. 1kg Uva"
+          formControlName="name"
+        />
+      </mat-form-field>
 
-            <mat-form-field class="style-new-name">
-                <mat-label>Producto</mat-label>
-                <input #myInputProduct matInput placeholder="Ej. 1kg Uva" formControlName="name"  >
-            </mat-form-field>
+      <mat-form-field class="style-new-price">
+        <mat-label>Precio</mat-label>
+        <span matPrefix>S/. &nbsp;</span>
+        <input
+          type="number"
+          matInput
+          placeholder="Ej. 3.50"
+          formControlName="price"
+          cdkFocusInitial
+        />
+        <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+      </mat-form-field>
+      <!-- <div class="example-button-container"> -->
+      <button
+        (click)="addProduct(newProductForm.value)"
+        class="style-add-button"
+        mat-fab
+        color="primary"
+        [disabled]="!newProductForm.valid"
+        cdkFocusRegionEnd
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <!-- </div> -->
+    </form>
+  </div>
+  <div class="bill-list">
+    <table>
+      <tr>
+        <th>Opc.</th>
+        <th>Producto</th>
+        <th>S/.</th>
+      </tr>
 
-            <mat-form-field class="style-new-price">
-                <mat-label>Precio</mat-label>
-                <span matPrefix>S/. &nbsp;</span>
-                <input type="number" matInput placeholder="Ej. 3.50" formControlName="price" cdkFocusInitial>
-                <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
-            </mat-form-field>
-            <!-- <div class="example-button-container"> -->
-            <button 
-                (click)="addProduct(newProductForm.value)" 
-                class="style-add-button" 
-                mat-fab color="primary"
-                [disabled]="!newProductForm.valid" cdkFocusRegionEnd>
-                <mat-icon>add</mat-icon>
-            </button>
-            <!-- </div> -->
-        </form>
-    </div>
-    <div class="bill-list">
-        <table >
-            <tr>
-                <th>Opc.</th>
-                <th>Producto</th>
-                <th>S/.</th>
-            </tr>
+      <tr *ngFor="let product of productList; index as index">
+        <td>
+          <div>
+            <img
+              (click)="deleteProduct(product.id)"
+              src="../../../assets/icons/delete-22dp.svg"
+              alt=""
+            />
+          </div>
+        </td>
 
-            <tr *ngFor="let product of productList; index as index">
+        <td class="style-name">
+          <editable (update)="updateField(product.id, 'name')">
+            <ng-template viewMode> {{ product.name }}</ng-template>
+            <ng-template editMode>
+              <!-- <input editableOnEnter class="style-edit-name" [formControl]="getControl(product.id, 'name')"> -->
+              <textarea
+                editableOnEnter
+                class="style-edit-name"
+                [formControl]="getControl(product.id, 'name')"
+              >
+              </textarea>
+            </ng-template>
+          </editable>
+        </td>
 
-                <td>
-                    <div>
-                        <img (click)="deleteProduct(product.id)" src="../../../assets/icons/delete-22dp.svg" alt="">
-
-                    </div>
-                </td>
-
-                <td class="style-name">
-                    <editable (update)="updateField(product.id, 'name')">
-                        <ng-template viewMode> {{product.name}}</ng-template>
-                        <ng-template editMode>
-                            <!-- <input editableOnEnter class="style-edit-name" [formControl]="getControl(product.id, 'name')"> -->
-                            <textarea editableOnEnter class="style-edit-name" [formControl]="getControl(product.id, 'name')">
-                            </textarea>
-                        </ng-template>
-                    </editable>
-                </td>
-
-                <td class="style-price">
-                    <editable (update)="updateField(product.id, 'price')">
-                        <ng-template viewMode> {{product.price}}</ng-template>
-                        <ng-template editMode>
-                            <input type="number" editableOnEnter class="style-edit-price"
-                                [formControl]="getControl(product.id, 'price')">
-                        </ng-template>
-                    </editable>
-                </td>
-
-            </tr>
-        </table>
-    </div>
-    <div>
-        <button (click)="openPhoneNumberModal()" class="send-button">
-            <mat-icon class="icon">send</mat-icon>
-            Whatsapp
-            <button class="style_total_price_button">{{getTotalPrice()}}</button>
-
-        </button>
-    </div>
-
-
+        <td class="style-price">
+          <editable (update)="updateField(product.id, 'price')">
+            <ng-template viewMode> {{ product.price }}</ng-template>
+            <ng-template editMode>
+              <input
+                type="number"
+                editableOnEnter
+                class="style-edit-price"
+                [formControl]="getControl(product.id, 'price')"
+              />
+            </ng-template>
+          </editable>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <button (click)="openPhoneNumberModal()" class="send-button">
+      <mat-icon class="icon">send</mat-icon>
+      Whatsapp
+      <button class="style_total_price_button">{{ getTotalPrice() }}</button>
+    </button>
+  </div>
 </div>

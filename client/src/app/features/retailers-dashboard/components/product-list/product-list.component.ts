@@ -1,11 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormArray, AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { Product } from 'src/app/core/retailer/types/product';
-
-import { Subscription } from 'rxjs';
-import { LOGIN_CONFIG } from 'src/app/core/login/login.config';
-
 
 interface IProduct {
   _id?: string;
@@ -31,44 +34,32 @@ interface IProduct {
   isInStock?: boolean;
 
   // quantity?: number;
-
 }
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.sass']
+  styleUrls: ['./product-list.component.sass'],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-
   controls: FormArray;
   subscribe: Subscription;
   products: IProduct[] = null;
 
-
-  constructor(
-    private retailerStore: RetailerStore
-
-  ) {
-
-    this.subscribe = this.retailerStore.retailer$.subscribe(
-      retailer => {
-        if (retailer) {
-          this.products = retailer.store.productsList;
-          this.initFormArray();
-          // console.log("PRODUCTS", this.products);
-        }
+  constructor(private retailerStore: RetailerStore) {
+    this.subscribe = this.retailerStore.retailer$.subscribe((retailer) => {
+      if (retailer) {
+        this.products = retailer.store.productsList;
+        this.initFormArray();
+        // console.log("PRODUCTS", this.products);
       }
-    )
-
+    });
   }
-  ngOnInit() { }
+  ngOnInit() {}
 
   initFormArray(): void {
-
     if (this.products) {
-
-      const toGroups = this.products.map(product => {
+      const toGroups = this.products.map((product) => {
         return new FormGroup({
           _id: new FormControl(product._id, Validators.required),
           categoryImageUrl: new FormControl(product.categoryImageUrl),
@@ -91,7 +82,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
           maturityEatIn: new FormControl(product.maturityEatIn),
           maturityLastFor: new FormControl(product.maturityLastFor),
           isInStock: new FormControl(product.isInStock),
-
         });
       });
       this.controls = new FormArray(toGroups);
@@ -114,10 +104,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
           return {
             ...e,
             [field]: control.value,
-          }
+          };
         }
         return e;
-      })
+      });
     }
   }
 
@@ -134,20 +124,18 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.addProduct();
   }
 
-  addProduct( ){
+  addProduct() {
     let newProd = new Product();
-    newProd.categoryName = "kevin"; 
+    newProd.categoryName = 'kevin';
     this.products.push(newProd);
   }
 
-  deleteProducto(id){
-  
+  deleteProducto(id) {
     this.products = this.products.filter((prod) => {
-      if(prod._id !== id){
+      if (prod._id !== id) {
         return prod;
       }
     });
-    console.log("this.products", id,this.products);
+    console.log('this.products', id, this.products);
   }
 }
-

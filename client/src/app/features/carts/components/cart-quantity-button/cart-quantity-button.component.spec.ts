@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CartQuantityButtonComponent } from './cart-quantity-button.component';
 
 describe('CartQuantityButtonComponent', () => {
@@ -8,9 +7,8 @@ describe('CartQuantityButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartQuantityButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [CartQuantityButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

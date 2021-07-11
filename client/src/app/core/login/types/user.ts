@@ -1,6 +1,6 @@
 import { Deserializable } from '../../../shared/models/deserializable.model';
 
-export class LoginUser implements Deserializable{
+export class LoginUser implements Deserializable {
   name?: string;
   email?: string;
   password?: string;
@@ -9,9 +9,8 @@ export class LoginUser implements Deserializable{
   entity?: string;
 
   deserialize(input: any) {
-  	Object.assign(this, input);
-  	return this;
+    Object.assign(this, input);
+    return this;
   }
   // https://nehalist.io/angular-7-models/
-
 }

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OrderDetailModalComponent } from './order-detail-modal.component';
 
 describe('OrderDetailModalComponent', () => {
@@ -8,9 +7,8 @@ describe('OrderDetailModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderDetailModalComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderDetailModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

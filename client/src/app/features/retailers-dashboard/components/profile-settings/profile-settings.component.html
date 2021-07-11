@@ -27,18 +27,20 @@
                 <span class="style_store_name"><strong>{{storeName}}</strong></span>
                 <br><br> -->
 
-        <div fxLayoutAlign="center center">
-          <span class="style_url">dametulista.com/</span>
-        </div>
-        <div fxLayoutAlign="center center">
-          <span class="style_store_name"
-            ><strong>{{ storeName }}</strong></span
-          >
+        <div class="style_box_url_store">
+          <div fxLayoutAlign="center center">
+            <span class="style_url">dametulista.com/</span>
+          </div>
+          <div fxLayoutAlign="center center">
+            <span class="style_store_name"
+              ><strong>{{ storeName }}</strong></span
+            >
+          </div>
         </div>
 
-        <br /><br />
+        <br />
 
-        <div fxLayoutAlign="center">
+        <div class="style_setting_field" fxLayoutAlign="center">
           <mat-form-field class="full_width">
             <mat-label>Nombre de tu tienda</mat-label>
             <mat-icon (click)="copyUrlStoreName()" matSuffix
@@ -60,65 +62,84 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field class="full_width">
-          <mat-label>Url Banner</mat-label>
-          <input
-            matInput
-            placeholder="https://elBannerDeTuTienda.com"
-            name="imgUrl"
-            type="text"
-            formControlName="imgUrl"
-          />
-        </mat-form-field>
+        <div class="style_setting_field">
+          <mat-form-field class="full_width">
+            <mat-label>Url Banner</mat-label>
+            <input
+              matInput
+              placeholder="https://elBannerDeTuTienda.com"
+              name="imgUrl"
+              type="text"
+              formControlName="imgUrl"
+            />
+          </mat-form-field>
+        </div>
 
-        <mat-slide-toggle
-          class="full_width"
-          formControlName="isDeliveryService"
-        >
-          Realizo delivery
-        </mat-slide-toggle>
+        <div class="style_setting_field">
+          <div class="style_horizontal">
+            <div>
+              <span>Información de delivery</span>
+            </div>
+            <div class="style_margin_right">
+              <mat-slide-toggle
+                class="full_width"
+                formControlName="isDeliveryService"
+              >
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <mat-form-field class="full_width" *ngIf="isDeliveryService">
+            <mat-label>Detalles delivery</mat-label>
+            <input
+              matInput
+              placeholder="30 - 45 min ~ min S./ 4.90 Envio ~ sin mínimo "
+              name="deliveryInfo"
+              type="text"
+              formControlName="deliveryInfo"
+            />
+          </mat-form-field>
+        </div>
 
-        <mat-form-field class="full_width" *ngIf="isDeliveryService">
-          <mat-label>Horario de delivery</mat-label>
-          <input
-            matInput
-            placeholder="Ej. De a 10 am a 4pm"
-            name="deliveryInfo"
-            type="text"
-            formControlName="deliveryInfo"
-          />
-        </mat-form-field>
+        <div class="style_setting_field">
+          <div class="style_horizontal">
+            <div>
+              <span>Información de recojo en tienda</span>
+            </div>
+            <div class="style_margin_right">
+              <mat-slide-toggle formControlName="isPickUpService">
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <mat-form-field class="full_width" *ngIf="isPickUpService">
+            <mat-label>Detalles de recojo</mat-label>
+            <input
+              matInput
+              placeholder="Horario de recojo / dirección de su local"
+              name="pickUpInfo"
+              type="text"
+              formControlName="pickUpInfo"
+            />
+          </mat-form-field>
+        </div>
 
-        <mat-slide-toggle formControlName="isPickUpService">
-          Ofrezco recojo en tienda
-        </mat-slide-toggle>
-
-        <mat-form-field class="full_width" *ngIf="isPickUpService">
-          <mat-label>Horario de recojo</mat-label>
-          <input
-            matInput
-            placeholder="Ej. De a 10 am a 4pm"
-            name="pickUpInfo"
-            type="text"
-            formControlName="pickUpInfo"
-          />
-        </mat-form-field>
-
-        <mat-form-field class="full_width">
-          <mat-label>WhatsApp Business / WhatsApp</mat-label>
-          <span matPrefix>+51 &nbsp;</span>
-          <input
-            matInput
-            placeholder="999-999-999"
-            name="phoneNumber"
-            type="tel"
-            formControlName="phoneNumber"
-          />
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="!accountRetailerForm.hasError('required')">
-            El número <strong>es obligatorio </strong> siendo este de 9 dígitos
-          </mat-error>
-        </mat-form-field>
+        <div class="style_setting_field">
+          <mat-form-field class="full_width">
+            <mat-label>WhatsApp Business / WhatsApp</mat-label>
+            <span matPrefix>+51 &nbsp;</span>
+            <input
+              matInput
+              placeholder="999-999-999"
+              name="phoneNumber"
+              type="tel"
+              formControlName="phoneNumber"
+            />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="!accountRetailerForm.hasError('required')">
+              El número <strong>es obligatorio </strong> siendo este de 9
+              dígitos
+            </mat-error>
+          </mat-form-field>
+        </div>
         <!-- <p *ngIf="phoneNumber.invalid && phoneNumber.errors.invalidNumber">Muy largo</p>  -->
       </div>
 

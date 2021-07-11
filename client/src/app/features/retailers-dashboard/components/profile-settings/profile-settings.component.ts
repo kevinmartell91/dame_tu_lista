@@ -1,16 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl,
-  AbstractControl,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { APP_CONFIG } from 'src/app/app.config';
 import { RetailerStore } from 'src/app/core/retailer/services/retailer.store';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
-import { APP_CONFIG } from 'src/app/app.config';
 import { getStoreNameDashFormat } from '../../helpers/profile-settings.helper';
 
 @Component({

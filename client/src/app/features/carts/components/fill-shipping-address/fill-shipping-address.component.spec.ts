@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FillShippingAddressComponent } from './fill-shipping-address.component';
 
 describe('FillShippingAddressComponent', () => {
@@ -8,9 +7,8 @@ describe('FillShippingAddressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FillShippingAddressComponent ]
-    })
-    .compileComponents();
+      declarations: [FillShippingAddressComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

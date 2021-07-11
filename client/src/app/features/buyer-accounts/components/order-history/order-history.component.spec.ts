@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OrderHistoryComponent } from './order-history.component';
 
 describe('OrderHistoryComponent', () => {
@@ -8,9 +7,8 @@ describe('OrderHistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderHistoryComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderHistoryComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RowProductViewComponent } from './row-product-view.component';
 
 describe('RowProductViewComponent', () => {
@@ -8,9 +7,8 @@ describe('RowProductViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RowProductViewComponent ]
-    })
-    .compileComponents();
+      declarations: [RowProductViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

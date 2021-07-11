@@ -5,9 +5,9 @@ import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { AddToppingsComponent } from 'src/app/shared/components/add-toppings/add-toppings.component';
 import { ToppingModalResult } from 'src/app/shared/components/topping/types/toppingSelected';
 import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { calculateTotalPricePerProductWithToppings } from '../../../../core/cart/helpers/cart-helper';
 import { getProductFromLocalStorageByProductId } from '../../helpers/cart-products.helpers';
 import { CartProductDetailModalComponent } from '../cart-product-detail-modal/cart-product-detail-modal.component';
-import { calculateTotalPricePerProductWithToppings } from '../../../../core/cart/helpers/cart-helper';
 
 @Component({
   selector: 'app-cart-product',

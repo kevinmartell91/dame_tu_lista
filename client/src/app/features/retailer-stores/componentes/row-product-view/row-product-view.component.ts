@@ -1,20 +1,14 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  OnChanges,
-  SimpleChange,
-} from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Observable } from 'rxjs';
 import { updateTotalProductPrice } from 'src/app/core/cart/helpers/cart-helper';
 import { CartStore } from 'src/app/core/cart/services/cart.store';
 import { CartProduct } from 'src/app/core/cart/types/cart-product';
 import { Product } from 'src/app/core/retailer/types/product';
 import { Retailer } from 'src/app/core/retailer/types/retailer';
 import { STORE_CONFIG } from 'src/app/core/store/store_config';
+import { getMaturityProductsByVariety } from '../../helpers/product.helper';
 import { RetailerStoreStore } from '../../services/retailer.store';
 import { MaturityProductsByVariety } from '../../types/maturityProductsByVariety';
-import { getMaturityProductsByVariety } from '../../helpers/product.helper';
-import { Observable, observable } from 'rxjs';
 
 @Component({
   selector: 'app-row-product-view',

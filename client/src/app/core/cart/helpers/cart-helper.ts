@@ -1,10 +1,10 @@
 import { Product } from 'src/app/core/retailer/types/product';
-import { CartProduct } from '../types/cart-product';
-import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
 import {
   ToppingModalResult,
   ToppingSelected,
 } from 'src/app/shared/components/topping/types/toppingSelected';
+import { containtToppings } from 'src/app/shared/helpers/cart-product.helpers';
+import { CartProduct } from '../types/cart-product';
 
 export function getCartProductFromProduct(
   productSelected: Product,
