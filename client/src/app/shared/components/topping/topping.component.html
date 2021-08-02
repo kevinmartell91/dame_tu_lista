@@ -1,4 +1,4 @@
-<ng-container
+<!-- <ng-container
   *ngIf="
     toppingType.isMultipleSelection_toppings;
     then ShowMutiselection;
@@ -57,4 +57,103 @@
       >
     </mat-select>
   </mat-form-field>
+</ng-template> -->
+
+<ng-container
+  *ngIf="
+    toppingType.isMultipleSelection_toppings;
+    then ShowMutiselection;
+    else ShowSingleSelection
+  "
+>
+</ng-container>
+<!-- {{ toppingType.title_toppings }}
+<mat-chip-list aria-label="Fish selection">
+  <mat-chip>One fish</mat-chip>
+  <mat-chip>Two fish</mat-chip>
+  <mat-chip color="primary" selected>Primary fish</mat-chip>
+  <mat-chip color="accent" selected>Accent fish</mat-chip>
+</mat-chip-list> -->
+<ng-template #ShowMutiselection>
+  <div class="style_box">
+    <!-- <span>{{ toppingType.title_toppings }}</span> -->
+    <mat-chip-list class="style_chip_list" aria-label="Fish selection">
+      <mat-chip class="style_chip">{{ toppingType.title_toppings }}</mat-chip>
+    </mat-chip-list>
+    <div class="sytle_push">
+      <!-- <mat-form-field class="mat_form_field_infix" appearance="legacyy"> -->
+      <mat-form-field
+        [ngClass]="[
+          toppings.value?.length > 1
+            ? 'mat_form_field_infix_full_width'
+            : 'mat_form_field_infix'
+        ]"
+        appearance="legacyy"
+      >
+        <mat-select [formControl]="toppings" multiple>
+          <mat-select-trigger class="mat_select_value">
+            {{ toppings.value ? toppings.value[0] : "" }}
+            <span
+              *ngIf="toppings.value?.length > 1"
+              class="example-additional-selection"
+            >
+              (+{{ toppings.value.length - 1 }}
+              {{ toppings.value?.length === 2 ? "otro" : "otros" }})
+            </span>
+          </mat-select-trigger>
+          <mat-option
+            *ngFor="let topping of toppingType.name_toppings; let idx = index"
+            [value]="getToppingNameAndPriceAsValue(topping, idx)"
+          >
+            <div class="topping_container">
+              <div class="topppin_name">{{ topping }}</div>
+              <div class="topppin_price">
+                {{ getToppingPriceFormat(idx) }}
+              </div>
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ShowSingleSelection>
+  <div class="style_box">
+    <!-- <span>{{ toppingType.title_toppings }}</span> -->
+    <!-- <mat-chip>{{ toppingType.title_toppings }}</mat-chip> -->
+    <mat-chip-list class="style_chip_list" aria-label="Fish selection">
+      <mat-chip class="style_chip">{{ toppingType.title_toppings }}</mat-chip>
+    </mat-chip-list>
+
+    <div class="sytle_push">
+      <mat-form-field
+        [ngClass]="[
+          toppings.value?.length > 1
+            ? 'mat_form_field_infix_full_width'
+            : 'mat_form_field_infix'
+        ]"
+        appearance="legacyy"
+      >
+        <mat-select
+          [formControl]="toppings"
+          multiple="{{ toppingType.isMultipleSelection_toppings }}"
+        >
+          <mat-select-trigger class="mat_select_value">
+            {{ toppings.value ? toppings.value : "" }}
+            <span
+              *ngIf="toppings.value?.length > 1"
+              class="example-additional-selection"
+            >
+            </span>
+          </mat-select-trigger>
+          <mat-option
+            *ngFor="let topping of toppingType.name_toppings"
+            [value]="topping"
+            >{{ topping }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
 </ng-template>

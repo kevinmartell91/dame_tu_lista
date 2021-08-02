@@ -29,7 +29,7 @@ $third_text_color: #8bce7d
 .continer_grid
   display: grid
   margin: 0
-  padding: 13px 0px 13px 0px
+  padding: 25px 0px 24px 0px
   grid-template-columns: 1fr
   grid-template-rows: 1fr 20px
   grid-template-areas: "product" "options"
@@ -103,10 +103,25 @@ $third_text_color: #8bce7d
   .options_area
     grid-area: options
     display: grid
-    grid-template-columns: $img_witdh 2fr 2fr 1fr
+    grid-template-columns: $img_witdh 2fr 2fr 2fr
     grid-template-rows: 1fr
-    grid-template-areas: "org add_det rmv_det ."
+    grid-template-areas: "org add_det rmv_det edit"
     grid-gap: 2px
+    margin: 10px 0px 0px 0px
+
+    .edit_area
+      display: inline-flex
+      grid-area: edit
+      font-size: $third_display_font_size
+      color: $third_filed_color
+      transform: translate(-17px, 0px)
+      span
+        cursor: pointer
+      
+      .style_edit_image
+        font-size: 19px
+        color: #53b63e87
+        // transform: translate(10px, -30px)
 
     .add_detail_area
       grid-area: add_det
@@ -170,4 +185,6 @@ $third_text_color: #8bce7d
 //   -webkit-transform: scale(1.2); 
 //   transform: scale(1.2);
 //   z-index: 10
-  
+.style_icon
+  margin: 0px 5px -3px 0px
+

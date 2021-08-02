@@ -102,12 +102,13 @@ export class CartProductComponent implements OnInit {
     if (productLocalStorage !== null) {
       this.dialogRef = this.matDialog.open(AddToppingsComponent, {
         width: '320px',
-        height: '500px',
+        height: '510px',
         data: {
           mode: 'update',
           productPrice: this.cartProduct.price,
           productName: productLocalStorage.maturityName,
           image: this.cartProduct.maturityImageUrl,
+          // description: this.cartProduct.details,
           toppings: productLocalStorage.toppings,
           quantity: this.cartProduct.quantity,
           toppingsSelected: this.cartProduct.toppings,

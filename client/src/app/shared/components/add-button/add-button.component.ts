@@ -61,7 +61,7 @@ export class AddButtonComponent implements OnInit {
     if (this.isKilo !== undefined) {
       this.setSurgeQuantity();
     }
-    console.log('this.quantity', this.quantity);
+    // console.log('this.quantity', this.quantity);
 
     this.count = this.quantity;
 

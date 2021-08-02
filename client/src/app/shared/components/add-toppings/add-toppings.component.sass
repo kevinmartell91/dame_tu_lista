@@ -1,4 +1,4 @@
-$text-font-size: 1.5em
+$text-font-size: 16px
 $sign-font-size: 2.5em
 $quantity-font-size-product-display: 20px
 $quantity-font-size-cart-product: 1.3em
@@ -14,61 +14,106 @@ $box-size: 40px
  
 .container_product
   display: grid
-  grid-template-columns: 100%
-  // grid-template-rows:  200px 10px 34px 29px 100px 1fr 20px
-  // grid-template-areas:  "img" "priceProd" "nameProd" "addBtn" "prodLabel" "toppings" "opt"
-  grid-template-rows:  200px 34px 29px 100px 1fr 20px
-  grid-template-areas:  "img" "nameProd" "addBtn" "prodLabel" "toppings" "opt"
+  // grid-template-rows:  100px 30px ​22px 70px 299px 8px 8px
+  // grid-template-areas:  "img" "priceProd" "nameProd" "prodLabel" "toppings" "addBtn" "opt"
+  grid-template-rows:  30px 153px  56px 180px 19px 20px
+  grid-template-areas:  "nameProd" "img" "prodLabel" "toppings" "addBtn" "opt"
+  // grid-template-rows: 20px 28px 29px 94px 257px 20px
+  // grid-template-areas:  "nameProd" "priceProd" "addBtn" "prodLabel" "toppings" "opt"
+  // grid-template-rows: 22px 30px  70px 1px 1fr 8px 8px
+  // grid-template-areas: "nameProd" "priceProd"  "prodLabel" "img ""toppings" "addBtn" "opt"
+  // grid-template-rows:  100px 64px 29px 100px 1fr 20px
+  // grid-template-areas: "img" "nameProd" "addBtn" "prodLabel" "toppings" "opt"
+  // grid-template-rows: 64px 29px 100px 1fr 20px
+  // grid-template-areas:   "nameProd" "addBtn" "prodLabel" "toppings" "opt"
   // grid-gap: 10px
+  
   place-items: center
-  text-align: center
  
   .add_button_area
     grid-area: addBtn
     z-index: 30
-    transform: translate(262px, -40px)
-    position: fixed
+    margin: 1px auto
+    transform: translate(-57px, 14px)
+    // transform: translate(262px, -40px)
+    // position: fixed
 
 
   .image_area
     grid-area: img
-    // transform: translateY(-40px)
+    // transform: translate(-118px, 121px)
+    z-index: 0
+
     .product_image
       border-radius: $border-radius
-      height: 270px
+      // object-fit: cover
+      // object-position: 100% 20% 
+      // opacity: 0.3
+      height: 150px
+      width: auto
 
 
   .product_name_area
     grid-area: nameProd
+    // height: fit-content
     background: black
     place-self: stretch
     color: white
-    font-size: $text-font-size
-    transform: translateY(18px)
+    text-align: center
+    z-index: 300
+    // transform: translateY(18px)
 
     h2 
+      align-self: center
       font-family: inherit
+      font-size: $text-font-size
 
   .product_price_area
     grid-area: priceProd
-    color: gray
-    font-size: $text-font-size
-    transform: translateY(48px)
-    z-index: 30
-
+    line-height: normal
+    font-size: 11px
+    height: fit-content
+    background: whitesmoke
+    z-index: 300
+    text-align: center
+    transform: translate(0px, 16px)
 
   .product_label
     grid-area: prodLabel 
-    transform: translateY(-4px) 
+    // transform: translateY(-4px) 
+    z-index: 300
+
 
   .toppings_area
     grid-area: toppings
+    overflow-y: auto
+    // height: 300px
+    border-radius: 6px
+    width: 100%
+    height: 152px
+    transform: translate(3px, 13px)
+
+    // background: green
+    
+    .chips_display_area
+      display: grid
+      grid-template-columns: repeat(auto-fill, minmax(120px, 128px))
+      grid-template-rows: repeat(3,42px)
+      grid-gap: 3px
+      margin: 5px
+
+      .chips_area
+        // background: red
+        
+      
 
   .options_area
     grid-area: opt
+    transform: translate(87px, -17px)
+
 
 .header_product_name_change
-  // position: fixed;
+  // position: fixed
 
 .mat-flat-button.mat-primary
   color: white  

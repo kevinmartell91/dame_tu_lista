@@ -39,7 +39,7 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   isKiloUnitAvailable: boolean = true;
   isSizeAvailable: boolean = true;
 
-  quantityStr: string = '+';
+  quantityStr: string = '';
   quantity: number = 0;
   kiloOrUnit: string = '';
   size: string = '';
@@ -120,15 +120,20 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
    * @param newQuantity
    */
   async onQuantityUpdated(quantityUpdated: number) {
-    console.log('quantityUpdated on product display', quantityUpdated);
     // if cartProduct quatity is 0,
     // then disableQuantityMode
-    if (quantityUpdated == 0) {
+    console.log(
+      'quantityUpdated ',
+      quantityUpdated,
+      'this.isQuantityMode',
+      this.isQuantityMode
+    );
+    if (quantityUpdated === 0) {
       // this.disableQuantityMode();
       this.isQuantityMode = false;
     }
 
-    if (quantityUpdated == 0) {
+    if (quantityUpdated === 0) {
       this.quantityStr = '+';
       this.productTotalPriceQuantityStr = '';
       this.isQuantityIncreased = false;
@@ -204,10 +209,11 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
       return;
     }
     this.isQuantityMode = true;
+    // this.isQuantityMode = !this.isQuantityMode;
   }
 
   onDisableQuantityMode(disable: boolean): void {
-    // console.log("this.isQuantityMode = disable;", disable);
+    console.log('KEVIN this.isQuantityMode = disable;', disable);
     this.isQuantityMode = disable;
     // this.hideToppings();
   }
@@ -254,11 +260,12 @@ export class ProductDisplaySharedComponent implements OnInit, OnDestroy {
   openToppingsOptionModal(): void {
     this.dialogRef = this.MatDialog.open(AddToppingsComponent, {
       width: '320px',
-      height: '500px',
+      height: '510px',
       data: {
         mode: 'select',
         productPrice: this.product.price,
         productName: this.product.maturityName,
+        description: this.product.description,
         image: this.product.maturityImageUrl,
         toppings: this.product.toppings,
         currentState: this.toState,

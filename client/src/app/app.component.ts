@@ -131,10 +131,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.retailerStoreName = localStorage.getItem('retailer_store_name');
 
     this.cartStoreSubcription = this.cartStore.shoppingCart$.subscribe((y) => {
+      console.log('JEVIN - cartStoreSubcription', y);
       if (y !== undefined) {
         this.cartProducts = y.products;
         this.cartProductsQuantity = getTotalProductsOnShoppingCart(y.products);
         // this.cartProductsQuantity = y.products.length;
+        this.totalCartPrice = 0;
         if (this.cartProducts.length > 0) {
           this.totalCartPrice = containtToppings(
             this.cartProducts[0].categoryName
@@ -143,7 +145,8 @@ export class AppComponent implements OnInit, OnDestroy {
             : calculateCartTotalPrice(this.cartProducts);
         }
         this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
-        this.isVisible = this.totalCartPrice > 0;
+        this.isVisible = this.totalCartPrice > 0 ? true : false;
+        console.log('KEVIN - isVisible', this.isVisible);
 
         // this.handleSaveTemporaryStorage(y.products);
 

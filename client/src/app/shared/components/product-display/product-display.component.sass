@@ -1,5 +1,5 @@
 $primary_display_font_size: 15px
-$secondary_display_font_size: 13px
+$secondary_display_font_size: 12px
 $third_display_font_size: 13px
 
 $primary_filed_dark_color: #000000
@@ -20,16 +20,16 @@ $box_add_button_size: 30px
 
 .product_display_grid_row_view
   display: grid
-  margin: 16px 0px 4px 0px
-  padding: 15px 10px 0px 10px
-  grid-template-columns: 45px .9fr 78px 10px
+  margin: 16px 0px 0px 0px
+  padding: 16px 6px 5px 10px
+  grid-template-columns: 1fr 60px 1px 79px
   grid-gap: 0px
-  // grid-template-rows: 1fr 1fr 1fr
-  grid-template-areas: "image matur totPriProd add" "image price totPriProd add" "org price totPriProd add"
+  grid-template-areas: "matur totPriProd add image " "descrip totPriProd add image " "price org add image "
   background-color: white
   border-radius: 5px
-  border-right-style: inset
-  border-bottom-style: inset
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px
+  // border-right-style: inset
+  // border-bottom-style: inset
   background: white
   div:empty 
     display: none 
@@ -115,6 +115,20 @@ $box_add_button_size: 30px
   grid-area: price
   padding: 5px 0px 4px 5px
   font-size: $secondary_display_font_size
+  color: #767676
+  font-weight: bold
+  justify-self: left
+  border-radius: 4px
+  background: #ffffff00
+
+  .style_price_per_unit_or_kg
+    color: $secondary_filed_color
+
+.description_product_area
+  grid-area: descrip
+  padding: 3px 0px 0px 5px
+  line-height: initial
+  font-size: 11px
   color: $secondary_filed_color
   // font-weight: bold
   justify-self: left
@@ -131,10 +145,12 @@ $box_add_button_size: 30px
   font-size: $secondary_display_font_size
   color: #43b02a
   font-weight: bold
-  justify-self: left
+  justify-self: right
   align-self: center
   border-radius: 4px
   background: #ffffff00
+  white-space: nowrap
+  transform: translate(0px, 10px) 
 
   .style_price_per_unit_or_kg
     color: $primary_filed_color
@@ -152,7 +168,7 @@ $box_add_button_size: 30px
 // add button area  
 .product_add_area
   grid-area: add
-  transform: translateY(13px)
+  transform: translate(-113px, 0px)
 
 
   .style_add_button
@@ -327,5 +343,5 @@ $box_add_button_size: 30px
   background: #8bce7d
   border: 4px solid #8bce7d
   min-width: 25px
-  transform: translate(-18px, -62px)
+  transform: translate(-263px, -76px)
   justify-content: center

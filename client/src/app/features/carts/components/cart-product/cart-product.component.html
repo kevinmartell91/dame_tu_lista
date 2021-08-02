@@ -121,12 +121,26 @@
           bold_style: cartProduct.details ? true : false
         }"
       >
-        <img src="../../../../../assets/icons/edit-15dp.svg" alt="" />
-        <span (click)="openAddCartProductDetailModal()">Comentar</span>
+        <img
+          class="style_icon"
+          src="../../../../../assets/icons/edit-15dp.svg"
+          alt=""
+        />
+        <span (click)="openAddCartProductDetailModal()">Aclara algo?</span>
+        <!-- <span (click)="enableQuantityMode()">Editar</span> -->
+      </div>
+
+      <div class="edit_area" (click)="enableQuantityMode()">
+        <mat-icon class="style_edit_image">edit</mat-icon>
+        <span>Editar</span>
       </div>
 
       <div class="remove_area">
-        <img src="../../../../../assets/icons/delete-15dp.svg" alt="" />
+        <img
+          class="style_icon"
+          src="../../../../../assets/icons/delete-15dp.svg"
+          alt=""
+        />
         <span (click)="deleteCartProduct()">Eliminar</span>
       </div>
     </ng-template>

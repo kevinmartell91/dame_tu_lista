@@ -18,6 +18,7 @@
             src="../assets/icons/person-green-36dp.svg"
             alt=""
           />
+          {{ isVisible }}
         </div>
 
         <div class="buyer_name_area">
@@ -97,16 +98,16 @@
       </div>
     </div>
 
-    <div *ngSwitchCase="navegation.cartView" class="navegation_grid">
+    <div
+      *ngSwitchCase="navegation.cartView"
+      class="navegation_grid"
+      (click)="goToStoreRetailer()"
+    >
       <div class="navegation_image_area">
-        <img
-          (click)="goToStoreRetailer()"
-          src="../assets/icons/back_button-light-black-36dp.svg"
-          alt=""
-        />
+        <img src="../assets/icons/back_button-light-black-36dp.svg" alt="" />
       </div>
       <div class="navegation_title_area">
-        <div>Dame tu lista</div>
+        <div>Continuar comprando</div>
       </div>
     </div>
 
@@ -162,14 +163,14 @@
     <!-- <div  class="buyer_cart_area"> -->
     <div (click)="viewBuyerCart()">
       <div class="cart_icon_area">
-        <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="" />
+        <img src="../assets/icons/shopping_cart-gray-36dp.svg" alt="" />
       </div>
       <div class="quantity_area">
         {{ cartProductsQuantity }}
       </div>
       <!-- 
                             <mat-icon matBadge="{{cartProductsQuantity}}" matBadgeColor="primary">
-                                <img src="../assets/icons/shopping_cart-white-36dp.svg" alt="">
+                                <img src="../assets/icons/shopping_cart-gray-36dp.svg" alt="">
                             </mat-icon> -->
     </div>
   </div>

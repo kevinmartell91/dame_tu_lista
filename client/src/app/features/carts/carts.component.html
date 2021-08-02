@@ -7,10 +7,10 @@
   <div class="continer">
     <hr />
 
-    <h1 class="style_question">
+    <h2 class="style_question">
       {{ titleMessage }}
       <p *ngIf="currentUser" (click)="sendToBluetoothThermalPrinter()">🖨️</p>
-    </h1>
+    </h2>
 
     <ng-container *ngFor="let cartProduct of cartProducts">
       <div class="cart_product_grid">

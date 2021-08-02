@@ -13,7 +13,7 @@
   </div>
 
   <!-- <div class="product_price_area">
-    <h2>{{ data.productPrice }}</h2>
+    <span>{{ data.description }}</span>
   </div> -->
 
   <div
@@ -41,7 +41,7 @@
             !productLableFormControl.hasError('required')
           "
         >
-          Ponle nombre a tu Wawito
+          Ponle nombre a tu producto
         </mat-error>
         <mat-error *ngIf="productLableFormControl.hasError('required')">
           No te olvides que este <strong>nombre</strong> está asociado a este
@@ -52,22 +52,28 @@
   </div>
 
   <div [ngSwitch]="data.mode" class="toppings_area">
-    <ng-container *ngFor="let topping of data.toppings">
-      <app-topping
-        *ngSwitchCase="'select'"
-        [toppingType]="topping"
-        (selectedToppings)="onSelectedToppings($event)"
-      ></app-topping>
+    <div class="chips_display_area">
+      <ng-container *ngFor="let topping of data.toppings; let idx = index">
+        <div class="chips_area">
+          <app-topping
+            class="chips_area"
+            *ngSwitchCase="'select'"
+            [toppingType]="topping"
+            (selectedToppings)="onSelectedToppings($event)"
+          ></app-topping>
 
-      <app-topping
-        *ngSwitchCase="'update'"
-        [toppingType]="topping"
-        [incommingSelectedToppings]="
-          getToppingsSelectedByTitleTopping(topping.title_toppings)
-        "
-        (selectedToppings)="onSelectedToppings($event)"
-      ></app-topping>
-    </ng-container>
+          <app-topping
+            class="chips_area"
+            *ngSwitchCase="'update'"
+            [toppingType]="topping"
+            [incommingSelectedToppings]="
+              getToppingsSelectedByTitleTopping(topping.title_toppings)
+            "
+            (selectedToppings)="onSelectedToppings($event)"
+          ></app-topping>
+        </div>
+      </ng-container>
+    </div>
   </div>
 
   <!-- <button mat-button [mat-dialog-close]="detailForm.value"  
@@ -76,7 +82,7 @@
   -->
 
   <div class="options_area" mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <!-- <button mat-button (click)="onNoClick()">Cancelar</button> -->
     <button
       mat-flat-button
       color="primary"
@@ -84,7 +90,7 @@
       [disabled]="!productLableFormControl.valid"
       cdkFocusInitial
     >
-      Aceptar
+      {{ data.mode == "update" ? "Guardar" : "Agregar" }}
     </button>
   </div>
 </div>

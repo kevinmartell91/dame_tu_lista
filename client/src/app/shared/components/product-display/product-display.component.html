@@ -3,11 +3,10 @@
 
 <!-- <div [class]="getGridView()" (click)="select()"> -->
 <div [class]="getGridView()">
-  <div class="product_image_area">
+  <div class="product_image_area" (click)="enableQuantityMode()">
     <img
       *ngIf="typeView === 'rowView'"
       class="image_style_row_view"
-      (click)="openShowProductDescription()"
       src="{{ product.maturityImageUrl }}"
       alt=""
     />
@@ -52,7 +51,11 @@
 
   <!-- ROW VIEW HARD CODE -->
   <!-- ====================== -->
-  <div *ngIf="typeView === 'rowView'" class="product_maturity_area">
+  <div
+    *ngIf="typeView === 'rowView'"
+    class="product_maturity_area"
+    (click)="enableQuantityMode()"
+  >
     {{ product.maturityName }}
   </div>
 
@@ -66,12 +69,24 @@
   <!-- ====================== -->
 
   <div
+    *ngIf="typeView === 'rowView'"
+    class="description_product_area"
+    (click)="enableQuantityMode()"
+  >
+    {{ product.description }}
+  </div>
+
+  <!-- ROW VIEW HARD CODE -->
+  <!-- ====================== -->
+
+  <div
     *ngIf="
       typeView === 'maturityView' ||
       typeView === 'seasonalView' ||
       typeView === 'rowView'
     "
     class="product_price_area"
+    (click)="enableQuantityMode()"
   >
     S/.{{ productPriceStr }}
     <span *ngIf="product.isKilo" class="style_price_per_unit_or_kg"> Kg.</span>
@@ -117,9 +132,8 @@
     <ng-container
       *ngIf="isQuantityMode; then showAddOptions; else showAddButton"
     ></ng-container>
-
     <ng-template #showAddButton>
-      <div
+      <!-- <div
         [ngClass]="{
           style_add_button: true,
           quantity_increased: isQuantityIncreased
@@ -127,12 +141,12 @@
         (click)="enableQuantityMode()"
       >
         {{ quantityStr }}
-      </div>
+      </div> -->
     </ng-template>
 
     <ng-template #showAddOptions>
       <!-- {{ product.categoryName === "Comida rápida" ? true : false }} -->
-      <app-add-button
+      <!-- <app-add-button
         *ngIf="hasToppings"
         [product]="product"
         [quantity]="quantity"
@@ -140,7 +154,7 @@
         (quantityUpdated)="onQuantityUpdated($event)"
         (disableQuantityMode)="onDisableQuantityMode($event)"
       >
-      </app-add-button>
+      </app-add-button> -->
 
       <app-add-button
         *ngIf="!hasToppings"
