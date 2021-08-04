@@ -12,7 +12,8 @@ const STORES_DATA = [
     store_id: "60778625d9232c1ec44f5ec2",
     name: "wawito",
     idBase: "app4dtPR3GvMixMHE",
-    base: "products_v2",
+    base: "products_v2 copy",
+    // base: "products_v2",
     view: "Grid view",
   },
   {
@@ -44,6 +45,8 @@ exports.getAirtableRecords = async function (req, res, next) {
 
     const records = await all.firstPage();
     if (records) {
+      console.log("records", records.fileds);
+
       // extract fields of importance
       records.forEach((rec) => {
         // push to productList for each product
@@ -64,9 +67,6 @@ exports.getAirtableRecords = async function (req, res, next) {
       for (var i = 0; i < productsList.length; i++) {
         retailer.store.productsList.push(productsList[i]);
       }
-
-      // console.log("findById - object", retailer.name);
-      // console.log("retailer.store.productsList", retailer.store.productsList);
 
       const isSaved = await retailer.save();
 
@@ -97,6 +97,7 @@ exports.getAirtableRecords = async function (req, res, next) {
 };
 
 function extractProductList(airTable) {
+  console.log("airTable", airTable);
   let product = new Object();
   try {
     product.varietyImageUrl = airTable.Variety_Img[0].thumbnails.large.url;
@@ -159,7 +160,8 @@ function extractProductList(airTable) {
       airTable.isEnable_toppings,
       airTable.title_toppings,
       airTable.name_toppings,
-      airTable.isMultipleSelection_toppings
+      airTable.isMultipleSelection_toppings,
+      airTable.name_abbreviation_toppings
     );
 
     product.description = airTable.description;
@@ -177,7 +179,8 @@ const extractToppingsObject = (
   isEnable_toppings,
   title_toppings,
   name_toppings,
-  isMultipleSelection_toppings
+  isMultipleSelection_toppings,
+  name_abbreviation_toppings
 ) => {
   // let typeFrequencyById = new Map<string, number[]>();
   let typeFrequencyById = new Object();
@@ -191,15 +194,17 @@ const extractToppingsObject = (
     for (var key in typeFrequencyById) {
       const freqIdArr = typeFrequencyById[key];
       let topping = [];
-      // console.log("freqIdArr", freqIdArr);
+      console.log("name_abbreviation_toppings", name_abbreviation_toppings);
       topping.type_toppings = CapitalizedFirstChar(key);
       topping.price_toppings = [];
       topping.name_toppings = [];
+      topping.name_abbreviation_toppings = [];
       freqIdArr.forEach((id) => {
         topping.price_toppings.push(price_toppings[id]);
         topping.isEnable_toppings = isEnable_toppings[id];
         topping.title_toppings = CapitalizedFirstChar(title_toppings[id]);
         topping.name_toppings.push(CapitalizedFirstChar(name_toppings[id]));
+        topping.name_abbreviation_toppings.push(name_abbreviation_toppings[id]);
         topping.isMultipleSelection_toppings =
           isMultipleSelection_toppings[id] === null
             ? false

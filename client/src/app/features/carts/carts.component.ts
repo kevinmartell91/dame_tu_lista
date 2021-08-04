@@ -643,7 +643,177 @@ export class CartsComponent implements OnDestroy {
 
     console.log('MOCK ORDER => ', JSON.stringify(order));
 
-    // const mockOrder= {}
+    const mockOrder = {
+      //   retailer_id: '60778625d9232c1ec44f5ec2',
+      //   orderType: 'pickup',
+      //   shipping: {
+      //     buyer: { phoneNumber: '+51996821980' },
+      //     deliveryNotes: '',
+      //     address: { reference: '', details: 'pickup' },
+      //     tracking: {
+      //       orderStatus: [
+      //         ['generated_by_buyer', '2021-08-04T19:30:32.055Z'],
+      //         ['updated_by_buyer', '2021-08-04T19:30:32.055Z'],
+      //       ],
+      //       driver_name: '',
+      //       trackingNumber: '',
+      //       estimatedDelivery:
+      //         'Se entregará su delivery en las próximas horas. Gracias.',
+      //     },
+      //   },
+      //   payment: {
+      //     method: 'fast_transfer',
+      //     amount: 44,
+      //     cashPaymentAmount: 0,
+      //     cashBackAmount: -44,
+      //   },
+      //   cart: [
+      //     {
+      //       isCheckedDone: false,
+      //       _id: '61097f32c0c0b5447aec19aa',
+      //       categoryImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+      //       categoryName: 'Comida rápida',
+      //       varietyImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+      //       varietyName: 'Hamburguesa clásica',
+      //       currency: 'PEN',
+      //       price: 7,
+      //       isSmallSize: false,
+      //       isMediumSize: false,
+      //       isBigSize: false,
+      //       isKilo: false,
+      //       isUnit: true,
+      //       isOrganic: false,
+      //       isSeasonal: true,
+      //       isMaturityDetails: true,
+      //       maturityImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/5b48c774e6433dc03e2e332dedea37d7/a2a7cb09',
+      //       maturityName: 'Wawito clasica  (tyu)',
+      //       maturityInfo:
+      //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+      //       maturityEatIn: '0',
+      //       maturityLastFor: '0',
+      //       isInStock: true,
+      //       quantity: 1,
+      //       size: '',
+      //       details: '',
+      //       idAux: '61097f32c0c0b5447aec19aa_1628105115709',
+      //       totalPrice: 7,
+      //       totalAmount: 20.5,
+      //       toppings: [
+      //         {
+      //           name: 'Tipo de pan',
+      //           selected: 'No pan',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'N.P',
+      //         },
+      //         {
+      //           name: 'Deseas adicionales',
+      //           selected:
+      //             'Filete de Pollo S/. 4.50,Hot-Dog (Otto Kunz) S/. 4.00,Porción de Papas S/. 5.00',
+      //           isMultipleSelection: true,
+      //           countSelected: 3,
+      //           name_abbreviation: 'Hot-Dog (Otto Kunz),Porción de Papas',
+      //         },
+      //         {
+      //           name: 'Tipo de papas',
+      //           selected: 'Papas al hilo',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'P.H',
+      //         },
+      //         {
+      //           name: 'Deseas ensalada',
+      //           selected: 'No ensalada',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'S/ens',
+      //         },
+      //         {
+      //           name: 'Tus cremas',
+      //           selected: 'Mayonesa ,Ketchup ,Mostaza ,Salsa Golf ,Aceituna ',
+      //           isMultipleSelection: true,
+      //           countSelected: 5,
+      //           name_abbreviation: 'K,Moz,Golf,Cei',
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       isCheckedDone: false,
+      //       _id: '61097f32c0c0b5447aec19eb',
+      //       categoryImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/5af37179599a6fb9e86b478f708a87a3/1661d5fa',
+      //       categoryName: 'Comida rápida',
+      //       varietyImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/45b7d06317cf71b339079a95ae23fe6f/486174fe',
+      //       varietyName: 'Hamburguesa especial',
+      //       currency: 'PEN',
+      //       price: 12,
+      //       isSmallSize: false,
+      //       isMediumSize: false,
+      //       isBigSize: false,
+      //       isKilo: false,
+      //       isUnit: true,
+      //       isOrganic: false,
+      //       isSeasonal: true,
+      //       isMaturityDetails: true,
+      //       maturityImageUrl:
+      //         'https://dl.airtable.com/.attachmentThumbnails/3df90315a2ddf0073570f2742949c043/adcad03a',
+      //       maturityName: 'La poderosa  (werw)',
+      //       maturityInfo:
+      //         'Imágenes referenciales. Estas pueden diferir del producto que usted pueda adquirir por medio de su vendedor. ',
+      //       maturityEatIn: '0',
+      //       maturityLastFor: '0',
+      //       isInStock: true,
+      //       quantity: 1,
+      //       size: '',
+      //       details: '',
+      //       idAux: '61097f32c0c0b5447aec19eb_1628105405994',
+      //       totalPrice: 12,
+      //       totalAmount: 23.5,
+      //       toppings: [
+      //         {
+      //           name: 'Tipo de pan',
+      //           selected: 'Pan Frances',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'F',
+      //         },
+      //         {
+      //           name: 'Tipo de papas',
+      //           selected: 'Papas Fritas',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'P.F',
+      //         },
+      //         {
+      //           name: 'Deseas adicionales',
+      //           selected:
+      //             'Filete de Pollo S/. 4.50,Hot-Dog (Otto Kunz) S/. 4.00,Chorizo Parrillero S/. 3.00',
+      //           isMultipleSelection: true,
+      //           countSelected: 3,
+      //           name_abbreviation: 'Hot-Dog (Otto Kunz),Chorizo Parrillero',
+      //         },
+      //         {
+      //           name: 'Tus cremas',
+      //           selected: 'Ketchup ,Mostaza ,Aceituna ',
+      //           isMultipleSelection: true,
+      //           countSelected: 3,
+      //           name_abbreviation: 'K,Moz,Cei',
+      //         },
+      //         {
+      //           name: 'Deseas ensalada',
+      //           selected: 'Sí (solo lechuga)',
+      //           isMultipleSelection: false,
+      //           countSelected: 1,
+      //           name_abbreviation: 'C/lechu',
+      //         },
+      //       ],
+      //     },
+      //   ],
+    };
 
     // place order DB
     this.orderStore.generateOrder(order).subscribe((x) => {

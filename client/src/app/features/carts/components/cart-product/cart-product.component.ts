@@ -129,6 +129,8 @@ export class CartProductComponent implements OnInit {
           this.cartProduct.toppings = result.toppingsSelected;
           // update totalPrice and totalAmount
 
+          console.log('this.cartProduct.toppings', this.cartProduct.toppings);
+
           const totalPriceUpdated = calculateTotalPricePerProductWithToppings(
             this.cartProduct.quantity,
             this.cartProduct.price,

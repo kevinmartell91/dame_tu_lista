@@ -83,6 +83,7 @@ var orderSchema = new Schema({
       toppings: [
         {
           name: String,
+          name_abbreviation: String,
           selected: String,
           isMultipleSelection: Boolean,
           countSelected: Number,

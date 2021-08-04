@@ -37,10 +37,6 @@ export const sendViaWhatsApp = (
 };
 
 export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
-  console.log(
-    'transformOrderToRawTextBaseFortmat',
-    transformOrderToRawTextBaseFortmat
-  );
   let orderRawTxt: string = '';
   let title: string = '';
   let subTitle: string = '';
@@ -335,6 +331,7 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
 
       /* #region Showing toppings */
       // orderRawTxt += emptyLine;
+      console.log('topping KEVIN', product.toppings);
       if (isProductToppings && product.toppings !== undefined) {
         product.toppings.map((topping) => {
           if (topping.isMultipleSelection) {
@@ -366,7 +363,7 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
       }
 
       /* #endregion */
-      orderRawTxt += emptyLine;
+      // orderRawTxt += emptyLine;
     });
 
     /* #region  Payment, delivery, order link and total amount details */
@@ -434,22 +431,32 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
       orderRawTxt += `Dirección:` + breakLine;
       // orderRawTxt += breakLine;
 
-      const apartment = order.shipping.address.apartmentNumber
-        ? ', Dpto: ' + order.shipping.address.apartmentNumber
-        : '';
-      const district = `, ${order.shipping.address.district}`;
+      // const apartment = order.shipping.address.apartmentNumber
+      //   ? ', Dpto: ' + order.shipping.address.apartmentNumber
+      //   : '';
+      // const district = `, ${order.shipping.address.district}`;
 
-      let address = `${order.shipping.address.streetName} ${order.shipping.address.streetNumber} ${apartment} ${district}`;
+      // let address = `${order.shipping.address.streetName} ${order.shipping.address.streetNumber} ${apartment} ${district}`;
 
-      let multipliAddressLine = formatLongTextToNNCharactersMiltipleLines(
-        address,
-        30 - marginLeft.length
-      );
+      // let multipliAddressLine = formatLongTextToNNCharactersMiltipleLines(
+      //   address,
+      //   30 - marginLeft.length
+      // );
 
-      multipliAddressLine.forEach((line) => {
-        orderRawTxt += line + breakLine;
-      });
-      orderRawTxt += breakLine;
+      // multipliAddressLine.forEach((line) => {
+      //   orderRawTxt += line + breakLine;
+      // });
+      // orderRawTxt += breakLine;
+
+      if (order.shipping.address.details) {
+        const multipleLineDetails = formatLongTextToNNCharactersMiltipleLines(
+          order.shipping.address.details,
+          32
+        );
+        multipleLineDetails.forEach((line) => {
+          orderRawTxt += line;
+        });
+      }
 
       if (order.shipping.address.reference) {
         const multilineReference = formatLongTextToNNCharactersMiltipleLines(
@@ -463,24 +470,15 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
         orderRawTxt += breakLine;
       }
 
-      if (order.shipping.address.details) {
-        const multipleLineDetails = formatLongTextToNNCharactersMiltipleLines(
-          order.shipping.address.details,
-          32
-        );
-        multipleLineDetails.forEach((line) => {
-          orderRawTxt += line;
-        });
-      }
       orderRawTxt += breakLine;
       /* #endregion */
     }
 
-    orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
-    orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
-      'retailer_store_name'
-    )}/orders/${order._id}`;
-    orderRawTxt += breakLine;
+    // orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
+    // orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
+    //   'retailer_store_name'
+    // )}/orders/${order._id}`;
+    // orderRawTxt += breakLine;
 
     orderRawTxt += breakLine;
     orderRawTxt += '      Hecho con mucho ❤️ en 🇵🇪      ' + breakLine;
@@ -1215,30 +1213,51 @@ const getToppingFormatBaseFormat = (topping: ToppingSelected): string => {
   }
   return res;
 };
+// const getToppingFormatBaseFormatThermalPrinter_OLD = (
+//   topping: ToppingSelected
+// ): string => {
+//   const indentationL1 = printerEmptyChar; //!@$#%$#
+//   const indentationL2 = printerEmptyChar;
+//   let res = '';
+//   if (topping.isMultipleSelection) {
+//     // multple toppings selected
+//     res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
+//     topping.selected.split(',').map((toppinWithPrice) => {
+//       const hasPriceSign = toppinWithPrice.includes('S/.');
+//       if (hasPriceSign) {
+//         res += `${indentationL2}- ${getToppingsWithPriceAtNumCharactsOneLineFormat(
+//           toppinWithPrice.trim(),
+//           29
+//         )}${breakLine}`;
+//       } else {
+//         res += `${indentationL2}- ${toppinWithPrice.trim()}${breakLine}`;
+//       }
+//     });
+//   } else {
+//     // only one topping selected
+//     res += `${indentationL2}- ${topping.selected.trim()}${breakLine}`;
+//   }
+//   return res;
+// };
 const getToppingFormatBaseFormatThermalPrinter = (
   topping: ToppingSelected
 ): string => {
   const indentationL1 = printerEmptyChar; //!@$#%$#
   const indentationL2 = printerEmptyChar;
+  const sign = '-';
   let res = '';
   if (topping.isMultipleSelection) {
     // multple toppings selected
-    res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
-    topping.selected.split(',').map((toppinWithPrice) => {
-      const hasPriceSign = toppinWithPrice.includes('S/.');
-      if (hasPriceSign) {
-        res += `${indentationL2}- ${getToppingsWithPriceAtNumCharactsOneLineFormat(
-          toppinWithPrice.trim(),
-          29
-        )}${breakLine}`;
-      } else {
-        res += `${indentationL2}- ${toppinWithPrice.trim()}${breakLine}`;
-      }
+    // res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
+    topping.name_abbreviation.split(',').map((abbreviation) => {
+      res += `${indentationL2}${sign} ${abbreviation.trim()}`;
+      if (abbreviation.length > 10) res += `${breakLine}`;
     });
   } else {
     // only one topping selected
-    res += `${indentationL2}- ${topping.selected.trim()}${breakLine}`;
+    res += `${indentationL2}${sign} ${topping.name_abbreviation.trim()}`;
   }
+  // res += `${breakLine}`;
   return res;
 };
 

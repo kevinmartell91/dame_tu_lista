@@ -79,6 +79,8 @@ export class CartStore extends Store<CartStoreState> {
     // each variation. idAux is created dinamically in emmitModalResults()
     // of ProductDisplaySharedComponent.
 
+    console.log('cartProduct.toppings KEVIN', cartProduct.toppings);
+
     let cartProducts: CartProduct[] = this.state.shoppingCart.products;
 
     let exit = this.isOnCartStoreListWithToppings(cartProduct);
@@ -112,7 +114,7 @@ export class CartStore extends Store<CartStoreState> {
 
     // update the cartStore
     this.setCart(cartProducts);
-    console.log('thorugh  updateCartWithToppings');
+    console.log('thorugh  updateCartWithToppings', cartProducts);
   }
 
   public countCartStoreProductsWithToppingsSameID(

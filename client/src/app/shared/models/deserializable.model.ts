@@ -8,5 +8,6 @@ export class Topping {
   isEnable_toppings: boolean;
   title_toppings: string;
   name_toppings: string[];
+  name_abbreviation_toppings: string[];
   isMultipleSelection_toppings: boolean;
 }

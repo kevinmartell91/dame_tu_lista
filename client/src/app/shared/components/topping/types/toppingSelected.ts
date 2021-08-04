@@ -1,5 +1,6 @@
 export interface ToppingSelected {
   name: string;
+  name_abbreviation: string;
   selected: string;
   isMultipleSelection: boolean;
   countSelected: number;

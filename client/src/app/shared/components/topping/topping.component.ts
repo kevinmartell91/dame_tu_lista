@@ -19,6 +19,8 @@ export class ToppingComponent implements OnInit {
 
   constructor() {
     this.toppings.valueChanges.subscribe((change) => {
+      // console.log('this.toppings.value', this.toppings.value);
+
       this.toppingSelected = {
         name: this.toppingType.title_toppings,
         selected: this.toppings.value.toString(),
@@ -26,9 +28,45 @@ export class ToppingComponent implements OnInit {
         countSelected: this.toppingType.isMultipleSelection_toppings
           ? this.toppings.value.length
           : 1,
+        name_abbreviation:
+          typeof this.toppings.value === 'string'
+            ? this.getAbbreviationNamesString(this.toppings.value)
+            : this.getAbbreviationNamesArray(this.toppings.value),
       };
       this.selectedToppings.emit(this.toppingSelected);
     });
+  }
+
+  getAbbreviationNamesString(selectedTopping: string): string {
+    console.log('selectedTopping', selectedTopping);
+    const selected = (elem) => elem === selectedTopping.trim();
+    const idx = this.toppingType.name_toppings.findIndex(selected).toString();
+    return this.toppingType.name_abbreviation_toppings[idx];
+  }
+  getAbbreviationNamesArray(selectedToppings: string[]): string {
+    const sign = 'S/.';
+    let result = [];
+    if (selectedToppings === null) return null;
+
+    selectedToppings.map((selected) => {
+      console.log('selectedTopping', selected.trim());
+      const hasPrice = selected.trim().includes(sign);
+      if (hasPrice) {
+        selected = selected.split(sign)[0];
+        console.log('selected FISRT', selected);
+      }
+      console.log(
+        'this.toppingType.name_toppings',
+        this.toppingType.name_toppings
+      );
+      const isExit = (elem) => elem == selected.trim();
+      const idx = this.toppingType.name_toppings.findIndex(isExit);
+      if (idx > -1) {
+        result.push(this.toppingType.name_abbreviation_toppings[idx]);
+      }
+    });
+    console.log('result', result);
+    return result.toString();
   }
 
   getToppingPriceFormat(id: number): string {
@@ -41,6 +79,8 @@ export class ToppingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('toppingType', this.toppingType);
+
     let incommingToppings = this.incommingSelectedToppings;
     if (
       incommingToppings !== undefined &&
