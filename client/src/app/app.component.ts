@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BUYER_CONFIG } from './core/buyer/buyer.config';
 import { BuyerNavegationStore } from './core/buyer/services/buyer-navegation.store';
@@ -21,7 +21,6 @@ import {
   TemporaryStorageService,
 } from './core/session-storage/services/temporary-storage.service';
 import { updateBuyerNavagation } from './features/retailer-stores/helpers/buyerNavegation.helper';
-import { RetailerStoreStore } from './features/retailer-stores/services/retailer.store';
 import { containtToppings } from './shared/helpers/cart-product.helpers';
 
 @Component({
@@ -75,10 +74,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public buyerNavegationStore: BuyerNavegationStore,
     private location: Location,
     public cartStore: CartStore,
-    private eleRef: ElementRef,
-    private temporaryStorageService: TemporaryStorageService,
-    private retailerStoreStore: RetailerStoreStore,
-    private readonly activatedRoute: ActivatedRoute
+    private temporaryStorageService: TemporaryStorageService
   ) {
     // let url = "https://api.airtable.com/v0/app4dtPR3GvMixMHE/products?api_key=keyNqSR6NoYacM8nC";
     // let url = "https://api.airtable.com/v0/app4dtPR3GvMixMHE/products";

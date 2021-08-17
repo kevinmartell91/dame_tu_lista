@@ -38,7 +38,8 @@ import {
   sendViaWhatsApp,
   transformInvoiceIntoRawTextBaseFormat,
   transformOrderToRawTextBaseFortmat,
-  transformOrderToRawTextBaseFortmatForThermalPrinter,
+  transformOrderToRawTextBaseFortmatForThermalPrinterOnlyProductList,
+  transformOrderToRawTextBaseFortmatForThermalPrinterWithPrice,
 } from './helpers/whatsapp.helpers';
 
 @Component({
@@ -181,7 +182,8 @@ export class CartsComponent implements OnDestroy {
       this.totalCartPrice = getTotalCartPrice(this.cartProducts);
       // formating to two decimals and as a string
       this.totalCartPriceStr = this.totalCartPrice.toFixed(2);
-      console.log('totalCartPriceStr', this.totalCartPriceStr);
+      console.log('totalCartPriceStr kevon', this.totalCartPriceStr);
+      console.log('this.cartProducts', this.cartProducts);
     });
 
     this.subscriptionBuyer = this.authenticationStore.loginUser$.subscribe(
@@ -831,7 +833,7 @@ export class CartsComponent implements OnDestroy {
 
         if (containtToppings((x.data as Order).cart[0].categoryName)) {
           const orderThermalPrinterFormat =
-            transformOrderToRawTextBaseFortmatForThermalPrinter(
+            transformOrderToRawTextBaseFortmatForThermalPrinterWithPrice(
               x.data as Order
             );
         }
@@ -842,6 +844,7 @@ export class CartsComponent implements OnDestroy {
         // TO DO:
 
         // if currentUser =>the seller can send invoice to customer phone number
+
         if (this.currentUser) {
           sendViaWhatsApp(orderRawText, order.shipping.buyer.phoneNumber);
         } else {
@@ -1024,7 +1027,25 @@ export class CartsComponent implements OnDestroy {
       .join('/');
   }
 
-  sendToBluetoothThermalPrinter(): void {
-    window.print();
+  printOnBluetoothThermalPrinter(): void {
+    console.log('this.cartProducts KEVIN ', this.cartProducts);
+    const cartOrders =
+      transformOrderToRawTextBaseFortmatForThermalPrinterOnlyProductList(
+        this.cartProducts
+      );
+    this.sendToBluetoothThermalPrinter(cartOrders);
+  }
+
+  sendToBluetoothThermalPrinter(prn: string): void {
+    // LINK REFERENCE
+    // https://rawbt.ru/start.html
+    // Generating a receipt from javascript
+    var S = '#Intent;scheme=rawbt;';
+    var P = 'package=ru.a402d.rawbtprinter;end;';
+    var textEncoded = encodeURI(prn);
+    // this lime will print the order in the therma printer
+    // if the RaxBT mobile app in installed and setup manually
+    // if not it wil redirecto to the app in the play store(androide device
+    window.location.href = 'intent:' + textEncoded + S + P;
   }
 }

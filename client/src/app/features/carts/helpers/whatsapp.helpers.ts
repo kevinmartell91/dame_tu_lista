@@ -8,6 +8,7 @@
 //   getTitleCenteredFormat,
 //   getNameAndPriceFormat,
 // } from '../../../shared/helpers/cart-product.helpers';
+import { isEmpty } from 'lodash';
 import { APP_CONFIG } from 'src/app/app.config';
 import { CartProductOrder } from 'src/app/core/order/types/cart-product-order';
 import { Order } from 'src/app/core/order/types/order';
@@ -248,7 +249,265 @@ export const transformOrderToRawTextBaseFortmat = (order: Order): string => {
   return orderRawTxt;
 };
 
-export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
+export const transformOrderToRawTextBaseFortmatForThermalPrinterOnlyProductList =
+  (order: CartProductOrder[]): string => {
+    // (order: Order): string => {
+    let orderRawTxt: string = '';
+    let title: string = '';
+    let totalPrice: string = '';
+    const marginLeft = '';
+    const corner = '';
+    const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
+
+    if (order != null) {
+      console.log('order KEVIN', order);
+      /* #region  Title of the thermal printer order */
+      title = `${marginLeft}        ORDEN ENTRANTE        `;
+      // title = `${marginLeft}        PO. ORDEN ENTRANTE   products only      `;
+      orderRawTxt += title + breakLine;
+      /* #endregion */
+
+      order.forEach((product, idx) => {
+        orderRawTxt += '================================' + breakLine;
+        /* #region Setting Product name base on if topponing exist */
+        let productName: string;
+        let productMaturitName: string;
+        let productFeatures: string;
+        let isProductToppings: boolean;
+
+        if (containtToppings(product.categoryName)) {
+          //store with toppings
+          productName = product.maturityName;
+          productMaturitName = '';
+          productFeatures = '';
+          isProductToppings = true;
+        } else {
+          // regular store
+          productName = getNameAndPriceFormat(
+            product.categoryName + ' ' + product.varietyName,
+            containtToppings(product.categoryName)
+              ? product.totalAmount
+              : product.totalPrice
+          );
+          productMaturitName = '- ' + product.maturityName;
+          productFeatures =
+            getProductSizeStr(product) + '    ' + getOrganicStr(product);
+          isProductToppings = false;
+        }
+        /* #endregion */
+
+        /* #region Getting numeration and product name in one line */
+        // orderRawTxt += `${(idx + 1).toString()}) `;
+        orderRawTxt += `${marginLeft}${productName.toUpperCase()}`;
+        orderRawTxt += breakLine;
+        /* #endregion */
+
+        /* #region  Setting quantity, weight and price in one line */
+        const dual = containtToppings(product.categoryName)
+          ? getPriceFormat(product.totalAmount)
+          : productMaturitName;
+        // quantity and weight and price one line
+        let quantityWeightPrice = (
+          '' +
+          getQuantityFormat(product.quantity, product.isKilo) +
+          ' ' +
+          formatQuantityWeightType(product.isKilo) +
+          '       ' +
+          dual
+        )
+          .replace(/_/g, '')
+          .replace(/\*/g, '');
+
+        if (containtToppings(product.categoryName)) {
+          orderRawTxt +=
+            marginLeft +
+            getToppingsWithPriceAtNumCharactsOneLineFormat(
+              quantityWeightPrice,
+              32
+            );
+          orderRawTxt += breakLine;
+        }
+
+        /* #endregion */
+
+        /* #region  If It has features such as Size and organic */
+        if (productFeatures !== '    ') {
+          orderRawTxt +=
+            marginLeft + printerEmptyChar + printerEmptyChar + productFeatures;
+          orderRawTxt += breakLine;
+        }
+        /* #endregion */
+
+        /* #region Showing toppings */
+        // orderRawTxt += emptyLine;
+        console.log('topping KEVIN BRIAN', product.toppings);
+        if (isProductToppings && product.toppings !== undefined) {
+          product.toppings.map((topping) => {
+            if (topping.isMultipleSelection) {
+              orderRawTxt += breakLine;
+            }
+            orderRawTxt +=
+              marginLeft + getToppingFormatBaseFormatThermalPrinter(topping);
+          });
+        }
+        /* #endregion */
+
+        /* #region Showing order details */
+        orderRawTxt += breakLine;
+        let prodDetailsTitle = product.details !== '' ? '------- ' : '';
+        orderRawTxt += marginLeft + printerEmptyChar + prodDetailsTitle;
+        orderRawTxt += breakLine;
+
+        if (prodDetailsTitle !== '') {
+          let multiplineProdNameAndDetails: string[] =
+            formatLongTextToNNCharactersMiltipleLines(
+              product.details,
+              30 - marginLeft.length,
+              ' '
+            );
+
+          multiplineProdNameAndDetails.forEach((line, i) => {
+            orderRawTxt +=
+              marginLeft + printerEmptyChar + printerEmptyChar + line;
+          });
+        }
+
+        /* #endregion */
+        orderRawTxt += emptyLine;
+      });
+
+      // /* #region  Payment, delivery, order link and total amount details */
+      // let paymentType;
+      // let cashPaymenyAmount: number = 0;
+      // let cashBackAmount = 0;
+
+      // /* #region  Setting Payment type */
+      // switch (order.payment.method) {
+      //   case 'pos_method_area':
+      //     paymentType = 'POS/contra entrega';
+      //     break;
+      //   case 'bank_deposit':
+      //     paymentType = 'Deposito bancario';
+      //     break;
+      //   case 'fast_transfer':
+      //     paymentType = 'Yaple/Plin';
+      //     break;
+      //   default:
+      //     paymentType = 'Efectivo/contra entrega';
+      //     cashPaymenyAmount = order.payment.cashPaymentAmount;
+      //     cashBackAmount = order.payment.cashBackAmount;
+      //     break;
+      // }
+      // /* #endregion */
+
+      // /* #region  Showing payment t */
+      // // orderRawTxt += 'Detalles de la orden : ' + breakLine;
+      // orderRawTxt += '================================' + breakLine;
+      // orderRawTxt += `Pago : ${paymentType}` + breakLine;
+      // /* #endregion */
+
+      /* #region  Total price */
+      // totalPrice = `Total a cobrar : S/. ${order.payment.amount.toFixed(2)} `;
+      // totalPrice =
+      //   getToppingsWithPriceAtNumCharactsOneLineFormat(totalPrice, 32) +
+      //   breakLine;
+      // orderRawTxt += totalPrice;
+      // /* #endregion */
+
+      // /* #region  Showing cash Paayment amount if selected */
+      // if (cashPaymenyAmount > 0) {
+      //   orderRawTxt += getCashPaymetAttibutesAtNNCharactersOneLineFomat(
+      //     'Pagará con :' + 'S/. ' + cashPaymenyAmount.toFixed(2),
+      //     32
+      //   );
+      //   orderRawTxt += breakLine;
+      //   orderRawTxt += getCashPaymetAttibutesAtNNCharactersOneLineFomat(
+      //     'Cambio :' + 'S/. ' + cashBackAmount.toFixed(2),
+      //     32
+      //   );
+      // }
+      /* #endregion */
+
+      // /* #region Setting Deliver or pick up order */
+      // orderRawTxt += emptyLine;
+
+      // let orderType =
+      //   order.orderType === 'delivery' ? 'Delivery' : 'Recojo en tienda';
+
+      // orderRawTxt += `Tipo entrega : ${orderType}` + breakLine;
+
+      // if (order.orderType == 'delivery') {
+      //   orderRawTxt += breakLine;
+      //   orderRawTxt += `Dirección:` + breakLine;
+      //   // orderRawTxt += breakLine;
+
+      //   // const apartment = order.shipping.address.apartmentNumber
+      //   //   ? ', Dpto: ' + order.shipping.address.apartmentNumber
+      //   //   : '';
+      //   // const district = `, ${order.shipping.address.district}`;
+
+      //   // let address = `${order.shipping.address.streetName} ${order.shipping.address.streetNumber} ${apartment} ${district}`;
+
+      //   // let multipliAddressLine = formatLongTextToNNCharactersMiltipleLines(
+      //   //   address,
+      //   //   30 - marginLeft.length
+      //   // );
+
+      //   // multipliAddressLine.forEach((line) => {
+      //   //   orderRawTxt += line + breakLine;
+      //   // });
+      //   // orderRawTxt += breakLine;
+
+      //   if (order.shipping.address.details) {
+      //     const multipleLineDetails = formatLongTextToNNCharactersMiltipleLines(
+      //       order.shipping.address.details,
+      //       32
+      //     );
+      //     multipleLineDetails.forEach((line) => {
+      //       orderRawTxt += line;
+      //     });
+      //   }
+
+      //   if (order.shipping.address.reference) {
+      //     const multilineReference = formatLongTextToNNCharactersMiltipleLines(
+      //       order.shipping.address.reference,
+      //       32
+      //     );
+      //     multilineReference.forEach((line) => {
+      //       orderRawTxt += line + breakLine;
+      //     });
+
+      //     orderRawTxt += breakLine;
+      //   }
+
+      //   orderRawTxt += breakLine;
+      //   /* #endregion */
+      // }
+
+      // // orderRawTxt += 'Si desea puede ver su orden ingresando al siguiente link: ';
+      // // orderRawTxt += `${APP_CONFIG.appBaseUrl}/${localStorage.getItem(
+      // //   'retailer_store_name'
+      // // )}/orders/${order._id}`;
+      // // orderRawTxt += breakLine;
+
+      // orderRawTxt += breakLine;
+      // orderRawTxt += '      Hecho con mucho ❤️ en 🇵🇪      ' + breakLine;
+
+      // copy to clipboard
+
+      let copyToBluetoothPrinter = orderRawTxt.replace(/_/g, '');
+      copyToBluetoothPrinter = copyToBluetoothPrinter.replace(/\*/g, '');
+      orderRawTxt = copyToBluetoothPrinter;
+      /* #endregion */
+    }
+    console.log('THERMAL PRINTER FORMAT (clipboard)');
+    console.log(orderRawTxt);
+    copyText(orderRawTxt);
+
+    return orderRawTxt;
+  };
+
+export const transformOrderToRawTextBaseFortmatForThermalPrinterWithPrice = (
   order: Order
 ): string => {
   let orderRawTxt: string = '';
@@ -259,9 +518,10 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
   const priceGuideLine = ' · · · · · · · · · · · · · · · · ·  ';
 
   if (order != null) {
-    console.log('order KEVIN', order);
+    // console.log('order KEVIN', order);
     /* #region  Title of the thermal printer order */
     title = `${marginLeft}        ORDEN ENTRANTE        `;
+    // title = `${marginLeft}        W.P. ORDEN ENTRANTE  with price      `;
     orderRawTxt += title + breakLine;
     /* #endregion */
 
@@ -353,7 +613,8 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
         let multiplineProdNameAndDetails: string[] =
           formatLongTextToNNCharactersMiltipleLines(
             product.details,
-            30 - marginLeft.length
+            30 - marginLeft.length,
+            ' '
           );
 
         multiplineProdNameAndDetails.forEach((line, i) => {
@@ -451,7 +712,8 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
       if (order.shipping.address.details) {
         const multipleLineDetails = formatLongTextToNNCharactersMiltipleLines(
           order.shipping.address.details,
-          32
+          32,
+          ' '
         );
         multipleLineDetails.forEach((line) => {
           orderRawTxt += line;
@@ -461,7 +723,8 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
       if (order.shipping.address.reference) {
         const multilineReference = formatLongTextToNNCharactersMiltipleLines(
           order.shipping.address.reference,
-          32
+          32,
+          ' '
         );
         multilineReference.forEach((line) => {
           orderRawTxt += line + breakLine;
@@ -496,7 +759,6 @@ export const transformOrderToRawTextBaseFortmatForThermalPrinter = (
 
   return orderRawTxt;
 };
-
 export const transformOrderToRawText = (order: Order): string => {
   const tab: string = String.fromCodePoint(parseInt('9', 16));
   const breakLine: string = '\n';
@@ -779,6 +1041,8 @@ export const transformInvoiceIntoRawTextBaseFormat = (
   let subTitle: string = '';
   let totalPrice: string = '';
 
+  console.log('order.cart', order);
+
   if (currentUser) {
     title = '           *Cotización*          ' + breakLine;
     subTitle = '*Lista de productos* :' + breakLine;
@@ -789,7 +1053,6 @@ export const transformInvoiceIntoRawTextBaseFormat = (
 
   if (order != null) {
     // parse order data in Tab separated text
-    console.log('order.cart', order);
 
     orderRawTxt += breakLine;
     orderRawTxt += breakLine;
@@ -990,7 +1253,8 @@ export const formatLongTextTo20CharactersMiltipleLines = (
 
 export const formatLongTextToNNCharactersMiltipleLines = (
   longText: string,
-  chars: number
+  chars: number,
+  splitCharacter: string
 ): string[] => {
   const maxLenTextByLine: number = chars;
   const breakLine = '\n';
@@ -999,21 +1263,23 @@ export const formatLongTextToNNCharactersMiltipleLines = (
   // const splitCharacter = `
 
   // `;
-  const splitCharacter = ` `;
+  // const splitCharacter = ` `;
   const arrWords = longText.split(splitCharacter);
   console.log('arrWords', arrWords);
   let bufferMultilineText: string[] = [];
   let tempLine = '';
 
   arrWords.forEach((word) => {
-    let text = word.trim();
-    if (tempLine.length + text.length < maxLenTextByLine) {
-      tempLine += text + ' ';
-    } else {
-      tempLine += breakLine;
-      bufferMultilineText.push(tempLine);
-      tempLine = '';
-      tempLine += text + ' ';
+    if (!isEmpty(word)) {
+      let text = word.trim();
+      if (tempLine.length + text.length < maxLenTextByLine) {
+        tempLine += text + ' ';
+      } else {
+        tempLine += breakLine;
+        bufferMultilineText.push(tempLine);
+        tempLine = '';
+        tempLine += text + ' ';
+      }
     }
   });
   // addinfg the left over words
@@ -1244,20 +1510,46 @@ const getToppingFormatBaseFormatThermalPrinter = (
 ): string => {
   const indentationL1 = printerEmptyChar; //!@$#%$#
   const indentationL2 = printerEmptyChar;
+  const marginLeft = '';
+  let arrtMultipleLines: string[] = [];
+  let temp = '';
   const sign = '-';
   let res = '';
+
+  //"May,K,Moz,Golf,Cei,Tar"
+
+  // multiple toppings selected
   if (topping.isMultipleSelection) {
-    // multple toppings selected
     // res = `${indentationL1}${topping.name.trim()} :${breakLine}`;
     topping.name_abbreviation.split(',').map((abbreviation) => {
-      res += `${indentationL2}${sign} ${abbreviation.trim()}`;
-      if (abbreviation.length > 10) res += `${breakLine}`;
+      // short =>  - KET
+      // long =>   - Chorizo Breat (otto kunz)
+
+      if (!isEmpty(abbreviation.trim())) {
+        console.log('not isEmpty- abbreviation:', abbreviation);
+        temp += `${indentationL2}${sign}${sign} ${abbreviation.trim()}`;
+      }
+      // if (abbreviation.length > 10) res += `${breakLine}`;
     });
   } else {
     // only one topping selected
-    res += `${indentationL2}${sign} ${topping.name_abbreviation.trim()}`;
+    temp += `${indentationL2}${sign}${sign} ${topping.name_abbreviation}`;
   }
   // res += `${breakLine}`;
+
+  console.log('TEMP:', temp);
+  //" -- May -- K -- Moz -- Golf"
+  arrtMultipleLines = formatLongTextToNNCharactersMiltipleLines(
+    temp,
+    30 - marginLeft.length,
+    `${indentationL2}${sign}`
+  );
+  arrtMultipleLines.forEach((line, i) => {
+    console.log('temp - kecin - line:', line);
+    res += line;
+  });
+  arrtMultipleLines = [];
+  temp = '';
   return res;
 };
 

@@ -9,7 +9,7 @@
 
     <h2 class="style_question">
       {{ titleMessage }}
-      <p *ngIf="currentUser" (click)="sendToBluetoothThermalPrinter()">🖨️</p>
+      <p *ngIf="currentUser" (click)="printOnBluetoothThermalPrinter()">🖨️</p>
     </h2>
 
     <ng-container *ngFor="let cartProduct of cartProducts">
